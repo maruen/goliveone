@@ -1,0 +1,269 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<!--  CUSTOS -->
+<p:panel id="custosPanel"
+	 header="Custos"
+	 toggleable="true"
+	 closable="false"
+	 collapsed="true"
+	 toggleSpeed="500"
+	 closeSpeed="500"
+	 widgetVar="custosPanel"
+	 styleClass="little-font">
+ 
+	 <f:facet name="actions">
+	        		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	        			<h:outputText styleClass="ui-icon ui-icon-help" />
+	        		</h:commandLink>
+	    		  </f:facet>
+    		  
+    		  
+ 
+	 <p:fieldset legend="Custo Compra" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important" >
+    		
+      		<h:panelGrid cellpadding="2"
+        			 cellspacing="2"
+        			 width="100%"
+        			 border="0" >
+	        <p:row>
+		        
+			        <p:dataTable
+			        	 id="custosCompraDatatable"
+			        	 value="#{cadastroProdutoBean.custosCompraDatatable}"
+			        	 paginatorPosition="top" 
+			        	 scrollable="true"
+			        	 scrollWidth="95%"
+			        	 scrollHeight="100%"
+			        	 style="width:100%"
+			        	 resizableColumns="false"
+			        	 styleClass="scrolls"
+			        	 lazy="true" 
+			        	 var="custosCompra">
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-10">
+					        <h:outputText value="#{custosCompra[1]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Un."
+					    		  styleClass="percentual-10">
+					        <h:outputText value="#{custosCompra[2]}" />
+					    </p:column>
+					 
+					    <p:column headerText="Descrição" 
+					    		  styleClass="percentual-10">
+					        <h:outputText value="#{custosCompra[2]}" />
+					    </p:column>
+					 
+					    <p:column headerText="Un. Princ."
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[3]}" />
+					    </p:column>
+					 
+				 	   <p:column headerText="Un. Sec."
+				 	   			 styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[4]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Fator Mult."
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[5]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Peso Liq."
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[6]}" />
+					    </p:column>
+					 
+					 	<p:column headerText="Peso Bruto."
+					 			  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[7]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Un. Perm. Compra?"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[8]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Qtd Min. Ped. Compra"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[9]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Qtd Máx. Ped. Compra"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[10]}" />
+					    
+					    </p:column>
+					    					    
+					    <p:column headerText="Peso Máx. Ped. Compra"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[11]}" />
+					    </p:column>
+					    
+					    
+					    <p:column headerText="Un Util An. Comp Pedido Compra?"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[12]}" />
+					    </p:column>
+					    
+					    
+					    <p:column headerText="Un Util An. Comp Estoque?"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[13]}" />
+					    </p:column>
+					    					    
+					    <p:column headerText="Un. Permite Venda"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[14]}" />
+					    </p:column>
+					    
+					    
+					    <p:column headerText="Qtd Máx. Ped. Venda"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[15]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Peso Máx. Ped. Venda"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosCompra[1]}" />
+					    </p:column>
+					    
+					</p:dataTable>
+			
+			</p:row>
+			
+		</h:panelGrid>	
+    			
+    			
+    			
+			</p:fieldset>
+			
+			<p:fieldset legend="Custo Venda" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important">
+			
+			
+			<h:panelGrid cellpadding="2"
+        			 cellspacing="2"
+        			 width="100%"
+        			 border="0" >
+	        <p:row>
+		        
+			        <p:dataTable
+			        	 id="custosVendaDatatable"
+			        	 value="#{cadastroProdutoBean.custosVendaDatatable}"
+			        	 paginatorPosition="top" 
+			        	 scrollable="true"
+			        	 scrollWidth="95%"
+			        	 scrollHeight="100%"
+			        	 style="width:100%"
+			        	 resizableColumns="false"
+			        	 styleClass="scrolls"
+			        	 lazy="true" 
+			        	 var="custosVenda">
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-10">
+					        <h:outputText value="#{custosVenda[1]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Un."
+					    		  styleClass="percentual-10">
+					        <h:outputText value="#{custosVenda[2]}" />
+					    </p:column>
+					 
+					    <p:column headerText="Descrição" 
+					    		  styleClass="percentual-10">
+					        <h:outputText value="#{custosVenda[2]}" />
+					    </p:column>
+					 
+					    <p:column headerText="Un. Princ."
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[3]}" />
+					    </p:column>
+					 
+				 	   <p:column headerText="Un. Sec."
+				 	   			 styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[4]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Fator Mult."
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[5]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Peso Liq."
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[6]}" />
+					    </p:column>
+					 
+					 	<p:column headerText="Peso Bruto."
+					 			  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[7]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Un. Perm. Compra?"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[8]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Qtd Min. Ped. Compra"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[9]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Qtd Máx. Ped. Compra"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[10]}" />
+					    
+					    </p:column>
+					    					    
+					    <p:column headerText="Peso Máx. Ped. Compra"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[11]}" />
+					    </p:column>
+					    
+					    
+					    <p:column headerText="Un Util An. Comp Pedido Compra?"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[12]}" />
+					    </p:column>
+					    
+					    
+					    <p:column headerText="Un Util An. Comp Estoque?"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[13]}" />
+					    </p:column>
+					    					    
+					    <p:column headerText="Un. Permite Venda"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[14]}" />
+					    </p:column>
+					    
+					    
+					    <p:column headerText="Qtd Máx. Ped. Venda"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[15]}" />
+					    </p:column>
+					    
+					    <p:column headerText="Peso Máx. Ped. Venda"
+					    		  styleClass="percentual-10">
+					    	<h:outputText value="#{custosVenda[1]}" />
+					    </p:column>
+					    
+					</p:dataTable>
+			
+			</p:row>
+			
+		</h:panelGrid>	
+    		
+
+	</p:fieldset>
+ 
+</p:panel>
+	
+</ui:composition>	

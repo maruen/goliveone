@@ -1,0 +1,150 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<!-- CODIGO DE BARRAS  -->
+<p:panel id="codigoBarrasPanel"
+		 header="Código de Barras"
+		 toggleable="true"
+		 collapsed="true"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="codigoBarrasWidgetBar"
+		 styleClass="little-font" >
+		 
+		 
+		 <f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		  </f:facet>
+		 
+		       	
+          <h:panelGrid columns="12"
+					cellpadding="3"
+					cellspacing="3"
+					columnClasses="
+								   percentual-28,
+					 			   percentual-3,
+					 			   percentual-10,
+					 			   percentual-5,
+					 			   percentual-20,
+					 			   percentual-5,
+					 			   percentual-10,
+					 			   percentual-3,
+					 			   percentual-10,
+					 			   percentual-2,
+					 			   percentual-2,
+					 			   percentual-2" 
+					 width="100%"
+					 border="0">
+		
+		
+				<p:selectOneMenu id="codigoBarrasOneMenu" style="width: 90%; background-color: #FFFFFF ">
+        	        <f:selectItems value="#{cadastroProdutoBean.codigoBarras}" />
+   		        </p:selectOneMenu>
+  		    
+  		    		<h:outputText id="codigoBarrasIdOutputText" value="Id"  styleClass="singleLine"/>
+        		<p:inputText id="codigoBarrasIdInputText"   value="" style="width: 97%;"/>
+        	
+        		<h:outputText id="codigoBarrasCodigoOutputText" value="Código Barras"  styleClass="singleLine"/>
+        		<p:inputText id="codigoBarrasCodigoInputText" value="" style="width: 97%;"/>
+        	
+        		<h:outputText id="codigoBarrasFatorMultiplicacaoOutputText" value="Fator de Multiplicação"  styleClass="singleLine"/>
+        		<p:inputText id="codigoBarrasFatorMultiplicacaoInputText" value="" style="width: 97%;"/>
+        		
+        		<p:inputText id="codigoBarrasFatorCxInputText"     value="CX" style="width: 97%;"/>
+        		<p:inputText id="codigoBarrasFatorCxDescInputText" value="Caixas" style="width: 97%;"/>
+        	
+        	
+            	<p:commandLink action="#">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				 </p:commandLink>
+            	
+            	<p:commandLink action="#">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+				 </p:commandLink>
+		 	
+	       	 	 <p:commandLink action="#">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+				 </p:commandLink>
+       	
+       	</h:panelGrid>
+       	
+       	<h:panelGrid cellpadding="2"
+        			 cellspacing="2"
+        			 width="100%"
+        			 border="0" >
+        
+	        <p:dataTable id="codigoBarrasDatatable"
+	        			 var="codigoBarras"
+	        			 value="#{cadastroProdutoBean.codigoBarrasDatatable}" >
+			    
+			    <p:column headerText=""
+			    		  styleClass="percentual-5 singleLine">
+			     	<p:selectBooleanCheckbox value="xx" />   
+			    </p:column>
+			    
+			    <p:column headerText="Id"
+			    		 styleClass="percentual-20 singleLine "
+			    		 sortBy="#{codigoBarras[0]}">
+			        <h:outputText value="#{codigoBarras[0]}"  styleClass="floatRight"/>
+			    </p:column>
+			 
+			    <p:column headerText="Código Barras"
+			    		  styleClass="percentual-25 singleLine"
+			    		  sortBy="#{codigoBarras[1]}">
+			        <h:outputText value="#{codigoBarras[1]} "  styleClass="floatRight"/>
+			    </p:column>
+			 
+			    <p:column headerText="Fator Multiplicação"
+			    		  styleClass="percentual-15 singleLine"
+			    		  sortBy="#{codigoBarras[2]}">
+			        <h:outputText value="#{codigoBarras[2]}"  styleClass="floatRight"/>
+			    </p:column>
+			    
+			    <p:column headerText="Id"
+			    		  styleClass="percentual-15 singleLine"
+			    		  sortBy="#{codigoBarras[3]}">
+			        <h:outputText value="#{codigoBarras[3]}"  styleClass="floatRight"/>
+			    </p:column>
+			    
+			    
+			    <p:column headerText="Abrv. custosCompra"
+			    		  styleClass="percentual-15 singleLine"
+			    		  sortBy="#{codigoBarras[4]}">
+			        <h:outputText value="#{codigoBarras[4]}"  styleClass="floatRight"/>
+			    </p:column>
+			    
+			    
+			    <p:column headerText="custosCompra"
+			    		  styleClass="percentual-15 singleLine"
+			    		  sortBy="#{codigoBarras[5]}">
+			        <h:outputText value="#{codigoBarras[5]}"  styleClass="floatRight"/>
+			    </p:column>
+			    
+			    <p:column headerText="Id"
+			    		  styleClass="percentual-15 "
+			    		  sortBy="#{codigoBarras[6]}">
+			        <h:outputText value="#{codigoBarras[6]}"  styleClass="floatRight"/>
+			    </p:column>
+			 
+			    <p:column headerText="Finalidade custosCompra"
+			    		  styleClass="percentual-15 singleLine"
+			    		  sortBy="#{codigoBarras[7]}">
+			        <h:outputText value="#{codigoBarras[7]}" />
+			    </p:column>
+			
+			
+			
+			</p:dataTable>
+		</h:panelGrid>
+  	
+</p:panel>
+
+</ui:composition>
+

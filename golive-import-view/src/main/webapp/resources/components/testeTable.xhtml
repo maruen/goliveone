@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<composite:interface>
+
+	<composite:attribute name="registro" required="true" />
+	<composite:attribute name="conteudo" required="true" />
+	<composite:attribute name="fields" required="true" />
+	<composite:attribute name="labelProperties" required="false"
+		type="java.util.Properties" />
+
+
+</composite:interface>
+
+<composite:implementation>
+
+	<p:dataTable selectionMode="single" selection="#{cc.attrs.registro}"
+		scrollable="true" styleClass="table" rowKey="#{list.id}" id="table"
+		value="#{cc.attrs.conteudo}" var="list">
+
+		<p:ajax event="rowSelect" update="table" />
+		<p:ajax event="rowUnselect" update="table" />
+
+
+
+		<p:columnGroup type="header">
+			<p:row>
+
+				<p:column rowspan="2" style="width:16px;text-align:center" />
+
+
+				<c:forEach items="#{cc.attrs.fields}" var="field">
+					<c:choose>
+						<c:when test="#{bean.agrupamento(field)}">
+							<p:column rowspan="#{bean.rowspan(field)}"
+								colspan="#{bean.colspan(field)}"
+								headerText="#{bean.headerText(field)}" />
+						</c:when>
+
+						<c:otherwise>
+							<p:column rowspan="#{bean.rowspan(field)}"
+								headerText="#{bean.headerText(field)}" />
+						</c:otherwise>
+
+					</c:choose>
+				</c:forEach>
+			</p:row>
+
+			<p:row>
+				<c:forEach items="#{cc.attrs.fields}" var="field">
+					<c:if test="#{bean.agrupamento(field)}">
+						<c:forEach items="#{bean.subFields(field)}" var="subField">
+							<p:column rowspan="1" colspan="1"
+								headerText="#{bean.headerText(subField)}" />
+						</c:forEach>
+					</c:if>
+				</c:forEach>
+			</p:row>
+
+		</p:columnGroup>
+
+		<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+
+		<c:forEach items="#{cc.attrs.fields}" var="field">
+
+			<c:choose>
+				<c:when test="#{bean.agrupamento(field)}">
+					<c:forEach items="#{bean.subFields(field)}" var="subField">
+						<p:column>
+							<h:outputLabel
+								value="#{bean.invokeGetter(bean.invokeGetter(list, field.name), subField.name)}" />
+						</p:column>
+					</c:forEach>
+				</c:when>
+
+				<c:otherwise>
+					<p:column>
+						<h:outputLabel value="#{bean.invokeGetter(list, field.name)}" />
+					</p:column>
+				</c:otherwise>
+
+			</c:choose>
+		</c:forEach>
+
+
+	</p:dataTable>
+
+
+</composite:implementation>
+
+</html>

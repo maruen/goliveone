@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/homeTemplate.xhtml">
+
+	<ui:define name="css">
+		<h:outputStylesheet name="css/welcome/style_welcome.css" />
+	</ui:define>
+
+	<ui:define name="header">
+		<ui:include src="/resources/includes/header/headerNavegacao.xhtml" />
+	</ui:define>
+
+	<ui:define name="menuMain">
+		<ui:include src="/resources/includes/welcome/welcomeMenu.xhtml">
+			<ui:param name="propertyLabel" value="#{welcomeBean.labels}" />
+		</ui:include>
+
+	</ui:define>
+
+	<ui:define name="contentMain">
+		<p:chart type="line" model="#{chartView.lineModel2}"
+			style="height:300px;position: center; width: 100%" />
+
+		<p:chart type="bar" model="#{chartView.barModel}"
+			style="height:300px;  width: 100%" />
+
+		<p:chart type="bar" model="#{chartView.horizontalBarModel}"
+			style="height:300px; width: 90%" />
+
+		<p:chart type="line" model="#{chartView.lineModel2}"
+			style="height:300px;position: center; width: 100%" />
+
+		<p:chart type="bar" model="#{chartView.barModel}"
+			style="height:300px;  width: 100%" />
+	</ui:define>
+
+
+
+</ui:composition>

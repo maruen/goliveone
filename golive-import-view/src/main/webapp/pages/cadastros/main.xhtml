@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/homeTemplate.xhtml">
+
+	<ui:define name="css">
+		<h:outputStylesheet name="css/cadastros/style_main.css" />
+	</ui:define>
+
+	<ui:define name="header">
+		<ui:include src="/resources/includes/header/headerNavegacao.xhtml" />
+	</ui:define>
+
+	<ui:define name="menuMain">
+		<ui:include src="/resources/includes/cadastros/cadastros/main/cadastrosMenu.xhtml" />
+	</ui:define>
+	
+	<ui:define name="contentMain">
+		<h:panelGrid columns="2">
+		    <p:chart type="line" model="#{animatedCharView.animatedModel1}" style="width:400px;" />
+    		<p:chart type="pie" model="#{animatedCharView.pieModel1}" style="width:400px;height:300px" />  		
+    		<p:chart type="bar" model="#{animatedCharView.animatedModel2}" style="width:400px;" />
+			<p:chart type="pie" model="#{animatedCharView.pieModel2}" style="width:400px;height:300px" />
+		</h:panelGrid>
+	</ui:define>
+	
+	
+
+</ui:composition>

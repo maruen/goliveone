@@ -1,0 +1,97 @@
+@CHARSET "UTF-8";
+
+.divBotaoMenu {
+	width: 100%;
+	height: 40px;
+	background-color: #FFFFFF;
+	background-size: 100% 100%;
+    padding-top: 15px;
+}
+
+.buttonDiv {
+	width: 98%;
+	height: 100%;
+	float: left;
+	margin-left: 1%;
+}
+
+.buttonDiv:hover {
+	background-color: #D3D3D3;
+}
+
+.colorTagButton {
+	width: 4px;
+	height: 65%;
+	float: left;
+	margin-top: 7px;
+	margin-left: -90%;
+}
+
+.botaoMenu:active: {
+	width: 4px;
+	height: 65%;
+	float: left;
+	margin-top: 7px;
+	background-color: #FFFFFF;
+	margin-left: -90%;
+}
+
+.botaoMenu {
+	width: 100%;
+	margin-left: 0;
+	height: 40px;
+	border: 0px;
+	text-align: left;
+	text-indent: 40px;
+	background-color: rgba(255, 255, 255, 0);
+	
+}
+
+.botaoMenu:hover {
+	background-color: #D3D3D3;
+	width: 100%;
+	height: 40px;
+}
+
+.botaoMenu:active {
+	background-color: #4B610B;
+	color: #fff;
+	height: 40px;
+}
+
+.divBotaoDisableMenu {
+	width: 100%;
+	height: 40px;
+	background-color: #FFFFFF;
+	background-size: 100% 100%;
+    padding-top: 15px;
+}
+
+
+.buttonDisableDiv {
+	width: 98%;
+	height: 100%;
+	float: left;
+	margin-left: 1%;
+}
+
+.buttonDisableDiv:hover {
+	background-color: #E6E6E6;
+}
+
+
+.botaoMenuDisabled {
+	width: 100%;
+	margin-left: 0;
+	height: 40px;
+	border: 0px;
+	text-align: left;
+	text-indent: 40px;
+	background-color: rgba(255, 255, 255, 0);
+	
+}
+
+
+.botaoMenu:visited {
+	color: #00FF00;
+} /*TESTAR POSTEIORMENTE*/

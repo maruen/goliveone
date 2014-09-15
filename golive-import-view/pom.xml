@@ -1,0 +1,184 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>golive-import-view</artifactId>
+	<packaging>war</packaging>
+
+	<name>golive-import-view</name>
+
+
+	<parent>
+		<groupId>br.com.golivebusiness</groupId>
+		<artifactId>golive-import</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.golivebusiness</groupId>
+			<artifactId>golive-import-service</artifactId>
+			<version>${golive.import.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+		</dependency>
+
+		<!-- PrimeFaces -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-servlet</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-config-prettyfaces</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>5.6.1</version>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<finalName>${context.root}</finalName>
+
+		<plugins>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jasperreports-maven-plugin</artifactId>
+                <version>1.0-beta-2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile-reports</goal>
+                        </goals>
+                        <configuration>
+                            <!--  jrxml file  directory-->
+                            <sourceDirectory>src/resources/br/com/golive/jrxml</sourceDirectory>
+                            <sourceFileExt>.jrxml</sourceFileExt>
+                            <compiler>net.sf.jasperreports.engine.design.JRJavacCompiler</compiler>
+                            <!--  Destination for jasper file -->
+                            <outputDirectory>src/main/webapp/jasper/br/com/golive/</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <!-- These plugins are used to specify correct version for jrxml xml validation -->
+                    <dependency>
+                        <groupId>net.sf.jasperreports</groupId>
+                        <artifactId>jasperreports</artifactId>
+                        <version>5.6.1</version>
+                    </dependency>
+                    
+                    <dependency>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                        <version>1.2.16</version>
+                    </dependency>
+        
+                </dependencies>
+            </plugin>
+
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<configuration>
+					<tasks>
+						<delete>
+							<fileset dir="${JBOSS_HOME}/standalone/deployments">
+								<include name="*" />
+							</fileset>
+						</delete>
+						<copy file="${basedir}/target/${context.root}.war"
+							tofile="${JBOSS_HOME}/standalone/deployments/${context.root}.war" />
+						<delete>
+							<fileset dir="${jboss.deploy.path}">
+								<include name="*" />
+							</fileset>
+						</delete>
+
+						<copy file="${basedir}/target/${context.root}.war" tofile="${jboss.deploy.path}/${context.root}.war" />
+					</tasks>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${compiler.war.plugin.version}</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>${basedir}/src/main/java</directory>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+					<overlays>
+						<overlay />
+					</overlays>
+					<attachClasses>true</attachClasses>
+					<archive>
+						<manifest>
+							<addClasspath>false</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${compiler.plugin.version}</version>
+				<configuration>
+					<source>${compiler.plugin.source}</source>
+					<target>${compiler.plugin.target}</target>
+				</configuration>
+			</plugin>
+
+
+		</plugins>
+
+	</build>
+
+</project>

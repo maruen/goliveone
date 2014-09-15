@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+
+html,body {
+	background-color: #FFFFFF
+}
+
+
+.loginDivSize {
+	height: 90%;
+	position: absolute;
+	width: 99%;
+}
+
+.usuarioDivGrid {
+	width: 500px;
+	height: 250px;
+	margin-left: 30%;
+	position: relative;
+	top: 30%;
+}
+
+.rowTitleUsuarioGrid {
+	width: 700px;
+	height: 70px;
+	margin-left: 25%;
+}
+
+.usuarioLoginGrid {
+	width: 200px;
+	float: left;
+	margin-left: 2%;
+	margin-top: 2.3%;
+}
+
+.panelGrid {
+	text-align: left;
+	margin-left: 14%;
+}
+
+.panelGridButtons {
+	margin-left: 20%;
+}
+
+.buttons{
+	width: 100px;
+}
+
+

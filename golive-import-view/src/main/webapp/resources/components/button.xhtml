@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<composite:interface>
+	<composite:attribute name="value" required="true" />
+	<composite:attribute name="identifier" required="true" />
+	<composite:attribute name="link" required="true" />
+	<composite:attribute name="hexaColorPipe" required="true" />
+	<composite:attribute name="permission" required="true"
+		type="java.lang.Boolean" />
+</composite:interface>
+
+<composite:implementation>
+
+
+	<c:choose>
+		<c:when test="#{cc.attrs.permission==true}">
+			<div id="botaoFullButtonGoLiveComponent_#{cc.attrs.identifier}"
+				class="divBotaoMenu">
+				<div id="buttonGoLiveComponent_#{cc.attrs.identifier}"
+					class="buttonDiv">
+					<h:commandButton value="#{cc.attrs.value}" styleClass="botaoMenu"
+						action="#{welcomeBean.indexColorReset}"
+						onclick="abrirNovaAba('#{cc.attrs.link}');"  />
+				</div>
+				<div id="colorIcon" class="colorTagButton"
+					style="background-color: #{cc.attrs.hexaColorPipe}" />
+			</div>
+		</c:when>
+
+		<c:otherwise>
+			<div id="botaoFullButtonGoLiveComponent_#{cc.attrs.identifier}"
+				class="divBotaoMenu">
+				<div id="buttonGoLiveComponent_#{cc.attrs.identifier}"
+					class="buttonDisableDiv">
+					<h:commandButton value="#{cc.attrs.value}" styleClass="botaoMenuDisabled"
+						onclick="abrirNovaAba('#{cc.attrs.link}');" disabled="true"  />
+				</div>
+				<div id="colorIcon" class="colorTagButton"
+					style="background-color: #{cc.attrs.hexaColorPipe}" />
+			</div>
+		</c:otherwise>
+	</c:choose>
+
+
+
+
+</composite:implementation>
+
+</html>

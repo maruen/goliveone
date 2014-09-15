@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<composite:interface>
+
+	<composite:attribute name="selected" required="true" />
+	<composite:attribute name="listTable" required="true"/>
+	<composite:attribute name="args" required="true"/>
+	<composite:attribute name="labelProperties" required="false" type="java.util.Properties" />
+	
+
+</composite:interface>
+
+<composite:implementation>
+
+        
+
+		<p:dataTable selectionMode="single" selection="#{cc.attrs.selected}" rowKey="#{list.id}"
+		id="goLiveDataTable_#{cc.attrs.selected['class'].simpleName}_dataTable"
+		value="#{cc.attrs.listTable}" var="list">
+
+		<c:forEach items="#{cc.attrs.selected['class'].declaredFields}"
+			var="field">
+			<c:if
+				test="#{goLiveDataTableBean.validateField(field.name, cc.attrs.args)}">
+				<p:column headerText="#{goLiveDataTableBean.getHeaderColumn(cc.attrs.labelProperties, field.name)}">
+					<h:outputLabel value="#{goLiveDataTableBean.rowGenericTable(list, field.name)}" />
+				</p:column>
+
+			</c:if>
+		</c:forEach>
+	</p:dataTable>
+
+
+</composite:implementation>
+
+</html>

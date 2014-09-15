@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+		<h:outputStylesheet name="css/component/golive_toolbarButton.css" />
+	</h:head>
+
+		<h:panelGrid columns="2" id="gridToolbarPage" width="100%;"	rendered="#{bean.fluxo == bean.fluxoListagem}" columnClasses="tituloToolBarDeafult botoesToolBarDefault">
+				<h:outputLabel value="#{userBean.properties.getField(bean.nomePagina())}" />
+
+					<h:panelGrid columns="6">
+						<h:commandLink actionListener="#{bean.incluir()}" styleClass="botaoNovor">
+							<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/blank_page.png" styleClass="image" />
+							<h:outputLabel value="#{userBean.properties.getField('label.incluir')}" styleClass="label" />
+						</h:commandLink>
+
+						<h:commandLink actionListener="#{bean.editarRegistro()}" styleClass="botaoNovor">
+							<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/edit.png" styleClass="image" />
+							<h:outputLabel value="#{userBean.properties.getField('label.editar')}" styleClass="label" />
+						</h:commandLink>
+
+						<h:commandLink actionListener="#{bean.excluir()}" styleClass="botaoNovor">
+							<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" styleClass="image" />
+							<h:outputLabel value="#{userBean.properties.getField('label.excluir')}" styleClass="label" />
+						</h:commandLink>
+
+						<h:commandLink actionListener="#{bean.imprimir()}" styleClass="botaoNovor">
+							<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/print.png" styleClass="image" />
+							<h:outputLabel value="#{userBean.properties.getField('label.imprimir')}" styleClass="label" />
+						</h:commandLink>
+
+						<h:commandLink actionListener="#{bean.exportarPdf()}" styleClass="botaoNovor">
+							<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/print.png" styleClass="image" />
+							<h:outputLabel value="#{userBean.properties.getField('label.exportarPdf')}" styleClass="label" />
+						</h:commandLink>
+
+						<h:commandLink actionListener="#{bean.exportarXls()}" styleClass="botaoNovor">
+							<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/pages.png" styleClass="image" />
+							<h:outputLabel value="#{userBean.properties.getField('label.exportarXls')}" styleClass="label" />
+						</h:commandLink>
+
+					</h:panelGrid>
+				</h:panelGrid>
+
+
+				<h:panelGrid id="gridEdicao" columns="2" width="100%;" columnClasses="tituloToolBarEditar botoesToolBarEditar" rendered="#{bean.fluxo != bean.fluxoListagem}">
+
+					<h:outputLabel rendered="#{bean.fluxo == bean.fluxoEdicao}" value="#{userBean.properties.getField(bean.nomePagina())} (#{userBean.properties.getField('label.editar')})" />
+
+					<h:outputLabel rendered="#{bean.fluxo == bean.fluxoInclusao}" value="#{userBean.properties.getField(bean.nomePagina())} (#{userBean.properties.getField('label.incluir')})" />
+
+					<h:panelGrid columns="6">
+
+
+						<h:commandLink actionListener="#{bean.salvar()}" styleClass="botaoNovor">
+							<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/save.png" styleClass="image" />
+							<h:outputLabel value="#{userBean.properties.getField('label.salvar')}" styleClass="label" />
+						</h:commandLink>
+
+						<h:commandLink actionListener="#{bean.cancelar()}" styleClass="botaoNovor">
+							<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/repeat.png" styleClass="image" />
+							<h:outputLabel value="#{userBean.properties.getField('label.cancelar')}" styleClass="label" />
+						</h:commandLink>
+
+					</h:panelGrid>
+				</h:panelGrid>
+
+</ui:composition>

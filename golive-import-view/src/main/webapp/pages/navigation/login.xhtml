@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/layoutTemplate.xhtml">
+
+	<ui:define name="linkRefs">
+		<h:outputStylesheet name="css/login/style_login.css" />
+	</ui:define>
+
+	<ui:define name="header">
+		<div id="headerDiv" class="divHeaderNavegacao headerMainPageNavegacao" />
+		<golive:loading name="loading"/>
+	</ui:define>
+
+	<ui:define name="main">
+		<h:form id="defineMain" styleClass="little-font">
+			<p:growl id="growl" showDetail="true" sticky="true" />
+
+			<div id="loginDiv" class="loginBackground loginDivSize">
+
+				<div id="usuarioLogadoImage" class="usuarioDivGrid">
+
+					<div id="usuarioLogadoImage" class="rowTitleUsuarioGrid">
+						<div style="float: left">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/64x64/user.png" />
+						</div>
+						<div class="usuarioLoginGrid">
+							<h:outputLabel
+								value="#{loginBean.labels.getField('label.login')} #{loginBean.labels.getField('label.usuario')}"
+								styleClass="little-medium white-font" />
+						</div>
+					</div>
+					<h:panelGrid id="panelGridLogin" columns="2" cellpadding="5px;"
+						styleClass="panelGrid">
+
+						<p:outputLabel id="loginOutputText" for="loginInputField"
+							value="#{loginBean.labels.getField('label.usuario')}"
+							styleClass="outputLabel" />
+
+						<p:inputText id="loginInputField" value="#{loginBean.login}"
+							styleClass="medium-field" />
+
+
+						<p:outputLabel id="senhaOutputText" for="senhaSecretInputField"
+							value="#{loginBean.labels.getField('label.senha')}"
+							styleClass="outputLabel" />
+
+						<p:password id="senhaSecretInputField" value="#{loginBean.senha}"
+							styleClass="little-field" />
+
+						<p:outputLabel id="assinantesOutputText"
+							for="assinantesSelectOneMenu"
+							value="#{loginBean.labels.getField('label.assinantes')}"
+							styleClass="outputLabel" />
+
+						<p:selectOneMenu id="assinantesSelectOneMenu"
+							value="#{loginBean.assinante}" style="width: 308px" effect="fold">
+
+							<f:selectItem
+								itemLabel="#{loginBean.labels.getField('label.selecione')}
+												 #{loginBean.labels.getField('label.numeral.uma')}
+											 	 #{loginBean.labels.getField('label.empresa')}"
+								itemValue="" />
+
+							<f:selectItem itemLabel="Empresa 1" itemValue="1" />
+							<f:selectItem itemLabel="Empresa 2" itemValue="2" />
+							<f:selectItem itemLabel="Empresa 3" itemValue="3" />
+						</p:selectOneMenu>
+						<p:spacer />
+						<h:panelGrid columns="2" styleClass="panelGridButtons">
+							<p:commandButton
+								value="#{loginBean.labels.getField('label.conectar')}"
+								onstart="PF('loading').show()" onsuccess="PF('loading').hide()"
+								action="#{loginBean.logar}" styleClass="buttons" update="growl">
+							</p:commandButton>
+
+							<p:commandButton
+								value="#{loginBean.labels.getField('label.limpar')}"
+								action="#{loginBean.limpar}" styleClass="buttons"
+								update="senhaSecretInputField, loginInputField, assinantesSelectOneMenu" />
+						</h:panelGrid>
+					</h:panelGrid>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+	
+</ui:composition>

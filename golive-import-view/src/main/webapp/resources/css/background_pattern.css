@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+
+.headerMainPageOpcoes {
+	background-image:
+		url('/golive-one/resources/images/layout/HeaderWithTitle.jpg')
+		!important;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.footerMainPage {
+	background-image: url('/golive-one/resources/images/layout/Bottom.jpg')
+		!important;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.95;
+}
+
+.headerMainPageNavegacao {
+	background-image: url('/golive-one/resources/images/layout/Header.jpg')
+		!important;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.loginBackground {
+	background-image:
+		url('/golive-one/resources/images/layout/SplashLogin.jpg') !important;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.background-main {
+	background-color: #DDD;
+}
+
+.color-light-grey {
+	background-color: #E6E6E6;
+}
+
+.color-aqua-blue {
+	background-color: #01A9DB;
+}
+
+.color-white {
+	background-color: #FFFFFF;
+}
+
+.color-medium-grey {
+	background-color: #D3D3D3;
+}
+
+.color-strong-grey {
+	background: #6E6E6E;
+}
+
+.color-aqua-light {
+	background-color: #DDFAF9;
+}
+
+.loading {
+	background-repeat: no-repeat;
+	background-position: center;
+}

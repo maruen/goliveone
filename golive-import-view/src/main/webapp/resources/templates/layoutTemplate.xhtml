@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>GoLive One</title>
+	<h:outputStylesheet name="css/style_layout_template.css" />
+	<h:outputStylesheet name="css/font_pattern.css" />
+	<h:outputStylesheet name="css/field_pattern.css" />
+	<h:outputStylesheet name="css/background_pattern.css" />
+	<ui:insert name="linkRefs" />
+
+	<script type="text/javascript">
+	
+	function abrirNovaAba(url) {
+		  console.log('Abrindo nova aba');
+		  console.log(url);
+		  var win = window.open(url, '_blank');
+		  //win.focus();
+	}
+
+	function load() {
+		console.log('aguarde');
+		$("#loadingPage").animate({height: "15%"}, 1000);
+	}
+
+	function unLoad() {
+		console.log('processoConcluido');
+		$("#loadingPage").animate({height: "0px"}, 1000);
+	}
+
+	</script>
+
+</h:head>
+
+<h:body>
+	<div id="mainDiv" class="divMain">
+
+		<div id="staticDivSystem" class="staticDiv">
+
+			<ui:insert name="header" />
+
+			<div id="opcoesDiv" class="opcoesDiv">
+				<ui:insert name="toolBar" />
+			</div>
+
+		</div>
+		<div id="childMainDiv" class="childMainDiv background-main">
+			<ui:insert name="main" />
+		</div>
+
+		<div id="loadingPage" class="loading">
+			<h:graphicImage styleClass="loadingBar panelLoading"
+				value="/resources/images/gif/loading.gif" />
+		</div>
+		<div id="footerBackround" class="divFooter footerMainPage" />
+
+	</div>
+</h:body>
+</html>

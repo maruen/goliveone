@@ -1,0 +1,2071 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/layoutTemplate.xhtml">
+
+	<ui:define name="linkRefs">
+		<h:outputStylesheet name="css/temp/cadastroProdutos.css" />
+	</ui:define>
+
+	<ui:define name="main">
+	
+	<h:form>
+	
+	<!--  DADOS GERAIS PANEL -->
+		
+		<p:panel id="dadosGerais"
+				 header="Dados Gerais"
+				 toggleable="true"
+				 collapsed="true"
+				 closable="false"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="dadosGeraisPanel"
+				 styleClass="little-font" >
+				 
+			     <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		</f:facet>
+	    		       	
+	           	<h:panelGrid columns="6"
+	           				 cellpadding="3"  
+	           				 cellspacing="3"
+	           				 columnClasses="percentual-15,
+	           				 				percentual-25,
+	           				 				percentual-5,
+	           				 				percentual-50,
+	           				 				percentual-10,
+	           				 				percentual-5" 
+	           				 width="100%"
+	           				 border="0">
+	            		
+	            		<h:outputLabel for="id" value="Id"   />
+	            		<p:inputText id="id" required="true" style="width: 90%" />
+	            		<p:spacer>&nbsp;</p:spacer>
+	            		<p:spacer>&nbsp;</p:spacer>
+	            		<h:outputLabel for="dataInclusao" value="Inclusão" />
+	            		<p:calendar  id="dataInclusao"
+	            					 styleClass="disabled"
+	            					 value="#{cadastroProdutoBean.dataInclusao}"
+	            					 size="16"
+	            					 maxlength="16"
+	            					 pattern="MM/dd/yyyy HH:mm:ss"
+	            					  />
+	            
+	            		<h:outputLabel for="dadosGeraisCodigoProduto" value="Cód. Produto" styleClass="singleLine"  />
+	            		<p:inputText id="dadosGeraisCodigoProduto" required="true"  value="H25-LAM-CO25-EQ 18" style="width: 90%"  disabled="true"/>  
+	            		
+	            		<p:commandLink action="#" onclick="PF('dlg1').show();">
+   							<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/stop.png"  />
+					 	</p:commandLink>
+	            		
+	            		
+	            		<p:inputText id="descricaoProduto"
+	            					 required="true"
+	            					 style="width: 90%"
+	            					 value="lâmina de Alumínio 25mm x 0.18mm Cor verde" />		
+	            		
+	            		<h:outputLabel for="ultimaAlteracao" value="Última Alteração"  styleClass="singleLine"/>
+	            		<p:calendar  id="ultimaAlteracao"
+	            					 styleClass="disabled"
+	            					 size="16"
+	            					 maxlength="16"
+	            					 value="#{cadastroProdutoBean.dataUltimaAlteracao}"
+	            					 pattern="MM/dd/yyyy HH:mm:ss"
+						/>
+						
+	            </h:panelGrid>
+	    
+    	</p:panel>
+    	
+    	<!-- CODIGO PRODUTO -->
+    	<p:panel id="codigoProdutoId"
+				 header="Código Produto"
+				 toggleable="true"
+				 collapsed="true"
+				 closable="false"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="codigoProdutoPanel"
+				 styleClass="little-font" >
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		</f:facet>
+				 
+ 			       	
+	           <h:panelGrid columns="6"
+							cellpadding="2"
+							cellspacing="2"
+							 columnClasses="percentual-25,
+							 				percentual-5,
+							 				percentual-20,
+							 				percentual-2,
+							 				percentual-2,
+							 				percentual-40" 
+							 width="100%"
+							 border="0">
+				
+				
+						<p:selectOneMenu id="codigoProdutoOneMenu" value="Selecione Finalidade Código Produto" style="width: 90%; background-color: #FFFFFF ">
+		        	        <f:selectItems value="#{cadastroProdutoBean.codigos}" />
+	    		        </p:selectOneMenu>
+    		    
+    		    		<h:outputText id="codigoProdutoCodigoProdutoOutputText" value="Cód. Produto"  styleClass="singleLine"/>
+		        		<p:inputText id="codigoProdutoCodigoProdutoInputText" value="" style="width: 97%;"/>
+		        	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+						 </p:commandLink>
+				 	
+			       	 	 <p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+						 </p:commandLink>
+						
+						 <p:spacer>&nbsp;</p:spacer>		 
+	        	
+	        	</h:panelGrid>
+	        	
+	        	<h:panelGrid cellpadding="2"
+		        			 cellspacing="2"
+		        			 width="100%"
+		        			 border="0" >
+		        
+			        <p:dataTable id="codigoProdutoDatatable"
+			        			 var="codigoProduto"
+			        			 value="#{cadastroProdutoBean.codigoDatatable}" >
+					    
+					    <p:column headerText=""
+					    		  styleClass="percentual-5 singleLine">
+					     	<p:selectBooleanCheckbox value="xx" />   
+					    </p:column>
+					    
+					    <p:column headerText="Id"
+					    		 styleClass="percentual-20 singleLine "
+					    		 sortBy="#{codigoProduto[0]}">
+					        <h:outputText value="#{codigoProduto[0]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Código Produto"
+					    		  styleClass="percentual-25 singleLine"
+					    		  sortBy="#{codigoProduto[1]}">
+					        <h:outputText value="#{codigoProduto[1]} "  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-15 singleLine"
+					    		  sortBy="#{codigoProduto[2]}">
+					        <h:outputText value="#{codigoProduto[2]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Finalidade Código Produto"
+					    		  styleClass="singleLine"
+					    		  sortBy="#{codigoProduto[3]}">
+					        <h:outputText value="#{codigoProduto[3]}" />
+					    </p:column>
+					</p:dataTable>
+				</h:panelGrid>
+    	
+    	</p:panel>
+    	
+    	
+		<!--  DESCRIÇÕES PANEL -->
+    	
+    	<p:panel id="descricoes"
+				 header="Descrições"
+				 toggleable="true"
+				 closable="false"
+				 toggleSpeed="500"
+				 collapsed="true"
+				 closeSpeed="500"
+				 widgetVar="descricoesPanel"
+				 styleClass="little-font" >
+				 
+				  <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		</f:facet>
+ 			   
+					
+				<h:panelGrid columns="5"
+							 cellpadding="2"
+							 columnClasses="percentual-25,
+							 				perentual-15,
+							 				percentual-72,
+							 				percentual-5,
+							 				percentual-5" 
+							 cellspacing="2"
+							 width="100%"
+							 border="0">
+				
+					<p:selectOneMenu id="descricaoOneMenu" value="Selecione Finalidade Descrição" style="width: 90%">
+	        	        <f:selectItems value="#{cadastroProdutoBean.descricoes}" />
+    		        </p:selectOneMenu>
+		            
+		        	<h:outputText id="descricaoOutputText" value="Descrição" />
+		        	<p:inputText id="descricaoInputText" value="" style="width: 97%;"/>
+		        	
+		        	<p:commandLink action="#">
+   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+					 </p:commandLink>
+		        	 
+		       	 	 <p:commandLink action="#">
+   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+					 </p:commandLink>
+		        	
+	        	
+	        	</h:panelGrid>
+		        
+		        
+		        <h:panelGrid cellpadding="2"
+		        			 cellspacing="2"
+		        			 width="100%"
+		        			 border="0" >
+		        
+			        <p:dataTable id="descricoesDatatable" var="item" value="#{cadastroProdutoBean.descricoesDatatable}" >
+					    
+					    <p:column headerText="" styleClass="percentual-5 singleLine">
+					     	<p:selectBooleanCheckbox value="xx" />   
+					    </p:column>
+					    
+					    <p:column headerText="Id Fin. Descr." styleClass="percentual-20 singleLine">
+					        <h:outputText value="#{item[0]}" styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Finalidade Descrição" styleClass="percentual-25 singleLine">
+					        <h:outputText value="#{item[1]}" />
+					    </p:column>
+					 
+					    <p:column headerText="Id" styleClass="percentual-15 singleLine">
+					        <h:outputText value="#{item[2]}" styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Descrição" styleClass="singleLine">
+					        <h:outputText value="#{item[3]}" />
+					    </p:column>
+					</p:dataTable>
+				</h:panelGrid>
+    	</p:panel>
+    	
+    	
+<!--  CLASSIFICAÇÃO DO PRODUTO PANEL  -->
+    	<p:panel id="classificacaoProduto"
+				 header="Classificação do Produto"
+				 toggleable="true"
+				 closable="false"
+				 collapsed="true"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="classificacaoProdutoPanel"
+				 styleClass="little-font" >
+				 
+				  <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+ 			
+		        
+		        	
+					<h:panelGrid columns="5"
+								 cellpadding="3"
+								 cellspacing="3"
+								 columnClasses="percentual-5,
+								 				percentual-10,
+								 				percentual-5,
+								 				percentual-68"
+								 width="100%"
+								 border="0">
+						
+						<h:outputLabel for="departamentoId" value="Id"   />
+		            	<p:inputText id="departamentoId"
+		            				 value="00000000001" 
+		            				 style="width: 125px;"/>
+		            	
+		        		<h:outputLabel for="departamentoNome" value="Departamento" />
+		            	<p:inputText id="departamentoNome"
+		            				 style="width: 95%"
+		            				 value="Acessorios, Partes e Pcas para Persianas Horizontais em aluminio"/>
+		        	
+		        	 	<p:commandLink action="#">
+    						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+						
+					
+						<h:outputLabel for="grupoProdutosId" value="Id"   />
+		            	<p:inputText id="grupoProdutosId"
+		            				 value="00000000001" 
+		            				 style="width: 125px;"/>
+		            	
+		        		 <h:outputLabel for="grupoProdutosNome" value="Grupo de Produtos" style="white-space: nowrap"/>
+		            	<p:inputText id="grupoProdutosNome"
+		            				 style="width: 95%"
+		            				 value="Laminas em Aluminio 25mm"/>
+		        	
+		        	 	<p:commandLink action="#">
+    						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					
+						<h:outputLabel for="subGrupoProdutosId" value="Id"   />
+		            	<p:inputText id="subGrupoProdutosId"
+		            				 style="width: 125px;"/>
+		            	
+		        		<h:outputLabel for="subGrupoProdutosNome" value="Departamento"/>
+		            	<p:inputText id="subGrupoProdutosNome"
+		            				 style="width: 95%"
+		            				 value="Laminas em Aluminio 25mm x 0.18mm"/>
+		        	
+		        	 	<p:commandLink action="#">
+    						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+		        	
+		        	</h:panelGrid>
+		        	
+		        
+		     
+    	</p:panel>
+    	
+    	
+    	
+    	<!-- COLECAO -->
+    	<p:panel id="colecao"
+				 header="Coleção"
+				 toggleable="true"
+				 collapsed="true"
+				 closable="false"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="colecaoPanel"
+				 styleClass="little-font" >
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+				 
+ 			       	
+	           <h:panelGrid columns="10"
+							cellpadding="3"
+							cellspacing="3"
+							columnClasses="percentual-30,
+							 			   percentual-2,
+							 			   percentual-5,
+							 			   percentual-5,
+							 			   percentual-10,
+							 			   percentual-5,
+							 			   percentual-40,
+							 			   percentual-2,
+							 			   percentual-2,
+							 			   percentual-2" 
+							 width="100%"
+							 border="0">
+				
+				
+						<p:selectOneMenu id="colecaoOneMenu" style="width: 90%; background-color: #FFFFFF ">
+		        	        <f:selectItems value="#{cadastroProdutoBean.colecoes}" />
+	    		        </p:selectOneMenu>
+    		    
+    		    		<h:outputText id="colecaoIdOutputText" value="Id"  styleClass="singleLine"/>
+		        		<p:inputText id="colecaoIdInputText" value="" style="width: 95%;"/>
+		        	
+		        		<h:outputText id="colecaoCodigoOutputText" value="Código"  styleClass="singleLine"/>
+		        		<p:inputText id="colecaoCodigoInputText" value="" style="width: 97%;"/>
+		        	
+		        		<h:outputText id="colecaoColecaoOutputText" value="Coleção"  styleClass="singleLine"/>
+		        		<p:inputText id="colecaoColecaoInputText" value="" style="width: 97%;"/>
+		        	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						 </p:commandLink>
+		            	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+						 </p:commandLink>
+				 	
+			       	 	 <p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+						 </p:commandLink>
+	        	
+	        	</h:panelGrid>
+	        	
+	        	<h:panelGrid cellpadding="2"
+		        			 cellspacing="2"
+		        			 width="100%"
+		        			 border="0" >
+		        
+			        <p:dataTable id="colecaoDatatable"
+			        			 var="colecao"
+			        			 value="#{cadastroProdutoBean.colecaoDatatable}" >
+					    
+					    <p:column headerText=""
+					    		  styleClass="percentual-5 singleLine">
+					     	<p:selectBooleanCheckbox value="xx" />   
+					    </p:column>
+					    
+					    <p:column headerText="Id"
+					    		 styleClass="percentual-20 singleLine "
+					    		 sortBy="#{colecao[0]}">
+					        <h:outputText value="#{colecao[0]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Coleção"
+					    		  styleClass="percentual-25 singleLine"
+					    		  sortBy="#{colecao[1]}">
+					        <h:outputText value="#{colecao[1]} "  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-15 singleLine"
+					    		  sortBy="#{colecao[2]}">
+					        <h:outputText value="#{colecao[2]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Finalidade Coleção"
+					    		  styleClass="singleLine"
+					    		  sortBy="#{colecao[3]}">
+					        <h:outputText value="#{colecao[3]}" />
+					    </p:column>
+					</p:dataTable>
+				</h:panelGrid>
+	        	
+	        	
+    	
+    	</p:panel>
+    	
+    	
+    	
+    	
+    	<!-- COR -->
+    	<p:panel id="corPanelId"
+				 header="Cor"
+				 toggleable="true"
+				 collapsed="true"
+				 closable="false"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="corPanel"
+				 styleClass="little-font" >
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+				 
+ 			       	
+	           <h:panelGrid columns="10"
+							cellpadding="3"
+							cellspacing="3"
+							columnClasses="percentual-30,
+							 			   percentual-2,
+							 			   percentual-5,
+							 			   percentual-5,
+							 			   percentual-10,
+							 			   percentual-5,
+							 			   percentual-40,
+							 			   percentual-2,
+							 			   percentual-2,
+							 			   percentual-2" 
+							 width="100%"
+							 border="0">
+				
+				
+						<p:selectOneMenu id="corOneMenu" style="width: 90%; background-color: #FFFFFF ">
+		        	        <f:selectItems value="#{cadastroProdutoBean.cores}" />
+	    		        </p:selectOneMenu>
+    		    
+    		    		<h:outputText id="corIdOutputText" value="Id"  styleClass="singleLine"/>
+		        		<p:inputText id="corIdInputText" value="" style="width: 97%;"/>
+		        	
+		        		<h:outputText id="corCodigoOutputText" value="Código"  styleClass="singleLine"/>
+		        		<p:inputText id="corCodigoInputText" value="" style="width: 97%;"/>
+		        	
+		        		<h:outputText id="corCorOutputText" value="Cor"  styleClass="singleLine"/>
+		        		<p:inputText id="corCorInputText" value="" style="width: 97%;"/>
+		        	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						 </p:commandLink>
+		            	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+						 </p:commandLink>
+				 	
+			       	 	 <p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+						 </p:commandLink>
+	        	
+	        	</h:panelGrid>
+	        	
+	        	<h:panelGrid cellpadding="2"
+		        			 cellspacing="2"
+		        			 width="100%"
+		        			 border="0" >
+		        
+			        <p:dataTable id="corDatatable"
+			        			 var="cor"
+			        			 value="#{cadastroProdutoBean.corDatatable}" >
+					    
+					    <p:column headerText=""
+					    		  styleClass="percentual-5 singleLine">
+					     	<p:selectBooleanCheckbox value="xx" />   
+					    </p:column>
+					    
+					    <p:column headerText="Id"
+					    		 styleClass="percentual-20 singleLine "
+					    		 sortBy="#{cor[0]}">
+					        <h:outputText value="#{cor[0]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Cor"
+					    		  styleClass="percentual-25 singleLine"
+					    		  sortBy="#{cor[1]}">
+					        <h:outputText value="#{cor[1]} "  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-15 singleLine"
+					    		  sortBy="#{cor[2]}">
+					        <h:outputText value="#{cor[2]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Finalidade Cor"
+					    		  styleClass="singleLine"
+					    		  sortBy="#{cor[3]}">
+					        <h:outputText value="#{cor[3]}" />
+					    </p:column>
+					</p:dataTable>
+				</h:panelGrid>
+    	
+    	</p:panel>
+    	
+    	<!-- PADRAO DE LARGURA -->
+    	<p:panel id="padraoLarguraPanelId"
+				 header="Padrão de Largura"
+				 toggleable="true"
+				 collapsed="true"
+				 closable="false"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="padraoLarguraPanel"
+				 styleClass="little-font" >
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+ 			       	
+	           <h:panelGrid columns="10"
+							cellpadding="3"
+							cellspacing="3"
+							columnClasses="percentual-30,
+							 			   percentual-2,
+							 			   percentual-5,
+							 			   percentual-5,
+							 			   percentual-10,
+							 			   percentual-5,
+							 			   percentual-40,
+							 			   percentual-2,
+							 			   percentual-2,
+							 			   percentual-2" 
+							 width="100%"
+							 border="0">
+				
+				
+						<p:selectOneMenu id="padraoLarguraOneMenu" style="width: 90%; background-color: #FFFFFF ">
+		        	        <f:selectItems value="#{cadastroProdutoBean.padraoLargura}" />
+	    		        </p:selectOneMenu>
+    		    
+    		    		<h:outputText id="padraoLarguraIdOutputText" value="Id"  styleClass="singleLine"/>
+		        		<p:inputText id="padraoLarguraIdInputText" value="" style="width: 97%;"/>
+		        	
+		        		<h:outputText id="padraoLarguraLarguraOutputText" value="Largura"  styleClass="singleLine"/>
+		        		<p:inputText  id="padraoLarguraLarguraInputText" value="" style="width: 97%;"/>
+		        	
+		        		<h:outputText id="padraoLarguraPadraoLarguraOutputText" value="Padrão de Largura"  styleClass="singleLine"/>
+		        		<p:inputText id="padraoLarguraPadraoLarguraInputText" value="" style="width: 97%;"/>
+		        	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						 </p:commandLink>
+		            	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+						 </p:commandLink>
+				 	
+			       	 	 <p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+						 </p:commandLink>
+	        	
+	        	</h:panelGrid>
+	        	
+	        	<h:panelGrid cellpadding="2"
+		        			 cellspacing="2"
+		        			 width="100%"
+		        			 border="0" >
+		        
+			        <p:dataTable id="padraoLarguraDatatable"
+			        			 var="padraoLargura"
+			        			 value="#{cadastroProdutoBean.padraoLarguraDatatable}" >
+					    
+					    <p:column headerText=""
+					    		  styleClass="percentual-5 singleLine">
+					     	<p:selectBooleanCheckbox value="xx" />   
+					    </p:column>
+					    
+					    <p:column headerText="Id"
+					    		 styleClass="percentual-20 singleLine "
+					    		 sortBy="#{padraoLargura[0]}">
+					        <h:outputText value="#{padraoLargura[0]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Largura"
+					    		  styleClass="percentual-25 singleLine"
+					    		  sortBy="#{padraoLargura[1]}">
+					        <h:outputText value="#{padraoLargura[1]} "  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-15 singleLine"
+					    		  sortBy="#{padraoLargura[2]}">
+					        <h:outputText value="#{padraoLargura[2]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Finalidade Padrão de Largura"
+					    		  styleClass="singleLine"
+					    		  sortBy="#{padraoLargura[3]}">
+					        <h:outputText value="#{padraoLargura[3]}" />
+					    </p:column>
+					</p:dataTable>
+				</h:panelGrid>
+    	</p:panel>
+    	
+    	
+    	
+    	
+    	<!-- PADRAO DE ESPESSURA -->
+    	<p:panel id="padraoEspessuraPanelId"
+				 header="Padrão de Espessura"
+				 toggleable="true"
+				 collapsed="false"
+				 closable="false"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="padraoEspessuraPanel"
+				 styleClass="little-font" >
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+ 			       	
+	           <h:panelGrid columns="10"
+							cellpadding="3"
+							cellspacing="3"
+							columnClasses="percentual-30,
+							 			   percentual-2,
+							 			   percentual-5,
+							 			   percentual-5,
+							 			   percentual-10,
+							 			   percentual-5,
+							 			   percentual-40,
+							 			   percentual-2,
+							 			   percentual-2,
+							 			   percentual-2" 
+							 width="100%"
+							 border="0">
+				
+				
+						<p:selectOneMenu id="padraoEspessuraOneMenu" style="width: 90%; background-color: #FFFFFF ">
+		        	        <f:selectItems value="#{cadastroProdutoBean.padraoEspessura}" />
+	    		        </p:selectOneMenu>
+    		    
+    		    		<h:outputText id="padraoEspessuraIdOutputText" value="Id"  styleClass="singleLine"/>
+		        		<p:inputText id="padraoEspessuraIdInputText" value="" style="width: 97%;"/>
+		        	
+		        		<h:outputText id="padraoEspessuraEspessuraOutputText" value="Espessura"  styleClass="singleLine"/>
+		        		<p:inputText  id="padraoEspessuraEspessuraInputText" value="" style="width: 97%;"/>
+		        	
+		        		<h:outputText id="padraoEspessuraPadraoEspessuraOutputText" value="Padrão de Espessura"  styleClass="singleLine"/>
+		        		<p:inputText id="padraoEspessuraPadraoEspessuraInputText" value="" style="width: 97%;"/>
+		        	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						 </p:commandLink>
+		            	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+						 </p:commandLink>
+				 	
+			       	 	 <p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+						 </p:commandLink>
+	        	
+	        	</h:panelGrid>
+	        	
+	        	<h:panelGrid cellpadding="2"
+		        			 cellspacing="2"
+		        			 width="100%"
+		        			 border="0" >
+		        
+			        <p:dataTable id="padraoEspessuraDatatable"
+			        			 var="padraoEspessura"
+			        			 value="#{cadastroProdutoBean.padraoEspessuraDatatable}" >
+					    
+					    <p:column headerText=""
+					    		  styleClass="percentual-5 singleLine">
+					     	<p:selectBooleanCheckbox value="xx" />   
+					    </p:column>
+					    
+					    <p:column headerText="Id"
+					    		 styleClass="percentual-20 singleLine "
+					    		 sortBy="#{padraoEspessura[0]}">
+					        <h:outputText value="#{padraoEspessura[0]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Espessura"
+					    		  styleClass="percentual-25 singleLine"
+					    		  sortBy="#{padraoEspessura[1]}">
+					        <h:outputText value="#{padraoEspessura[1]} "  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-15 singleLine"
+					    		  sortBy="#{padraoEspessura[2]}">
+					        <h:outputText value="#{padraoEspessura[2]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Finalidade Padrão de Espessura"
+					    		  styleClass="singleLine"
+					    		  sortBy="#{padraoEspessura[3]}">
+					        <h:outputText value="#{padraoEspessura[3]}" />
+					    </p:column>
+					</p:dataTable>
+				</h:panelGrid>
+	        	
+	        	
+    	
+    	</p:panel>
+    	
+    	<!--  TIPO DO PRODUTO -->
+    	<p:panel id="tipoProduto"
+				 header="Tipo do Produto"
+				 toggleable="true"
+				 closable="false"
+				 collapsed="true"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="tipoProdutoPanel"
+				 styleClass="little-font">
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+ 			    
+ 			    
+		        <h:panelGrid cellpadding="3"
+		        			 cellspacing="3"
+		        			 columnClasses="percentual-5,
+		        			 				percentual-10,
+		        			 				percentual-5,
+		        			 				percentual-77,
+		        			 				percentual-5"
+		        			 columns="5"
+		        			 width="100%"
+		        			 border="0" >
+		        			 
+		        	
+		        	<h:outputLabel for="tipoProdutoId" value="Id"   styleClass="singleLine" /> 
+			        <p:inputText id="tipoProdutoId" value=""/>
+		        	
+		        	
+		        	<h:outputLabel for="tipoProdutoDescricao" value="Descrição" />
+		        	<p:inputText id="tipoProdutoDescricao" value="" style="width: 97%;"/>
+		        	
+		        	<p:commandLink action="#">
+	    						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+		        	
+		        </h:panelGrid>
+		     
+    	</p:panel>
+    	
+    	<!--  UNIDADES -->
+    	<p:panel id="UnidadesId"
+				 header="Unidades"
+				 toggleable="true"
+				 closable="false"
+				 collapsed="true"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="unidadessPanel"
+				 styleClass="little-font">
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+			      
+		       	 <h:panelGrid cellpadding="3"
+		        			  cellspacing="3"
+		        			  width="100%"
+		        			  columnClasses="percentual-30,
+		        			 				 percentual-2,
+		        			 				 percentual-20,
+		        			 				 percentual-2,
+		        			 				 percentual-5,
+		        			 				 percentual-2,
+		        			 				 percentual-30,
+		        			 				 percentual-2,
+		        			 				 percentual-2,
+		        			 				 percentual-2"
+		        			 columns="10"
+		        			 border="0" >
+		        		 
+	 			    		 
+ 			    		 <p:selectOneMenu id="unidadesSelecioneOneMenu" style="width: 90%; background-color: #FFFFFF ">
+		        	        <f:selectItems value="#{cadastroProdutoBean.unidades}" />
+	    		         </p:selectOneMenu>
+    		    	                     
+                         <h:outputText id="unidadessIdOutputText" value="Id"    />
+                         <p:inputText  id="unidadessIdInputText"   style="width: 90%;"/>
+                                     
+                         <h:outputText id="unidadessUnidadeAbrvOutputText" value="Abr. Un."  styleClass="singleLine"/>
+                         <p:inputText  id="unidadessUnidadeAbrvInputText" value="CX" maxlength="2" size="2"/>
+                         
+                         <h:outputText  id="unidadesUnidadeDescOutputText" value="Unidade" />
+                         <p:inputText   id="unidadesUnidadeDescInputText" value="Caixa" style="width: 97%;"/>
+                            
+                         <p:commandLink action="#">
+                         	<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+                         </p:commandLink>
+                    
+                         <p:commandLink action="#">
+                         	<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+                         </p:commandLink>
+                    
+                         <p:commandLink action="#">
+                         	<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+                         </p:commandLink>
+			    			
+			     </h:panelGrid>		 
+		        
+			    			
+    			 <p:panelGrid cellpadding="3"
+      			 	 		  cellspacing="3"
+      			 			  width="100%"
+      			 			  border="0" >
+			    	        	
+		 
+		 					<p:row>			    
+		 			    	<p:column styleClass="percentual-33">
+			 			    	<p:fieldset legend="Comportamento" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;" >
+			        				    
+			        				    
+			        				    <p:panelGrid cellpadding="3"
+	      			 	 		  					 cellspacing="3"
+	      			 			  					 width="100%"
+	      			 			  					 border="0">
+						        				   
+						        				   <p:row>
+						        				   		<p:column styleClass="percentual-42">
+						        				   			<p:spacer style="height:0px;">&nbsp;</p:spacer>
+						        				   		</p:column>
+						        				   		<p:column styleClass="percentual-2">
+						        				   			<p:selectBooleanCheckbox value="xx" id="unidadessUnidadesPrincipalCheckbox" />		
+						        				   		</p:column>
+						        				   		<p:column styleClass="percentual-40">
+						        				   			<h:outputText id="unidadesUnidadesPrincipalOutputText" value="Unidade Principal" styleClass="singleLine"/>		
+						        				   		</p:column>
+						        				   		<p:column styleClass="percentual-2">
+						        				   			<p:spacer style="height:0px;">&nbsp;</p:spacer>		
+						        				   		</p:column>
+						        				   </p:row>
+						        				   
+						        				   <p:row>
+						        				   		<p:column styleClass="percentual-42">
+						        				   			<p:spacer style="height:0px;">&nbsp;</p:spacer>
+						        				   		</p:column>
+						        				   		<p:column styleClass="percentual-2">
+						        				   			<p:selectBooleanCheckbox value="xx" id="unidadessUnidadesSecundariaCheckbox" />		
+						        				   		</p:column>
+						        				   		<p:column styleClass="percentual-40">
+						        				   			<h:outputText id="unidadesUnidadesSecundariaOutputText" value="Unidade Secundaria" styleClass="singleLine"/>		
+						        				   		</p:column>
+						        				   		<p:column styleClass="percentual-2">
+						        				   			<p:spacer style="height:0px;">&nbsp;</p:spacer>		
+						        				   		</p:column>
+						        				   </p:row>
+						        				   <p:row>
+						        				   		<p:column styleClass="percentual-44">
+						        				   			<h:outputText id="unidadessFatorMultiplicacaoOutputText" value="Fator de Multiplicação" styleClass="singleLine"/>
+						        				   		</p:column>
+						        				   		<p:column styleClass="percentual-40"  colspan="2">
+						        				   			<p:inputText  id="fatorMultiplicaoInputText" />
+						        				   			<p:inputText  id="cxInputText" value="CX" size="2" maxchars="2" disabled="true"/>		
+						        				   		</p:column>
+						        				   		<p:column styleClass="percentual-2">
+						        				   			<p:commandLink action="#">
+		                                           				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png"  style="margin-left: -79%;"/>
+		                                           			</p:commandLink>
+						        				   		</p:column>
+						        				   </p:row>
+						        				   <p:row>
+						        				   		<p:column styleClass="percentual-100" colspan="5">
+						        				   			<p:spacer style="height:0px;">&nbsp;</p:spacer>		
+						        				   		</p:column>
+						        				   </p:row>
+						        				   <p:row>
+						        				   		<p:column styleClass="percentual-100" colspan="5">
+						        				   			<p:spacer style="height:0px;">&nbsp;</p:spacer>		
+						        				   		</p:column>
+						        				   </p:row>
+						        				   
+			                          </p:panelGrid>
+	
+			        			</p:fieldset>
+			        			
+			        			<p:fieldset legend="Peso" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;" >
+		        				    
+		        				    <p:panelGrid cellpadding="0"
+      			 	 		  					 cellspacing="0"
+      			 			  					 width="100%"
+      			 			  					 border="0">
+	                                           
+	                                           <p:row>
+		                                           	<p:column styleClass="percentual-30">
+		                                           		<h:outputText id="unidadessPesoLiquidoOutputText" value="Peso Líquido" styleClass="singleLine"/>
+		                                           	</p:column>
+		                                           	<p:column styleClass="percentual-50">
+		                                        		<p:inputText  id="PesoLiquidoInputText" style="width: 90%; margin-left: 25%"/>
+		                                       	   	</p:column>
+		                                       	   	<p:column styleClass="percentual-10">
+		                                        		<p:inputText  id="kgInputText1" value="KG" size="2" maxchars="2" disabled="true" style="margin-left: 40%"/> 
+		                                       	   	</p:column>
+	                                           	   	<p:column styleClass="percentual-2">
+	                                           	   		<p:commandLink action="#">
+	                                           				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" style="margin-left: 21%"/>
+	                                           			</p:commandLink>
+		      	                               	   	</p:column>
+	                                           </p:row>
+	                                           
+   	                                           <p:row>
+		                                           	<p:column styleClass="percentual-30">
+		                                           		<h:outputText id="unidadesPesoBrutoOutputText" value="Peso Bruto" styleClass="singleLine"/>
+		                                           	</p:column>
+		                                           	<p:column styleClass="percentual-50">
+		                                           		<p:inputText  id="PesoBrutoInputText" style="width: 90% ; margin-left: 25%"/>
+		                                       	   	</p:column>
+		                                       	   	<p:column styleClass="percentual-10">
+		                                           		<p:inputText  id="kgInputText2" value="KG" size="2" maxchars="2" disabled="true" style="margin-left: 40%"/>
+		                                       	   	</p:column>
+	                                           	   	<p:column styleClass="percentual-2">
+	                                           	   		<p:spacer style="height:0px;">&nbsp;</p:spacer>
+		      	                               	   	</p:column>
+	                                           </p:row>
+		                          </p:panelGrid>
+		        				
+		        			</p:fieldset>
+			 			    	
+		 			    	</p:column>
+		 			    
+		 			    
+	 			    	    
+		        			<p:column>
+		    		
+	 			    	    <p:fieldset legend="compra" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 100%" >
+		        				   
+		        				      <p:panelGrid cellpadding="0"
+      			 	 		  					   cellspacing="0"
+      			 	 		  					   height="100%;"
+      			 			  					   width="100%"
+      			 			  					   border="0" >
+		        				   
+		        				      		<p:row>
+			        				      		<p:column styleClass="percentual-2">
+			        				      			<p:selectBooleanCheckbox value="xx" id="permiteCompra" />
+			        				      		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20">
+		                                   			<h:outputText value="Unidades Permite Compra?" styleClass="singleLine" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:selectBooleanCheckbox value="xx" id="unidadessQtdeMinimaPedidoCompra" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20">
+		                                   			<h:outputText value="Quantidade Mínima por pedido de Compra?" styleClass="singleLine" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20" colspan="2">
+		                                   			<p:inputText id="unidadessQtdeMínimaPedidoCompraInputText" value="" style="width: 70%"/>
+		                                   			<p:inputText value="CX" disabled="true" size="2" maxlength="2"/>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:selectBooleanCheckbox value="xx" id="unidadessQtdeMaximaPedidoCompra" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20">
+		                                   			<h:outputText value="Quantidade Máxima por pedido de Compra?" styleClass="singleLine" />
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20" colspan="2">
+		                                   			<p:inputText id="unidadessQtdeMaximaPedidoCompraInputText" value="" style="width: 70%"/>
+		                                   			<p:inputText value="CX" disabled="true" size="2" maxlength="2"/>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:selectBooleanCheckbox value="xx" id="unidadessPesoMaximoPedidoCompra" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20">
+		                                   			<h:outputText value="Peso Máximo por pedido de Compra?" styleClass="singleLine" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20" colspan="2">
+		                                   			<p:inputText id="unidadesPesoMaximoPedidoCompraInputText" value="" style="width: 70%"/>
+		                                   			<p:inputText value="KG" disabled="true" size="2" maxlength="2"/>
+		                                   		</p:column>
+		                                   		<p:column>
+		                                   			<p:commandLink action="#">
+                                          					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" style="margin-left:-167%"/>
+                                          			</p:commandLink>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:selectBooleanCheckbox value="xx" id="unidadesUnidadeUtilizadaACPedidoCompraCheckbox" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20" colspan="2">
+		                                   			<h:outputText id="unidadesUnidadeUtilizadaACPedidoCompraOutboxText"
+                                                                                                value="Unidade Utilizada para Análise Comparativa? (Pedido Compra)"/>
+		                                   		</p:column>
+		                                   	
+		                                   		<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:selectBooleanCheckbox value="xx" id="unidadesUnidadeUtilizadaACEstoqueCheckbox" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20" colspan="2">
+		                                   			<h:outputText id="unidadesUnidadeUtilizadaACEstoqueOutboxText"
+                                                                                                value="Unidade Utilizada para Análise Comparativa? (Estoque)"/>
+		                                   		</p:column>
+		                                   	
+		                                   		<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+	                                   		</p:row>
+                                   	</p:panelGrid>
+		        				</p:fieldset>
+		        			</p:column>
+		        			
+							<p:column styleClass="percentual-33">    	
+			    				<p:fieldset legend="Venda" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;" >
+			    				
+			    				  <p:panelGrid cellpadding="3"
+      			 	 		  					   cellspacing="3"
+      			 	 		  					   height="100%;"
+      			 			  					   width="100%"
+      			 			  					   border="0" >
+		        				   
+		        				      		<p:row>
+			        				      		<p:column styleClass="percentual-2">
+			        				      			<p:selectBooleanCheckbox value="xx" id="permiteVenda" />
+			        				      		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20">
+		                                   			<h:outputText value="Unidades Permite Venda?" styleClass="singleLine" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:selectBooleanCheckbox value="xx" id="unidadessQtdeMinimaPedidoVenda" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20">
+		                                   			<h:outputText value="Quantidade Mínima por pedido de Venda?" styleClass="singleLine" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20" colspan="2">
+		                                   			<p:inputText id="unidadessQtdeMínimaPedidoVendaInputText" value="" style="width: 70%"/>
+		                                   			<p:inputText value="CX" disabled="true" size="2" maxlength="2"/>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:selectBooleanCheckbox value="xx" id="unidadessQtdeMaximaPedidoVenda" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20" colspan="2">
+		                                   			<h:outputText value="Quantidade Máxima por pedido de Venda" styleClass="singleLine" />
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20" colspan="2">
+		                                   			<p:inputText id="unidadessQtdeMaximaPedidoVendaInputText" value="" style="width: 70%"/>
+		                                   			<p:inputText value="CX" disabled="true" size="2" maxlength="2"/>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:selectBooleanCheckbox value="xx" id="unidadessPesoMaximoPedidoVenda" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20">
+		                                   			<h:outputText value="Peso Máximo por pedido de Venda" styleClass="singleLine" />
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+	                                   		</p:row>
+	                                   		
+	                                   		<p:row>
+	                                   			<p:column>
+		                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+		                                   		</p:column>
+		                                   		
+		                                   		<p:column styleClass="percentual-20" colspan="2">
+		                                   			<p:inputText id="unidadesPesoMaximoPedidoVendaInputText" value="" style="width: 70%"/>
+		                                   			<p:inputText value="KG" disabled="true" size="2" maxlength="2"/>
+		                                   		</p:column>
+		                                   		<p:column>
+		                                   			<p:commandLink action="#">
+                                          					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" style="margin-left: -126%;"/>
+                                          			</p:commandLink>
+		                                   		</p:column>
+	                                   		</p:row>
+
+	                                   		<p:row>
+		                                   		<p:column colspan="3">
+			                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+			                                   	</p:column>
+	                                   		</p:row>
+
+	                                   		<p:row>
+		                                   		<p:column colspan="3">
+			                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+			                                   	</p:column>
+	                                   		</p:row>
+	                                   		
+	                                   		<p:row>
+		                                   		<p:column colspan="3">
+			                                   			<p:spacer style="height: 0px;">&nbsp;</p:spacer>
+			                                   	</p:column>
+	                                   		</p:row>
+
+	                                   		
+	                                   		
+	                                   		
+                                   	</p:panelGrid>
+		        					
+			        			</p:fieldset>
+			        		</p:column>
+		 			</p:row>
+		 		
+
+
+		 		</p:panelGrid>
+		        	
+		        		
+		        <p:commandLink action="#" style="float:right;">
+   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png"  style="margin-left: -50% ; margin-top: -50%"   />
+				</p:commandLink>
+				
+				<p:commandLink action="#" style="float:right;">
+   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png"  style="margin-left: -50% ; margin-top: -50%" />
+				</p:commandLink>
+				
+				
+				<h:panelGrid cellpadding="2"
+		        			 cellspacing="2"
+		        			 width="100%"
+		        			 border="0" >
+			        <p:row>
+				        
+					        <p:dataTable
+					        	 id="unidadesId"
+					        	 value="#{cadastroProdutoBean.unidadesDatatable}"
+					        	 paginatorPosition="top" 
+					        	 scrollable="true"
+					        	 scrollWidth="95%"
+					        	 scrollHeight="100%"
+					        	 style="width:100%"
+					        	 resizableColumns="false"
+					        	 styleClass="scrolls"
+					        	 lazy="true" 
+					        	 var="unidades">
+							    
+							    <p:column headerText="Id" styleClass="percentual-10">
+							        <h:outputText value="#{unidades[1]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Un." styleClass="percentual-10">
+							        <h:outputText value="#{unidades[2]}" />
+							    </p:column>
+							 
+							    <p:column headerText="Descrição" styleClass="percentual-10">
+							        <h:outputText value="#{unidades[3]}" />
+							    </p:column>
+							 
+							    <p:column headerText="Un. Princ." styleClass="percentual-10">
+							    	<h:outputText value="#{unidades[4]}" />
+							    </p:column>
+							    
+							</p:dataTable>
+					
+					</p:row>
+					
+				</h:panelGrid>
+		     
+    	</p:panel>
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	<!-- CODIGO DE BARRAS  -->
+    	<p:panel id="codigoBarrasPanel"
+				 header="Código de Barras"
+				 toggleable="true"
+				 collapsed="true"
+				 closable="false"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="codigoBarrasWidgetBar"
+				 styleClass="little-font" >
+				 
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+				 
+ 			       	
+	           <h:panelGrid columns="12"
+							cellpadding="3"
+							cellspacing="3"
+							columnClasses="
+										   percentual-28,
+							 			   percentual-3,
+							 			   percentual-10,
+							 			   percentual-5,
+							 			   percentual-20,
+							 			   percentual-5,
+							 			   percentual-10,
+							 			   percentual-3,
+							 			   percentual-10,
+							 			   percentual-2,
+							 			   percentual-2,
+							 			   percentual-2" 
+							 width="100%"
+							 border="0">
+				
+				
+						<p:selectOneMenu id="codigoBarrasOneMenu" style="width: 90%; background-color: #FFFFFF ">
+		        	        <f:selectItems value="#{cadastroProdutoBean.codigoBarras}" />
+	    		        </p:selectOneMenu>
+    		    
+    		    		<h:outputText id="codigoBarrasIdOutputText" value="Id"  styleClass="singleLine"/>
+		        		<p:inputText id="codigoBarrasIdInputText"   value="" style="width: 97%;"/>
+		        	
+		        		<h:outputText id="codigoBarrasCodigoOutputText" value="Código Barras"  styleClass="singleLine"/>
+		        		<p:inputText id="codigoBarrasCodigoInputText" value="" style="width: 97%;"/>
+		        	
+		        		<h:outputText id="codigoBarrasFatorMultiplicacaoOutputText" value="Fator de Multiplicação"  styleClass="singleLine"/>
+		        		<p:inputText id="codigoBarrasFatorMultiplicacaoInputText" value="" style="width: 97%;"/>
+		        		
+		        		<p:inputText id="codigoBarrasFatorCxInputText"     value="CX" style="width: 97%;"/>
+		        		<p:inputText id="codigoBarrasFatorCxDescInputText" value="Caixas" style="width: 97%;"/>
+		        	
+		        	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						 </p:commandLink>
+		            	
+		            	<p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+						 </p:commandLink>
+				 	
+			       	 	 <p:commandLink action="#">
+	   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+						 </p:commandLink>
+	        	
+	        	</h:panelGrid>
+	        	
+	        	<h:panelGrid cellpadding="2"
+		        			 cellspacing="2"
+		        			 width="100%"
+		        			 border="0" >
+		        
+			        <p:dataTable id="codigoBarrasDatatable"
+			        			 var="codigoBarras"
+			        			 value="#{cadastroProdutoBean.codigoBarrasDatatable}" >
+					    
+					    <p:column headerText=""
+					    		  styleClass="percentual-5 singleLine">
+					     	<p:selectBooleanCheckbox value="xx" />   
+					    </p:column>
+					    
+					    <p:column headerText="Id"
+					    		 styleClass="percentual-20 singleLine "
+					    		 sortBy="#{codigoBarras[0]}">
+					        <h:outputText value="#{codigoBarras[0]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Código Barras"
+					    		  styleClass="percentual-25 singleLine"
+					    		  sortBy="#{codigoBarras[1]}">
+					        <h:outputText value="#{codigoBarras[1]} "  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Fator Multiplicação"
+					    		  styleClass="percentual-15 singleLine"
+					    		  sortBy="#{codigoBarras[2]}">
+					        <h:outputText value="#{codigoBarras[2]}"  styleClass="floatRight"/>
+					    </p:column>
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-15 singleLine"
+					    		  sortBy="#{codigoBarras[3]}">
+					        <h:outputText value="#{codigoBarras[3]}"  styleClass="floatRight"/>
+					    </p:column>
+					    
+					    
+					    <p:column headerText="Abrv. custosCompra"
+					    		  styleClass="percentual-15 singleLine"
+					    		  sortBy="#{codigoBarras[4]}">
+					        <h:outputText value="#{codigoBarras[4]}"  styleClass="floatRight"/>
+					    </p:column>
+					    
+					    
+					    <p:column headerText="custosCompra"
+					    		  styleClass="percentual-15 singleLine"
+					    		  sortBy="#{codigoBarras[5]}">
+					        <h:outputText value="#{codigoBarras[5]}"  styleClass="floatRight"/>
+					    </p:column>
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-15 "
+					    		  sortBy="#{codigoBarras[6]}">
+					        <h:outputText value="#{codigoBarras[6]}"  styleClass="floatRight"/>
+					    </p:column>
+					 
+					    <p:column headerText="Finalidade custosCompra"
+					    		  styleClass="percentual-15 singleLine"
+					    		  sortBy="#{codigoBarras[7]}">
+					        <h:outputText value="#{codigoBarras[7]}" />
+					    </p:column>
+					
+					
+					
+					</p:dataTable>
+				</h:panelGrid>
+	        	
+	        	
+    	
+    	</p:panel>
+    	
+    	
+    	
+    	
+    	<!--  ENDEREÇAMENTO DE ESTOQUE -->
+    	<p:panel id="enderecamentoEstoquePanel"
+				 header="Endereçamento de Estoque"
+				 toggleable="true"
+				 closable="false"
+				 collapsed="true"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="enderecamentoEstoqueWidgetVar"
+				 styleClass="little-font">
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+ 			    
+		        <h:panelGrid cellpadding="3"
+		        			 cellspacing="3"
+		        			 columnClasses="percentual-2,
+		        			 				percentual-5,
+		        			 				percentual-3,
+		        			 				percentual-15,
+		        			 				percentual-3,
+		        			 				percentual-15,
+		        			 				percentual-3,
+		        			 				percentual-10,
+		        			 				percentual-2
+		        			 				"
+		        			 columns="9"
+		        			 width="100%"
+		        			 border="0" >
+		        	
+		        	
+		        	
+		        	<h:outputText id="enderecamentoProdutoIdOutputText" value="Id"   styleClass="singleLine" /> 
+			        <p:inputText  id="enderecamentoProdutoIdInputText" value=""/>
+		        	
+		        	<h:outputText id="enderecamentoEstoquePavimentoOutputText" value="Pavimento" />
+		        	<p:inputText  id="enderecamentoEstoquePavimentoInputText" value="" style="width: 98%;"/>
+
+
+       				<h:outputText id="enderecamentoEstoqueRuaOutputText" value="Rua" />
+		        	<p:inputText  id="enderecamentoEstoqueRuaInputText" value="" style="width: 97%;"/>
+		 		    
+		 	    
+		           	<h:outputText id="enderecamentoEstoquePrateleiraOutputText" value="Prateleira" />
+		        	<p:inputText  id="enderecamentoEstoquePrateleiraInputText" value="" style="width: 97%;"/>
+		     		
+		        	
+		        	<p:commandLink action="#">
+	   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					 </p:commandLink>
+		        
+		        </h:panelGrid>
+		     
+    	</p:panel>
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	<!--  CUSTOS -->
+    	<p:panel id="custosPanel"
+				 header="Custos"
+				 toggleable="true"
+				 closable="false"
+				 collapsed="true"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="custosPanel"
+				 styleClass="little-font">
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+	       		  
+	       		  
+				 
+				 <p:fieldset legend="Custo Compra" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important" >
+        		
+		        		<h:panelGrid cellpadding="2"
+				        			 cellspacing="2"
+				        			 width="100%"
+				        			 border="0" >
+					        <p:row>
+						        
+							        <p:dataTable
+							        	 id="custosCompraDatatable"
+							        	 value="#{cadastroProdutoBean.custosCompraDatatable}"
+							        	 paginatorPosition="top" 
+							        	 scrollable="true"
+							        	 scrollWidth="95%"
+							        	 scrollHeight="100%"
+							        	 style="width:100%"
+							        	 resizableColumns="false"
+							        	 styleClass="scrolls"
+							        	 lazy="true" 
+							        	 var="custosCompra">
+									    
+									    <p:column headerText="Id"
+									    		  styleClass="percentual-10">
+									        <h:outputText value="#{custosCompra[1]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Un."
+									    		  styleClass="percentual-10">
+									        <h:outputText value="#{custosCompra[2]}" />
+									    </p:column>
+									 
+									    <p:column headerText="Descrição" 
+									    		  styleClass="percentual-10">
+									        <h:outputText value="#{custosCompra[2]}" />
+									    </p:column>
+									 
+									    <p:column headerText="Un. Princ."
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[3]}" />
+									    </p:column>
+									 
+								 	   <p:column headerText="Un. Sec."
+								 	   			 styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[4]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Fator Mult."
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[5]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Peso Liq."
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[6]}" />
+									    </p:column>
+									 
+									 	<p:column headerText="Peso Bruto."
+									 			  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[7]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Un. Perm. Compra?"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[8]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Qtd Min. Ped. Compra"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[9]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Qtd Máx. Ped. Compra"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[10]}" />
+									    
+									    </p:column>
+									    					    
+									    <p:column headerText="Peso Máx. Ped. Compra"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[11]}" />
+									    </p:column>
+									    
+									    
+									    <p:column headerText="Un Util An. Comp Pedido Compra?"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[12]}" />
+									    </p:column>
+									    
+									    
+									    <p:column headerText="Un Util An. Comp Estoque?"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[13]}" />
+									    </p:column>
+									    					    
+									    <p:column headerText="Un. Permite Venda"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[14]}" />
+									    </p:column>
+									    
+									    
+									    <p:column headerText="Qtd Máx. Ped. Venda"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[15]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Peso Máx. Ped. Venda"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosCompra[1]}" />
+									    </p:column>
+									    
+									</p:dataTable>
+							
+							</p:row>
+							
+						</h:panelGrid>	
+        			
+        			
+        			
+    			</p:fieldset>
+    			
+    			<p:fieldset legend="Custo Venda" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important">
+    			
+    			
+    			<h:panelGrid cellpadding="2"
+				        			 cellspacing="2"
+				        			 width="100%"
+				        			 border="0" >
+					        <p:row>
+						        
+							        <p:dataTable
+							        	 id="custosVendaDatatable"
+							        	 value="#{cadastroProdutoBean.custosVendaDatatable}"
+							        	 paginatorPosition="top" 
+							        	 scrollable="true"
+							        	 scrollWidth="95%"
+							        	 scrollHeight="100%"
+							        	 style="width:100%"
+							        	 resizableColumns="false"
+							        	 styleClass="scrolls"
+							        	 lazy="true" 
+							        	 var="custosVenda">
+									    
+									    <p:column headerText="Id"
+									    		  styleClass="percentual-10">
+									        <h:outputText value="#{custosVenda[1]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Un."
+									    		  styleClass="percentual-10">
+									        <h:outputText value="#{custosVenda[2]}" />
+									    </p:column>
+									 
+									    <p:column headerText="Descrição" 
+									    		  styleClass="percentual-10">
+									        <h:outputText value="#{custosVenda[2]}" />
+									    </p:column>
+									 
+									    <p:column headerText="Un. Princ."
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[3]}" />
+									    </p:column>
+									 
+								 	   <p:column headerText="Un. Sec."
+								 	   			 styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[4]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Fator Mult."
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[5]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Peso Liq."
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[6]}" />
+									    </p:column>
+									 
+									 	<p:column headerText="Peso Bruto."
+									 			  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[7]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Un. Perm. Compra?"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[8]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Qtd Min. Ped. Compra"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[9]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Qtd Máx. Ped. Compra"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[10]}" />
+									    
+									    </p:column>
+									    					    
+									    <p:column headerText="Peso Máx. Ped. Compra"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[11]}" />
+									    </p:column>
+									    
+									    
+									    <p:column headerText="Un Util An. Comp Pedido Compra?"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[12]}" />
+									    </p:column>
+									    
+									    
+									    <p:column headerText="Un Util An. Comp Estoque?"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[13]}" />
+									    </p:column>
+									    					    
+									    <p:column headerText="Un. Permite Venda"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[14]}" />
+									    </p:column>
+									    
+									    
+									    <p:column headerText="Qtd Máx. Ped. Venda"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[15]}" />
+									    </p:column>
+									    
+									    <p:column headerText="Peso Máx. Ped. Venda"
+									    		  styleClass="percentual-10">
+									    	<h:outputText value="#{custosVenda[1]}" />
+									    </p:column>
+									    
+									</p:dataTable>
+							
+							</p:row>
+							
+						</h:panelGrid>	
+        			
+    			
+    			
+    			
+ 
+    			</p:fieldset>
+		      
+    	</p:panel>
+    	
+    	
+    	
+    	<!--  FORNECEDORES -->
+		
+		<p:panel id="fornecedores"
+				 header="Fornecedores"
+				 toggleable="true"
+				 collapsed="true"
+				 closable="false"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="fornecedoresPanel"
+				 styleClass="little-font" >
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+	       		  
+ 			       	
+	           	<h:panelGrid columns="7"
+	           				 cellpadding="3"  
+	           				 cellspacing="3"
+	           				 columnClasses="percentual-5,
+	           				 				percentual-10,
+	           				 				percentual-5,
+	           				 				percentual-15,
+	           				 				percentual-5,
+	           				 				percentual-60,
+	           				 				percentual-5" 
+	           				 width="100%"
+	           				 border="0">
+	            		
+	            		<h:outputLabel for="fornecedoresId" value="Id"   />
+	            		<p:inputText id="fornecedoresId" required="true" style="width: 90%" />
+	            		
+	            		<h:outputText id="fornecedoresNomeFantasiaOutputText" value="Nome Fantasia"  styleClass="singleLine"/>
+	            		<p:inputText id="fornecedoresNomeFantasiaInputText" required="true" style="width: 90%" />
+	            		
+	            		<h:outputLabel for="fornecedoresRazaoSocial" value="Razão Social" styleClass="singleLine"  />
+	            		<p:inputText id="fornecedoresRazaoSocial" required="true"  value="" style="width: 90%" />  
+	            		
+	            		<p:commandLink action="#">
+   							<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/stop.png"  />
+					 	</p:commandLink>
+					 	
+					 	
+				</h:panelGrid>
+					 	
+					 	
+					 	<h:panelGrid cellpadding="2"
+		        			 cellspacing="2"
+		        			 width="100%"
+		        			 border="0" >
+			        
+			        
+			       		 <p:row>
+				        
+					        <p:dataTable
+					        	 id="fornecedoresDatatable"
+					        	 value="#{cadastroProdutoBean.fornecedoresDatatable}"
+					        	 paginatorPosition="top" 
+					        	 scrollable="true"
+					        	 scrollWidth="95%"
+					        	 scrollHeight="90"
+					        	 style="width:100%"
+					        	 resizableColumns="false"
+					        	 styleClass="scrolls"
+					        	 lazy="true" 
+					        	 var="fornecedor">
+					        	 
+					        	 <p:column headerText="" styleClass="percentual-12">
+					    		   <p:selectOneRadio id="fornecedorRadio1" value="XXX">
+            							<f:selectItem itemLabel="" itemValue="X" />
+            						</p:selectOneRadio>
+							    </p:column>
+			        		    
+							    <p:column headerText="Id" styleClass="percentual-10">
+							        <h:outputText value="#{fornecedor[1]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Un." styleClass="percentual-10">
+							        <h:outputText value="#{fornecedor[2]}" />
+							    </p:column>
+							 
+							    <p:column headerText="Descrição" styleClass="percentual-10">
+							        <h:outputText value="#{fornecedor[2]}" />
+							    </p:column>
+							 
+							    <p:column headerText="Un. Princ." styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[3]}" />
+							    </p:column>
+							 
+						 	   <p:column headerText="Un. Sec." styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[4]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Fator Mult." styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[5]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Peso Liq." styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[6]}" />
+							    </p:column>
+							 
+							 	<p:column headerText="Peso Bruto." styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[7]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Un. Perm. Compra?" styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[8]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Qtd Min. Ped. Compra" styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[9]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Qtd Máx. Ped. Compra" styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[10]}" />
+							    
+							    </p:column>
+							    					    
+							    <p:column headerText="Peso Máx. Ped. Compra" styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[11]}" />
+							    </p:column>
+							    
+							    
+							    <p:column headerText="Un Util An. Comp Pedido Compra?" styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[12]}" />
+							    </p:column>
+							    
+							    
+							    <p:column headerText="Un Util An. Comp Estoque?" styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[13]}" />
+							    </p:column>
+							    					    
+							    <p:column headerText="Un. Permite Venda" styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[14]}" />
+							    </p:column>
+							    
+							    
+							    <p:column headerText="Qtd Máx. Ped. Venda" styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[15]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Peso Máx. Ped. Venda" styleClass="percentual-10">
+							    	<h:outputText value="#{fornecedor[1]}" />
+							    </p:column>
+							    
+							</p:dataTable>
+					
+						</p:row>
+					
+					</h:panelGrid>
+		
+    	</p:panel>
+    	
+    	
+    	
+    	
+    	<p:panel id="observacoesPanedId"
+				 header="Observações"
+				 toggleable="true"
+				 collapsed="true"
+				 closable="false"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="observacoesWidgetVar"
+				 styleClass="little-font" >
+				 
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+				 
+				 
+				 
+				 <p:inputTextarea rows="10"
+				 				  style="width: 100%;"
+ 				 				  completeMethod="#" 
+				 				  queryDelay="750"
+				 				  minQueryLength="4" />
+ 
+				 
+				 
+		</p:panel>
+		
+		
+		<p:panel id="auditoriaLogId"
+				 header="Auditoria / Log"
+				 toggleable="true"
+				 collapsed="true" 
+				 closable="false"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="auditoriaLogWidgetVar"
+				 styleClass="little-font" >
+				 
+				 <f:facet name="actions">
+	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	           			<h:outputText styleClass="ui-icon ui-icon-help" />
+	           		</h:commandLink>
+	       		  </f:facet>
+				 
+				 
+				 	<h:panelGrid cellpadding="2"
+		        			 cellspacing="2"
+		        			 width="100%"
+		        			 border="0" >
+			        
+			       		 <p:row>
+				        
+					        <p:dataTable
+					        	 id="auditoriaLogDatatable"
+					        	 value="#{cadastroProdutoBean.auditoriaLogDatatable}"
+					        	 paginatorPosition="top" 
+					        	 scrollable="true"
+					        	 scrollWidth="95%"
+					        	 scrollHeight="90"
+					        	 style="width:100%"
+					        	 resizableColumns="false"
+					        	 styleClass="scrolls"
+					        	 lazy="true" 
+					        	 var="auditoriaLog">
+					        	 
+			        		    
+							    <p:column headerText="Id" styleClass="percentual-10">
+							        <h:outputText value="#{auditoriaLog[1]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Un." styleClass="percentual-10">
+							        <h:outputText value="#{auditoriaLog[2]}" />
+							    </p:column>
+							 
+							    <p:column headerText="Descrição" styleClass="percentual-10">
+							        <h:outputText value="#{auditoriaLog[2]}" />
+							    </p:column>
+							 
+							    <p:column headerText="Un. Princ." styleClass="percentual-10">
+							    	<h:outputText value="#{auditoriaLog[3]}" />
+							    </p:column>
+							 
+						 	   <p:column headerText="Un. Sec." styleClass="percentual-10">
+							    	<h:outputText value="#{auditoriaLog[4]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Fator Mult." styleClass="percentual-10">
+							    	<h:outputText value="#{auditoriaLog[5]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Peso Liq." styleClass="percentual-10">
+							    	<h:outputText value="#{auditoriaLog[6]}" />
+							    </p:column>
+							 
+							 	<p:column headerText="Peso Bruto." styleClass="percentual-10">
+							    	<h:outputText value="#{auditoriaLog[7]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Un. Perm. Compra?" styleClass="percentual-10">
+							    	<h:outputText value="#{auditoriaLog[8]}" />
+							    </p:column>
+							    
+							    <p:column headerText="Qtd Min. Ped. Compra" styleClass="percentual-10">
+							    	<h:outputText value="#{auditoriaLog[9]}" />
+							    </p:column>
+							    
+							    
+							</p:dataTable>
+					
+						</p:row>
+					
+					</h:panelGrid>
+				 
+		</p:panel>
+		
+    	
+    	
+    	<p:dialog id="popup"  style="text-align:center: z-index: 3000" widgetVar="dlg1"   modal="true" >  
+    		
+		</p:dialog>
+		
+		
+    	</h:form>
+    	
+    	
+
+	</ui:define>
+</ui:composition>

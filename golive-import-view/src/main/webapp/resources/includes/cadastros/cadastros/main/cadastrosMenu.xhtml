@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panelMenu styleClass="panelCadastroMenu" style="padding-bottom: 40px;">
+
+		<p:submenu label="#{userBean.properties.getField('label.dashboard')}"/>
+		<p:submenu label="#{userBean.properties.getField('label.cadastro')}">
+			<ui:include src="/resources/includes/cadastros/cadastros/main/itemCadastros.xhtml" />
+		</p:submenu>
+		<p:submenu label="#{userBean.properties.getField('label.processos')}"/>
+		<p:submenu label="#{userBean.properties.getField('label.relatorios')}"/>
+		<p:submenu label="#{userBean.properties.getField('label.analise.gerencial')}"/>
+	</p:panelMenu>
+
+
+</ui:composition>

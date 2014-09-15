@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+.menuForm {
+	position: relative;
+	height: 100%;
+	background-color: #FFFFFF;
+	width: 98%;
+	margin-left: 1%;
+	overflow-y: auto;
+	top: 110px;
+	max-height: 87vh;	
+	margin-bottom:100px;
+}
+
+.menuPolimorficoDiv{
+	background-color: #58ACFA;
+}
+
+.menuPolimorficoDiv:hover{
+	background-color: #A9D0F5;
+}
+
+.menuPolimorficoDiv:active{
+	background-color: #5882FA;
+}
+

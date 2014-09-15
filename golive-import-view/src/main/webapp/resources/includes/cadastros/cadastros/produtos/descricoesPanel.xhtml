@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!--  DESCRIÇÕES PANEL -->
+  	
+ <p:panel id="descricoes"
+		 header="#{userBean.properties.getField('label.cadastroProdutos.descricoes')}"
+		 toggleable="true"
+		 closable="false"
+		 toggleSpeed="500"
+		 collapsed="true"
+		 closeSpeed="500"
+		 widgetVar="descricoesPanel"
+		 styleClass="little-font" >
+		 
+		  <f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+		   
+			
+		<h:panelGrid columns="5"
+					 cellpadding="2"
+					 columnClasses="percentual-25,
+					 				perentual-15,
+					 				percentual-72,
+					 				percentual-5,
+					 				percentual-5" 
+					 cellspacing="2"
+					 width="100%"
+					 border="0">
+		
+			<p:selectOneMenu id="descricaoOneMenu"
+							 value="#{userBean.properties.getField('label.cadastroProdutos.finalidadeDescricao')}"
+							 style="width: 90%">
+       	        
+       	        <f:selectItems value="#{cadastroProdutoBean.descricoes}" />
+  		        </p:selectOneMenu>
+            
+        	<h:outputText id="descricaoOutputText" 
+        				  value="#{userBean.properties.getField('label.cadastroProdutos.descricao')}" />
+        	<p:inputText id="descricaoInputText" value="" style="width: 97%;"/>
+        	
+        	<p:commandLink action="#">
+ 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+			 </p:commandLink>
+        	 
+       	 	 <p:commandLink action="#">
+ 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+			 </p:commandLink>
+        	
+       	
+       	</h:panelGrid>
+        
+        
+        <h:panelGrid cellpadding="2"
+        			 cellspacing="2"
+        			 width="100%"
+        			 border="0" >
+        
+	        <p:dataTable id="descricoesDatatable" var="item" value="#{cadastroProdutoBean.descricoesDatatable}" >
+			    
+			    <p:column headerText=""
+			    		  styleClass="percentual-5 singleLine">
+			     	<p:selectBooleanCheckbox value="xx" />   
+			    </p:column>
+			    
+			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.idFinDescr')}"
+			    		  styleClass="percentual-20 singleLine">
+			        <h:outputText value="#{item[0]}" styleClass="floatRight"/>
+			    </p:column>
+			 
+			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.finalidadeDescricao')}"
+			    		  styleClass="percentual-25 singleLine">
+			        <h:outputText value="#{item[1]}" />
+			    </p:column>
+			 
+			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+			    		  styleClass="percentual-15 singleLine">
+			        <h:outputText value="#{item[2]}" styleClass="floatRight"/>
+			    </p:column>
+			 
+			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.descricao')}"
+			    		  styleClass="singleLine">
+			        <h:outputText value="#{item[3]}" />
+			    </p:column>
+			</p:dataTable>
+		</h:panelGrid>
+  </p:panel>
+
+</ui:composition>

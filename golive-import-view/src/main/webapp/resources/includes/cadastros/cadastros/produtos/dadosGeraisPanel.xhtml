@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!--  DADOS GERAIS PANEL -->
+<p:panel id="dadosGerais"
+		 header="#{userBean.properties.getField('label.cadastroProdutos.dadosGerais')}"
+		 toggleable="true"
+		 collapsed="true"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="dadosGeraisPanel"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="6"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-15,
+          				 				percentual-25,
+          				 				percentual-5,
+          				 				percentual-50,
+          				 				percentual-10,
+          				 				percentual-5" 
+          				 width="100%"
+          				 border="0">
+           		
+           	<h:outputLabel for="id" value="Id"   />
+           	<p:inputText id="id" required="true" style="width: 90%" />
+      		<p:spacer></p:spacer>
+      		<p:spacer></p:spacer>
+      		
+      		<h:outputText id="dataInclusaoOutputText" 
+      					  value="#{userBean.properties.getField('label.cadastroProdutos.dataInclusao')}" />
+      		
+      		<p:calendar  id="dataInclusaoInputText"
+      					 disabled="true" 
+      					 value="#{cadastroProdutoBean.dataInclusao}"
+      					 size="16"
+      					 maxlength="16"
+      					 pattern="MM/dd/yyyy HH:mm:ss"
+      					  />
+      
+      		<h:outputText id="dadosGeraisCodigoProdutoOutputText"
+      					 value="#{userBean.properties.getField('label.cadastroProdutos.codigoProduto')}"
+      					 styleClass="singleLine"  />
+      		
+      		<p:inputText id="dadosGeraisCodigoProdutoInputText"
+      				     required="true"
+      				     value="H25-LAM-CO25-EQ 18"
+      				     style="width: 90%"
+      				     disabled="true"/>  
+      		
+      		<p:commandLink action="#" onclick="PF('dlg1').show();">
+			<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/stop.png"  />
+			</p:commandLink>
+      		
+      		
+      		<p:inputText id="descricaoProduto"
+      					 required="true"
+      					 disabled="true"
+      					 style="width: 90%"
+      					 value="lâmina de Alumínio 25mm x 0.18mm Cor verde" />		
+        		
+        		<h:outputText id="ultimaAlteracaoOutputText"
+        					  value="#{userBean.properties.getField('label.cadastroProdutos.ultimaAlteracao')}"
+        					  styleClass="singleLine"/>
+        		
+        		<p:calendar   id="ultimaAlteracaoInputText"
+	        			      disabled="true"
+        					  size="16"
+        					  maxlength="16"
+        					  value="#{cadastroProdutoBean.dataUltimaAlteracao}"
+        					  pattern="MM/dd/yyyy HH:mm:ss"/>
+	
+        </h:panelGrid>
+
+</p:panel>
+
+</ui:composition>

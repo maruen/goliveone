@@ -1,0 +1,117 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- COLECAO -->
+ 	<p:panel id="colecao"
+	 header="#{userBean.properties.getField('label.cadastroProdutos.colecao')}"
+	 toggleable="true"
+	 collapsed="true"
+	 closable="false"
+	 toggleSpeed="500"
+	 closeSpeed="500"
+	 widgetVar="colecaoPanel"
+	 styleClass="little-font" >
+	 
+	 <f:facet name="actions">
+         		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+         			<h:outputText styleClass="ui-icon ui-icon-help" />
+         		</h:commandLink>
+     		  </f:facet>
+	 
+	       	
+         <h:panelGrid columns="10"
+				cellpadding="3"
+				cellspacing="3"
+				columnClasses="percentual-30,
+				 			   percentual-2,
+				 			   percentual-5,
+				 			   percentual-5,
+				 			   percentual-10,
+				 			   percentual-5,
+				 			   percentual-40,
+				 			   percentual-2,
+				 			   percentual-2,
+				 			   percentual-2" 
+				 width="100%"
+				 border="0">
+	
+	
+			<p:selectOneMenu id="colecaoOneMenu" style="width: 90%; background-color: #FFFFFF ">
+       	        <f:selectItems value="#{cadastroProdutoBean.colecoes}" />
+  		        </p:selectOneMenu>
+ 		    	<h:outputText id="colecaoIdOutputText"
+ 		    				  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+ 		    				  styleClass="singleLine"/>
+       		<p:inputText id="colecaoIdInputText" value="" style="width: 95%;"/>
+       	
+       		<h:outputText id="colecaoCodigoOutputText"
+       					  value="#{userBean.properties.getField('label.cadastroProdutos.codigo')}"
+       					  styleClass="singleLine"/>
+       		<p:inputText id="colecaoCodigoInputText" value="" style="width: 97%;"/>
+       	
+       		<h:outputText id="colecaoColecaoOutputText" 
+       					  value="#{userBean.properties.getField('label.cadastroProdutos.colecao')}"
+       					  styleClass="singleLine"/>
+       		<p:inputText id="colecaoColecaoInputText" value="" style="width: 97%;"/>
+       	
+           	<p:commandLink action="#">
+ 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+			 </p:commandLink>
+           	
+           	<p:commandLink action="#">
+ 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+			 </p:commandLink>
+	 	
+       	 	 <p:commandLink action="#">
+ 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+			 </p:commandLink>
+      	
+      	</h:panelGrid>
+      	
+      	<h:panelGrid cellpadding="2"
+       			 cellspacing="2"
+       			 width="100%"
+       			 border="0" >
+       
+        <p:dataTable id="colecaoDatatable"
+        			 var="colecao"
+        			 value="#{cadastroProdutoBean.colecaoDatatable}" >
+		    
+		    <p:column headerText=""
+		    		  styleClass="percentual-5 singleLine">
+		     	<p:selectBooleanCheckbox value="xx" />   
+		    </p:column>
+		    
+		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+		    		 styleClass="percentual-20 singleLine "
+		    		 sortBy="#{colecao[0]}">
+		        <h:outputText value="#{colecao[0]}"  styleClass="floatRight"/>
+		    </p:column>
+		 
+		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.colecao')}"
+		    		  styleClass="percentual-25 singleLine"
+		    		  sortBy="#{colecao[1]}">
+		        <h:outputText value="#{colecao[1]} "  styleClass="floatRight"/>
+		    </p:column>
+		 
+		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+		    		  styleClass="percentual-15 singleLine"
+		    		  sortBy="#{colecao[2]}">
+		        <h:outputText value="#{colecao[2]}"  styleClass="floatRight"/>
+		    </p:column>
+		 
+		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.finalidadeColecao')}"
+		    		  styleClass="singleLine"
+		    		  sortBy="#{colecao[3]}">
+		        <h:outputText value="#{colecao[3]}" />
+		    </p:column>
+		</p:dataTable>
+	</h:panelGrid>
+      	
+</p:panel>
+
+</ui:composition>
+

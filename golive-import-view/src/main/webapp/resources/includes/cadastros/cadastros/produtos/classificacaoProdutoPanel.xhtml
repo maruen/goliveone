@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<!--  CLASSIFICAÇÃO DO PRODUTO PANEL  -->
+<p:panel id="classificacaoProduto"
+		 header="#{userBean.properties.getField('label.cadastroProdutos.classificacaoProduto')}"
+		 toggleable="true"
+		 closable="false"
+		 collapsed="true"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="classificacaoProdutoPanel"
+		 styleClass="little-font" >
+		 
+		  <f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		  </f:facet>
+		
+        
+        	
+			<h:panelGrid columns="5"
+						 cellpadding="3"
+						 cellspacing="3"
+						 columnClasses="percentual-5,
+						 				percentual-10,
+						 				percentual-5,
+						 				percentual-68"
+						 width="100%"
+						 border="0">
+				
+				<h:outputText id="departamentoIdOutputText"
+							  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"   />
+            	<p:inputText id="departamentoIdInputText"
+            				 value="00000000001" 
+            				 style="width: 125px;"/>
+            	
+        		<h:outputText id="departamentoNomeOutputText"
+        					   		value="#{userBean.properties.getField('label.cadastroProdutos.departamento')}" />
+            	<p:inputText id="departamentoNomeInputText"
+            				 style="width: 95%"
+            				 value="Acessorios, Partes e Pcas para Persianas Horizontais em aluminio"/>
+        	
+        	 	<p:commandLink action="#">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+				
+			
+				<h:outputText id="grupoProdutosIdOutputText" 
+							  value="#{userBean.properties.getField('label.cadastroProdutos.id')}" />
+            	<p:inputText id="grupoProdutosIdInputText"
+            				 value="00000000001" 
+            				 style="width: 125px;"/>
+            	
+        		<h:outputText  id="grupoProdutosNomeOutputText"
+        		 			   value="#{userBean.properties.getField('label.cadastroProdutos.grupoProdutos')}"
+        		 			   style="white-space: nowrap"/>
+            	<p:inputText id="grupoProdutosNomeInputText"
+            				 style="width: 95%"
+            				 value="Laminas em Aluminio 25mm"/>
+        	
+        	 	<p:commandLink action="#">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			
+				<h:outputText id="subGrupoProdutosIdOutputText"
+							   value="#{userBean.properties.getField('label.cadastroProdutos.id')}"   />
+            	<p:inputText id="subGrupoProdutosIdInputText"
+            				 style="width: 125px;"/>
+            	
+        		<h:outputText id="subGrupoProdutosNomeOutputText"
+        					   value="#{userBean.properties.getField('label.cadastroProdutos.departamento')}"/>
+            	<p:inputText id="subGrupoProdutosNomeInputText"
+            				 style="width: 95%"
+            				 value="Laminas em Aluminio 25mm x 0.18mm"/>
+        	
+        	 	<p:commandLink action="#">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+        	
+        	</h:panelGrid>
+        	
+        
+</p:panel>
+</ui:composition>

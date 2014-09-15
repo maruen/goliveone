@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/layoutTemplate.xhtml">
+
+	<ui:define name="main">
+
+		<p:panel id="toggleable"
+				 header="Dados Gerais"
+				 toggleable="true"
+				 closable="true"
+				 toggleSpeed="500"
+				 closeSpeed="500"
+				 widgetVar="panel"
+				 styleClass="little-font"
+				 style="margin-bottom:20px">
+ 			
+		        
+		        <h:panelGrid cellpadding="0" width="100%" cellspacing="0" border="0" >
+		           	<h:panelGrid columns="6" cellpadding="0" width="100%" cellspacing="0" border="0">
+		            		
+		            		<h:outputLabel for="id" value="Id"   />
+		            		<p:inputText id="id" required="true" styleClass="small-1-field" />
+		            		<p:spacer>&nbsp;</p:spacer>
+		            		<p:spacer>&nbsp;</p:spacer>
+		            		<h:outputLabel for="inclusao" value="Inclusão" />
+		            		<p:inputText id="inclusao" disabled="disabled" value="25/08/2014 20:24"/>
+		            
+		            		<h:outputLabel for="codigoProduto" value="Cód. Produto"   />
+		            		<p:inputText id="codigoProduto" required="true"  value="H25-LAM-CO25-EQ 18"  styleClass="small-2-field" />
+		            		<p:button icon="ui-icon-star">
+    							<f:param name="popupId"  />
+							</p:button>
+		            		
+		            		<p:inputText id="descricaoProduto"
+		            					 styleClass="big-1-field"
+		            					 required="true"
+		            					 disabled="disabled"
+		            					 value="lâmina de Alumínio 25mm x 0.18mm Cor verde" />		
+		            		
+		            		<p:outputLabel for="ultimaAlteracao" value="Última Alteração"   />
+		            		<p:calendar  id="ultimaAlteracao"
+		            					 value="#{dadosGeraisBean.dataUltimaAlteracao.time}"
+		            					 pattern="MM/dd/yyyy HH:mm:ss"
+		            					 disabled="true" />
+		            </h:panelGrid>
+		        </h:panelGrid>
+    	
+    	</p:panel>
+
+	</ui:define>
+</ui:composition>

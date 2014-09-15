@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<p:panel id="auditoriaLog" styleClass="mainPanel"
+		header="#{userBean.properties.getField('label.auditoria/Log')}"
+		toggleable="true" toggleSpeed="500">
+		<p:dataTable id="auditoriaLogTable" var="list"
+			value="#{pojo}" rowKey="#{list.id}" styleClass="tableCadastros"
+			rows="15" paginator="true"
+			emptyMessage="#{userBean.properties.getField('msg.nao.ha.registros')}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+
+
+			<p:column headerText="#{userBean.labelAnotado(clazz, 'id')}">
+				<h:outputLabel value="#{list.id}" />
+			</p:column>
+			<p:column
+				headerText="#{userBean.labelAnotado(clazz, 'calendar')}">
+				<h:outputLabel value="#{list.calendar}" />
+			</p:column>
+			<p:column
+				headerText="#{userBean.labelAnotado(clazz, 'formulario')}">
+				<h:outputLabel value="#{list.formulario}" />
+			</p:column>
+			<p:column headerText="#{userBean.labelAnotado(clazz, 'id2')}">
+				<h:outputLabel value="#{list.id2}" />
+			</p:column>
+			<p:column headerText="#{userBean.labelAnotado(clazz, 'acao')}">
+				<h:outputLabel value="#{list.acao}" />
+			</p:column>
+			<p:column
+				headerText="#{userBean.labelAnotado(clazz, 'valorAlterado')}">
+				<h:outputLabel value="#{list.valorAlterado}" />
+			</p:column>
+			<p:column
+				headerText="#{userBean.labelAnotado(clazz, 'valorAtual')}">
+				<h:outputLabel value="#{list.valorAtual}" />
+			</p:column>
+			<p:column
+				headerText="#{userBean.labelAnotado(clazz, 'usuario')}">
+				<h:outputLabel value="#{list.usuario}" />
+			</p:column>
+
+			<p:column
+				headerText="#{userBean.labelAnotado(clazz, 'observacao')}">
+				<h:outputLabel value="#{list.observacao}" />
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+
+
+
+</ui:composition>

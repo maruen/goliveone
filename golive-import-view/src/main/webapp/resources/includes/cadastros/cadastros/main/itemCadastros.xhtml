@@ -1,0 +1,161 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+
+	<p:submenu style="font-size: 13px;" 
+		label="#{userBean.properties.getField('label.classificacaoEmpresas')}">
+		<p:menuitem
+			value="#{userBean.properties.getField('label.areasDeAtuacao')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.classificacaoEmpresas.AreasDeAtuacao')}');" />
+		<p:menuitem value="#{userBean.properties.getField('label.segmentos')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.classificacaoEmpresas.segmentos')}');" />
+	</p:submenu>
+
+	<p:menuitem value="#{userBean.properties.getField('label.clientes')}"
+		styleClass="itemPanelMenu little-font"
+		onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.clientes')}');" />
+
+	<p:submenu style="font-size: 13px;" label="#{userBean.properties.getField('label.estoque')}">
+		<p:menuitem
+			value="#{userBean.properties.getField('label.pavimentos')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.estoque.pavimentos')}');" />
+		<p:menuitem value="#{userBean.properties.getField('label.ruas')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.estoque.ruas')}');" />
+		<p:menuitem
+			value="#{userBean.properties.getField('label.prateleiras')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.estoque.prateleiras')}');" />
+		<p:menuitem
+			value="#{userBean.properties.getField('label.reservaDeEndereço')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.estoque.reservaDeEndereco')}');" />
+	</p:submenu>
+
+	<p:menuitem
+		value="#{userBean.properties.getField('label.fornecedores')}"
+		styleClass="itemPanelMenu little-font"
+		onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.fornecedores')}');" />
+	<p:menuitem
+		value="#{userBean.properties.getField('label.funcionarios')}"
+		styleClass="itemPanelMenu little-font"
+		onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.funcionarios')}');" />
+
+	<p:submenu style="font-size: 13px;" label="#{userBean.properties.getField('label.produtos')}">
+		<p:submenu style="font-size: 13px;"
+			label="#{userBean.properties.getField('label.classificacao')}">
+			<p:menuitem
+				value="#{userBean.properties.getField('label.departamentos')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.classificacao.departamentos')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.gruposDeProdutos')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.classificacao.grupoDeProdutos')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.subgrupoDeProdutos')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.classificacao.subGrupoDeProdutos')}');" />
+		</p:submenu>
+
+		<p:submenu style="font-size: 13px;"
+			label="#{userBean.properties.getField('label.especialidades')}">
+			<p:menuitem value="#{userBean.properties.getField('label.colecoes')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.especialidades.colecoes')}');" />
+			<p:menuitem value="#{userBean.properties.getField('label.cores')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.especialidades.cores')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.padroesDeLargura')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.especialidades.padroesDeLargura')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.padroesDeExpessura')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.especialidades.padroesDeEspessura')}');" />
+			<p:menuitem value="#{userBean.properties.getField('label.unidades')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.especialidades.unidades')}');" />
+		</p:submenu>
+
+		<p:submenu style="font-size: 13px;"
+			label="#{userBean.properties.getField('label.finalidades')}">
+			<p:menuitem
+				value="#{userBean.properties.getField('label.finalidadeCodigo')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.finalidades.finalidadeCodigo')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.finalidadeCodigoDeBarra')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.finalidades.finalidadeCodigoDeBarra')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.finalidadeColecao')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.finalidades.finalidadeColecao')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.finalidadeCor')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.finalidades.finalidadeCor')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.finalidadeDescricao')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.finalidades.finalidadeDescricao')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.finalidadePadraoLargura')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.finalidades.finalidadePadraoLargura')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.finalidadePadraoEspessura')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.finalidades.finalidadePadraoEspessura')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.finalidadeTipo')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.finalidades.finalidadeTipo')}');" />
+			<p:menuitem
+				value="#{userBean.properties.getField('label.finalidadeUnidade')}"
+				styleClass="itemPanelMenu little-font"
+				onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.finalidades.finalidadeUnidade')}');" />
+		</p:submenu>
+		<p:menuitem value="#{userBean.properties.getField('label.produto')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.produtos.produto')}');" />
+		<p:menuitem
+			value="#{userBean.properties.getField('label.tipoDeProduto')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.tipoProduto')}');" />
+	</p:submenu>
+
+	<p:submenu style="font-size: 13px;" label="#{userBean.properties.getField('label.regioes')}">
+
+		<p:menuitem value="#{userBean.properties.getField('label.estados')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.regioes.estado')}');" />
+		<p:menuitem
+			value="#{userBean.properties.getField('label.municipios')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.regioes.municipios')}');" />
+		<p:menuitem value="#{userBean.properties.getField('label.regioes')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.regioes.regioes')}');" />
+		<p:menuitem
+			value="#{userBean.properties.getField('label.tiposLogradouro')}"
+			styleClass="itemPanelMenu little-font"
+			onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.TipoLogradouro')}');" />
+
+	</p:submenu>
+	<p:menuitem
+		value="#{userBean.properties.getField('label.transportadoras')}"
+		styleClass="itemPanelMenu little-font"
+		onclick="abrirNovaAba('#{userBean.properties.getField('link.cadastros.cadastros.tipoTransportadora')}');" />
+
+
+</ui:composition>

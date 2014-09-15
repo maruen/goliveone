@@ -1,0 +1,115 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- PADRAO DE ESPESSURA -->
+ <p:panel id="padraoEspessuraPanelId"
+	 header="#{userBean.properties.getField('label.cadastroProdutos.padraoEspessura')}"
+	 toggleable="true"
+	 collapsed="true"
+	 closable="false"
+	 toggleSpeed="500"
+	 closeSpeed="500"
+	 widgetVar="padraoEspessuraPanel"
+	 styleClass="little-font" >
+	 
+	 <f:facet name="actions">
+         		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+         			<h:outputText styleClass="ui-icon ui-icon-help" />
+         		</h:commandLink>
+     		  </f:facet>
+	       	
+         <h:panelGrid columns="10"
+				cellpadding="3"
+				cellspacing="3"
+				columnClasses="percentual-30,
+				 			   percentual-2,
+				 			   percentual-5,
+				 			   percentual-5,
+				 			   percentual-10,
+				 			   percentual-5,
+				 			   percentual-40,
+				 			   percentual-2,
+				 			   percentual-2,
+				 			   percentual-2" 
+				 width="100%"
+				 border="0">
+	
+	
+			<p:selectOneMenu id="padraoEspessuraOneMenu" style="width: 90%; background-color: #FFFFFF ">
+       	        <f:selectItems value="#{cadastroProdutoBean.padraoEspessura}" />
+  		     </p:selectOneMenu>
+ 		    
+ 		    <h:outputText id="padraoEspessuraIdOutputText" 
+ 		    			  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+ 		    			  styleClass="singleLine"/>
+       		<p:inputText id="padraoEspessuraIdInputText" value="" style="width: 97%;"/>
+       	
+       		<h:outputText id="padraoEspessuraEspessuraOutputText"
+       					  value="#{userBean.properties.getField('label.cadastroProdutos.espessura')}"
+       					  styleClass="singleLine"/>
+       		<p:inputText  id="padraoEspessuraEspessuraInputText" value="" style="width: 97%;"/>
+       	
+       		<h:outputText id="padraoEspessuraPadraoEspessuraOutputText"
+       					  value="#{userBean.properties.getField('label.cadastroProdutos.padraoEspessura')}"
+       					  styleClass="singleLine"/>
+       		<p:inputText id="padraoEspessuraPadraoEspessuraInputText" value="" style="width: 97%;"/>
+       	
+           	<p:commandLink action="#">
+ 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+			 </p:commandLink>
+           	
+           	<p:commandLink action="#">
+ 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+			 </p:commandLink>
+	 	
+       	 	 <p:commandLink action="#">
+ 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+			 </p:commandLink>
+      	
+      	</h:panelGrid>
+      	
+      	<h:panelGrid cellpadding="2"
+       			 cellspacing="2"
+       			 width="100%"
+       			 border="0" >
+       
+        <p:dataTable id="padraoEspessuraDatatable"
+        			 var="padraoEspessura"
+        			 value="#{cadastroProdutoBean.padraoEspessuraDatatable}" >
+		    
+		    <p:column headerText=""
+		    		  styleClass="percentual-5 singleLine">
+		     	<p:selectBooleanCheckbox value="xx" />   
+		    </p:column>
+		    
+		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+		    		 styleClass="percentual-20 singleLine "
+		    		 sortBy="#{padraoEspessura[0]}">
+		        <h:outputText value="#{padraoEspessura[0]}"  styleClass="floatRight"/>
+		    </p:column>
+		 
+		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.espessura')}"
+		    		  styleClass="percentual-25 singleLine"
+		    		  sortBy="#{padraoEspessura[1]}">
+		        <h:outputText value="#{padraoEspessura[1]} "  styleClass="floatRight"/>
+		    </p:column>
+		 
+		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+		    		  styleClass="percentual-15 singleLine"
+		    		  sortBy="#{padraoEspessura[2]}">
+		        <h:outputText value="#{padraoEspessura[2]}"  styleClass="floatRight"/>
+		    </p:column>
+		 
+		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.finalidadePadraoEspessura')}"
+		    		  styleClass="singleLine"
+		    		  sortBy="#{padraoEspessura[3]}">
+		        <h:outputText value="#{padraoEspessura[3]}" />
+		    </p:column>
+		</p:dataTable>
+	</h:panelGrid>
+ </p:panel>
+ 
+ </ui:composition>

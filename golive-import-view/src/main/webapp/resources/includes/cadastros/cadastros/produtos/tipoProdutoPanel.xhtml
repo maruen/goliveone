@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!--  TIPO DO PRODUTO -->
+ <p:panel id="tipoProduto"
+		 header="Tipo do Produto"
+		 toggleable="true"
+		 closable="false"
+		 collapsed="true"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="tipoProdutoPanel"
+		 styleClass="little-font">
+		 
+		 <f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		  </f:facet>
+		    
+		    
+        <h:panelGrid cellpadding="3"
+        			 cellspacing="3"
+        			 columnClasses="percentual-5,
+        			 				percentual-10,
+        			 				percentual-5,
+        			 				percentual-77,
+        			 				percentual-5"
+        			 columns="5"
+        			 width="100%"
+        			 border="0" >
+        			 
+        	
+        	<h:outputLabel for="tipoProdutoId" value="Id"   styleClass="singleLine" /> 
+	        <p:inputText id="tipoProdutoId" value=""/>
+        	
+        	
+        	<h:outputLabel for="tipoProdutoDescricao" value="Descrição" />
+        	<p:inputText id="tipoProdutoDescricao" value="" style="width: 97%;"/>
+        	
+        	<p:commandLink action="#">
+   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+			</p:commandLink>
+        	
+        </h:panelGrid>
+     
+</p:panel>
+
+</ui:composition>

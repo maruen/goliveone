@@ -1,0 +1,106 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- CODIGO PRODUTO -->
+<p:panel id="codigoProdutoId"
+		 header="#{userBean.properties.getField('label.cadastroProdutos.codigoProduto')}"
+		 toggleable="true"
+		 collapsed="true"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="codigoProdutoPanel"
+		 styleClass="little-font" >
+		 
+		 <f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+		 
+		       	
+          <h:panelGrid columns="6"
+					cellpadding="2"
+					cellspacing="2"
+					columnClasses="percentual-30,
+					   			   percentual-5,
+					 			   percentual-20,
+					 			   percentual-2,
+					 			   percentual-2,
+					 			   percentual-40" 
+					 width="100%"
+					 border="0">
+		
+		
+				<p:selectOneMenu id="codigoProdutoOneMenu"
+								 value="#{userBean.properties.getField('label.cadastroProdutos.selecioneFinalidadeCodigoProduto')}" 
+								 style="width: 90%; background-color: #FFFFFF ">
+        	        
+        	        			<f:selectItems value="#{cadastroProdutoBean.codigos}" />
+   		        
+   		        </p:selectOneMenu>
+  		    
+  		    	<h:outputText id="codigoProdutoCodigoProdutoOutputText" 
+  		    				  value="#{userBean.properties.getField('label.cadastroProdutos.codProduto')}"
+  		    				  styleClass="singleLine"/>
+        		
+        		<p:inputText  id="codigoProdutoCodigoProdutoInputText" value="" style="width: 97%;"/>
+        	
+            	<p:commandLink action="#">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
+				 </p:commandLink>
+		 	
+	       	 	 <p:commandLink action="#">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
+				 </p:commandLink>
+				
+				 <p:spacer></p:spacer>		 
+       	
+       	</h:panelGrid>
+       	
+       	<h:panelGrid cellpadding="2"
+        			 cellspacing="2"
+        			 width="100%"
+        			 border="0" >
+        
+	        <p:dataTable id="codigoProdutoDatatable"
+	        			 var="codigoProduto"
+	        			 value="#{cadastroProdutoBean.codigoDatatable}" >
+			    
+			    <p:column headerText=""
+			    		  styleClass="percentual-5 singleLine">
+			     	<p:selectBooleanCheckbox value="xx" />   
+			    </p:column>
+			    
+			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+			    		 styleClass="percentual-20 singleLine "
+			    		 sortBy="#{codigoProduto[0]}">
+			        <h:outputText value="#{codigoProduto[0]}"  styleClass="floatRight"/>
+			    </p:column>
+			 
+			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.codigoProduto')}"
+			    		  styleClass="percentual-25 singleLine"
+			    		  sortBy="#{codigoProduto[1]}">
+			        <h:outputText value="#{codigoProduto[1]} "  styleClass="floatRight"/>
+			    </p:column>
+			 
+			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+			    		  styleClass="percentual-15 singleLine"
+			    		  sortBy="#{codigoProduto[2]}">
+			        <h:outputText value="#{codigoProduto[2]}"  styleClass="floatRight"/>
+			    </p:column>
+			 
+			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.finalidadeCodigoProduto')}"
+			    		  styleClass="singleLine"
+			    		  sortBy="#{codigoProduto[3]}">
+			        <h:outputText value="#{codigoProduto[3]}" />
+			    </p:column>
+			</p:dataTable>
+		</h:panelGrid>
+  	
+</p:panel>
+
+</ui:composition>

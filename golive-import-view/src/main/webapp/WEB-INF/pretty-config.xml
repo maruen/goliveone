@@ -1,0 +1,234 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+	<url-mapping id="index">
+		<pattern value="/" />
+		<view-id value="/pages/navigation/welcome.jsf" />
+	</url-mapping>
+
+	<url-mapping id="welcome">
+		<pattern value="/home" />
+		<view-id value="/pages/navigation/welcome.jsf" />
+	</url-mapping>
+
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/pages/navigation/login.jsf" />
+	</url-mapping>
+
+	<!-- <BR-Pattern> -->
+
+	<!-- <Cadastro> -->
+		<url-mapping id="mainCadastro">
+			<pattern value="/Cadastros" />
+			<view-id value="/pages/cadastros/main.jsf" />
+		</url-mapping>
+	
+	
+		<url-mapping id="cadastrosCadastrosClassificacaoEmpresasAreasDeAtuacao">
+			<pattern value="/Cadastros/Cadastros/ClassificacaoEmpresas/AreasDeAtuacao" />
+			<view-id value="/pages/cadastros/cadastros/classificacaoEmpresas/areasDeAtuacao.jsf" />
+		</url-mapping>
+	
+	
+		<url-mapping id="cadastrosCadastrosClassificacaoEmpresasSegmentos">
+			<pattern value="/Cadastros/Cadastros/ClassificacaoEmpresas/Segmentos" />
+			<view-id value="/pages/cadastros/cadastros/classificacaoEmpresas/segmentos.jsf" />
+		</url-mapping>
+	
+		<url-mapping id="cadastrosCadastrosClientes">
+			<pattern value="/Cadastros/Cadastros/Clientes" />
+			<view-id value="/pages/cadastros/cadastros/clientes.jsf" />
+		</url-mapping>
+	
+		<url-mapping id="cadastrosCadastrosEstoquePavimentos">
+			<pattern value="/Cadastros/Cadastros/Estoque/Pavimentos" />
+			<view-id value="/pages/cadastros/cadastros/estoque/pavimentos.jsf" />
+		</url-mapping>
+	
+		<url-mapping id="cadastrosCadastrosEstoqueRuas">
+			<pattern value="/Cadastros/Cadastros/Estoque/Ruas" />
+			<view-id value="/pages/cadastros/cadastros/estoque/ruas.jsf" />
+		</url-mapping>
+		
+		<url-mapping id="cadastrosCadastrosEstoquePrateleiras">
+			<pattern value="/Cadastros/Cadastros/Estoque/Prateleiras" />
+			<view-id value="/pages/cadastros/cadastros/estoque/prateleiras.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosEstoqueReservaDeEndereco">
+			<pattern value="/Cadastros/Cadastros/Estoque/ReservaDeEndereco" />
+			<view-id value="/pages/cadastros/cadastros/estoque/reservaDeEndereco.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosFornecedores">
+			<pattern value="/Cadastros/Cadastros/Fornecedores" />
+			<view-id value="/pages/cadastros/cadastros/fornecedores.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosFuncionarios">
+			<pattern value="/Cadastros/Cadastros/Funcionarios" />
+			<view-id value="/pages/cadastros/cadastros/funcionarios.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosClassificacaoDepartamentos">
+			<pattern value="/Cadastros/Cadastros/Produtos/Classificacao/Departamentos" />
+			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/departamentos.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosClassificacaoGrupoProdutos">
+			<pattern value="/Cadastros/Cadastros/Produtos/Classificacao/GrupoProdutos" />
+			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/grupoDeProdutos.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosClassificacaoSubGruposProdutos">
+			<pattern value="/Cadastros/Cadastros/Produtos/Classificacao/SubGrupoProdutos" />
+			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/subGrupoDeProdutos.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosEspecialidadesColecoes">
+			<pattern value="/Cadastros/Cadastros/Produtos/Especialidades/Colecoes" />
+			<view-id value="/pages/cadastros/cadastros/produtos/especialidades/colecoes.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosEspecialidadesCores">
+			<pattern value="/Cadastros/Cadastros/Produtos/Especialidades/Cores" />
+			<view-id value="/pages/cadastros/cadastros/produtos/especialidades/cores.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosEspecialidadesLargura">
+			<pattern value="/Cadastros/Cadastros/Produtos/Especialidades/PadroesLargura" />
+			<view-id value="/pages/cadastros/cadastros/produtos/especialidades/padroesDeLargura.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosEspecialidadesEspessura">
+			<pattern value="/Cadastros/Cadastros/Produtos/Especialidades/PadroesEspessura" />
+			<view-id value="/pages/cadastros/cadastros/produtos/especialidades/padroesDeEspessura.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosEspecialidadesUnidade">
+			<pattern value="/Cadastros/Cadastros/Produtos/Especialidades/Unidades" />
+			<view-id value="/pages/cadastros/cadastros/produtos/especialidades/unidades.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosFinalidadesCodigo">
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/Codigo" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeCodigo.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosFinalidadesCodigoBarra">
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/CodigoDeBarra" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeCodigoDeBarra.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosFinalidadesColecoes">
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/Colecoes" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeColecao.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosFinalidadesCor">
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/Cor" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeCor.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosFinalidadesDescricao">
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/Descricao" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeDescricao.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosFinalidadesLargura">
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/PadraoLargura" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadePadraoLargura.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosFinalidadesEspessura">
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/PadraoEspessura" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadePadraoEspessura.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosFinalidadesTipo">
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/Tipo" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeTipo.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosFinalidadesUnidade">
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/Unidade" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeUnidade.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosProduto">
+			<pattern value="/Cadastros/Cadastros/Produtos/Produto" />
+			<view-id value="/pages/cadastros/cadastros/produtos/produto.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosProdutosTipoProduto">
+			<pattern value="/Cadastros/Cadastros/Produtos/TipoProduto" />
+			<view-id value="/pages/cadastros/cadastros/produtos/tipoDeProduto.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosRegioesEstado">
+			<pattern value="/Cadastros/Cadastros/Regioes/Estado" />
+			<view-id value="/pages/cadastros/cadastros/regioes/estados.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosRegioesMunicipio">
+			<pattern value="/Cadastros/Cadastros/Regioes/Municipios" />
+			<view-id value="/pages/cadastros/cadastros/regioes/municipios.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosRegioesRegioes">
+			<pattern value="/Cadastros/Cadastros/Regioes/Regioes" />
+			<view-id value="/pages/cadastros/cadastros/regioes/regioes.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosRegioesTipoLogradouro">
+			<pattern value="/Cadastros/Cadastros/Regioes/TipoLogradouro" />
+			<view-id value="/pages/cadastros/cadastros/regioes/tipoLogradouros.jsf" />
+		</url-mapping>
+	
+		
+		<url-mapping id="cadastrosCadastrosTipoTransportadora">
+			<pattern value="/Cadastros/Cadastros/TipoTransportadora" />
+			<view-id value="/pages/cadastros/cadastros/tipoTransportadora.jsf" />
+		</url-mapping>
+
+
+	<!-- </Cadastro> -->
+
+
+
+
+
+
+	<!-- </BR-Pattern> -->
+
+
+</pretty-config>

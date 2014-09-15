@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/layoutTemplate.xhtml">
+
+	<ui:define name="linkRefs">
+		<h:outputStylesheet name="css/cadastros/style_produtos.css" />
+		<h:outputStylesheet name="css/cadastros/style_percentuais.css" />
+	</ui:define>
+
+	
+	<ui:define name="main">
+		<h:form>
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/dadosGeraisPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/codigoProdutoPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/descricoesPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/classificacaoProdutoPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/colecaoPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/corPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/padraoLarguraPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/padraoEspessuraPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/tipoProdutoPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/unidadesPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/codigoBarrasPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/enderecamentoEstoquePanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/custosPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/fornecedoresPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/observacoesPanel.xhtml" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produtos/auditoriaLogPanel.xhtml" />
+	    	
+	   	<p:dialog id="popup"  style="text-align:center: z-index: 3000" widgetVar="dlg1"   modal="true" >  
+		</p:dialog>
+   		</h:form>
+   	</ui:define>
+    	
+
+</ui:composition>
