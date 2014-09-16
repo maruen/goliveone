@@ -10,5 +10,6 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 public @interface Jasper {
 	public String nomeArquivoJasper();
+	public String nomeDoArquivoGerado();
 	public String titulo();
 }

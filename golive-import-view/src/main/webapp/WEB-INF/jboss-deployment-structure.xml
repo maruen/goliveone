@@ -3,6 +3,7 @@
     <deployment>
         <dependencies>
             <module name="br.com.golive.labels"/>
+            <module name="br.com.golive.logo"/>
         </dependencies>
     </deployment>
 </jboss-deployment-structure>

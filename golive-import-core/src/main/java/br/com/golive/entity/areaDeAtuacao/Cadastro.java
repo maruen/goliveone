@@ -3,9 +3,14 @@ package br.com.golive.entity.areaDeAtuacao;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 
 @Label(name = "label.dadosGerais")
+@Jasper(titulo="tittle.relatorio.cadastro", 
+		nomeDoArquivoGerado="file.name.areaDeAtuacao.Cadastro",
+		nomeArquivoJasper ="cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro"
+		)
 public class Cadastro implements Serializable {
 	
 	private static final long serialVersionUID = -7415246692175931894L;

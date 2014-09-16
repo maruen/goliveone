@@ -1,17 +1,22 @@
 package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresas;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import net.sf.jasperreports.engine.JRException;
 
 import org.slf4j.Logger;
 
@@ -20,14 +25,16 @@ import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoEmbed;
 import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
 import br.com.golive.entity.areaDeAtuacao.Cadastro;
+import br.com.golive.exception.GoLiveException;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
+import br.com.golive.utils.jasper.GeradorRelatorio;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
-@Label(name="label.cadastroDeAreaDeAtuacao")
+@EqualsAndHashCode(callSuper = false)
+@Label(name = "label.cadastroDeAreaDeAtuacao")
 @ManagedBean
 @ViewScoped
 public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
@@ -48,7 +55,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	public void init() {
 		super.init(criarList());
 		logger.info("Inicializando = {}", this.getClass().getName());
-		
+
 	}
 
 	@Override
@@ -64,6 +71,27 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 			super.editarRegistro();
 			logger.info("Edicao de registro = {} ", registro);
 		}
+	}
+
+	@Override
+	public void exportarPdf() {
+		if (relatorios == null) {
+			relatorios = new GeradorRelatorio();
+		}
+
+		final Map<String, Object> parametros = new HashMap<String, Object>();
+		parametros.put("usuarioLogado", "Guilherme Desenvolvimento");
+		try {
+			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("01.png")));
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			relatorios.gerarPdf(Cadastro.class, conteudo, parametros, labels);
+		} catch (GoLiveException | JRException | IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
@@ -110,7 +138,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		Long id = 0L;
 		Long value = 10L;
 		final String str = "String";
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 40; i++) {
 			lista.add(conteudoLinha(id, data, value, str));
 			id++;
 			value = (value * id) / 2;

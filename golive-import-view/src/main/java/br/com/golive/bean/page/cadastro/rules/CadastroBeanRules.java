@@ -1,50 +1,32 @@
 package br.com.golive.bean.page.cadastro.rules;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.lucene.util.Constants;
-
-import net.sf.jasperreports.engine.JRDataSource;
+import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporter;
-import net.sf.jasperreports.engine.JRExporterParameter;
-import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.engine.util.JRLoader;
-import lombok.Data;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.Utils;
+import br.com.golive.utils.jasper.GeradorRelatorio;
 
 @Data
 @ManagedBean
@@ -61,6 +43,7 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	protected T registro;
 	protected Fluxo fluxo;
 	protected Class<T> clazz;
+	protected GeradorRelatorio relatorios;
 
 	public abstract void init();
 
@@ -94,38 +77,33 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		} catch (NoSuchFieldException | SecurityException e) {
 			e.printStackTrace();
 		}
-		throw new GoLiveException("Erro ao obter classe de pojo, a classe: "
-				+ clazz.getName() + " nao possui o campo: " + fieldName);
+		throw new GoLiveException("Erro ao obter classe de pojo, a classe: " + clazz.getName() + " nao possui o campo: " + fieldName);
 	}
 
 	public void exportarPdf() {
-		 File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/jasper/br/com/golive/relatorio_branco.jasper"));
+		final File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/jasper/br/com/golive/relatorio_branco.jasper"));
 		try {
-			
-			Map<String, Object> parametros = new HashMap<String, Object>();
+
+			final Map<String, Object> parametros = new HashMap<String, Object>();
 
 			parametros.put("tittle", "Relatório Teste");
 			parametros.put("label.usuario", "Usuário Logado");
 			parametros.put("usuarioLogado", "Guilherme Desenvolvimento");
-			
-			 JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parametros,
-			 new JRBeanCollectionDataSource(conteudo));
-			
-			 
-			 HttpServletResponse response = (HttpServletResponse) FacesContext
-			 .getCurrentInstance().getExternalContext().getResponse();
-			 response.addHeader("Content-disposition",
-			 "attachment; filename=jsfReport.pdf");
-			
-			 ServletOutputStream stream = response.getOutputStream();
-			
-			 JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
-			 stream.flush();
-			 stream.close();
-			 FacesContext.getCurrentInstance().responseComplete();			
-		} catch (JRException e) {
+
+			final JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(conteudo));
+
+			final HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+			response.addHeader("Content-disposition", "attachment; filename=jsfReport.pdf");
+
+			final ServletOutputStream stream = response.getOutputStream();
+
+			JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+			stream.flush();
+			stream.close();
+			FacesContext.getCurrentInstance().responseComplete();
+		} catch (final JRException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 
