@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="2" uuid="fee31dc0-a156-4be9-bac4-1b14477884f6">
 	<property name="ireport.zoom" value="2.3579476910000112"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="41"/>
+	<property name="ireport.y" value="14"/>
 	<parameter name="tittle" class="java.lang.String"/>
 	<parameter name="label.usuario" class="java.lang.String"/>
 	<parameter name="usuarioLogado" class="java.lang.String"/>
@@ -19,9 +19,9 @@
 	<parameter name="label.ultimaAlteracao" class="java.lang.String"/>
 	<parameter name="label.descricao" class="java.lang.String"/>
 	<field name="cadastroAreaAtuacao.id" class="java.lang.Long"/>
-	<field name="field1" class="java.lang.String"/>
-	<field name="field2" class="java.lang.String"/>
-	<field name="field3" class="java.lang.String"/>
+	<field name="cadastroAreaAtuacao.dataInclusao" class="java.lang.String"/>
+	<field name="cadastroAreaAtuacao.dataAlteracao" class="java.lang.String"/>
+	<field name="cadastroAreaAtuacao.areaDeAtuacao" class="java.lang.String"/>
 	<title>
 		<band height="103" splitType="Stretch">
 			<elementGroup/>
@@ -132,7 +132,21 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cadastroAreaAtuacao.id}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cadastroAreaAtuacao.dataInclusao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="0" width="220" height="23" uuid="f5effce4-2aa9-4047-9cb6-440c51d4a9f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cadastroAreaAtuacao.dataAlteracao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="515" y="0" width="237" height="23" uuid="97cc077b-a928-4b36-a594-46c960c33957"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cadastroAreaAtuacao.areaDeAtuacao}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
