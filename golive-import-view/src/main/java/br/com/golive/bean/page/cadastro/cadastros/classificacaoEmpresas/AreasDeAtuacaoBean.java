@@ -75,6 +75,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Override
 	public void exportarPdf() {
+
 		if (relatorios == null) {
 			relatorios = new GeradorRelatorio();
 		}
@@ -138,7 +139,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		Long id = 0L;
 		Long value = 10L;
 		final String str = "String";
-		for (int i = 0; i < 40; i++) {
+		for (int i = 0; i < 100; i++) {
 			lista.add(conteudoLinha(id, data, value, str));
 			id++;
 			value = (value * id) / 2;
