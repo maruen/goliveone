@@ -6,7 +6,7 @@
 
 <!--  TIPO DO PRODUTO -->
  <p:panel id="tipoProduto"
-		 header="Tipo do Produto"
+		 header="#{userBean.properties.getField('label.cadastroProdutos.tipoProduto')}"
 		 toggleable="true"
 		 closable="false"
 		 collapsed="true"
@@ -19,7 +19,7 @@
           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
           			<h:outputText styleClass="ui-icon ui-icon-help" />
           		</h:commandLink>
-      		  </f:facet>
+      	 </f:facet>
 		    
 		    
         <h:panelGrid cellpadding="3"
@@ -34,12 +34,14 @@
         			 border="0" >
         			 
         	
-        	<h:outputLabel for="tipoProdutoId" value="Id"   styleClass="singleLine" /> 
-	        <p:inputText id="tipoProdutoId" value=""/>
+        	<h:outputText id="tipoProdutoIdOutputText"
+        				  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+        				  styleClass="singleLine" /> 
+	        <p:inputText id="tipoProdutoIdInputText" value=""/>
         	
-        	
-        	<h:outputLabel for="tipoProdutoDescricao" value="Descrição" />
-        	<p:inputText id="tipoProdutoDescricao" value="" style="width: 97%;"/>
+        	<h:outputText id="tipoProdutoDescricaoOutputText"
+        				  value="#{userBean.properties.getField('label.cadastroProdutos.descricao')}" />
+        	<p:inputText id="tipoProdutoDescricaoInputText" value="" style="width: 97%;"/>
         	
         	<p:commandLink action="#">
    						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
