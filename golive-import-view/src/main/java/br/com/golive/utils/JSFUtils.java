@@ -4,9 +4,10 @@ import java.lang.reflect.Field;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import br.com.golive.annotation.LabelPage;
+import br.com.golive.annotation.Label;
 import br.com.golive.exception.GoLiveException;
 
 public class JSFUtils {
@@ -15,6 +16,11 @@ public class JSFUtils {
 		return FacesContext.getCurrentInstance();
 	}
 
+	public static ExternalContext getExternalContext(){
+		return FacesContext.getCurrentInstance().getExternalContext();
+
+	}
+	
 	public static void infoMessage(final String titulo, final String msg) {
 		message(FacesMessage.SEVERITY_INFO, titulo, msg);
 	}
@@ -38,20 +44,20 @@ public class JSFUtils {
 	public static String getLabelPageName(final Class<?> clazz){
 		if(clazz == null){
 			throw new NullPointerException("Classe nula");
-		} else if(clazz.isAnnotationPresent(LabelPage.class)){
-			return clazz.getAnnotation(LabelPage.class).name();			
+		} else if(clazz.isAnnotationPresent(Label.class)){
+			return clazz.getAnnotation(Label.class).name();			
 		}
-		throw new GoLiveException("A classe " + clazz.getName() + "não foi anotada com a anotacao " + LabelPage.class.getName());
+		throw new GoLiveException("A classe " + clazz.getName() + "não foi anotada com a anotacao " + Label.class.getName());
 	}
 	
 
 	public static String getLabelPageName(final Field field){
 		if(field == null){
 			throw new NullPointerException("Field nulo");
-		} else if(field.isAnnotationPresent(LabelPage.class)){
-			return field.getAnnotation(LabelPage.class).name();			
+		} else if(field.isAnnotationPresent(Label.class)){
+			return field.getAnnotation(Label.class).name();			
 		}
-		throw new GoLiveException("O Field " + field.getName() + "não foi anotada com a anotacao " + LabelPage.class.getName());
+		throw new GoLiveException("O Field " + field.getName() + "não foi anotada com a anotacao " + Label.class.getName());
 	}
 	
 	

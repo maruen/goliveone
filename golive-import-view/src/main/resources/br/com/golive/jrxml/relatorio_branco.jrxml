@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_branco" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fee31dc0-a156-4be9-bac4-1b14477884f6">
+	<property name="ireport.zoom" value="1.2100000000000009"/>
+	<property name="ireport.x" value="22"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tittle" class="java.lang.String"/>
+	<parameter name="label.usuario" class="java.lang.String"/>
+	<parameter name="usuarioLogado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<elementGroup>
+				<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+					<reportElement x="-21" y="-20" width="796" height="121" isRemoveLineWhenBlank="true" uuid="ef2dfb6a-3216-487f-8c3c-58e101f62989"/>
+					<imageExpression><![CDATA["http://localhost:8080/golive-one/resources/images/layout/HeaderJasper.jpg"]]></imageExpression>
+				</image>
+			</elementGroup>
+			<textField>
+				<reportElement x="59" y="10" width="665" height="34" uuid="ba3a1fd6-124e-4188-a138-e60de12fdb88"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tittle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="69" width="209" height="20" uuid="f300eafa-425f-4882-9af9-2a085e3e4031"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{label.usuario} + ":"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="69" width="422" height="20" uuid="0228eee6-7aab-4fb4-ae77-d61c008d38bc"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{usuarioLogado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="69" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="159" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

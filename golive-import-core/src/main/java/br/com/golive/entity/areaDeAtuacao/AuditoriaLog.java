@@ -4,37 +4,37 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 
 import lombok.Data;
-import br.com.golive.annotation.LabelPage;
+import br.com.golive.annotation.Label;
 
 @Data
-@LabelPage(name = "label.auditoria/Log")
+@Label(name = "label.auditoria/Log")
 public class AuditoriaLog {
 
-	@LabelPage(name = "label.id")
+	@Label(name = "label.id")
 	private Long id;
 	
-	@LabelPage(name = "label.dataEHora")
+	@Label(name = "label.dataEHora")
 	private Calendar calendar;
 	
-	@LabelPage(name = "label.formulario")
+	@Label(name = "label.formulario")
 	private String formulario;
 	
-	@LabelPage(name = "label.id")
+	@Label(name = "label.id")
 	private Long id2;
 	
-	@LabelPage(name = "label.acao")
+	@Label(name = "label.acao")
 	private String acao;
 
-	@LabelPage(name = "label.valorAlterado")
+	@Label(name = "label.valorAlterado")
 	private BigDecimal valorAlterado;
 	
-	@LabelPage(name = "label.valorAtual")
+	@Label(name = "label.valorAtual")
 	private BigDecimal valorAtual;
 
-	@LabelPage(name = "label.usuario")
+	@Label(name = "label.usuario")
 	private String usuario;
 	
-	@LabelPage(name = "label.observacao")
+	@Label(name = "label.observacao")
 	private String observacao;
 
 	public AuditoriaLog() {

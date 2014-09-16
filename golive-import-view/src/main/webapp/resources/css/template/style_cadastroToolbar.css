@@ -1,8 +1,8 @@
 @CHARSET "UTF-8";
 
-.botaoNovor{
+.linkButton{
 	position: relative;
-	top: 1px;
+	top: 3px;
 	padding-top: 16px;
 	padding-left: 3px;
 	padding-right: 9px;
@@ -10,12 +10,11 @@
 	background-color: rgba(160, 160, 190, 0);
 	border-radius: 1em;
 	border: 0px;
-	-webkit-transition: 1s 0s;
+	-webkit-transition: 0s 0s;
 	color: #000000;
-
 }
 
-.botaoNovor:hover{
+.linkButton:hover{
 	-webkit-transition: 0s 0s;
 	background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.7)
 		0%, rgba(255, 255, 255, 0) 95%);
@@ -24,6 +23,7 @@
 
 .label{
 	position: relative;
+	-webkit-transition: 1s 0s;
 	top: -7px;
 	left: 4px;
 }
@@ -49,7 +49,7 @@
 }
 
 
-.opcoesDiv:hover .botaoNovor {
+.opcoesDiv:hover .linkButton {
 	color: #9AFE2E;
 	font-weight: bold;
 }
@@ -66,40 +66,12 @@
 	color: #BCF5A9;
 }
 
-.opcoesDiv:hover .botao-toolbar {
+.opcoesDiv:hover .label {
 	color: #9AFE2E;
 }
 
-.opcoesDiv:hover .icone-botao-toolbar {
-	-webkit-transition: 1s 0s;
-	-webkit-filter: contrast(2);
-	-webkit-filter: sepia(1);
-}
 
-.botao-toolbar {
-	height: 100%;
-	text-indent: 40px;
-	margin-left: -40px;
-	background-color: rgba(160, 160, 190, 0);
-	border-radius: 1em;
-	border: 0px;
-	-webkit-transition: 1s 0s;
-}
-
-.botao-toolbar:hover {
-	-webkit-transition: 0s 0s;
-	background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.7)
-		0%, rgba(255, 255, 255, 0) 95%);
-	font-weight: bold;
-}
-
-.botao-toolbar:active {
-	background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.9)
-		0%, rgba(255, 255, 255, 0) 95%);
-}
-
-.icone-botao-toolbar {
-	padding-top: 13%;
-	padding-left: 10px;
-	-webkit-transition: 1s 0s;
+.tituloToolBarDeafult{
+	position: relative;
+	top: 3px;
 }

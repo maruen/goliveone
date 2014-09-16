@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 
 import org.slf4j.Logger;
 
-import br.com.golive.annotation.LabelPage;
+import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.entity.GenericModel;
 import br.com.golive.qualifier.LabelSystemInjected;
@@ -24,7 +24,7 @@ import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
-@LabelPage(name="label.cadastroProdutos.cadastroProdutos")
+@Label(name="label.cadastroProdutos.cadastroProdutos")
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class CadastroProdutoBean extends CadastroBeanRules<GenericModel> {

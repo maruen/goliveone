@@ -11,7 +11,10 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -96,14 +99,19 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	}
 
 	public void exportarPdf() {
-		 File jasper = new File(FacesContext.getCurrentInstance()
-		 .getExternalContext()
-		 .getRealPath("/jasper/br/com/golive/areaDeAtuacao.jasper"));
+		 File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/jasper/br/com/golive/relatorio_branco.jasper"));
 		try {
-			 JasperPrint jasperPrint = JasperFillManager.fillReport(
-			 jasper.getPath(), new HashMap<String, Object>(),
+			
+			Map<String, Object> parametros = new HashMap<String, Object>();
+
+			parametros.put("tittle", "Relatório Teste");
+			parametros.put("label.usuario", "Usuário Logado");
+			parametros.put("usuarioLogado", "Guilherme Desenvolvimento");
+			
+			 JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parametros,
 			 new JRBeanCollectionDataSource(conteudo));
 			
+			 
 			 HttpServletResponse response = (HttpServletResponse) FacesContext
 			 .getCurrentInstance().getExternalContext().getResponse();
 			 response.addHeader("Content-disposition",
@@ -114,30 +122,10 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 			 JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
 			 stream.flush();
 			 stream.close();
-			
-
-//			File jasper = new File(FacesContext.getCurrentInstance()
-//					.getExternalContext()
-//					.getRealPath("/jasper/br/com/golive/areaDeAtuacao.jasper"));
-//
-//			byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),
-//					null, new JRBeanCollectionDataSource(conteudo));
-//
-//			HttpServletResponse response = (HttpServletResponse) FacesContext
-//					.getCurrentInstance().getExternalContext().getResponse();
-//			response.setContentType("application/pdf");
-//			response.setContentLength(bytes.length);
-//			ServletOutputStream outStream = response.getOutputStream();
-//			outStream.write(bytes, 0, bytes.length);
-//			outStream.flush();
-//			outStream.close();
-//
-			FacesContext.getCurrentInstance().responseComplete();
-
+			 FacesContext.getCurrentInstance().responseComplete();			
 		} catch (JRException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 
 @Target({ TYPE, FIELD })
 @Retention(RUNTIME)
-public @interface LabelPage {
+public @interface Label {
 	public String name();
 }

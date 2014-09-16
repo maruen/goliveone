@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 
 import org.slf4j.Logger;
 
-import br.com.golive.annotation.LabelPage;
+import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoEmbed;
 import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
@@ -27,7 +27,7 @@ import br.com.golive.utils.JSFUtils;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-@LabelPage(name="label.cadastroDeAreaDeAtuacao")
+@Label(name="label.cadastroDeAreaDeAtuacao")
 @ManagedBean
 @ViewScoped
 public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {

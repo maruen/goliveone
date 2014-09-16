@@ -3,23 +3,23 @@ package br.com.golive.entity.areaDeAtuacao;
 import java.io.Serializable;
 import java.util.Calendar;
 
-import br.com.golive.annotation.LabelPage;
+import br.com.golive.annotation.Label;
 
-@LabelPage(name = "label.dadosGerais")
+@Label(name = "label.dadosGerais")
 public class Cadastro implements Serializable {
 	
 	private static final long serialVersionUID = -7415246692175931894L;
 
-	@LabelPage(name = "label.id")
+	@Label(name = "label.id")
 	private Long id;
 
-	@LabelPage(name = "label.inclusao")
+	@Label(name = "label.inclusao")
 	private Calendar dataInclusao;
 
-	@LabelPage(name = "label.ultimaAlteracao")
+	@Label(name = "label.ultimaAlteracao")
 	private Calendar dataAlteracao;
 
-	@LabelPage(name = "label.descricao")
+	@Label(name = "label.descricao")
 	private String areaDeAtuacao;
 
 	public Cadastro(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao, final String areaDeAtuacao) {
