@@ -4,9 +4,19 @@ html,body {
 	background-color: #FFFFFF
 }
 
+.background-main {
+	background-color: #FFF;
+}
+
+.divHeaderNavegacao{
+	position: relative;
+	top: 0;
+	height: 160px;
+	margin: 0 auto;
+}
 
 .loginDivSize {
-	height: 90%;
+	height: 100%;
 	position: absolute;
 	width: 99%;
 }

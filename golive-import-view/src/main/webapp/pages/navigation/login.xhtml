@@ -13,7 +13,6 @@
 
 	<ui:define name="header">
 		<div id="headerDiv" class="divHeaderNavegacao headerMainPageNavegacao" />
-		<golive:loading name="loading"/>
 	</ui:define>
 
 	<ui:define name="main">
@@ -43,33 +42,22 @@
 							styleClass="outputLabel" />
 
 						<p:inputText id="loginInputField" value="#{loginBean.login}"
-							styleClass="medium-field" />
+							styleClass="medium-field" >
+							<p:ajax event="blur" listener="#{loginBean.verificarUsuarioPorLogin()}" update="growl" onstart="load();" onsuccess="unLoad()"/>
+						</p:inputText>
 
 
 						<p:outputLabel id="senhaOutputText" for="senhaSecretInputField"
 							value="#{loginBean.labels.getField('label.senha')}"
 							styleClass="outputLabel" />
 
-						<p:password id="senhaSecretInputField" value="#{loginBean.senha}"
-							styleClass="little-field" />
+						<p:password id="senhaSecretInputField" value="#{loginBean.senha}" styleClass="little-field" />
 
-						<p:outputLabel id="assinantesOutputText"
-							for="assinantesSelectOneMenu"
-							value="#{loginBean.labels.getField('label.assinantes')}"
+						<p:outputLabel id="assinantesOutputText" for="assinantesSelectOneMenu" value="#{loginBean.labels.getField('label.assinantes')}"
 							styleClass="outputLabel" />
 
-						<p:selectOneMenu id="assinantesSelectOneMenu"
-							value="#{loginBean.assinante}" style="width: 308px" effect="fold">
+						<p:selectOneMenu id="assinantesSelectOneMenu" value="#{loginBean.assinante}" style="width: 308px" effect="fold">
 
-							<f:selectItem
-								itemLabel="#{loginBean.labels.getField('label.selecione')}
-												 #{loginBean.labels.getField('label.numeral.uma')}
-											 	 #{loginBean.labels.getField('label.empresa')}"
-								itemValue="" />
-
-							<f:selectItem itemLabel="Empresa 1" itemValue="1" />
-							<f:selectItem itemLabel="Empresa 2" itemValue="2" />
-							<f:selectItem itemLabel="Empresa 3" itemValue="3" />
 						</p:selectOneMenu>
 						<p:spacer />
 						<h:panelGrid columns="2" styleClass="panelGridButtons">
@@ -84,11 +72,12 @@
 								action="#{loginBean.limpar}" styleClass="buttons"
 								update="senhaSecretInputField, loginInputField, assinantesSelectOneMenu" />
 						</h:panelGrid>
+
 					</h:panelGrid>
 				</div>
 			</div>
+		<golive:loading name="loading"/>
 		</h:form>
 	</ui:define>
 
-	
 </ui:composition>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="3" bottomMargin="0" uuid="fee31dc0-a156-4be9-bac4-1b14477884f6">
-	<property name="ireport.zoom" value="2.143588810000016"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="4.177248169415688"/>
+	<property name="ireport.x" value="810"/>
+	<property name="ireport.y" value="213"/>
 	<style name="Zebra" mode="Transparent">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 1]]></conditionExpression>
@@ -24,14 +24,12 @@
 	<parameter name="label.inclusao" class="java.lang.String"/>
 	<parameter name="label.ultimaAlteracao" class="java.lang.String"/>
 	<parameter name="label.descricao" class="java.lang.String"/>
+	<parameter name="label.pagina" class="java.lang.String"/>
+	<parameter name="label.de" class="java.lang.String"/>
 	<field name="cadastroAreaAtuacao.id" class="java.lang.Long"/>
 	<field name="cadastroAreaAtuacao.dataInclusao" class="java.util.Calendar"/>
 	<field name="cadastroAreaAtuacao.dataAlteracao" class="java.util.Calendar"/>
 	<field name="cadastroAreaAtuacao.areaDeAtuacao" class="java.lang.String"/>
-	<variable name="total" class="java.lang.Integer" resetType="None" incrementType="Page" calculation="Count">
-		<variableExpression><![CDATA[$V{total}+$V{total}]]></variableExpression>
-		<initialValueExpression><![CDATA[1]]></initialValueExpression>
-	</variable>
 	<title>
 		<band height="92" splitType="Stretch">
 			<elementGroup/>
@@ -160,26 +158,46 @@
 				<imageExpression><![CDATA[$P{logoFooter}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="1" y="3" width="106" height="10" uuid="f300eafa-425f-4882-9af9-2a085e3e4031"/>
+				<reportElement x="1" y="3" width="61" height="10" uuid="f300eafa-425f-4882-9af9-2a085e3e4031"/>
 				<textElement textAlignment="Right">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{label.usuario} + ":"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="107" y="3" width="136" height="10" uuid="0228eee6-7aab-4fb4-ae77-d61c008d38bc"/>
+				<reportElement x="62" y="3" width="115" height="10" uuid="0228eee6-7aab-4fb4-ae77-d61c008d38bc"/>
 				<textElement textAlignment="Left">
 					<font size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{usuarioLogado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="208" y="7" width="100" height="19" uuid="1ceb82e3-9d64-4b6b-95ea-7919c679ccfe"/>
+				<reportElement x="278" y="3" width="12" height="10" uuid="1ceb82e3-9d64-4b6b-95ea-7919c679ccfe"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="308" y="7" width="100" height="19" uuid="d18508a7-07ff-4096-a695-2e625b6097c8"/>
+				<reportElement x="306" y="3" width="19" height="10" uuid="d18508a7-07ff-4096-a695-2e625b6097c8"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="3" width="56" height="10" uuid="d983d53d-622d-48ab-8f54-72faee97b520"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{label.pagina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="3" width="12" height="10" uuid="4e31dfc5-7d79-4694-be20-e589fa341b42"/>
+				<textElement textAlignment="Left">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{label.de}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

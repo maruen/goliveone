@@ -66,7 +66,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>5.6.1</version>
+			<version>${jasper.version}</version>
 		</dependency>
 
 
@@ -77,60 +77,72 @@
 
 		<plugins>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jasperreports-maven-plugin</artifactId>
-                <version>1.0-beta-2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile-reports</goal>
-                        </goals>
-                        <configuration>
-                            <!--  jrxml file  directory-->
-                            <sourceDirectory>src/main/resources/br/com/golive/jrxml</sourceDirectory>
-                            <sourceFileExt>.jrxml</sourceFileExt>
-                            <compiler>net.sf.jasperreports.engine.design.JRJavacCompiler</compiler>
-                            <!--  Destination for jasper file -->
-                            <outputDirectory>src/main/webapp/jasper/br/com/golive/</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <!-- These plugins are used to specify correct version for jrxml xml validation -->
-                    <dependency>
-                        <groupId>net.sf.jasperreports</groupId>
-                        <artifactId>jasperreports</artifactId>
-                        <version>5.6.1</version>
-                    </dependency>
-                    
-                    <dependency>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                        <version>1.2.16</version>
-                    </dependency>
-        
-                </dependencies>
-            </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jasperreports-maven-plugin</artifactId>
+				<version>${jasper.compiler.plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile-reports</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>${jrxml.path.folder}</sourceDirectory>
+							<sourceFileExt>.jrxml</sourceFileExt>
+							<compiler>net.sf.jasperreports.engine.design.JRJavacCompiler</compiler>
+							<outputDirectory>${jasper.compiled.files.folder}</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<!-- These plugins are used to specify correct version for jrxml xml 
+						validation -->
+					<dependency>
+						<groupId>net.sf.jasperreports</groupId>
+						<artifactId>jasperreports</artifactId>
+						<version>${jasper.version}</version>
+					</dependency>
+
+					<dependency>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+						<version>${jasper.log4j.version}</version>
+					</dependency>
+
+				</dependencies>
+			</plugin>
 
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<configuration>
 					<tasks>
 						<delete>
-							<fileset dir="${JBOSS_HOME}/standalone/deployments">
-								<include name="*" />
-							</fileset>
-						</delete>
-						<copy file="${basedir}/target/${context.root}.war"
-							tofile="${JBOSS_HOME}/standalone/deployments/${context.root}.war" />
-						<delete>
 							<fileset dir="${jboss.deploy.path}">
 								<include name="*" />
 							</fileset>
 						</delete>
 
+						<delete>
+							<fileset dir="${jrxml.path.folder}">
+								<include name="*.jasper" />
+							</fileset>
+						</delete>
+
+						<delete>
+							<fileset dir="${jboss.module.labes.properties}">
+								<include name="*.properties" />
+							</fileset>
+						</delete>
+
 						<copy file="${basedir}/target/${context.root}.war" tofile="${jboss.deploy.path}/${context.root}.war" />
+
+
+						<copy todir="${jboss.module.labes.properties}">
+							<fileset dir="${basedir}/${properties.project.folder}">
+								<include name="*.properties" />
+							</fileset>
+						</copy>
+
 					</tasks>
 				</configuration>
 				<executions>

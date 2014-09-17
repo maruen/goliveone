@@ -98,6 +98,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	public void imprimir() {
 		logger.info("Imprimindo = {} ");
+
 	}
 
 	@Override

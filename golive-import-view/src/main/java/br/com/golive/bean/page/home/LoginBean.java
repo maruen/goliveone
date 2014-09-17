@@ -2,21 +2,31 @@ package br.com.golive.bean.page.home;
 
 import java.io.Serializable;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Data;
+
 import org.slf4j.Logger;
 
+import br.com.golive.entity.Usuario;
 import br.com.golive.qualifier.LabelSystemInjected;
+import br.com.golive.qualifier.UsuarioLogadoInjected;
+import br.com.golive.service.UsuarioBeanService;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
+@Data
 public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = -3888666672821909890L;
+
+	@EJB
+	private UsuarioBeanService usuarioService;
 
 	@Inject
 	private Logger logger;
@@ -25,6 +35,12 @@ public class LoginBean implements Serializable {
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
 
+	@Inject
+	@UsuarioLogadoInjected
+	private Usuario usuario;
+	
+	private Usuario carregadoOnBlur;
+	
 	private String login;
 
 	private String senha;
@@ -59,37 +75,12 @@ public class LoginBean implements Serializable {
 		senha = "";
 		assinante = "";
 	}
-
-	public Logger getLogger() {
-		return logger;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(final String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(final String senha) {
-		this.senha = senha;
-	}
-
-	public String getAssinante() {
-		return assinante;
-	}
-
-	public void setAssinante(final String assinante) {
-		this.assinante = assinante;
+	
+	public void verificarUsuarioPorLogin(){
+		carregadoOnBlur = usuarioService.obterPorUserName(login);
+		if(carregadoOnBlur == null){
+			JSFUtils.warnMessage(labels.getField("label.aviso"), labels.getField("msg.usuario.nao.existe"));
+		}
 	}
 
 }
