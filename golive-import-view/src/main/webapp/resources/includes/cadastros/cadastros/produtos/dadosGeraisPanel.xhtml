@@ -59,8 +59,9 @@
       				     style="width: 90%"
       				     disabled="true"/>  
       		
-      		<p:commandLink action="#" onclick="PF('dlg1').show();">
-			<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/stop.png"  />
+      		<p:commandLink action="#" onclick="PF('dlg2').show();" immediate="true">
+				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/stop.png"  />
+				 <f:ajax />
 			</p:commandLink>
       		
       		
@@ -83,6 +84,77 @@
 	
         </h:panelGrid>
 
-</p:panel>
+	</p:panel>
+	
+	<p:dialog header="Códigos Anteriores para o Produto"
+			  widgetVar="dlg2"
+			  modal="false"
+			  resizable="false"
+			  dynamic="true"
+			  appendToBody="true"
+			  height="100%"
+			  width="75%">
+    		
+    		 	<p:panelGrid cellpadding="3"  
+          				     cellspacing="3"
+          				     width="100%"
+          				     border="1">	
+    		  
+    		  		<p:row>
+    		  			<p:column styleClass="percentual-30">
+		    		  		<h:outputText id="dadosGeraisPopupCodigoAtualProdutoOutputText"
+		      					 		  value="Código Atual do Produto"
+		      					 		  styleClass="singleLine" />
+	      				</p:column>
+	      				
+	      				<p:column styleClass="percentual-70">
+	      						<p:inputText id="dadosGeraisPopupCodigoAtualProdutoInputText"
+      					 					 required="true"
+      					 					 disabled="true"
+      					 					 style="width: 90%"
+      					 					 value="H25-LAM-CO25-EQ.18" />
+	      				</p:column>
+      				</p:row>
+      				
+      				
+      				<p:row>
+    		  			<p:column styleClass="percentual-30">
+		    		  		<h:outputText id="dadosGeraisPopupDescricaoProdutoOutputText"
+		      					 		  value="Descrição Produto para Consulta"
+		      					 		  styleClass="singleLine" />
+	      				</p:column>
+	      				<p:column styleClass="percentual-70">
+	      						<p:inputText id="dadosGeraisPopupDescricaoProdutoInputText"
+      					 					 required="true"
+      					 					 disabled="true"
+      					 					 style="width: 90%"
+      					 					 value="lâmina de Alumínio 25mm x 0.18mm Cor verde" />
+	      				</p:column>
+      				</p:row>
+      			</p:panelGrid>
+      			
+      			
+      			  <p:dataTable id="codigoBarrasPopupDatatableId"
+	        			 	   var="codigoBarrasPopupDatatableId"
+	        			 	   value="#{cadastroProdutoBean.codigoBarrasDatatable}" >
+			    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-5 singleLine">
+					     	
+					     		<h:outputText value="00000000000001"  styleClass="floatRight"/>
+					     	   
+					    </p:column>
+					    
+					    <p:column headerText="Código Anterior do Produto"
+					    		  styleClass="percentual-20 singleLine "
+					    		  sortBy="#{codigoBarras[0]}">
+					        
+					        <h:outputText value="H25-LMI-0.25XQ.18"  styleClass="floatRight"/>
+					    </p:column>
+			</p:dataTable>
+      			
+      			
+	</p:dialog>
+	
 
 </ui:composition>
