@@ -14,6 +14,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import lombok.Data;
+import br.com.golive.constants.ChaveSessao;
 import br.com.golive.entity.Usuario;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.qualifier.LabelSystemInjected;
@@ -21,6 +22,7 @@ import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.service.UsuarioBeanService;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
+import br.com.golive.utils.ServiceUtils;
 
 @Data
 @ViewScoped
@@ -76,8 +78,10 @@ public class UserBean implements Serializable {
 		return true;
 	}
 
-	public void Logout() {
-		System.out.println("TESTE");
+	public void logout() {
+		ServiceUtils.removerObjetoSessao(ChaveSessao.USUARIO_LOGADO);
+		usuarioLogado = null;
+		verificarSessao();
 	}
 
 	public String labelAnotado(final Class<?> clazz, final String field) {

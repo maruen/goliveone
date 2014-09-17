@@ -4,6 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/layoutTemplate.xhtml">
 
@@ -42,21 +43,27 @@
 							styleClass="outputLabel" />
 
 						<p:inputText id="loginInputField" value="#{loginBean.login}"
-							styleClass="medium-field" >
-							<p:ajax event="blur" listener="#{loginBean.verificarUsuarioPorLogin()}" update="growl" onstart="load();" onsuccess="unLoad()"/>
+							styleClass="medium-field">
+							<p:ajax event="blur"
+								listener="#{loginBean.verificarUsuarioPorLogin()}"
+								update=":defineMain" onstart="load()" onsuccess="unLoad()" />
 						</p:inputText>
-
 
 						<p:outputLabel id="senhaOutputText" for="senhaSecretInputField"
 							value="#{loginBean.labels.getField('label.senha')}"
 							styleClass="outputLabel" />
 
-						<p:password id="senhaSecretInputField" value="#{loginBean.senha}" styleClass="little-field" />
+						<p:password id="senhaSecretInputField" value="#{loginBean.senha}"
+							styleClass="little-field" />
 
-						<p:outputLabel id="assinantesOutputText" for="assinantesSelectOneMenu" value="#{loginBean.labels.getField('label.assinantes')}"
+						<p:outputLabel id="assinantesOutputText"
+							for="assinantesSelectOneMenu"
+							value="#{loginBean.labels.getField('label.assinantes')}"
 							styleClass="outputLabel" />
 
-						<p:selectOneMenu id="assinantesSelectOneMenu" value="#{loginBean.assinante}" style="width: 308px" effect="fold">
+						<p:selectOneMenu id="assinantesSelectOneMenu"
+							value="#{loginBean.assinante}" style="width: 308px" effect="fold">
+							<f:selectItems  value="#{loginBean.carregadoOnBlur.empresas}"/>							
 
 						</p:selectOneMenu>
 						<p:spacer />
@@ -73,10 +80,25 @@
 								update="senhaSecretInputField, loginInputField, assinantesSelectOneMenu" />
 						</h:panelGrid>
 
+						<p:spacer rendered="#{loginBean.errouLogin}"
+							styleClass="linkSenha" id="spacerLink" />
+						<p:commandLink id="linkEsqueceuSenha" styleClass="linkSenha"
+							onclick="PF('dlg2').show();" rendered="#{loginBean.errouLogin}">
+							<h:outputLabel
+								value="#{loginBean.labels.getField('label.esqueceu.senha')}"
+								styleClass="linkSenha little-font" />
+						</p:commandLink>
 					</h:panelGrid>
+
 				</div>
 			</div>
-		<golive:loading name="loading"/>
+
+			<p:dialog header="Modal Dialog" widgetVar="dlg2" height="100"
+				closeOnEscape="true">
+				<h:outputText value="This is a Modal Dialog." />
+			</p:dialog>
+
+			<golive:loading name="loading" />
 		</h:form>
 	</ui:define>
 

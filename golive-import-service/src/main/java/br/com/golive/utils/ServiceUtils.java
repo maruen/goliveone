@@ -18,10 +18,15 @@ public class ServiceUtils {
 
 	@SuppressWarnings("unchecked")
 	public static <T> T obterValorPorChave(final Class<T> clazz, final ChaveSessao chave) {
-		return (T) getSessionMap().get(chave);
+		return (T) getSessionMap().get(chave.getChave());
 	}
 
 	public static void guardarObjetoSessao(final ChaveSessao chave, final Object valor) {
 		getSessionMap().put(chave.getChave(), valor);
 	}
+
+	public static void removerObjetoSessao(final ChaveSessao chave) {
+		getSessionMap().remove(chave.getChave());
+	}
+
 }

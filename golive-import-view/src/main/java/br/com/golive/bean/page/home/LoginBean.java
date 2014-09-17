@@ -11,12 +11,14 @@ import lombok.Data;
 
 import org.slf4j.Logger;
 
+import br.com.golive.constants.ChaveSessao;
 import br.com.golive.entity.Usuario;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.service.UsuarioBeanService;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
+import br.com.golive.utils.ServiceUtils;
 
 @ManagedBean
 @ViewScoped
@@ -47,13 +49,16 @@ public class LoginBean implements Serializable {
 
 	private String assinante;
 
+	private boolean errouLogin;
+	
 	public GoliveOneProperties getLabels() {
 		return labels;
 	}
-
+	
 	public String logar() {
 		logger.info("Logando usuario = {}", login);
 		if (obterUsuarioPorLoginSenha()) {
+			ServiceUtils.guardarObjetoSessao(ChaveSessao.USUARIO_LOGADO, carregadoOnBlur);
 			return "pretty:welcome";
 		} else {
 			messageLoginInvalido();
@@ -67,7 +72,12 @@ public class LoginBean implements Serializable {
 	}
 
 	public boolean obterUsuarioPorLoginSenha() {
-		return true;
+		if(carregadoOnBlur != null){
+			if(carregadoOnBlur.getSenha().equals(senha)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void limpar() {
@@ -79,6 +89,7 @@ public class LoginBean implements Serializable {
 	public void verificarUsuarioPorLogin(){
 		carregadoOnBlur = usuarioService.obterPorUserName(login);
 		if(carregadoOnBlur == null){
+			errouLogin = true;
 			JSFUtils.warnMessage(labels.getField("label.aviso"), labels.getField("msg.usuario.nao.existe"));
 		}
 	}

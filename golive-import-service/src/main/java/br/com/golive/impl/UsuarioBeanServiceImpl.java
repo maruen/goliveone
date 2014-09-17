@@ -42,23 +42,23 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 		case "Guilherme":
 			ret.setNome("Guilherme");
 			ret.setSenha("123");
-			Arrays.asList("Guilherme Empresa 1", "Guilherme Empresa 2", "Guilherme Empresa 3");
+			ret.setEmpresas(Arrays.asList("Guilherme Empresa 1", "Guilherme Empresa 2", "Guilherme Empresa 3"));
 			break;
 
 		case "Joaquim":
 			ret.setNome("Joaquim");
 			ret.setSenha("asd");
-			Arrays.asList("Joaquim Empresa 1", "Joaquim Empresa 2");
+			ret.setEmpresas(Arrays.asList("Joaquim Empresa 1", "Joaquim Empresa 2"));
 			break;
 		case "Maruen":
 			ret.setNome("Maruen");
 			ret.setSenha("123");
-			Arrays.asList("Maruen Empresa 1", "Maruen Empresa 2", "Maruen Empresa 3");
+			ret.setEmpresas(Arrays.asList("Maruen Empresa 1", "Maruen Empresa 2", "Maruen Empresa 3"));
 			break;
 		case "Jao":
 			ret.setNome("Jao");
 			ret.setSenha("asd");
-			Arrays.asList("Jao Empresa 1", "Jao Empresa 3");
+			ret.setEmpresas(Arrays.asList("Jao Empresa 1", "Jao Empresa 3"));
 			break;
 		default:
 			ret = null;
