@@ -28,21 +28,16 @@
 	<ui:define name="main">
 
 		<div id="divConteudo" class="mainContentPage">
-			<h:form id="conteudoForm" styleClass="mainForm"
-				rendered="#{bean.implementada}">
+			<h:form id="conteudoForm" styleClass="mainForm" rendered="#{bean.implementada}">
 
 
-				<p:messages id="mensagens" autoUpdate="true" closable="true"
-					showDetail="true" />
+				<p:messages id="mensagens" autoUpdate="true" closable="true" showDetail="true" />
 
-				<h:panelGroup id="conteudoGroup"
-					rendered="#{bean.fluxo == bean.fluxoListagem}">
-
+				<h:panelGroup id="conteudoGroup" rendered="#{bean.fluxo == bean.fluxoListagem}">
 					<ui:insert name="conteudo" />
 				</h:panelGroup>
 
-				<h:panelGroup id="edicaoGroup"
-					rendered="#{bean.fluxo != bean.fluxoListagem}">
+				<h:panelGroup id="edicaoGroup" rendered="#{bean.fluxo != bean.fluxoListagem}">
 					<ui:insert name="edicao" />
 				</h:panelGroup>
 

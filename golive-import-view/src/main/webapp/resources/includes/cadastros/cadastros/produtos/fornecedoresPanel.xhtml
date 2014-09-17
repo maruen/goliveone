@@ -74,33 +74,42 @@
 		        	 lazy="true" 
 		        	 var="fornecedor">
 		        	 
-		        	 <p:column headerText="" styleClass="percentual-12">
+		        	 <p:column headerText=""
+		        	 		   styleClass="percentual-12">
+		    		   
 		    		   <p:selectOneRadio id="fornecedorRadio1" value="XXX">
          							<f:selectItem itemLabel="" itemValue="X" />
-         						</p:selectOneRadio>
+         				</p:selectOneRadio>
 				    </p:column>
         		    
-				    <p:column headerText="Id" styleClass="percentual-10">
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-10">
 				        <h:outputText value="#{fornecedor[1]}" />
 				    </p:column>
 				    
-				    <p:column headerText="Un." styleClass="percentual-10">
+				    <p:column headerText="Un."
+				    		  styleClass="percentual-10">
+				        
 				        <h:outputText value="#{fornecedor[2]}" />
 				    </p:column>
 				 
-				    <p:column headerText="Descrição" styleClass="percentual-10">
+				    <p:column headerText="Descrição" 
+				    		  styleClass="percentual-10">
 				        <h:outputText value="#{fornecedor[2]}" />
 				    </p:column>
 				 
-				    <p:column headerText="Un. Princ." styleClass="percentual-10">
+				    <p:column headerText="Un. Princ."
+				    		  styleClass="percentual-10">
 				    	<h:outputText value="#{fornecedor[3]}" />
 				    </p:column>
 				 
-			 	   <p:column headerText="Un. Sec." styleClass="percentual-10">
+			 	   <p:column headerText="Un. Sec."
+			 	   			 styleClass="percentual-10">
 				    	<h:outputText value="#{fornecedor[4]}" />
 				    </p:column>
 				    
-				    <p:column headerText="Fator Mult." styleClass="percentual-10">
+				    <p:column headerText="Fator Mult."
+				    		  styleClass="percentual-10">
 				    	<h:outputText value="#{fornecedor[5]}" />
 				    </p:column>
 				    
