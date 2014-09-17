@@ -28,8 +28,8 @@
 
 
 .ui-datatable-even {
-	background: none;
-	background-color: #DDE0E7;
+	background: none !IMPORTANT;
+	background-color: #C4D0EC !IMPORTANT;
 }
 
 .ui-datatable-odd {
