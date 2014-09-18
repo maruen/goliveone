@@ -175,6 +175,13 @@
 				<artifactId>all-themes</artifactId>
 				<version>${org.primefaces.themes.version}</version>
 			</dependency>
+			
+					<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${jasper.version}</version>
+		</dependency>
+			
 
 		</dependencies>
 	</dependencyManagement>

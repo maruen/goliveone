@@ -27,10 +27,10 @@ import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
 import br.com.golive.entity.areaDeAtuacao.Cadastro;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.qualifier.LabelSystemInjected;
+import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
-import br.com.golive.utils.jasper.GeradorRelatorio;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -74,10 +74,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Override
 	public void exportarPdf() {
-
-		if (relatorios == null) {
-			relatorios = new GeradorRelatorio();
-		}
 
 		final Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("usuarioLogado", "Guilherme Desenvolvimento");

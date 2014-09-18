@@ -9,7 +9,7 @@
 		<h:outputStylesheet name="css/template/style_cadastroToolbar.css" />
 	</h:head>
 
-		<h:panelGrid columns="2" id="gridToolbarPage" width="100%;"	rendered="#{bean.fluxo == bean.fluxoListagem}" columnClasses="tituloToolBarDeafult botoesToolBarDefault">
+		<h:panelGrid columns="2" id="gridToolbarPage" width="100%;"	rendered="#{bean.fluxo == bean.fluxoListagem}" columnClasses="tituloToolBarDeafult, botoesToolBarDefault">
 				<h:outputLabel value="#{userBean.properties.getField(bean.nomePagina())}" styleClass="titulo"/>
 
 					<h:panelGrid columns="6">
@@ -47,7 +47,7 @@
 				</h:panelGrid>
 
 
-				<h:panelGrid id="gridEdicao" columns="2" width="100%;" columnClasses="tituloToolBarEditar botoesToolBarEditar" rendered="#{bean.fluxo != bean.fluxoListagem}">
+				<h:panelGrid id="gridEdicao" columns="2" width="100%;" columnClasses="tituloToolBarEditar, botoesToolBarEditar" rendered="#{bean.fluxo != bean.fluxoListagem}">
 
 					<h:outputLabel rendered="#{bean.fluxo == bean.fluxoEdicao}" value="#{userBean.properties.getField(bean.nomePagina())} (#{userBean.properties.getField('label.editar')})" />
 

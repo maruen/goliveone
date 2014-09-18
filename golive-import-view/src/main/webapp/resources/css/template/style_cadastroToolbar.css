@@ -1,12 +1,12 @@
 @CHARSET "UTF-8";
 
-.linkButton{
+.linkButton {
 	position: relative;
 	top: 3px;
 	padding-top: 16px;
 	padding-left: 3px;
 	padding-right: 9px;
-	text-decoration:none; 
+	text-decoration: none;
 	background-color: rgba(160, 160, 190, 0);
 	border-radius: 1em;
 	border: 0px;
@@ -14,14 +14,14 @@
 	color: #000000;
 }
 
-.linkButton:hover{
+.linkButton:hover {
 	-webkit-transition: 0s 0s;
 	background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.7)
 		0%, rgba(255, 255, 255, 0) 95%);
 	font-weight: bold;
 }
 
-.label{
+.label {
 	font-family: "Courier New", Courier, monospace;
 	position: relative;
 	-webkit-transition: 1s 0s;
@@ -29,9 +29,9 @@
 	left: 4px;
 }
 
- .image {
- 	-webkit-transition: 0s 0s;
- }
+.image {
+	-webkit-transition: 0s 0s;
+}
 
 .opcoesDiv {
 	width: 100%;
@@ -46,13 +46,10 @@
 .opcoesDiv:hover {
 	background-color: rgba(160, 160, 190, 0.9);
 	color: #9AFE2E;
-	font-weight: bold;
 }
-
 
 .opcoesDiv:hover .linkButton {
 	color: #9AFE2E;
-	font-weight: bold;
 }
 
 .opcoesDiv:hover .image {
@@ -60,7 +57,6 @@
 	-webkit-filter: contrast(2);
 	-webkit-filter: sepia(1);
 }
-
 
 .opcoesDiv:active {
 	background-color: rgba(130, 130, 160, 1);
@@ -71,8 +67,28 @@
 	color: #9AFE2E;
 }
 
-
-.tituloToolBarDeafult{
+.tituloToolBarDeafult {
 	position: relative;
 	top: 3px;
+	left: 60px;
+	font-weight: bold;
+}
+
+.botoesToolBarDefault {
+	position: relative;
+	top: 1px;
+	left: 20%;
+}
+
+.tituloToolBarEditar {
+	position: relative;
+	top: 3px;
+	font-weight: bold;
+	left: 60px;
+}
+
+.botoesToolBarEditar {
+	position: relative;
+	top: 1px;
+	left: 20%;
 }
