@@ -186,7 +186,7 @@
 		
 		<url-mapping id="cadastrosCadastrosProdutosTipoProduto">
 			<pattern value="/Cadastros/Cadastros/Produtos/TipoProduto" />
-			<view-id value="/pages/cadastros/cadastros/produtos/tipoDeProduto.jsf" />
+			<view-id value="/pages/cadastros/cadastros/produtos/tipoProduto.jsf" />
 		</url-mapping>
 	
 		

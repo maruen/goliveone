@@ -32,7 +32,7 @@
 		        	 id="auditoriaLogDatatable"
 		        	 value="#{cadastroProdutoBean.auditoriaLogDatatable}"
 		        	 paginatorPosition="top" 
-		        	 scrollable="true"
+		        	 scrollable="false"
 		        	 scrollWidth="95%"
 		        	 scrollHeight="90"
 		        	 style="width:100%"
@@ -42,46 +42,59 @@
 		        	 var="auditoriaLog">
 		        	 
         		    
-				    <p:column headerText="Id" styleClass="percentual-10">
-				        <h:outputText value="#{auditoriaLog[1]}" />
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-10">
+				        
+				        <h:outputText value="0000000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Un." styleClass="percentual-10">
-				        <h:outputText value="#{auditoriaLog[2]}" />
+				    <p:column headerText="Data e Hora"
+				    		  styleClass="percentual-10">
+				        
+				        <h:outputText value="25/08/2013 8:21:05" />
 				    </p:column>
 				 
-				    <p:column headerText="Descrição" styleClass="percentual-10">
-				        <h:outputText value="#{auditoriaLog[2]}" />
+				    <p:column headerText="Formulário"
+				    		  styleClass="percentual-10">
+				        
+				        <h:outputText value="Cadastro de Estados" />
 				    </p:column>
 				 
-				    <p:column headerText="Un. Princ." styleClass="percentual-10">
-				    	<h:outputText value="#{auditoriaLog[3]}" />
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-10">
+				    	
+				    	<h:outputText value="#000000000000001" />
 				    </p:column>
 				 
-			 	   <p:column headerText="Un. Sec." styleClass="percentual-10">
-				    	<h:outputText value="#{auditoriaLog[4]}" />
+			 	   <p:column headerText="Ação"
+			 	   			 styleClass="percentual-10">
+				    	
+				    	<h:outputText value="Inclusão de Novo Registro" />
 				    </p:column>
 				    
-				    <p:column headerText="Fator Mult." styleClass="percentual-10">
-				    	<h:outputText value="#{auditoriaLog[5]}" />
+				    <p:column headerText="Valor Alterado"
+				    		  styleClass="percentual-10">
+				    	
+				    	<h:outputText value="" />
 				    </p:column>
 				    
-				    <p:column headerText="Peso Liq." styleClass="percentual-10">
-				    	<h:outputText value="#{auditoriaLog[6]}" />
+				    <p:column headerText="Valor Atual"
+				    		  styleClass="percentual-10">
+				    	
+				    	<h:outputText value="" />
 				    </p:column>
 				 
-				 	<p:column headerText="Peso Bruto." styleClass="percentual-10">
-				    	<h:outputText value="#{auditoriaLog[7]}" />
+				 	<p:column headerText="Usuário"
+				 			  styleClass="percentual-10">
+				    	
+				    	<h:outputText value="roberto@acapeninos.com.br" />
 				    </p:column>
 				    
-				    <p:column headerText="Un. Perm. Compra?" styleClass="percentual-10">
-				    	<h:outputText value="#{auditoriaLog[8]}" />
+				    <p:column headerText="Observação"
+				    		  styleClass="percentual-10">
+				    	
+				    	<h:outputText value="Inclusão Registro ID 000000000001" />
 				    </p:column>
-				    
-				    <p:column headerText="Qtd Min. Ped. Compra" styleClass="percentual-10">
-				    	<h:outputText value="#{auditoriaLog[9]}" />
-				    </p:column>
-				    
 				    
 				</p:dataTable>
 		

@@ -8,8 +8,7 @@
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_produtos.css" />
-		<h:outputStylesheet name="css/cadastros/style_percentuais.css" />
+		<h:outputStylesheet name="css/cadastros/style_produto.css" />
 	</ui:define>
 
 	<ui:define name="bean">
@@ -120,53 +119,52 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/dadosGeraisPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/dadosGeraisPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/codigoProdutoPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/codigoProdutoPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/descricoesPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/descricoesPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/classificacaoProdutoPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacaoProdutoPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/colecaoPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/colecaoPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/corPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/corPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/padraoLarguraPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/padraoLarguraPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/padraoEspessuraPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/padraoEspessuraPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/tipoProdutoPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/tipoProdutoPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/unidadesPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/unidadesPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/codigoBarrasPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/codigoBarrasPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/enderecamentoEstoquePanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/enderecamentoEstoquePanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/custosPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/custosPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/fornecedoresPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/fornecedoresPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/observacoesPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/observacoesPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produtos/auditoriaLogPanel.xhtml" >
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/auditoriaLogPanel.xhtml" >
 			<ui:param name="pojo" value="#{cadastroProdutoBean.registro}" />
 		</ui:include>
 
