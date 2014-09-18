@@ -43,8 +43,20 @@
 		<org.primefaces.themes.version>1.0.10</org.primefaces.themes.version>
 		<lombok.version>1.14.6</lombok.version>
 	
+		<jasper.version>5.6.1</jasper.version>
+	
+		<jasper.compiler.plugin.version>1.0-beta-2</jasper.compiler.plugin.version>
+		<jasper.log4j.version>1.2.16</jasper.log4j.version>
+		
+	
 		<context.root>golive-one</context.root>
 		<jboss.deploy.path>${JBOSS_HOME}/standalone/deployments</jboss.deploy.path>
+		<jboss.module.labes.properties>${JBOSS_HOME}/modules/br/com/golive/labels/main</jboss.module.labes.properties>
+		
+		<properties.project.folder>/src/main/resources/br/com/golive/labels</properties.project.folder>
+		
+		<jrxml.path.folder>src/main/resources/br/com/golive/jrxml</jrxml.path.folder>
+		<jasper.compiled.files.folder>src/main/webapp/jasper/br/com/golive</jasper.compiled.files.folder>
 	</properties>
 
 	<dependencyManagement>

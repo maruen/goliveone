@@ -2,20 +2,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<h:head>
-		<h:outputStylesheet name="css/style_layout_template.css" />
-		<h:outputStylesheet name="css/font_pattern.css" />
-		<h:outputStylesheet name="css/field_pattern.css" />
-		<h:outputStylesheet name="css/background_pattern.css" />
-	</h:head>
-
 	<h:form id="headerForm">
-		<div id="headerDiv"
-			class="divHeaderNavegacao headerMainPageNavegacao little-font">
-
+		<div id="headerDiv" class="divHeaderNavegacao headerMainPageNavegacao little-font">
 			<div id="bemVindoUsuarioDiv" class="bemVindoUserArea">
 				<h:outputLabel
 					value="#{userBean.properties.getField('label.welcome')}, #{userBean.usuario}" />
@@ -51,7 +41,7 @@
 				<h:panelGrid>
 					<h:commandButton styleClass="botaoLogout"
 						image="/resources/images/stylistica-icons-set/24x24/delete.png"
-						action="#{userBean.Logout}" />
+						action="#{userBean.logout()}" />
 					<h:outputLabel
 						value="#{userBean.properties.getField('label.logout')}" />
 

@@ -7,6 +7,11 @@
     text-overflow:ellipsis;
 }
 
+.ui-datatable-even {
+       background: none !IMPORTANT;
+       background-color: #C4D0EC !IMPORTANT;
+}
+
 .ui-column-title{
 	text-wrap:none;
     white-space:nowrap;
@@ -19,20 +24,6 @@
 	padding-right: 11%;
 }
 
-.botoesToolBarEditar {
-	padding-left: 3%;
-	padding-right: 40%
-}
-
-.botoesToolBar {
-	margin-top: -3px;
-}
-
-.tableCadastros {
-	width: 100%;
-	height: 100%;
-}
-
 .mainContentPage {
 	position: relative;
 	padding-top: 160px;
@@ -41,8 +32,4 @@
 	padding-bottom: 5%;
 	width: 100%;
 	overflow-y: auto;
-}
-
-.edicaoPanel{
-	
 }

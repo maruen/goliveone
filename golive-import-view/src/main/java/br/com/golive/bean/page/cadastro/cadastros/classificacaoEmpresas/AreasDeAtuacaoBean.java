@@ -55,7 +55,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	public void init() {
 		super.init(criarList());
 		logger.info("Inicializando = {}", this.getClass().getName());
-
 	}
 
 	@Override
@@ -98,6 +97,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	public void imprimir() {
 		logger.info("Imprimindo = {} ");
+
 	}
 
 	@Override

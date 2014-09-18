@@ -21,7 +21,7 @@ public class PropertiesProdutor {
 	public GoliveOneProperties getLabelProperties() {
 		final Locale locale = Locale.getDefault();
 		try {
-			return new GoliveOneProperties(Locale.getDefault());
+			return new GoliveOneProperties(locale);
 		} catch (final IOException e) {
 			logger.error("Erro ao Carregar o properties de labels do sistema, verifique se existe o label no container, label = {} ", locale);
 			logger.error(e.getMessage());

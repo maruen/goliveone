@@ -12,21 +12,17 @@
 		<ui:insert name="css" />
 	</ui:define>
 
-	<div id="headerComToolBar" class="headerComToolBar">
+	<ui:define name="header">
+		<ui:include src="/resources/includes/header/headerNavegacao.xhtml" />
+	</ui:define>
 
-		<ui:define name="header">
-			<ui:include src="/resources/includes/header/headerNavegacao.xhtml" />
-		</ui:define>
+	<ui:define name="toolBar">
+		<ui:insert name="bean" />
 
-		<ui:define name="toolBar">
-			<ui:insert name="bean" />
-
-			<h:form id="toolBarForm">
-				<ui:include src="/resources/includes/header/toolbar.xhtml" />
-			</h:form>
-		</ui:define>
-	</div>
-
+		<h:form id="toolBarForm">
+			<ui:include src="/resources/includes/header/toolbar.xhtml" />
+		</h:form>
+	</ui:define>
 
 
 	<ui:define name="main">

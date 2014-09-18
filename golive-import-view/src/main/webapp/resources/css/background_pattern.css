@@ -1,13 +1,5 @@
 @CHARSET "UTF-8";
 
-.headerMainPageOpcoes {
-	background-image:
-		url('/golive-one/resources/images/layout/HeaderWithTitle.jpg')
-		!important;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
 .footerMainPage {
 	background-image: url('/golive-one/resources/images/layout/Bottom.jpg')
 		!important;

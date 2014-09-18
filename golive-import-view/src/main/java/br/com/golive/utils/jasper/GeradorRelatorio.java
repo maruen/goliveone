@@ -33,6 +33,8 @@ public class GeradorRelatorio {
 		parametros.put("tittle", getTitulo(clazz, properties));
 		parametros.put("label.usuario", properties.getField("label.usuario"));
 		parametros.put("logoFooter", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("footer.png")));
+		parametros.put("label.pagina", properties.getField("label.pagina"));
+		parametros.put("label.de", properties.getField("label.de"));
 
 		for (final Field field : clazz.getDeclaredFields()) {
 			if (field.isAnnotationPresent(Label.class)) {
