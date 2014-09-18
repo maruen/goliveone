@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.tipoProduto;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.finalidades;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,10 +24,10 @@ import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
-@Label(name="label.cadastros.produtos.tipoProduto.tipoProduto")
+@Label(name="label.cadastros.produtos.finalidades.finalidadeCodigo")
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class CadastroTipoProdutoBean extends CadastroBeanRules<GenericModel> {
+public class CadastroFinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 
@@ -44,10 +44,11 @@ public class CadastroTipoProdutoBean extends CadastroBeanRules<GenericModel> {
 	public void init() {
 		super.init(criarList());
 		logger.info("Inicializando = {}", this.getClass().getName());
+
 		fluxo 				= getFluxoListagem();
 		data  				= Calendar.getInstance();
+		
 	}
-	
 	
 	
 	@Override
@@ -89,26 +90,7 @@ public class CadastroTipoProdutoBean extends CadastroBeanRules<GenericModel> {
 			logger.info("Cancelando edicao do registro = {} ", registro);
 		}
 	}
-	
-	@Override
-	public void imprimir() {
-		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void exportarPdf() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void exportarXls() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 	private boolean isSelecionado() {
 		if (registro == null) {
 			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
@@ -129,5 +111,25 @@ public class CadastroTipoProdutoBean extends CadastroBeanRules<GenericModel> {
 		return lista;
 
 	}
+	
+
+	@Override
+	public void imprimir() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exportarPdf() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exportarXls() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

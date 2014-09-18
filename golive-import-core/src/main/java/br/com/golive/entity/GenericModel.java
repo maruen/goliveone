@@ -8,7 +8,6 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-@Deprecated
 public class GenericModel {
 	
 	private Long id;

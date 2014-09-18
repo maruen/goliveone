@@ -9,7 +9,6 @@
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_tipoProduto.css" />
-		<h:outputStylesheet name="css/cadastros/style_percentuais.css" />
 	</ui:define>
 
 	<ui:define name="bean">
@@ -82,7 +81,12 @@
 	</ui:define>
 
 	<ui:define name="edicao">
-		
+		<ui:include src="/resources/includes/cadastros/cadastros/tipoProduto/dadosGeraisPanel.xhtml" >
+			<ui:param name="pojo" value="#{cadastroTipoProdutoBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/auditoriaLogPanel.xhtml" >
+			<ui:param name="pojo" value="#{cadastroTipoProdutoBean.registro}" />
+		</ui:include>
 	</ui:define>
 	
 
