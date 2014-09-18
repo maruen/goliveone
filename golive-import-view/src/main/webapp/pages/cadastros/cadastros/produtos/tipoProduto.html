@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
+
+	<ui:define name="css">
+		<h:outputStylesheet name="css/cadastros/style_tipoProduto.css" />
+		<h:outputStylesheet name="css/cadastros/style_percentuais.css" />
+	</ui:define>
+
+	<ui:define name="bean">
+		<ui:param name="bean" value="#{cadastroTipoProdutoBean}" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="produtosTable"
+			var="row" 
+			value="#{cadastroTipoProdutoBean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{cadastroTipoProdutoBean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="#{userBean.properties.getField('msg.nao.ha.registros')}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"   update="produtosTable" />
+			<p:ajax event="rowUnselect" update="produtosTable" />
+
+			<p:column selectionMode="single"  style="width:16px;text-align:center" />
+
+			<p:column 
+				headerText="Data Inclusão"
+				styleClass="percentual-10"
+				filterStyleClass="width-size-70;"
+				filterMatchMode="contains"
+				filterBy="${row.id}">
+				
+				<h:outputLabel value="25/08/2014 20:24 " />
+			</p:column>
+
+			<p:column
+				headerText="Data Alteração"
+				filterBy="${row.id}"
+				filterMatchMode="contains"
+				styleClass="percentual-10 singleLine">
+
+				<h:outputLabel value="H25-LAM-CO25-EQ.18">
+				</h:outputLabel>
+				
+			</p:column>
+
+			<p:column
+				headerText="Id"
+				filterBy="${row.id}"
+				filterMatchMode="contains"
+				styleClass="percentual-10">
+				
+				<h:outputLabel value="000000000000000000001" />
+																																																																																																																																																																		
+			</p:column>
+
+			<p:column 
+				headerText="Descrição"
+				filterMatchMode="contains"
+				filterBy="${row.id}"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="Revenda" />
+			</p:column>
+		
+
+		</p:dataTable>
+
+	</ui:define>
+
+	<ui:define name="edicao">
+		
+	</ui:define>
+	
+
+</ui:composition>
