@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -255,8 +256,8 @@ public class CadastroProdutoBean extends CadastroBeanRules<GenericModel> {
 		
 	}
 
-	
-	private boolean isSelecionado() {
+	@Override
+	public boolean isSelecionado() {
 		if (registro == null) {
 			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
 			logger.info("Não existe registro para processar");
@@ -283,6 +284,12 @@ public class CadastroProdutoBean extends CadastroBeanRules<GenericModel> {
 
 	public void setDataInclusaoFiltro(final Calendar dataInclusaoFiltro) {
 		data = dataInclusaoFiltro;
+	}
+
+	@Override
+	public Map<String, Object> obterParametrosRelatório() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

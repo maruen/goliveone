@@ -1,6 +1,5 @@
 package br.com.golive.session;
 
-import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
@@ -14,6 +13,8 @@ public class VerificadorSessaoUsuario implements PhaseListener {
 
 	private static final long serialVersionUID = 6038869873960415295L;
 
+	private String lastPage;
+
 	@Override
 	public void afterPhase(final PhaseEvent event) {
 
@@ -24,12 +25,20 @@ public class VerificadorSessaoUsuario implements PhaseListener {
 		final HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
 
 		if (session == null) {
-			final NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
-			nh.handleNavigation(facesContext, null, "/login");
+
+			if (lastPage == null) {
+				lastPage = currentPage;
+			}
+
+			facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "/login");
 		} else {
-			if (!isLoginPage && !ServiceUtils.verificarNaSessaoPorChave(ChaveSessao.USUARIO_LOGADO)) {
-				final NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
-				nh.handleNavigation(facesContext, null, "/login");
+			final boolean logado = ServiceUtils.verificarNaSessaoPorChave(ChaveSessao.USUARIO_LOGADO);
+
+			if (!isLoginPage && !logado) {
+				facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "/login");
+			} else if ((logado) && (lastPage != null)) {
+				facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, lastPage);
+				lastPage = null;
 			}
 		}
 	}

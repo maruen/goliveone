@@ -9,76 +9,113 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
+import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Data
 public class GeradorRelatorio<T> {
 
-	private final FacesContext context = FacesContext.getCurrentInstance();
-
 	private Class<T> clazz;
+	private File jasperFile;
+	private FacesContext facesContext;
+	private HttpServletResponse response;
 
 	public GeradorRelatorio() throws GoLiveException {
 		super();
-		// Type type = getClass().getGenericSuperclass();
-		// if (!(type instanceof ParameterizedType)) {
-		// type = this.getClass().getSuperclass().getGenericSuperclass();
-		// }
-		// try {
-		// clazz = (Class<T>) ((ParameterizedType)
-		// type).getActualTypeArguments()[0];
-		// } catch (final java.lang.ClassCastException e) {
-		// type = this.getClass().getSuperclass().getGenericSuperclass();
-		// clazz = (Class<T>) ((ParameterizedType)
-		// type).getActualTypeArguments()[0];
-		// } catch (final NullPointerException e) {
-		// throw new
-		// GoLiveException("Erro ao injetar Relatorio, usuario nao logado");
-		// }
 	}
 
-	public void gerarPdf(final Class<?> clazz, final List<?> conteudo, final Map<String, Object> parametros, final GoliveOneProperties properties) throws JRException, IOException, GoLiveException {
+	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final Class<?> clazz, final List<?> conteudo, final Map<String, Object> parametros, final GoliveOneProperties properties, final PrintService impressora) throws JRException, IOException, GoLiveException {
+		init(clazz);
 		verificarProperiedades(clazz, conteudo, parametros, properties);
 		if (verificarClazz(clazz)) {
-			final File jasper = new File(context.getExternalContext().getRealPath("/jasper/br/com/golive/" + getJasperName(clazz) + ".jasper"));
 
-			parametros.put("tittle", getTitulo(clazz, properties));
-			parametros.put("label.usuario", properties.getField("label.usuario"));
-			parametros.put("logoFooter", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("footer.png")));
-			parametros.put("label.pagina", properties.getField("label.pagina"));
-			parametros.put("label.de", properties.getField("label.de"));
+			inserirParametro(parametros, "tittle", getTitulo(clazz, properties));
+			inserirParametro(parametros, "logoFooter", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("footer.png")));
+			inserirParametro(parametros, "label.pagina", properties.getField("label.pagina"));
+			inserirParametro(parametros, "label.de", properties.getField("label.de"));
 
 			for (final Field field : clazz.getDeclaredFields()) {
 				if (field.isAnnotationPresent(Label.class)) {
-					parametros.put(field.getAnnotation(Label.class).name(), properties.getField(field.getAnnotation(Label.class).name()));
+					inserirParametro(parametros, field.getAnnotation(Label.class).name(), properties.getField(field.getAnnotation(Label.class).name()));
 				}
 			}
-			final JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parametros, new JRBeanCollectionDataSource(conteudo));
 
-			final HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-			response.addHeader("Content-disposition", "attachment; filename=" + getNomeDoArquivo(clazz, properties) + ".pdf");
+			final JRBeanCollectionDataSource source = new JRBeanCollectionDataSource(conteudo);
+			final JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile.getPath(), parametros, source);
 
-			final ServletOutputStream stream = response.getOutputStream();
+			if (tipoRelatorio.equals(TipoRelatorio.IMPRESSAO)) {
 
-			JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
-			stream.flush();
-			stream.close();
-			context.responseComplete();
-		} else {
-			throw new GoLiveException("Nao sera possivel gerar o relatorio, classe nao pertence a entidade");
+				if(impressora != null){
+					JRPrintServiceExporter exporter = new JRPrintServiceExporter();
+					exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+					exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, impressora.getAttributes());
+					exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
+					exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
+					exporter.exportReport();
+				} else {
+					throw new GoLiveException("Impressora nao foi selecionada");
+				}
+				
+			} else {
+
+				response.addHeader("Content-disposition", "attachment; filename=" + getNomeDoArquivo(clazz, properties) + "." + tipoRelatorio.getExtensao());
+				ServletOutputStream stream = response.getOutputStream();
+
+				if (tipoRelatorio.equals(TipoRelatorio.PDF)) {
+					JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+				} else if (tipoRelatorio.equals(TipoRelatorio.EXCEL)) {
+					JRXlsxExporter exporter = new JRXlsxExporter();
+					exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+					exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(stream));
+					exporter.exportReport();
+				}
+				stream.flush();
+				stream.close();
+
+			}
+			FacesContext.getCurrentInstance().responseComplete();
 		}
+		
+	}
+
+	private void inserirParametro(final Map<String, Object> parametros, final String key, final Object value) {
+		if (parametros.containsKey(key)) {
+			parametros.remove(key);
+		}
+		parametros.put(key, value);
+	}
+
+	private void init(final Class<?> clazz) {
+
+		if (jasperFile == null) {
+			jasperFile = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/jasper/br/com/golive/" + getJasperName(clazz) + ".jasper"));
+		}
+
+		if (facesContext == null) {
+			facesContext = FacesContext.getCurrentInstance();
+		}
+
+		response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 	}
 
 	private boolean verificarClazz(final Class<?> clazzChild) {

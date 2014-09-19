@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -24,9 +25,9 @@ import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
-@Label(name="label.cadastros.produtos.finalidades.finalidadeCodigo")
+@Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigo")
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class CadastroFinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
@@ -38,19 +39,18 @@ public class CadastroFinalidadeCodigoBean extends CadastroBeanRules<GenericModel
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
 	private Calendar data;
-	
+
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(criarList());
 		logger.info("Inicializando = {}", this.getClass().getName());
 
-		fluxo 				= getFluxoListagem();
-		data  				= Calendar.getInstance();
-		
+		fluxo = getFluxoListagem();
+		data = Calendar.getInstance();
+
 	}
-	
-	
+
 	@Override
 	public void incluir() {
 		super.incluir();
@@ -74,7 +74,7 @@ public class CadastroFinalidadeCodigoBean extends CadastroBeanRules<GenericModel
 			logger.info("Edicao de registro = {} ", registro);
 		}
 	}
-	
+
 	@Override
 	public void salvar() {
 		super.salvar();
@@ -90,8 +90,9 @@ public class CadastroFinalidadeCodigoBean extends CadastroBeanRules<GenericModel
 			logger.info("Cancelando edicao do registro = {} ", registro);
 		}
 	}
-		
-	private boolean isSelecionado() {
+
+	@Override
+	public boolean isSelecionado() {
 		if (registro == null) {
 			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
 			logger.info("Não existe registro para processar");
@@ -111,25 +112,29 @@ public class CadastroFinalidadeCodigoBean extends CadastroBeanRules<GenericModel
 		return lista;
 
 	}
-	
 
 	@Override
 	public void imprimir() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void exportarPdf() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void exportarXls() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
+	public Map<String, Object> obterParametrosRelatório() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
