@@ -197,19 +197,6 @@ html,body {
 	float: left;
 }
 
-.botoesToolBarDefault {
-	padding-left: 3%;
-	padding-right: 11%;
-}
-
-.botoesToolBarEditar {
-	padding-left: 3%;
-	padding-right: 40%
-}
-
-.botoesToolBar {
-	margin-top: -3px;
-}
 
 .tableCadastros {
 	width: 100%;
