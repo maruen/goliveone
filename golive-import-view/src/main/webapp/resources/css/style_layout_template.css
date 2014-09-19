@@ -140,12 +140,95 @@ html,body {
 
 .ui-datatable-even {
 	background: none !IMPORTANT;
-	background-color: #CEDAF8 !IMPORTANT;
+	background-color: #C4CBDD !IMPORTANT;
 }
 
-.linkSenha{
-	
+.singleLine
+{
+    text-wrap:none;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
+
+.ui-state-disabled {
+	opacity: 1.00 !IMPORTANT;
+}
+
+.ui-widget {
+	font-family: Verdana,Arial,sans-serif !important;
+	font-size: 0.9em !important;
+}
+
+.ui-widget-content {
+	border: 0 !important;
+}
+
+.ui-panelgrid-cell {
+	border-width: 0 !important;
+}
+
+.scrolls {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space:nowrap
+}
+
+.ui-inputfield {
+	color: #010B0F !IMPORTANT;	
+}
+
+.ui-datatable tbody td, .ui-datatable tfoot td {
+	padding: 4px 10px;
+	overflow: hidden;
+	border-width: 0px !IMPORTANT;
+ 	border-style: none !IMPORTANT; 
+}
+
+.floatRight {
+	float: right;
+}
+
+.floatLeft {
+	float: left;
+}
+
+.botoesToolBarDefault {
+	padding-left: 3%;
+	padding-right: 11%;
+}
+
+.botoesToolBarEditar {
+	padding-left: 3%;
+	padding-right: 40%
+}
+
+.botoesToolBar {
+	margin-top: -3px;
+}
+
+.tableCadastros {
+	width: 100%;
+	height: 100%;
+}
+
+.mainContentPage {
+	position: relative;
+	padding-top: 160px;
+	padding-left: 0%;
+	padding-right: 0%;
+	padding-bottom: 5%;
+	width: 100%;
+	overflow-y: auto;
+}
+
+
+
+
+
+
+
+
 
 
 

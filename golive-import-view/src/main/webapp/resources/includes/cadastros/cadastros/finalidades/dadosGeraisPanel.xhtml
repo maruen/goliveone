@@ -1,0 +1,132 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!--  DADOS GERAIS PANEL -->
+<p:panel id="dadosGerais"
+		 header="#{userBean.properties.getField('label.cadastroProdutos.dadosGerais')}"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="dadosGeraisPanel"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<p:panelGrid cellpadding="2"  
+          				 cellspacing="2"
+          				 width="100%"
+          				 border="0">
+	           	
+	           	<!-- 1ST ROW -->
+	           	<p:row>
+	           		<p:column styleClass="percentual-15">
+	           			<h:outputText id="idOutputText" value="Id"   />
+	           		</p:column>
+	           		
+	           		<p:column styleClass="percentual-25">
+	           			<p:inputText id="idInputText" required="true" style="width: 20%" />
+	           		</p:column>
+	           		
+	           		<p:column styleClass="percentual-10">
+	           			<h:outputText id="dataInclusaoOutputText" 
+	      					  		  value="#{userBean.properties.getField('label.cadastroProdutos.dataInclusao')}" />
+	      		
+	           		</p:column>
+	           		
+	           		<p:column styleClass="percentual-5">
+	           			
+	           			<p:calendar  id="dataInclusaoInputText"
+	      					 		 disabled="true" 
+	      					 		 value="#{finalidadeCodigoBean.registro.dataInclusao}"
+	      					 		 size="16"
+	      					 		 maxlength="16"
+	      					 		 pattern="MM/dd/yyyy HH:mm:ss"/>
+	           		</p:column>
+	           		
+	           	</p:row>
+	           	
+	
+	      		<!-- 2ND ROW -->
+	      		<p:row>
+	      			<p:column styleClass="percentual-15">
+	      				<h:outputText id="finalidadeCodigoProdutoOutputText"
+	      					 		  value="Finalidade Código Produto"
+	      					 		  styleClass="singleLine"  />
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-50">
+	      				<p:inputText id="finalidadeCodigoProdutoIntputText"
+	      				     		 required="true"
+	      				     		 value="Compra"
+	      				     		 style="width: 90%"
+	      				     		 disabled="true"/>
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-10">
+	      				<h:outputText id="ultimaAlteracaoOutputText"
+	        					  	  value="#{userBean.properties.getField('label.cadastroProdutos.ultimaAlteracao')}"
+	        					  	  styleClass="singleLine"/>
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-5">
+	      					<p:calendar   id="ultimaAlteracaoInputText"
+		        			      		  disabled="true"
+	        					  		  size="16"
+	        					  		  maxlength="16"
+	        					  		  value="#{finalidadeCodigoBean.registro.dataAlteracao}"
+	        					  		  pattern="MM/dd/yyyy HH:mm:ss"/>
+	      			</p:column>
+	      		</p:row>
+	      		
+	      		
+	      		
+	      		<!-- 3TH ROW -->
+	      		<p:row>
+	      			<p:column styleClass="percentual-15">
+	      				<h:outputText id="numeroMinimoCaracteresOutputText"
+	      					 		  value="N. Mínimo de Caracteres"
+	      					 		  styleClass="singleLine"  />
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-50">
+	      				<p:inputText id="numeroMinimoCaracteresInputText"
+	      				     		 required="true"
+	      				     		 value="000010"
+	      				     		 style="width: 20%"
+	      				     		 disabled="true"/>
+	      			</p:column>
+	      		
+	      		</p:row>
+	      		
+	      		
+	      		<!-- 4TH ROW -->
+	      		<p:row>
+	      			<p:column styleClass="percentual-15">
+	      				<h:outputText id="numeroMaximoCaracteresOutputText"
+	      					 		  value="N. Máximo de Caracteres"
+	      					 		  styleClass="singleLine"  />
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-50">
+	      				<p:inputText id="numeroMaximoCaracteresInputText"
+	      				     		 required="true"
+	      				     		 value="000000120"
+	      				     		 style="width: 20%"
+	      				     		 disabled="true"/>
+	      			</p:column>
+	      		
+	      		</p:row>
+        </p:panelGrid>
+	</p:panel>
+	
+
+</ui:composition>

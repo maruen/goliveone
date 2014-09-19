@@ -27,7 +27,7 @@ import br.com.golive.utils.JSFUtils;
 @Label(name="label.cadastros.produtos.finalidades.finalidadeCodigo")
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class CadastroFinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
+public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 
@@ -47,7 +47,6 @@ public class CadastroFinalidadeCodigoBean extends CadastroBeanRules<GenericModel
 
 		fluxo 				= getFluxoListagem();
 		data  				= Calendar.getInstance();
-		
 	}
 	
 	
