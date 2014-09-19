@@ -2,7 +2,9 @@ package br.com.golive.bean.page.home;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.PostActivate;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -51,6 +53,13 @@ public class LoginBean implements Serializable {
 
 	private boolean errouLogin;
 	
+	@PostConstruct
+	public void init(){
+		logger.info("Renderizando pagina de login");
+		login = "";
+		senha = "";
+	}
+	
 	public GoliveOneProperties getLabels() {
 		return labels;
 	}
@@ -76,10 +85,19 @@ public class LoginBean implements Serializable {
 			if(carregadoOnBlur.getSenha().equals(senha)){
 				return true;
 			}
+		} else {
+			if(campoValido(login)){
+				carregadoOnBlur = usuarioService.obterPorUserName(login);
+				return ((campoValido(senha)) && (carregadoOnBlur != null) && (carregadoOnBlur.getSenha().equals(senha)));
+			}
 		}
 		return false;
 	}
 
+	public boolean campoValido(final String campo){
+		return ((campo != null) && (!campo.isEmpty()));
+	}
+	
 	public void limpar() {
 		login = "";
 		senha = "";

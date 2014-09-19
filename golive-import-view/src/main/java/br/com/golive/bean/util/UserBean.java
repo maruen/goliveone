@@ -54,9 +54,7 @@ public class UserBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		
-		verificarSessao();
-		
+
 		final Calendar cal = Calendar.getInstance();
 		data = new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime());
 		diaSemana = new DateFormatSymbols().getWeekdays()[cal.get(Calendar.DAY_OF_WEEK)];
@@ -83,6 +81,7 @@ public class UserBean implements Serializable {
 		usuarioLogado = null;
 		verificarSessao();
 	}
+
 
 	public String labelAnotado(final Class<?> clazz, final String field) {
 		try {

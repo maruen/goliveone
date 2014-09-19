@@ -30,7 +30,7 @@
 								value="/resources/images/stylistica-icons-set/64x64/user.png" />
 						</div>
 						<div class="usuarioLoginGrid">
-							<h:outputLabel
+							<h:outputLabel 
 								value="#{loginBean.labels.getField('label.login')} #{loginBean.labels.getField('label.usuario')}"
 								styleClass="little-medium white-font" />
 						</div>
@@ -57,13 +57,13 @@
 							styleClass="little-field" />
 
 						<p:outputLabel id="assinantesOutputText"
-							for="assinantesSelectOneMenu"
+							for="assinantesSelectOneMenu" 
 							value="#{loginBean.labels.getField('label.assinantes')}"
 							styleClass="outputLabel" />
 
 						<p:selectOneMenu id="assinantesSelectOneMenu"
 							value="#{loginBean.assinante}" style="width: 308px" effect="fold">
-							<f:selectItems  value="#{loginBean.carregadoOnBlur.empresas}"/>							
+							<f:selectItems value="#{loginBean.carregadoOnBlur.empresas}" />
 
 						</p:selectOneMenu>
 						<p:spacer />
@@ -83,8 +83,8 @@
 						<p:spacer rendered="#{loginBean.errouLogin}"
 							styleClass="linkSenha" id="spacerLink" />
 						<p:commandLink id="linkEsqueceuSenha" styleClass="linkSenha"
-							onclick="PF('dlg2').show();" rendered="#{loginBean.errouLogin}">
-							<h:outputLabel
+							onclick="PF('dialogSenha').show();" rendered="#{loginBean.errouLogin}">
+							<h:outputLabel 
 								value="#{loginBean.labels.getField('label.esqueceu.senha')}"
 								styleClass="linkSenha little-font" />
 						</p:commandLink>
@@ -93,8 +93,8 @@
 				</div>
 			</div>
 
-			<p:dialog header="Modal Dialog" widgetVar="dlg2" height="100"
-				closeOnEscape="true">
+			<p:dialog header="Esqueci minha senha" widgetVar="dialogSenha" height="300" width="300"
+				closeOnEscape="true" resizable="false" draggable="false"  showHeader="false" >
 				<h:outputText value="This is a Modal Dialog." />
 			</p:dialog>
 

@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,10 +24,11 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import br.com.golive.exception.GoLiveException;
+import br.com.golive.qualifier.GeradorRelatorioInjected;
+import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.Utils;
-import br.com.golive.utils.jasper.GeradorRelatorio;
 
 @Data
 @ManagedBean
@@ -42,9 +44,13 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	protected List<T> filtrados;
 	protected T registro;
 	protected Fluxo fluxo;
-	protected Class<T> clazz;
-	protected GeradorRelatorio relatorios;
+	protected Class<T> genericClazzInstance;
+//	protected GeradorRelatorio relatorios;
 
+	@Inject
+	@GeradorRelatorioInjected
+	protected GeradorRelatorio<T> relatorios;
+	
 	public abstract void init();
 
 	public abstract void imprimir();
@@ -64,7 +70,8 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		if (!(type instanceof ParameterizedType)) {
 			type = this.getClass().getSuperclass().getGenericSuperclass();
 		}
-		clazz = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
+		genericClazzInstance = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
+		relatorios.setClazz(genericClazzInstance);
 	}
 
 	public String nomePagina() {
@@ -73,11 +80,11 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 
 	public Class<?> getPojoClass(final String fieldName) {
 		try {
-			return Utils.getClazz(clazz, fieldName);
+			return Utils.getClazz(genericClazzInstance, fieldName);
 		} catch (NoSuchFieldException | SecurityException e) {
 			e.printStackTrace();
 		}
-		throw new GoLiveException("Erro ao obter classe de pojo, a classe: " + clazz.getName() + " nao possui o campo: " + fieldName);
+		throw new GoLiveException("Erro ao obter classe de pojo, a classe: " + genericClazzInstance.getName() + " nao possui o campo: " + fieldName);
 	}
 
 	public void exportarPdf() {

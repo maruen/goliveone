@@ -34,10 +34,10 @@
 		<param-value>0</param-value>
 	</context-param>
 
-<context-param>
-   <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
-   <param-value>true</param-value>
-</context-param>
+	<context-param>
+		<param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
+		<param-value>true</param-value>
+	</context-param>
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -53,22 +53,21 @@
 		<error-code>500</error-code>
 		<location>/login</location>
 	</error-page>
-	
+
 	<error-page>
 		<error-code>404</error-code>
 		<location>/login</location>
 	</error-page>
 
 	<error-page>
-	    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
 		<location>/login</location>
 	</error-page>
-
-
 
 	<session-config>
 		<session-timeout>15</session-timeout>
 	</session-config>
+
 
 
 </web-app>

@@ -15,7 +15,7 @@
 
 	<url-mapping id="login">
 		<pattern value="/login" />
-		<view-id value="/pages/navigation/login.jsf" />
+		<view-id value="/login.jsf" />
 	</url-mapping>
 
 	<!-- <BR-Pattern> -->
