@@ -38,7 +38,7 @@
 							 value="#{userBean.properties.getField('label.cadastroProdutos.finalidadeDescricao')}"
 							 style="width: 90%">
        	        
-       	        <f:selectItems value="#{cadastroProdutoBean.descricoes}" />
+       	        <f:selectItems value="#{produtoBean.descricoes}" />
   		        </p:selectOneMenu>
             
         	<h:outputText id="descricaoOutputText" 
@@ -62,7 +62,7 @@
         			 width="100%"
         			 border="0" >
         
-	        <p:dataTable id="descricoesDatatable" var="item" value="#{cadastroProdutoBean.descricoesDatatable}" >
+	        <p:dataTable id="descricoesDatatable" var="item" value="#{produtoBean.descricoesDatatable}" >
 			    
 			    <p:column headerText=""
 			    		  styleClass="percentual-5 singleLine">

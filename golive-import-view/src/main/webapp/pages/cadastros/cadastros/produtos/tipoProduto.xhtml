@@ -11,7 +11,7 @@
 	</ui:define>
 
 	<ui:define name="bean">
-		<ui:param name="bean" value="#{cadastroTipoProdutoBean}" />
+		<ui:param name="bean" value="#{tipoProdutoBean}" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -19,10 +19,10 @@
 		<p:dataTable 
 			id="produtosTable"
 			var="row" 
-			value="#{cadastroTipoProdutoBean.conteudo}"
+			value="#{tipoProdutoBean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{cadastroTipoProdutoBean.registro}" 
+			selection="#{tipoProdutoBean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -81,10 +81,10 @@
 
 	<ui:define name="edicao">
 		<ui:include src="/resources/includes/cadastros/cadastros/tipoProduto/dadosGeraisPanel.xhtml" >
-			<ui:param name="pojo" value="#{cadastroTipoProdutoBean.registro}" />
+			<ui:param name="pojo" value="#{tipoProdutoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/auditoriaLogPanel.xhtml" >
-			<ui:param name="pojo" value="#{cadastroTipoProdutoBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/tipoProduto/auditoriaLogPanel.xhtml" >
+			<ui:param name="pojo" value="#{tipoProdutoBean.registro}" />
 		</ui:include>
 	</ui:define>
 	

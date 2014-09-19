@@ -27,7 +27,7 @@ import br.com.golive.utils.JSFUtils;
 @Label(name="label.cadastros.produtos.tipoProduto.tipoProduto")
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class CadastroTipoProdutoBean extends CadastroBeanRules<GenericModel> {
+public class TipoProdutoBean extends CadastroBeanRules<GenericModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 
@@ -106,6 +106,23 @@ public class CadastroTipoProdutoBean extends CadastroBeanRules<GenericModel> {
 	public void exportarXls() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<List<Object>> getAuditoriaLogDatatable() {
+		return getRowsByColumns();
+	}
+	
+	private List<List<Object>> getRowsByColumns() {
+		final List<List<Object>> dataTableRows = new ArrayList<List<Object>>();
+
+		for (int lines = 1; lines <= 5; lines++) {
+			final List<Object> row = new ArrayList<Object>();
+			for (int columns = 1; columns <= 20; columns++) {
+				row.add(new String("XXXXXX"));
+			}
+			dataTableRows.add(row);
+		}
+		return dataTableRows;
 	}
 
 	

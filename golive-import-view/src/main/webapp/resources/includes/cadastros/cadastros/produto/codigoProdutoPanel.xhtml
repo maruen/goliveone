@@ -39,7 +39,7 @@
 								 value="#{userBean.properties.getField('label.cadastroProdutos.selecioneFinalidadeCodigoProduto')}" 
 								 style="width: 90%; background-color: #FFFFFF ">
         	        
-        	        			<f:selectItems value="#{cadastroProdutoBean.codigos}" />
+        	        			<f:selectItems value="#{produtoBean.codigos}" />
    		        
    		        </p:selectOneMenu>
   		    
@@ -68,7 +68,7 @@
         
 	        <p:dataTable id="codigoProdutoDatatable"
 	        			 var="codigoProduto"
-	        			 value="#{cadastroProdutoBean.codigoDatatable}" >
+	        			 value="#{produtoBean.codigoDatatable}" >
 			    
 			    <p:column headerText=""
 			    		  styleClass="percentual-5 singleLine">

@@ -27,7 +27,7 @@ import br.com.golive.utils.JSFUtils;
 @Label(name="label.cadastroProdutos.cadastroProdutos")
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class CadastroProdutoBean extends CadastroBeanRules<GenericModel> {
+public class ProdutoBean extends CadastroBeanRules<GenericModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 

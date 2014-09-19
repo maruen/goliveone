@@ -45,7 +45,7 @@
 		
 		
 				<p:selectOneMenu id="codigoBarrasOneMenu" style="width: 90%; background-color: #FFFFFF ">
-        	        <f:selectItems value="#{cadastroProdutoBean.codigoBarras}" />
+        	        <f:selectItems value="#{produtoBean.codigoBarras}" />
    		        </p:selectOneMenu>
   		    
   		    		<h:outputText id="codigoBarrasIdOutputText" value="Id"  styleClass="singleLine"/>
@@ -82,7 +82,7 @@
         
 	        <p:dataTable id="codigoBarrasDatatable"
 	        			 var="codigoBarras"
-	        			 value="#{cadastroProdutoBean.codigoBarrasDatatable}" >
+	        			 value="#{produtoBean.codigoBarrasDatatable}" >
 			    
 			    <p:column headerText=""
 			    		  styleClass="percentual-5 singleLine">

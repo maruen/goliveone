@@ -40,7 +40,7 @@
 	
 	
 			<p:selectOneMenu id="colecaoOneMenu" style="width: 90%; background-color: #FFFFFF ">
-       	        <f:selectItems value="#{cadastroProdutoBean.colecoes}" />
+       	        <f:selectItems value="#{produtoBean.colecoes}" />
   		        </p:selectOneMenu>
  		    	<h:outputText id="colecaoIdOutputText"
  		    				  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"
@@ -78,7 +78,7 @@
        
         <p:dataTable id="colecaoDatatable"
         			 var="colecao"
-        			 value="#{cadastroProdutoBean.colecaoDatatable}" >
+        			 value="#{produtoBean.colecaoDatatable}" >
 		    
 		    <p:column headerText=""
 		    		  styleClass="percentual-5 singleLine">

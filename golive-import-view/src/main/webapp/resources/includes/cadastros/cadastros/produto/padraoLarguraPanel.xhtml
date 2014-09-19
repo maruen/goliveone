@@ -39,7 +39,7 @@
 		
 		
 				<p:selectOneMenu id="padraoLarguraOneMenu" style="width: 90%; background-color: #FFFFFF ">
-        	        <f:selectItems value="#{cadastroProdutoBean.padraoLargura}" />
+        	        <f:selectItems value="#{produtoBean.padraoLargura}" />
    		        </p:selectOneMenu>
   		    
   		    	<h:outputText id="padraoLarguraIdOutputText" 
@@ -78,7 +78,7 @@
         
 	        <p:dataTable id="padraoLarguraDatatable"
 	        			 var="padraoLargura"
-	        			 value="#{cadastroProdutoBean.padraoLarguraDatatable}" >
+	        			 value="#{produtoBean.padraoLarguraDatatable}" >
 			    
 			    <p:column headerText=""
 			    		  styleClass="percentual-5 singleLine">

@@ -39,7 +39,7 @@
 	        		 
  			    		 
 			    		 <p:selectOneMenu id="unidadesSelecioneOneMenu" style="width: 90%; background-color: #FFFFFF ">
-	        	        <f:selectItems value="#{cadastroProdutoBean.unidades}" />
+	        	        <f:selectItems value="#{produtoBean.unidades}" />
     		         </p:selectOneMenu>
    		    	                     
                         <h:outputText id="unidadessIdOutputText"
@@ -504,7 +504,7 @@
 			        
 				        <p:dataTable
 				        	 id="unidadesId"
-				        	 value="#{cadastroProdutoBean.unidadesDatatable}"
+				        	 value="#{produtoBean.unidadesDatatable}"
 				        	 paginatorPosition="top" 
 				        	 scrollable="true"
 				        	 scrollWidth="95%"

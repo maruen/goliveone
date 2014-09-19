@@ -40,7 +40,7 @@
 	
 	
 			<p:selectOneMenu id="corOneMenu" style="width: 90%; background-color: #FFFFFF ">
-       	        <f:selectItems value="#{cadastroProdutoBean.cores}" />
+       	        <f:selectItems value="#{produtoBean.cores}" />
   		        </p:selectOneMenu>
  		    
  		    	<h:outputText id="corIdOutputText" 
@@ -79,7 +79,7 @@
        
         <p:dataTable id="corDatatable"
         			 var="cor"
-        			 value="#{cadastroProdutoBean.corDatatable}" >
+        			 value="#{produtoBean.corDatatable}" >
 		    
 		    <p:column headerText=""
 		    		  styleClass="percentual-5 singleLine">
