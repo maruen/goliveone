@@ -1,35 +1,8 @@
 @CHARSET "UTF-8";
 
-.singleLine{
-    text-wrap:none;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.ui-datatable-even {
-       background: none !IMPORTANT;
-       background-color: #C4D0EC !IMPORTANT;
-}
-
 .ui-column-title{
 	text-wrap:none;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-}
-
-.botoesToolBarDefault {
-	padding-left: 3%;
-	padding-right: 11%;
-}
-
-.mainContentPage {
-	position: relative;
-	padding-top: 160px;
-	padding-left: 0%;
-	padding-right: 0%;
-	padding-bottom: 5%;
-	width: 100%;
-	overflow-y: auto;
 }
