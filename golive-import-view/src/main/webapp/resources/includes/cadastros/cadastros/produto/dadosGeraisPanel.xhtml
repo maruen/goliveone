@@ -43,7 +43,7 @@
       		
       		<p:calendar  id="dataInclusaoInputText"
       					 disabled="true" 
-      					 value="#{cadastroProdutoBean.dataInclusao}"
+      					 value="#{produtoBean.dataInclusao}"
       					 size="16"
       					 maxlength="16"
       					 pattern="MM/dd/yyyy HH:mm:ss"
@@ -79,7 +79,7 @@
 	        			      disabled="true"
         					  size="16"
         					  maxlength="16"
-        					  value="#{cadastroProdutoBean.dataUltimaAlteracao}"
+        					  value="#{produtoBean.dataUltimaAlteracao}"
         					  pattern="MM/dd/yyyy HH:mm:ss"/>
 	
         </h:panelGrid>
@@ -136,7 +136,7 @@
       			
       			  <p:dataTable id="codigoBarrasPopupDatatableId"
 	        			 	   var="codigoBarrasPopupDatatableId"
-	        			 	   value="#{cadastroProdutoBean.codigoBarrasDatatable}" >
+	        			 	   value="#{produtoBean.codigoBarrasDatatable}" >
 			    
 					    <p:column headerText="Id"
 					    		  styleClass="percentual-5 singleLine">

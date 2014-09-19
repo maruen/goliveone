@@ -6,7 +6,7 @@
 
 <!--  UNIDADES -->
 <p:panel id="UnidadesId"
-			 header="#{userBean.properties.getField('label.cadastroProdutos.unidades')}"
+			 header="Apresentação"
 			 toggleable="true"
 			 closable="false"
 			 collapsed="true"
@@ -36,11 +36,10 @@
 	        			 				 percentual-2"
 	        			 columns="10"
 	        			 border="0" >
-	        		 
- 			    		 
-			    		 <p:selectOneMenu id="unidadesSelecioneOneMenu" style="width: 90%; background-color: #FFFFFF ">
-	        	        <f:selectItems value="#{produtoBean.unidades}" />
-    		         </p:selectOneMenu>
+	        		 	 
+			    		<p:selectOneMenu id="unidadesSelecioneOneMenu" style="width: 90%; background-color: #FFFFFF ">
+	        	        <f:selectItems value="#{cadastroProdutoBean.unidades}" />
+    		         	</p:selectOneMenu>
    		    	                     
                         <h:outputText id="unidadessIdOutputText"
                         			  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"/>
@@ -504,7 +503,7 @@
 			        
 				        <p:dataTable
 				        	 id="unidadesId"
-				        	 value="#{produtoBean.unidadesDatatable}"
+				        	 value="#{cadastroProdutoBean.unidadesDatatable}"
 				        	 paginatorPosition="top" 
 				        	 scrollable="true"
 				        	 scrollWidth="95%"
