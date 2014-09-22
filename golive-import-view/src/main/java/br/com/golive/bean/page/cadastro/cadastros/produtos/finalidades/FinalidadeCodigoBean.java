@@ -27,13 +27,8 @@ import br.com.golive.utils.JSFUtils;
 @ViewScoped
 @Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigo")
 @Data
-<<<<<<< HEAD:golive-import-view/src/main/java/br/com/golive/bean/page/cadastro/cadastros/produtos/finalidades/CadastroFinalidadeCodigoBean.java
 @EqualsAndHashCode(callSuper = false)
-public class CadastroFinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
-=======
-@EqualsAndHashCode(callSuper=false)
 public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
->>>>>>> 69b0a15af68858a37191348839e3eb1de41fef9a:golive-import-view/src/main/java/br/com/golive/bean/page/cadastro/cadastros/produtos/finalidades/FinalidadeCodigoBean.java
 
 	private static final long serialVersionUID = 6286581844381749904L;
 
@@ -51,14 +46,11 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 		super.init(criarList());
 		logger.info("Inicializando = {}", this.getClass().getName());
 
-<<<<<<< HEAD:golive-import-view/src/main/java/br/com/golive/bean/page/cadastro/cadastros/produtos/finalidades/CadastroFinalidadeCodigoBean.java
 		fluxo = getFluxoListagem();
 		data = Calendar.getInstance();
 
-=======
-		fluxo 				= getFluxoListagem();
-		data  				= Calendar.getInstance();
->>>>>>> 69b0a15af68858a37191348839e3eb1de41fef9a:golive-import-view/src/main/java/br/com/golive/bean/page/cadastro/cadastros/produtos/finalidades/FinalidadeCodigoBean.java
+		fluxo = getFluxoListagem();
+		data = Calendar.getInstance();
 	}
 
 	@Override

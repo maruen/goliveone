@@ -109,10 +109,6 @@ public class TipoProdutoBean extends CadastroBeanRules<GenericModel> {
 		
 	}
 
-<<<<<<< HEAD:golive-import-view/src/main/java/br/com/golive/bean/page/cadastro/cadastros/produtos/tipoProduto/CadastroTipoProdutoBean.java
-	@Override
-	public boolean isSelecionado() {
-=======
 	public List<List<Object>> getAuditoriaLogDatatable() {
 		return getRowsByColumns();
 	}
@@ -130,9 +126,8 @@ public class TipoProdutoBean extends CadastroBeanRules<GenericModel> {
 		return dataTableRows;
 	}
 
-	
-	private boolean isSelecionado() {
->>>>>>> 69b0a15af68858a37191348839e3eb1de41fef9a:golive-import-view/src/main/java/br/com/golive/bean/page/cadastro/cadastros/produtos/tipoProduto/TipoProdutoBean.java
+	@Override
+	public boolean isSelecionado() {
 		if (registro == null) {
 			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
 			logger.info("Não existe registro para processar");

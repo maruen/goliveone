@@ -1,9 +1,12 @@
 package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresas;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +21,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import net.sf.jasperreports.engine.JRException;
 
+import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
@@ -47,8 +51,10 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
 
-	private Calendar data = Calendar.getInstance();
+	private Date dataInclusao;
 
+	private Date dataAlteracao;
+	
 	@Override
 	@PostConstruct
 	public void init() {
@@ -72,7 +78,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	}
 
 	@Override
-	public Map<String, Object> obterParametrosRelatório(){
+	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");
 		final Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("usuarioLogado", "Guilherme Desenvolvimento");
@@ -85,38 +91,39 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		}
 		return parametros;
 	}
-	
+
 	@Override
 	public void exportarPdf() {
 		try {
-			logger.info("Gerando relatório pdf, para classe = {}", Cadastro.class.getName() );
+			logger.info("Gerando relatório pdf, para classe = {}", Cadastro.class.getName());
 			relatorios.gerarRelatorio(TipoRelatorio.PDF, Cadastro.class, conteudo, obterParametrosRelatório(), labels, null);
 		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio em pdf = {}",  Cadastro.class.getName());
+			logger.error("Erro ao gerar relatorio em pdf = {}", Cadastro.class.getName());
 		}
 	}
 
 	@Override
 	public void exportarXls() {
 		try {
-			logger.info("Gerando relatório xls, para classe = {}", Cadastro.class.getName() );
+			logger.info("Gerando relatório xls, para classe = {}", Cadastro.class.getName());
 			relatorios.gerarRelatorio(TipoRelatorio.EXCEL, Cadastro.class, conteudo, obterParametrosRelatório(), labels, null);
 		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio em xls = {}",  Cadastro.class.getName());
-		}	
+			logger.error("Erro ao gerar relatorio em xls = {}", Cadastro.class.getName());
+		}
 	}
-	
+
 	@Override
 	public void imprimir() {
 		try {
 			logger.info("imprimindo pagina, para classe = {}", Cadastro.class.getName());
 			relatorios.gerarRelatorio(TipoRelatorio.IMPRESSAO, Cadastro.class, conteudo, obterParametrosRelatório(), labels, impressoraSelecionada);
 		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio em xls = {}",  Cadastro.class.getName());
+			logger.error("Erro ao gerar relatorio = {}", Cadastro.class.getName());
 			logger.error("Excecao ={}", e.getMessage());
-		}	
+			e.printStackTrace();
+		}
 	}
-	
+
 	@Override
 	public void salvar() {
 		super.salvar();
@@ -132,7 +139,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 			logger.info("Cancelando edicao do registro = {} ", registro);
 		}
 	}
-	
+
 	@Override
 	public boolean isSelecionado() {
 		if (registro == null) {
@@ -150,8 +157,8 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		Long id = 0L;
 		Long value = 10L;
 		final String str = "String";
-		for (int i = 0; i < 100; i++) {
-			lista.add(conteudoLinha(id, data, value, str));
+		for (int i = 0; i < 25; i++) {
+			lista.add(conteudoLinha(id, Calendar.getInstance(), value, str));
 			id++;
 			value = (value * id) / 2;
 		}
@@ -161,7 +168,67 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Deprecated
 	public AreaDeAtuacaoEmbed conteudoLinha(final Long id, final Calendar cal, final Long valor, final String string) {
-		return new AreaDeAtuacaoEmbed(new Cadastro(id, cal, cal, "asw" + string), new AuditoriaLog(id, cal, string + "123", id + valor, string, new BigDecimal(valor), new BigDecimal(valor), string + "aa", string + "bb"));
+		return new AreaDeAtuacaoEmbed(new Cadastro(id, cal, Calendar.getInstance(), "asw" + string), new AuditoriaLog(id, cal, string + "123", id + valor, string, new BigDecimal(valor), new BigDecimal(valor), string + "aa", string + "bb"));
 	}
 
+	public void filtrarDataInclusao(final Date date) {
+		try {
+			dataInclusao = date;
+			List<AreaDeAtuacaoEmbed> tmp = new ArrayList<AreaDeAtuacaoEmbed>();
+			tmp.addAll(filtrados);
+			if (dataInclusao != null) {
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				for (AreaDeAtuacaoEmbed index : conteudo) {
+					if (!sdf.format(dataInclusao).equals(sdf.format(index.getCadastroAreaAtuacao().getDataInclusao().getTime()))) {
+						tmp.remove(index);
+					}
+				}
+				filtrados.removeAll(conteudo);
+				filtrados.addAll(tmp);
+			} else {
+				filtrados.removeAll(conteudo);
+				filtrados.addAll(conteudo);
+
+				if(dataAlteracao != null){
+					filtrarDataAlteracao(dataAlteracao);
+				}
+			}
+		
+
+			
+		} catch (Exception e) {
+			logger.error("Erro ao filtrar data de inclusao");
+			JSFUtils.errorMessage(labels.getField("title.msg.erro.ao.filtrar"), labels.getField("msg.erro.ao.filtrar") + " " + labels.getField("label.dataAlteracao"));
+		}
+	}
+
+	public void filtrarDataAlteracao(final Date date) {
+		try {
+			dataAlteracao = date;
+			List<AreaDeAtuacaoEmbed> tmp = new ArrayList<AreaDeAtuacaoEmbed>();
+			tmp.addAll(filtrados);
+			if (dataAlteracao != null) {
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				for (AreaDeAtuacaoEmbed index : conteudo) {
+					if (!sdf.format(dataAlteracao).equals(sdf.format(index.getCadastroAreaAtuacao().getDataAlteracao().getTime()))) {
+						tmp.remove(index);
+					}
+				}
+				filtrados.removeAll(conteudo);
+				filtrados.addAll(tmp);
+			} else {
+				filtrados.removeAll(conteudo);
+				filtrados.addAll(conteudo);
+				if(dataInclusao != null){
+					filtrarDataInclusao(dataInclusao);
+				}				
+			}
+
+
+		} catch (Exception e) {
+			logger.error("Erro ao filtrar data de inclusao");
+			JSFUtils.errorMessage(labels.getField("title.msg.erro.ao.filtrar"), labels.getField("msg.erro.ao.filtrar") + " " + labels.getField("label.dataAlteracao"));
+		}
+	}
+	
 }

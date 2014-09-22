@@ -25,7 +25,7 @@
 				showEffect="bounce" hideEffect="blind" closable="false" closeOnEscape="true"
 				resizable="false" showHeader="false">
 
-				<p:fieldset legend="Selecione um impressoara"
+				<p:fieldset legend="#{bean.labels.getField('label.selecionarImpressa')}"
 					style="margin-bottom:20px">
 					<p:selectOneRadio id="impressoras" layout="grid" columns="1"
 						value="#{bean.nomeDaImpressoraSelecionada}">
@@ -36,9 +36,8 @@
 						<p:ajax event="change" listener="#{bean.selecionarImpressoraPorNome()}"/>
 					</p:selectOneRadio>
 					<h:panelGrid columns="2">
-						<p:commandButton action="#{bean.imprimir()}" value="Imprimir" onstart="loading();" onsuccess="PF('selecioneImpressoraDialog').hide();" />
-						<p:commandButton onclick="PF('selecioneImpressoraDialog').hide();"
-							value="Cancelar" />
+						<p:commandButton styleClass="botaoImpressoras" action="#{bean.imprimir()}" value="#{bean.labels.getField('label.imprimir')}" onstart="loading();" onsuccess="PF('selecioneImpressoraDialog').hide();" />
+						<p:commandButton styleClass="botaoImpressoras" onclick="PF('selecioneImpressoraDialog').hide();" value="#{bean.labels.getField('label.cancelar')}" />
 					</h:panelGrid>
 				</p:fieldset>
 			</p:dialog>

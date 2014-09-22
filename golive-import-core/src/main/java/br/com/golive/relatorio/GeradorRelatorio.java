@@ -5,12 +5,20 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.HashPrintServiceAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.PrintServiceAttributeSet;
+import javax.print.attribute.standard.Destination;
+import javax.print.attribute.standard.MediaSizeName;
+import javax.print.attribute.standard.PrinterName;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,11 +29,13 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JRDesignStyle;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePrintServiceExporterConfiguration;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 import br.com.golive.constants.TipoRelatorio;
@@ -65,17 +75,37 @@ public class GeradorRelatorio<T> {
 
 			if (tipoRelatorio.equals(TipoRelatorio.IMPRESSAO)) {
 
-				if(impressora != null){
+				if (impressora != null) {
+					
+					PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
+					printRequestAttributeSet.add(MediaSizeName.ISO_A4);
+					
+					
+					PrintServiceAttributeSet printServiceAttributeSet = new HashPrintServiceAttributeSet();
+//				    printServiceAttributeSet.add(new PrinterName(impressora.getName(), null));
+				    printServiceAttributeSet.add(new PrinterName(impressora.getName(), Locale.getDefault()));
+				    
 					JRPrintServiceExporter exporter = new JRPrintServiceExporter();
-					exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-					exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, impressora.getAttributes());
-					exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
-					exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
+					
+					exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+
+					SimplePrintServiceExporterConfiguration configuration = new SimplePrintServiceExporterConfiguration();
+					configuration.setPrintRequestAttributeSet(printRequestAttributeSet);
+					configuration.setPrintServiceAttributeSet(printServiceAttributeSet);
+					configuration.setDisplayPageDialog(false);
+					configuration.setDisplayPrintDialog(false);
+					
+					exporter.setConfiguration(configuration);
+					
+//					exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+//					exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, impressora.getAttributes());
+//					exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
+//					exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
 					exporter.exportReport();
 				} else {
 					throw new GoLiveException("Impressora nao foi selecionada");
 				}
-				
+
 			} else {
 
 				response.addHeader("Content-disposition", "attachment; filename=" + getNomeDoArquivo(clazz, properties) + "." + tipoRelatorio.getExtensao());
@@ -91,11 +121,12 @@ public class GeradorRelatorio<T> {
 				}
 				stream.flush();
 				stream.close();
+				FacesContext.getCurrentInstance().responseComplete();
 
 			}
-			FacesContext.getCurrentInstance().responseComplete();
+
 		}
-		
+
 	}
 
 	private void inserirParametro(final Map<String, Object> parametros, final String key, final Object value) {

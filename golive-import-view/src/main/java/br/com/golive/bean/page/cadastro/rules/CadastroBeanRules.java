@@ -54,6 +54,7 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	protected void init(final List<T> listaConteudo) {
 		this.conteudo = listaConteudo;
 		this.filtrados = new ArrayList<T>();
+		filtrados.addAll(conteudo);
 		fluxo = getFluxoListagem();
 		inicializarClasse();
 		impressoras = PrintServiceLookup.lookupPrintServices(null, null);
