@@ -27,8 +27,11 @@ import br.com.golive.utils.JSFUtils;
 @ViewScoped
 @Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigo")
 @Data
+<<<<<<< HEAD
 @EqualsAndHashCode(callSuper = false)
+=======
 @EqualsAndHashCode(callSuper=false)
+>>>>>>> 8314436464929da404093b3046fbcca22d039a13
 public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
@@ -49,8 +52,12 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 
 		fluxo = getFluxoListagem();
 		data = Calendar.getInstance();
+<<<<<<< HEAD
+
 		fluxo = getFluxoListagem();
 		data = Calendar.getInstance();
+=======
+>>>>>>> 8314436464929da404093b3046fbcca22d039a13
 	}
 
 	@Override

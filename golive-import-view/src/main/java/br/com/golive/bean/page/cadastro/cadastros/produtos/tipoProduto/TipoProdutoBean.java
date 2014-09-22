@@ -127,6 +127,7 @@ public class TipoProdutoBean extends CadastroBeanRules<GenericModel> {
 	}
 
 	@Override
+
 	public boolean isSelecionado() {
 		if (registro == null) {
 			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));

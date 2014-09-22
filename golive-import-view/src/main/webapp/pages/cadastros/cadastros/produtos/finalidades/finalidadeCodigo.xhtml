@@ -8,6 +8,7 @@
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:define name="css">
+		<h:outputStylesheet name="css/cadastros/style_finalidadeCodigo.css" />
 	</ui:define>
 
 	<ui:define name="bean">
@@ -104,6 +105,14 @@
 		
 		<ui:include src="/resources/includes/cadastros/cadastros/finalidades/apresentacaoPanel.xhtml" >
 			<ui:param name="pojo" value="#{finalidadeCodigoBean.registro}" />
+		</ui:include>
+		
+		<ui:include src="/resources/includes/cadastros/cadastros/finalidades/aplicacaoPanel.xhtml" >
+			<ui:param name="pojo" value="#{finalidadeCodigoBean.registro}" />
+		</ui:include>
+		
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/auditoriaLogPanel.xhtml" >
+			<ui:param name="pojo" value="#{produtoBean.registro}" />
 		</ui:include>
 		
 		
