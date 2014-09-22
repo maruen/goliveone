@@ -34,11 +34,8 @@
 }
 
 .opcoesDiv {
-	width: 100%;
+	position: relative;
 	height: 44px;
-	position: fixed;
-	top: 106px;
-	z-index: 100;
 	background-color: rgba(160, 160, 190, 0.7);
 	-webkit-transition: 1s 0s;
 }

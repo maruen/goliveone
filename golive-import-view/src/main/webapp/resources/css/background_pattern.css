@@ -9,10 +9,10 @@
 }
 
 .headerMainPageNavegacao {
-	background-image: url('/golive-one/resources/images/layout/Header.jpg')
-		!important;
+	background-image: url('/golive-one/resources/images/layout/Header.jpg') !important;
 	background-repeat: no-repeat;
-	background-position: center;
+	background-position:top center;
+	
 }
 
 .loginBackground {

@@ -4,14 +4,32 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<h:form id="headerForm">
-		<div id="headerDiv" class="divHeaderNavegacao headerMainPageNavegacao little-font">
-			<div id="bemVindoUsuarioDiv" class="bemVindoUserArea">
-				<h:outputLabel
-					value="#{userBean.properties.getField('label.welcome')}, #{userBean.usuario}" />
-			</div>
-			<div id="EmpresaSelecionadaDiv" class="empresaDadosArea">
-				<h:panelGrid columns="2" cellpadding="10px">
+	<h:form id="headerForm" styleClass="formHeader">
+		<div id="headerDiv"
+			class="divHeaderNavegacao headerMainPageNavegacao little-font">
+
+			<h:panelGrid styleClass="gridHeaderGroup">
+				<h:panelGrid columns="3" styleClass="gridHeader"
+					columnClasses="gridHeaderNomeUsuario, gridHeaderData, gridHeaderLogout">
+					<h:outputLabel
+						value="#{userBean.properties.getField('label.welcome')}, #{userBean.usuario}" />
+					<h:panelGrid>
+						<h:outputLabel value="#{userBean.data}" />
+						<h:outputLabel value="#{userBean.diaSemana}" />
+					</h:panelGrid>
+					<h:panelGrid>
+						<h:commandButton styleClass="botaoLogout"
+							image="/resources/images/stylistica-icons-set/24x24/delete.png"
+							action="#{userBean.logout()}" />
+						<h:outputLabel
+							value="#{userBean.properties.getField('label.logout')}" />
+
+					</h:panelGrid>
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" cellpadding="10px"
+					styleClass="empresasHeaderGrid"
+					columnClasses="empresasHeaderGridNome, empresasHeaderGridSelectOneMenu">
 					<h:outputLabel
 						value="#{userBean.properties.getField('label.empresa')}" />
 					<p:selectOneMenu id="assinantesSelectOneMenu"
@@ -29,24 +47,7 @@
 						<f:selectItem itemLabel="Empresa 3" itemValue="3" />
 					</p:selectOneMenu>
 				</h:panelGrid>
-			</div>
-			<div id="SysDateDiv" class="sysDateArea">
-				<h:panelGrid>
-					<h:outputLabel value="#{userBean.data}" />
-					<h:outputLabel value="#{userBean.diaSemana}" />
-				</h:panelGrid>
-			</div>
-
-			<div id="SairButtonDiv" class="logoutButtonArea" align="right">
-				<h:panelGrid>
-					<h:commandButton styleClass="botaoLogout"
-						image="/resources/images/stylistica-icons-set/24x24/delete.png"
-						action="#{userBean.logout()}" />
-					<h:outputLabel
-						value="#{userBean.properties.getField('label.logout')}" />
-
-				</h:panelGrid>
-			</div>
+			</h:panelGrid>
 		</div>
 	</h:form>
 

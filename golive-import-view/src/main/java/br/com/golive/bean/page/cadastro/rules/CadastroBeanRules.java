@@ -97,16 +97,18 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	 * @param listaConteudo
 	 */
 	protected void init(final List<T> listaConteudo) {
+
+		logger = getLogger();
+		if(logger == null){
+			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o logger para que a página possa ser renderizada");
+		}
+		
 		this.conteudo = listaConteudo;
 		this.filtrados = new ArrayList<T>();
 		this.temp = new ArrayList<T>();
 		filtrados.addAll(conteudo);
 		fluxo = getFluxoListagem();
 		inicializarClasse();
-		logger = getLogger();
-		if(logger == null){
-			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o logger para que a página possa ser renderizada");
-		}
 	}
 
 	/**

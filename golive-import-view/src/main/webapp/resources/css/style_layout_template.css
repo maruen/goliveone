@@ -8,14 +8,14 @@ html,body {
 	padding: 0;
 	margin: 0;
 	width: 100%;
+	
 }
 
 .divMain {
 	position: absolute;
 	width: 100%;
-	margin-left: -5px;
-	margin-right: -5px;
-	height: 87.5vh;
+	height: 100%;
+	overflow: hidden;
 }
 
 .loadingFooter {
@@ -29,20 +29,26 @@ html,body {
 }
 
 .staticDiv {
-	position: fixed;
+	position: relative;
 	width: 100%;
-	top: -4%;
-	left: -0px;
 	margin: auto;
 	z-index: 1000;
 }
 
+.divHeaderNavegacao {
+	position: relative;
+	height: 110px;
+}
+
+.formHeader{
+	
+}
+
 .childMainDiv {
-	position: fixed;
-	right: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
+	position: relative;
+	height: 80%;
+	min-height: auto;
+	overflow-y: auto;
 }
 
 .menuDiv {
@@ -83,50 +89,69 @@ html,body {
 	position: relative;
 }
 
-.divHeaderNavegacao {
-	position: relative;
-}
+
 
 .divFooter {
+	position: absolute;
 	height: 4%;
 	margin-left: 4px;
 	bottom: 0;
 	text-align: right;
 	width: 100%;
-	position: fixed;
 	z-index: 1000;
 }
 
-.bemVindoUserArea {
-	position: relative;
-	left: 60%;
-	top: 75px;
-	color: #FFF;
+.gridHeaderGroup{
+	padding: 1px;
+	width: 100%;
 }
 
-.empresaDadosArea {
+.gridHeader{
 	position: relative;
-	text-align: center;
-	left: 32%;
-	top: 76px;
+	float: right;
+	right: 5%;
 }
 
-.sysDateArea {
+.gridHeaderNomeUsuario{
 	position: relative;
+	width: 70%;
 	text-align: right;
-	left: 78%;
-	top: -14px;
-	color: #FFF;
+	right: 10%;
+    vertical-align: bottom;
+	top: -3px;
 }
 
-.logoutButtonArea {
+.gridHeaderData{
+	width: 25%;
 	position: relative;
-	width: 3%;
-	left: 90%;
-	top: -63px;
+    vertical-align: bottom;
 	text-align: center;
-	color: #FFF;
 }
+
+.gridHeaderLogout{
+	width: 10%;
+	position: relative;
+    vertical-align: bottom;
+	text-align: center;
+}
+
+.empresasHeaderGrid{
+	position: relative;
+	float: right;
+	margin-right: 10%;
+
+
+}
+
+.empresasHeaderGridNome{
+
+}
+
+.empresasHeaderGridSelectOneMenu{
+	
+}
+
+
 
 .panelLoading {
 	margin: 0 auto;
@@ -215,10 +240,8 @@ html,body {
 
 .mainContentPage {
 	position: relative;
-	padding-top: 160px;
-	padding-left: 0%;
-	padding-right: 0%;
 	padding-bottom: 5%;
-	width: 100%;
+	left: 1%;
+	width: 98%;
 	overflow-y: auto;
 }
