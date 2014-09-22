@@ -22,13 +22,12 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
+import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoEmbed;
 import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
 import br.com.golive.entity.areaDeAtuacao.Cadastro;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.qualifier.LabelSystemInjected;
-import br.com.golive.relatorio.GeradorRelatorio;
-import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 
@@ -73,34 +72,51 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	}
 
 	@Override
-	public void exportarPdf() {
-
+	public Map<String, Object> obterParametrosRelatório(){
+		logger.info("Obtendo parametros para carregar relatório");
 		final Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("usuarioLogado", "Guilherme Desenvolvimento");
+		parametros.put("label.usuario", labels.getField("label.usuario"));
 		try {
+			logger.info("Carregando logo da empresa");
 			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("01.png")));
 		} catch (final IOException e) {
-			e.printStackTrace();
+			logger.error("Erro ao carregar logo da empresa");
 		}
-		try {
-			relatorios.gerarPdf(Cadastro.class, conteudo, parametros, labels);
-		} catch (GoLiveException | JRException | IOException e) {
-			e.printStackTrace();
-		}
-
+		return parametros;
 	}
-
+	
 	@Override
-	public void imprimir() {
-		logger.info("Imprimindo = {} ");
-
+	public void exportarPdf() {
+		try {
+			logger.info("Gerando relatório pdf, para classe = {}", Cadastro.class.getName() );
+			relatorios.gerarRelatorio(TipoRelatorio.PDF, Cadastro.class, conteudo, obterParametrosRelatório(), labels, null);
+		} catch (GoLiveException | JRException | IOException e) {
+			logger.error("Erro ao gerar relatorio em pdf = {}",  Cadastro.class.getName());
+		}
 	}
 
 	@Override
 	public void exportarXls() {
-		logger.info("Exportando xls = {} ");
+		try {
+			logger.info("Gerando relatório xls, para classe = {}", Cadastro.class.getName() );
+			relatorios.gerarRelatorio(TipoRelatorio.EXCEL, Cadastro.class, conteudo, obterParametrosRelatório(), labels, null);
+		} catch (GoLiveException | JRException | IOException e) {
+			logger.error("Erro ao gerar relatorio em xls = {}",  Cadastro.class.getName());
+		}	
 	}
-
+	
+	@Override
+	public void imprimir() {
+		try {
+			logger.info("imprimindo pagina, para classe = {}", Cadastro.class.getName());
+			relatorios.gerarRelatorio(TipoRelatorio.IMPRESSAO, Cadastro.class, conteudo, obterParametrosRelatório(), labels, impressoraSelecionada);
+		} catch (GoLiveException | JRException | IOException e) {
+			logger.error("Erro ao gerar relatorio em xls = {}",  Cadastro.class.getName());
+			logger.error("Excecao ={}", e.getMessage());
+		}	
+	}
+	
 	@Override
 	public void salvar() {
 		super.salvar();
@@ -116,8 +132,9 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 			logger.info("Cancelando edicao do registro = {} ", registro);
 		}
 	}
-
-	private boolean isSelecionado() {
+	
+	@Override
+	public boolean isSelecionado() {
 		if (registro == null) {
 			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
 			logger.info("Não existe registro para processar");
@@ -126,9 +143,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		return true;
 	}
 
-	public void criarLogsList() {
-	}
-
+	@Deprecated
 	public List<AreaDeAtuacaoEmbed> criarList() {
 		final List<AreaDeAtuacaoEmbed> lista = new ArrayList<AreaDeAtuacaoEmbed>();
 		final Calendar data = Calendar.getInstance();
@@ -144,31 +159,9 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	}
 
+	@Deprecated
 	public AreaDeAtuacaoEmbed conteudoLinha(final Long id, final Calendar cal, final Long valor, final String string) {
 		return new AreaDeAtuacaoEmbed(new Cadastro(id, cal, cal, "asw" + string), new AuditoriaLog(id, cal, string + "123", id + valor, string, new BigDecimal(valor), new BigDecimal(valor), string + "aa", string + "bb"));
-	}
-
-	public Calendar getDataInclusaoFiltro() {
-		return data;
-	}
-
-	public void setDataInclusaoFiltro(final Calendar dataInclusaoFiltro) {
-		data = dataInclusaoFiltro;
-	}
-
-	@Override
-	public Fluxo getFluxoListagem() {
-		return Fluxo.LISTAGEM;
-	}
-
-	@Override
-	public Fluxo getFluxoInclusao() {
-		return Fluxo.INCLUSAO;
-	}
-
-	@Override
-	public Fluxo getFluxoEdicao() {
-		return Fluxo.EDICAO;
 	}
 
 }

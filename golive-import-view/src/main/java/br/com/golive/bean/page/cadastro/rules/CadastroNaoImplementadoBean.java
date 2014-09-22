@@ -1,5 +1,7 @@
 package br.com.golive.bean.page.cadastro.rules;
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -78,6 +80,18 @@ public class CadastroNaoImplementadoBean extends CadastroBeanRules {
 
 	public static String getLabelpagina() {
 		return labelPagina;
+	}
+
+	@Override
+	public Map obterParametrosRelatório() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isSelecionado() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

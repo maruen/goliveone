@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -108,6 +109,10 @@ public class TipoProdutoBean extends CadastroBeanRules<GenericModel> {
 		
 	}
 
+<<<<<<< HEAD:golive-import-view/src/main/java/br/com/golive/bean/page/cadastro/cadastros/produtos/tipoProduto/CadastroTipoProdutoBean.java
+	@Override
+	public boolean isSelecionado() {
+=======
 	public List<List<Object>> getAuditoriaLogDatatable() {
 		return getRowsByColumns();
 	}
@@ -127,6 +132,7 @@ public class TipoProdutoBean extends CadastroBeanRules<GenericModel> {
 
 	
 	private boolean isSelecionado() {
+>>>>>>> 69b0a15af68858a37191348839e3eb1de41fef9a:golive-import-view/src/main/java/br/com/golive/bean/page/cadastro/cadastros/produtos/tipoProduto/TipoProdutoBean.java
 		if (registro == null) {
 			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
 			logger.info("Não existe registro para processar");
@@ -145,6 +151,14 @@ public class TipoProdutoBean extends CadastroBeanRules<GenericModel> {
 		}
 		return lista;
 
+	}
+
+
+
+	@Override
+	public Map<String, Object> obterParametrosRelatório() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
