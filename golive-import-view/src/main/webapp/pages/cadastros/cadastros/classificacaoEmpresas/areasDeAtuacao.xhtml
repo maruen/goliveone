@@ -51,11 +51,11 @@
 							value="#{areasDeAtuacaoBean.dataInclusao}" mask="true"
 							effect="fold">
 							<p:ajax event="dateSelect" update="conteudoTable"
-								listener="#{areasDeAtuacaoBean.filtrarDataInclusao(areasDeAtuacaoBean.dataInclusao)}" />
+								listener="#{areasDeAtuacaoBean.filtrarPorData('dataInclusao',areasDeAtuacaoBean.dataInclusao)}" />
 						</p:calendar>
 
 						<p:commandLink ajax="false"
-							actionListener="#{areasDeAtuacaoBean.filtrarDataInclusao(null)}"
+							actionListener="#{areasDeAtuacaoBean.filtrarPorData('dataInclusao', null)}"
 							styleClass="botaoFilter" update="conteudoTable">
 							<h:graphicImage
 								value="/resources/images/stylistica-icons-set/24x24/bin.png"
@@ -86,12 +86,13 @@
 							value="#{areasDeAtuacaoBean.dataAlteracao}" mask="true"
 							effect="fold">
 							<p:ajax event="dateSelect" update="conteudoTable"
-								listener="#{areasDeAtuacaoBean.filtrarDataAlteracao(areasDeAtuacaoBean.dataAlteracao)}" />
+								listener="#{areasDeAtuacaoBean.filtrarPorData('dataAlteracao',areasDeAtuacaoBean.dataAlteracao)}" />
+
 
 						</p:calendar>
 
 						<p:commandLink ajax="false"
-							actionListener="#{areasDeAtuacaoBean.filtrarDataAlteracao(null)}"
+							actionListener="#{areasDeAtuacaoBean.filtrarPorData('dataAlteracao', null)}"
 							styleClass="botaoFilter" update="conteudoTable">
 							<h:graphicImage
 								value="/resources/images/stylistica-icons-set/24x24/bin.png"
@@ -106,8 +107,8 @@
 				</h:outputText>
 			</p:column>
 
-			
-			
+
+
 
 			<p:column filterMatchMode="contains"
 				filterBy="#{list.cadastroAreaAtuacao.areaDeAtuacao}"

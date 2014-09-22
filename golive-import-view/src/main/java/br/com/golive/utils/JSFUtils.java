@@ -19,7 +19,6 @@ public class JSFUtils {
 
 	public static ExternalContext getExternalContext() {
 		return FacesContext.getCurrentInstance().getExternalContext();
-
 	}
 
 	public static void infoMessage(final String titulo, final String msg) {
@@ -42,7 +41,7 @@ public class JSFUtils {
 		getContext().addMessage(null, new FacesMessage(typeMessage, titulo, msg));
 	}
 
-	public static String getLabelPageName(final Class<?> clazz) {
+	public static String getLabelPageName(final Class<?> clazz) throws NullPointerException, GoLiveException {
 		if (clazz == null) {
 			throw new NullPointerException("Classe nula");
 		} else if (clazz.isAnnotationPresent(Label.class)) {
@@ -66,7 +65,6 @@ public class JSFUtils {
 
 	public static void forward(final String pagePath) throws IOException {
 		getContext().getExternalContext().dispatch(pagePath);
-
 	}
 
 }

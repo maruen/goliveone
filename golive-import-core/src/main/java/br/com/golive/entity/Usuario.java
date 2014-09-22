@@ -10,6 +10,8 @@ import lombok.Data;
 @Data
 public class Usuario implements Serializable{
 
+	private static final long serialVersionUID = -8750720313507700912L;
+	
 	private Long id;
 	private String nome;
 	private Calendar dataInclusao;

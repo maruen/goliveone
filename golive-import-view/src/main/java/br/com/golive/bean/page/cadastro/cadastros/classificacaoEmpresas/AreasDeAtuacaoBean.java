@@ -1,9 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresas;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,7 +19,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import net.sf.jasperreports.engine.JRException;
 
-import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
@@ -54,6 +51,9 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	private Date dataInclusao;
 
 	private Date dataAlteracao;
+	
+	private List<AreaDeAtuacaoEmbed> tmp = new ArrayList<AreaDeAtuacaoEmbed>();
+
 	
 	@Override
 	@PostConstruct
@@ -96,7 +96,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	public void exportarPdf() {
 		try {
 			logger.info("Gerando relatório pdf, para classe = {}", Cadastro.class.getName());
-			relatorios.gerarRelatorio(TipoRelatorio.PDF, Cadastro.class, conteudo, obterParametrosRelatório(), labels, null);
+			relatorios.gerarRelatorio(TipoRelatorio.PDF, Cadastro.class, conteudo, obterParametrosRelatório(), labels);
 		} catch (GoLiveException | JRException | IOException e) {
 			logger.error("Erro ao gerar relatorio em pdf = {}", Cadastro.class.getName());
 		}
@@ -106,7 +106,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	public void exportarXls() {
 		try {
 			logger.info("Gerando relatório xls, para classe = {}", Cadastro.class.getName());
-			relatorios.gerarRelatorio(TipoRelatorio.EXCEL, Cadastro.class, conteudo, obterParametrosRelatório(), labels, null);
+			relatorios.gerarRelatorio(TipoRelatorio.EXCEL, Cadastro.class, conteudo, obterParametrosRelatório(), labels);
 		} catch (GoLiveException | JRException | IOException e) {
 			logger.error("Erro ao gerar relatorio em xls = {}", Cadastro.class.getName());
 		}
@@ -116,7 +116,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	public void imprimir() {
 		try {
 			logger.info("imprimindo pagina, para classe = {}", Cadastro.class.getName());
-			relatorios.gerarRelatorio(TipoRelatorio.IMPRESSAO, Cadastro.class, conteudo, obterParametrosRelatório(), labels, impressoraSelecionada);
+			relatorios.gerarRelatorio(TipoRelatorio.IMPRESSAO, Cadastro.class, conteudo, obterParametrosRelatório(), labels);
 		} catch (GoLiveException | JRException | IOException e) {
 			logger.error("Erro ao gerar relatorio = {}", Cadastro.class.getName());
 			logger.error("Excecao ={}", e.getMessage());
@@ -153,7 +153,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Deprecated
 	public List<AreaDeAtuacaoEmbed> criarList() {
 		final List<AreaDeAtuacaoEmbed> lista = new ArrayList<AreaDeAtuacaoEmbed>();
-		final Calendar data = Calendar.getInstance();
 		Long id = 0L;
 		Long value = 10L;
 		final String str = "String";
@@ -171,64 +170,56 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		return new AreaDeAtuacaoEmbed(new Cadastro(id, cal, Calendar.getInstance(), "asw" + string), new AuditoriaLog(id, cal, string + "123", id + valor, string, new BigDecimal(valor), new BigDecimal(valor), string + "aa", string + "bb"));
 	}
 
-	public void filtrarDataInclusao(final Date date) {
-		try {
-			dataInclusao = date;
-			List<AreaDeAtuacaoEmbed> tmp = new ArrayList<AreaDeAtuacaoEmbed>();
-			tmp.addAll(filtrados);
-			if (dataInclusao != null) {
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-				for (AreaDeAtuacaoEmbed index : conteudo) {
-					if (!sdf.format(dataInclusao).equals(sdf.format(index.getCadastroAreaAtuacao().getDataInclusao().getTime()))) {
-						tmp.remove(index);
-					}
-				}
-				filtrados.removeAll(conteudo);
-				filtrados.addAll(tmp);
-			} else {
-				filtrados.removeAll(conteudo);
-				filtrados.addAll(conteudo);
-
-				if(dataAlteracao != null){
-					filtrarDataAlteracao(dataAlteracao);
-				}
-			}
-		
-
-			
-		} catch (Exception e) {
-			logger.error("Erro ao filtrar data de inclusao");
-			JSFUtils.errorMessage(labels.getField("title.msg.erro.ao.filtrar"), labels.getField("msg.erro.ao.filtrar") + " " + labels.getField("label.dataAlteracao"));
+	@Override
+	protected Date getDatePorFieldEntity(AreaDeAtuacaoEmbed entity, String field) {
+		if(field.equals("dataInclusao")){
+			return entity.getCadastroAreaAtuacao().getDataInclusao().getTime();
+		} else if (field.equals("dataAlteracao")){
+			return entity.getCadastroAreaAtuacao().getDataAlteracao().getTime();
+		} else {
+			throw new GoLiveException("Não existe o campo na entidade");
 		}
 	}
 
-	public void filtrarDataAlteracao(final Date date) {
-		try {
-			dataAlteracao = date;
-			List<AreaDeAtuacaoEmbed> tmp = new ArrayList<AreaDeAtuacaoEmbed>();
-			tmp.addAll(filtrados);
-			if (dataAlteracao != null) {
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-				for (AreaDeAtuacaoEmbed index : conteudo) {
-					if (!sdf.format(dataAlteracao).equals(sdf.format(index.getCadastroAreaAtuacao().getDataAlteracao().getTime()))) {
-						tmp.remove(index);
-					}
-				}
-				filtrados.removeAll(conteudo);
-				filtrados.addAll(tmp);
-			} else {
-				filtrados.removeAll(conteudo);
-				filtrados.addAll(conteudo);
-				if(dataInclusao != null){
-					filtrarDataInclusao(dataInclusao);
-				}				
-			}
+	@Override
+	protected void setDataMB(String field, Date data) {
+		if(field.equals("dataInclusao")){
+			dataInclusao = data;
+		} else if (field.equals("dataAlteracao")){
+			dataAlteracao = data;
+		} else {
+			throw new GoLiveException("Não existe o campo no managedBean");
+		}	
+	}
 
-
-		} catch (Exception e) {
-			logger.error("Erro ao filtrar data de inclusao");
-			JSFUtils.errorMessage(labels.getField("title.msg.erro.ao.filtrar"), labels.getField("msg.erro.ao.filtrar") + " " + labels.getField("label.dataAlteracao"));
+	@Override
+	protected Date getDataMB(String field) {
+		if(field.equals("dataInclusao")){
+			return dataInclusao;
+		} else if (field.equals("dataAlteracao")){
+			return dataAlteracao;
+		} else {
+			throw new GoLiveException("Não existe o campo no managedBean");
 		}
 	}
+
+	@Override
+	protected List<String> getFiltros(String field) {
+
+		List<String> filtros = new ArrayList<String>();
+		if(field.equals("dataInclusao")){
+			if(dataAlteracao != null){
+				filtros.add("dataAlteracao");
+			}
+		} else if (field.equals("dataAlteracao")){
+			if(dataInclusao != null){
+				filtros.add("dataInclusao");
+			}
+		} else {
+			throw new GoLiveException("Não existe o campo no managedBean");
+		}
+		return filtros;
+	}
+
 	
 }

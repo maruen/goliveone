@@ -157,4 +157,36 @@ public class TipoProdutoBean extends CadastroBeanRules<GenericModel> {
 		return null;
 	}
 
+
+
+	@Override
+	protected Date getDatePorFieldEntity(GenericModel entity, String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	protected void setDataMB(String field, Date data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	protected Date getDataMB(String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	protected List<String> getFiltros(String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

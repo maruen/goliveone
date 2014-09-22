@@ -28,7 +28,6 @@ import br.com.golive.utils.JSFUtils;
 @Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigo")
 @Data
 @EqualsAndHashCode(callSuper = false)
-@EqualsAndHashCode(callSuper=false)
 public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
@@ -135,6 +134,30 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 
 	@Override
 	public Map<String, Object> obterParametrosRelatório() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected Date getDatePorFieldEntity(GenericModel entity, String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void setDataMB(String field, Date data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected Date getDataMB(String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected List<String> getFiltros(String field) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -25,8 +25,10 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 	@Override
 	public Usuario obterPorUserName(final String username) {
 		try {
+			logger.info("Obetendo Usuario por username={}", username);
 			return geradorUsuario(username);
 		} catch (final IOException e) {
+			logger.error("Erro ao obter usuario");
 			e.printStackTrace();
 		}
 		return null;

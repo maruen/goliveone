@@ -47,10 +47,10 @@
 					styleClass="label little-font" />
 			</h:commandLink>
 
-			<p:commandLink styleClass="linkButton" onclick="PF('selecioneImpressoraDialog').show();"> 
+			<h:commandLink styleClass="linkButton" actionListener="#{bean.imprimir()}"> 
 				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/print.png" styleClass="image" />
 				<h:outputLabel value="#{userBean.properties.getField('label.imprimir')}" styleClass="label little-font" />
-			</p:commandLink>
+			</h:commandLink>
 
 			<h:commandLink actionListener="#{bean.exportarPdf()}" styleClass="linkButton">
 				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/print.png" styleClass="image" />
