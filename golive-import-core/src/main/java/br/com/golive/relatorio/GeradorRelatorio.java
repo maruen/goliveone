@@ -42,58 +42,78 @@ public class GeradorRelatorio<T> {
 		super();
 	}
 
-	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final Class<?> clazz, final List<?> conteudo, final Map<String, Object> parametros, final GoliveOneProperties properties) throws JRException, IOException, GoLiveException {
-		init(clazz);
-		verificarProperiedades(clazz, conteudo, parametros, properties);
-		if (verificarClazz(clazz)) {
+	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final List<?> conteudo, final Map<String, Object> parametros, final GoliveOneProperties properties) throws JRException, IOException, GoLiveException {
+		init();
+		verificarProperiedades(conteudo, parametros, properties);
 
-			inserirParametro(parametros, "tittle", getTitulo(clazz, properties));
-			inserirParametro(parametros, "logoFooter", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("footer.png")));
-			inserirParametro(parametros, "label.pagina", properties.getField("label.pagina"));
-			inserirParametro(parametros, "label.de", properties.getField("label.de"));
+		prepararParametrosDeTemplate(clazz, parametros, properties);
 
-			for (final Field field : clazz.getDeclaredFields()) {
-				if (field.isAnnotationPresent(Label.class)) {
-					inserirParametro(parametros, field.getAnnotation(Label.class).name(), properties.getField(field.getAnnotation(Label.class).name()));
+		for (final Field field : clazz.getDeclaredFields()) {
+			if (!inserirParametroAnotado(parametros, properties, field)) {
+				for (Field fieldChild : field.getType().getDeclaredFields()) {
+					inserirParametroAnotado(parametros, properties, fieldChild);
 				}
 			}
-
-			final JRBeanCollectionDataSource source = new JRBeanCollectionDataSource(conteudo);
-			final JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile.getPath(), parametros, source);
-			ServletOutputStream stream;
-
-			if (tipoRelatorio.equals(TipoRelatorio.IMPRESSAO)) {
-				JRPdfExporter exporter = new JRPdfExporter();
-				SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
-				configuration.setPdfJavaScript(PdfExporterConfiguration.PROPERTY_PDF_JAVASCRIPT);
-				stream = response.getOutputStream();
-				exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-				exporter.setConfiguration(configuration);
-				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(stream));
-				exporter.exportReport();
-				stream.flush();
-				stream.close();
-				FacesContext.getCurrentInstance().responseComplete();
-			} else {
-
-				response.addHeader("Content-disposition", "attachment; filename=" + getNomeDoArquivo(clazz, properties) + "." + tipoRelatorio.getExtensao());
-				stream = response.getOutputStream();
-
-				if (tipoRelatorio.equals(TipoRelatorio.PDF)) {
-					JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
-				} else if (tipoRelatorio.equals(TipoRelatorio.EXCEL)) {
-					JRXlsxExporter exporter = new JRXlsxExporter();
-					exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-					exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(stream));
-					exporter.exportReport();
-				}
-			}
-			stream.flush();
-			stream.close();
-			FacesContext.getCurrentInstance().responseComplete();
-
 		}
 
+		prepararImpressao(tipoRelatorio, clazz, conteudo, parametros, properties);
+
+	}
+
+	private void prepararParametrosDeTemplate(final Class<?> clazz, final Map<String, Object> parametros, final GoliveOneProperties properties) throws IOException {
+		inserirParametro(parametros, "tittle", getTitulo(clazz, properties));
+		inserirParametro(parametros, "logoFooter", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("footer.png")));
+		inserirParametro(parametros, "label.pagina", properties.getField("label.pagina"));
+		inserirParametro(parametros, "label.de", properties.getField("label.de"));
+	}
+
+	private void prepararImpressao(final TipoRelatorio tipoRelatorio, final Class<?> clazz, final List<?> conteudo, final Map<String, Object> parametros, final GoliveOneProperties properties) throws JRException, IOException {
+		final JRBeanCollectionDataSource source = new JRBeanCollectionDataSource(conteudo);
+		final JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile.getPath(), parametros, source);
+		ServletOutputStream stream;
+
+		if (tipoRelatorio.equals(TipoRelatorio.IMPRESSAO)) {
+			stream = response.getOutputStream();
+			gerarImpressao(jasperPrint, stream);
+
+		} else {
+			response.addHeader("Content-disposition", "attachment; filename=" + getNomeDoArquivo(clazz, properties) + "." + tipoRelatorio.getExtensao());
+			stream = response.getOutputStream();
+			gerarArquivos(tipoRelatorio, jasperPrint, stream);
+		}
+		stream.flush();
+		stream.close();
+		FacesContext.getCurrentInstance().responseComplete();
+	}
+
+	private boolean inserirParametroAnotado(final Map<String, Object> parametros, final GoliveOneProperties properties, Field fieldChild) {
+		if (fieldChild.isAnnotationPresent(Label.class)) {
+			inserirParametro(parametros, fieldChild.getAnnotation(Label.class).name(), properties.getField(fieldChild.getAnnotation(Label.class).name()));
+			return true;
+		}
+		return false;
+	}
+
+	private void gerarArquivos(final TipoRelatorio tipoRelatorio, final JasperPrint jasperPrint, ServletOutputStream stream) throws JRException {
+		if (tipoRelatorio.equals(TipoRelatorio.PDF)) {
+			JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+		} else if (tipoRelatorio.equals(TipoRelatorio.EXCEL)) {
+			JRXlsxExporter exporter = new JRXlsxExporter();
+			exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+			exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(stream));
+			exporter.exportReport();
+		}
+	}
+
+	private void gerarImpressao(final JasperPrint jasperPrint, ServletOutputStream stream) throws IOException, JRException {
+		JRPdfExporter exporter = new JRPdfExporter();
+		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+		configuration.setPdfJavaScript(PdfExporterConfiguration.PROPERTY_PDF_JAVASCRIPT);
+		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+		exporter.setConfiguration(configuration);
+		stream = response.getOutputStream();
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(stream));
+		exporter.exportReport();
 	}
 
 	private void inserirParametro(final Map<String, Object> parametros, final String key, final Object value) {
@@ -103,7 +123,7 @@ public class GeradorRelatorio<T> {
 		parametros.put(key, value);
 	}
 
-	private void init(final Class<?> clazz) {
+	private void init() {
 
 		if (jasperFile == null) {
 			jasperFile = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/jasper/br/com/golive/" + getJasperName(clazz) + ".jasper"));
@@ -114,19 +134,6 @@ public class GeradorRelatorio<T> {
 		}
 
 		response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-	}
-
-	private boolean verificarClazz(final Class<?> clazzChild) {
-		if (clazz.equals(clazzChild)) {
-			return true;
-		}
-
-		for (final Field field : clazz.getDeclaredFields()) {
-			if (field.getType().equals(clazzChild)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	private String getNomeDoArquivo(final Class<?> clazz, final GoliveOneProperties properties) throws GoLiveException {

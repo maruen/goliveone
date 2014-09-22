@@ -4,14 +4,9 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 import lombok.Data;
-import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 
 @Label(name = "label.dadosGerais")
-@Jasper(titulo="tittle.relatorio.cadastro", 
-		nomeDoArquivoGerado="file.name.areaDeAtuacao.Cadastro",
-		nomeArquivoJasper ="cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro"
-		)
 @Data
 public class Cadastro implements Serializable {
 	

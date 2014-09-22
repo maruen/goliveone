@@ -1,8 +1,12 @@
 package br.com.golive.entity.areaDeAtuacao;
 
+import br.com.golive.annotation.Jasper;
 import lombok.Data;
 
 @Data
+@Jasper(titulo="tittle.relatorio.cadastro", 
+nomeDoArquivoGerado="file.name.areaDeAtuacao.Cadastro",
+nomeArquivoJasper ="cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro")
 public class AreaDeAtuacaoEmbed {
 
 	private Cadastro cadastroAreaAtuacao;

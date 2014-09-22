@@ -17,7 +17,6 @@ import javax.inject.Inject;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import net.sf.jasperreports.engine.JRException;
 
 import org.slf4j.Logger;
 
@@ -92,34 +91,17 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Override
 	public void exportarPdf() {
-		try {
-			logger.info("Gerando relatório pdf, para classe = {}", Cadastro.class.getName());
-			relatorios.gerarRelatorio(TipoRelatorio.PDF, Cadastro.class, conteudo, obterParametrosRelatório(), labels);
-		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio em pdf = {}", Cadastro.class.getName());
-		}
+		gerarRelatorio(TipoRelatorio.PDF, labels);
 	}
 
 	@Override
 	public void exportarXls() {
-		try {
-			logger.info("Gerando relatório xls, para classe = {}", Cadastro.class.getName());
-			relatorios.gerarRelatorio(TipoRelatorio.EXCEL, Cadastro.class, conteudo, obterParametrosRelatório(), labels);
-		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio em xls = {}", Cadastro.class.getName());
-		}
+		gerarRelatorio(TipoRelatorio.EXCEL, labels);
 	}
 
 	@Override
 	public void imprimir() {
-		try {
-			logger.info("imprimindo pagina, para classe = {}", Cadastro.class.getName());
-			relatorios.gerarRelatorio(TipoRelatorio.IMPRESSAO, Cadastro.class, conteudo, obterParametrosRelatório(), labels);
-		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio = {}", Cadastro.class.getName());
-			logger.error("Excecao ={}", e.getMessage());
-			e.printStackTrace();
-		}
+		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
 	}
 
 	@Override

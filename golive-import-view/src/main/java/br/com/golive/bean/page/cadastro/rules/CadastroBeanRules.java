@@ -1,5 +1,6 @@
 package br.com.golive.bean.page.cadastro.rules;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -13,15 +14,18 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import lombok.Data;
+import net.sf.jasperreports.engine.JRException;
 
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
+import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.FilterUtils;
 import br.com.golive.utils.Fluxo;
+import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.Utils;
 
@@ -270,4 +274,14 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		return Fluxo.EDICAO;
 	}
 
+	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final GoliveOneProperties labels){
+		try {
+			logger.info("Gerando relatório para classe = {}", genericClazzInstance.getName());
+			relatorios.gerarRelatorio(tipoRelatorio, filtrados, obterParametrosRelatório(), labels);
+		} catch (GoLiveException | JRException | IOException e) {
+			logger.error("Erro ao gerar relatorio em xls = {}", genericClazzInstance.getName());
+		}
+	}
+	
+	
 }
