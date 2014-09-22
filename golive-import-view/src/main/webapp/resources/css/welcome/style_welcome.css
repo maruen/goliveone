@@ -1,13 +1,11 @@
 @CHARSET "UTF-8";
 
 .menuForm {
-	position: relative;
 	height: 100%;
 	background-color: #FFFFFF;
 	width: 99.5%;
 	overflow-y: auto;
 	padding-bottom: 50px;
-	top: 87px;
 }
 
 .menuPolimorficoDiv {

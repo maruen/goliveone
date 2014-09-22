@@ -25,9 +25,9 @@ import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
-@Label(name="label.cadastroProdutos.cadastroProdutos")
+@Label(name = "label.cadastroProdutos.cadastroProdutos")
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class ProdutoBean extends CadastroBeanRules<GenericModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
@@ -44,7 +44,7 @@ public class ProdutoBean extends CadastroBeanRules<GenericModel> {
 	private Long codigoProduto;
 	private String descricaoProduto;
 	private Date dataUltimaAlteracao;
-	private Date dataInclusao; 
+	private Date dataInclusao;
 	private List<String> unidades;
 	private List<String> codigos;
 	private List<String> descricoes;
@@ -53,19 +53,19 @@ public class ProdutoBean extends CadastroBeanRules<GenericModel> {
 	private List<String> cores;
 	private List<String> padraoLargura;
 	private List<String> padraoEspessura;
-	
+
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(criarList());
 		logger.info("Inicializando = {}", this.getClass().getName());
 
-		fluxo 				= getFluxoListagem();
-		data  				= Calendar.getInstance();
+		fluxo = getFluxoListagem();
+		data = Calendar.getInstance();
 		dataUltimaAlteracao = Calendar.getInstance().getTime();
-		dataInclusao		= Calendar.getInstance().getTime();
+		dataInclusao = Calendar.getInstance().getTime();
 	}
-	
+
 	public List<String> getCodigos() {
 		codigos = new ArrayList<String>();
 		codigos.add("Selecione Finalidade Código Produto");
@@ -197,7 +197,7 @@ public class ProdutoBean extends CadastroBeanRules<GenericModel> {
 		}
 		return dataTableRows;
 	}
-	
+
 	@Override
 	public void incluir() {
 		super.incluir();
@@ -221,7 +221,7 @@ public class ProdutoBean extends CadastroBeanRules<GenericModel> {
 			logger.info("Edicao de registro = {} ", registro);
 		}
 	}
-	
+
 	@Override
 	public void salvar() {
 		super.salvar();
@@ -237,23 +237,23 @@ public class ProdutoBean extends CadastroBeanRules<GenericModel> {
 			logger.info("Cancelando edicao do registro = {} ", registro);
 		}
 	}
-	
+
 	@Override
 	public void imprimir() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void exportarPdf() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void exportarXls() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -293,33 +293,9 @@ public class ProdutoBean extends CadastroBeanRules<GenericModel> {
 	}
 
 	@Override
-	protected Date getDatePorFieldEntity(GenericModel entity, String field) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected void setDataMB(String field, Date data) {
+	public void inicializarFiltros() {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	protected Date getDataMB(String field) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected List<String> getFiltros(String field) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	
-	
-
 
 }

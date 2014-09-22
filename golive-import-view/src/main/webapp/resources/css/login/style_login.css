@@ -11,7 +11,6 @@ html,body {
 .divHeaderNavegacao{
 	position: relative;
 	top: 0;
-	height: 160px;
 	margin: 0 auto;
 }
 
@@ -22,15 +21,10 @@ html,body {
 }
 
 .usuarioDivGrid {
-  width: 500px;
-  height: 380px;
-  overflow: auto;
-  margin: auto;
-  position: fixed;
-  top: 0; 
-  left: 0; 
-  bottom: 0; 
-  right: 0;
+	position: relative;
+	top: 225px;
+	margin: 0 auto;
+	width: 500px;
 }
 
 .rowTitleUsuarioGrid {

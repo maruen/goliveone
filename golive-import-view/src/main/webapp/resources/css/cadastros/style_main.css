@@ -1,13 +1,11 @@
 @CHARSET "UTF-8";
 
 .menuForm {
-	position: relative;
 	height: 100%;
 	background-color: #FFFFFF;
 	width: 98%;
 	margin-left: 1%;
 	overflow-y: auto;
-	top: 100px;
 	max-height: 87vh;	
 	margin-bottom:100px;
 }

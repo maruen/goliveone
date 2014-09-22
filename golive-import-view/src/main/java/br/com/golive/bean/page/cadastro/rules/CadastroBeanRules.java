@@ -3,9 +3,7 @@ package br.com.golive.bean.page.cadastro.rules;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -14,13 +12,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Data;
+
 import org.slf4j.Logger;
 
-import lombok.Data;
 import br.com.golive.annotation.Label;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
+import br.com.golive.utils.FilterUtils;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.Utils;
@@ -60,6 +60,7 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	protected List<T> temp;
 	protected T registro;
 	protected Class<T> genericClazzInstance;
+	protected FilterUtils<T> filterUtils;
 
 	public abstract void init();
 
@@ -73,13 +74,7 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 
 	public abstract Map<String, Object> obterParametrosRelatório();
 
-	protected abstract void setDataMB(final String field, final Date data);
-
-	protected abstract Date getDatePorFieldEntity(final T entity, final String field);
-
-	protected abstract Date getDataMB(final String field);
-
-	protected abstract List<String> getFiltros(final String field);
+	public abstract void inicializarFiltros();
 
 	protected abstract Logger getLogger();
 
@@ -99,16 +94,17 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	protected void init(final List<T> listaConteudo) {
 
 		logger = getLogger();
-		if(logger == null){
+		if (logger == null) {
 			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o logger para que a página possa ser renderizada");
 		}
-		
+
 		this.conteudo = listaConteudo;
 		this.filtrados = new ArrayList<T>();
 		this.temp = new ArrayList<T>();
 		filtrados.addAll(conteudo);
 		fluxo = getFluxoListagem();
 		inicializarClasse();
+		inicializarFiltros();
 	}
 
 	/**
@@ -168,77 +164,6 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		}
 		throw new GoLiveException("Erro ao obter classe de pojo, a classe: " + genericClazzInstance.getName() + " nao possui o campo: " + fieldName);
 	}
-
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responsável por realizar um filtro das listas com Calendar
-	 *         ou Date
-	 *         </p>
-	 * 
-	 * @param field
-	 * @param date
-	 */
-	public void filtrarPorData(final String field, final Date date) {
-		try {
-			logger.info("Filtrando lista por data, campo = {}", field);
-			setDataMB(field, date);
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			temp.addAll(conteudo);
-			if (getDataMB(field) != null) {
-				for (T index : conteudo) {
-					if (!sdf.format(getDataMB(field)).equals(sdf.format(getDatePorFieldEntity(index, field)))) {
-						temp.remove(index);
-					}
-				}
-			}
-			atualizarListaDeFiltrados();
-			filtrarPorPelosCamposRestantes(field, sdf);
-			atualizarListaDeFiltrados();
-			temp.removeAll(conteudo);
-		} catch (Exception e) {
-			logger.error("Houve um ao realizar o filtro com esta data");
-			logger.error(e.getMessage());
-			
-		}
-	}
-
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método utilizado pelo método filtrarPorData
-	 *         </p>
-	 * 
-	 * @param field
-	 * @param sdf
-	 */
-	private void filtrarPorPelosCamposRestantes(final String field, SimpleDateFormat sdf) {
-		for (String filtro : getFiltros(field)) {
-			if (filtro != null) {
-				for (T index : filtrados) {
-					if (!sdf.format(getDataMB(filtro)).equals(sdf.format(getDatePorFieldEntity(index, filtro)))) {
-						temp.remove(index);
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método utilizado pelo método filtrarPorData
-	 *         </p>
-	 * 
-	 */
-	private void atualizarListaDeFiltrados() {
-		filtrados.removeAll(conteudo);
-		filtrados.addAll(temp);
-	}
-
 	/**
 	 * @author Guilherme
 	 * 

@@ -51,11 +51,11 @@
 							value="#{areasDeAtuacaoBean.dataInclusao}" mask="true"
 							effect="fold">
 							<p:ajax event="dateSelect" update="conteudoTable"
-								listener="#{areasDeAtuacaoBean.filtrarPorData('dataInclusao',areasDeAtuacaoBean.dataInclusao)}" />
+								listener="#{areasDeAtuacaoBean.filterUtils.filtrarPorData(areasDeAtuacaoBean.conteudo, areasDeAtuacaoBean.temp, areasDeAtuacaoBean.filtrados, 'dataInclusao',areasDeAtuacaoBean.dataInclusao)}" />
 						</p:calendar>
 
 						<p:commandLink ajax="false"
-							actionListener="#{areasDeAtuacaoBean.filtrarPorData('dataInclusao', null)}"
+							actionListener="#{areasDeAtuacaoBean.filterUtils.filtrarPorData(areasDeAtuacaoBean.conteudo, areasDeAtuacaoBean.temp, areasDeAtuacaoBean.filtrados, 'dataInclusao', null)}"
 							styleClass="botaoFilter" update="conteudoTable">
 							<h:graphicImage
 								value="/resources/images/stylistica-icons-set/24x24/bin.png"
@@ -70,10 +70,6 @@
 				</h:outputText>
 			</p:column>
 
-
-
-
-
 			<p:column>
 				<f:facet name="header">
 					<h:outputLabel
@@ -86,13 +82,15 @@
 							value="#{areasDeAtuacaoBean.dataAlteracao}" mask="true"
 							effect="fold">
 							<p:ajax event="dateSelect" update="conteudoTable"
-								listener="#{areasDeAtuacaoBean.filtrarPorData('dataAlteracao',areasDeAtuacaoBean.dataAlteracao)}" />
-
-
+								listener="#{areasDeAtuacaoBean.filterUtils.filtrarPorData(areasDeAtuacaoBean.conteudo, areasDeAtuacaoBean.temp, areasDeAtuacaoBean.filtrados, 'dataAlteracao',areasDeAtuacaoBean.dataAlteracao)}" />
 						</p:calendar>
+						
+						<p:splitButton>
 
+						</p:splitButton>
+						
 						<p:commandLink ajax="false"
-							actionListener="#{areasDeAtuacaoBean.filtrarPorData('dataAlteracao', null)}"
+							actionListener="#{areasDeAtuacaoBean.filterUtils.filtrarPorData(areasDeAtuacaoBean.conteudo, areasDeAtuacaoBean.temp, areasDeAtuacaoBean.filtrados, 'dataAlteracao', null)}"
 							styleClass="botaoFilter" update="conteudoTable">
 							<h:graphicImage
 								value="/resources/images/stylistica-icons-set/24x24/bin.png"

@@ -29,6 +29,7 @@ import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
 import br.com.golive.entity.areaDeAtuacao.Cadastro;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.qualifier.LabelSystemInjected;
+import br.com.golive.utils.FilterUtils;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 
@@ -51,10 +52,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	private Date dataInclusao;
 
 	private Date dataAlteracao;
-	
-	private List<AreaDeAtuacaoEmbed> tmp = new ArrayList<AreaDeAtuacaoEmbed>();
 
-	
 	@Override
 	@PostConstruct
 	public void init() {
@@ -171,55 +169,61 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	}
 
 	@Override
-	protected Date getDatePorFieldEntity(AreaDeAtuacaoEmbed entity, String field) {
-		if(field.equals("dataInclusao")){
-			return entity.getCadastroAreaAtuacao().getDataInclusao().getTime();
-		} else if (field.equals("dataAlteracao")){
-			return entity.getCadastroAreaAtuacao().getDataAlteracao().getTime();
-		} else {
-			throw new GoLiveException("Não existe o campo na entidade");
-		}
-	}
+	public void inicializarFiltros() {
+		filterUtils = new FilterUtils<AreaDeAtuacaoEmbed>(logger) {
 
-	@Override
-	protected void setDataMB(String field, Date data) {
-		if(field.equals("dataInclusao")){
-			dataInclusao = data;
-		} else if (field.equals("dataAlteracao")){
-			dataAlteracao = data;
-		} else {
-			throw new GoLiveException("Não existe o campo no managedBean");
-		}	
-	}
-
-	@Override
-	protected Date getDataMB(String field) {
-		if(field.equals("dataInclusao")){
-			return dataInclusao;
-		} else if (field.equals("dataAlteracao")){
-			return dataAlteracao;
-		} else {
-			throw new GoLiveException("Não existe o campo no managedBean");
-		}
-	}
-
-	@Override
-	protected List<String> getFiltros(String field) {
-
-		List<String> filtros = new ArrayList<String>();
-		if(field.equals("dataInclusao")){
-			if(dataAlteracao != null){
-				filtros.add("dataAlteracao");
+			@Override
+			protected void setDataMB(String field, Date data) {
+				if (field.equals("dataInclusao")) {
+					dataInclusao = data;
+				} else if (field.equals("dataAlteracao")) {
+					dataAlteracao = data;
+				} else {
+					throw new GoLiveException("Não existe o campo no managedBean");
+				}
 			}
-		} else if (field.equals("dataAlteracao")){
-			if(dataInclusao != null){
-				filtros.add("dataInclusao");
+
+			@Override
+			protected List<String> getFiltros(String field) {
+
+				List<String> filtros = new ArrayList<String>();
+				if (field.equals("dataInclusao")) {
+					if (dataAlteracao != null) {
+						filtros.add("dataAlteracao");
+					}
+				} else if (field.equals("dataAlteracao")) {
+					if (dataInclusao != null) {
+						filtros.add("dataInclusao");
+					}
+				} else {
+					throw new GoLiveException("Não existe o campo no managedBean");
+				}
+				return filtros;
+
 			}
-		} else {
-			throw new GoLiveException("Não existe o campo no managedBean");
-		}
-		return filtros;
+
+			@Override
+			protected Date getDatePorFieldEntity(AreaDeAtuacaoEmbed entity, String field) {
+				if (field.equals("dataInclusao")) {
+					return entity.getCadastroAreaAtuacao().getDataInclusao().getTime();
+				} else if (field.equals("dataAlteracao")) {
+					return entity.getCadastroAreaAtuacao().getDataAlteracao().getTime();
+				} else {
+					throw new GoLiveException("Não existe o campo na entidade");
+				}
+			}
+
+			@Override
+			protected Date getDataMB(String field) {
+				if (field.equals("dataInclusao")) {
+					return dataInclusao;
+				} else if (field.equals("dataAlteracao")) {
+					return dataAlteracao;
+				} else {
+					throw new GoLiveException("Não existe o campo no managedBean");
+				}
+			}
+		};
 	}
 
-	
 }

@@ -1,7 +1,5 @@
 package br.com.golive.bean.page.cadastro.rules;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -97,31 +95,14 @@ public class CadastroNaoImplementadoBean extends CadastroBeanRules<Object> {
 	}
 
 	@Override
-	protected Date getDatePorFieldEntity(final Object entity, final String field) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected void setDataMB(final String field, final Date data) {
+	public void inicializarFiltros() {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	protected Date getDataMB(final String field) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected List<String> getFiltros(final String field) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	protected Logger getLogger() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

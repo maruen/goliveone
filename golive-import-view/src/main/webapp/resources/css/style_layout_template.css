@@ -44,15 +44,17 @@ html,body {
 	
 }
 
+
+
 .childMainDiv {
 	position: relative;
-	height: 80%;
+	height: 85%;
 	min-height: auto;
 	overflow-y: auto;
 }
 
 .menuDiv {
-	position: relative;
+	position: fixed;
 	width: 27%;
 	background-color: #FFF;
 	float: left;
@@ -65,12 +67,12 @@ html,body {
 	width: 73%;
 	height: 100%;
 	float: right;
-	top: 100px;
-	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .contentMainForm{
-	position: relative;
+	height: 90%;
+	padding-top: 10px;
 }
 
 .mainInsert {
@@ -82,7 +84,6 @@ html,body {
 	padding-right: 10%;
 	padding-left: 2%;
 	left: 15px;
-	overflow-y: auto;
 }
 
 .divHeaderOpcoes {
