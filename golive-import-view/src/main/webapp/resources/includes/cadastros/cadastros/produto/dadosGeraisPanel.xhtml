@@ -59,9 +59,8 @@
       				     style="width: 90%"
       				     disabled="true"/>  
       		
-      		<p:commandLink action="#" onclick="PF('dlg2').show();" immediate="true">
+      		<p:commandLink onclick="PF('dlg2').show();" immediate="true">
 				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/stop.png"  />
-				 <f:ajax />
 			</p:commandLink>
       		
       		
@@ -90,7 +89,6 @@
 			  widgetVar="dlg2"
 			  modal="false"
 			  resizable="false"
-			  dynamic="true"
 			  appendToBody="true"
 			  height="100%"
 			  width="75%">
@@ -134,9 +132,9 @@
       			</p:panelGrid>
       			
       			
-      			  <p:dataTable id="codigoBarrasPopupDatatableId"
-	        			 	   var="codigoBarrasPopupDatatableId"
-	        			 	   value="#{produtoBean.codigoBarrasDatatable}" >
+      			<p:dataTable id="codigoBarrasPopupDatatableId"
+	        	  	 	     var="codigoBarrasPopupDatatableId"
+	        			 	 value="#{produtoBean.codigoBarrasDatatable}" >
 			    
 					    <p:column headerText="Id"
 					    		  styleClass="percentual-5 singleLine">

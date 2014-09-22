@@ -47,7 +47,7 @@
         	<p:inputText  id="enderecamentoEstoquePavimentoInputText" value="" style="width: 98%;"/>
 
 
-     				<h:outputText id="enderecamentoEstoqueRuaOutputText" value="Rua" />
+     		<h:outputText id="enderecamentoEstoqueRuaOutputText" value="Rua" />
         	<p:inputText  id="enderecamentoEstoqueRuaInputText" value="" style="width: 97%;"/>
  		    
  	    
@@ -55,12 +55,67 @@
         	<p:inputText  id="enderecamentoEstoquePrateleiraInputText" value="" style="width: 97%;"/>
      		
         	
-        	<p:commandLink action="#">
+        	<p:commandLink onclick="PF('dlgEnderecamentoEstoque').show();" immediate="true">
   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 			 </p:commandLink>
         
         </h:panelGrid>
      
 </p:panel>
+
+
+<p:dialog header="Endereçamento Estoque"
+			  widgetVar="dlgEnderecamentoEstoque"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="75%">
+    			
+      			
+     			<p:dataTable id="enderecamentoEstoqueDatatableId"
+        	  	 	     var="enderecamentoEstoqueDatatableVar"
+        			 	 value="#{produtoBean.codigoBarrasDatatable}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-5 singleLine">
+				     	
+				     		<h:outputText value="00000000000001"  styleClass="floatRight"/>
+				     	   
+				    </p:column>
+				    
+				    
+				    <p:column headerText="Pavimento"
+				    		  styleClass="percentual-5 singleLine">
+				     	
+				     		<h:outputText value="Pavimento A"  styleClass="floatRight"/>
+				     	   
+				    </p:column>
+				    
+				    <p:column headerText="Rua"
+				    		  styleClass="percentual-5 singleLine">
+				     	
+				     		<h:outputText value="Rua 123"  styleClass="floatRight"/>
+				     	   
+				    </p:column>
+				    
+				    <p:column headerText="Prateleira"
+				    		  styleClass="percentual-5 singleLine">
+				     	
+				     		<h:outputText value="Prateileira ABC"  styleClass="floatRight"/>
+				     	   
+				    </p:column>
+				    
+				    
+		</p:dataTable>
+     			
+</p:dialog>
+
+
+
+
+
+
+
   	
 </ui:composition>    	

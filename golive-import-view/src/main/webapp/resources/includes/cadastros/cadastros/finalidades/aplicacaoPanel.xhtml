@@ -4,7 +4,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!--  UNIDADES -->
+<!-- APLICAÇÃO -->
+
 <p:panel id="aplicacaoPanel"
 			 header="Aplicação"
 			 toggleable="true"
@@ -23,8 +24,8 @@
 		    			
    			 <p:panelGrid cellpadding="3"
      			 	 	  cellspacing="3"
-     			 		  width="100%"
      			 		  style="vertical-align: top;"
+     			 		  styleClass="percentual-100"
      			 		  border="0" >
 	 
 	 					<p:row>			    
@@ -308,7 +309,7 @@
 				        				   		<p:column styleClass="percentual-40">
 				        				   				<h:outputText id="aplicacaoFaturamentoGrupoFiscalSATOutputTExt"
 				  												  	  class="singleLine" 
-				  												  	  value="Cuspom Fiscal / SAT" />
+				  												  	  value="Cupom Fiscal / SAT" />
 				        				   		</p:column>
 				        				   		
 				        				   		<p:column styleClass="percentual-2">
@@ -427,5 +428,6 @@
 	        
 	     
 </p:panel>
+
 
 </ui:composition>
