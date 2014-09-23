@@ -4,3 +4,8 @@
 	color: #222222;
 	vertical-align: top;
 }
+
+.ui-panelgrid {
+	border-collapse: initial !IMPORTANT;
+}
+
