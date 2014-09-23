@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,8 +48,13 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
 
-	private Calendar data = Calendar.getInstance();
+	private Date dataInclusao;
 
+	private Date dataAlteracao;
+	
+	private List<AreaDeAtuacaoEmbed> tmp = new ArrayList<AreaDeAtuacaoEmbed>();
+
+	
 	@Override
 	@PostConstruct
 	public void init() {
@@ -72,7 +78,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	}
 
 	@Override
-	public Map<String, Object> obterParametrosRelatório(){
+	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");
 		final Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("usuarioLogado", "Guilherme Desenvolvimento");
@@ -85,38 +91,39 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		}
 		return parametros;
 	}
-	
+
 	@Override
 	public void exportarPdf() {
 		try {
-			logger.info("Gerando relatório pdf, para classe = {}", Cadastro.class.getName() );
-			relatorios.gerarRelatorio(TipoRelatorio.PDF, Cadastro.class, conteudo, obterParametrosRelatório(), labels, null);
+			logger.info("Gerando relatório pdf, para classe = {}", Cadastro.class.getName());
+			relatorios.gerarRelatorio(TipoRelatorio.PDF, Cadastro.class, conteudo, obterParametrosRelatório(), labels);
 		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio em pdf = {}",  Cadastro.class.getName());
+			logger.error("Erro ao gerar relatorio em pdf = {}", Cadastro.class.getName());
 		}
 	}
 
 	@Override
 	public void exportarXls() {
 		try {
-			logger.info("Gerando relatório xls, para classe = {}", Cadastro.class.getName() );
-			relatorios.gerarRelatorio(TipoRelatorio.EXCEL, Cadastro.class, conteudo, obterParametrosRelatório(), labels, null);
+			logger.info("Gerando relatório xls, para classe = {}", Cadastro.class.getName());
+			relatorios.gerarRelatorio(TipoRelatorio.EXCEL, Cadastro.class, conteudo, obterParametrosRelatório(), labels);
 		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio em xls = {}",  Cadastro.class.getName());
-		}	
+			logger.error("Erro ao gerar relatorio em xls = {}", Cadastro.class.getName());
+		}
 	}
-	
+
 	@Override
 	public void imprimir() {
 		try {
 			logger.info("imprimindo pagina, para classe = {}", Cadastro.class.getName());
-			relatorios.gerarRelatorio(TipoRelatorio.IMPRESSAO, Cadastro.class, conteudo, obterParametrosRelatório(), labels, impressoraSelecionada);
+			relatorios.gerarRelatorio(TipoRelatorio.IMPRESSAO, Cadastro.class, conteudo, obterParametrosRelatório(), labels);
 		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio em xls = {}",  Cadastro.class.getName());
+			logger.error("Erro ao gerar relatorio = {}", Cadastro.class.getName());
 			logger.error("Excecao ={}", e.getMessage());
-		}	
+			e.printStackTrace();
+		}
 	}
-	
+
 	@Override
 	public void salvar() {
 		super.salvar();
@@ -132,7 +139,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 			logger.info("Cancelando edicao do registro = {} ", registro);
 		}
 	}
-	
+
 	@Override
 	public boolean isSelecionado() {
 		if (registro == null) {
@@ -146,12 +153,11 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Deprecated
 	public List<AreaDeAtuacaoEmbed> criarList() {
 		final List<AreaDeAtuacaoEmbed> lista = new ArrayList<AreaDeAtuacaoEmbed>();
-		final Calendar data = Calendar.getInstance();
 		Long id = 0L;
 		Long value = 10L;
 		final String str = "String";
-		for (int i = 0; i < 100; i++) {
-			lista.add(conteudoLinha(id, data, value, str));
+		for (int i = 0; i < 25; i++) {
+			lista.add(conteudoLinha(id, Calendar.getInstance(), value, str));
 			id++;
 			value = (value * id) / 2;
 		}
@@ -161,7 +167,59 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Deprecated
 	public AreaDeAtuacaoEmbed conteudoLinha(final Long id, final Calendar cal, final Long valor, final String string) {
-		return new AreaDeAtuacaoEmbed(new Cadastro(id, cal, cal, "asw" + string), new AuditoriaLog(id, cal, string + "123", id + valor, string, new BigDecimal(valor), new BigDecimal(valor), string + "aa", string + "bb"));
+		return new AreaDeAtuacaoEmbed(new Cadastro(id, cal, Calendar.getInstance(), "asw" + string), new AuditoriaLog(id, cal, string + "123", id + valor, string, new BigDecimal(valor), new BigDecimal(valor), string + "aa", string + "bb"));
 	}
 
+	@Override
+	protected Date getDatePorFieldEntity(AreaDeAtuacaoEmbed entity, String field) {
+		if(field.equals("dataInclusao")){
+			return entity.getCadastroAreaAtuacao().getDataInclusao().getTime();
+		} else if (field.equals("dataAlteracao")){
+			return entity.getCadastroAreaAtuacao().getDataAlteracao().getTime();
+		} else {
+			throw new GoLiveException("Não existe o campo na entidade");
+		}
+	}
+
+	@Override
+	protected void setDataMB(String field, Date data) {
+		if(field.equals("dataInclusao")){
+			dataInclusao = data;
+		} else if (field.equals("dataAlteracao")){
+			dataAlteracao = data;
+		} else {
+			throw new GoLiveException("Não existe o campo no managedBean");
+		}	
+	}
+
+	@Override
+	protected Date getDataMB(String field) {
+		if(field.equals("dataInclusao")){
+			return dataInclusao;
+		} else if (field.equals("dataAlteracao")){
+			return dataAlteracao;
+		} else {
+			throw new GoLiveException("Não existe o campo no managedBean");
+		}
+	}
+
+	@Override
+	protected List<String> getFiltros(String field) {
+
+		List<String> filtros = new ArrayList<String>();
+		if(field.equals("dataInclusao")){
+			if(dataAlteracao != null){
+				filtros.add("dataAlteracao");
+			}
+		} else if (field.equals("dataAlteracao")){
+			if(dataInclusao != null){
+				filtros.add("dataInclusao");
+			}
+		} else {
+			throw new GoLiveException("Não existe o campo no managedBean");
+		}
+		return filtros;
+	}
+
+	
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="3" bottomMargin="0" uuid="fee31dc0-a156-4be9-bac4-1b14477884f6">
-	<property name="ireport.zoom" value="4.177248169415688"/>
-	<property name="ireport.x" value="810"/>
-	<property name="ireport.y" value="213"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="35" bottomMargin="0" uuid="fee31dc0-a156-4be9-bac4-1b14477884f6">
+	<property name="ireport.zoom" value="1.7715610000000155"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Zebra" mode="Transparent">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 1]]></conditionExpression>
@@ -36,7 +36,7 @@
 			<textField>
 				<reportElement x="172" y="11" width="383" height="80" uuid="ba3a1fd6-124e-4188-a138-e60de12fdb88"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="30"/>
+					<font size="20"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tittle}]]></textFieldExpression>
 			</textField>

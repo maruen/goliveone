@@ -1,5 +1,7 @@
 package br.com.golive.bean.page.cadastro.rules;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +16,7 @@ import br.com.golive.utils.GoliveOneProperties;
 
 @ManagedBean
 @ViewScoped
-public class CadastroNaoImplementadoBean extends CadastroBeanRules {
+public class CadastroNaoImplementadoBean extends CadastroBeanRules<Object> {
 
 	private static final long serialVersionUID = 8476998410907807686L;
 
@@ -32,7 +34,7 @@ public class CadastroNaoImplementadoBean extends CadastroBeanRules {
 	@PostConstruct
 	public void init() {
 		logger.info("Inicializando = {}", this.getClass().getName());
-		implementada = false;
+		setImplementada(false);
 		fluxo = getFluxoListagem();
 	}
 
@@ -83,7 +85,7 @@ public class CadastroNaoImplementadoBean extends CadastroBeanRules {
 	}
 
 	@Override
-	public Map obterParametrosRelatório() {
+	public Map<String, Object> obterParametrosRelatório() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -92,6 +94,35 @@ public class CadastroNaoImplementadoBean extends CadastroBeanRules {
 	public boolean isSelecionado() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	protected Date getDatePorFieldEntity(final Object entity, final String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void setDataMB(final String field, final Date data) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected Date getDataMB(final String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected List<String> getFiltros(final String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected Logger getLogger() {
+		return null;
 	}
 
 }

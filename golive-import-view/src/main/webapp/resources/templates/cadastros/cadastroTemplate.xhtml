@@ -21,28 +21,6 @@
 
 		<h:form id="toolBarForm">
 			<ui:include src="/resources/includes/header/toolbar.xhtml" />
-			<p:dialog widgetVar="selecioneImpressoraDialog" draggable="false"
-				showEffect="bounce" hideEffect="blind" closable="false" closeOnEscape="true"
-				resizable="false" showHeader="false">
-
-				<p:fieldset legend="Selecione um impressoara"
-					style="margin-bottom:20px">
-					<p:selectOneRadio id="impressoras" layout="grid" columns="1"
-						value="#{bean.nomeDaImpressoraSelecionada}">
-						<c:forEach items="#{bean.impressoras}" var="impressora">
-							<f:selectItem itemLabel="#{impressora.name}"
-								itemValue="#{impressora}" />
-						</c:forEach>
-						<p:ajax event="change" listener="#{bean.selecionarImpressoraPorNome()}"/>
-					</p:selectOneRadio>
-					<h:panelGrid columns="2">
-						<p:commandButton action="#{bean.imprimir()}" value="Imprimir" onstart="loading();" onsuccess="PF('selecioneImpressoraDialog').hide();" />
-						<p:commandButton onclick="PF('selecioneImpressoraDialog').hide();"
-							value="Cancelar" />
-					</h:panelGrid>
-				</p:fieldset>
-			</p:dialog>
-
 		</h:form>
 	</ui:define>
 

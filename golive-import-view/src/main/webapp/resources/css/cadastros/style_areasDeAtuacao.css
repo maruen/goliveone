@@ -6,3 +6,17 @@
     overflow:hidden;
     text-overflow:ellipsis;
 }
+
+.gridInclusaoFiltro{
+	position: relative;
+	left: 60px;
+
+}
+
+.colunaUmFiltroInclusao{
+	float:left;
+} 
+
+.colunaDoisFiltroInclusao{
+	float:left;
+}

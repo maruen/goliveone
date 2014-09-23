@@ -18,45 +18,100 @@
 	<ui:define name="conteudo">
 
 
-		<p:dataTable id="conteudoTable" var="list" 
+		<p:dataTable id="conteudoTable" var="list"
 			selection="#{areasDeAtuacaoBean.registro}"
 			value="#{areasDeAtuacaoBean.conteudo}" selectionMode="single"
-			rowKey="#{list.cadastroAreaAtuacao.id}" styleClass="tableCadastros" rows="15"
-			paginator="true" 
+			rowKey="#{list.cadastroAreaAtuacao.id}" styleClass="tableCadastros"
+			rows="15" paginator="true"
+			filteredValue="#{areasDeAtuacaoBean.filtrados}"
 			emptyMessage="#{userBean.properties.getField('msg.nao.ha.registros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowSelect" update="conteudoTable" />
 			<p:ajax event="rowUnselect" update="conteudoTable" />
 
-			<p:column selectionMode="single"  style="width:16px;text-align:center" />
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column headerText="#{userBean.properties.getField('label.id')}"
 				styleClass="width-size-10" filterStyleClass="width-size-70;"
-				filterMatchMode="contains" filterBy="#{list.id}">
+				filterMatchMode="contains" filterBy="#{list.cadastroAreaAtuacao.id}">
 				<h:outputLabel value="#{list.cadastroAreaAtuacao.id}" />
 			</p:column>
 
-			<p:column
-				headerText="#{userBean.properties.getField('label.dataInclusao')}"
-				filterBy="#{list.cadastroAreaAtuacao.dataAlteracao.time.toString()}"
-				filterMatchMode="contains" styleClass="width-size-30">
 
-				<h:outputLabel value="#{list.cadastroAreaAtuacao.dataInclusao.time}">
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel
+						value="#{userBean.properties.getField('label.dataInclusao')}" />
+					<br />
+					<h:panelGrid columns="2" styleClass="gridInclusaoFiltro"
+						columnClasses="colunaUmFiltroInclusao , colunaDoisFiltroInclusao">
+						<p:calendar id="filterInclusao" pattern="dd/MM/yyyy"
+							styleClass="inputFilter"
+							value="#{areasDeAtuacaoBean.dataInclusao}" mask="true"
+							effect="fold">
+							<p:ajax event="dateSelect" update="conteudoTable"
+								listener="#{areasDeAtuacaoBean.filtrarPorData('dataInclusao',areasDeAtuacaoBean.dataInclusao)}" />
+						</p:calendar>
+
+						<p:commandLink ajax="false"
+							actionListener="#{areasDeAtuacaoBean.filtrarPorData('dataInclusao', null)}"
+							styleClass="botaoFilter" update="conteudoTable">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/bin.png"
+								styleClass="image" />
+						</p:commandLink>
+
+					</h:panelGrid>
+
+				</f:facet>
+				<h:outputText value="#{list.cadastroAreaAtuacao.dataInclusao.time}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-				</h:outputLabel>
+				</h:outputText>
 			</p:column>
 
-			<p:column filterBy="#{list.dataAlteracao.time}"
-				filterMatchMode="contains"
-				headerText="#{userBean.properties.getField('label.dataAlteracao')}"
-				styleClass="width-size-30">
-				<h:outputLabel value="#{list.cadastroAreaAtuacao.dataAlteracao.time}">
+
+
+
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel
+						value="#{userBean.properties.getField('label.dataAlteracao')}" />
+					<br />
+					<h:panelGrid columns="2" styleClass="gridInclusaoFiltro"
+						columnClasses="colunaUmFiltroInclusao , colunaDoisFiltroInclusao">
+						<p:calendar id="filterAlteracao" pattern="dd/MM/yyyy"
+							styleClass="inputFilter"
+							value="#{areasDeAtuacaoBean.dataAlteracao}" mask="true"
+							effect="fold">
+							<p:ajax event="dateSelect" update="conteudoTable"
+								listener="#{areasDeAtuacaoBean.filtrarPorData('dataAlteracao',areasDeAtuacaoBean.dataAlteracao)}" />
+
+
+						</p:calendar>
+
+						<p:commandLink ajax="false"
+							actionListener="#{areasDeAtuacaoBean.filtrarPorData('dataAlteracao', null)}"
+							styleClass="botaoFilter" update="conteudoTable">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/bin.png"
+								styleClass="image" />
+						</p:commandLink>
+
+					</h:panelGrid>
+
+				</f:facet>
+				<h:outputText value="#{list.cadastroAreaAtuacao.dataAlteracao.time}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-				</h:outputLabel>
+				</h:outputText>
 			</p:column>
 
-			<p:column filterMatchMode="contains" filterBy="#{list.areaDeAtuacao}"
+
+
+
+			<p:column filterMatchMode="contains"
+				filterBy="#{list.cadastroAreaAtuacao.areaDeAtuacao}"
 				headerText="#{userBean.properties.getField('label.areaDeAtuacao')}"
 				styleClass="width-size-30">
 				<h:outputLabel value="#{list.cadastroAreaAtuacao.areaDeAtuacao}" />
@@ -70,15 +125,19 @@
 	<ui:define name="edicao">
 		<ui:include
 			src="/resources/includes/cadastros/componentsGenericos/dadosGerais.xhtml">
-			<ui:param name="pojo" value="#{areasDeAtuacaoBean.registro.cadastroAreaAtuacao}" />
-			<ui:param name="clazz" value="#{areasDeAtuacaoBean.getPojoClass('cadastroAreaAtuacao')}" />
-			
+			<ui:param name="pojo"
+				value="#{areasDeAtuacaoBean.registro.cadastroAreaAtuacao}" />
+			<ui:param name="clazz"
+				value="#{areasDeAtuacaoBean.getPojoClass('cadastroAreaAtuacao')}" />
+
 		</ui:include>
 
 		<ui:include
 			src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
-			<ui:param name="pojo" value="#{areasDeAtuacaoBean.registro.auditoriaLog}" />
-			<ui:param name="clazz" value="#{areasDeAtuacaoBean.getPojoClass('auditoriaLog')}" />
+			<ui:param name="pojo"
+				value="#{areasDeAtuacaoBean.registro.auditoriaLog}" />
+			<ui:param name="clazz"
+				value="#{areasDeAtuacaoBean.getPojoClass('auditoriaLog')}" />
 		</ui:include>
 	</ui:define>
 

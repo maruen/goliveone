@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.finalidades;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.tipoProduto;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,10 +25,10 @@ import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
-@Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigo")
+@Label(name="label.cadastros.produtos.tipoProduto.tipoProduto")
 @Data
-@EqualsAndHashCode(callSuper = false)
-public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
+@EqualsAndHashCode(callSuper=false)
+public class TipoProdutoBean extends CadastroBeanRules<GenericModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 
@@ -39,19 +39,18 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
 	private Calendar data;
-
+	
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(criarList());
 		logger.info("Inicializando = {}", this.getClass().getName());
-
-		fluxo = getFluxoListagem();
-		data = Calendar.getInstance();
-		fluxo = getFluxoListagem();
-		data = Calendar.getInstance();
+		fluxo 				= getFluxoListagem();
+		data  				= Calendar.getInstance();
 	}
-
+	
+	
+	
 	@Override
 	public void incluir() {
 		super.incluir();
@@ -75,7 +74,7 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 			logger.info("Edicao de registro = {} ", registro);
 		}
 	}
-
+	
 	@Override
 	public void salvar() {
 		super.salvar();
@@ -91,8 +90,47 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 			logger.info("Cancelando edicao do registro = {} ", registro);
 		}
 	}
+	
+	@Override
+	public void imprimir() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
+	public void exportarPdf() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exportarXls() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<List<Object>> getAuditoriaLogDatatable() {
+		return getRowsByColumns();
+	}
+	
+	private List<List<Object>> getRowsByColumns() {
+		final List<List<Object>> dataTableRows = new ArrayList<List<Object>>();
+
+		for (int lines = 1; lines <= 5; lines++) {
+			final List<Object> row = new ArrayList<Object>();
+			for (int columns = 1; columns <= 20; columns++) {
+				row.add(new String("XXXXXX"));
+			}
+			dataTableRows.add(row);
+		}
+		return dataTableRows;
+	}
+
+<<<<<<< HEAD
+	@Override
+=======
+	
+>>>>>>> 8314436464929da404093b3046fbcca22d039a13
 	public boolean isSelecionado() {
 		if (registro == null) {
 			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
@@ -114,50 +152,10 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 
 	}
 
-	@Override
-	public void imprimir() {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void exportarPdf() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void exportarXls() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public Map<String, Object> obterParametrosRelatório() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected Date getDatePorFieldEntity(GenericModel entity, String field) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected void setDataMB(String field, Date data) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected Date getDataMB(String field) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected List<String> getFiltros(String field) {
 		// TODO Auto-generated method stub
 		return null;
 	}

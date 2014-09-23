@@ -9,23 +9,21 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
-import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.export.PdfExporterConfiguration;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 import br.com.golive.constants.TipoRelatorio;
@@ -44,7 +42,7 @@ public class GeradorRelatorio<T> {
 		super();
 	}
 
-	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final Class<?> clazz, final List<?> conteudo, final Map<String, Object> parametros, final GoliveOneProperties properties, final PrintService impressora) throws JRException, IOException, GoLiveException {
+	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final Class<?> clazz, final List<?> conteudo, final Map<String, Object> parametros, final GoliveOneProperties properties) throws JRException, IOException, GoLiveException {
 		init(clazz);
 		verificarProperiedades(clazz, conteudo, parametros, properties);
 		if (verificarClazz(clazz)) {
@@ -62,24 +60,24 @@ public class GeradorRelatorio<T> {
 
 			final JRBeanCollectionDataSource source = new JRBeanCollectionDataSource(conteudo);
 			final JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile.getPath(), parametros, source);
+			ServletOutputStream stream;
 
 			if (tipoRelatorio.equals(TipoRelatorio.IMPRESSAO)) {
-
-				if(impressora != null){
-					JRPrintServiceExporter exporter = new JRPrintServiceExporter();
-					exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-					exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, impressora.getAttributes());
-					exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
-					exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
-					exporter.exportReport();
-				} else {
-					throw new GoLiveException("Impressora nao foi selecionada");
-				}
-				
+				JRPdfExporter exporter = new JRPdfExporter();
+				SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+				configuration.setPdfJavaScript(PdfExporterConfiguration.PROPERTY_PDF_JAVASCRIPT);
+				stream = response.getOutputStream();
+				exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+				exporter.setConfiguration(configuration);
+				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(stream));
+				exporter.exportReport();
+				stream.flush();
+				stream.close();
+				FacesContext.getCurrentInstance().responseComplete();
 			} else {
 
 				response.addHeader("Content-disposition", "attachment; filename=" + getNomeDoArquivo(clazz, properties) + "." + tipoRelatorio.getExtensao());
-				ServletOutputStream stream = response.getOutputStream();
+				stream = response.getOutputStream();
 
 				if (tipoRelatorio.equals(TipoRelatorio.PDF)) {
 					JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
@@ -89,13 +87,13 @@ public class GeradorRelatorio<T> {
 					exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(stream));
 					exporter.exportReport();
 				}
-				stream.flush();
-				stream.close();
-
 			}
+			stream.flush();
+			stream.close();
 			FacesContext.getCurrentInstance().responseComplete();
+
 		}
-		
+
 	}
 
 	private void inserirParametro(final Map<String, Object> parametros, final String key, final Object value) {

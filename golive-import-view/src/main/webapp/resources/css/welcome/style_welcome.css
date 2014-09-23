@@ -4,15 +4,12 @@
 	position: relative;
 	height: 100%;
 	background-color: #FFFFFF;
-	width: 98%;
-	margin-left: 1%;
+	width: 99.5%;
 	overflow-y: auto;
 	padding-bottom: 50px;
-	top: 100px;
-
+	top: 87px;
 }
 
-.menuPolimorficoDiv{
+.menuPolimorficoDiv {
 	background-color: #585858;
 }
-
