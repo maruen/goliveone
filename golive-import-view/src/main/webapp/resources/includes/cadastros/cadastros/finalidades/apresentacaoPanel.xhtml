@@ -4,7 +4,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!--  UNIDADES -->
+<!--  APRESENTAÇÃO -->
 <p:panel id="apresentacaoPanel"
 			 header="Apresentação"
 			 toggleable="true"
@@ -23,8 +23,8 @@
 		    			
    			 <p:panelGrid cellpadding="3"
      			 	 	  cellspacing="3"
-     			 		  width="100%"
      			 		  style="vertical-align: top;"
+     			 		  styleClass="percentual-100"
      			 		  border="0" >
 	 
 	 					<p:row>			    
@@ -108,7 +108,7 @@
 	 			    	
 	 			    	<!-- 2ND COLUMN -->
  			    	    
-	        			<p:column>
+	        			<p:column styleClass="percentual-33">
 	 			    	   <p:fieldset legend="Vendas" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;" >
 			        				    
 		        				    <p:panelGrid cellpadding="3"
@@ -409,7 +409,6 @@
 				  												  	  value="NF-e Beneficiamento" />
 				        				   		</p:column>
 				        				   </p:row>
-				        				   
 				        				   
 				        				   
 	                         	</p:panelGrid>
