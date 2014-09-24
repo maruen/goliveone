@@ -7,16 +7,27 @@
     text-overflow:ellipsis;
 }
 
-.gridInclusaoFiltro{
+.colunaUmFiltroData{
+	width: 24px;
 	position: relative;
-	left: 60px;
+	left: 30px;
+	top: 2px;
+}
+
+.colunaDoisFiltroData{
+	width: 120%;
+}
+
+.colunaTresFiltroData{
+	width: 24px;
+	position: relative;
+	right: 30px;
+	top: 2px;
 
 }
 
-.colunaUmFiltroInclusao{
-	float:left;
-} 
+.tituloColunaFiltroData{
 
-.colunaDoisFiltroInclusao{
-	float:left;
+	position: relative;
+	top: 5px;
 }

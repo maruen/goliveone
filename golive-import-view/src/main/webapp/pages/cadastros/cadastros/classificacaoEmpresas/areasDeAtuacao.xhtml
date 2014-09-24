@@ -41,11 +41,32 @@
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputLabel
+					<h:outputLabel styleClass="tituloColunaFiltroData"
 						value="#{userBean.properties.getField('label.dataInclusao')}" />
 					<br />
-					<h:panelGrid columns="2" styleClass="gridInclusaoFiltro"
-						columnClasses="colunaUmFiltroInclusao , colunaDoisFiltroInclusao">
+					<h:panelGrid columns="3"
+						columnClasses="colunaUmFiltroData , colunaDoisFiltroData, colunaTresFiltroData">
+
+						<p:graphicImage id="filtroDataInclucao"
+							value="/resources/images/stylistica-icons-set/24x24/settings.png"
+							styleClass="image">
+							<p:overlayPanel id="overLayPanelInclusao"
+								for="filtroDataInclucao" hideEffect="fade" appendToBody="true">
+								<p:fieldset legend="#{areasDeAtuacaoBean.labels.getField('label.parametros.filtro')}" style="margin-bottom:20px">
+									<h:panelGrid>
+										<p:selectOneRadio id="filtrosAlteracao" value="#{areasDeAtuacaoBean.filterUtils.tipoFilto}"
+											layout="grid" columns="1">
+											<f:selectItem itemValue="#{areasDeAtuacaoBean.filterUtils.menor}" itemLabel="#{areasDeAtuacaoBean.labels.getField('label.menor.que')}"/>
+											<f:selectItem itemValue="#{areasDeAtuacaoBean.filterUtils.maior}" itemLabel="#{areasDeAtuacaoBean.labels.getField('label.maior.que')}"/>
+											<f:selectItem itemValue="#{areasDeAtuacaoBean.filterUtils.igual}" itemLabel="#{areasDeAtuacaoBean.labels.getField('label.igual')}"/>
+											
+										</p:selectOneRadio>
+									</h:panelGrid>
+								</p:fieldset>
+
+							</p:overlayPanel>
+						</p:graphicImage>
+
 						<p:calendar id="filterInclusao" pattern="dd/MM/yyyy"
 							styleClass="inputFilter"
 							value="#{areasDeAtuacaoBean.dataInclusao}" mask="true"
@@ -72,23 +93,40 @@
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputLabel
+					<h:outputLabel styleClass="tituloColunaFiltroData"
 						value="#{userBean.properties.getField('label.dataAlteracao')}" />
 					<br />
-					<h:panelGrid columns="2" styleClass="gridInclusaoFiltro"
-						columnClasses="colunaUmFiltroInclusao , colunaDoisFiltroInclusao">
+					<h:panelGrid columns="3"
+						columnClasses="colunaUmFiltroData , colunaDoisFiltroData, colunaTresFiltroData">
+
+						<p:graphicImage id="filtroDataAlteracao"
+							value="/resources/images/stylistica-icons-set/24x24/settings.png"
+							styleClass="image">
+							<p:overlayPanel id="overLayPanelAlteracao"
+								for="filtroDataAlteracao" hideEffect="fade" appendToBody="true">
+								<p:fieldset legend="#{areasDeAtuacaoBean.labels.getField('label.parametros.filtro')}" style="margin-bottom:20px">
+									<h:panelGrid>
+										<p:selectOneRadio id="filtrosAlteracao" value="#{areasDeAtuacaoBean.filterUtils.tipoFilto}"
+											layout="grid" columns="1">
+											<f:selectItem itemValue="#{areasDeAtuacaoBean.filterUtils.menor}" itemLabel="#{areasDeAtuacaoBean.labels.getField('label.menor.que')}"/>
+											<f:selectItem itemValue="#{areasDeAtuacaoBean.filterUtils.maior}" itemLabel="#{areasDeAtuacaoBean.labels.getField('label.maior.que')}"/>
+											<f:selectItem itemValue="#{areasDeAtuacaoBean.filterUtils.igual}" itemLabel="#{areasDeAtuacaoBean.labels.getField('label.igual')}"/>
+											
+										</p:selectOneRadio>
+									</h:panelGrid>
+								</p:fieldset>
+
+							</p:overlayPanel>
+						</p:graphicImage>
+
 						<p:calendar id="filterAlteracao" pattern="dd/MM/yyyy"
-							styleClass="inputFilter"
+							style="width: 100%;" styleClass="inputFilter"
 							value="#{areasDeAtuacaoBean.dataAlteracao}" mask="true"
 							effect="fold">
 							<p:ajax event="dateSelect" update="conteudoTable"
 								listener="#{areasDeAtuacaoBean.filterUtils.filtrarPorData(areasDeAtuacaoBean.conteudo, areasDeAtuacaoBean.temp, areasDeAtuacaoBean.filtrados, 'dataAlteracao',areasDeAtuacaoBean.dataAlteracao)}" />
 						</p:calendar>
-						
-						<p:splitButton>
 
-						</p:splitButton>
-						
 						<p:commandLink ajax="false"
 							actionListener="#{areasDeAtuacaoBean.filterUtils.filtrarPorData(areasDeAtuacaoBean.conteudo, areasDeAtuacaoBean.temp, areasDeAtuacaoBean.filtrados, 'dataAlteracao', null)}"
 							styleClass="botaoFilter" update="conteudoTable">
@@ -96,6 +134,7 @@
 								value="/resources/images/stylistica-icons-set/24x24/bin.png"
 								styleClass="image" />
 						</p:commandLink>
+
 
 					</h:panelGrid>
 

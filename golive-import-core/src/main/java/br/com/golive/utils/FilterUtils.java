@@ -4,14 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.inject.Inject;
+import lombok.Data;
 
 import org.slf4j.Logger;
 
+import br.com.golive.constants.TipoFiltroData;
+
+@Data
 public abstract class FilterUtils<T> {
 
-	@Inject
 	private final Logger logger;
+
+	private final TipoFiltroData tipoFilto = TipoFiltroData.IGUAL;
 
 	protected abstract void setDataMB(final String field, final Date data);
 
@@ -23,6 +27,18 @@ public abstract class FilterUtils<T> {
 
 	protected FilterUtils(final Logger logger) {
 		this.logger = logger;
+	}
+
+	public TipoFiltroData getMenor() {
+		return TipoFiltroData.MENOR;
+	}
+
+	public TipoFiltroData getIgual() {
+		return TipoFiltroData.IGUAL;
+	}
+
+	public TipoFiltroData getMaior() {
+		return TipoFiltroData.MAIOR;
 	}
 
 	/**
@@ -45,6 +61,33 @@ public abstract class FilterUtils<T> {
 			temp.addAll(conteudo);
 			if (getDataMB(field) != null) {
 				for (final T index : conteudo) {
+					switch (tipoFilto) {
+					case IGUAL:
+						// if
+						// (!sdf.format(getDataMB(field)).equals(sdf.format(getDatePorFieldEntity(index,
+						// field)))) {
+						// temp.remove(index);
+						// }
+						if (getDataMB(field).getTime() != getDatePorFieldEntity(index, field).getTime()) {
+							temp.remove(index);
+						}
+						break;
+
+					case MENOR:
+						if (getDataMB(field).getTime() <= getDatePorFieldEntity(index, field).getTime()) {
+							temp.remove(index);
+						}
+						break;
+
+					case MAIOR:
+						if (getDataMB(field).getTime() >= getDatePorFieldEntity(index, field).getTime()) {
+							temp.remove(index);
+						}
+						break;
+
+					default:
+						break;
+					}
 					if (!sdf.format(getDataMB(field)).equals(sdf.format(getDatePorFieldEntity(index, field)))) {
 						temp.remove(index);
 					}
