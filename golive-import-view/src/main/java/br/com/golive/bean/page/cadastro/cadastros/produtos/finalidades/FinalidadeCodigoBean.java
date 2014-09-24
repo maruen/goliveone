@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.GenericModel;
+import br.com.golive.entity.produto.ProdutoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
@@ -28,7 +28,7 @@ import br.com.golive.utils.JSFUtils;
 @Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigo")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
+public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 
@@ -105,10 +105,10 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<GenericModel> {
 	public void criarLogsList() {
 	}
 
-	public List<GenericModel> criarList() {
-		List<GenericModel> lista = new ArrayList<GenericModel>();
+	public List<ProdutoModel> criarList() {
+		List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
 		for (Integer i = 0; i < 10; i++) {
-			lista.add(new GenericModel(new Long(i), new Date(), new Date()));
+			lista.add(new ProdutoModel(new Long(i), new Date(), new Date()));
 		}
 		return lista;
 

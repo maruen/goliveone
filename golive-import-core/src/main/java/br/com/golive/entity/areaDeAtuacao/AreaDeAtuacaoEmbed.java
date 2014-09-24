@@ -23,20 +23,5 @@ public class AreaDeAtuacaoEmbed {
 		super();
 	}
 
-	public Cadastro getCadastroAreaAtuacao() {
-		return cadastroAreaAtuacao;
-	}
-
-	public void setCadastroAreaAtuacao(Cadastro cadastroAreaAtuacao) {
-		this.cadastroAreaAtuacao = cadastroAreaAtuacao;
-	}
-
-	public AuditoriaLog getAuditoriaLog() {
-		return auditoriaLog;
-	}
-
-	public void setAuditoriaLog(AuditoriaLog auditoriaLog) {
-		this.auditoriaLog = auditoriaLog;
-	}
 	
 }
