@@ -3,12 +3,18 @@ package br.com.golive.entity.produto;
 import java.util.Date;
 import java.util.List;
 
+import br.com.golive.annotation.Jasper;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 
 @Data
 @EqualsAndHashCode(callSuper=false)
+@Jasper(titulo="Produto",
+		nomeDoArquivoGerado="Produto",
+		nomeArquivoJasper ="Produto"
+		)
+
 public class ProdutoModel {
 	
 	private Long 		 id;
