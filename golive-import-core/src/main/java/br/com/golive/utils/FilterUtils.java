@@ -15,18 +15,24 @@ public abstract class FilterUtils<T> {
 
 	private final Logger logger;
 
-	private final TipoFiltroData tipoFilto = TipoFiltroData.IGUAL;
-
-	protected abstract void setDataMB(final String field, final Date data);
+	protected abstract void setDataMB(final String field, final DateFilter data);
 
 	protected abstract Date getDatePorFieldEntity(final T entity, final String field);
 
-	protected abstract Date getDataMB(final String field);
+	protected abstract DateFilter getDataMB(final String field);
 
-	protected abstract List<String> getFiltros(final String field);
+	protected abstract List<DateFilter> getFiltros(final String field);
+
+	protected abstract void verificarTipoDeFiltro(final DateFilter date);
+
+	public abstract void setTipoFiltroMB(final String field, final TipoFiltroData filter);
 
 	protected FilterUtils(final Logger logger) {
 		this.logger = logger;
+	}
+
+	public TipoFiltroData[] getFiltros() {
+		return TipoFiltroData.values();
 	}
 
 	public TipoFiltroData getMenor() {
@@ -41,6 +47,10 @@ public abstract class FilterUtils<T> {
 		return TipoFiltroData.MAIOR;
 	}
 
+	public TipoFiltroData getPeriodo() {
+		return TipoFiltroData.PERIODO;
+	}
+
 	/**
 	 * @author Guilherme
 	 * 
@@ -53,34 +63,36 @@ public abstract class FilterUtils<T> {
 	 * @param field
 	 * @param date
 	 */
-	public void filtrarPorData(final List<T> conteudo, final List<T> temp, final List<T> filtrados, final String field, final Date date) {
+	public void filtrarPorData(final List<T> conteudo, final List<T> temp, final List<T> filtrados, final DateFilter date) {
 		try {
-			logger.info("Filtrando lista por data, campo = {}", field);
-			setDataMB(field, date);
+			verificarTipoDeFiltro(date);
+			logger.info("Filtrando lista por data, campo = {}", date.getFieldManagedBean());
+			setDataMB(date.getFieldManagedBean(), date);
 			final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			temp.addAll(conteudo);
-			if (getDataMB(field) != null) {
+			if (getDataMB(date.getFieldManagedBean()) != null) {
 				for (final T index : conteudo) {
-					switch (tipoFilto) {
+					switch (date.getTipo()) {
 					case IGUAL:
-						// if
-						// (!sdf.format(getDataMB(field)).equals(sdf.format(getDatePorFieldEntity(index,
-						// field)))) {
-						// temp.remove(index);
-						// }
-						if (getDataMB(field).getTime() != getDatePorFieldEntity(index, field).getTime()) {
+						if (getDataMB(date.getFieldManagedBean()).getInicio().getTime() != getDatePorFieldEntity(index, date.getFieldManagedBean()).getTime()) {
 							temp.remove(index);
 						}
 						break;
 
 					case MENOR:
-						if (getDataMB(field).getTime() <= getDatePorFieldEntity(index, field).getTime()) {
+						if (getDataMB(date.getFieldManagedBean()).getInicio().getTime() <= getDatePorFieldEntity(index, date.getFieldManagedBean()).getTime()) {
 							temp.remove(index);
 						}
 						break;
 
 					case MAIOR:
-						if (getDataMB(field).getTime() >= getDatePorFieldEntity(index, field).getTime()) {
+						if (getDataMB(date.getFieldManagedBean()).getInicio().getTime() >= getDatePorFieldEntity(index, date.getFieldManagedBean()).getTime()) {
+							temp.remove(index);
+						}
+						break;
+
+					case PERIODO:
+						if ((getDataMB(date.getFieldManagedBean()).getInicio().getTime() >= getDatePorFieldEntity(index, date.getFieldManagedBean()).getTime()) && (getDataMB(date.getFieldManagedBean()).getFim().getTime() <= getDatePorFieldEntity(index, date.getFieldManagedBean()).getTime())) {
 							temp.remove(index);
 						}
 						break;
@@ -88,19 +100,20 @@ public abstract class FilterUtils<T> {
 					default:
 						break;
 					}
-					if (!sdf.format(getDataMB(field)).equals(sdf.format(getDatePorFieldEntity(index, field)))) {
-						temp.remove(index);
-					}
+					// if
+					// (!sdf.format(getDataMB(field)).equals(sdf.format(getDatePorFieldEntity(index,
+					// field)))) {
+					// temp.remove(index);
+					// }
 				}
 			}
 			atualizarListaDeFiltrados(conteudo, temp, filtrados);
-			filtrarPorPelosCamposRestantes(field, sdf, temp, filtrados);
+			filtrarPorPelosCamposRestantes(date.getFieldManagedBean(), sdf, temp, filtrados);
 			atualizarListaDeFiltrados(conteudo, temp, filtrados);
 			temp.removeAll(conteudo);
 		} catch (final Exception e) {
 			logger.error("Houve um ao realizar o filtro com esta data");
-			logger.error(e.getMessage());
-
+			e.printStackTrace();
 		}
 	}
 
@@ -130,15 +143,16 @@ public abstract class FilterUtils<T> {
 	 * @param sdf
 	 */
 	private void filtrarPorPelosCamposRestantes(final String field, final SimpleDateFormat sdf, final List<T> temp, final List<T> filtrados) {
-		for (final String filtro : getFiltros(field)) {
-			if (filtro != null) {
-				for (final T index : filtrados) {
-					if (!sdf.format(getDataMB(filtro)).equals(sdf.format(getDatePorFieldEntity(index, filtro)))) {
-						temp.remove(index);
-					}
-				}
-			}
+		for (final DateFilter filtro : getFiltros(field)) {
+			// if (filtro != null) {
+			// for (final T index : filtrados) {
+			// if
+			// (!sdf.format(getDataMB(filtro)).equals(sdf.format(getDatePorFieldEntity(index,
+			// filtro)))) {
+			// temp.remove(index);
+			// }
+			// }
+			// }
 		}
 	}
-
 }

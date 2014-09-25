@@ -32,7 +32,7 @@ public class UserBean implements Serializable {
 
 	@EJB
 	private UsuarioBeanService usuarioService;
-	
+
 	private final String usuario = "Joaquim Silva";
 
 	private String empresaSelecionda;
@@ -50,21 +50,21 @@ public class UserBean implements Serializable {
 	@Inject
 	@UsuarioLogadoInjected
 	private Usuario usuarioLogado;
-	
+
 	@PostConstruct
 	public void init() {
 
 		final Calendar cal = Calendar.getInstance();
 		data = new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime());
 		diaSemana = new DateFormatSymbols().getWeekdays()[cal.get(Calendar.DAY_OF_WEEK)];
-		
+
 	}
 
 	private void verificarSessao() {
-		if(usuarioLogado == null){
+		if (usuarioLogado == null) {
 			try {
 				JSFUtils.redirect("/login");
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -81,7 +81,6 @@ public class UserBean implements Serializable {
 		verificarSessao();
 	}
 
-
 	public String labelAnotado(final Class<?> clazz, final String field) {
 		try {
 			return properties.getField(JSFUtils.getLabelFieldName(clazz.getDeclaredField(field)));
@@ -93,5 +92,65 @@ public class UserBean implements Serializable {
 
 	public String labelAnotado(final Class<?> clazz) {
 		return properties.getField(JSFUtils.getLabelPageName(clazz));
+	}
+
+	public UsuarioBeanService getUsuarioService() {
+		return usuarioService;
+	}
+
+	public void setUsuarioService(final UsuarioBeanService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+
+	public String getEmpresaSelecionda() {
+		return empresaSelecionda;
+	}
+
+	public void setEmpresaSelecionda(final String empresaSelecionda) {
+		this.empresaSelecionda = empresaSelecionda;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(final String data) {
+		this.data = data;
+	}
+
+	public String getDiaSemana() {
+		return diaSemana;
+	}
+
+	public void setDiaSemana(final String diaSemana) {
+		this.diaSemana = diaSemana;
+	}
+
+	public GoliveOneProperties getProperties() {
+		return properties;
+	}
+
+	public void setProperties(final GoliveOneProperties properties) {
+		this.properties = properties;
+	}
+
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(final Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public boolean isLogado() {
+		return logado;
 	}
 }

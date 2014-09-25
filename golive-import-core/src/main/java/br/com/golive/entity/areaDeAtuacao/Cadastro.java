@@ -9,7 +9,7 @@ import br.com.golive.annotation.Label;
 @Label(name = "label.dadosGerais")
 @Data
 public class Cadastro implements Serializable {
-	
+
 	private static final long serialVersionUID = -7415246692175931894L;
 
 	@Label(name = "label.id")
@@ -32,5 +32,40 @@ public class Cadastro implements Serializable {
 		this.areaDeAtuacao = areaDeAtuacao;
 	}
 
-	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(final Long id) {
+		this.id = id;
+	}
+
+	public Calendar getDataInclusao() {
+		return dataInclusao;
+	}
+
+	public void setDataInclusao(final Calendar dataInclusao) {
+		this.dataInclusao = dataInclusao;
+	}
+
+	public Calendar getDataAlteracao() {
+		return dataAlteracao;
+	}
+
+	public void setDataAlteracao(final Calendar dataAlteracao) {
+		this.dataAlteracao = dataAlteracao;
+	}
+
+	public String getAreaDeAtuacao() {
+		return areaDeAtuacao;
+	}
+
+	public void setAreaDeAtuacao(final String areaDeAtuacao) {
+		this.areaDeAtuacao = areaDeAtuacao;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }

@@ -14,9 +14,6 @@ import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
@@ -24,15 +21,12 @@ import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.produto.ProdutoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
-import br.com.golive.utils.FilterUtils;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroProdutos.cadastroProdutos")
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
@@ -45,7 +39,6 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	private GoliveOneProperties labels;
 	private Calendar data;
 
-	
 	@Override
 	@PostConstruct
 	public void init() {
@@ -53,11 +46,11 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 
 		fluxo = getFluxoListagem();
-		data  = Calendar.getInstance();
+		data = Calendar.getInstance();
 	}
 
 	public List<String> getCodigos() {
-		List<String> codigos = new ArrayList<String>();
+		final List<String> codigos = new ArrayList<String>();
 		codigos.add("Selecione Finalidade Código Produto");
 		codigos.add("Código 1");
 		codigos.add("Código 2");
@@ -66,7 +59,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	public List<String> getCores() {
-		List<String> cores = new ArrayList<String>();
+		final List<String> cores = new ArrayList<String>();
 		cores.add("Selecione Finalidade Cor");
 		cores.add("Vermelha");
 		cores.add("Azul");
@@ -75,7 +68,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	public List<String> getUnidades() {
-		List<String> unidades = new ArrayList<String>();
+		final List<String> unidades = new ArrayList<String>();
 		unidades.add("Selecione Finalidade da Unidade");
 		unidades.add("Unidade 1");
 		unidades.add("Unidade 2");
@@ -84,7 +77,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	public List<String> getColecoes() {
-		List<String> colecoes = new ArrayList<String>();
+		final List<String> colecoes = new ArrayList<String>();
 		colecoes.add("Selecione Finalidade Coleção");
 		colecoes.add("Coleção 1");
 		colecoes.add("Coleção 2");
@@ -93,7 +86,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	public List<String> getDescricoes() {
-		List<String> descricoes = new ArrayList<String>();
+		final List<String> descricoes = new ArrayList<String>();
 		descricoes.add("Descriçao 1");
 		descricoes.add("Descriçao 2");
 		descricoes.add("Descriçao 3");
@@ -101,7 +94,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	public List<String> getCodigoBarras() {
-		List<String> codigoBarras = new ArrayList<String>();
+		final List<String> codigoBarras = new ArrayList<String>();
 		codigoBarras.add("Selecione Finalidade Código Barras");
 		codigoBarras.add("Descriçao 1");
 		codigoBarras.add("Descriçao 2");
@@ -110,7 +103,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	public List<String> getPadraoLargura() {
-		List<String> padraoLargura = new ArrayList<String>();
+		final List<String> padraoLargura = new ArrayList<String>();
 		padraoLargura.add("Selecione Finalidade Padrão de Largura");
 		padraoLargura.add("Largura 1");
 		padraoLargura.add("Largura 2");
@@ -119,7 +112,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	public List<String> getPadraoEspessura() {
-		List<String> padraoEspessura = new ArrayList<String>();
+		final List<String> padraoEspessura = new ArrayList<String>();
 		padraoEspessura.add("Selecione Finalidade Padrão de Espessura");
 		padraoEspessura.add("Espessura 1");
 		padraoEspessura.add("Espessura 2");
@@ -187,10 +180,9 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		}
 		return dataTableRows;
 	}
-	
-	
+
 	public List<ProdutoModel> criarList() {
-		List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
+		final List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
 		for (Integer i = 0; i < 10; i++) {
 			lista.add(new ProdutoModel(new Long(i), new Date(), new Date()));
 		}
@@ -226,6 +218,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		gerarRelatorio(TipoRelatorio.PDF, labels);
 	}
 
+	
 	@Override
 	public void exportarXls() {
 		gerarRelatorio(TipoRelatorio.EXCEL, labels);
@@ -235,6 +228,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	public void imprimir() {
 		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
 	}
+	
 
 	@Override
 	public void salvar() {
@@ -262,38 +256,16 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		return true;
 	}
 	
-	
-	
+
 	@Override
-	public void inicializarFiltros() {
-		filterUtils = new FilterUtils<ProdutoModel>(logger) {
-
-			@Override
-			protected void setDataMB(String field, Date data) {
-				
-			}
-
-			@Override
-			protected List<String> getFiltros(String field) {
-
-				List<String> filtros = new ArrayList<String>();
-				
-				return filtros;
-
-			}
-
-			@Override
-			protected Date getDatePorFieldEntity(ProdutoModel entity, String field) {
-				return new Date();
-			}
-
-			@Override
-			protected Date getDataMB(String field) {
-				return new Date();
-			}
-		};
+	protected Logger getLogger() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-
-	
+	@Override
+	public void inicializarFiltros() {
+		// TODO Auto-generated method stub
+		
+	}
 }

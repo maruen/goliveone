@@ -106,7 +106,7 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	public List<ProdutoModel> criarList() {
-		List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
+		final List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
 		for (Integer i = 0; i < 10; i++) {
 			lista.add(new ProdutoModel(new Long(i), new Date(), new Date()));
 		}
@@ -141,8 +141,13 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 	@Override
 	public void inicializarFiltros() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
+	protected Logger getLogger() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
