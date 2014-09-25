@@ -22,12 +22,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
+import br.com.golive.constants.TipoFiltroData;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoEmbed;
 import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
 import br.com.golive.entity.areaDeAtuacao.Cadastro;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.qualifier.LabelSystemInjected;
+import br.com.golive.utils.DateFilter;
 import br.com.golive.utils.FilterUtils;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
@@ -40,6 +42,8 @@ import br.com.golive.utils.JSFUtils;
 public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
+	// listener="#{areasDeAtuacaoBean.filterUtils.filtrarPorData(areasDeAtuacaoBean.conteudo, areasDeAtuacaoBean.temp, areasDeAtuacaoBean.filtrados, areasDeAtuacaoBean.dataDeInclusao)}"
+	// />
 
 	@Inject
 	private Logger logger;
@@ -48,15 +52,23 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
 
+	@Deprecated
 	private Date dataInclusao;
 
+	@Deprecated
 	private Date dataAlteracao;
+
+	private DateFilter dataDeInclusao;
+	private DateFilter dataDeAlteracao;
+	private String tipoFiltro;
 
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(criarList());
 		logger.info("Inicializando = {}", this.getClass().getName());
+		dataDeInclusao = new DateFilter("dataInclusao");
+		dataDeAlteracao = new DateFilter("dataAlteracao");
 	}
 
 	@Override
@@ -155,27 +167,27 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		filterUtils = new FilterUtils<AreaDeAtuacaoEmbed>(logger) {
 
 			@Override
-			protected void setDataMB(String field, Date data) {
+			protected void setDataMB(final String field, final DateFilter data) {
 				if (field.equals("dataInclusao")) {
-					dataInclusao = data;
+					dataDeInclusao = data;
 				} else if (field.equals("dataAlteracao")) {
-					dataAlteracao = data;
+					dataDeAlteracao = data;
 				} else {
 					throw new GoLiveException("Não existe o campo no managedBean");
 				}
 			}
 
 			@Override
-			protected List<String> getFiltros(String field) {
+			protected List<DateFilter> getFiltros(final String field) {
 
-				List<String> filtros = new ArrayList<String>();
+				final List<DateFilter> filtros = new ArrayList<DateFilter>();
 				if (field.equals("dataInclusao")) {
-					if (dataAlteracao != null) {
-						filtros.add("dataAlteracao");
+					if (dataDeInclusao.getInicio() != null) {
+						filtros.add(dataDeAlteracao);
 					}
 				} else if (field.equals("dataAlteracao")) {
-					if (dataInclusao != null) {
-						filtros.add("dataInclusao");
+					if (dataDeAlteracao.getInicio() != null) {
+						filtros.add(dataDeInclusao);
 					}
 				} else {
 					throw new GoLiveException("Não existe o campo no managedBean");
@@ -185,27 +197,115 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 			}
 
 			@Override
-			protected Date getDatePorFieldEntity(AreaDeAtuacaoEmbed entity, String field) {
+			protected Date getDatePorFieldEntity(final AreaDeAtuacaoEmbed entity, final String field) {
+				Calendar cal;
+
 				if (field.equals("dataInclusao")) {
-					return entity.getCadastroAreaAtuacao().getDataInclusao().getTime();
+					cal = entity.getCadastroAreaAtuacao().getDataInclusao();
 				} else if (field.equals("dataAlteracao")) {
-					return entity.getCadastroAreaAtuacao().getDataAlteracao().getTime();
+					cal = entity.getCadastroAreaAtuacao().getDataAlteracao();
 				} else {
 					throw new GoLiveException("Não existe o campo na entidade");
+				}
+				cal.set(Calendar.HOUR_OF_DAY, 0);
+				cal.set(Calendar.MINUTE, 0);
+				cal.set(Calendar.MILLISECOND, 0);
+				cal.set(Calendar.SECOND, 0);
+				return cal.getTime();
+			}
+
+			@Override
+			protected DateFilter getDataMB(final String field) {
+				if (field.equals("dataInclusao")) {
+					return dataDeInclusao;
+				} else if (field.equals("dataAlteracao")) {
+					return dataDeAlteracao;
+				} else {
+					throw new GoLiveException("Não existe o campo no managedBean");
 				}
 			}
 
 			@Override
-			protected Date getDataMB(String field) {
+			protected void verificarTipoDeFiltro(final DateFilter date) {
+				if (date.getTipo() == null) {
+					JSFUtils.warnMessage(labels.getField("title.msg.erro.ao.filtrar"), labels.getField("msg.filtro.nullo"));
+					throw new GoLiveException("Erro ao Filtrar");
+				}
+			}
+
+			@Override
+			public void setTipoFiltroMB(final String field, final TipoFiltroData filter) {
 				if (field.equals("dataInclusao")) {
-					return dataInclusao;
+					dataDeInclusao.setTipo(filter);
 				} else if (field.equals("dataAlteracao")) {
-					return dataAlteracao;
+					dataDeAlteracao.setTipo(filter);
 				} else {
 					throw new GoLiveException("Não existe o campo no managedBean");
 				}
 			}
 		};
+	}
+
+	@Override
+	public Logger getLogger() {
+		return logger;
+	}
+
+	public GoliveOneProperties getLabels() {
+		return labels;
+	}
+
+	public void setLabels(final GoliveOneProperties labels) {
+		this.labels = labels;
+	}
+
+	public Date getDataInclusao() {
+		return dataInclusao;
+	}
+
+	public void setDataInclusao(final Date dataInclusao) {
+		this.dataInclusao = dataInclusao;
+	}
+
+	public Date getDataAlteracao() {
+		return dataAlteracao;
+	}
+
+	public void setDataAlteracao(final Date dataAlteracao) {
+		this.dataAlteracao = dataAlteracao;
+	}
+
+	public DateFilter getDataDeInclusao() {
+		return dataDeInclusao;
+	}
+
+	public void setDataDeInclusao(final DateFilter dataDeInclusao) {
+		this.dataDeInclusao = dataDeInclusao;
+	}
+
+	public DateFilter getDataDeAlteracao() {
+		return dataDeAlteracao;
+	}
+
+	public void setDataDeAlteracao(final DateFilter dataDeAlteracao) {
+		this.dataDeAlteracao = dataDeAlteracao;
+	}
+
+	public String getTipoFiltro() {
+		return tipoFiltro;
+	}
+
+	public void setTipoFiltro(final String tipoFiltro) {
+		this.tipoFiltro = tipoFiltro;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public void setLogger(final Logger logger) {
+		this.logger = logger;
 	}
 
 }

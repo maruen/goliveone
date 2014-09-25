@@ -50,7 +50,7 @@ public class GeradorRelatorio<T> {
 
 		for (final Field field : clazz.getDeclaredFields()) {
 			if (!inserirParametroAnotado(parametros, properties, field)) {
-				for (Field fieldChild : field.getType().getDeclaredFields()) {
+				for (final Field fieldChild : field.getType().getDeclaredFields()) {
 					inserirParametroAnotado(parametros, properties, fieldChild);
 				}
 			}
@@ -86,7 +86,7 @@ public class GeradorRelatorio<T> {
 		FacesContext.getCurrentInstance().responseComplete();
 	}
 
-	private boolean inserirParametroAnotado(final Map<String, Object> parametros, final GoliveOneProperties properties, Field fieldChild) {
+	private boolean inserirParametroAnotado(final Map<String, Object> parametros, final GoliveOneProperties properties, final Field fieldChild) {
 		if (fieldChild.isAnnotationPresent(Label.class)) {
 			inserirParametro(parametros, fieldChild.getAnnotation(Label.class).name(), properties.getField(fieldChild.getAnnotation(Label.class).name()));
 			return true;
@@ -94,11 +94,11 @@ public class GeradorRelatorio<T> {
 		return false;
 	}
 
-	private void gerarArquivos(final TipoRelatorio tipoRelatorio, final JasperPrint jasperPrint, ServletOutputStream stream) throws JRException {
+	private void gerarArquivos(final TipoRelatorio tipoRelatorio, final JasperPrint jasperPrint, final ServletOutputStream stream) throws JRException {
 		if (tipoRelatorio.equals(TipoRelatorio.PDF)) {
 			JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
 		} else if (tipoRelatorio.equals(TipoRelatorio.EXCEL)) {
-			JRXlsxExporter exporter = new JRXlsxExporter();
+			final JRXlsxExporter exporter = new JRXlsxExporter();
 			exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
 			exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(stream));
 			exporter.exportReport();
@@ -106,8 +106,8 @@ public class GeradorRelatorio<T> {
 	}
 
 	private void gerarImpressao(final JasperPrint jasperPrint, ServletOutputStream stream) throws IOException, JRException {
-		JRPdfExporter exporter = new JRPdfExporter();
-		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+		final JRPdfExporter exporter = new JRPdfExporter();
+		final SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
 		configuration.setPdfJavaScript(PdfExporterConfiguration.PROPERTY_PDF_JAVASCRIPT);
 		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
 		exporter.setConfiguration(configuration);
@@ -176,6 +176,38 @@ public class GeradorRelatorio<T> {
 				throw new GoLiveException("Parametros nulos para geracao de relatório");
 			}
 		}
+	}
+
+	public Class<T> getClazz() {
+		return clazz;
+	}
+
+	public void setClazz(final Class<T> clazz) {
+		this.clazz = clazz;
+	}
+
+	public File getJasperFile() {
+		return jasperFile;
+	}
+
+	public void setJasperFile(final File jasperFile) {
+		this.jasperFile = jasperFile;
+	}
+
+	public FacesContext getFacesContext() {
+		return facesContext;
+	}
+
+	public void setFacesContext(final FacesContext facesContext) {
+		this.facesContext = facesContext;
+	}
+
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+	public void setResponse(final HttpServletResponse response) {
+		this.response = response;
 	}
 
 }

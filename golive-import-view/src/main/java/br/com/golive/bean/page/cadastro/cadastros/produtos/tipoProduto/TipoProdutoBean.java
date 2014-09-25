@@ -25,9 +25,9 @@ import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
-@Label(name="label.cadastros.produtos.tipoProduto.tipoProduto")
+@Label(name = "label.cadastros.produtos.tipoProduto.tipoProduto")
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
@@ -39,18 +39,16 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
 	private Calendar data;
-	
+
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(criarList());
 		logger.info("Inicializando = {}", this.getClass().getName());
-		fluxo 				= getFluxoListagem();
-		data  				= Calendar.getInstance();
+		fluxo = getFluxoListagem();
+		data = Calendar.getInstance();
 	}
-	
-	
-	
+
 	@Override
 	public void incluir() {
 		super.incluir();
@@ -74,7 +72,7 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 			logger.info("Edicao de registro = {} ", registro);
 		}
 	}
-	
+
 	@Override
 	public void salvar() {
 		super.salvar();
@@ -90,29 +88,29 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 			logger.info("Cancelando edicao do registro = {} ", registro);
 		}
 	}
-	
+
 	@Override
 	public void imprimir() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void exportarPdf() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void exportarXls() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public List<List<Object>> getAuditoriaLogDatatable() {
 		return getRowsByColumns();
 	}
-	
+
 	private List<List<Object>> getRowsByColumns() {
 		final List<List<Object>> dataTableRows = new ArrayList<List<Object>>();
 
@@ -127,7 +125,6 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	@Override
-
 	public boolean isSelecionado() {
 		if (registro == null) {
 			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
@@ -141,7 +138,7 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	public List<ProdutoModel> criarList() {
-		List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
+		final List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
 		for (Integer i = 0; i < 10; i++) {
 			lista.add(new ProdutoModel(new Long(i), new Date(), new Date()));
 		}
@@ -149,21 +146,22 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 
 	}
 
-
-
 	@Override
 	public Map<String, Object> obterParametrosRelatório() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
-
 	@Override
 	public void inicializarFiltros() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
+	protected Logger getLogger() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

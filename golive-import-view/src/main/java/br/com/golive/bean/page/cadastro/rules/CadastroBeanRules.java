@@ -168,6 +168,7 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		}
 		throw new GoLiveException("Erro ao obter classe de pojo, a classe: " + genericClazzInstance.getName() + " nao possui o campo: " + fieldName);
 	}
+
 	/**
 	 * @author Guilherme
 	 * 
@@ -274,7 +275,7 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		return Fluxo.EDICAO;
 	}
 
-	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final GoliveOneProperties labels){
+	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final GoliveOneProperties labels) {
 		try {
 			logger.info("Gerando relatório para classe = {}", genericClazzInstance.getName());
 			relatorios.gerarRelatorio(tipoRelatorio, filtrados, obterParametrosRelatório(), labels);
@@ -282,6 +283,85 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 			logger.error("Erro ao gerar relatorio em xls = {}", genericClazzInstance.getName());
 		}
 	}
-	
-	
+
+	public boolean isImplementada() {
+		return implementada;
+	}
+
+	public void setImplementada(final boolean implementada) {
+		this.implementada = implementada;
+	}
+
+	public GeradorRelatorio<T> getRelatorios() {
+		return relatorios;
+	}
+
+	public void setRelatorios(final GeradorRelatorio<T> relatorios) {
+		this.relatorios = relatorios;
+	}
+
+	public Fluxo getFluxo() {
+		return fluxo;
+	}
+
+	public void setFluxo(final Fluxo fluxo) {
+		this.fluxo = fluxo;
+	}
+
+	public List<T> getConteudo() {
+		return conteudo;
+	}
+
+	public void setConteudo(final List<T> conteudo) {
+		this.conteudo = conteudo;
+	}
+
+	public List<T> getFiltrados() {
+		return filtrados;
+	}
+
+	public void setFiltrados(final List<T> filtrados) {
+		this.filtrados = filtrados;
+	}
+
+	public List<T> getTemp() {
+		return temp;
+	}
+
+	public void setTemp(final List<T> temp) {
+		this.temp = temp;
+	}
+
+	public T getRegistro() {
+		return registro;
+	}
+
+	public void setRegistro(final T registro) {
+		this.registro = registro;
+	}
+
+	public Class<T> getGenericClazzInstance() {
+		return genericClazzInstance;
+	}
+
+	public void setGenericClazzInstance(final Class<T> genericClazzInstance) {
+		this.genericClazzInstance = genericClazzInstance;
+	}
+
+	public FilterUtils<T> getFilterUtils() {
+		return filterUtils;
+	}
+
+	public void setFilterUtils(final FilterUtils<T> filterUtils) {
+		this.filterUtils = filterUtils;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setLogger(final Logger logger) {
+		this.logger = logger;
+	}
+
 }

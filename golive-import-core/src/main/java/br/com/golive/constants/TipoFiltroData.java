@@ -2,7 +2,7 @@ package br.com.golive.constants;
 
 public enum TipoFiltroData {
 
-	MENOR("label.menor.que"), MAIOR("label.maior.que"), IGUAL("label.igual");
+	MENOR("label.menor.que"), MAIOR("label.maior.que"), IGUAL("label.igual"), PERIODO("label.periodo");
 
 	private String label;
 
