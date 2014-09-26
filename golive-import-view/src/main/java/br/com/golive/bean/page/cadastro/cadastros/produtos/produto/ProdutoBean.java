@@ -43,6 +43,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	@PostConstruct
 	public void init() {
 		super.init(criarList());
+		
 		logger.info("Inicializando = {}", this.getClass().getName());
 
 		fluxo = getFluxoListagem();
@@ -259,8 +260,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 
 	@Override
 	protected Logger getLogger() {
-		// TODO Auto-generated method stub
-		return null;
+		return logger;
 	}
 
 	@Override

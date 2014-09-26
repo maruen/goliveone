@@ -40,12 +40,13 @@
       		
       		<h:outputText id="dataInclusaoOutputText" 
       					  value="#{userBean.properties.getField('label.cadastroProdutos.dataInclusao')}" />
+      					  
       		
       		<p:calendar  id="dataInclusaoInputText"
       					 disabled="true" 
-      					 value="#{produtoBean.dataInclusao}"
+      					 value="#{produtoBean.registro.dataInclusao}" 
       					 size="16"
-      					 maxlength="16"
+      					 maxlength="16" 
       					 pattern="MM/dd/yyyy HH:mm:ss"
       					  />
       
@@ -78,7 +79,7 @@
 	        			      disabled="true"
         					  size="16"
         					  maxlength="16"
-        					  value="#{produtoBean.dataUltimaAlteracao}"
+        					  value="#{produtoBean.registro.dataAlteracao}"
         					  pattern="MM/dd/yyyy HH:mm:ss"/>
 	
         </h:panelGrid>
