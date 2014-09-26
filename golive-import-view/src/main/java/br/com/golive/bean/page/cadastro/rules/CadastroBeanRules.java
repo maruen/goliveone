@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Label;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
+import br.com.golive.qualifier.FilterUtilsInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.FilterUtils;
@@ -64,6 +65,9 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	protected List<T> temp;
 	protected T registro;
 	protected Class<T> genericClazzInstance;
+
+	@Inject
+	@FilterUtilsInjected
 	protected FilterUtils<T> filterUtils;
 
 	public abstract void init();

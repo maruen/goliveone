@@ -2,6 +2,8 @@ package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresas;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,17 +22,15 @@ import lombok.EqualsAndHashCode;
 
 import org.slf4j.Logger;
 
+import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.constants.TipoFiltroData;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoEmbed;
 import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
 import br.com.golive.entity.areaDeAtuacao.Cadastro;
-import br.com.golive.exception.GoLiveException;
+import br.com.golive.filter.DateFilter;
 import br.com.golive.qualifier.LabelSystemInjected;
-import br.com.golive.utils.DateFilter;
-import br.com.golive.utils.FilterUtils;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 
@@ -42,8 +42,6 @@ import br.com.golive.utils.JSFUtils;
 public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
-	// listener="#{areasDeAtuacaoBean.filterUtils.filtrarPorData(areasDeAtuacaoBean.conteudo, areasDeAtuacaoBean.temp, areasDeAtuacaoBean.filtrados, areasDeAtuacaoBean.dataDeInclusao)}"
-	// />
 
 	@Inject
 	private Logger logger;
@@ -53,22 +51,26 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	private GoliveOneProperties labels;
 
 	@Deprecated
-	private Date dataInclusao;
-
-	@Deprecated
 	private Date dataAlteracao;
 
-	private DateFilter dataDeInclusao;
+	@Filter(name = "dataInclusao")
+	private DateFilter dataInclusao;
+
+	@Filter(name = "dataDeAlteracao")
 	private DateFilter dataDeAlteracao;
 	private String tipoFiltro;
 
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(criarList());
+		try {
+			super.init(criarList());
+		} catch (final ParseException e) {
+			e.printStackTrace();
+		}
 		logger.info("Inicializando = {}", this.getClass().getName());
-		dataDeInclusao = new DateFilter("dataInclusao");
-		dataDeAlteracao = new DateFilter("dataAlteracao");
+		dataInclusao = new DateFilter();
+		dataDeAlteracao = new DateFilter();
 	}
 
 	@Override
@@ -143,13 +145,20 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	}
 
 	@Deprecated
-	public List<AreaDeAtuacaoEmbed> criarList() {
+	public List<AreaDeAtuacaoEmbed> criarList() throws ParseException {
 		final List<AreaDeAtuacaoEmbed> lista = new ArrayList<AreaDeAtuacaoEmbed>();
 		Long id = 0L;
+		Calendar cal;
 		Long value = 10L;
+		final Date data;
+		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		final String str = "String";
-		for (int i = 0; i < 25; i++) {
-			lista.add(conteudoLinha(id, Calendar.getInstance(), value, str));
+		for (int i = 1; i < 25; i++) {
+			cal = Calendar.getInstance();
+
+			cal.setTime(sdf.parse(id.toString() + "/01/2014"));
+			lista.add(conteudoLinha(id, cal, value, str));
+
 			id++;
 			value = (value * id) / 2;
 		}
@@ -164,86 +173,40 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Override
 	public void inicializarFiltros() {
-		filterUtils = new FilterUtils<AreaDeAtuacaoEmbed>(logger) {
+		// filterUtils
+		// = new FilterUtils<AreaDeAtuacaoEmbed>(logger) {
 
-			@Override
-			protected void setDataMB(final String field, final DateFilter data) {
-				if (field.equals("dataInclusao")) {
-					dataDeInclusao = data;
-				} else if (field.equals("dataAlteracao")) {
-					dataDeAlteracao = data;
-				} else {
-					throw new GoLiveException("Não existe o campo no managedBean");
-				}
-			}
+		// protected Date getDatePorFieldEntity(final AreaDeAtuacaoEmbed entity,
+		// final String field)
+		// {
+		// Calendar cal;
+		//
+		// if (field.equals("dataInclusao")) {
+		// cal = entity.getCadastroAreaAtuacao().getDataInclusao();
+		// } else if (field.equals("dataAlteracao")) {
+		// cal = entity.getCadastroAreaAtuacao().getDataAlteracao();
+		// } else {
+		// throw new GoLiveException("Não existe o campo na entidade");
+		// }
+		// cal.set(Calendar.HOUR_OF_DAY, 0);
+		// cal.set(Calendar.MINUTE, 0);
+		// cal.set(Calendar.MILLISECOND, 0);
+		// cal.set(Calendar.SECOND, 0);
+		// return cal.getTime();
+		// }
 
-			@Override
-			protected List<DateFilter> getFiltros(final String field) {
-
-				final List<DateFilter> filtros = new ArrayList<DateFilter>();
-				if (field.equals("dataInclusao")) {
-					if (dataDeInclusao.getInicio() != null) {
-						filtros.add(dataDeAlteracao);
-					}
-				} else if (field.equals("dataAlteracao")) {
-					if (dataDeAlteracao.getInicio() != null) {
-						filtros.add(dataDeInclusao);
-					}
-				} else {
-					throw new GoLiveException("Não existe o campo no managedBean");
-				}
-				return filtros;
-
-			}
-
-			@Override
-			protected Date getDatePorFieldEntity(final AreaDeAtuacaoEmbed entity, final String field) {
-				Calendar cal;
-
-				if (field.equals("dataInclusao")) {
-					cal = entity.getCadastroAreaAtuacao().getDataInclusao();
-				} else if (field.equals("dataAlteracao")) {
-					cal = entity.getCadastroAreaAtuacao().getDataAlteracao();
-				} else {
-					throw new GoLiveException("Não existe o campo na entidade");
-				}
-				cal.set(Calendar.HOUR_OF_DAY, 0);
-				cal.set(Calendar.MINUTE, 0);
-				cal.set(Calendar.MILLISECOND, 0);
-				cal.set(Calendar.SECOND, 0);
-				return cal.getTime();
-			}
-
-			@Override
-			protected DateFilter getDataMB(final String field) {
-				if (field.equals("dataInclusao")) {
-					return dataDeInclusao;
-				} else if (field.equals("dataAlteracao")) {
-					return dataDeAlteracao;
-				} else {
-					throw new GoLiveException("Não existe o campo no managedBean");
-				}
-			}
-
-			@Override
-			protected void verificarTipoDeFiltro(final DateFilter date) {
-				if (date.getTipo() == null) {
-					JSFUtils.warnMessage(labels.getField("title.msg.erro.ao.filtrar"), labels.getField("msg.filtro.nullo"));
-					throw new GoLiveException("Erro ao Filtrar");
-				}
-			}
-
-			@Override
-			public void setTipoFiltroMB(final String field, final TipoFiltroData filter) {
-				if (field.equals("dataInclusao")) {
-					dataDeInclusao.setTipo(filter);
-				} else if (field.equals("dataAlteracao")) {
-					dataDeAlteracao.setTipo(filter);
-				} else {
-					throw new GoLiveException("Não existe o campo no managedBean");
-				}
-			}
-		};
+		// protected void warn(final GoLiveException exception) {
+		// JSFUtils.warnMessage(labels.getField("title.msg.erro.ao.filtrar"),
+		// labels.getField("msg.filtro.nullo"));
+		// }
+		// };
+		filterUtils.setInstance(this);
+		try {
+			filterUtils.putGetter(genericClazzInstance, "cadastroAreaAtuacao.dataInclusao");
+		} catch (NoSuchMethodException | SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -259,13 +222,13 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		this.labels = labels;
 	}
 
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(final Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
+	// public Date getDataInclusao() {
+	// return dataInclusao;
+	// }
+	//
+	// public void setDataInclusao(final Date dataInclusao) {
+	// this.dataInclusao = dataInclusao;
+	// }
 
 	public Date getDataAlteracao() {
 		return dataAlteracao;
@@ -275,12 +238,12 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		this.dataAlteracao = dataAlteracao;
 	}
 
-	public DateFilter getDataDeInclusao() {
-		return dataDeInclusao;
+	public DateFilter getDataInclusao() {
+		return dataInclusao;
 	}
 
-	public void setDataDeInclusao(final DateFilter dataDeInclusao) {
-		this.dataDeInclusao = dataDeInclusao;
+	public void setDataInclusao(final DateFilter dataDeInclusao) {
+		dataInclusao = dataDeInclusao;
 	}
 
 	public DateFilter getDataDeAlteracao() {

@@ -50,8 +50,8 @@
 		
 	
 		<context.root>golive-one</context.root>
-		<jboss.deploy.path>${JBOSS_HOME}/standalone/deployments</jboss.deploy.path>
-		<jboss.module.labes.properties>${JBOSS_HOME}/modules/br/com/golive/labels/main</jboss.module.labes.properties>
+		<jboss.deploy.path>/home/desenv/AmbienteDesenvolvimento/Container/wildfly-8.0.0.Final/standalone/deployments</jboss.deploy.path>
+		<jboss.module.labes.properties>/home/desenv/AmbienteDesenvolvimento/Container/wildfly-8.0.0.Final/modules/br/com/golive/labels/main</jboss.module.labes.properties>
 		
 		<properties.project.folder>/src/main/resources/br/com/golive/labels</properties.project.folder>
 		

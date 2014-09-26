@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+html, body{
+	overflow: hidden;
+}
+
 .ui-column-title{
 	text-wrap:none;
     white-space:nowrap;
