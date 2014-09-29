@@ -53,11 +53,9 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Deprecated
 	private Date dataAlteracao;
 
-	@Filter(name = "dataInclusao")
-	private DateFilter dataInclusao;
+	@Filter(name = "dataInclusao", label = "label.dataInclusao")
+	private DateFilter filtroDataInclusao;
 
-	@Filter(name = "dataDeAlteracao")
-	private DateFilter dataDeAlteracao;
 	private String tipoFiltro;
 
 	@Override
@@ -69,8 +67,8 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 			e.printStackTrace();
 		}
 		logger.info("Inicializando = {}", this.getClass().getName());
-		dataInclusao = new DateFilter();
-		dataDeAlteracao = new DateFilter();
+		setFiltroDataInclusao(new DateFilter());
+		getFiltroDataInclusao().setNome("Inclusao");
 	}
 
 	@Override
@@ -202,7 +200,9 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		// };
 		filterUtils.setInstance(this);
 		try {
-			filterUtils.putGetter(genericClazzInstance, "cadastroAreaAtuacao.dataInclusao");
+			filterUtils.putGetter("cadastroAreaAtuacao.dataInclusao");
+			filterUtils.putGetter("cadastroAreaAtuacao.dataAlteracao");
+
 		} catch (NoSuchMethodException | SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -238,22 +238,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		this.dataAlteracao = dataAlteracao;
 	}
 
-	public DateFilter getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(final DateFilter dataDeInclusao) {
-		dataInclusao = dataDeInclusao;
-	}
-
-	public DateFilter getDataDeAlteracao() {
-		return dataDeAlteracao;
-	}
-
-	public void setDataDeAlteracao(final DateFilter dataDeAlteracao) {
-		this.dataDeAlteracao = dataDeAlteracao;
-	}
-
 	public String getTipoFiltro() {
 		return tipoFiltro;
 	}
@@ -269,6 +253,14 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	public void setLogger(final Logger logger) {
 		this.logger = logger;
+	}
+
+	public DateFilter getFiltroDataInclusao() {
+		return filtroDataInclusao;
+	}
+
+	public void setFiltroDataInclusao(final DateFilter filtroDataInclusao) {
+		this.filtroDataInclusao = filtroDataInclusao;
 	}
 
 }

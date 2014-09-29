@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+
+.settings{
+	position: relative;
+	top: 7px;
+	left: 17px;
+}
+
+.limpar{
+	position: relative;
+	top: 7px;
+	left: 17px;
+}
+
+.filtroDataInicial{
+	position: relative;
+	left: 15px;
+}
+
+.filtroDataFinal{
+	position: relative;
+	left: -11px;
+}

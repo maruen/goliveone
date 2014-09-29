@@ -5,10 +5,12 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	xmlns:filter="http://java.sun.com/jsf/composite/components/filter"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_areasDeAtuacao.css" />
+		<h:outputStylesheet name="css/component/golive_filterTable.css" />
 	</ui:define>
 
 	<ui:define name="bean">
@@ -16,50 +18,6 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-
-		<p:dialog id="dialogFilter" for="filtroDataInclucao"
-			showHeader="false" showEffect="fold" hideEffect="fold"
-			widgetVar="dialogFiltro"
-			header="#{areasDeAtuacaoBean.labels.getField('label.parametros.filtro')}"
-			resizable="false">
-			<p:fieldset
-				legend="#{areasDeAtuacaoBean.labels.getField('label.parametros.filtro')}"
-				style="margin-bottom:20px">
-
-				<p:selectOneRadio id="filtrosInclusao"
-					styleClass="selectOneRadioInclusao"
-					value="#{areasDeAtuacaoBean.dataInclusao.tipo}"
-					widgetVar="inclusaoFiltro" layout="grid" columns="1">
-					<f:selectItem itemValue="#{areasDeAtuacaoBean.filterUtils.igual}"
-						itemLabel="#{areasDeAtuacaoBean.labels.getField(areasDeAtuacaoBean.filterUtils.igual.label)}" />
-					<f:selectItem itemValue="#{areasDeAtuacaoBean.filterUtils.maior}"
-						itemLabel="#{areasDeAtuacaoBean.labels.getField(areasDeAtuacaoBean.filterUtils.maior.label)}" />
-					<f:selectItem itemValue="#{areasDeAtuacaoBean.filterUtils.menor}"
-						itemLabel="#{areasDeAtuacaoBean.labels.getField(areasDeAtuacaoBean.filterUtils.menor.label)}" />
-					<f:selectItem itemValue="#{areasDeAtuacaoBean.filterUtils.periodo}"
-						itemLabel="#{areasDeAtuacaoBean.labels.getField(areasDeAtuacaoBean.filterUtils.periodo.label)}" />
-						<p:ajax event="valueChange" update="filterInclusao" listener="#{areasDeAtuacaoBean.filterUtils.selecionarTipoFiltragemData(areasDeAtuacaoBean.dataInclusao)}"/>
-				</p:selectOneRadio>
-
-				<h:outputLabel id="labelAte" value="Até" />
-				<p:calendar id="filterInclusao" pattern="dd/MM/yyyy"
-					styleClass="inputFilter" disabled="#{areasDeAtuacaoBean.dataInclusao.tipo != areasDeAtuacaoBean.filterUtils.periodo}"
-					value="#{areasDeAtuacaoBean.dataInclusao.fim}" mask="true"
-					effect="fold">
-				</p:calendar>
-
-
-			</p:fieldset>
-			<h:panelGrid columns="2">
-				<p:commandButton update="conteudoTable"
-					onclick="PF('dialogFiltro').hide();"
-					action="#{areasDeAtuacaoBean.filterUtils.filtrarPorData(areasDeAtuacaoBean.conteudo, areasDeAtuacaoBean.filtrados, areasDeAtuacaoBean.dataInclusao, 'dataInclusao')}"
-					value="#{areasDeAtuacaoBean.labels.getField('label.filtrar')}" />
-				<p:commandButton onclick="PF('dialogFiltro').hide();"
-					value="#{areasDeAtuacaoBean.labels.getField('label.cancelar')}" />
-			</h:panelGrid>
-		</p:dialog>
-
 
 		<p:dataTable id="conteudoTable" var="list"
 			selection="#{areasDeAtuacaoBean.registro}"
@@ -84,29 +42,9 @@
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputLabel styleClass="tituloColunaFiltroData"
-						value="#{userBean.properties.getField('label.dataInclusao')}" />
-					<br />
-					<h:panelGrid columns="2"
-						columnClasses="colunaDoisFiltroData, colunaTresFiltroData">
-
-						<p:calendar id="filterInclusao" pattern="dd/MM/yyyy"
-							styleClass="inputFilter"
-							value="#{areasDeAtuacaoBean.dataInclusao.inicio}" mask="true"
-							effect="fold">
-							<p:ajax event="dateSelect" update="conteudoTable"
-								oncomplete="PF('dialogFiltro').show();" />
-						</p:calendar>
-
-						<p:commandLink ajax="false" styleClass="botaoFilter"
-							update="conteudoTable">
-							<h:graphicImage
-								value="/resources/images/stylistica-icons-set/24x24/bin.png"
-								styleClass="image" />
-						</p:commandLink>
-
-					</h:panelGrid>
-
+					<filter:date update=":conteudoForm:conteudoTable" 
+						widgetAnotado="dataInclusao"
+						bean="#{areasDeAtuacaoBean}"/>
 				</f:facet>
 				<h:outputText value="#{list.cadastroAreaAtuacao.dataInclusao.time}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
