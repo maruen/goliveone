@@ -13,6 +13,7 @@ public class GoliveOneProperties extends Properties {
 
 	public GoliveOneProperties (final Locale locale) throws IOException{
 		super();
+		System.out.println("Loading the properties from locale -> " + locale + ".properties");
 		load(Thread.currentThread().getContextClassLoader().getResourceAsStream(locale + ".properties"));
 	}
 	
