@@ -2,11 +2,12 @@ package br.com.golive.utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
@@ -27,21 +28,14 @@ public class FilterUtils<T> {
 
 	private final List<String> getterManagedBean;
 
-	public void verificarTipoDeFiltro(final DateFilter date) {
-		if (date.getTipo() == null) {
-			// warn(new GoLiveException("Filtro nulo"));
-		}
-	}
-
 	public FilterUtils(final Logger logger) {
 		this.logger = logger;
 		this.temp = new ArrayList<T>();
 		this.getterManagedBean = new ArrayList<String>();
 	}
 
-	public void putGetter(final Class<?> clazz, final String... fields) throws NoSuchMethodException, SecurityException {
+	public void putGetter(final String... fields) throws NoSuchMethodException, SecurityException {
 
-		// final String nomeMetodo;
 		for (final String definicoes : fields) {
 			if (!getterManagedBean.contains(definicoes)) {
 				getterManagedBean.add(definicoes);
@@ -67,6 +61,7 @@ public class FilterUtils<T> {
 
 	}
 
+	@Deprecated
 	public void selecionarTipoFiltragemData(final DateFilter data) {
 		if (data.getTipo().equals(TipoFiltroData.PERIODO)) {
 			data.setFim(data.getInicio());
@@ -75,20 +70,21 @@ public class FilterUtils<T> {
 		}
 	}
 
-	public List<GoliveFilter> getFiltros(final String field) {
+	public Map<String, GoliveFilter> getFiltrosRestantes(final String field) {
 
-		final List<GoliveFilter> ret = new ArrayList<GoliveFilter>();
+		final Map<String, GoliveFilter> ret = new HashMap<String, GoliveFilter>();
 
 		try {
 			for (final Field campo : getInstance().getClass().getDeclaredFields()) {
 				if (campo.isAnnotationPresent(Filter.class)) {
 					if (!campo.getAnnotation(Filter.class).name().equals(field)) {
-						ret.add((GoliveFilter) getInstance().getClass().getDeclaredMethod("get" + WordUtils.capitalize(campo.getName())).invoke(getInstance()));
+						ret.put(campo.getAnnotation(Filter.class).name(), (GoliveFilter) getInstance().getClass().getDeclaredMethod("get" + WordUtils.capitalize(campo.getName())).invoke(getInstance()));
 					}
 				}
 			}
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			// warn(new GoLiveException("Erro ao obterFiltros"));
+			logger.error("Erro ao obterFiltro");
+			e.printStackTrace();
 		}
 		return ret;
 
@@ -140,16 +136,18 @@ public class FilterUtils<T> {
 	 */
 	public void filtrarPorData(final List<T> conteudo, final List<T> filtrados, final DateFilter date, final String field) {
 		try {
-			verificarTipoDeFiltro(date);
-			logger.info("Filtrando lista por data, campo = {}", field);
-			setDateInicialNoFilter(date, field);
-			final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			temp.addAll(conteudo);
+			logger.info("Filtrando lista por data, campo = {}", field);
 			if (date != null) {
-				retirarDadosForaDoParametro(conteudo, temp, date, field);
+				setDateInicialNoFilter(date, field);
+				if (verificarFiltro(date)) {
+					retirarDadosForaDoParametro(conteudo, temp, date, field);
+				}
+				atualizarListaDeFiltrados(conteudo, temp, filtrados);
+			} else {
+				setDateInicialNoFilter(new DateFilter(), field);
 			}
-			atualizarListaDeFiltrados(conteudo, temp, filtrados);
-			filtrarPorPelosCamposRestantes(field, sdf, temp, filtrados);
+			filtrarPorPelosCamposRestantes(field, temp, filtrados);
 			atualizarListaDeFiltrados(conteudo, temp, filtrados);
 			temp.removeAll(conteudo);
 		} catch (final Exception e) {
@@ -214,8 +212,11 @@ public class FilterUtils<T> {
 				}
 			}
 
-			final Calendar cal = (Calendar) instances;
+			final Calendar cal = Calendar.getInstance();
 
+			cal.set(Calendar.DAY_OF_MONTH, ((Calendar) instances).get(Calendar.DAY_OF_MONTH));
+			cal.set(Calendar.MONTH, ((Calendar) instances).get(Calendar.MONTH));
+			cal.set(Calendar.YEAR, ((Calendar) instances).get(Calendar.YEAR));
 			cal.set(Calendar.HOUR_OF_DAY, 0);
 			cal.set(Calendar.MINUTE, 0);
 			cal.set(Calendar.MILLISECOND, 0);
@@ -254,17 +255,34 @@ public class FilterUtils<T> {
 	 * @param sdf
 	 */
 
-	private void filtrarPorPelosCamposRestantes(final String field, final SimpleDateFormat sdf, final List<T> temp, final List<T> filtrados) {
+	private void filtrarPorPelosCamposRestantes(final String field, final List<T> temp, final List<T> filtrados) {
 
-		for (final GoliveFilter filtro : getFiltros(field)) {
+		final Map<String, GoliveFilter> filtrosRestantes = getFiltrosRestantes(field);
+
+		for (final String filtro : filtrosRestantes.keySet()) {
 			try {
-				if (filtro.getTipo() != null) {
-					retirarDadosForaDoParametro(filtrados, temp, filtro, field);
+				if (verificarFiltro(filtrosRestantes.get(filtro))) {
+					retirarDadosForaDoParametro(filtrados, temp, filtrosRestantes.get(filtro), filtro);
 				}
 			} catch (NoSuchFieldException | SecurityException | NoSuchMethodException e) {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private boolean verificarFiltro(final GoliveFilter filtro) {
+		if (filtro.getClass().equals(DateFilter.class)) {
+			final DateFilter dateFilter = (DateFilter) filtro;
+
+			if (dateFilter.getTipo() != null) {
+				if (dateFilter.getTipo().equals(TipoFiltroData.PERIODO)) {
+					return ((dateFilter.getInicio() != null) && (dateFilter.getFim() != null));
+				} else {
+					return dateFilter.getInicio() != null;
+				}
+			}
+		}
+		return false;
 	}
 
 	public Object getInstance() {

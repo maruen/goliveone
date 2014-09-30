@@ -2,6 +2,8 @@ package br.com.golive.bean.page.cadastro.rules;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -16,12 +18,15 @@ import javax.inject.Inject;
 import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
 
+import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 
+import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
-import br.com.golive.qualifier.FilterUtilsInjected;
+import br.com.golive.filter.GoliveFilter;
+import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.FilterUtils;
@@ -67,7 +72,7 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	protected Class<T> genericClazzInstance;
 
 	@Inject
-	@FilterUtilsInjected
+	@FilterInjected
 	protected FilterUtils<T> filterUtils;
 
 	public abstract void init();
@@ -286,6 +291,28 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		} catch (GoLiveException | JRException | IOException e) {
 			logger.error("Erro ao gerar relatorio em xls = {}", genericClazzInstance.getName());
 		}
+	}
+
+	public GoliveFilter getFilter(final String widgetName) {
+		for (final Field field : this.getClass().getDeclaredFields()) {
+			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).name().equals(widgetName))) {
+				try {
+					return (GoliveFilter) this.getClass().getMethod("get" + WordUtils.capitalize(field.getName())).invoke(this);
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
+
+	public String getLabelFilter(final String widgetName) {
+		for (final Field field : this.getClass().getDeclaredFields()) {
+			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).name().equals(widgetName))) {
+				return field.getAnnotation(Filter.class).label();
+			}
+		}
+		return null;
 	}
 
 	public boolean isImplementada() {

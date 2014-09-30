@@ -15,4 +15,6 @@ import javax.inject.Qualifier;
 @Documented
 public @interface Filter {
 	public String name();
+
+	public String label();
 }

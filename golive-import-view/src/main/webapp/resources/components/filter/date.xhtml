@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="update" required="true" />
+	<composite:attribute name="widgetAnotado" required="true" />
+	<composite:attribute name="bean" required="true" />
+</composite:interface>
+
+<composite:implementation>
+
+
+	<p:dialog id="dialogFilter_#{cc.attrs.widgetAnotado}" showHeader="true"
+		showEffect="fold" modal="true" width="200px" hideEffect="fold"
+		widgetVar="#{cc.attrs.widgetAnotado}" resizable="false">
+
+		<p:fieldset
+			legend="#{cc.attrs.bean.labels.getField('label.parametros.filtro')}"
+			style="margin-bottom:20px">
+			<p:selectOneRadio id="filtro_#{cc.attrs.widgetAnotado}"
+				styleClass="selectOneRadioInclusao"
+				value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo}"
+				widgetVar="filtroDataComponent_#{cc.attrs.widgetAnotado}"
+				layout="grid" columns="1">
+
+				<f:selectItem itemValue="#{filterBean.igual}"
+					itemLabel="#{cc.attrs.bean.labels.getField(filterBean.igual.label)}" />
+				<f:selectItem itemValue="#{filterBean.maior}"
+					itemLabel="#{cc.attrs.bean.labels.getField(filterBean.maior.label)}" />
+				<f:selectItem itemValue="#{filterBean.menor}"
+					itemLabel="#{cc.attrs.bean.labels.getField(filterBean.menor.label)}" />
+				<f:selectItem itemValue="#{filterBean.periodo}"
+					itemLabel="#{cc.attrs.bean.labels.getField(filterBean.periodo.label)}" />
+				<p:ajax event="valueChange" update="#{cc.attrs.update}"
+					listener="#{cc.attrs.bean.filterUtils.filtrarPorData(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+
+
+				<p:ajax event="valueChange"
+					listener="#{filterBean.selecionarTipoFiltragemData(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado))}" />
+
+			</p:selectOneRadio>
+
+
+
+		</p:fieldset>
+	</p:dialog>
+
+
+
+	<h:outputLabel styleClass="tituloColunaFiltroData"
+		value="#{cc.attrs.bean.labels.getField(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
+	<br />
+
+		<h:panelGroup rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == filterBean.periodo}">
+		
+
+			<p:calendar id="headerFiltro_#{cc.attrs.widgetAnotado}_inicio"
+				pattern="dd/MM/yyyy" styleClass="filtroDataInicial"
+				value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+				mask="true" effect="fold">
+				<p:ajax event="dateSelect" update="#{cc.attrs.update}"
+					listener="#{cc.attrs.bean.filterUtils.filtrarPorData(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+			</p:calendar>
+
+
+			<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
+				value="/resources/images/stylistica-icons-set/24x24/settings.png"
+				styleClass="settings" />
+
+
+			<h:graphicImage
+				value="/resources/images/stylistica-icons-set/24x24/bin.png"
+				styleClass="limpar">
+				<p:ajax event="click" update="#{cc.attrs.update}"
+					listener="#{cc.attrs.bean.filterUtils.filtrarPorData(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
+			</h:graphicImage>
+
+			<br />
+
+			<p:calendar id="headerFiltro_#{cc.attrs.widgetAnotado}_fim"
+				pattern="dd/MM/yyyy" styleClass="filtroDataFinal"
+				value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+				mask="true" effect="fold">
+				<p:ajax event="click" update="#{cc.attrs.update}"
+					listener="#{cc.attrs.bean.filterUtils.filtrarPorData(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
+			</p:calendar>
+
+		</h:panelGroup>
+
+		<h:panelGroup rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo != filterBean.periodo}">
+			<p:calendar id="headerFiltro_#{cc.attrs.widgetAnotado}_inicio"
+				pattern="dd/MM/yyyy" styleClass="filtroDataInicial"
+				value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+				mask="true" effect="fold">
+				<p:ajax event="dateSelect" update="#{cc.attrs.update}"
+					listener="#{cc.attrs.bean.filterUtils.filtrarPorData(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+			</p:calendar>
+
+
+			<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
+				value="/resources/images/stylistica-icons-set/24x24/settings.png"
+				styleClass="settings" />
+
+
+			<h:graphicImage
+				value="/resources/images/stylistica-icons-set/24x24/bin.png"
+				styleClass="limpar">
+				<p:ajax event="click" update="#{cc.attrs.update}"
+					listener="#{cc.attrs.bean.filterUtils.filtrarPorData(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
+			</h:graphicImage>
+</h:panelGroup>
+
+
+
+
+
+
+</composite:implementation>
+
+</html>
