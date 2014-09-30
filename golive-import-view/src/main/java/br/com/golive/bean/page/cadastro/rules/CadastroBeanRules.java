@@ -25,11 +25,11 @@ import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
+import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
-import br.com.golive.utils.FilterUtils;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
@@ -73,7 +73,7 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 
 	@Inject
 	@FilterInjected
-	protected FilterUtils<T> filterUtils;
+	protected FilterManager<T> filterUtils;
 
 	public abstract void init();
 
@@ -87,6 +87,7 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 
 	public abstract Map<String, Object> obterParametrosRelatório();
 
+	@Deprecated
 	public abstract void inicializarFiltros();
 
 	protected abstract Logger getLogger();
@@ -117,7 +118,18 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		filtrados.addAll(conteudo);
 		fluxo = getFluxoListagem();
 		inicializarClasse();
-		inicializarFiltros();
+
+		filterUtils.setInstance(this);
+		// try {
+		// for (final Field field : this.getClass().getDeclaredFields()) {
+		// if (field.isAnnotationPresent(Filter.class)) {
+		// filterUtils.putGetter(field.getAnnotation(Filter.class).campo());
+		// }
+		// }
+		// } catch (NoSuchMethodException | SecurityException e) {
+		// e.printStackTrace();
+		// }
+
 	}
 
 	/**
@@ -379,11 +391,11 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		this.genericClazzInstance = genericClazzInstance;
 	}
 
-	public FilterUtils<T> getFilterUtils() {
+	public FilterManager<T> getFilterUtils() {
 		return filterUtils;
 	}
 
-	public void setFilterUtils(final FilterUtils<T> filterUtils) {
+	public void setFilterUtils(final FilterManager<T> filterUtils) {
 		this.filterUtils = filterUtils;
 	}
 

@@ -1,17 +1,48 @@
 package br.com.golive.filter;
 
-import br.com.golive.constants.TipoFiltroData;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
-public abstract class GoliveFilter {
+import br.com.golive.constants.TipoFiltro;
 
-	protected TipoFiltroData tipo;
+public abstract class GoliveFilter<T> {
 
-	public TipoFiltroData getTipo() {
+	protected TipoFiltro tipo;
+	private Class<T> persistentClass;
+
+	public GoliveFilter() {
+		super();
+		tipo = TipoFiltro.IGUAL;
+
+		Type type = getClass().getGenericSuperclass();
+		if (!(type instanceof ParameterizedType)) {
+			type = this.getClass().getSuperclass().getGenericSuperclass();
+		}
+		try {
+			persistentClass = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
+		} catch (final java.lang.ClassCastException e) {
+			type = this.getClass().getSuperclass().getGenericSuperclass();
+			persistentClass = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
+		}
+	}
+
+	public abstract T getInicio();
+
+	public abstract T getFim();
+
+	public abstract void setInicio(final T inicio);
+
+	public abstract void setFim(final T fim);
+
+	public TipoFiltro getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(final TipoFiltroData tipo) {
+	public void setTipo(final TipoFiltro tipo) {
 		this.tipo = tipo;
 	}
 
+	public Class<T> getGenericType() {
+		return persistentClass;
+	}
 }

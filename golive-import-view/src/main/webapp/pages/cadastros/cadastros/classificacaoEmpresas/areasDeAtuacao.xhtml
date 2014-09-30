@@ -33,18 +33,21 @@
 
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
-			<p:column headerText="#{userBean.properties.getField('label.id')}"
-				styleClass="width-size-10" filterStyleClass="width-size-70;"
-				filterMatchMode="contains" filterBy="#{list.cadastroAreaAtuacao.id}">
+			<p:column>
+
+				<f:facet name="header">
+					<filter:number update=":conteudoForm:conteudoTable"
+						widgetAnotado="id" bean="#{areasDeAtuacaoBean}" />
+				</f:facet>
+
 				<h:outputLabel value="#{list.cadastroAreaAtuacao.id}" />
 			</p:column>
 
 
 			<p:column>
 				<f:facet name="header">
-					<filter:date update=":conteudoForm:conteudoTable" 
-						widgetAnotado="dataInclusao"
-						bean="#{areasDeAtuacaoBean}"/>
+					<filter:date update=":conteudoForm:conteudoTable"
+						widgetAnotado="dataInclusao" bean="#{areasDeAtuacaoBean}" />
 				</f:facet>
 				<h:outputText value="#{list.cadastroAreaAtuacao.dataInclusao.time}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
@@ -52,6 +55,11 @@
 			</p:column>
 
 			<p:column>
+				<f:facet name="header">
+					<filter:date update=":conteudoForm:conteudoTable"
+						widgetAnotado="dataAlteracao" bean="#{areasDeAtuacaoBean}" />
+				</f:facet>
+
 				<h:outputText value="#{list.cadastroAreaAtuacao.dataAlteracao.time}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 				</h:outputText>
@@ -60,10 +68,12 @@
 
 
 
-			<p:column filterMatchMode="contains"
-				filterBy="#{list.cadastroAreaAtuacao.areaDeAtuacao}"
-				headerText="#{userBean.properties.getField('label.areaDeAtuacao')}"
-				styleClass="width-size-30">
+			<p:column>
+				<f:facet name="header">
+					<filter:string update=":conteudoForm:conteudoTable"
+						widgetAnotado="areaDeAtuacao" bean="#{areasDeAtuacaoBean}" />
+				</f:facet>
+
 				<h:outputLabel value="#{list.cadastroAreaAtuacao.areaDeAtuacao}" />
 			</p:column>
 

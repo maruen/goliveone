@@ -30,6 +30,9 @@ import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoEmbed;
 import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
 import br.com.golive.entity.areaDeAtuacao.Cadastro;
 import br.com.golive.filter.DateFilter;
+import br.com.golive.filter.NumberFilter;
+import br.com.golive.filter.StringFilter;
+import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
@@ -50,11 +53,25 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
 
-	@Deprecated
-	private Date dataAlteracao;
-
-	@Filter(name = "dataInclusao", label = "label.dataInclusao")
+	@Inject
+	@FilterInjected
+	@Filter(name = "dataInclusao", label = "label.dataInclusao", campo = "cadastroAreaAtuacao.dataInclusao")
 	private DateFilter filtroDataInclusao;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "dataAlteracao", label = "label.dataAlteracao", campo = "cadastroAreaAtuacao.dataAlteracao")
+	private DateFilter filtroDataAlteracao;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "id", label = "label.id", campo = "cadastroAreaAtuacao.id")
+	private NumberFilter filtroId;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "areaDeAtuacao", label = "label.areaDeAtuacao", campo = "cadastroAreaAtuacao.areaDeAtuacao")
+	private StringFilter filtroAtuacao;
 
 	private String tipoFiltro;
 
@@ -68,7 +85,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		}
 		logger.info("Inicializando = {}", this.getClass().getName());
 		setFiltroDataInclusao(new DateFilter());
-		getFiltroDataInclusao().setNome("Inclusao");
 	}
 
 	@Override
@@ -155,7 +171,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 			cal = Calendar.getInstance();
 
 			cal.setTime(sdf.parse(id.toString() + "/01/2014"));
-			lista.add(conteudoLinha(id, cal, value, str));
+			lista.add(conteudoLinha(id, cal, value, str, sdf));
 
 			id++;
 			value = (value * id) / 2;
@@ -165,48 +181,11 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	}
 
 	@Deprecated
-	public AreaDeAtuacaoEmbed conteudoLinha(final Long id, final Calendar cal, final Long valor, final String string) {
-		return new AreaDeAtuacaoEmbed(new Cadastro(id, cal, Calendar.getInstance(), "asw" + string), new AuditoriaLog(id, cal, string + "123", id + valor, string, new BigDecimal(valor), new BigDecimal(valor), string + "aa", string + "bb"));
-	}
+	public AreaDeAtuacaoEmbed conteudoLinha(final Long id, final Calendar cal, final Long valor, final String string, final SimpleDateFormat sdf) throws ParseException {
+		final Calendar cal2 = Calendar.getInstance();
+		cal2.setTime(sdf.parse(id.toString() + "/03/2014"));
 
-	@Override
-	public void inicializarFiltros() {
-		// filterUtils
-		// = new FilterUtils<AreaDeAtuacaoEmbed>(logger) {
-
-		// protected Date getDatePorFieldEntity(final AreaDeAtuacaoEmbed entity,
-		// final String field)
-		// {
-		// Calendar cal;
-		//
-		// if (field.equals("dataInclusao")) {
-		// cal = entity.getCadastroAreaAtuacao().getDataInclusao();
-		// } else if (field.equals("dataAlteracao")) {
-		// cal = entity.getCadastroAreaAtuacao().getDataAlteracao();
-		// } else {
-		// throw new GoLiveException("Não existe o campo na entidade");
-		// }
-		// cal.set(Calendar.HOUR_OF_DAY, 0);
-		// cal.set(Calendar.MINUTE, 0);
-		// cal.set(Calendar.MILLISECOND, 0);
-		// cal.set(Calendar.SECOND, 0);
-		// return cal.getTime();
-		// }
-
-		// protected void warn(final GoLiveException exception) {
-		// JSFUtils.warnMessage(labels.getField("title.msg.erro.ao.filtrar"),
-		// labels.getField("msg.filtro.nullo"));
-		// }
-		// };
-		filterUtils.setInstance(this);
-		try {
-			filterUtils.putGetter("cadastroAreaAtuacao.dataInclusao");
-			filterUtils.putGetter("cadastroAreaAtuacao.dataAlteracao");
-
-		} catch (NoSuchMethodException | SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		return new AreaDeAtuacaoEmbed(new Cadastro(id, cal, cal2, cal.getTime().getTime() + string), new AuditoriaLog(id, cal, string + "123", id + valor, string, new BigDecimal(valor), new BigDecimal(valor), string + "aa", string + "bb"));
 	}
 
 	@Override
@@ -220,22 +199,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	public void setLabels(final GoliveOneProperties labels) {
 		this.labels = labels;
-	}
-
-	// public Date getDataInclusao() {
-	// return dataInclusao;
-	// }
-	//
-	// public void setDataInclusao(final Date dataInclusao) {
-	// this.dataInclusao = dataInclusao;
-	// }
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(final Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
 	}
 
 	public String getTipoFiltro() {
@@ -261,6 +224,20 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	public void setFiltroDataInclusao(final DateFilter filtroDataInclusao) {
 		this.filtroDataInclusao = filtroDataInclusao;
+	}
+
+	@Override
+	public void inicializarFiltros() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public DateFilter getFiltroDataAlteracao() {
+		return filtroDataAlteracao;
+	}
+
+	public void setFiltroDataAlteracao(final DateFilter filtroDataAlteracao) {
+		this.filtroDataAlteracao = filtroDataAlteracao;
 	}
 
 }
