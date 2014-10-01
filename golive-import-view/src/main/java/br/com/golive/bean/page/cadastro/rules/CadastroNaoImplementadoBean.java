@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
+import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
@@ -102,6 +103,12 @@ public class CadastroNaoImplementadoBean extends CadastroBeanRules<Object> {
 
 	@Override
 	protected Logger getLogger() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FilterManager<Object> getFilterManager() {
 		// TODO Auto-generated method stub
 		return null;
 	}

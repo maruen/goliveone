@@ -31,14 +31,14 @@
 				widgetVar="filtroDataComponent_#{cc.attrs.widgetAnotado}"
 				layout="grid" columns="1">
 
-				<f:selectItem itemValue="#{cc.attrs.bean.filterUtils.igual}"
-					itemLabel="#{cc.attrs.bean.labels.getField(cc.attrs.bean.filterUtils.igual.label)}" />
-				<f:selectItem itemValue="#{cc.attrs.bean.filterUtils.contem}"
-					itemLabel="#{cc.attrs.bean.labels.getField(cc.attrs.bean.filterUtils.contem.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.igual}"
+					itemLabel="#{cc.attrs.bean.labels.getField(cc.attrs.bean.filterManager.igual.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.contem}"
+					itemLabel="#{cc.attrs.bean.labels.getField(cc.attrs.bean.filterManager.contem.label)}" />
 				<p:ajax event="valueChange" update="#{cc.attrs.update}"
-					listener="#{cc.attrs.bean.filterUtils.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+					listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 				<p:ajax event="valueChange"
-					listener="#{cc.attrs.bean.filterUtils.selecionarTipoFiltro(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado))}" />
+					listener="#{cc.attrs.bean.filterManager.selecionarTipoFiltro(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado))}" />
 
 			</p:selectOneRadio>
 
@@ -58,8 +58,8 @@
 			styleClass="filtroDataInicial"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
 
-			<p:ajax event="keyup" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterUtils.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+			<p:ajax event="change" update="#{cc.attrs.update}"
+				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 		</p:inputText>
 
 
@@ -72,7 +72,7 @@
 			value="/resources/images/stylistica-icons-set/24x24/bin.png"
 			styleClass="limpar">
 			<p:ajax event="click" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterUtils.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
+				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
 		</h:graphicImage>
 
 		<br />

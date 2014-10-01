@@ -11,14 +11,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.entity.produto.ProdutoModel;
+import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
@@ -26,8 +24,6 @@ import br.com.golive.utils.JSFUtils;
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastros.produtos.tipoProduto.tipoProduto")
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
@@ -160,8 +156,33 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 
 	@Override
 	protected Logger getLogger() {
-		// TODO Auto-generated method stub
+		return logger;
+	}
+
+	@Override
+	public FilterManager<ProdutoModel> getFilterManager() {
 		return null;
+	}
+
+	public GoliveOneProperties getLabels() {
+		return labels;
+	}
+
+	public void setLabels(final GoliveOneProperties labels) {
+		this.labels = labels;
+	}
+
+	public Calendar getData() {
+		return data;
+	}
+
+	public void setData(final Calendar data) {
+		this.data = data;
+	}
+
+	@Override
+	public void setLogger(final Logger logger) {
+		this.logger = logger;
 	}
 
 }

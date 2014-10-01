@@ -20,6 +20,7 @@ import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.produto.ProdutoModel;
+import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
@@ -43,7 +44,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	@PostConstruct
 	public void init() {
 		super.init(criarList());
-		
+
 		logger.info("Inicializando = {}", this.getClass().getName());
 
 		fluxo = getFluxoListagem();
@@ -219,7 +220,6 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		gerarRelatorio(TipoRelatorio.PDF, labels);
 	}
 
-	
 	@Override
 	public void exportarXls() {
 		gerarRelatorio(TipoRelatorio.EXCEL, labels);
@@ -229,7 +229,6 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	public void imprimir() {
 		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
 	}
-	
 
 	@Override
 	public void salvar() {
@@ -256,7 +255,6 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		}
 		return true;
 	}
-	
 
 	@Override
 	protected Logger getLogger() {
@@ -266,6 +264,12 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	@Override
 	public void inicializarFiltros() {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public FilterManager<ProdutoModel> getFilterManager() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -35,12 +35,12 @@ public class WelcomeBean implements Serializable {
 		menu.add(new WelcomeMenuItem(0L, true, "label.cadastro", "link.cadastro", "cadastroLink"));
 		menu.add(new WelcomeMenuItem(1L, false, "label.compras", "link.compras", "comprasLink"));
 		menu.add(new WelcomeMenuItem(2L, false, "label.vendas", "link.vendas", "faturamento"));
-		menu.add(new WelcomeMenuItem(3L, true, "label.faturamento", "link.faturamento", "faturamentoLink"));
-		menu.add(new WelcomeMenuItem(4L, true, "label.financeiro", "link.financeiro", "financeiroLink"));
-		menu.add(new WelcomeMenuItem(5L, true, "label.estoque", "link.estoque", "estoqueLink"));
-		menu.add(new WelcomeMenuItem(6L, true, "label.expedicao", "link.expedicao", "expedicaoLink"));
-		menu.add(new WelcomeMenuItem(7L, true, "label.fiscal", "link.fiscal", "fiscalLink"));
-		menu.add(new WelcomeMenuItem(8L, true, "label.parametrizacao.sistema", "link.parametrizacao.sistema", "parametrizacaoSistemaLink"));
+		menu.add(new WelcomeMenuItem(3L, false, "label.faturamento", "link.faturamento", "faturamentoLink"));
+		menu.add(new WelcomeMenuItem(4L, false, "label.financeiro", "link.financeiro", "financeiroLink"));
+		menu.add(new WelcomeMenuItem(5L, false, "label.estoque", "link.estoque", "estoqueLink"));
+		menu.add(new WelcomeMenuItem(6L, false, "label.expedicao", "link.expedicao", "expedicaoLink"));
+		menu.add(new WelcomeMenuItem(7L, false, "label.fiscal", "link.fiscal", "fiscalLink"));
+		menu.add(new WelcomeMenuItem(8L, false, "label.parametrizacao.sistema", "link.parametrizacao.sistema", "parametrizacaoSistemaLink"));
 
 	}
 

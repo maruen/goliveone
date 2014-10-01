@@ -110,6 +110,7 @@ html,body {
 
 .gridHeader{
 	position: relative;
+	top: 10px;
 	float: right;
 	right: 5%;
 }

@@ -7,7 +7,7 @@ import br.com.golive.constants.TipoFiltro;
 
 public abstract class GoliveFilter<T> {
 
-	protected TipoFiltro tipo;
+	private TipoFiltro tipo;
 	private Class<T> persistentClass;
 
 	public GoliveFilter() {

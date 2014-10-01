@@ -27,7 +27,6 @@ import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
-import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.Fluxo;
@@ -71,11 +70,9 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	protected T registro;
 	protected Class<T> genericClazzInstance;
 
-	@Inject
-	@FilterInjected
-	protected FilterManager<T> filterUtils;
-
 	public abstract void init();
+
+	public abstract FilterManager<T> getFilterManager();
 
 	public abstract void imprimir();
 
@@ -119,17 +116,9 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		fluxo = getFluxoListagem();
 		inicializarClasse();
 
-		filterUtils.setInstance(this);
-		// try {
-		// for (final Field field : this.getClass().getDeclaredFields()) {
-		// if (field.isAnnotationPresent(Filter.class)) {
-		// filterUtils.putGetter(field.getAnnotation(Filter.class).campo());
-		// }
-		// }
-		// } catch (NoSuchMethodException | SecurityException e) {
-		// e.printStackTrace();
-		// }
-
+		if (getFilterManager() != null) {
+			getFilterManager().setInstance(this);
+		}
 	}
 
 	/**
@@ -389,14 +378,6 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 
 	public void setGenericClazzInstance(final Class<T> genericClazzInstance) {
 		this.genericClazzInstance = genericClazzInstance;
-	}
-
-	public FilterManager<T> getFilterUtils() {
-		return filterUtils;
-	}
-
-	public void setFilterUtils(final FilterManager<T> filterUtils) {
-		this.filterUtils = filterUtils;
 	}
 
 	public static long getSerialversionuid() {

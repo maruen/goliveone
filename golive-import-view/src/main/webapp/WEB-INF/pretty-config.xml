@@ -85,7 +85,7 @@
 		
 		<url-mapping id="cadastrosCadastrosProdutosClassificacaoSubGruposProdutos">
 			<pattern value="/Cadastros/Cadastros/Produtos/Classificacao/SubGrupoProdutos" />
-			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/subGrupoDeProdutos.jsf" />
+			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/subGrupoDeProduto.jsf" />
 		</url-mapping>
 	
 		
@@ -205,13 +205,13 @@
 		
 		<url-mapping id="cadastrosCadastrosRegioesTipoLogradouro">
 			<pattern value="/Cadastros/Cadastros/Regioes/TipoLogradouro" />
-			<view-id value="/pages/cadastros/cadastros/regioes/tipoLogradouros.jsf" />
+			<view-id value="/pages/cadastros/cadastros/regioes/tiposLogradouro.jsf" />
 		</url-mapping>
 	
 		
 		<url-mapping id="cadastrosCadastrosTipoTransportadora">
-			<pattern value="/Cadastros/Cadastros/TipoTransportadora" />
-			<view-id value="/pages/cadastros/cadastros/tipoTransportadora.jsf" />
+			<pattern value="/Cadastros/Cadastros/Transportadora" />
+			<view-id value="/pages/cadastros/cadastros/transportadoras.jsf" />
 		</url-mapping>
 
 

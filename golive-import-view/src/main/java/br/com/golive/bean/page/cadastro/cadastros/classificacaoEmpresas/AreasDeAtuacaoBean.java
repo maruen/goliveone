@@ -30,6 +30,7 @@ import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoEmbed;
 import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
 import br.com.golive.entity.areaDeAtuacao.Cadastro;
 import br.com.golive.filter.DateFilter;
+import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
@@ -48,6 +49,10 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Inject
 	private Logger logger;
+
+	@Inject
+	@FilterInjected
+	private FilterManager<AreaDeAtuacaoEmbed> filterManager;
 
 	@Inject
 	@LabelSystemInjected
@@ -238,6 +243,14 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	public void setFiltroDataAlteracao(final DateFilter filtroDataAlteracao) {
 		this.filtroDataAlteracao = filtroDataAlteracao;
+	}
+
+	public FilterManager<AreaDeAtuacaoEmbed> getFilterManager() {
+		return filterManager;
+	}
+
+	public void setFilterManager(FilterManager<AreaDeAtuacaoEmbed> filterManager) {
+		this.filterManager = filterManager;
 	}
 
 }
