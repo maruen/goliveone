@@ -16,20 +16,21 @@
 		<ui:include src="/resources/includes/header/headerNavegacao.xhtml" />
 	</ui:define>
 
-	<ui:define name="toolBar">
-		<ui:insert name="bean" />
 
-		<h:form id="toolBarForm">
-			<ui:include src="/resources/includes/header/toolbar.xhtml" />
-		</h:form>
-	</ui:define>
+
+
 
 
 	<ui:define name="main">
+	
+		<h:form id="conteudoForm" styleClass="mainForm">
+			<ui:insert name="bean" />
 
-		<div id="divConteudo" class="mainContentPage" align="center">
-			<h:form id="conteudoForm" styleClass="mainForm"
-				rendered="#{bean.implementada}">
+			<div id="opcoesDiv" class="opcoesDiv">
+				<ui:include src="/resources/includes/header/toolbar.xhtml" />
+			</div>
+
+			<div id="divConteudo" class="mainContentPage" align="center">
 
 				<p:messages id="mensagens" autoUpdate="true" closable="true"
 					showDetail="true" />
@@ -44,9 +45,9 @@
 					<ui:insert name="edicao" />
 				</h:panelGroup>
 
-			</h:form>
-		</div>
+			</div>
 
+		</h:form>
 	</ui:define>
 
 

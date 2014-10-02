@@ -1,6 +1,5 @@
 package br.com.golive.entity.areaDeAtuacao;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 
 import lombok.Data;
@@ -26,10 +25,10 @@ public class AuditoriaLog {
 	private String acao;
 
 	@Label(name = "label.valorAlterado")
-	private BigDecimal valorAlterado;
+	private String valorAlterado;
 
 	@Label(name = "label.valorAtual")
-	private BigDecimal valorAtual;
+	private String valorAtual;
 
 	@Label(name = "label.usuario")
 	private String usuario;
@@ -41,7 +40,7 @@ public class AuditoriaLog {
 		super();
 	}
 
-	public AuditoriaLog(final Long id, final Calendar calendar, final String formulario, final Long id2, final String acao, final BigDecimal valorAlterado, final BigDecimal valorAtual, final String usuario, final String observacao) {
+	public AuditoriaLog(final Long id, final Calendar calendar, final String formulario, final Long id2, final String acao, final String valorAlterado, final String valorAtual, final String usuario, final String observacao) {
 		super();
 		this.id = id;
 		this.calendar = calendar;
@@ -94,19 +93,19 @@ public class AuditoriaLog {
 		this.acao = acao;
 	}
 
-	public BigDecimal getValorAlterado() {
+	public String getValorAlterado() {
 		return valorAlterado;
 	}
 
-	public void setValorAlterado(final BigDecimal valorAlterado) {
+	public void setValorAlterado(final String valorAlterado) {
 		this.valorAlterado = valorAlterado;
 	}
 
-	public BigDecimal getValorAtual() {
+	public String getValorAtual() {
 		return valorAtual;
 	}
 
-	public void setValorAtual(final BigDecimal valorAtual) {
+	public void setValorAtual(final String valorAtual) {
 		this.valorAtual = valorAtual;
 	}
 

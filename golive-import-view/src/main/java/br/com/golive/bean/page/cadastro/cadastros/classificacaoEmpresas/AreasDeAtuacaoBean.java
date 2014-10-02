@@ -1,12 +1,10 @@
 package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresas;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +33,7 @@ import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
+import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 
@@ -93,9 +92,32 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	}
 
 	@Override
+	public void incluir() {
+		super.incluir();
+
+		final Cadastro cadastro = new Cadastro();
+		cadastro.setId(conteudo.get(conteudo.size() - 1).getCadastroAreaAtuacao().getId() + 1);
+		cadastro.setDataInclusao(Calendar.getInstance());
+
+		registro = new AreaDeAtuacaoEmbed(cadastro, new AuditoriaLog());
+		registro.setListaAuditoriaLogs(new ArrayList<AuditoriaLog>());
+
+	}
+
+	@Override
 	public void excluir() {
 		if (isSelecionado()) {
+			conteudo.remove(registro);
+			filtrados.remove(registro);
 			super.excluir();
+			JSFUtils.infoMessage("Processo Ok", "Registro foi excluido");
+
+		}
+	}
+
+	public void verificar() {
+		if (isSelecionado()) {
+
 		}
 	}
 
@@ -103,7 +125,8 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	public void editarRegistro() {
 		if (isSelecionado()) {
 			super.editarRegistro();
-			logger.info("Edicao de registro = {} ", registro);
+			logger.info("Edicao de registro = {} ", registro.getCadastroAreaAtuacao().getId());
+
 		}
 	}
 
@@ -138,9 +161,38 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	}
 
 	@Override
+	@Deprecated
 	public void salvar() {
-		super.salvar();
-		logger.info("Salvando = {} ");
+		boolean insert = false;
+
+		if (fluxo.equals(Fluxo.INCLUSAO)) {
+			if ((registro.getCadastroAreaAtuacao().getAreaDeAtuacao() == null) || (registro.getCadastroAreaAtuacao().getAreaDeAtuacao().isEmpty())) {
+				JSFUtils.warnMessage(labels.getField("title.msg.erro.ao.inserir"), labels.getField("msg.preencher.registro"));
+			} else {
+				logger.info("Salvando = {} ", registro.getCadastroAreaAtuacao().getId());
+				registro.getCadastroAreaAtuacao().setDataAlteracao(Calendar.getInstance());
+				registro.getListaAuditoriaLogs().add(new AuditoriaLog(1L, Calendar.getInstance(), "Area de Atuação", 1L, "Inserção teste", "VAZIO", "VAZIO", "golive@apresentacao", "Inserção"));
+				conteudo.add(registro);
+				filtrados.add(registro);
+
+				insert = true;
+				JSFUtils.infoMessage(labels.getField("title.msg.inserido.sucesso"), labels.getField("msg.inserido.sucesso"));
+			}
+		} else {
+			logger.info("editando = {} ", registro.getCadastroAreaAtuacao().getId());
+
+			registro.getCadastroAreaAtuacao().setDataAlteracao(Calendar.getInstance());
+			registro.getListaAuditoriaLogs().add(new AuditoriaLog(1L, Calendar.getInstance(), "Area de Atuação", 1L, "Edição", "VAZIO", "VAZIO", "golive@apresentacao", "Edição"));
+
+			insert = true;
+			JSFUtils.infoMessage("Processo Ok", "Edição Concluída");
+
+		}
+
+		if (insert) {
+			super.salvar();
+		}
+
 	}
 
 	@Override
@@ -166,31 +218,77 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Deprecated
 	public List<AreaDeAtuacaoEmbed> criarList() throws ParseException {
 		final List<AreaDeAtuacaoEmbed> lista = new ArrayList<AreaDeAtuacaoEmbed>();
-		Long id = 0L;
-		Calendar cal;
-		Long value = 10L;
-		final Date data;
-		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		final String str = "String";
-		for (int i = 1; i < 25; i++) {
-			cal = Calendar.getInstance();
+		AreaDeAtuacaoEmbed add = new AreaDeAtuacaoEmbed(new Cadastro(1L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Importação"), new AuditoriaLog());
+		add.setListaAuditoriaLogs(getLista());
+		lista.add(add);
 
-			cal.setTime(sdf.parse(id.toString() + "/01/2014"));
-			lista.add(conteudoLinha(id, cal, value, str, sdf));
+		add = new AreaDeAtuacaoEmbed(new Cadastro(2L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Exportação"), new AuditoriaLog());
+		add.setListaAuditoriaLogs(getLista());
+		lista.add(add);
+		add = new AreaDeAtuacaoEmbed(new Cadastro(3L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Industrialização"), new AuditoriaLog());
+		add.setListaAuditoriaLogs(getLista());
+		lista.add(add);
+		add = new AreaDeAtuacaoEmbed(new Cadastro(4L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Distribuição"), new AuditoriaLog());
+		add.setListaAuditoriaLogs(getLista());
+		lista.add(add);
+		add = new AreaDeAtuacaoEmbed(new Cadastro(5L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Comercialização Atacada"), new AuditoriaLog());
+		add.setListaAuditoriaLogs(getLista());
+		lista.add(add);
+		add = new AreaDeAtuacaoEmbed(new Cadastro(6L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Comercialização Varejo"), new AuditoriaLog());
+		add.setListaAuditoriaLogs(getLista());
+		lista.add(add);
+		add = new AreaDeAtuacaoEmbed(new Cadastro(7L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Revenda"), new AuditoriaLog());
+		add.setListaAuditoriaLogs(getLista());
+		lista.add(add);
+		add = new AreaDeAtuacaoEmbed(new Cadastro(8L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Transporte"), new AuditoriaLog());
+		add.setListaAuditoriaLogs(getLista());
+		lista.add(add);
+		add = new AreaDeAtuacaoEmbed(new Cadastro(9L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Logistica"), new AuditoriaLog());
+		add.setListaAuditoriaLogs(getLista());
+		lista.add(add);
+		add = new AreaDeAtuacaoEmbed(new Cadastro(10L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Armazenagem"), new AuditoriaLog());
+		add.setListaAuditoriaLogs(getLista());
+		lista.add(add);
 
-			id++;
-			value = (value * id) / 2;
-		}
 		return lista;
 
 	}
 
-	@Deprecated
-	public AreaDeAtuacaoEmbed conteudoLinha(final Long id, final Calendar cal, final Long valor, final String string, final SimpleDateFormat sdf) throws ParseException {
-		final Calendar cal2 = Calendar.getInstance();
-		cal2.setTime(sdf.parse(id.toString() + "/03/2014"));
+	private Calendar getDate(final String date) {
+		try {
+			final Calendar cal = Calendar.getInstance();
+			final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			cal.setTime(sdf.parse(date));
+			return cal;
+		} catch (final ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
-		return new AreaDeAtuacaoEmbed(new Cadastro(id, cal, cal2, cal.getTime().getTime() + string), new AuditoriaLog(id, cal, string + "123", id + valor, string, new BigDecimal(valor), new BigDecimal(valor), string + "aa", string + "bb"));
+	private List<AuditoriaLog> getLista() {
+		final List<AuditoriaLog> lista = new ArrayList<AuditoriaLog>();
+		lista.add(new AuditoriaLog(000001L, getDate2("25/08/2014 20:26:30"), "Area de atuação", 000001L, "Alteração do Valor", "HL25-LMI-0026", "HL25-LAM-EO-18", "roberto@acaopersianas.com.br", "campo Cód Produto"));
+		lista.add(new AuditoriaLog(000002L, getDate2("25/08/2014 20:26:30"), "Area de atuação", 000002L, "Alteração do Valor", "HL25-LMI-0026", "HL25-LAM-EO-18", "roberto@acaopersianas.com.br", "campo Cód Produto"));
+		lista.add(new AuditoriaLog(000003L, getDate2("25/08/2014 20:26:30"), "Area de atuação", 000003L, "Alteração do Valor", "HL25-LMI-0026", "HL25-LAM-EO-18", "roberto@acaopersianas.com.br", "campo Cód Produto"));
+		lista.add(new AuditoriaLog(000004L, getDate2("25/08/2014 20:26:30"), "Area de atuação", 000004L, "Alteração do Valor", "HL25-LMI-0026", "HL25-LAM-EO-18", "roberto@acaopersianas.com.br", "campo Cód Produto"));
+		lista.add(new AuditoriaLog(000005L, getDate2("25/08/2014 20:26:30"), "Area de atuação", 000005L, "Alteração do Valor", "HL25-LMI-0026", "HL25-LAM-EO-18", "roberto@acaopersianas.com.br", "campo Cód Produto"));
+		lista.add(new AuditoriaLog(000006L, getDate2("25/08/2014 20:26:30"), "Area de atuação", 000006L, "Alteração do Valor", "HL25-LMI-0026", "HL25-LAM-EO-18", "roberto@acaopersianas.com.br", "campo Cód Produto"));
+		lista.add(new AuditoriaLog(000007L, getDate2("25/08/2014 20:26:30"), "Area de atuação", 000007L, "Alteração do Valor", "HL25-LMI-0026", "HL25-LAM-EO-18", "roberto@acaopersianas.com.br", "campo Cód Produto"));
+
+		return lista;
+	}
+
+	private Calendar getDate2(final String date) {
+		try {
+			final Calendar cal = Calendar.getInstance();
+			final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			cal.setTime(sdf.parse(date));
+			return cal;
+		} catch (final ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
@@ -245,11 +343,12 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		this.filtroDataAlteracao = filtroDataAlteracao;
 	}
 
+	@Override
 	public FilterManager<AreaDeAtuacaoEmbed> getFilterManager() {
 		return filterManager;
 	}
 
-	public void setFilterManager(FilterManager<AreaDeAtuacaoEmbed> filterManager) {
+	public void setFilterManager(final FilterManager<AreaDeAtuacaoEmbed> filterManager) {
 		this.filterManager = filterManager;
 	}
 

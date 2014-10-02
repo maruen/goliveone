@@ -169,7 +169,6 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	 */
 	public Class<?> getPojoClass(final String fieldName) {
 		try {
-			logger.info("Obtendo Subclasse da Classe Generica, por field = {}", fieldName);
 			return Utils.getClazz(genericClazzInstance, fieldName);
 		} catch (NoSuchFieldException | SecurityException e) {
 			logger.error("Houve um erro ao tentar obter a classe membro da classe generica");

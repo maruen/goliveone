@@ -341,7 +341,7 @@ public class FilterManager<T> {
 			if ((filtro.getTipo().equals(TipoFiltro.INTERVALO)) || (filtro.getTipo().equals(TipoFiltro.PERIODO))) {
 				return ((filtro.getInicio() != null) && (filtro.getFim() != null));
 			} else {
-				return filtro.getInicio() != null;
+				return ((filtro.getInicio() != null) && (!filtro.getInicio().toString().isEmpty()));
 			}
 		}
 

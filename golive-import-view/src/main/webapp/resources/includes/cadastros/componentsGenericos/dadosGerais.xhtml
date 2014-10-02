@@ -9,17 +9,23 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:panelGrid columns="4" styleClass="little-font width-size-100" columnClasses="width-size-10, width-size-60, width-size-15 text-align-right , width-size-10">
 
 		<h:outputLabel id="lblIdDadosGerais" for="inputIdDadosGerais" value="#{userBean.labelAnotado(clazz, 'id')}" />
-		<h:inputText value="#{pojo.id}" id="inputIdDadosGerais" styleClass="width-size-15"/>
+		<h:inputText value="#{pojo.id}" id="inputIdDadosGerais" styleClass="width-size-15" disabled="true"/>
 
 		<h:outputLabel id="lblDataInclusaoDadosGerais" for="inputDataInclusaoDadosGerais" value="#{userBean.labelAnotado(clazz, 'dataInclusao')}" />
-		<h:inputText value="#{pojo.dataInclusao.time}" 	id="inputDataInclusaoDadosGerais"/>
+		<h:inputText value="#{pojo.dataInclusao.time}" 	id="inputDataInclusaoDadosGerais" disabled="true">
+			<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+		</h:inputText>
 
 		<h:outputLabel id="lblDescricaoadosGerais" for="inputDescricaoDadosGerais" value="#{userBean.labelAnotado(clazz, 'areaDeAtuacao')}" />
 		<h:inputText value="#{pojo.areaDeAtuacao}" styleClass="width-size-90" id="inputDescricaoDadosGerais" />
 
 		<h:outputLabel id="lblDataAlteracaoDadosGerais" for="inputDataAlteracaoDadosGerais" styleClass="text-align-right" value="#{userBean.labelAnotado(clazz, 'dataAlteracao')}" />
-		<h:inputText value="#{pojo.dataAlteracao.time}"	id="inputDataAlteracaoDadosGerais" />
+		<h:inputText value="#{pojo.dataAlteracao.time}"	id="inputDataAlteracaoDadosGerais" disabled="true">
+			<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+		</h:inputText>
 	</h:panelGrid>
+	
+	
 </p:panel>
 
 </ui:composition>

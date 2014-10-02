@@ -1,5 +1,7 @@
 package br.com.golive.entity.areaDeAtuacao;
 
+import java.util.List;
+
 import lombok.Data;
 import br.com.golive.annotation.Jasper;
 
@@ -10,6 +12,8 @@ public class AreaDeAtuacaoEmbed {
 	private Cadastro cadastroAreaAtuacao;
 
 	private AuditoriaLog auditoriaLog;
+
+	private List<AuditoriaLog> listaAuditoriaLogs;
 
 	public AreaDeAtuacaoEmbed(final Cadastro cadastroAreaAtuacao, final AuditoriaLog auditoriaLog) {
 		super();
@@ -35,6 +39,14 @@ public class AreaDeAtuacaoEmbed {
 
 	public void setAuditoriaLog(final AuditoriaLog auditoriaLog) {
 		this.auditoriaLog = auditoriaLog;
+	}
+
+	public List<AuditoriaLog> getListaAuditoriaLogs() {
+		return listaAuditoriaLogs;
+	}
+
+	public void setListaAuditoriaLogs(List<AuditoriaLog> listaAuditoriaLogs) {
+		this.listaAuditoriaLogs = listaAuditoriaLogs;
 	}
 
 }

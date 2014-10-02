@@ -9,10 +9,25 @@
 		<h:outputStylesheet name="css/template/style_cadastroToolbar.css" />
 	</h:head>
 
+	<p:dialog id="dialog" showHeader="true" showEffect="fold" 
+		width="200px" hideEffect="fold"
+		header="Confirmação"
+		widgetVar="excluir" resizable="false">
+		
+		<h:outputLabel value="Deseja Excluir Registros ?" />
+		
+		<h:panelGrid columns="2">
+			<p:commandButton value="Sim" actionListener="#{bean.excluir()}" update=":conteudoForm" onsuccess="PF('excluir').hide();"/>
+			<p:commandButton value="Não" onclick="PF('excluir').hide();"/>
+		</h:panelGrid>
+
+	</p:dialog>
+
+
 	<h:panelGrid columns="2" id="gridToolbarPage" width="100%;"
 		rendered="#{bean.fluxo == bean.fluxoListagem}"
 		columnClasses="tituloToolBarDeafult, botoesToolBarDefault">
-		
+
 		<h:outputLabel
 			value="#{userBean.properties.getField(bean.nomePagina())}"
 			styleClass="titulo" />
@@ -26,6 +41,7 @@
 				<h:outputLabel
 					value="#{userBean.properties.getField('label.incluir')}"
 					styleClass="label little-font" />
+
 			</h:commandLink>
 
 			<h:commandLink actionListener="#{bean.editarRegistro()}"
@@ -38,29 +54,43 @@
 					styleClass="label little-font" />
 			</h:commandLink>
 
-			<h:commandLink actionListener="#{bean.excluir()}"
-				styleClass="linkButton">
-				<h:graphicImage
+			<p:commandLink styleClass="linkButton" onclick="PF('excluir').show();" ajax="true">
+				<h:graphicImage 
 					value="/resources/images/stylistica-icons-set/24x24/delete.png"
 					styleClass="image" />
 				<h:outputLabel
 					value="#{userBean.properties.getField('label.excluir')}"
 					styleClass="label little-font" />
+			</p:commandLink>
+
+			<h:commandLink styleClass="linkButton"
+				actionListener="#{bean.imprimir()}">
+				<h:graphicImage
+					value="/resources/images/stylistica-icons-set/24x24/print.png"
+					styleClass="image" />
+				<h:outputLabel
+					value="#{userBean.properties.getField('label.imprimir')}"
+					styleClass="label little-font" />
 			</h:commandLink>
 
-			<h:commandLink styleClass="linkButton" actionListener="#{bean.imprimir()}"> 
-				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/print.png" styleClass="image" />
-				<h:outputLabel value="#{userBean.properties.getField('label.imprimir')}" styleClass="label little-font" />
+			<h:commandLink actionListener="#{bean.exportarPdf()}"
+				styleClass="linkButton">
+				<h:graphicImage
+					value="/resources/images/stylistica-icons-set/24x24/print.png"
+					styleClass="image" />
+				<h:outputLabel
+					value="#{userBean.properties.getField('label.exportarPdf')}"
+					styleClass="label little-font" />
 			</h:commandLink>
 
-			<h:commandLink actionListener="#{bean.exportarPdf()}" styleClass="linkButton">
-				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/print.png" styleClass="image" />
-				<h:outputLabel value="#{userBean.properties.getField('label.exportarPdf')}" styleClass="label little-font" />
-			</h:commandLink>
-
-			<h:commandLink actionListener="#{bean.exportarXls()}" styleClass="linkButton"  >
-				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/pages.png" styleClass="image" />
-				<h:outputLabel value="#{userBean.properties.getField('label.exportarXls')}" styleClass="label little-font" />
+			<h:commandLink actionListener="#{bean.exportarXls()}"
+				styleClass="linkButton">
+				<h:graphicImage
+					value="/resources/images/stylistica-icons-set/24x24/pages.png"
+					styleClass="image" />
+				<h:outputLabel
+					value="#{userBean.properties.getField('label.exportarXls')}"
+					styleClass="label little-font" />
 			</h:commandLink>
 
 		</h:panelGrid>
@@ -80,7 +110,7 @@
 		<h:panelGrid columns="6">
 
 
-			<h:commandLink actionListener="#{bean.salvar()}"
+			<h:commandLink actionListener="#{bean.salvar()}" id="salvarLink"
 				styleClass="linkButton">
 				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/save.png"
