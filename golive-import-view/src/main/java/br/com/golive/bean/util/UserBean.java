@@ -35,7 +35,7 @@ public class UserBean implements Serializable {
 
 	private final String usuario = "Joaquim Silva";
 
-	private String empresaSelecionda;
+	private String empresaSelecionada;
 
 	private String data;
 
@@ -102,12 +102,12 @@ public class UserBean implements Serializable {
 		this.usuarioService = usuarioService;
 	}
 
-	public String getEmpresaSelecionda() {
-		return empresaSelecionda;
+	public String getEmpresaSelecionada() {
+		return empresaSelecionada;
 	}
 
-	public void setEmpresaSelecionda(final String empresaSelecionda) {
-		this.empresaSelecionda = empresaSelecionda;
+	public void setEmpresaSelecionada(final String empresaSelecionda) {
+		this.empresaSelecionada = empresaSelecionda;
 	}
 
 	public String getData() {
@@ -153,4 +153,5 @@ public class UserBean implements Serializable {
 	public boolean isLogado() {
 		return logado;
 	}
+	
 }

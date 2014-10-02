@@ -41,6 +41,12 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 		ret.setDataInclusao(Calendar.getInstance());
 		ret.setLabels(new GoliveOneProperties(Locale.getDefault()));
 		switch (username) {
+		case "roberto.tradicao@gmail.com":
+			ret.setNome("Roberto Tradição");
+			ret.setSenha("tradicao1234");
+			ret.setEmpresas(Arrays.asList("Tradição Distribuidora de Persianas Ltda", "Ação Persianas e Distribuidora Ltda"));
+			break;
+		
 		case "Guilherme":
 			ret.setNome("Guilherme");
 			ret.setSenha("123");
