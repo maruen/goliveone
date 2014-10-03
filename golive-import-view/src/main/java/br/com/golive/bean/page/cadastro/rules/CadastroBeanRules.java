@@ -33,6 +33,7 @@ import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.Utils;
+import br.com.golive.utils.javascript.FuncaoJavaScript;
 
 /**
  * 
@@ -84,6 +85,8 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 
 	public abstract Map<String, Object> obterParametrosRelatório();
 
+	public abstract void confirmarExclusao();
+
 	@Deprecated
 	public abstract void inicializarFiltros();
 
@@ -119,6 +122,14 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		if (getFilterManager() != null) {
 			getFilterManager().setInstance(this);
 		}
+	}
+
+	public void cancelarExclusao() {
+		JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1100", "1000"));
+	}
+
+	public void selecionarOutroRegistro() {
+		JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1000", "1000"));
 	}
 
 	/**
@@ -216,7 +227,10 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	 * 
 	 */
 	public void excluir() {
-		fluxo = getFluxoListagem();
+		if (isSelecionado()) {
+			fluxo = getFluxoListagem();
+			JSFUtils.chamarJs(new FuncaoJavaScript("showConfirmarExclusaoDiv", "1100", "1000"));
+		}
 	}
 
 	/**
@@ -242,6 +256,19 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	public void cancelar() {
 		fluxo = getFluxoListagem();
 		registro = null;
+	}
+
+	/**
+	 * @author Guilherme
+	 * 
+	 *         <p>
+	 *         Método responável por obter o fluxo de listagem
+	 *         </p>
+	 * 
+	 * @return {@link Fluxo}
+	 */
+	public Fluxo getFluxoExclusao() {
+		return Fluxo.EXCLUSAO;
 	}
 
 	/**

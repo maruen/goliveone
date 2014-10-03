@@ -272,4 +272,10 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void confirmarExclusao() {
+		// TODO Auto-generated method stub
+
+	}
 }

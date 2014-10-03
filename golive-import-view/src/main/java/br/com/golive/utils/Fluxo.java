@@ -2,6 +2,6 @@ package br.com.golive.utils;
 
 public enum Fluxo {
 
-	INCLUSAO, EDICAO, LISTAGEM;
+	INCLUSAO, EDICAO, LISTAGEM, EXCLUSAO;
 
 }

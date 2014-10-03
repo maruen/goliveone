@@ -8,22 +8,8 @@
 	<h:head>
 		<h:outputStylesheet name="css/template/style_cadastroToolbar.css" />
 	</h:head>
-
-	<p:dialog id="dialog" showHeader="true" showEffect="fold" 
-		width="200px" hideEffect="fold"
-		header="Confirmação"
-		widgetVar="excluir" resizable="false">
-		
-		<h:outputLabel value="Deseja Excluir Registros ?" />
-		
-		<h:panelGrid columns="2">
-			<p:commandButton value="Sim" actionListener="#{bean.excluir()}" update=":conteudoForm" onsuccess="PF('excluir').hide();"/>
-			<p:commandButton value="Não" onclick="PF('excluir').hide();"/>
-		</h:panelGrid>
-
-	</p:dialog>
-
-
+	
+	
 	<h:panelGrid columns="2" id="gridToolbarPage" width="100%;"
 		rendered="#{bean.fluxo == bean.fluxoListagem}"
 		columnClasses="tituloToolBarDeafult, botoesToolBarDefault">
@@ -54,14 +40,14 @@
 					styleClass="label little-font" />
 			</h:commandLink>
 
-			<p:commandLink styleClass="linkButton" onclick="PF('excluir').show();" ajax="true">
+			<h:commandLink styleClass="linkButton" actionListener="#{bean.excluir()}">
 				<h:graphicImage 
 					value="/resources/images/stylistica-icons-set/24x24/delete.png"
 					styleClass="image" />
 				<h:outputLabel
 					value="#{userBean.properties.getField('label.excluir')}"
 					styleClass="label little-font" />
-			</p:commandLink>
+			</h:commandLink>
 
 			<h:commandLink styleClass="linkButton"
 				actionListener="#{bean.imprimir()}">

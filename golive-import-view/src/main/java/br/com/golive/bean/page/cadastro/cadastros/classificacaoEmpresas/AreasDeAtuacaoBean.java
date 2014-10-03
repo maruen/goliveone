@@ -36,6 +36,7 @@ import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
+import br.com.golive.utils.javascript.FuncaoJavaScript;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -77,8 +78,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Filter(name = "areaDeAtuacao", label = "label.areaDeAtuacao", campo = "cadastroAreaAtuacao.areaDeAtuacao")
 	private StringFilter filtroAtuacao;
 
-	private String tipoFiltro;
-
 	@Override
 	@PostConstruct
 	public void init() {
@@ -105,19 +104,13 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	}
 
 	@Override
-	public void excluir() {
-		if (isSelecionado()) {
+	public void confirmarExclusao() {
+		if (registro != null) {
 			conteudo.remove(registro);
 			filtrados.remove(registro);
-			super.excluir();
+			registro = null;
+			JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1000", "1000"));
 			JSFUtils.infoMessage("Processo Ok", "Registro foi excluido");
-
-		}
-	}
-
-	public void verificar() {
-		if (isSelecionado()) {
-
 		}
 	}
 
@@ -302,14 +295,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	public void setLabels(final GoliveOneProperties labels) {
 		this.labels = labels;
-	}
-
-	public String getTipoFiltro() {
-		return tipoFiltro;
-	}
-
-	public void setTipoFiltro(final String tipoFiltro) {
-		this.tipoFiltro = tipoFiltro;
 	}
 
 	public static long getSerialversionuid() {

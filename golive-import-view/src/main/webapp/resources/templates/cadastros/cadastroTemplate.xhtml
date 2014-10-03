@@ -16,20 +16,25 @@
 		<ui:include src="/resources/includes/header/headerNavegacao.xhtml" />
 	</ui:define>
 
-
-
-
-
-
 	<ui:define name="main">
-	
+
 		<h:form id="conteudoForm" styleClass="mainForm">
 			<ui:insert name="bean" />
-
 			<div id="opcoesDiv" class="opcoesDiv">
 				<ui:include src="/resources/includes/header/toolbar.xhtml" />
 			</div>
 
+			<div id="confirmar" class="confirmacaoDiv">
+
+				<h:panelGrid id="confirmarExclusao" columns="3" columnClasses="mensagemColunaExclusao, botaoSim, botaoNao"
+					styleClass="confirmacao">
+					<h:outputLabel value="Deseja Realmente excluir ?" />
+					<p:commandButton value="Sim" actionListener="#{bean.confirmarExclusao()}" update=":conteudoForm:conteudoTable"/>
+					<p:commandButton value="Nao" actionListener="#{bean.cancelarExclusao()}" />
+				</h:panelGrid>
+
+			</div>
+			
 			<div id="divConteudo" class="mainContentPage" align="center">
 
 				<p:messages id="mensagens" autoUpdate="true" closable="true"
