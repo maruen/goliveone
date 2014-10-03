@@ -35,7 +35,6 @@
 					 border="0">
 		
 			<p:selectOneMenu id="descricaoOneMenu"
-							 value="#{userBean.properties.getField('label.cadastroProdutos.finalidadeDescricao')}"
 							 style="width: 90%">
        	        
        	        <f:selectItems value="#{produtoBean.descricoes}" />
@@ -43,7 +42,7 @@
             
         	<h:outputText id="descricaoOutputText" 
         				  value="#{userBean.properties.getField('label.cadastroProdutos.descricao')}" />
-        	<p:inputText id="descricaoInputText" value="" style="width: 97%;"/>
+        	<p:inputText id="descricaoInputText"  style="width: 97%;"/>
         	
         	<p:commandLink action="#">
  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png" />
