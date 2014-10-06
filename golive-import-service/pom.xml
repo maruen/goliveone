@@ -34,38 +34,37 @@
 			<artifactId>cdi-api</artifactId>
 		</dependency>
 
-			<!-- Logging -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-			</dependency>
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>${project.name}</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${compiler.plugin.version}</version>
-				<configuration>
-					<source>${compiler.plugin.source}</source>
-					<target>${compiler.plugin.target}</target>
-				</configuration>
-			</plugin>
 
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-ejb-plugin</artifactId>
-				<version>${maven.ejb.plugin.version}</version>
-				<configuration>
-					<ejbVersion>${ejb.version}</ejbVersion>
-				</configuration>
-			</plugin>
-
-
-		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${compiler.plugin.version}</version>
+					<configuration>
+						<source>${compiler.plugin.source}</source>
+						<target>${compiler.plugin.target}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-ejb-plugin</artifactId>
+					<version>${maven.ejb.plugin.version}</version>
+					<configuration>
+						<ejbVersion>${ejb.version}</ejbVersion>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 </project>

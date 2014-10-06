@@ -26,6 +26,7 @@ import br.com.golive.utils.ServiceUtils;
 @Data
 @ViewScoped
 @ManagedBean
+@Deprecated
 public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = -7455127489110553168L;

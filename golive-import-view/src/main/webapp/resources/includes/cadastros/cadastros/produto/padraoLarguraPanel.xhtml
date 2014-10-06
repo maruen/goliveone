@@ -6,7 +6,7 @@
 
 <!-- PADRAO DE LARGURA -->
 <p:panel id="padraoLarguraPanelId"
-		 header="#{userBean.properties.getField('label.cadastroProdutos.padraoLargura')}"
+		 header="#{managerBean.get('label.cadastroProdutos.padraoLargura')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -43,17 +43,17 @@
    		        </p:selectOneMenu>
   		    
   		    	<h:outputText id="padraoLarguraIdOutputText" 
-  		    				  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+  		    				  value="#{managerBean.get('label.cadastroProdutos.id')}"
   		    				  styleClass="singleLine"/>
         		<p:inputText id="padraoLarguraIdInputText"  style="width: 97%;"/>
         	
         		<h:outputText id="padraoLarguraLarguraOutputText"
-        					  value="#{userBean.properties.getField('label.cadastroProdutos.largura')}"
+        					  value="#{managerBean.get('label.cadastroProdutos.largura')}"
         					  styleClass="singleLine"/>
         		<p:inputText  id="padraoLarguraLarguraInputText"  style="width: 97%;"/>
         	
         		<h:outputText id="padraoLarguraPadraoLarguraOutputText"
-        					  value="#{userBean.properties.getField('label.cadastroProdutos.padraoLargura')}"
+        					  value="#{managerBean.get('label.cadastroProdutos.padraoLargura')}"
         					  styleClass="singleLine"/>
         		<p:inputText id="padraoLarguraPadraoLarguraInputText"  style="width: 97%;"/>
         	
@@ -85,27 +85,27 @@
 			     	<p:selectBooleanCheckbox value="xx" />   
 			    </p:column>
 			    
-			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 			    		  styleClass="percentual-20 singleLine "
 			    		  sortBy="#{padraoLargura[0]}">
 			    		 
 			    		  <h:outputText value="#{padraoLargura[0]}"  styleClass="floatRight"/>
 			    </p:column>
 			 
-			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.largura')}"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.largura')}"
 			    		  styleClass="percentual-25 singleLine"
 			    		  sortBy="#{padraoLargura[1]}">
 			        	  
 			        	  <h:outputText value="#{padraoLargura[1]} "  styleClass="floatRight"/>
 			    </p:column>
 			 
-			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 			    		  styleClass="percentual-15 singleLine"
 			    		  sortBy="#{padraoLargura[2]}">
 			        <h:outputText value="#{padraoLargura[2]}"  styleClass="floatRight"/>
 			    </p:column>
 			 
-			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.finalidadePadraoLargura')}"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.finalidadePadraoLargura')}"
 			    		  styleClass="singleLine"
 			    		  sortBy="#{padraoLargura[3]}">
 			        <h:outputText value="#{padraoLargura[3]}" />

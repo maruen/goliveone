@@ -27,7 +27,7 @@
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="#{userBean.properties.getField('msg.nao.ha.registros')}"
+			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="produtosTable" />
@@ -36,7 +36,7 @@
 			<p:column selectionMode="single"  style="width:16px;text-align:center" />
 
 			<p:column 
-				headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+				headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 				styleClass="percentual-10"
 				filterStyleClass="width-size-70;"
 				filterMatchMode="contains"
@@ -46,7 +46,7 @@
 			</p:column>
 
 			<p:column
-				headerText="#{userBean.properties.getField('label.cadastroProdutos.codProduto')}"
+				headerText="#{managerBean.get('label.cadastroProdutos.codProduto')}"
 				filterBy="${row.id}"
 				filterMatchMode="contains"
 				styleClass="percentual-10 singleLine">
@@ -59,7 +59,7 @@
 			<p:column
 				filterBy="${row.id}"
 				filterMatchMode="contains"
-				headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+				headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 				styleClass="percentual-10">
 				
 				<h:outputLabel value="000000000000000000001" />
@@ -69,7 +69,7 @@
 			<p:column 
 				filterMatchMode="contains"
 				filterBy="${row.id}"
-				headerText="#{userBean.properties.getField('label.cadastroProdutos.departamento')}"
+				headerText="#{managerBean.get('label.cadastroProdutos.departamento')}"
 				styleClass="percentual-10 singleLine">
 				
 				<h:outputLabel value="Acessórios Portas e Peças para Persianas Horizontal" />
@@ -78,7 +78,7 @@
 			<p:column
 				filterBy="${row.id}"
 				filterMatchMode="contains"
-				headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+				headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 				styleClass="percentual-10">
 				
 				<h:outputLabel value="000000000000000000001" />
@@ -88,7 +88,7 @@
 			<p:column 
 				filterMatchMode="contains"
 				filterBy="${row.id}"
-				headerText="#{userBean.properties.getField('label.cadastroProdutos.grupoProdutos')}"
+				headerText="#{managerBean.get('label.cadastroProdutos.grupoProdutos')}"
 				styleClass="percentual-10 singleLine">
 				
 				<h:outputLabel value="Acessórios Portas e Peças para Persianas Horizontal" />
@@ -97,7 +97,7 @@
 			<p:column
 				filterBy="${row.id}"
 				filterMatchMode="contains"
-				headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+				headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 				styleClass="percentual-10">
 				
 				<h:outputLabel value="000000000000000000001" />
@@ -107,7 +107,7 @@
 			<p:column 
 				filterMatchMode="contains"
 				filterBy="${row.id}"
-				headerText="#{userBean.properties.getField('label.cadastroProdutos.subGrupoProdutos')}"
+				headerText="#{managerBean.get('label.cadastroProdutos.subGrupoProdutos')}"
 				styleClass="percentual-10 singleLine">
 				
 				<h:outputLabel value="Acessórios Portas e Peças para Persianas Horizontal" />

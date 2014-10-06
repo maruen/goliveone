@@ -6,7 +6,7 @@
 
 <!--  UNIDADES -->
 <p:panel id="UnidadesId"
-			 header="#{userBean.properties.getField('label.cadastroProdutos.unidades')}"
+			 header="#{managerBean.get('label.cadastroProdutos.unidades')}"
 			 toggleable="true"
 			 closable="false"
 			 collapsed="true"
@@ -43,11 +43,11 @@
     		         </p:selectOneMenu>
    		    	                     
                         <h:outputText id="unidadessIdOutputText"
-                        			  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"/>
+                        			  value="#{managerBean.get('label.cadastroProdutos.id')}"/>
                         <p:inputText  id="unidadessIdInputText"   style="width: 90%;"/>
                                     
                         <h:outputText id="unidadessUnidadeAbrvOutputText"
-                        			  value="#{userBean.properties.getField('label.cadastroProdutos.abrUn')}"
+                        			  value="#{managerBean.get('label.cadastroProdutos.abrUn')}"
                         			  styleClass="singleLine"/>
                         <p:inputText  id="unidadessUnidadeAbrvInputText"
                         			  value="cx"
@@ -55,7 +55,7 @@
                         			  size="2"/>
                         
                         <h:outputText  id="unidadesUnidadeDescOutputText"
-                        			   value="#{userBean.properties.getField('label.cadastroProdutos.unidade')}" />
+                        			   value="#{managerBean.get('label.cadastroProdutos.unidade')}" />
                         <p:inputText   id="unidadesUnidadeDescInputText" value="Caixa" style="width: 97%;"/>
                            
                         <p:commandLink action="#">
@@ -98,7 +98,7 @@
 					        				   		</p:column>
 					        				   		<p:column styleClass="percentual-40">
 					        				   			<h:outputText id="unidadesUnidadesPrincipalOutputText"
-					        				   						  value="#{userBean.properties.getField('label.cadastroProdutos.unidadePrincipal')}"
+					        				   						  value="#{managerBean.get('label.cadastroProdutos.unidadePrincipal')}"
 					        				   						  styleClass="singleLine"/>		
 					        				   		</p:column>
 					        				   		<p:column styleClass="percentual-2">
@@ -116,7 +116,7 @@
 					        				   		</p:column>
 					        				   		<p:column styleClass="percentual-40">
 					        				   			<h:outputText id="unidadesUnidadesSecundariaOutputText"
-					        				   						  value="#{userBean.properties.getField('label.cadastroProdutos.unidadeSecundaria')}"
+					        				   						  value="#{managerBean.get('label.cadastroProdutos.unidadeSecundaria')}"
 					        				   						  styleClass="singleLine"/>		
 					        				   		</p:column>
 					        				   		<p:column styleClass="percentual-2">
@@ -126,13 +126,13 @@
 					        				   <p:row>
 					        				   		<p:column styleClass="percentual-44">
 					        				   			<h:outputText id="unidadessFatorMultiplicacaoOutputText"
-					        				   						  value="#{userBean.properties.getField('label.cadastroProdutos.fatorMultiplicacao')}"
+					        				   						  value="#{managerBean.get('label.cadastroProdutos.fatorMultiplicacao')}"
 					        				   						  styleClass="singleLine"/>
 					        				   		</p:column>
 					        				   		<p:column styleClass="percentual-40"  colspan="2">
 					        				   			<p:inputText  id="fatorMultiplicaoInputText" />
 					        				   			<p:inputText  id="cxInputText"
-					        				   						  value="#{userBean.properties.getField('label.cadastroProdutos.cx')}"
+					        				   						  value="#{managerBean.get('label.cadastroProdutos.cx')}"
 					        				   						  size="2"
 					        				   						  maxchars="2"
 					        				   						  disabled="true"/>		
@@ -168,7 +168,7 @@
                                            <p:row>
 	                                           	<p:column styleClass="percentual-30">
 	                                           		<h:outputText id="unidadessPesoLiquidoOutputText"
-	                                           					  value="#{userBean.properties.getField('label.cadastroProdutos.pesoLiquido')}"
+	                                           					  value="#{managerBean.get('label.cadastroProdutos.pesoLiquido')}"
 	                                           					  styleClass="singleLine"/>
 	                                           	</p:column>
 	                                           	<p:column styleClass="percentual-50">
@@ -187,7 +187,7 @@
   	                                           <p:row>
 	                                           	<p:column styleClass="percentual-30">
 	                                           		<h:outputText id="unidadesPesoBrutoOutputText"
-	                                           					  value="#{userBean.properties.getField('label.cadastroProdutos.pesoBruto')}"
+	                                           					  value="#{managerBean.get('label.cadastroProdutos.pesoBruto')}"
 	                                           					  styleClass="singleLine"/>
 	                                           	</p:column>
 	                                           	<p:column styleClass="percentual-50">
@@ -224,7 +224,7 @@
 		        				      		</p:column>
 	                                   		
 	                                   		<p:column styleClass="percentual-20">
-	                                   			<h:outputText value="#{userBean.properties.getField('label.cadastroProdutos.unidadesPermiteCompra')}"
+	                                   			<h:outputText value="#{managerBean.get('label.cadastroProdutos.unidadesPermiteCompra')}"
 	                                   						  styleClass="singleLine" />
 	                                   		</p:column>
 	                                   		
@@ -239,7 +239,7 @@
 	                                   		</p:column>
 	                                   		
 	                                   		<p:column styleClass="percentual-20">
-	                                   			<h:outputText value="#{userBean.properties.getField('label.cadastroProdutos.qtdeMinimaPedidoCompra')}"
+	                                   			<h:outputText value="#{managerBean.get('label.cadastroProdutos.qtdeMinimaPedidoCompra')}"
 	                                   						  styleClass="singleLine" />
 	                                   		</p:column>
 	                                   		
@@ -255,7 +255,7 @@
 	                                   		
 	                                   		<p:column styleClass="percentual-20" colspan="2">
 	                                   			<p:inputText id="unidadessQtdeMínimaPedidoCompraInputText"  style="width: 70%"/>
-	                                   			<p:inputText value="#{userBean.properties.getField('label.cadastroProdutos.cx')}"
+	                                   			<p:inputText value="#{managerBean.get('label.cadastroProdutos.cx')}"
 	                                   						 disabled="true"
 	                                   						 size="2"
 	                                   						 maxlength="2"/>
@@ -267,7 +267,7 @@
 	                                   		</p:column>
 	                                   		
 	                                   		<p:column styleClass="percentual-20">
-	                                   			<h:outputText value="#{userBean.properties.getField('label.cadastroProdutos.qtdeMaximaPedidoCompra')}"
+	                                   			<h:outputText value="#{managerBean.get('label.cadastroProdutos.qtdeMaximaPedidoCompra')}"
 	                                   						  styleClass="singleLine" />
 	                                   		</p:column>
                                    		</p:row>
@@ -279,7 +279,7 @@
 	                                   		
 	                                   		<p:column styleClass="percentual-20" colspan="2">
 	                                   			<p:inputText id="unidadessQtdeMaximaPedidoCompraInputText"  style="width: 70%"/>
-	                                   			<p:inputText value="#{userBean.properties.getField('label.cadastroProdutos.cx')}"
+	                                   			<p:inputText value="#{managerBean.get('label.cadastroProdutos.cx')}"
 	                                   						 disabled="true"
 	                                   						 size="2"
 	                                   						 maxlength="2"/>
@@ -291,7 +291,7 @@
 	                                   		</p:column>
 	                                   		
 	                                   		<p:column styleClass="percentual-20">
-	                                   			<h:outputText value="#{userBean.properties.getField('label.cadastroProdutos.pesoMaximoPedidoCompra')}"
+	                                   			<h:outputText value="#{managerBean.get('label.cadastroProdutos.pesoMaximoPedidoCompra')}"
 	                                   						  styleClass="singleLine" />
 	                                   		</p:column>
 	                                   		
@@ -307,7 +307,7 @@
 	                                   		
 	                                   		<p:column styleClass="percentual-20" colspan="2">
 	                                   			<p:inputText id="unidadesPesoMaximoPedidoCompraInputText"  style="width: 70%"/>
-	                                   			<p:inputText value="#{userBean.properties.getField('label.cadastroProdutos.kg')}" disabled="true" size="2" maxlength="2"/>
+	                                   			<p:inputText value="#{managerBean.get('label.cadastroProdutos.kg')}" disabled="true" size="2" maxlength="2"/>
 	                                   		</p:column>
 	                                   		<p:column>
 	                                   			<p:commandLink action="#">
@@ -322,7 +322,7 @@
 	                                   		
 	                                   		<p:column styleClass="percentual-20" colspan="2">
 	                                   			<h:outputText id="unidadesUnidadeUtilizadaACPedidoCompraOutboxText"
-                                                              value="#{userBean.properties.getField('label.cadastroProdutos.unidadeUtilizadaAnaliseComparativaPedidoCompra')}"/>
+                                                              value="#{managerBean.get('label.cadastroProdutos.unidadeUtilizadaAnaliseComparativaPedidoCompra')}"/>
 	                                   		</p:column>
 	                                   	
 	                                   		<p:column>
@@ -336,7 +336,7 @@
 	                                   		
 	                                   		<p:column styleClass="percentual-20" colspan="2">
 	                                   			<h:outputText id="unidadesUnidadeUtilizadaACEstoqueOutboxText"
-	                                   					      value="#{userBean.properties.getField('label.cadastroProdutos.unidadeUtilizadaAnaliseComparativaEstoque')} "/>
+	                                   					      value="#{managerBean.get('label.cadastroProdutos.unidadeUtilizadaAnaliseComparativaEstoque')} "/>
                                                                                                
 	                                   		</p:column>
 	                                   	
@@ -363,7 +363,7 @@
 		        				      		</p:column>
 	                                   		
 	                                   		<p:column styleClass="percentual-20">
-	                                   			<h:outputText value="#{userBean.properties.getField('label.cadastroProdutos.unidadesPermiteVenda')}"
+	                                   			<h:outputText value="#{managerBean.get('label.cadastroProdutos.unidadesPermiteVenda')}"
 	                                   						  styleClass="singleLine" />
 	                                   		</p:column>
 	                                   		
@@ -378,7 +378,7 @@
 	                                   		</p:column>
 	                                   		
 	                                   		<p:column styleClass="percentual-20">
-	                                   			<h:outputText value="#{userBean.properties.getField('label.cadastroProdutos.qtdeMinimaPedidoVenda')}"
+	                                   			<h:outputText value="#{managerBean.get('label.cadastroProdutos.qtdeMinimaPedidoVenda')}"
 	                                   						  styleClass="singleLine" />
 	                                   		</p:column>
 	                                   		
@@ -394,7 +394,7 @@
 	                                   		
 	                                   		<p:column styleClass="percentual-20" colspan="2">
 	                                   			<p:inputText id="unidadessQtdeMínimaPedidoVendaInputText"  style="width: 70%"/>
-	                                   			<p:inputText value="#{userBean.properties.getField('label.cadastroProdutos.cx')}"
+	                                   			<p:inputText value="#{managerBean.get('label.cadastroProdutos.cx')}"
 	                                   						 disabled="true"
 	                                   						 size="2"
 	                                   						 maxlength="2"/>
@@ -406,7 +406,7 @@
 	                                   		</p:column>
 	                                   		
 	                                   		<p:column styleClass="percentual-20" colspan="2">
-	                                   			<h:outputText value="#{userBean.properties.getField('label.cadastroProdutos.qtdeMaximaPedidoVenda')}"
+	                                   			<h:outputText value="#{managerBean.get('label.cadastroProdutos.qtdeMaximaPedidoVenda')}"
 	                                   						  styleClass="singleLine" />
 	                                   		</p:column>
                                    		</p:row>
@@ -418,7 +418,7 @@
 	                                   		
 	                                   		<p:column styleClass="percentual-20" colspan="2">
 	                                   			<p:inputText id="unidadessQtdeMaximaPedidoVendaInputText"  style="width: 70%"/>
-	                                   			<p:inputText value="#{userBean.properties.getField('label.cadastroProdutos.cx')}"
+	                                   			<p:inputText value="#{managerBean.get('label.cadastroProdutos.cx')}"
 	                                   						 disabled="true"
 	                                   						 size="2"
 	                                   						 maxlength="2"/>
@@ -430,7 +430,7 @@
 	                                   		</p:column>
 	                                   		
 	                                   		<p:column styleClass="percentual-20">
-	                                   			<h:outputText value="#{userBean.properties.getField('label.cadastroProdutos.pesoMaximoPedidoVenda')}"
+	                                   			<h:outputText value="#{managerBean.get('label.cadastroProdutos.pesoMaximoPedidoVenda')}"
 	                                   						  styleClass="singleLine" />
 	                                   		</p:column>
 	                                   		
@@ -515,24 +515,24 @@
 				        	 lazy="true" 
 				        	 var="unidades">
 						    
-						    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+						    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 						    		  styleClass="percentual-10">
 						        
 						        <h:outputText value="#{unidades[1]}" />
 						    </p:column>
 						    
-						    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+						    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 						    		  styleClass="percentual-10">
 						    
 						        <h:outputText value="#{unidades[2]}" />
 						    </p:column>
 						 
-						    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.descricao')}"
+						    <p:column headerText="#{managerBean.get('label.cadastroProdutos.descricao')}"
 						    		  styleClass="percentual-10">
 						        <h:outputText value="#{unidades[3]}" />
 						    </p:column>
 						 
-						    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.unPrinc')}"
+						    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unPrinc')}"
 						    		  styleClass="percentual-10">
 						    	<h:outputText value="#{unidades[4]}" />
 						    </p:column>

@@ -15,7 +15,6 @@
 
 	<ui:define name="bean">
 		<ui:param name="bean" value="#{areasDeAtuacaoBean}" />
-		<ui:param name="label" value="#{userBean.properties}" />		
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -26,7 +25,7 @@
 			rowKey="#{list.cadastroAreaAtuacao.id}" styleClass="tableCadastros"
 			rows="15" paginator="true"
 			filteredValue="#{areasDeAtuacaoBean.filtrados}"
-			emptyMessage="#{userBean.properties.getField('msg.nao.ha.registros')}"
+			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect" update="conteudoTable" listener="#{bean.selecionarOutroRegistro}" />

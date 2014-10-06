@@ -3,7 +3,9 @@ package br.com.golive.constants;
 
 public enum ChaveSessao {
 
-	USUARIO_LOGADO("usuarioLogado");
+	USUARIO_LOGADO("usuarioLogado"),
+	ULTIMA_PAGINA("lastPage"),
+	EMPRESA_SELECIONADA("empresaSelecionada");
 
 	private String chave;
 

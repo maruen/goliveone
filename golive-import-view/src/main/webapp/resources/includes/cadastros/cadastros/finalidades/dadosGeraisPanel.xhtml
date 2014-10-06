@@ -6,7 +6,7 @@
 
 <!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroProdutos.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroProdutos.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -38,7 +38,7 @@
 	           		
 	           		<p:column styleClass="percentual-10">
 	           			<h:outputText id="dataInclusaoOutputText" 
-	      					  		  value="#{userBean.properties.getField('label.cadastroProdutos.dataInclusao')}" />
+	      					  		  value="#{managerBean.get('label.cadastroProdutos.dataInclusao')}" />
 	      		
 	           		</p:column>
 	           		
@@ -73,7 +73,7 @@
 	      			
 	      			<p:column styleClass="percentual-10">
 	      				<h:outputText id="ultimaAlteracaoOutputText"
-	        					  	  value="#{userBean.properties.getField('label.cadastroProdutos.ultimaAlteracao')}"
+	        					  	  value="#{managerBean.get('label.cadastroProdutos.ultimaAlteracao')}"
 	        					  	  styleClass="singleLine"/>
 	      			</p:column>
 	      			

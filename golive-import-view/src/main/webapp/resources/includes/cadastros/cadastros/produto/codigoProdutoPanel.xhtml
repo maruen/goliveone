@@ -6,7 +6,7 @@
 
 <!-- CODIGO PRODUTO -->
 <p:panel id="codigoProdutoId"
-		 header="#{userBean.properties.getField('label.cadastroProdutos.codigoProduto')}"
+		 header="#{managerBean.get('label.cadastroProdutos.codigoProduto')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -44,7 +44,7 @@
    		        </p:selectOneMenu>
   		    
   		    	<h:outputText id="codigoProdutoCodigoProdutoOutputText" 
-  		    				  value="#{userBean.properties.getField('label.cadastroProdutos.codProduto')}"
+  		    				  value="#{managerBean.get('label.cadastroProdutos.codProduto')}"
   		    				  styleClass="singleLine"/>
         		
         		<p:inputText  id="codigoProdutoCodigoProdutoInputText"  style="width: 97%;"/>
@@ -75,25 +75,25 @@
 			     	<p:selectBooleanCheckbox value="xx" />   
 			    </p:column>
 			    
-			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 			    		 styleClass="percentual-20 singleLine "
 			    		 sortBy="#{codigoProduto[0]}">
 			        <h:outputText value="#{codigoProduto[0]}"  styleClass="floatRight"/>
 			    </p:column>
 			 
-			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.codigoProduto')}"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.codigoProduto')}"
 			    		  styleClass="percentual-25 singleLine"
 			    		  sortBy="#{codigoProduto[1]}">
 			        <h:outputText value="#{codigoProduto[1]} "  styleClass="floatRight"/>
 			    </p:column>
 			 
-			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 			    		  styleClass="percentual-15 singleLine"
 			    		  sortBy="#{codigoProduto[2]}">
 			        <h:outputText value="#{codigoProduto[2]}"  styleClass="floatRight"/>
 			    </p:column>
 			 
-			    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.finalidadeCodigoProduto')}"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.finalidadeCodigoProduto')}"
 			    		  styleClass="singleLine"
 			    		  sortBy="#{codigoProduto[3]}">
 			        <h:outputText value="#{codigoProduto[3]}" />

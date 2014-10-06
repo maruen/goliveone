@@ -6,13 +6,13 @@
 
 	<p:panelMenu styleClass="panelCadastroMenu" style="padding-bottom: 40px;">
 
-		<p:submenu label="#{userBean.properties.getField('label.dashboard')}"/>
-		<p:submenu label="#{userBean.properties.getField('label.cadastro')}">
+		<p:submenu label="#{managerBean.get('label.dashboard')}"/>
+		<p:submenu label="#{managerBean.get('label.cadastro')}">
 			<ui:include src="/resources/includes/cadastros/cadastros/main/itemCadastros.xhtml" />
 		</p:submenu>
-		<p:submenu label="#{userBean.properties.getField('label.processos')}"/>
-		<p:submenu label="#{userBean.properties.getField('label.relatorios')}"/>
-		<p:submenu label="#{userBean.properties.getField('label.analise.gerencial')}"/>
+		<p:submenu label="#{managerBean.get('label.processos')}"/>
+		<p:submenu label="#{managerBean.get('label.relatorios')}"/>
+		<p:submenu label="#{managerBean.get('label.analise.gerencial')}"/>
 	</p:panelMenu>
 
 

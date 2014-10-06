@@ -2,6 +2,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<h:form id="headerForm" styleClass="formHeader">
@@ -12,17 +13,16 @@
 				<h:panelGrid columns="3" styleClass="gridHeader text-white"
 					columnClasses="gridHeaderNomeUsuario, gridHeaderData, gridHeaderLogout">
 					<h:outputLabel
-						value="#{userBean.properties.getField('label.welcome')}, #{userBean.usuario}" />
+						value="#{managerBean.get('label.welcome')}, #{managerBean.usuario.nome}" />
 					<h:panelGrid>
-						<h:outputLabel value="#{userBean.data}" />
-						<h:outputLabel value="#{userBean.diaSemana}" />
+						<h:outputLabel value="#{managerBean.data}" />
+						<h:outputLabel value="#{managerBean.diaSemana}" />
 					</h:panelGrid>
 					<h:panelGrid>
 						<h:commandButton styleClass="botaoLogout"
 							image="/resources/images/stylistica-icons-set/24x24/delete.png"
-							action="#{userBean.logout()}" />
-						<h:outputLabel
-							value="#{userBean.properties.getField('label.logout')}" />
+							action="#{managerBean.logout()}" />
+						<h:outputLabel value="#{managerBean.get('label.logout')}" />
 
 					</h:panelGrid>
 				</h:panelGrid>
@@ -30,24 +30,16 @@
 				<h:panelGrid columns="2" cellpadding="10px"
 					styleClass="empresasHeaderGrid"
 					columnClasses="empresasHeaderGridNome, empresasHeaderGridSelectOneMenu">
-					<h:outputLabel
-						value="#{userBean.properties.getField('label.empresa')}" />
-					
+					<h:outputLabel value="#{managerBean.get('label.empresa')}" />
+
 					<p:selectOneMenu id="assinantesSelectOneMenu"
-						value="#{userBean.empresaSelecionada}" style="width: 600px;"
+						value="#{empresa}" style="width: 600px;"
 						effect="fold">
 
-							
-						<f:selectItem itemLabel="Tradição Distribuidora de Persianas Ltda"
-									  itemValue="1"
-									  selected="true" />
-						
-						<f:selectItem itemLabel="Ação Persianas e Distribuidora Ltda"
-									  itemValue="2"    />
-						
-						
-						
-						
+						<c:forEach items="#{managerBean.usuario.empresas}" var="empresas">
+							<f:selectItem itemValue="#{empresas}" itemLabel="#{empresas}"/>
+						</c:forEach>
+						<p:ajax event="change"/>
 					</p:selectOneMenu>
 				</h:panelGrid>
 			</h:panelGrid>

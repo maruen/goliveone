@@ -10,6 +10,7 @@
 
 	<ui:define name="linkRefs">
 		<h:outputStylesheet name="css/login/style_login.css" />
+	
 	</ui:define>
 
 	<ui:define name="header">
@@ -42,11 +43,11 @@
 							value="#{loginBean.labels.getField('label.usuario')}"
 							styleClass="outputLabel" />
 
-						<p:inputText id="loginInputField" value="#{loginBean.login}"
+						<p:inputText id="loginInputField" value="#{loginBean.login}" onblur="#{loginBean.verificarUsuarioPorLogin()}"
 							styleClass="medium-field">
 							<p:ajax event="blur"
 								listener="#{loginBean.verificarUsuarioPorLogin()}"
-								update=":defineMain" onstart="load()" onsuccess="unLoad()" />
+								update="assinantesSelectOneMenu" onstart="load()" onsuccess="unLoad()" />
 						</p:inputText>
 
 						<p:outputLabel id="senhaOutputText" for="senhaSecretInputField"
@@ -63,19 +64,22 @@
 
 						<p:selectOneMenu id="assinantesSelectOneMenu"
 							value="#{loginBean.assinante}" style="width: 308px" effect="fold">
-							<f:selectItems value="#{loginBean.carregadoOnBlur.empresas}" />
-
+							<f:selectItem itemLabel="" itemValue=""/>
+							<c:forEach items="#{loginBean.carregadoOnBlur.empresas}" var="empresas">
+								<f:selectItem itemValue="#{empresas}" itemLabel="#{empresas}"/>
+							</c:forEach>
+								
 						</p:selectOneMenu>
 						<p:spacer />
 						<h:panelGrid columns="2" styleClass="panelGridButtons">
 							<p:commandButton
-								value="#{loginBean.labels.getField('label.conectar')}"
+								value="#{loginBean.labels.getField('label.conectar')}" ajax="false"
 								onstart="PF('loading').show()" onsuccess="PF('loading').hide()"
-								action="#{loginBean.logar}" styleClass="buttons" update="growl">
+								action="#{loginBean.logar}" styleClass="buttons">
 							</p:commandButton>
 
 							<p:commandButton
-								value="#{loginBean.labels.getField('label.limpar')}"
+								value="#{loginBean.labels.getField('label.limpar')}" 
 								action="#{loginBean.limpar}" styleClass="buttons"
 								update="senhaSecretInputField, loginInputField, assinantesSelectOneMenu" />
 						</h:panelGrid>

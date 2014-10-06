@@ -6,7 +6,7 @@
 
 <!--  TIPO DO PRODUTO -->
  <p:panel id="tipoProduto"
-		 header="#{userBean.properties.getField('label.cadastroProdutos.tipoProduto')}"
+		 header="#{managerBean.get('label.cadastroProdutos.tipoProduto')}"
 		 toggleable="true"
 		 closable="false"
 		 collapsed="true"
@@ -35,12 +35,12 @@
         			 
         	
         	<h:outputText id="tipoProdutoIdOutputText"
-        				  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+        				  value="#{managerBean.get('label.cadastroProdutos.id')}"
         				  styleClass="singleLine" /> 
 	        <p:inputText id="tipoProdutoIdInputText" />
         	
         	<h:outputText id="tipoProdutoDescricaoOutputText"
-        				  value="#{userBean.properties.getField('label.cadastroProdutos.descricao')}" />
+        				  value="#{managerBean.get('label.cadastroProdutos.descricao')}" />
         	<p:inputText id="tipoProdutoDescricaoInputText"  style="width: 97%;"/>
         	
         	<p:commandLink action="#">
