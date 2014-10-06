@@ -8,8 +8,11 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
+
 import br.com.golive.annotation.Label;
 import br.com.golive.exception.GoLiveException;
+import br.com.golive.utils.javascript.FuncaoJavaScript;
 
 public class JSFUtils {
 
@@ -65,6 +68,24 @@ public class JSFUtils {
 
 	public static void forward(final String pagePath) throws IOException {
 		getContext().getExternalContext().dispatch(pagePath);
+	}
+
+	public static void chamarJs(final FuncaoJavaScript funcaoJavaScript) {
+
+		final StringBuilder sb = new StringBuilder();
+		sb.append(funcaoJavaScript.getNome());
+
+		if (!funcaoJavaScript.getParametros().isEmpty()) {
+			sb.append("(");
+			for (final String parametro : funcaoJavaScript.getParametros()) {
+				sb.append("'" + parametro + "', ");
+			}
+			sb.append(")");
+		} else {
+			sb.append("()");
+		}
+
+		RequestContext.getCurrentInstance().execute(sb.toString().replace(", )", ")"));
 	}
 
 }

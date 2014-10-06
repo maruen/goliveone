@@ -171,4 +171,10 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 		this.data = data;
 	}
 
+	@Override
+	public void confirmarExclusao() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

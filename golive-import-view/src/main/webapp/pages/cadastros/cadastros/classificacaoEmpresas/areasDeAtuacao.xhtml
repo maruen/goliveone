@@ -15,6 +15,7 @@
 
 	<ui:define name="bean">
 		<ui:param name="bean" value="#{areasDeAtuacaoBean}" />
+		<ui:param name="label" value="#{userBean.properties}" />		
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -28,8 +29,8 @@
 			emptyMessage="#{userBean.properties.getField('msg.nao.ha.registros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-			<p:ajax event="rowSelect" update="conteudoTable" />
-			<p:ajax event="rowUnselect" update="conteudoTable" />
+			<p:ajax event="rowSelect" update="conteudoTable" listener="#{bean.selecionarOutroRegistro}" />
+			<p:ajax event="rowUnselect" update="conteudoTable" listener="#{bean.selecionarOutroRegistro}" />
 
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
@@ -64,8 +65,6 @@
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 				</h:outputText>
 			</p:column>
-
-
 
 
 			<p:column>

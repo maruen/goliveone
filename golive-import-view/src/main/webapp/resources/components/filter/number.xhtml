@@ -19,11 +19,11 @@
 
 
 	<p:dialog id="dialogFilter_number#{cc.attrs.widgetAnotado}" showHeader="true"
-		showEffect="fold" modal="true" width="225px" hideEffect="fold" header="#{cc.attrs.bean.labels.getField(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}"
+		showEffect="fold" modal="true" width="225px" hideEffect="fold" header="#{label.getField(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}"
 		widgetVar="#{cc.attrs.widgetAnotado}" resizable="false">
 
 		<p:fieldset
-			legend="#{cc.attrs.bean.labels.getField('label.parametros.filtro')}"
+			legend="#{label.getField('label.parametros.filtro')}"
 			style="margin-bottom:20px">
 			<p:selectOneRadio id="filtro_number#{cc.attrs.widgetAnotado}"
 				styleClass="selectOneRadioInclusao"
@@ -32,17 +32,17 @@
 				layout="grid" columns="1">
 
 				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.igual}"
-					itemLabel="#{cc.attrs.bean.labels.getField(cc.attrs.bean.filterManager.igual.label)}" />
+					itemLabel="#{label.getField(cc.attrs.bean.filterManager.igual.label)}" />
 				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.maior}"
-					itemLabel="#{cc.attrs.bean.labels.getField(cc.attrs.bean.filterManager.maior.label)}" />
+					itemLabel="#{label.getField(cc.attrs.bean.filterManager.maior.label)}" />
 				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.menor}"
-					itemLabel="#{cc.attrs.bean.labels.getField(cc.attrs.bean.filterManager.menor.label)}" />
+					itemLabel="#{label.getField(cc.attrs.bean.filterManager.menor.label)}" />
 
 				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.contem}"
-					itemLabel="#{cc.attrs.bean.labels.getField(cc.attrs.bean.filterManager.contem.label)}" />
+					itemLabel="#{label.getField(cc.attrs.bean.filterManager.contem.label)}" />
 
 				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.intervalo}"
-					itemLabel="#{cc.attrs.bean.labels.getField(cc.attrs.bean.filterManager.intervalo.label)}" />
+					itemLabel="#{label.getField(cc.attrs.bean.filterManager.intervalo.label)}" />
 
 
 				<p:ajax event="valueChange" update="#{cc.attrs.update}"
@@ -62,7 +62,7 @@
 
 
 	<h:outputLabel styleClass="tituloColunaFiltroData"
-		value="#{cc.attrs.bean.labels.getField(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
+		value="#{label.getField(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
 
 	<h:panelGroup
