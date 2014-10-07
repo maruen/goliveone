@@ -27,10 +27,13 @@
 				<div id="buttonGoLiveComponent_#{cc.attrs.identifier}"
 					class="buttonDiv">
 					<h:commandButton value="#{cc.attrs.value}" styleClass="botaoMenu"
-						actionListener="#{managerBean.setEmpresaSelecionada(cc.attrs.link, empresa)}"
-						action="#{welcomeBean.indexColorReset}"
-						onclick="abrirNovaAba('#{cc.attrs.link}');"
-						/>
+						action="#{bean.novaAba()}"
+						actionListener="#{welcomeBean.indexColorReset}"
+						onclick="abrirNovaAba('#{cc.attrs.link}');">
+					</h:commandButton>
+
+
+
 				</div>
 				<div id="colorIcon" class="colorTagButton"
 					style="background-color: #{cc.attrs.hexaColorPipe}" />
@@ -44,6 +47,7 @@
 					class="buttonDisableDiv">
 					<h:commandButton value="#{cc.attrs.value}"
 						action="#{welcomeBean.indexColorReset}"
+						actionListener="#{managerBean.newTab(cc.attrs.link)}"
 						styleClass="botaoMenuDisabled"
 						onclick="abrirNovaAba('#{cc.attrs.link}');" disabled="true" />
 				</div>

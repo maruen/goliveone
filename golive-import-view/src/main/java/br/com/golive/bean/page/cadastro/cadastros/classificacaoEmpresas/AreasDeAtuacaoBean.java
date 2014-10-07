@@ -15,9 +15,6 @@ import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
@@ -38,8 +35,6 @@ import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Label(name = "label.cadastroDeAreaDeAtuacao")
 @ManagedBean
 @ViewScoped
@@ -81,11 +76,13 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	@PostConstruct
 	public void init() {
+
 		try {
 			super.init(criarList());
 		} catch (final ParseException e) {
 			e.printStackTrace();
 		}
+
 		logger.info("Inicializando = {}", this.getClass().getName());
 		setFiltroDataInclusao(new DateFilter());
 	}
@@ -154,7 +151,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	}
 
 	@Override
-	@Deprecated
 	public void salvar() {
 		boolean insert = false;
 
@@ -163,10 +159,18 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 				JSFUtils.warnMessage(labels.getField("title.msg.erro.ao.inserir"), labels.getField("msg.preencher.registro"));
 			} else {
 				logger.info("Salvando = {} ", registro.getCadastroAreaAtuacao().getId());
+
 				registro.getCadastroAreaAtuacao().setDataAlteracao(Calendar.getInstance());
 				registro.getListaAuditoriaLogs().add(new AuditoriaLog(1L, Calendar.getInstance(), "Area de Atuação", 1L, "Inserção teste", "VAZIO", "VAZIO", "golive@apresentacao", "Inserção"));
-				conteudo.add(registro);
-				filtrados.add(registro);
+
+				final AreaDeAtuacaoEmbed novo = new AreaDeAtuacaoEmbed();
+
+				final Cadastro cadastro = registro.getCadastroAreaAtuacao();
+				novo.setCadastroAreaAtuacao(cadastro);
+				novo.setListaAuditoriaLogs(registro.getListaAuditoriaLogs());
+
+				conteudo.add(novo);
+				filtrados.add(novo);
 
 				insert = true;
 				JSFUtils.infoMessage(labels.getField("title.msg.inserido.sucesso"), labels.getField("msg.inserido.sucesso"));
@@ -314,12 +318,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		this.filtroDataInclusao = filtroDataInclusao;
 	}
 
-	@Override
-	public void inicializarFiltros() {
-		// TODO Auto-generated method stub
-
-	}
-
 	public DateFilter getFiltroDataAlteracao() {
 		return filtroDataAlteracao;
 	}
@@ -335,6 +333,22 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	public void setFilterManager(final FilterManager<AreaDeAtuacaoEmbed> filterManager) {
 		this.filterManager = filterManager;
+	}
+
+	public NumberFilter getFiltroId() {
+		return filtroId;
+	}
+
+	public void setFiltroId(final NumberFilter filtroId) {
+		this.filtroId = filtroId;
+	}
+
+	public StringFilter getFiltroAtuacao() {
+		return filtroAtuacao;
+	}
+
+	public void setFiltroAtuacao(final StringFilter filtroAtuacao) {
+		this.filtroAtuacao = filtroAtuacao;
 	}
 
 }

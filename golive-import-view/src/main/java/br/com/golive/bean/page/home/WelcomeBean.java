@@ -23,7 +23,6 @@ public class WelcomeBean extends GenericBean {
 
 	@PostConstruct
 	public void init() {
-		super.postConstruct();
 		indexColorReset();
 		menu = new ArrayList<WelcomeMenuItem>();
 		menu.add(new WelcomeMenuItem(0L, true, "label.cadastro", "link.cadastro", "cadastroLink"));

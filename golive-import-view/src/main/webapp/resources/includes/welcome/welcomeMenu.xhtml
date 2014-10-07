@@ -9,14 +9,10 @@
 	<h:head>
 		<h:outputStylesheet name="css/component/golive_button.css" />
 	</h:head>
-
-		<c:forEach items="#{welcomeBean.menu}"
-			var="menu">
-			<golive:button hexaColorPipe="#{welcomeBean.hexaColorPipe}"
-				value="#{managerBean.get(menu.keyLabel)}"
-				link="#{managerBean.get(menu.keyLink)}"
-				identifier="#{menu.identifier}" 
-				permission="#{menu.permission}"/> 
-		</c:forEach>
-	
+	<c:forEach items="#{welcomeBean.menu}" var="menu">
+		<golive:button hexaColorPipe="#{welcomeBean.hexaColorPipe}"
+			value="#{managerBean.get(menu.keyLabel)}"
+			link="#{managerBean.get(menu.keyLink)}"
+			identifier="#{menu.identifier}" permission="#{menu.permission}" />
+	</c:forEach>
 </ui:composition>

@@ -17,6 +17,7 @@ import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.service.UsuarioBeanService;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
+import br.com.golive.utils.PrettyUrl;
 import br.com.golive.utils.ServiceUtils;
 
 @ManagedBean
@@ -58,6 +59,7 @@ public class LoginBean implements Serializable {
 		assinante = "";
 	}
 
+
 	public GoliveOneProperties getLabels() {
 		return labels;
 	}
@@ -72,7 +74,7 @@ public class LoginBean implements Serializable {
 				ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA, assinante);
 
 				if (ServiceUtils.verificarNaSessaoPorChave(ChaveSessao.ULTIMA_PAGINA)) {
-					return "pretty:" + ServiceUtils.obterValorPorChave(String.class, ChaveSessao.ULTIMA_PAGINA);
+					return "pretty:" + ServiceUtils.obterValorPorChave(PrettyUrl.class, ChaveSessao.ULTIMA_PAGINA).getId();
 				} else {
 					return "pretty:welcome";
 				}

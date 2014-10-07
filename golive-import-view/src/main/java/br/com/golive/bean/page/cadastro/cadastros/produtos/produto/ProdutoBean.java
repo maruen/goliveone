@@ -263,12 +263,6 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	@Override
-	public void inicializarFiltros() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public FilterManager<ProdutoModel> getFilterManager() {
 		// TODO Auto-generated method stub
 		return null;

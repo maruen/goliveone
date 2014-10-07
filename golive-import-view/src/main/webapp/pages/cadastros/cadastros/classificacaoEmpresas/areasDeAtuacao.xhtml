@@ -8,14 +8,13 @@
 	xmlns:filter="http://java.sun.com/jsf/composite/components/filter"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
+	<ui:param name="bean" value="#{areasDeAtuacaoBean}" />
+
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_areasDeAtuacao.css" />
 		<h:outputStylesheet name="css/component/golive_filterTable.css" />
 	</ui:define>
 
-	<ui:define name="bean">
-		<ui:param name="bean" value="#{areasDeAtuacaoBean}" />
-	</ui:define>
 
 	<ui:define name="conteudo">
 

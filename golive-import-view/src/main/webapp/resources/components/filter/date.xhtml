@@ -18,12 +18,13 @@
 <composite:implementation>
 
 
-	<p:dialog id="dialogFilter_date_#{cc.attrs.widgetAnotado}" showHeader="true"
-		showEffect="fold" modal="true" width="225px" hideEffect="fold" header="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}"
+	<p:dialog id="dialogFilter_date_#{cc.attrs.widgetAnotado}"
+		showHeader="true" showEffect="fold" modal="true" width="225px"
+		hideEffect="fold"
+		header="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}"
 		widgetVar="#{cc.attrs.widgetAnotado}" resizable="false">
 
-		<p:fieldset
-			legend="#{managerBean.get('label.parametros.filtro')}"
+		<p:fieldset legend="#{managerBean.get('label.parametros.filtro')}"
 			style="margin-bottom:20px">
 			<p:selectOneRadio id="filtro_date#{cc.attrs.widgetAnotado}"
 				styleClass="selectOneRadioInclusao"
@@ -63,9 +64,11 @@
 		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.filterManager.periodo}">
 
 
-		<p:calendar id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio_periodo"
+		<p:calendar
+			id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio_periodo"
 			pattern="dd/MM/yyyy" styleClass="filtroDataInicial"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
 			mask="true" effect="fold">
 
 			<p:ajax event="dateSelect" update="#{cc.attrs.update}"
@@ -92,6 +95,7 @@
 		<p:calendar id="headerfiltro_date#{cc.attrs.widgetAnotado}_fim"
 			pattern="dd/MM/yyyy" styleClass="filtroDataFinal"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim != null}"
 			mask="true" effect="fold">
 			<p:ajax event="dateSelect" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
@@ -106,6 +110,7 @@
 		<p:calendar id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio"
 			pattern="dd/MM/yyyy" styleClass="filtroDataInicial"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
 			mask="true" effect="fold">
 			<p:ajax event="dateSelect" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />

@@ -7,17 +7,17 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/layoutTemplate.xhtml">
 
+
 	<ui:define name="linkRefs">
 		<ui:insert name="css" />
 	</ui:define>
 
 	<ui:define name="header">
 		<ui:include src="/resources/includes/header/headerNavegacao.xhtml" />
-
 	</ui:define>
 
 	<ui:define name="main">
-		
+
 		<div id="menuDiv" class="menuDiv menuPolimorficoDiv">
 			<h:form id="menuForm" styleClass="menuForm">
 				<ui:insert name="menuMain" />
@@ -25,8 +25,12 @@
 		</div>
 
 		<div id="mainContentDiv" class="mainContentDiv">
-			<h:form id="contentMain" styleClass="contentMainForm">
+			<h:form id="contentMain" styleClass="contentMainForm" >
 				<div id="mainInsert" class="mainInsert">
+					<p:remoteCommand id="commandSetEmpresaSelecionadaProximoBean"
+						name="guardarEmpresaSelecionada"
+						actionListener="#{bean.guardarEmpresaSelecionada()}" />
+					<p:remoteCommand id="updatePage" name="update" update="@all" />
 					<ui:insert name="contentMain" />
 				</div>
 			</h:form>

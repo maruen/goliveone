@@ -41,7 +41,7 @@ public class FilterManager<T> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes" })
 	public void filtrar(final List<T> conteudo, final List<T> filtrados, final GoliveFilter filtro, final String field) {
 		try {
 			temp.addAll(conteudo);
@@ -87,13 +87,14 @@ public class FilterManager<T> {
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void selecionarTipoFiltro(final GoliveFilter filter) {
 		if ((filter != null) && (((filter.getTipo().equals(TipoFiltro.INTERVALO))) || ((filter.getTipo().equals(TipoFiltro.PERIODO))))) {
 			filter.setFim(null);
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public Map<String, GoliveFilter> getFiltrosRestantes(final String field) {
 
 		final Map<String, GoliveFilter> ret = new HashMap<String, GoliveFilter>();
@@ -114,6 +115,7 @@ public class FilterManager<T> {
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void setFilterOnBean(final GoliveFilter filter, final String field) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		boolean inseriu = false;
 
@@ -122,7 +124,6 @@ public class FilterManager<T> {
 				if (campo.getAnnotation(Filter.class).name().equals(field)) {
 
 					if (filter == null) {
-						@SuppressWarnings("unchecked")
 						final GoliveFilter instanceFilter = (GoliveFilter) getInstance().getClass().getDeclaredMethod("get" + WordUtils.capitalize(campo.getName())).invoke(getInstance());
 						instanceFilter.setInicio(null);
 						instanceFilter.setFim(null);
@@ -140,6 +141,7 @@ public class FilterManager<T> {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void retirarDatasForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final String field) throws NoSuchFieldException, SecurityException, NoSuchMethodException {
 		final DateFilter filtro = (DateFilter) filter;
 		for (final T index : lista) {
@@ -174,6 +176,7 @@ public class FilterManager<T> {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void retirarNumerosForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final String field) throws NoSuchFieldException, SecurityException, NoSuchMethodException {
 		final NumberFilter filtro = (NumberFilter) filter;
 		for (final T index : lista) {
@@ -214,6 +217,7 @@ public class FilterManager<T> {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void retirarStringForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final String field) throws NoSuchFieldException, SecurityException, NoSuchMethodException {
 		for (final T index : lista) {
 			switch (filter.getTipo()) {
@@ -314,6 +318,7 @@ public class FilterManager<T> {
 	 * @param sdf
 	 */
 
+	@SuppressWarnings("rawtypes")
 	private void filtrarPorPelosCamposRestantes(final String field, final List<T> temp, final List<T> filtrados) {
 
 		final Map<String, GoliveFilter> filtrosRestantes = getFiltrosRestantes(field);
@@ -335,6 +340,7 @@ public class FilterManager<T> {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private boolean verificarFiltro(final GoliveFilter filtro) {
 
 		if (filtro.getTipo() != null) {

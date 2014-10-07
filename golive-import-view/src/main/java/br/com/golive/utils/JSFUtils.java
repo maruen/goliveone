@@ -2,6 +2,7 @@ package br.com.golive.utils;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -13,6 +14,9 @@ import org.primefaces.context.RequestContext;
 import br.com.golive.annotation.Label;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
+
+import com.ocpsoft.pretty.PrettyContext;
+import com.ocpsoft.pretty.faces.config.mapping.UrlMapping;
 
 public class JSFUtils {
 
@@ -86,6 +90,10 @@ public class JSFUtils {
 		}
 
 		RequestContext.getCurrentInstance().execute(sb.toString().replace(", )", ")"));
+	}
+
+	public static List<UrlMapping> getPrettyPages() {
+		return PrettyContext.getCurrentInstance().getConfig().getMappings();
 	}
 
 }

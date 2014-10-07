@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
+import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
@@ -51,7 +52,8 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
 @Data
 @ManagedBean
 @ViewScoped
-public abstract class CadastroBeanRules<T> implements Serializable {
+public abstract class CadastroBeanRules<T> extends GenericBean implements
+		Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Logger logger;
@@ -86,9 +88,6 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 	public abstract Map<String, Object> obterParametrosRelatório();
 
 	public abstract void confirmarExclusao();
-
-	@Deprecated
-	public abstract void inicializarFiltros();
 
 	protected abstract Logger getLogger();
 
@@ -320,6 +319,7 @@ public abstract class CadastroBeanRules<T> implements Serializable {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public GoliveFilter getFilter(final String widgetName) {
 		for (final Field field : this.getClass().getDeclaredFields()) {
 			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).name().equals(widgetName))) {

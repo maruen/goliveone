@@ -33,13 +33,13 @@
 					<h:outputLabel value="#{managerBean.get('label.empresa')}" />
 
 					<p:selectOneMenu id="assinantesSelectOneMenu"
-						value="#{empresa}" style="width: 600px;"
+						value="#{bean.empresaSelecionada}" style="width: 600px;"
 						effect="fold">
 
 						<c:forEach items="#{managerBean.usuario.empresas}" var="empresas">
 							<f:selectItem itemValue="#{empresas}" itemLabel="#{empresas}"/>
 						</c:forEach>
-						<p:ajax event="change"/>
+						<p:ajax event="change" listener="#{bean.novaAba()}"/>
 					</p:selectOneMenu>
 				</h:panelGrid>
 			</h:panelGrid>
