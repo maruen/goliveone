@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!--  DADOS GERAIS PANEL -->
+<p:panel id="dadosGerais"
+		 header="#{userBean.properties.getField('label.cadastroGrupoProdutos.dadosGerais')}"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="dadosGerais"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="7"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-5,
+          				 				percentual-5,
+          				 				percentual-5,
+          				 				percentual-50,
+          				 				percentual-5,
+          				 				percentual-5,
+          				  				percentual-5"
+           				 width="100%"
+          				 border="0">
+     
+			<h:outputText id="idOutputText" value="Id"   />
+           	<p:inputText id="idInputText"
+           				 style="width: 125px;"/>
+
+      		<h:outputText id="descricaoNomeOutputText" value="Descrição"/>
+      		<p:inputText id="descricaoNomeInputText"
+      					 required="true"
+      					 disabled="false"
+      					 style="width: 98%"
+      					 value="Lâminas em Alumínio 25mm" />		
+      					 
+      		<p:spacer/>
+      		
+      		<h:outputText id="dataInclusaoOutputText" 
+      					  value="#{userBean.properties.getField('label.cadastroGrupoProdutos.inclusao')}" />
+	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      	
+	 		
+	 		<h:outputText id="idDepartamentoOutputText"
+						  value="Id"   />
+           	<p:inputText id="idDepartamentoInputText"
+           				 style="width: 125px;"
+           				 value="0000000000001" disabled="true"/>
+
+      		<h:outputText id="departamentoNomeOutputText" value="Departamento"/>
+      		<p:inputText id="departamentoNomeInputText"
+      					 required="true"
+      					 disabled="true"
+      					 style="width: 98%"
+      					 value="Acessórios, Partes e Peças para Persianas Horizontais em Alumínio"  />	
+      		
+      		<p:commandLink onclick="PF('dlgDepartamento').show();" immediate="true">
+  					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+			</p:commandLink>
+      			
+       		<h:outputText id="ultimaAlteracaoOutputText"
+       					  value="#{userBean.properties.getField('label.cadastroGrupoProdutos.ultimaAlteracao')}"
+       					  styleClass="singleLine"/>
+	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      					  
+	
+        </h:panelGrid>
+
+	</p:panel>
+	
+	<p:dialog header="Pesquisa de Departamento"
+			  widgetVar="dlgDepartamento"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="55%">
+      			
+     			<p:dataTable id="departamentoDatatableId"
+        	  	 	     var="departamentoDatatableVar"
+        			 	 value="#{grupoProdutosBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-5 singleLine">
+				     		<h:outputText value="00000000000001" styleClass="floatRight" />
+				    </p:column>
+				    
+				    <p:column headerText="Departamento"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio" />
+				    </p:column>
+		</p:dataTable>
+	</p:dialog>
+	
+</ui:composition>

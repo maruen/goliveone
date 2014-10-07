@@ -5,28 +5,327 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	xmlns:filter="http://java.sun.com/jsf/composite/components/filter"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:define name="css">
-		<script type="text/javascript">
-		
-		window.onload = function() {
-			alert('Pagina nao foi implementada');
-            window.close();
-		}
-
-	</script>
-
+		<h:outputStylesheet name="css/cadastros/style_cores.css" />
+		<h:outputStylesheet name="css/component/golive_filterTable.css" />
 	</ui:define>
 
 	<ui:define name="bean">
+		<ui:param name="bean" value="#{coresBean}" />
 	</ui:define>
 
 	<ui:define name="conteudo">
+
+		<p:dataTable id="conteudoTable"
+			 		 var="row"
+					 selection="#{coresBean.registro}"
+					 value="#{coresBean.conteudo}"
+					 selectionMode="single"
+					 rows="15"
+					 rowKey="#{row.id}"
+					 paginator="true"
+					 filteredValue="#{bean.filtrados}"
+					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect" 	update="conteudoTable"   listener="#{bean.selecionarOutroRegistro}" />
+			<p:ajax event="rowUnselect" update="conteudoTable" 	 listener="#{bean.selecionarOutroRegistro}" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column headerText="Data Inclusão"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  filterStyleClass="width-size-70;"
+					  styleClass="percentual-10 singleLine">
+				
+				<h:outputText value="25/08/2014 20:24" />
+			
+			</p:column>
+
+			<p:column headerText="Data Alteração"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10 singleLine">
+
+				<h:outputText value="25/08/2014 20:47" />
+				
+			</p:column>
+
+			<p:column headerText="Id"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10">
+				
+				<h:outputText value="000000000001" />
+																																																																																																																																																																		
+			</p:column>
+
+			<p:column headerText="Cód. Cor" 
+					  filterMatchMode="contains"
+					  filterBy="${row.id}"
+					  styleClass="percentual-10 singleLine">
+				
+				<h:outputText value="Acessórios Portas e Peças para Persianas Horizontal" />
+			
+			</p:column>
+			
+			<p:column headerText="Cor" 
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10">
+				
+				<h:outputText value="Vermelho" />
+																																																																																																																																																																		
+			</p:column>
+			
+			<p:column headerText="Id"
+					  filterMatchMode="contains"
+					  filterBy="${row.id}"
+					  styleClass="percentual-10 singleLine">
+				
+				<h:outputText value="000000000001" />
+			
+			</p:column>
+			
+			<p:column headerText="Cód.Coleção"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10">
+				
+				<h:outputText value="1234567Boec" />
+																																																																																																																																																																		
+			</p:column>
+			
+			<p:column headerText="Coleção"		
+					  filterMatchMode="contains"
+					  filterBy="${row.id}"
+					  styleClass="percentual-10 singleLine">
+				
+				<h:outputText value="Mountain Viber Glass Colors" />
+			
+			</p:column>
+		</p:dataTable>
+
 	</ui:define>
 
 	<ui:define name="edicao">
+		
+		<!--  DADOS GERAIS PANEL -->
+		<p:panel id="dadosGerais"
+			 	 header="#{managerBean.get('label.cadastroProdutos.dadosGerais')}"
+			 	 toggleable="true"
+			 	 collapsed="false"
+			 	 closable="false"
+			 	 toggleSpeed="500"
+			 	 closeSpeed="500"
+			 	 widgetVar="dadosGeraisPanel"
+			 	 styleClass="little-font" >
+			 
+		     	<f:facet name="actions">
+	          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+	          			<h:outputText styleClass="ui-icon ui-icon-help" />
+	          		</h:commandLink>
+	      		</f:facet>
+	   		       	
+	          	<p:panelGrid cellpadding="2"  
+	          				 cellspacing="2"
+	          				 width="100%"
+	          				 border="0">
+	           	
+		           	<p:row>
+		           		<p:column styleClass="percentual-5">
+		           			<h:outputText id="idOutputText" value="Id"   />
+		           		</p:column>
+		           		
+		           		<p:column styleClass="percentual-10">
+		           			<p:inputText id="idInputText"  style="width: 125px;" />
+		           		</p:column>
+		           		
+		           		
+		           		<p:column styleClass="percentual-12">
+		      				<h:outputText id="descricaoOutputText"  value="Descrição" />
+		      			</p:column>
+		      			
+		      			<p:column styleClass="percentual-68">
+		      				<p:inputText id="descricaoInputText"
+		      				     		 value="H25-LAM-CO25-EQ 18"
+		      				     		 style="width: 90%"
+		      				     		 disabled="true"/>
+		      			</p:column>
+		           		
+		           		
+		           		<p:column styleClass="percentual-10">
+		           			<h:outputText id="dataInclusaoOutputText"  value="Inclusão" />
+		      		
+		           		</p:column>
+		           		
+		           		<p:column >
+		           			
+		           			<p:calendar  id="dataInclusaoInputText"
+		      					 		 disabled="true" 
+		      					 		 value="#{coresBean.registro.dataInclusao}"
+		      					 		 size="20"
+		      					 		 maxlength="18"
+		      					 		 pattern="MM/dd/yyyy HH:mm:ss"/>
+		           		</p:column>
+		           		
+		           	</p:row>
+		
+		      
+		      		<p:row>
+		      			
+		      			<p:column styleClass="percentual-5">
+		           			<p:spacer>&nbsp;</p:spacer>	
+		           		
+		           		</p:column>
+		           		
+		           		<p:column styleClass="percentual-15">
+		           			<p:spacer>&nbsp;</p:spacer>
+		           		</p:column>
+		           		
+		           		<p:column styleClass="percentual-12">
+							<p:spacer>&nbsp;</p:spacer>						      				
+		      			</p:column>
+		      			
+		      			<p:column styleClass="percentual-68">
+		      				<p:spacer>&nbsp;</p:spacer>
+		      			</p:column>
+		      			
+		      			
+		      			<p:column styleClass="percentual-10">
+		      				<h:outputText id="ultimaAlteracaoOutputText"
+		        					  	  value="Última Alteração"
+		        					  	  styleClass="singleLine"/>
+		      			</p:column>
+		      			
+		      			<p:column>
+		      					<p:calendar   id="ultimaAlteracaoInputText"
+			        			      		  disabled="true"
+		        					  		  size="20"
+		        					  		  maxlength="18"
+		        					  		  value="#{coresBean.registro.dataAlteracao}"
+		        					  		  pattern="MM/dd/yyyy HH:mm:ss"/>
+		        					  		  
+		      			</p:column>
+		      			
+		      		</p:row>
+		    </p:panelGrid>
+	
+		</p:panel>
+		
+		
+		<!--  CLASSIFICAÇÃO DO PRODUTO PANEL  -->
+		<p:panel id="classificacaoProduto"
+				 header="#{managerBean.get('label.cadastroProdutos.classificacaoProduto')}"
+		 		 toggleable="true"
+		 		 closable="false"
+		 		 collapsed="false"
+		 		 toggleSpeed="500"
+		 		 closeSpeed="500"
+		 		 widgetVar="classificacaoProdutoPanel"
+		 		 styleClass="little-font" >
+		 
+		     <f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		  </f:facet>
+			
+			  <h:panelGrid columns="5"
+						 cellpadding="3"
+						 cellspacing="3"
+						 columnClasses="percentual-5,
+						 				percentual-10,
+						 				percentual-5,
+						 				percentual-68"
+						 width="100%"
+						 border="0">
+				
+				<h:outputText id="departamentoIdOutputText"
+							  value="#{managerBean.get('label.cadastroProdutos.id')}"   />
+            	
+            	<p:inputText id="departamentoIdInputText"
+            				 value="00000000001" 
+            				 style="width: 125px;"/>
+            	
+        		<h:outputText id="departamentoNomeOutputText"
+        			   		  value="#{managerBean.get('label.cadastroProdutos.departamento')}" />
+            	
+            	<p:inputText id="departamentoNomeInputText"
+            				 style="width: 95%"
+            				 value="Acessorios, Partes e Pcas para Persianas Horizontais em aluminio"/>
+        	
+        	 	<p:commandLink >
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+				
+			
+				<h:outputText id="grupoProdutosIdOutputText" 
+							  value="#{managerBean.get('label.cadastroProdutos.id')}" />
+            	
+            	<p:inputText id="grupoProdutosIdInputText"
+            				 value="00000000001" 
+            				 style="width: 125px;"/>
+            	
+        		<h:outputText  id="grupoProdutosNomeOutputText"
+        		 			   value="#{managerBean.get('label.cadastroProdutos.grupoProdutos')}"
+        		 			   style="white-space: nowrap"/>
+            	
+            	<p:inputText id="grupoProdutosNomeInputText"
+            				 style="width: 95%"
+            				 value="Laminas em Aluminio 25mm"/>
+        	
+        	 	<p:commandLink >
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			
+				<h:outputText id="subGrupoProdutosIdOutputText"
+							   value="#{managerBean.get('label.cadastroProdutos.id')}"   />
+            	
+            	<p:inputText id="subGrupoProdutosIdInputText"
+            				 value="00000000001"
+            				 style="width: 125px;"/>
+            	
+        		<h:outputText id="subGrupoProdutosNomeOutputText"
+        					  value="#{managerBean.get('label.cadastroProdutos.departamento')}"/>
+            	
+            	<p:inputText id="subGrupoProdutosNomeInputText"
+            				 style="width: 95%"
+            				 value="Laminas em Aluminio 25mm x 0.18mm"/>
+        	
+        	 	<p:commandLink >
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+        	
+        	</h:panelGrid>
+        	
+        
+</p:panel>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</ui:define>
-
 
 </ui:composition>
