@@ -19,11 +19,11 @@
 
 
 	<p:dialog id="dialogFilter_number#{cc.attrs.widgetAnotado}" showHeader="true"
-		showEffect="fold" modal="true" width="225px" hideEffect="fold" header="#{label.getField(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}"
+		showEffect="fold" modal="true" width="225px" hideEffect="fold" header="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}"
 		widgetVar="#{cc.attrs.widgetAnotado}" resizable="false">
 
 		<p:fieldset
-			legend="#{label.getField('label.parametros.filtro')}"
+			legend="#{managerBean.get('label.parametros.filtro')}"
 			style="margin-bottom:20px">
 			<p:selectOneRadio id="filtro_number#{cc.attrs.widgetAnotado}"
 				styleClass="selectOneRadioInclusao"
@@ -32,17 +32,17 @@
 				layout="grid" columns="1">
 
 				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.igual}"
-					itemLabel="#{label.getField(cc.attrs.bean.filterManager.igual.label)}" />
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.igual.label)}" />
 				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.maior}"
-					itemLabel="#{label.getField(cc.attrs.bean.filterManager.maior.label)}" />
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.maior.label)}" />
 				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.menor}"
-					itemLabel="#{label.getField(cc.attrs.bean.filterManager.menor.label)}" />
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.menor.label)}" />
 
 				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.contem}"
-					itemLabel="#{label.getField(cc.attrs.bean.filterManager.contem.label)}" />
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.contem.label)}" />
 
 				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.intervalo}"
-					itemLabel="#{label.getField(cc.attrs.bean.filterManager.intervalo.label)}" />
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.intervalo.label)}" />
 
 
 				<p:ajax event="valueChange" update="#{cc.attrs.update}"
@@ -62,7 +62,7 @@
 
 
 	<h:outputLabel styleClass="tituloColunaFiltroData"
-		value="#{label.getField(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
+		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
 
 	<h:panelGroup

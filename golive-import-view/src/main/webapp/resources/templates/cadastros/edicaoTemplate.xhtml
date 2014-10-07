@@ -25,15 +25,15 @@
 			<h:form id="toolBarForm">
 				<h:panelGrid columns="2" columnClasses="tituloToolBar botoesToolBar">
 					<h:outputLabel
-						value="#{userBean.properties.getField('pagina')}" />
+						value="#{managerBean.get('pagina')}" />
 
 					<h:panelGrid columns="6">
 
-						<golive:toolBarButton action="#{bean.salvar()}" value="#{userBean.properties.getField('label.salvar')}"
+						<golive:toolBarButton action="#{bean.salvar()}" value="#{managerBean.get('label.salvar')}"
 							image="/resources/images/stylistica-icons-set/24x24/save.png"
 							identifier="incluir" styleClass="botoesToolBar" />
 
-						<golive:toolBarButton action="#{bean.cancelar()}" value="#{userBean.properties.getField('label.cancelar')}"
+						<golive:toolBarButton action="#{bean.cancelar()}" value="#{managerBean.get('label.cancelar')}"
 							image="/resources/images/stylistica-icons-set/24x24/repeat.png"
 							identifier="editar" styleClass="botoesToolBar" />
 

@@ -15,7 +15,7 @@
 		columnClasses="tituloToolBarDeafult, botoesToolBarDefault">
 
 		<h:outputLabel
-			value="#{userBean.properties.getField(bean.nomePagina())}"
+			value="#{managerBean.get(bean.nomePagina())}"
 			styleClass="titulo" />
 
 		<h:panelGrid columns="6">
@@ -25,7 +25,7 @@
 					value="/resources/images/stylistica-icons-set/24x24/blank_page.png"
 					styleClass="image" />
 				<h:outputLabel
-					value="#{userBean.properties.getField('label.incluir')}"
+					value="#{managerBean.get('label.incluir')}"
 					styleClass="label little-font" />
 
 			</h:commandLink>
@@ -36,7 +36,7 @@
 					value="/resources/images/stylistica-icons-set/24x24/edit.png"
 					styleClass="image" />
 				<h:outputLabel
-					value="#{userBean.properties.getField('label.editar')}"
+					value="#{managerBean.get('label.editar')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -45,7 +45,7 @@
 					value="/resources/images/stylistica-icons-set/24x24/delete.png"
 					styleClass="image" />
 				<h:outputLabel
-					value="#{userBean.properties.getField('label.excluir')}"
+					value="#{managerBean.get('label.excluir')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -55,7 +55,7 @@
 					value="/resources/images/stylistica-icons-set/24x24/print.png"
 					styleClass="image" />
 				<h:outputLabel
-					value="#{userBean.properties.getField('label.imprimir')}"
+					value="#{managerBean.get('label.imprimir')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -65,7 +65,7 @@
 					value="/resources/images/stylistica-icons-set/24x24/print.png"
 					styleClass="image" />
 				<h:outputLabel
-					value="#{userBean.properties.getField('label.exportarPdf')}"
+					value="#{managerBean.get('label.exportarPdf')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -75,7 +75,7 @@
 					value="/resources/images/stylistica-icons-set/24x24/pages.png"
 					styleClass="image" />
 				<h:outputLabel
-					value="#{userBean.properties.getField('label.exportarXls')}"
+					value="#{managerBean.get('label.exportarXls')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -88,10 +88,10 @@
 		rendered="#{bean.fluxo != bean.fluxoListagem}">
 
 		<h:outputLabel rendered="#{bean.fluxo == bean.fluxoEdicao}"
-			value="#{userBean.properties.getField(bean.nomePagina())} (#{userBean.properties.getField('label.editar')})" />
+			value="#{managerBean.get(bean.nomePagina())} (#{managerBean.get('label.editar')})" />
 
 		<h:outputLabel rendered="#{bean.fluxo == bean.fluxoInclusao}"
-			value="#{userBean.properties.getField(bean.nomePagina())} (#{userBean.properties.getField('label.incluir')})" />
+			value="#{managerBean.get(bean.nomePagina())} (#{managerBean.get('label.incluir')})" />
 
 		<h:panelGrid columns="6">
 
@@ -102,7 +102,7 @@
 					value="/resources/images/stylistica-icons-set/24x24/save.png"
 					styleClass="image" />
 				<h:outputLabel
-					value="#{userBean.properties.getField('label.salvar')}"
+					value="#{managerBean.get('label.salvar')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -112,7 +112,7 @@
 					value="/resources/images/stylistica-icons-set/24x24/repeat.png"
 					styleClass="image" />
 				<h:outputLabel
-					value="#{userBean.properties.getField('label.cancelar')}"
+					value="#{managerBean.get('label.cancelar')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 

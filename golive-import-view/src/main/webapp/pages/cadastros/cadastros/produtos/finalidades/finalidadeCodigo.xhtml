@@ -27,7 +27,7 @@
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="#{userBean.properties.getField('msg.nao.ha.registros')}"
+			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"   update="conteudoTable" />

@@ -25,7 +25,7 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 	@Override
 	public Usuario obterPorUserName(final String username) {
 		try {
-			logger.info("Obetendo Usuario por username={}", username);
+			logger.info("Obtendo Usuario por username={}", username);
 			return geradorUsuario(username);
 		} catch (final IOException e) {
 			logger.error("Erro ao obter usuario");
@@ -46,7 +46,7 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 			ret.setSenha("tradicao1234");
 			ret.setEmpresas(Arrays.asList("Tradição Distribuidora de Persianas Ltda", "Ação Persianas e Distribuidora Ltda"));
 			break;
-		
+
 		case "Guilherme":
 			ret.setNome("Guilherme");
 			ret.setSenha("123");
@@ -61,13 +61,13 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 			ret.setNome("Antero A. Costa");
 			ret.setSenha("costa");
 			ret.setEmpresas(Arrays.asList("Antero Empresa 1", "Antero Empresa 3"));
-			break;	
+			break;
 		case "Anderson":
 			ret.setNome("Anderson P. Moreira");
 			ret.setSenha("moreira");
 			ret.setEmpresas(Arrays.asList("Anderson Empresa 1", "Anderson Empresa 3"));
-			break;		
-			
+			break;
+
 		default:
 			ret = null;
 			break;

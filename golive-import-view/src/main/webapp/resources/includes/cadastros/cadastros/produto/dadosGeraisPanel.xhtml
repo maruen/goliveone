@@ -6,7 +6,7 @@
 
 <!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroProdutos.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroProdutos.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -39,7 +39,7 @@
       		<p:spacer></p:spacer>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroProdutos.dataInclusao')}" />
+      					  value="#{managerBean.get('label.cadastroProdutos.dataInclusao')}" />
       					  
       		
       		<p:calendar  id="dataInclusaoInputText"
@@ -51,7 +51,7 @@
       					  />
       
       		<h:outputText id="dadosGeraisCodigoProdutoOutputText"
-      					 value="#{userBean.properties.getField('label.cadastroProdutos.codigoProduto')}"
+      					 value="#{managerBean.get('label.cadastroProdutos.codigoProduto')}"
       					 styleClass="singleLine"  />
       		
       		<p:inputText id="dadosGeraisCodigoProdutoInputText"
@@ -72,7 +72,7 @@
       					 value="lâmina de Alumínio 25mm x 0.18mm Cor verde" />		
         		
         		<h:outputText id="ultimaAlteracaoOutputText"
-        					  value="#{userBean.properties.getField('label.cadastroProdutos.ultimaAlteracao')}"
+        					  value="#{managerBean.get('label.cadastroProdutos.ultimaAlteracao')}"
         					  styleClass="singleLine"/>
         		
         		<p:calendar   id="ultimaAlteracaoInputText"

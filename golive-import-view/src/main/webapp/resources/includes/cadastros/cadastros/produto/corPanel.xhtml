@@ -6,7 +6,7 @@
 
 <!-- COR -->
 <p:panel id="corPanelId"
-	 header="#{userBean.properties.getField('label.cadastroProdutos.cor')}"
+	 header="#{managerBean.get('label.cadastroProdutos.cor')}"
 	 toggleable="true"
 	 collapsed="true"
 	 closable="false"
@@ -44,17 +44,17 @@
   		        </p:selectOneMenu>
  		    
  		    	<h:outputText id="corIdOutputText" 
- 		    				  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+ 		    				  value="#{managerBean.get('label.cadastroProdutos.id')}"
  		    				  styleClass="singleLine"/>
        		<p:inputText id="corIdInputText"  style="width: 97%;"/>
        	
        		<h:outputText id="corCodigoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroProdutos.codigo')}"
+       					  value="#{managerBean.get('label.cadastroProdutos.codigo')}"
        					  styleClass="singleLine"/>
        		<p:inputText id="corCodigoInputText"  style="width: 97%;"/>
        	
        		<h:outputText id="corCorOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroProdutos.cor')}"
+       					  value="#{managerBean.get('label.cadastroProdutos.cor')}"
        					  styleClass="singleLine"/>
        		<p:inputText id="corCorInputText"  style="width: 97%;"/>
        	
@@ -86,25 +86,25 @@
 		     	<p:selectBooleanCheckbox value="xx" />   
 		    </p:column>
 		    
-		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+		    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 		    		 styleClass="percentual-20 singleLine "
 		    		 sortBy="#{cor[0]}">
 		        <h:outputText value="#{cor[0]}"  styleClass="floatRight"/>
 		    </p:column>
 		 
-		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.cor')}"
+		    <p:column headerText="#{managerBean.get('label.cadastroProdutos.cor')}"
 		    		  styleClass="percentual-25 singleLine"
 		    		  sortBy="#{cor[1]}">
 		        <h:outputText value="#{cor[1]} "  styleClass="floatRight"/>
 		    </p:column>
 		 
-		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.id')}"
+		    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 		    		  styleClass="percentual-15 singleLine"
 		    		  sortBy="#{cor[2]}">
 		        <h:outputText value="#{cor[2]}"  styleClass="floatRight"/>
 		    </p:column>
 		 
-		    <p:column headerText="#{userBean.properties.getField('label.cadastroProdutos.finalidadeCor')}"
+		    <p:column headerText="#{managerBean.get('label.cadastroProdutos.finalidadeCor')}"
 		    		  styleClass="singleLine"
 		    		  sortBy="#{cor[3]}">
 		        <h:outputText value="#{cor[3]}" />

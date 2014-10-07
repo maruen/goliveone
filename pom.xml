@@ -176,7 +176,7 @@
 				<version>${org.primefaces.themes.version}</version>
 			</dependency>
 			
-					<dependency>
+		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>${jasper.version}</version>
@@ -194,5 +194,8 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
+	
+	
+	
 </project>
 

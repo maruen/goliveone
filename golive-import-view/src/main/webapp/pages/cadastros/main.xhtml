@@ -7,9 +7,12 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/homeTemplate.xhtml">
 
+	<ui:param name="empresa" value="#{managerBean.empresaSelecionada}" />
+
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_main.css" />
 	</ui:define>
+
 
 	<ui:define name="menuMain">
 		<ui:include src="/resources/includes/cadastros/cadastros/main/cadastrosMenu.xhtml" />

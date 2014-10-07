@@ -25,8 +25,21 @@ public class ServiceUtils {
 		getSessionMap().put(chave.getChave(), valor);
 	}
 
+	public static void guardarObjetoSessao(final String chave, final Map<String, Object> valor) {
+		getSessionMap().put(chave, valor);
+	}
+
 	public static void removerObjetoSessao(final ChaveSessao chave) {
 		getSessionMap().remove(chave.getChave());
+	}
+
+	public static boolean verificarNaSessaoPorChave(final String chave) {
+		return getSessionMap().containsKey(chave);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T> Map<String, Object> obterMapPorChave(final String chave) {
+		return (Map<String, Object>) getSessionMap().get(chave);
 	}
 
 }

@@ -7,7 +7,7 @@
 
 <!--  CLASSIFICAÇÃO DO PRODUTO PANEL  -->
 <p:panel id="classificacaoProduto"
-		 header="#{userBean.properties.getField('label.cadastroProdutos.classificacaoProduto')}"
+		 header="#{managerBean.get('label.cadastroProdutos.classificacaoProduto')}"
 		 toggleable="true"
 		 closable="false"
 		 collapsed="true"
@@ -35,13 +35,13 @@
 						 border="0">
 				
 				<h:outputText id="departamentoIdOutputText"
-							  value="#{userBean.properties.getField('label.cadastroProdutos.id')}"   />
+							  value="#{managerBean.get('label.cadastroProdutos.id')}"   />
             	<p:inputText id="departamentoIdInputText"
             				 value="00000000001" 
             				 style="width: 125px;"/>
             	
         		<h:outputText id="departamentoNomeOutputText"
-        					   		value="#{userBean.properties.getField('label.cadastroProdutos.departamento')}" />
+        					   		value="#{managerBean.get('label.cadastroProdutos.departamento')}" />
             	<p:inputText id="departamentoNomeInputText"
             				 style="width: 95%"
             				 value="Acessorios, Partes e Pcas para Persianas Horizontais em aluminio"/>
@@ -52,13 +52,13 @@
 				
 			
 				<h:outputText id="grupoProdutosIdOutputText" 
-							  value="#{userBean.properties.getField('label.cadastroProdutos.id')}" />
+							  value="#{managerBean.get('label.cadastroProdutos.id')}" />
             	<p:inputText id="grupoProdutosIdInputText"
             				 value="00000000001" 
             				 style="width: 125px;"/>
             	
         		<h:outputText  id="grupoProdutosNomeOutputText"
-        		 			   value="#{userBean.properties.getField('label.cadastroProdutos.grupoProdutos')}"
+        		 			   value="#{managerBean.get('label.cadastroProdutos.grupoProdutos')}"
         		 			   style="white-space: nowrap"/>
             	<p:inputText id="grupoProdutosNomeInputText"
             				 style="width: 95%"
@@ -69,12 +69,12 @@
 				</p:commandLink>
 			
 				<h:outputText id="subGrupoProdutosIdOutputText"
-							   value="#{userBean.properties.getField('label.cadastroProdutos.id')}"   />
+							   value="#{managerBean.get('label.cadastroProdutos.id')}"   />
             	<p:inputText id="subGrupoProdutosIdInputText"
             				 style="width: 125px;"/>
             	
         		<h:outputText id="subGrupoProdutosNomeOutputText"
-        					   value="#{userBean.properties.getField('label.cadastroProdutos.departamento')}"/>
+        					   value="#{managerBean.get('label.cadastroProdutos.departamento')}"/>
             	<p:inputText id="subGrupoProdutosNomeInputText"
             				 style="width: 95%"
             				 value="Laminas em Aluminio 25mm x 0.18mm"/>

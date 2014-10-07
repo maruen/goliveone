@@ -5,28 +5,129 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	xmlns:filter="http://java.sun.com/jsf/composite/components/filter"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:define name="css">
-		<script type="text/javascript">
-		
-		window.onload = function() {
-			alert('Pagina nao foi implementada');
-            window.close();
-		}
-
-	</script>
-
+		<h:outputStylesheet name="css/cadastros/style_colecoes.css" />
+		<h:outputStylesheet name="css/component/golive_filterTable.css" />
 	</ui:define>
 
 	<ui:define name="bean">
+		<ui:param name="bean" value="#{colecoesBean}" />
+		<ui:param name="label" value="#{userBean.properties}" />		
 	</ui:define>
 
 	<ui:define name="conteudo">
+
+		<p:dataTable id="conteudoTable" var="list"
+			selection="#{colecoesBean.registro}"
+			value="#{colecoesBean.conteudo}" selectionMode="single"
+			rowKey="#{list.id}" styleClass="tableCadastros"
+			rows="15" paginator="true"
+			emptyMessage="#{userBean.properties.getField('msg.nao.ha.registros')}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect" update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column 
+				headerText="Data Inclusão"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="25/08/2014 20:24" />
+			</p:column>
+
+
+			<p:column 
+				headerText="Data Alteração"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="25/08/2014 20:47" />
+			</p:column>
+
+			<p:column 
+				headerText="Id"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="000000000000000000001" />
+			</p:column>
+
+
+			<p:column 
+				headerText="Departamento"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="Acessórios Pastes e Peças para Persianas Horizontal" />
+			</p:column>
+			
+			<p:column 
+				headerText="Id"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="000000000000000000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="Grupo de Produtos"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="Lâminas em Alumínio 25mm" />
+			</p:column>
+			
+			<p:column 
+				headerText="Id"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="000000000000000000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="SubGrupo de Produtos"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="Lâminas de Alumínio 25mm X 0.18mm" />
+			</p:column>
+			
+			<p:column 
+				headerText="Id"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="000000000000000000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="Cód.Coleção"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="1234567Bae" />
+			</p:column>
+			
+			<p:column 
+				headerText="Coleção"
+				styleClass="percentual-10 singleLine">
+				
+				<h:outputLabel value="Mountain Viber Glass Colors" />
+			</p:column>
+
+		</p:dataTable>
+
+
 	</ui:define>
 
 	<ui:define name="edicao">
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/produto/dadosGeraisPanel.xhtml">
+			<ui:param name="pojo" value="#{colecoesBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacaoProdutoPanel.xhtml" >
+			<ui:param name="pojo" value="#{produtoBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/auditoriaLogPanel.xhtml" >
+			<ui:param name="pojo" value="#{produtoBean.registro}" />
+		</ui:include>
 	</ui:define>
-
 
 </ui:composition>

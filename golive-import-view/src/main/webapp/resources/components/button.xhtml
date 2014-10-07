@@ -20,7 +20,6 @@
 
 <composite:implementation>
 
-
 	<c:choose>
 		<c:when test="#{cc.attrs.permission==true}">
 			<div id="botaoFullButtonGoLiveComponent_#{cc.attrs.identifier}"
@@ -28,8 +27,10 @@
 				<div id="buttonGoLiveComponent_#{cc.attrs.identifier}"
 					class="buttonDiv">
 					<h:commandButton value="#{cc.attrs.value}" styleClass="botaoMenu"
+						actionListener="#{managerBean.setEmpresaSelecionada(cc.attrs.link, empresa)}"
 						action="#{welcomeBean.indexColorReset}"
-						onclick="abrirNovaAba('#{cc.attrs.link}');"  />
+						onclick="abrirNovaAba('#{cc.attrs.link}');"
+						/>
 				</div>
 				<div id="colorIcon" class="colorTagButton"
 					style="background-color: #{cc.attrs.hexaColorPipe}" />
@@ -41,8 +42,10 @@
 				class="divBotaoMenu">
 				<div id="buttonGoLiveComponent_#{cc.attrs.identifier}"
 					class="buttonDisableDiv">
-					<h:commandButton value="#{cc.attrs.value}" styleClass="botaoMenuDisabled"
-						onclick="abrirNovaAba('#{cc.attrs.link}');" disabled="true"  />
+					<h:commandButton value="#{cc.attrs.value}"
+						action="#{welcomeBean.indexColorReset}"
+						styleClass="botaoMenuDisabled"
+						onclick="abrirNovaAba('#{cc.attrs.link}');" disabled="true" />
 				</div>
 				<div id="colorIcon" class="colorTagButton"
 					style="background-color: #{cc.attrs.hexaColorPipe}" />
