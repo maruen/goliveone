@@ -8,25 +8,82 @@
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:define name="css">
-		<script type="text/javascript">
-		
-		window.onload = function() {
-			alert('Pagina nao foi implementada');
-            window.close();
-		}
-
-	</script>
-
+		<h:outputStylesheet name="css/cadastros/style_grupoProdutos.css" />
 	</ui:define>
 
+
 	<ui:define name="bean">
+		<ui:param name="bean" value="#{grupoProdutosBean}" />
 	</ui:define>
 
 	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="conteudoTable"
+			var="row" 
+			value="#{grupoProdutosBean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{grupoProdutosBean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="Não há Registros"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column 
+				headerText="Data de Inclusão"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="25/08/2014 20:24" />
+			</p:column>
+
+			<p:column
+				headerText="Data de Alteração"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="25/08/2014 20:47" />
+			</p:column>
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="000000000000000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="Departamento"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Acessórios Partes e Peças para Persianas Horizontal em Alumínio" />
+			</p:column>
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="000000000000000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="Grupo de Produtos"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Lâminas em Alumínio 25mm" />
+			</p:column>
+
+		</p:dataTable>
+
 	</ui:define>
 
 	<ui:define name="edicao">
+
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacao/dadosGeraisGrupoProdutos.xhtml">
+			<ui:param name="pojo" value="#{grupoProdutosBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacao/auditoriaGrupoProdutos.xhtml" >
+			<ui:param name="pojo" value="#{grupoProdutosBean.registro}" />
+		</ui:include>
+
 	</ui:define>
-
-
 </ui:composition>
