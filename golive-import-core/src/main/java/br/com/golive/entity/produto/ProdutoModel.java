@@ -14,8 +14,8 @@ import br.com.golive.annotation.Jasper;
 public class ProdutoModel {
 	
 	private Long 		 id;
-	private Date 		 dataInclusao; 
-	private Date 		 dataAlteracao;	
+	private Date 	 dataInclusao; 
+	private Date 	 dataAlteracao;	
 	private Long 		 codigoProduto;
 	private String 		 descricaoProduto;
 	private List<String> unidades;
@@ -35,8 +35,8 @@ public class ProdutoModel {
 	public ProdutoModel(Long id, Date dataInclusao, Date dataAlteracao) {
 		super();
 		this.id = id;
-		this.dataInclusao = dataInclusao;
-		this.dataAlteracao = dataAlteracao;
+		this.dataInclusao 	= new Date();
+		this.dataAlteracao 	= new Date();
 	}
 
 	public Long getId() {

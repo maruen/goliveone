@@ -13,8 +13,8 @@ import br.com.golive.annotation.Jasper;
 public class CoresModel {
 	
 	private Long 		 id;
-	private Date 		 dataInclusao; 
-	private Date 		 dataAlteracao;	
+	private Date 	 dataInclusao; 
+	private Date 	 dataAlteracao;	
 	private String 		 codigoCor;
 	private String 		 cor;
 	private String 		 idColecao;
@@ -35,14 +35,14 @@ public class CoresModel {
 					  String codigoColecao,
 					  String colecao) {
 		super();
-		this.id = id;
-		this.dataInclusao = dataInclusao;
-		this.dataAlteracao = dataAlteracao;
-		this.codigoCor = codigoCor;
-		this.cor = cor;
-		this.idColecao = idColecao;
-		this.codigoColecao = codigoColecao;
-		this.colecao = colecao;
+		this.id 			= id;
+		this.dataInclusao 	= new Date();
+		this.dataAlteracao 	= new Date();
+		this.codigoCor 		= codigoCor;
+		this.cor 			= cor;
+		this.idColecao 		= idColecao;
+		this.codigoColecao 	= codigoColecao;
+		this.colecao 		= colecao;
 	}
 	
 	

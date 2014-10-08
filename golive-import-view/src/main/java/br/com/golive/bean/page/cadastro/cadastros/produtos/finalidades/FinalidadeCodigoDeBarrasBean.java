@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.finalidades;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -27,10 +27,10 @@ import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
 
-@Label(name = "label.cadastroCores")
+@Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigoDeBarras")
 @ManagedBean
 @ViewScoped
-public class CoresBean extends CadastroBeanRules<CoresModel> {
+public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 
