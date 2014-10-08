@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lombok.Data;
@@ -61,11 +60,6 @@ public class GeradorRelatorio<T> {
 
 	}
 
-	public boolean getPopUpImpressao() {
-		final HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		return (req.getParameter("print") != null) && (req.getParameter("print").equals("true"));
-	}
-
 	private void prepararParametrosDeTemplate(final Class<?> clazz, final Map<String, Object> parametros, final GoliveOneProperties properties) throws IOException {
 		inserirParametro(parametros, "tittle", getTitulo(clazz, properties));
 		inserirParametro(parametros, "logoFooter", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("footer.png")));
@@ -103,6 +97,8 @@ public class GeradorRelatorio<T> {
 	private void gerarArquivos(final TipoRelatorio tipoRelatorio, final JasperPrint jasperPrint, final ServletOutputStream stream) throws JRException {
 		if (tipoRelatorio.equals(TipoRelatorio.PDF)) {
 			JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("TESTE", JasperExportManager.exportReportToPdf(jasperPrint));
+
 		} else if (tipoRelatorio.equals(TipoRelatorio.EXCEL)) {
 			final JRXlsxExporter exporter = new JRXlsxExporter();
 			exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
@@ -111,13 +107,14 @@ public class GeradorRelatorio<T> {
 		}
 	}
 
-	private void gerarImpressao(final JasperPrint jasperPrint, ServletOutputStream stream) throws IOException, JRException {
+	private void gerarImpressao(final JasperPrint jasperPrint, final ServletOutputStream stream) throws IOException, JRException {
+		
+
 		final JRPdfExporter exporter = new JRPdfExporter();
 		final SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
 		configuration.setPdfJavaScript(PdfExporterConfiguration.PROPERTY_PDF_JAVASCRIPT);
 		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
 		exporter.setConfiguration(configuration);
-		stream = response.getOutputStream();
 		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(stream));
 		exporter.exportReport();
 	}

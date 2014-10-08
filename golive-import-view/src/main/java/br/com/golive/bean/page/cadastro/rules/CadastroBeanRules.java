@@ -19,13 +19,11 @@ import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.lang.WordUtils;
-import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.manager.GenericBean;
-import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
@@ -36,7 +34,6 @@ import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
-import br.com.golive.utils.ServiceUtils;
 import br.com.golive.utils.Utils;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
 
@@ -64,7 +61,6 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 	@Deprecated
 	protected boolean implementada = true;
-
 
 	@Inject
 	@LabelSystemInjected
@@ -108,27 +104,21 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	 * @param listaConteudo
 	 */
 	protected void init(final List<T> listaConteudo) {
-		if (!relatorios.getPopUpImpressao()) {
-			showMenuBar();
-			logger = getLogger();
-			if (logger == null) {
-				throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o logger para que a página possa ser renderizada");
-			}
+		showMenuBar();
+		logger = getLogger();
+		if (logger == null) {
+			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o logger para que a página possa ser renderizada");
+		}
 
-			this.conteudo = listaConteudo;
-			this.filtrados = new ArrayList<T>();
-			this.temp = new ArrayList<T>();
-			filtrados.addAll(conteudo);
-			fluxo = getFluxoListagem();
-			inicializarClasse();
+		this.conteudo = listaConteudo;
+		this.filtrados = new ArrayList<T>();
+		this.temp = new ArrayList<T>();
+		filtrados.addAll(conteudo);
+		fluxo = getFluxoListagem();
+		inicializarClasse();
 
-			if (getFilterManager() != null) {
-				getFilterManager().setInstance(this);
-			}
-		} else {
-			filtrados = (List<T>) ServiceUtils.obterMapPorChave(ChaveSessao.LISTA_IMPRESSAO.getChave());
-			gerarRelatorio(TipoRelatorio.IMPRESSAO, getLabels());
-
+		if (getFilterManager() != null) {
+			getFilterManager().setInstance(this);
 		}
 	}
 
@@ -161,9 +151,6 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	}
 
 	public void imprimir() {
-		ServiceUtils.guardarObjetoSessao(ChaveSessao.LISTA_IMPRESSAO, filtrados);
-		final RequestContext context = RequestContext.getCurrentInstance();
-		context.execute("window.open('/golive-one" + JSFUtils.getPrettyPageAtual().getUrl() + "/print=true', '_blank')");
 		showMenuBar();
 	}
 
@@ -348,7 +335,8 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 			logger.info("Gerando relatório para classe = {}", genericClazzInstance.getName());
 			relatorios.gerarRelatorio(tipoRelatorio, filtrados, obterParametrosRelatório(), labels);
 		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio em xls = {}", genericClazzInstance.getName());
+			logger.error("Erro ao gerar relatorio = {}", genericClazzInstance.getName());
+			e.printStackTrace();
 		}
 	}
 

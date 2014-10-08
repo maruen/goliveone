@@ -115,7 +115,7 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 	@Override
 	@Deprecated
 	public void salvar() {
-		boolean insert = false;
+		final boolean insert = false;
 		if (insert) {
 			super.salvar();
 		}
@@ -145,7 +145,7 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 	public List<CoresModel> criarList() throws ParseException {
 		final List<CoresModel> lista = new ArrayList<CoresModel>();
 		for (Integer i = 0; i < 10; i++) {
-			CoresModel coresModel = new CoresModel(Long.valueOf(i.longValue()),
+			final CoresModel coresModel = new CoresModel(Long.valueOf(i.longValue()),
 												   new Date(),
 												   new Date(),
 												   "0000000025",
@@ -166,10 +166,12 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 		return logger;
 	}
 
+	@Override
 	public GoliveOneProperties getLabels() {
 		return labels;
 	}
 
+	@Override
 	public void setLabels(final GoliveOneProperties labels) {
 		this.labels = labels;
 	}
@@ -192,11 +194,6 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 		this.filterManager = filterManager;
 	}
 
-	@Override
-	public void inicializarFiltros() {
-		// TODO Auto-generated method stub
-
-	}
 
 
 }

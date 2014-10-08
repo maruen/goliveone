@@ -31,6 +31,7 @@ import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.JSFUtils;
+import br.com.golive.utils.ServiceUtils;
 
 @Label(name = "label.cadastroDeAreaDeAtuacao")
 @ManagedBean
@@ -140,7 +141,8 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	public void imprimir() {
 		super.imprimir();
-		// gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
+		ServiceUtils.obterMapPorChave("TESTE");
+		gerarRelatorio(TipoRelatorio.IMPRESSAO, getLabels());
 	}
 
 	@Override
