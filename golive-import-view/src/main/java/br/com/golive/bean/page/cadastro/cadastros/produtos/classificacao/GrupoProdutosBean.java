@@ -54,7 +54,9 @@ public class GrupoProdutosBean extends CadastroBeanRules<GrupoProdutosModel> {
 	public List<GrupoProdutosModel> criarList() {
 		final List<GrupoProdutosModel> lista = new ArrayList<GrupoProdutosModel>();
 		for (Integer i = 0; i < 10; i++) {
-			lista.add(new GrupoProdutosModel(new Long(i), new Date(), new Date()));
+			lista.add(new GrupoProdutosModel(new Long(i), new Date(), new Date(), 
+					"Acessórios, Partes e Peças para Persianas Horizontais em Alumínio", 
+					"0000000001", "Lâminas em Alumínio 25mm"));
 		}
 		return lista;
 	}
@@ -128,12 +130,7 @@ public class GrupoProdutosBean extends CadastroBeanRules<GrupoProdutosModel> {
 		return logger;
 	}
 
-	@Override
-	public void inicializarFiltros() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	public FilterManager<GrupoProdutosModel> getFilterManager() {
 		// TODO Auto-generated method stub

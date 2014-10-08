@@ -1,8 +1,7 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,18 +18,18 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.constants.TipoRelatorio;
-import br.com.golive.entity.departamento.DepartamentoModel;
+import br.com.golive.entity.padroesespessura.PadroesEspessuraModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 
+@Label(name = "label.cadastroPadroesEspessura")
 @ManagedBean
 @ViewScoped
-@Label(name = "label.cadastroDepartamento")
-public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
+public class PadroesEspessuraBean extends CadastroBeanRules<PadroesEspessuraModel> {
 
-	private static final long serialVersionUID = 8520424471796591515L;
+	private static final long serialVersionUID = 6852219236531333383L;
 
 	@Inject
 	private Logger logger;
@@ -38,7 +37,6 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	@Inject
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
-	private Calendar data;
 
 	@Override
 	@PostConstruct
@@ -48,23 +46,50 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 
 		fluxo = getFluxoListagem();
-		data = Calendar.getInstance();
 	}
 
-	public List<DepartamentoModel> criarList() {
-		final List<DepartamentoModel> lista = new ArrayList<DepartamentoModel>();
+	public List<PadroesEspessuraModel> criarList() {
+		final List<PadroesEspessuraModel> lista = new ArrayList<PadroesEspessuraModel>();
+		
 		for (Integer i = 0; i < 10; i++) {
-			lista.add(new DepartamentoModel(new Long(i), new Date(), new Date(), "Acessórios, Partes e Peças para Persianas Horizontais em Alumínio"));
+			lista.add(new PadroesEspessuraModel(new Long(i), new Date(), new Date(), 
+					"0.18", "MM", "18 Microns de Espessura da Peça", "0000000001", 
+					"0000000025", "Mountain Viber Glass Colors", "0000000001", 
+					"1234567Baec", "Vermelho"));
 		}
+		
 		return lista;
 	}
 
-	public Calendar getDataInclusaoFiltro() {
-		return data;
+	@Override
+	public FilterManager<PadroesEspessuraModel> getFilterManager() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void setDataInclusaoFiltro(final Calendar dataInclusaoFiltro) {
-		data = dataInclusaoFiltro;
+	@Override
+	public void imprimir() {
+		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
+	}
+
+	@Override
+	public void exportarXls() {
+		gerarRelatorio(TipoRelatorio.EXCEL, labels);
+	}
+
+	@Override
+	public void exportarPdf() {
+		gerarRelatorio(TipoRelatorio.PDF, labels);
+	}
+
+	@Override
+	public boolean isSelecionado() {
+		if (registro == null) {
+			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
+			logger.info("Não existe registro para processar");
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -81,20 +106,16 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 		}
 		return parametros;
 	}
-
+	
 	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
+	public void confirmarExclusao() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
-	}
-
-	@Override
-	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
+	protected Logger getLogger() {
+		return logger;
 	}
 
 	@Override
@@ -107,38 +128,10 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	public void cancelar() {
 		super.cancelar();
 		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
+			logger.info("Cancelando inclusão de registro");
 		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
+			logger.info("Cancelando edição do registro = {} ", registro);
 		}
-	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	protected Logger getLogger() {
-		return logger;
-	}
-
-	
-	@Override
-	public FilterManager<DepartamentoModel> getFilterManager() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-
 	}
 	
 	public List<List<Object>> getAuditoriaLogDatatable() {

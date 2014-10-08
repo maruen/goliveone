@@ -54,7 +54,11 @@ public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 	public List<ColecoesModel> criarList() {
 		final List<ColecoesModel> lista = new ArrayList<ColecoesModel>();
 		for (Integer i = 0; i < 10; i++) {
-			lista.add(new ColecoesModel(new Long(i), new Date(), new Date()));
+			lista.add(new ColecoesModel(new Long(i), new Date(), new Date(), 
+					"Acessórios, Partes e Peças para Persianas Horizontal", "000000001", 
+					"Lâminas em Alumínio 25mm", "000000001", 
+					"Lâminas em Alumínio 25mm X 0.18mm", "000000001", "1234567Baec", 
+					"Mountain Viber Glass Colors"));
 		}
 		return lista;
 	}
@@ -128,12 +132,7 @@ public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 		return logger;
 	}
 
-	@Override
-	public void inicializarFiltros() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	public FilterManager<ColecoesModel> getFilterManager() {
 		// TODO Auto-generated method stub

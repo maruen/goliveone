@@ -1,4 +1,4 @@
-package br.com.golive.entity.departamento;
+package br.com.golive.entity.unidade;
 
 import java.util.Date;
 
@@ -8,26 +8,27 @@ import br.com.golive.annotation.Jasper;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Jasper(titulo = "Departamento", 
-		nomeDoArquivoGerado = "Departamento", 
-		nomeArquivoJasper = "Departamento")
-public class DepartamentoModel {
-
+@Jasper(titulo = "Unidade", 
+		nomeDoArquivoGerado = "Unidade", 
+		nomeArquivoJasper = "Unidade")	
+public class UnidadeModel {
 	private Long id;
 	private Date dataInclusao;
 	private Date dataAlteracao;
+	private String codigo;
 	private String descricao;
-
-	public DepartamentoModel() {
+	
+	public UnidadeModel(){
 		this.dataInclusao = new Date();
 		this.dataAlteracao = new Date();
 	}
-
-	public DepartamentoModel(Long id, Date dataInclusao, Date dataAlteracao, String descricao) {
+	
+	public UnidadeModel(Long id, Date dataInclusao, Date dataAlteracao, String codigo, String descricao){
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;
 		this.dataAlteracao = dataAlteracao;
+		this.codigo = codigo;
 		this.descricao = descricao;
 	}
 
@@ -53,6 +54,14 @@ public class DepartamentoModel {
 
 	public void setDataAlteracao(Date dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getDescricao() {

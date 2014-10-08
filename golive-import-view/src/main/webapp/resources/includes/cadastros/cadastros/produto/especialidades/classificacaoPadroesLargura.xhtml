@@ -1,0 +1,196 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!--  CLASSIFICAÇÃO  -->
+<p:panel id="classificacaoPadroesLargura"
+		 header="#{userBean.properties.getField('label.cadastroPadroesLargura.classificacao')}"
+		 toggleable="true"
+		 closable="false"
+		 collapsed="true"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="classificacao"
+		 styleClass="little-font" >
+		 
+		<f:facet name="actions">
+			<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+	    	
+			<h:panelGrid columns="5"
+						 cellpadding="3"
+						 cellspacing="3"
+						 columnClasses="percentual-5,
+						 				percentual-10,
+						 				percentual-5,
+						 				percentual-68"
+						 width="100%"
+						 border="0">
+				
+				<h:outputText id="departamentoIdOutputText"
+							  value="Id"   />
+            	<p:inputText id="departamentoIdInputText"
+            				 value="0000000001" 
+            				 style="width: 125px;"
+            				 disabled="true"/>
+            	
+        		<h:outputText id="departamentoNomeOutputText"
+        					   		value="Departamento" />
+            	<p:inputText id="departamentoNomeInputText"
+            				 style="width: 95%"
+            				 value="Acessórios, Partes e Peças para Persianas Horizontais em Alumínio"
+            				 disabled="true" />
+        	
+ 		       	<p:commandLink onclick="PF('dlgDepartamento').show();" immediate="true">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			
+				<h:outputText id="grupoProdutosIdOutputText" 
+							  value="Id" />
+            	<p:inputText id="grupoProdutosIdInputText"
+            				 value="0000000001" 
+            				 style="width: 125px;"
+            				 disabled="true" />
+            	
+        		<h:outputText  id="grupoProdutosNomeOutputText"
+        		 			   value="Grupo de Produtos"
+        		 			   style="white-space: nowrap"/>
+            	<p:inputText id="grupoProdutosNomeInputText"
+            				 style="width: 95%"
+            				 value="Lâminas em Alumínio 25mm X 0.18mm"
+            				 disabled="true" />
+        	
+ 		       	<p:commandLink onclick="PF('dlgGrupoProdutos').show();" immediate="true">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			
+				<h:outputText id="subGrupoProdutosIdOutputText"
+							   value="Id"   />
+            	<p:inputText id="subGrupoProdutosIdInputText"
+            				 value="0000000001"
+            				 style="width: 125px;"
+            				 disabled="true" />
+            	
+        		<h:outputText id="subGrupoProdutosNomeOutputText"
+        					   value="SubGrupo de Produtos"
+        					   styleClass="singleLine"/>
+            	<p:inputText id="subGrupoProdutosNomeInputText"
+            				 style="width: 95%"
+            				 value="Lâminas em Alumínio 25mm"
+            				 disabled="true" />
+        	
+ 		       	<p:commandLink onclick="PF('dlgSubGrupProdutos').show();" immediate="true">
+  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+        	
+        	</h:panelGrid>
+        
+</p:panel>
+
+<p:dialog header="Pesquisa de Departamento"
+			  widgetVar="dlgDepartamento"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="55%">
+      			
+     			<p:dataTable id="departamentoDatatableId"
+        	  	 	     var="departamentoDatatableVar"
+        			 	 value="#{padroesLarguraBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-5 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Departamento"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio" />
+				    </p:column>
+		</p:dataTable>
+</p:dialog>
+
+<p:dialog header="Pesquisa de Grupo de Produtos"
+			  widgetVar="dlgGrupoProdutos"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="75%">
+      			
+     			<p:dataTable id="grupoProdutosDatatableId"
+        	  	 	     var="grupoProdutosDatatableVar"
+        			 	 value="#{padroesLarguraBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-10 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Departamento"
+				    		  styleClass="percentual-30 singleLine">
+				     		<h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio" />
+				    </p:column>
+				    
+   				    <p:column headerText="Id"
+				    		  styleClass="percentual-10 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Grupo de Produtos"
+				    		  styleClass="percentual-25 singleLine">
+				     		<h:outputText value="Lâminas em Alumínio 25mm X 0.18mm" />
+				    </p:column>
+		</p:dataTable>
+</p:dialog>
+
+<p:dialog header="Pesquisa de SubGrupo de Produtos"
+			  widgetVar="dlgSubGrupProdutos"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="85%">
+      			
+     			<p:dataTable id="subGrupoProdutosDatatableId"
+        	  	 	     var="subGrupoProdutosDatatableVar"
+        			 	 value="#{padroesLarguraBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-10 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Departamento"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio" />
+				    </p:column>
+				    
+   				    <p:column headerText="Id"
+				    		  styleClass="percentual-10 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Grupo de Produtos"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Lâminas em Alumínio 25mm X 0.18mm" />
+				    </p:column>
+				    
+   				    <p:column headerText="Id"
+				    		  styleClass="percentual-10 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="SubGrupo de Produtos"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Lâminas em Alumínio 25mm" />
+				    </p:column>
+		</p:dataTable>
+</p:dialog>
+
+</ui:composition>

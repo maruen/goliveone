@@ -1,0 +1,269 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="utilizacao" header="Utilização da Unidade"
+		toggleable="true" closable="false" collapsed="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="utilizacao" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<p:panelGrid cellpadding="3" cellspacing="3"
+			style="vertical-align: top;" styleClass="percentual-100" border="0">
+
+			<p:row>
+				<p:column styleClass="percentual-25">
+					<p:fieldset legend="Produto" toggleable="true"
+						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+
+						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
+							border="0">
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked" id="produtosCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="produtosOutputText" value="Produtos" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="codBarraProdutosCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="codBarrasProdutosOutputText"
+										value="Cód.Barras de Produtos" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="padraoLarguraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-98">
+									<h:outputText id="padraoLarguraOutputText"
+										value="Padrão de Largura" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="padraoEspessuraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-98">
+									<h:outputText id="padraoEspessuraOutputText"
+										value="Padrão de Espessura" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="pesoLiquidoCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-98">
+									<h:outputText id="pesoLiquidoOutputText" value="Peso Líquido" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked" id="pesoBrutoCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-98">
+									<h:outputText id="pesoBrutoOutputText" value="Peso Bruto" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:column>
+
+				<p:column styleClass="percentual-25">
+					<p:fieldset legend="Vendas" toggleable="true"
+						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+
+						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
+							border="0">
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="quantMinPedidoVendaCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="quantMinPedidoVendaOutputText"
+										value="Quant.Mín.Pedido de Venda" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="quantMaxPedidoVendaCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="quantMaxPedidoVendaOutputText"
+										value="Quant.Máx.Pedido de Venda" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="tabelaPrecosCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="tabelaPrecosOutputText"
+										value="Tabela de Preços" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:column>
+				
+				<p:column styleClass="percentual-25">
+					<p:fieldset legend="Compras" toggleable="true"
+						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+
+						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
+							border="0">
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="quantMinPedidoCompraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="quantiMaxPedidoCompraOutputText"
+												  value="Quant.Mín.Pedido de Compra" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="quantMaxPedidoCompraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="quantMaxPedidoCompraOutputText"
+												  value="Quant.Máx.Pedido de Compra" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="analiseComparativaPedCompraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="analiseComparativaPedCompraOutputText"
+												  value="Análise Comparativa Ped.Compra" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="analiseComparativaEstoqueCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="analiseComparativaEstoqueOutputText"
+												  value="Análise Comparativa Estoque" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:column>
+
+				<p:column styleClass="percentual-25">
+					<p:fieldset legend="Faturamento" toggleable="true"
+						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+
+						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
+							border="0">
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="cupomFiscalSatCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText
+										id="cupomFiscalSatOutputTExt"
+										value="Cuspom Fiscal / SAT" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="nfceVendaConsumidorCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="nfceVendaConsumidorOutputText"
+												  value="NFC-e Venda Consumidor" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="nfeVendaCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="nfeVendaOutputText"
+												  value="NF-e Venda" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+        				   		<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="nfeDevolucaoCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="nfeDevolucaoOutputText"
+												  value="NF-e Devolução" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+        				   		<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="nfeBeneficiamentoCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="nfeBeneficiamentoOutputText"
+												  value="NF-e Beneficiamento" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+        				   		<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox value="checked"
+										id="nfeServicoCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="nfeServicoOutputText"
+												  value="NF-e Serviço" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</p:panel>
+</ui:composition>
