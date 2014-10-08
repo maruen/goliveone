@@ -67,16 +67,21 @@
 		<p:calendar
 			id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio_periodo"
 			pattern="dd/MM/yyyy" styleClass="filtroDataInicial"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
 			mask="true" effect="fold">
-
 			<p:ajax event="dateSelect" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
-
-
 		</p:calendar>
 
+		<p:calendar
+			id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio_periodo_disabled"
+			pattern="dd/MM/yyyy"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			style="background-color:rgba(160, 160, 190, 1);"
+			styleClass="filtroDataInicial"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			disabled="true" mask="true" />
 
 		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
 			value="/resources/images/stylistica-icons-set/24x24/settings.png"
@@ -95,13 +100,18 @@
 		<p:calendar id="headerfiltro_date#{cc.attrs.widgetAnotado}_fim"
 			pattern="dd/MM/yyyy" styleClass="filtroDataFinal"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim != null}"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
 			mask="true" effect="fold">
 			<p:ajax event="dateSelect" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
-
 		</p:calendar>
-
+		<p:calendar
+			id="headerfiltro_date#{cc.attrs.widgetAnotado}_fim_disabled"
+			pattern="dd/MM/yyyy" styleClass="filtroDataFinal"
+			style="background-color:rgba(160, 160, 190, 1);"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			disabled="true" mask="true" />
 
 	</h:panelGroup>
 
@@ -109,12 +119,22 @@
 		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo != cc.attrs.bean.filterManager.periodo}">
 		<p:calendar id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio"
 			pattern="dd/MM/yyyy" styleClass="filtroDataInicial"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
 			mask="true" effect="fold">
 			<p:ajax event="dateSelect" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 		</p:calendar>
+
+		<p:inputText style="background:rgba(160, 160, 190, 1);"
+			id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio_disabled"
+			styleClass="filtroDataInicial"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			disabled="true">
+			<f:convertDateTime pattern="dd/MM/yyyy"
+				for="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio_disabled" />
+		</p:inputText>
 
 
 		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"

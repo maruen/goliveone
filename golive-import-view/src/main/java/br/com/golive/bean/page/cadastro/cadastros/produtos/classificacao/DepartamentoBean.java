@@ -128,11 +128,6 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 		return logger;
 	}
 
-	@Override
-	public void inicializarFiltros() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public FilterManager<DepartamentoModel> getFilterManager() {

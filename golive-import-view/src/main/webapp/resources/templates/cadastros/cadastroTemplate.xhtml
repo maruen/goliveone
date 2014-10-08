@@ -38,10 +38,11 @@
 					styleClass="confirmacao">
 					<h:outputLabel value="Deseja Realmente excluir ?" />
 					<p:commandButton value="Sim"
-						actionListener="#{bean.confirmarExclusao()}"
-						update=":conteudoForm:conteudoTable" />
-					<p:commandButton value="Nao"
-						actionListener="#{bean.cancelarExclusao()}" />
+						update=":conteudoForm:conteudoTable" >
+						<p:ajax event="click" listener="#{bean.confirmarExclusao()}"/>
+					</p:commandButton>
+					<p:commandButton value="Nao" ajax="false"
+						action="#{bean.cancelarExclusao()}" />
 				</h:panelGrid>
 
 			</div>
@@ -52,12 +53,12 @@
 					showDetail="true" />
 
 				<h:panelGroup id="conteudoGroup"
-					rendered="#{bean.fluxo == bean.fluxoListagem}">
+					rendered="#{((bean.fluxo == bean.fluxoListagem) or (bean.fluxo == bean.fluxoExclusao))}">
 					<ui:insert name="conteudo" />
 				</h:panelGroup>
 
 				<h:panelGroup id="edicaoGroup"
-					rendered="#{bean.fluxo != bean.fluxoListagem}">
+					rendered="#{((bean.fluxo == bean.fluxoInclusao) or (bean.fluxo == bean.fluxoEdicao))}">
 					<ui:insert name="edicao" />
 				</h:panelGroup>
 

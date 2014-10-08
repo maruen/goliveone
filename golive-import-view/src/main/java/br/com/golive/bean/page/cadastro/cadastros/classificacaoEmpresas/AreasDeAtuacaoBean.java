@@ -102,7 +102,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Override
 	public void confirmarExclusao() {
-		if (registro != null) {
+		if ((fluxo.equals(Fluxo.EXCLUSAO)) && (registro != null)) {
 			conteudo.remove(registro);
 			filtrados.remove(registro);
 			registro = null;
@@ -171,7 +171,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 				conteudo.add(novo);
 				filtrados.add(novo);
-
+				registro = null;
 				insert = true;
 				JSFUtils.infoMessage(labels.getField("title.msg.inserido.sucesso"), labels.getField("msg.inserido.sucesso"));
 			}
@@ -195,6 +195,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	public void cancelar() {
 		super.cancelar();
+		fluxo = getFluxoListagem();
 		if (registro == null) {
 			logger.info("Cancelando inclusao de registro");
 		} else {

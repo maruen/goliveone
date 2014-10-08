@@ -8,14 +8,13 @@
 	<h:head>
 		<h:outputStylesheet name="css/template/style_cadastroToolbar.css" />
 	</h:head>
-	
-	
+
+
 	<h:panelGrid columns="2" id="gridToolbarPage" width="100%;"
-		rendered="#{bean.fluxo == bean.fluxoListagem}"
+		rendered="#{((bean.fluxo == bean.fluxoListagem) or (bean.fluxo == bean.fluxoExclusao))}"
 		columnClasses="tituloToolBarDeafult, botoesToolBarDefault">
 
-		<h:outputLabel
-			value="#{managerBean.get(bean.nomePagina())}"
+		<h:outputLabel value="#{managerBean.get(bean.nomePagina())}"
 			styleClass="titulo" />
 
 		<h:panelGrid columns="6">
@@ -24,8 +23,7 @@
 				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/blank_page.png"
 					styleClass="image" />
-				<h:outputLabel
-					value="#{managerBean.get('label.incluir')}"
+				<h:outputLabel value="#{managerBean.get('label.incluir')}"
 					styleClass="label little-font" />
 
 			</h:commandLink>
@@ -35,17 +33,16 @@
 				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/edit.png"
 					styleClass="image" />
-				<h:outputLabel
-					value="#{managerBean.get('label.editar')}"
+				<h:outputLabel value="#{managerBean.get('label.editar')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
-			<h:commandLink styleClass="linkButton" actionListener="#{bean.excluir()}">
-				<h:graphicImage 
+			<h:commandLink styleClass="linkButton"
+				actionListener="#{bean.excluir()}">
+				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/delete.png"
 					styleClass="image" />
-				<h:outputLabel
-					value="#{managerBean.get('label.excluir')}"
+				<h:outputLabel value="#{managerBean.get('label.excluir')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -54,8 +51,7 @@
 				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/print.png"
 					styleClass="image" />
-				<h:outputLabel
-					value="#{managerBean.get('label.imprimir')}"
+				<h:outputLabel value="#{managerBean.get('label.imprimir')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -64,8 +60,7 @@
 				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/print.png"
 					styleClass="image" />
-				<h:outputLabel
-					value="#{managerBean.get('label.exportarPdf')}"
+				<h:outputLabel value="#{managerBean.get('label.exportarPdf')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -74,8 +69,7 @@
 				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/pages.png"
 					styleClass="image" />
-				<h:outputLabel
-					value="#{managerBean.get('label.exportarXls')}"
+				<h:outputLabel value="#{managerBean.get('label.exportarXls')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -85,7 +79,7 @@
 
 	<h:panelGrid id="gridEdicao" columns="2" width="100%;"
 		columnClasses="tituloToolBarEditar, botoesToolBarEditar"
-		rendered="#{bean.fluxo != bean.fluxoListagem}">
+		rendered="#{((bean.fluxo == bean.fluxoInclusao) or (bean.fluxo == bean.fluxoEdicao))}">
 
 		<h:outputLabel rendered="#{bean.fluxo == bean.fluxoEdicao}"
 			value="#{managerBean.get(bean.nomePagina())} (#{managerBean.get('label.editar')})" />
@@ -101,8 +95,7 @@
 				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/save.png"
 					styleClass="image" />
-				<h:outputLabel
-					value="#{managerBean.get('label.salvar')}"
+				<h:outputLabel value="#{managerBean.get('label.salvar')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 
@@ -111,8 +104,7 @@
 				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/repeat.png"
 					styleClass="image" />
-				<h:outputLabel
-					value="#{managerBean.get('label.cancelar')}"
+				<h:outputLabel value="#{managerBean.get('label.cancelar')}"
 					styleClass="label little-font" />
 			</h:commandLink>
 

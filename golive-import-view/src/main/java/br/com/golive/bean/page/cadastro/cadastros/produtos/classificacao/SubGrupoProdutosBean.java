@@ -114,12 +114,6 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 	}
 
 	@Override
-	public void inicializarFiltros() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	protected Logger getLogger() {
 		return logger;
 	}
@@ -128,7 +122,7 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 		return data;
 	}
 
-	public void setDataInclusaoFiltro(Calendar data) {
+	public void setDataInclusaoFiltro(final Calendar data) {
 		this.data = data;
 	}
 

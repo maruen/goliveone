@@ -124,10 +124,12 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	}
 
 	public void cancelarExclusao() {
+		fluxo = getFluxoListagem();
 		JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1100", "1000"));
 	}
 
 	public void selecionarOutroRegistro() {
+		fluxo = getFluxoListagem();
 		JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1000", "1000"));
 	}
 
@@ -227,7 +229,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	 */
 	public void excluir() {
 		if (isSelecionado()) {
-			fluxo = getFluxoListagem();
+			fluxo = getFluxoExclusao();
 			JSFUtils.chamarJs(new FuncaoJavaScript("showConfirmarExclusaoDiv", "1100", "1000"));
 		}
 	}

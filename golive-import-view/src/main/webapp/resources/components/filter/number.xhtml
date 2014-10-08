@@ -71,15 +71,22 @@
 
 
 		<p:inputText
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
 			id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_intervalo"
 			styleClass="filtroDataInicial"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
-
-			<p:ajax event="change"
-				update="#{cc.attrs.update}"
+			<p:ajax event="change" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 		</p:inputText>
+
+		<p:inputText
+			id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_intervalo_disabled"
+			style="background-color:rgba(160, 160, 190, 1);"
+			styleClass="filtroDataInicial"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			disabled="true" />
+
 
 
 		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
@@ -98,12 +105,18 @@
 
 		<p:inputText id="headerfiltro_number#{cc.attrs.widgetAnotado}_fim"
 			styleClass="filtroDataFinal"
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim != null}"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}">
 			<p:ajax event="change" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
-
 		</p:inputText>
+
+		<p:inputText
+			id="headerfiltro_number#{cc.attrs.widgetAnotado}_fim_disabled"
+			style="background-color:rgba(160, 160, 190, 1);"
+			styleClass="filtroDataFinal" disabled="true"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}" />
 
 
 	</h:panelGroup>
@@ -112,13 +125,22 @@
 		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo != cc.attrs.bean.filterManager.intervalo}">
 
 		<p:inputText id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio"
-			styleClass="filtroDataInicial" 
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
+			styleClass="filtroDataInicial" requiredMessage="TESTE"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
+			<f:validateLength minimum="1" />
+
 			<p:ajax event="change" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 		</p:inputText>
 
+		<p:inputText
+			id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_disabled"
+			style="background-color:rgba(160, 160, 190, 1);"
+			styleClass="filtroDataInicial"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			disabled="true" />
 
 		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
 			value="/resources/images/stylistica-icons-set/24x24/settings.png"
@@ -133,6 +155,8 @@
 		</h:graphicImage>
 	</h:panelGroup>
 
+	<p:remoteCommand name="validar"
+		actionListener="#{cc.attrs.bean.filterManager.validar(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado))}" />
 
 
 

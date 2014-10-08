@@ -55,16 +55,18 @@
 	<br />
 
 	<p:inputText
-		style="#{(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null) eq true ? 'background:#DDD;' : 'background:White;'}"
-		id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_intervalo"
-		styleClass="filtroDataInicial"
-		disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
+		id="headerfiltro_string#{cc.attrs.widgetAnotado}_inicio"
+		styleClass="filtroDataInicial" rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
-
 		<p:ajax event="change" update="#{cc.attrs.update}"
 			listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 	</p:inputText>
 
+	<p:inputText
+		id="headerfiltro_string#{cc.attrs.widgetAnotado}_inicio_disabled"
+		rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+		style="background-color: rgba(160, 160, 190, 1);" styleClass="filtroDataInicial" disabled="true"
+		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"/>
 
 	<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
 		value="/resources/images/stylistica-icons-set/24x24/settings.png"
