@@ -46,7 +46,7 @@
             				 style="width: 95%"
             				 value="Acessorios, Partes e Pcas para Persianas Horizontais em aluminio"/>
         	
-        	 	<p:commandLink action="#">
+        	 	<p:commandLink onclick="PF('dlgDepartamento').show();" immediate="true">
   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 				</p:commandLink>
 				
@@ -64,27 +64,167 @@
             				 style="width: 95%"
             				 value="Laminas em Aluminio 25mm"/>
         	
-        	 	<p:commandLink action="#">
+        	 	<p:commandLink onclick="PF('dlgGrupoProdutos').show();" immediate="true">
   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 				</p:commandLink>
 			
 				<h:outputText id="subGrupoProdutosIdOutputText"
 							   value="#{managerBean.get('label.cadastroProdutos.id')}"   />
+            	
             	<p:inputText id="subGrupoProdutosIdInputText"
+            				 value="00000000001"
             				 style="width: 125px;"/>
             	
         		<h:outputText id="subGrupoProdutosNomeOutputText"
-        					   value="#{managerBean.get('label.cadastroProdutos.departamento')}"/>
+        					  styleClass="singleLine"
+        					  value="SubGrupo de Produtos"/>
+            	
             	<p:inputText id="subGrupoProdutosNomeInputText"
             				 style="width: 95%"
-            				 value="Laminas em Aluminio 25mm x 0.18mm"/>
+            				 value="Laminas em Aluminio 25mm "/>
         	
-        	 	<p:commandLink action="#">
+        	 	<p:commandLink onclick="PF('dlgSubGrupoProduto').show();" immediate="true">
   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 				</p:commandLink>
         	
         	</h:panelGrid>
-        	
-        
-</p:panel>
+	</p:panel>
+	
+	<p:dialog header="Pesquisa de Departamento"
+			  widgetVar="dlgDepartamento"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="70%">
+    			
+	   			<p:dataTable id="departamentoDatatableId"
+	      	  	 	         var="departamentoDatatableVar"
+	      			 	     value="#{produtoBean.codigoBarrasDatatable}" >
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-2 singleLine">
+					     	
+					     		  <h:outputText value="00000000000001" styleClass="floatLeft"/>
+					    </p:column>
+					    
+					    <p:column headerText="Departamento"
+					    		  styleClass="percentual-5 singleLine">
+					     	
+			     				   <h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio"
+			     					  		     styleClass="floatRight"/>
+					    </p:column>
+				</p:dataTable>
+	</p:dialog>
+	
+	
+	<p:dialog header="Pesquisa de Grupo de Produtos"
+			  widgetVar="dlgGrupoProdutos"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="80%">
+    			
+	   			<p:dataTable id="grupoProdutosDatatableId"
+	      	  	 	         var="grupoProdutosDatatableVar"
+	      			 	     value="#{produtoBean.codigoBarrasDatatable}" >
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-4 singleLine">
+					     	
+					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
+					    </p:column>
+					    
+					    <p:column headerText="Departamento"
+					    		  styleClass="percentual-15 singleLine">
+					     	
+			     				   <h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio"
+			     					  		     styleClass="floatRight"/>
+					    </p:column>
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-4 singleLine">
+					     	
+					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
+					    </p:column>
+					    
+					    <p:column headerText="Grupo de Produto"
+					    		  styleClass="percentual-10 singleLine">
+					     	
+			     				   <h:outputText value="Lâminas em Alumínio 25mm x 018mm"
+			     					  		     styleClass="floatRight"/>
+					    </p:column>
+					    
+				</p:dataTable>
+	</p:dialog>
+	
+	<p:dialog header="Pesquisa de SubGrupo de Produto"
+			  widgetVar="dlgSubGrupoProduto"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="95%">
+    			
+	   			<p:dataTable id="subGrupoProdutosDatatableId"
+	      	  	 	         var="subGrupoProdutosDatatableVar"
+	      			 	     value="#{produtoBean.codigoBarrasDatatable}" >
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-5 singleLine">
+					     	
+					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
+					    </p:column>
+					    
+					    <p:column headerText="Departamento"
+					    		  styleClass="percentual-20 singleLine">
+					     	
+			     				   <h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio"
+			     					  		     styleClass="floatRight"/>
+					    </p:column>
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-5 singleLine">
+					     	
+					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
+					    </p:column>
+					    
+					    <p:column headerText="Grupo de Produto"
+					    		  styleClass="percentual-15 singleLine">
+					     	
+			     				   <h:outputText value="Lâminas em Alumínio 25mm x 018mm"
+			     					  		     styleClass="floatRight"/>
+					    </p:column>
+					    
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-5 singleLine">
+					     	
+					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
+					    </p:column>
+					    
+					    <p:column headerText="SubGrupo de Produtos"
+					    		  styleClass="percentual-10 singleLine">
+					     	
+			     				   <h:outputText value="Lâminas em Alumínio"
+			     					  		     styleClass="floatRight"/>
+					    </p:column>
+					    
+					    
+					    
+					    
+				</p:dataTable>
+	</p:dialog>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </ui:composition>

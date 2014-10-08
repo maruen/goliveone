@@ -132,7 +132,6 @@ public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 		return logger;
 	}
 
-	
 	@Override
 	public FilterManager<ColecoesModel> getFilterManager() {
 		// TODO Auto-generated method stub

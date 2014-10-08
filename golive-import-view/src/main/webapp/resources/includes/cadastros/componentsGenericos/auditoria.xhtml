@@ -16,36 +16,36 @@
 
 
 			<p:column styleClass="percentual-3 singleLine"
-				headerText="#{label.labelAnotado(clazz, 'id')}">
+				headerText="#{managerBean.labelAnotado(clazz, 'id')}">
 				<h:outputLabel value="#{list.id}" />
 			</p:column>
-			<p:column headerText="#{label.labelAnotado(clazz, 'calendar')}" styleClass="percentual-15 singleLine">
+			<p:column headerText="#{managerBean.labelAnotado(clazz, 'calendar')}" styleClass="percentual-15 singleLine">
 				<h:outputLabel value="#{list.calendar.time}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 				</h:outputLabel>
 			</p:column>
-			<p:column headerText="#{label.labelAnotado(clazz, 'formulario')}" styleClass="percentual-10 singleLine">
+			<p:column headerText="#{managerBean.labelAnotado(clazz, 'formulario')}" styleClass="percentual-10 singleLine">
 				<h:outputLabel value="#{list.formulario}" />
 			</p:column>
 			<p:column styleClass="percentual-3 singleLine"
-				headerText="#{label.labelAnotado(clazz, 'id2')}">
+				headerText="#{managerBean.labelAnotado(clazz, 'id2')}">
 				<h:outputLabel value="#{list.id2}" />
 			</p:column>
-			<p:column headerText="#{label.labelAnotado(clazz, 'acao')}" styleClass="percentual-13 singleLine">
+			<p:column headerText="#{managerBean.labelAnotado(clazz, 'acao')}" styleClass="percentual-13 singleLine">
 				<h:outputLabel value="#{list.acao}" />
 			</p:column>
 			<p:column
-				headerText="#{label.labelAnotado(clazz, 'valorAlterado')}" styleClass="percentual-10 singleLine">
+				headerText="#{managerBean.labelAnotado(clazz, 'valorAlterado')}" styleClass="percentual-10 singleLine">
 				<h:outputLabel value="#{list.valorAlterado}" />
 			</p:column>
-			<p:column headerText="#{label.labelAnotado(clazz, 'valorAtual')}" styleClass="percentual-12 singleLine">
+			<p:column headerText="#{managerBean.labelAnotado(clazz, 'valorAtual')}" styleClass="percentual-12 singleLine">
 				<h:outputLabel value="#{list.valorAtual}" />
 			</p:column>
-			<p:column headerText="#{label.labelAnotado(clazz, 'usuario')}">
+			<p:column headerText="#{managerBean.labelAnotado(clazz, 'usuario')}">
 				<h:outputLabel value="#{list.usuario}" />
 			</p:column>
 
-			<p:column headerText="#{label.labelAnotado(clazz, 'observacao')}">
+			<p:column headerText="#{managerBean.labelAnotado(clazz, 'observacao')}">
 				<h:outputLabel value="#{list.observacao}" />
 			</p:column>
 		</p:dataTable>

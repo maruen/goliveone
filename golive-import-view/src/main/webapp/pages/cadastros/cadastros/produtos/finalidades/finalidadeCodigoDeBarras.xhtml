@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	xmlns:filter="http://java.sun.com/jsf/composite/components/filter"
+	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
+
+	<ui:define name="css">
+		<h:outputStylesheet name="css/cadastros/style_finalidadeCodigoDeBarras.css" />
+		<h:outputStylesheet name="css/component/golive_filterTable.css" />
+	</ui:define>
+
+	<ui:define name="bean">
+		<ui:param name="bean" value="#{finalidadeCodigoDeBarrasBean}" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<p:dataTable id="conteudoTable"
+			 		 var="row"
+					 selection="#{finalidadeCodigoDeBarrasBean.registro}" 
+					 value="#{finalidadeCodigoDeBarrasBean.conteudo}"
+					 selectionMode="single"
+					 rows="15"
+					 rowKey="#{row.id}"
+					 paginator="true"
+					 filteredValue="#{bean.filtrados}"
+					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect" 	update="conteudoTable"   listener="#{bean.selecionarOutroRegistro}" />
+			<p:ajax event="rowUnselect" update="conteudoTable" 	 listener="#{bean.selecionarOutroRegistro}" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column headerText="Data Inclusão"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  filterStyleClass="width-size-70;"
+					  styleClass="percentual-10 singleLine">
+				
+				<h:outputText value="25/08/2014 20:24" />
+			
+			</p:column>
+
+			<p:column headerText="Data Alteração"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10 singleLine">
+
+				<h:outputText value="25/08/2014 20:47" />
+				
+			</p:column>
+
+			<p:column headerText="Id"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10">
+				
+				<h:outputText value="000000000001"  styleClass="floatRight" style="margin-right: 10px;"/>
+																																																																																																																																																																		
+			</p:column>
+
+			<p:column headerText="Finalidade Cód.Barras" 
+					  filterMatchMode="contains"
+					  filterBy="${row.id}"
+					  styleClass="percentual-12 singleLine">
+				
+				<h:outputText value="Uso Interno"  styleClass="floatRight" style="margin-right: 10px;"/>
+			
+			</p:column>
+			
+			<p:column headerText="Id" 
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10 ">
+				
+				<h:outputText value="000000000001"  styleClass="floatRight" style="margin-right: 10px;"/>
+																																																																																																																																																																		
+			</p:column>
+			
+			<p:column headerText="Abreviação"
+					  filterMatchMode="contains"
+					  filterBy="${row.id}"
+					  styleClass="percentual-10 singleLine ">
+				
+				<h:outputText value="CX"  styleClass="floatRight" style="margin-right: 10px;"/>
+			
+			</p:column>
+			
+			<p:column headerText="Unidade"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10 ">
+				
+				<h:outputText value="Caixa" styleClass="floatRight" style="margin-right: 10px;"/>
+																																																																																																																																																																		
+			</p:column>
+			
+			
+		</p:dataTable>
+
+	</ui:define>
+
+	<ui:define name="edicao">
+		
+		
+		<!--  DADOS GERAIS PANEL -->
+<p:panel id="dadosGerais"
+		 header="#{managerBean.get('label.cadastroProdutos.dadosGerais')}"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="dadosGeraisPanel"
+		 styleClass="little-font">
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<p:panelGrid cellpadding="2"  
+          				 cellspacing="2"
+          				 width="100%"
+          				 border="0">
+	           	
+	           	<!-- 1ST ROW -->
+	           	<p:row>
+	           		<p:column styleClass="percentual-15">
+	           			<h:outputText id="idOutputText" value="Id"   />
+	           		</p:column>
+	           		
+	           		<p:column styleClass="percentual-25">
+	           			<p:inputText id="idInputText" style="width: 20%" />
+	           		</p:column>
+	           		
+	           		<p:column styleClass="percentual-10">
+	           			<h:outputText id="dataInclusaoOutputText" 
+	      					  		  value="#{managerBean.get('label.cadastroProdutos.dataInclusao')}" />
+	      		
+	           		</p:column>
+	           		
+	           		<p:column styleClass="percentual-5">
+	           			
+	           			<p:calendar  id="dataInclusaoInputText"
+	      					 		 disabled="true" 
+	      					 		 value="#{finalidadeCodigoBean.registro.dataInclusao}"
+	      					 		 size="16"
+	      					 		 maxlength="16"
+	      					 		 pattern="MM/dd/yyyy HH:mm:ss"/>
+	           		</p:column>
+	           		
+	           	</p:row>
+	           	
+	
+	      		<!-- 2ND ROW -->
+	      		<p:row>
+	      			<p:column styleClass="percentual-15">
+	      				<h:outputText id="finalidadeCodigoProdutoOutputText"
+	      					 		  value="Finalidade Cód Barras Produto"
+	      					 		  styleClass="singleLine"  />
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-50">
+	      				<p:inputText id="finalidadeCodigoProdutoIntputText"
+	      				     		 value="Compra"
+	      				     		 style="width: 60%"
+	      				     		 disabled="true"/>
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-10">
+	      				<h:outputText id="ultimaAlteracaoOutputText"
+	        					  	  value="#{managerBean.get('label.cadastroProdutos.ultimaAlteracao')}"
+	        					  	  styleClass="singleLine"/>
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-5">
+	      					<p:calendar   id="ultimaAlteracaoInputText"
+		        			      		  disabled="true"
+	        					  		  size="16"
+	        					  		  maxlength="16"
+	        					  		  value="#{finalidadeCodigoBean.registro.dataAlteracao}"
+	        					  		  pattern="MM/dd/yyyy HH:mm:ss"/>
+	      			</p:column>
+	      		</p:row>
+	      		
+	      		
+	      		
+	      		<!-- 3TH ROW -->
+	      		<p:row>
+	      			<p:column styleClass="percentual-15">
+	      				<h:outputText id="numeroMinimoCaracteresOutputText"
+	      					 		  value="Unidade Permitida"
+	      					 		  styleClass="singleLine"  />
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-60">
+	      				<p:inputText id="firstInputText"
+	      				     		 disabled="disabled"
+	      				     		 style="width: 20%"
+	      				     		 />
+	      				     		 
+						
+						<p:inputText id="secondInputText"
+	      				     		 value="CTN"
+	      				     		 disabled="disabled"
+	      				     		 style="width: 10%"
+	      				     		 />
+	      				     		 
+	      				     		 
+						<p:inputText id="thirdInputText"
+	      				     		 value="Container"
+	      				     		 disabled="disabled"
+	      				     		 style="width: 27%"
+	      				     		 />	      				     		 
+						
+							      				     		 
+	      			</p:column>
+	      		
+	      		</p:row>
+	      		
+	      		
+        </p:panelGrid>
+	</p:panel>
+		
+	
+	<ui:include src="/resources/includes/cadastros/cadastros/finalidades/apresentacaoPanel.xhtml" >
+		<ui:param name="pojo" value="#{finalidadeCodigoBean.registro}" />
+	</ui:include>
+	
+	<ui:include src="/resources/includes/cadastros/cadastros/finalidades/aplicacaoPanel.xhtml" >
+		<ui:param name="pojo" value="#{finalidadeCodigoBean.registro}" />
+	</ui:include>
+	
+	<ui:include src="/resources/includes/cadastros/cadastros/finalidades/auditoriaLogPanel.xhtml" >
+		<ui:param name="pojo" value="#{produtoBean.registro}" />
+	</ui:include>
+	
+		
+		
+		
+	</ui:define>
+
+</ui:composition>

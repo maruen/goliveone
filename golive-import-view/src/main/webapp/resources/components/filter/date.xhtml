@@ -13,6 +13,11 @@
 	<composite:attribute name="update" required="true" />
 	<composite:attribute name="widgetAnotado" required="true" />
 	<composite:attribute name="bean" required="true" />
+	<composite:attribute name="styleClassTitulo" required="false" />
+	<composite:attribute name="styleClassFiltroUm" required="false" />
+	<composite:attribute name="styleClassFiltroDois" required="false" />
+	<composite:attribute name="styleClassBotaoLimpar" required="false" />
+	<composite:attribute name="styleClassBotaoSettings" required="false" />
 </composite:interface>
 
 <composite:implementation>
@@ -56,7 +61,7 @@
 
 
 
-	<h:outputLabel styleClass="tituloColunaFiltroData"
+	<h:outputLabel styleClass="#{cc.attrs.styleClassTitulo}"
 		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
 
@@ -66,26 +71,31 @@
 
 		<p:calendar
 			id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio_periodo"
-			pattern="dd/MM/yyyy" styleClass="filtroDataInicial"
+			pattern="dd/MM/yyyy" styleClass="#{cc.attrs.styleClassFiltroUm}"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
 			mask="true" effect="fold">
-
 			<p:ajax event="dateSelect" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
-
-
 		</p:calendar>
 
+		<p:calendar
+			id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio_periodo_disabled"
+			pattern="dd/MM/yyyy"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			style="background-color:rgba(160, 160, 190, 1);"
+			styleClass="#{cc.attrs.styleClassFiltroUm}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			disabled="true" mask="true" />
 
 		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
 			value="/resources/images/stylistica-icons-set/24x24/settings.png"
-			styleClass="settings" />
+			styleClass="#{cc.attrs.styleClassBotaoSettings}" />
 
 
 		<h:graphicImage
 			value="/resources/images/stylistica-icons-set/24x24/bin.png"
-			styleClass="limpar">
+			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
 			<p:ajax event="click" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
 		</h:graphicImage>
@@ -93,38 +103,53 @@
 		<br />
 
 		<p:calendar id="headerfiltro_date#{cc.attrs.widgetAnotado}_fim"
-			pattern="dd/MM/yyyy" styleClass="filtroDataFinal"
+			pattern="dd/MM/yyyy" styleClass="#{cc.attrs.styleClassFiltroDois}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim != null}"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
 			mask="true" effect="fold">
 			<p:ajax event="dateSelect" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
-
 		</p:calendar>
-
+		<p:calendar
+			id="headerfiltro_date#{cc.attrs.widgetAnotado}_fim_disabled"
+			pattern="dd/MM/yyyy" styleClass="#{cc.attrs.styleClassFiltroDois}"
+			style="background-color:rgba(160, 160, 190, 1);"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			disabled="true" mask="true" />
 
 	</h:panelGroup>
 
 	<h:panelGroup
 		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo != cc.attrs.bean.filterManager.periodo}">
 		<p:calendar id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio"
-			pattern="dd/MM/yyyy" styleClass="filtroDataInicial"
+			pattern="dd/MM/yyyy" styleClass="#{cc.attrs.styleClassFiltroUm}"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
 			mask="true" effect="fold">
 			<p:ajax event="dateSelect" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 		</p:calendar>
 
+		<p:inputText style="background:rgba(160, 160, 190, 1);"
+			id="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio_disabled"
+			styleClass="#{cc.attrs.styleClassFiltroUm}"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			disabled="true">
+			<f:convertDateTime pattern="dd/MM/yyyy"
+				for="headerfiltro_date#{cc.attrs.widgetAnotado}_inicio_disabled" />
+		</p:inputText>
+
 
 		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
 			value="/resources/images/stylistica-icons-set/24x24/settings.png"
-			styleClass="settings" />
+			styleClass="#{cc.attrs.styleClassBotaoSettings}" />
 
 
 		<h:graphicImage
 			value="/resources/images/stylistica-icons-set/24x24/bin.png"
-			styleClass="limpar">
+			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
 			<p:ajax event="click" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
 		</h:graphicImage>

@@ -33,14 +33,39 @@ html, body{
 	top: 2px;
 }
 
-.tituloColunaFiltroData{
-	position: relative;
-	top: 5px;
-}
 
 .selectOneRadioInclusao{
 	position: relative;
 	right: 10%;
 }
 
+/*Filtros*/
+.tituloColunaFiltro{
+	position: relative;
+	top: 5px;
+}
+
+.settings{
+	position: relative;
+	top: 7px;
+	left: 17px;
+}
+
+.limpar{
+	position: relative;
+	top: 7px;
+	left: 17px;
+}
+
+.filtroInicial{
+	position: relative;
+	left: 15px;
+}
+
+.filtroFinal{
+	position: relative;
+	left: -11px;
+}
+
+/*Filtros*/
 

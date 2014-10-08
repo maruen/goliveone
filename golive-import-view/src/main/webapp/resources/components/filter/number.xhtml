@@ -13,6 +13,11 @@
 	<composite:attribute name="update" required="true" />
 	<composite:attribute name="widgetAnotado" required="true" />
 	<composite:attribute name="bean" required="true" />
+	<composite:attribute name="styleClassTitulo" required="false" />
+	<composite:attribute name="styleClassFiltroUm" required="false" />
+	<composite:attribute name="styleClassFiltroDois" required="false" />
+	<composite:attribute name="styleClassBotaoLimpar" required="false" />
+	<composite:attribute name="styleClassBotaoSettings" required="false" />
 </composite:interface>
 
 <composite:implementation>
@@ -62,7 +67,7 @@
 
 
 
-	<h:outputLabel styleClass="tituloColunaFiltroData"
+	<h:outputLabel styleClass="#{cc.attrs.styleClassTitulo}"
 		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
 
@@ -71,25 +76,32 @@
 
 
 		<p:inputText
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
 			id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_intervalo"
-			styleClass="filtroDataInicial"
+			styleClass="#{cc.attrs.styleClassFiltroUm}"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
-
-			<p:ajax event="change"
-				update="#{cc.attrs.update}"
+			<p:ajax event="change" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 		</p:inputText>
+
+		<p:inputText
+			id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_intervalo_disabled"
+			style="background-color:rgba(160, 160, 190, 1);"
+			styleClass="#{cc.attrs.styleClassFiltroUm}"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			disabled="true" />
+
 
 
 		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
 			value="/resources/images/stylistica-icons-set/24x24/settings.png"
-			styleClass="settings" />
+			styleClass="#{cc.attrs.styleClassBotaoSettings}" />
 
 
 		<h:graphicImage
 			value="/resources/images/stylistica-icons-set/24x24/bin.png"
-			styleClass="limpar">
+			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
 			<p:ajax event="click" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
 		</h:graphicImage>
@@ -97,13 +109,19 @@
 		<br />
 
 		<p:inputText id="headerfiltro_number#{cc.attrs.widgetAnotado}_fim"
-			styleClass="filtroDataFinal"
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim != null}"
+			styleClass="#{cc.attrs.styleClassFiltroDois}"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}">
 			<p:ajax event="change" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
-
 		</p:inputText>
+
+		<p:inputText
+			id="headerfiltro_number#{cc.attrs.widgetAnotado}_fim_disabled"
+			style="background-color:rgba(160, 160, 190, 1);"
+			styleClass="#{cc.attrs.styleClassFiltroDois}" disabled="true"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}" />
 
 
 	</h:panelGroup>
@@ -112,27 +130,34 @@
 		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo != cc.attrs.bean.filterManager.intervalo}">
 
 		<p:inputText id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio"
-			styleClass="filtroDataInicial" 
-			disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
+			styleClass="#{cc.attrs.styleClassFiltroUm}"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
+
 			<p:ajax event="change" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 		</p:inputText>
 
+		<p:inputText
+			id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_disabled"
+			style="background-color:rgba(160, 160, 190, 1);"
+			styleClass="#{cc.attrs.styleClassFiltroUm}"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			disabled="true" />
 
 		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
 			value="/resources/images/stylistica-icons-set/24x24/settings.png"
-			styleClass="settings" />
+			styleClass="settings, #{cc.attrs.styleClassBotaoSettings}" />
 
 
 		<h:graphicImage
 			value="/resources/images/stylistica-icons-set/24x24/bin.png"
-			styleClass="limpar">
+			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
 			<p:ajax event="click" update="#{cc.attrs.update}"
 				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
 		</h:graphicImage>
 	</h:panelGroup>
-
 
 
 

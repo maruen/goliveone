@@ -13,6 +13,12 @@
 	<composite:attribute name="update" required="true" />
 	<composite:attribute name="widgetAnotado" required="true" />
 	<composite:attribute name="bean" required="true" />
+
+
+	<composite:attribute name="styleClassTitulo" required="false" />
+	<composite:attribute name="styleClassFiltroUm" required="false" />
+	<composite:attribute name="styleClassBotaoLimpar" required="false" />
+	<composite:attribute name="styleClassBotaoSettings" required="false" />
 </composite:interface>
 
 <composite:implementation>
@@ -43,37 +49,37 @@
 
 			</p:selectOneRadio>
 
-
-
 		</p:fieldset>
 	</p:dialog>
 
 
-
-	<h:outputLabel styleClass="tituloColunaFiltroData"
+	<h:outputLabel styleClass="#{cc.attrs.styleClassTitulo}"
 		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
 
-	<p:inputText
-		style="#{(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null) eq true ? 'background:#DDD;' : 'background:White;'}"
-		id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_intervalo"
-		styleClass="filtroDataInicial"
-		disabled="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio != null}"
+	<p:inputText id="headerfiltro_string#{cc.attrs.widgetAnotado}_inicio"
+		styleClass="#{cc.attrs.styleClassFiltroUm}"
+		rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
-
 		<p:ajax event="change" update="#{cc.attrs.update}"
 			listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 	</p:inputText>
 
+	<p:inputText
+		id="headerfiltro_string#{cc.attrs.widgetAnotado}_inicio_disabled"
+		rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+		style="background-color: rgba(160, 160, 190, 1);"
+		styleClass="#{cc.attrs.styleClassFiltroUm}" disabled="true"
+		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}" />
 
 	<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
 		value="/resources/images/stylistica-icons-set/24x24/settings.png"
-		styleClass="settings" />
+		styleClass="#{cc.attrs.styleClassBotaoSettings}" />
 
 
 	<h:graphicImage
 		value="/resources/images/stylistica-icons-set/24x24/bin.png"
-		styleClass="limpar">
+		styleClass="#{cc.attrs.styleClassBotaoLimpar}">
 		<p:ajax event="click" update="#{cc.attrs.update}"
 			listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
 	</h:graphicImage>

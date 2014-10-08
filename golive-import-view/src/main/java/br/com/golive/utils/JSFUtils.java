@@ -96,4 +96,8 @@ public class JSFUtils {
 		return PrettyContext.getCurrentInstance().getConfig().getMappings();
 	}
 
+	public static PrettyUrl getPrettyPageAtual() {
+		return new PrettyUrl(PrettyContext.getCurrentInstance().getCurrentMapping());
+	}
+
 }

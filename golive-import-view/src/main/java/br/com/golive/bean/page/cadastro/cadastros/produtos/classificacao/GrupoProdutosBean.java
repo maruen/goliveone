@@ -130,7 +130,6 @@ public class GrupoProdutosBean extends CadastroBeanRules<GrupoProdutosModel> {
 		return logger;
 	}
 
-	
 	@Override
 	public FilterManager<GrupoProdutosModel> getFilterManager() {
 		// TODO Auto-generated method stub

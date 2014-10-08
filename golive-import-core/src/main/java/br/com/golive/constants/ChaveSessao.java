@@ -5,7 +5,8 @@ public enum ChaveSessao {
 
 	USUARIO_LOGADO("usuarioLogado"),
 	ULTIMA_PAGINA("lastPage"),
-	EMPRESA_SELECIONADA("empresaSelecionada");
+	EMPRESA_SELECIONADA("empresaSelecionada"),
+	LISTA_IMPRESSAO("listaImpressao");
 
 	private String chave;
 

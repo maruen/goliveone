@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lombok.Data;
@@ -58,6 +59,11 @@ public class GeradorRelatorio<T> {
 
 		prepararImpressao(tipoRelatorio, clazz, conteudo, parametros, properties);
 
+	}
+
+	public boolean getPopUpImpressao() {
+		final HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		return (req.getParameter("print") != null) && (req.getParameter("print").equals("true"));
 	}
 
 	private void prepararParametrosDeTemplate(final Class<?> clazz, final Map<String, Object> parametros, final GoliveOneProperties properties) throws IOException {

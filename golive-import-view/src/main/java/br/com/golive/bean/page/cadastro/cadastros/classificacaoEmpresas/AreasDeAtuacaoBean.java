@@ -29,11 +29,8 @@ import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
-import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.Fluxo;
-import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
-import br.com.golive.utils.javascript.FuncaoJavaScript;
 
 @Label(name = "label.cadastroDeAreaDeAtuacao")
 @ManagedBean
@@ -48,10 +45,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Inject
 	@FilterInjected
 	private FilterManager<AreaDeAtuacaoEmbed> filterManager;
-
-	@Inject
-	@LabelSystemInjected
-	private GoliveOneProperties labels;
 
 	@Inject
 	@FilterInjected
@@ -76,7 +69,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	@PostConstruct
 	public void init() {
-
 		try {
 			super.init(criarList());
 		} catch (final ParseException e) {
@@ -102,12 +94,12 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Override
 	public void confirmarExclusao() {
-		if (registro != null) {
+		if ((fluxo.equals(Fluxo.EXCLUSAO)) && (registro != null)) {
 			conteudo.remove(registro);
 			filtrados.remove(registro);
 			registro = null;
-			JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1000", "1000"));
 			JSFUtils.infoMessage("Processo Ok", "Registro foi excluido");
+			super.confirmarExclusao();
 		}
 	}
 
@@ -125,7 +117,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		logger.info("Obtendo parametros para carregar relatório");
 		final Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("usuarioLogado", "Guilherme Desenvolvimento");
-		parametros.put("label.usuario", labels.getField("label.usuario"));
+		parametros.put("label.usuario", getLabels().getField("label.usuario"));
 		try {
 			logger.info("Carregando logo da empresa");
 			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("01.png")));
@@ -137,17 +129,18 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Override
 	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
+		gerarRelatorio(TipoRelatorio.PDF, getLabels());
 	}
 
 	@Override
 	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
+		gerarRelatorio(TipoRelatorio.EXCEL, getLabels());
 	}
 
 	@Override
 	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
+		super.imprimir();
+		// gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
 	}
 
 	@Override
@@ -156,7 +149,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 		if (fluxo.equals(Fluxo.INCLUSAO)) {
 			if ((registro.getCadastroAreaAtuacao().getAreaDeAtuacao() == null) || (registro.getCadastroAreaAtuacao().getAreaDeAtuacao().isEmpty())) {
-				JSFUtils.warnMessage(labels.getField("title.msg.erro.ao.inserir"), labels.getField("msg.preencher.registro"));
+				JSFUtils.warnMessage(getLabels().getField("title.msg.erro.ao.inserir"), getLabels().getField("msg.preencher.registro"));
 			} else {
 				logger.info("Salvando = {} ", registro.getCadastroAreaAtuacao().getId());
 
@@ -171,9 +164,8 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 				conteudo.add(novo);
 				filtrados.add(novo);
-
 				insert = true;
-				JSFUtils.infoMessage(labels.getField("title.msg.inserido.sucesso"), labels.getField("msg.inserido.sucesso"));
+				JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.inserido.sucesso"));
 			}
 		} else {
 			logger.info("editando = {} ", registro.getCadastroAreaAtuacao().getId());
@@ -195,6 +187,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	public void cancelar() {
 		super.cancelar();
+		fluxo = getFluxoListagem();
 		if (registro == null) {
 			logger.info("Cancelando inclusao de registro");
 		} else {
@@ -205,9 +198,9 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	public boolean isSelecionado() {
 		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
+			JSFUtils.warnMessage(getLabels().getField("title.msg.selecione.registro") + ",", getLabels().getField("msg.selecionar.registro"));
 			logger.info("Não existe registro para processar");
-			return false;
+			return super.isSelecionado();
 		}
 		return true;
 	}
@@ -291,14 +284,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	public Logger getLogger() {
 		return logger;
-	}
-
-	public GoliveOneProperties getLabels() {
-		return labels;
-	}
-
-	public void setLabels(final GoliveOneProperties labels) {
-		this.labels = labels;
 	}
 
 	public static long getSerialversionuid() {

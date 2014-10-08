@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.finalidades;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -27,10 +27,10 @@ import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
 
-@Label(name = "label.cadastroCores")
+@Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigoDeBarras")
 @ManagedBean
 @ViewScoped
-public class CoresBean extends CadastroBeanRules<CoresModel> {
+public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 
@@ -115,7 +115,7 @@ public class CoresBean extends CadastroBeanRules<CoresModel> {
 	@Override
 	@Deprecated
 	public void salvar() {
-		final boolean insert = false;
+		boolean insert = false;
 		if (insert) {
 			super.salvar();
 		}
@@ -145,7 +145,7 @@ public class CoresBean extends CadastroBeanRules<CoresModel> {
 	public List<CoresModel> criarList() throws ParseException {
 		final List<CoresModel> lista = new ArrayList<CoresModel>();
 		for (Integer i = 0; i < 10; i++) {
-			final CoresModel coresModel = new CoresModel(Long.valueOf(i.longValue()),
+			CoresModel coresModel = new CoresModel(Long.valueOf(i.longValue()),
 												   new Date(),
 												   new Date(),
 												   "0000000025",
@@ -191,7 +191,4 @@ public class CoresBean extends CadastroBeanRules<CoresModel> {
 	public void setFilterManager(final FilterManager<CoresModel> filterManager) {
 		this.filterManager = filterManager;
 	}
-
-
-
 }
