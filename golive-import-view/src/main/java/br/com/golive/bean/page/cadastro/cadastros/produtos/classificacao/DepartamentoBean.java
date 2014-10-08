@@ -54,7 +54,7 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	public List<DepartamentoModel> criarList() {
 		final List<DepartamentoModel> lista = new ArrayList<DepartamentoModel>();
 		for (Integer i = 0; i < 10; i++) {
-			lista.add(new DepartamentoModel(new Long(i), new Date(), new Date()));
+			lista.add(new DepartamentoModel(new Long(i), new Date(), new Date(), "Acessórios, Partes e Peças para Persianas Horizontais em Alumínio"));
 		}
 		return lista;
 	}
@@ -127,7 +127,6 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	protected Logger getLogger() {
 		return logger;
 	}
-
 
 	@Override
 	public FilterManager<DepartamentoModel> getFilterManager() {

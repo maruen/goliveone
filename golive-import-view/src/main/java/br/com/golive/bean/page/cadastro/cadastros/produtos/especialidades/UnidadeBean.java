@@ -1,8 +1,7 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,18 +18,18 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.constants.TipoRelatorio;
-import br.com.golive.entity.subgrupoprodutos.SubGrupoProdutosModel;
+import br.com.golive.entity.unidade.UnidadeModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 
+@Label(name = "label.cadastroUnidade")
 @ManagedBean
 @ViewScoped
-@Label(name= "label.cadastroSubGrupoProdutos")
-public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosModel> {
+public class UnidadeBean extends CadastroBeanRules<UnidadeModel> {
 
-	private static final long serialVersionUID = -4440000091566924856L;
+	private static final long serialVersionUID = 5987105899309809603L;
 
 	@Inject
 	private Logger logger;
@@ -38,34 +37,26 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 	@Inject
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
-	private Calendar data;
 	
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(criarList());
+		super.init(criarLista());
 		
 		logger.info("Inicializando = {}", this.getClass().getName());
-		
-		fluxo = getFluxoListagem();
-		data = Calendar.getInstance();
 	}
-	
-	public List<SubGrupoProdutosModel> criarList(){
-		final List<SubGrupoProdutosModel> lista = new ArrayList<SubGrupoProdutosModel>();
+
+	private List<UnidadeModel> criarLista() {
+		final List<UnidadeModel> lista = new ArrayList<UnidadeModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new SubGrupoProdutosModel(new Long(i), new Date(), new Date(), 
-					"Acessórios, Partes e Peças para Persianas Horizontais em Alumínio", 
-					"0000000001", "Lâminas em Alumínio 25mm", "0000000001", 
-					"Lâminas em Alumínio 25mm X 0.18mm"));
+			lista.add(new UnidadeModel(new Long(i), new Date(), new Date(), "MM", "Mililitro"));
 		}
-		
 		return lista;
 	}
 
 	@Override
-	public FilterManager<SubGrupoProdutosModel> getFilterManager() {
+	public FilterManager<UnidadeModel> getFilterManager() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -87,11 +78,13 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 
 	@Override
 	public boolean isSelecionado() {
-		if (registro == null) {
+		if (registro == null){
 			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
 			logger.info("Não existe registro para processar");
+			
 			return false;
 		}
+		
 		return true;
 	}
 
@@ -120,28 +113,20 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 	protected Logger getLogger() {
 		return logger;
 	}
-
-	public Calendar getDataInclusaoFiltro() {
-		return data;
-	}
-
-	public void setDataInclusaoFiltro(final Calendar data) {
-		this.data = data;
-	}
-
-	@Override
-	public void salvar() {
-		super.salvar();
-		logger.info("Salvando = {} ");
-	}
 	
 	@Override
-	public void cancelar() {
+	public void salvar(){
+		super.salvar();
+		logger.info("Salvando = {}");
+	}
+	
+	public void cancelar(){
 		super.cancelar();
+		
 		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
+			logger.info("Cancelando inclusão de registro");
 		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
+			logger.info("Cancelando edição do registro = {} ", registro);
 		}
 	}
 	

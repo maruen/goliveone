@@ -1,0 +1,31 @@
+.ui-widget-content {
+	border: 1px solid #a6c9e2;
+	background: #fcfdfd url("/golive-one/javax.faces.resource/images/ui-bg_inset-hard_100_fcfdfd_1x100.png.jsf?ln=primefaces-start") 50% bottom repeat-x;
+	color: #222222;
+	vertical-align: top;
+}
+
+.ui-panelgrid {
+	border-collapse: initial !IMPORTANT;
+}
+
+.confirmacao {
+	width: 100%;
+	text-align: right;
+	padding-right: 5%;
+	padding-top: 2px;
+}
+
+.confirmacaoDiv {
+	position: relative;
+	top: -100px;	
+	height: 0px;
+}
+
+.botaoSim {
+	width: 70px;
+}
+
+.botaoNao {
+	width: 70px;
+}

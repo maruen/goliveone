@@ -29,7 +29,7 @@
 	        
 		        <p:dataTable
 		        	 id="auditoriaLogDatatable"
-		        	 value="#{subGrupoProdutosBean.auditoriaLogDatatable}"
+		        	 value="#{unidadeBean.auditoriaLogDatatable}"
 		        	 paginatorPosition="top" 
 		        	 scrollable="false"
 		        	 scrollWidth="95%"
@@ -41,7 +41,7 @@
         		    
 				    <p:column headerText="Id"
 				    		  styleClass="percentual-10">
-				        <h:outputText value="0000000000001" 
+				        <h:outputText value="0000000001" 
 				        			  styleClass="singleLine"/>
 				    </p:column>
 				    
@@ -53,13 +53,13 @@
 				 
 				    <p:column headerText="Formulário"
 				    		  styleClass="percentual-10">
-				        <h:outputText value="Cadastro de SubGrupo de Produtos" 
+				        <h:outputText value="Cadastro de Unidade" 
 				        			  styleClass="singleLine"/>
 				    </p:column>
 				 
 				    <p:column headerText="Id"
 				    		  styleClass="percentual-10">
-				    	<h:outputText value="000000000000001" 
+				    	<h:outputText value="0000000001" 
 				    				  styleClass="singleLine"/>
 				    </p:column>
 				 
@@ -86,11 +86,16 @@
 				    
 				    <p:column headerText="Observação"
 				    		  styleClass="percentual-10">
-				    	<h:outputText /> 
+				    	<h:outputText value="Adicionado ID 0000000001"
+				    				  styleClass="singleLine"/> 
 				    </p:column>
 				    
 				</p:dataTable>
+		
 			</p:row>
+		
 		</h:panelGrid>
+	 
 </p:panel>
+		
 </ui:composition>

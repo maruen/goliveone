@@ -1,8 +1,7 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,53 +18,51 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.constants.TipoRelatorio;
-import br.com.golive.entity.subgrupoprodutos.SubGrupoProdutosModel;
+import br.com.golive.entity.padroesespessura.PadroesEspessuraModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
 
+@Label(name = "label.cadastroPadroesEspessura")
 @ManagedBean
 @ViewScoped
-@Label(name= "label.cadastroSubGrupoProdutos")
-public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosModel> {
+public class PadroesEspessuraBean extends CadastroBeanRules<PadroesEspessuraModel> {
 
-	private static final long serialVersionUID = -4440000091566924856L;
+	private static final long serialVersionUID = 6852219236531333383L;
 
 	@Inject
 	private Logger logger;
-	
+
 	@Inject
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
-	private Calendar data;
-	
+
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(criarList());
-		
+
 		logger.info("Inicializando = {}", this.getClass().getName());
-		
+
 		fluxo = getFluxoListagem();
-		data = Calendar.getInstance();
 	}
-	
-	public List<SubGrupoProdutosModel> criarList(){
-		final List<SubGrupoProdutosModel> lista = new ArrayList<SubGrupoProdutosModel>();
+
+	public List<PadroesEspessuraModel> criarList() {
+		final List<PadroesEspessuraModel> lista = new ArrayList<PadroesEspessuraModel>();
 		
-		for (Integer i = 0; i < 10; i++){
-			lista.add(new SubGrupoProdutosModel(new Long(i), new Date(), new Date(), 
-					"Acessórios, Partes e Peças para Persianas Horizontais em Alumínio", 
-					"0000000001", "Lâminas em Alumínio 25mm", "0000000001", 
-					"Lâminas em Alumínio 25mm X 0.18mm"));
+		for (Integer i = 0; i < 10; i++) {
+			lista.add(new PadroesEspessuraModel(new Long(i), new Date(), new Date(), 
+					"0.18", "MM", "18 Microns de Espessura da Peça", "0000000001", 
+					"0000000025", "Mountain Viber Glass Colors", "0000000001", 
+					"1234567Baec", "Vermelho"));
 		}
 		
 		return lista;
 	}
 
 	@Override
-	public FilterManager<SubGrupoProdutosModel> getFilterManager() {
+	public FilterManager<PadroesEspessuraModel> getFilterManager() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -109,7 +106,7 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 		}
 		return parametros;
 	}
-
+	
 	@Override
 	public void confirmarExclusao() {
 		// TODO Auto-generated method stub
@@ -121,27 +118,19 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 		return logger;
 	}
 
-	public Calendar getDataInclusaoFiltro() {
-		return data;
-	}
-
-	public void setDataInclusaoFiltro(final Calendar data) {
-		this.data = data;
-	}
-
 	@Override
 	public void salvar() {
 		super.salvar();
 		logger.info("Salvando = {} ");
 	}
-	
+
 	@Override
 	public void cancelar() {
 		super.cancelar();
 		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
+			logger.info("Cancelando inclusão de registro");
 		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
+			logger.info("Cancelando edição do registro = {} ", registro);
 		}
 	}
 	
