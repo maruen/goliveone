@@ -125,9 +125,9 @@
 		</url-mapping>
 	
 		
-		<url-mapping id="cadastrosCadastrosProdutosFinalidadesCodigoBarra">
-			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/CodigoDeBarra" />
-			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeCodigoDeBarra.jsf" />
+		<url-mapping id="cadastrosCadastrosProdutosFinalidadesCodigoBarras">
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/CodigoDeBarras" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeCodigoDeBarras.jsf" />
 		</url-mapping>
 	
 		
