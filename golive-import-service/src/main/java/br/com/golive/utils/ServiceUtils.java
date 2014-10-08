@@ -33,6 +33,10 @@ public class ServiceUtils {
 		getSessionMap().remove(chave.getChave());
 	}
 
+	public static void removerObjetoSessao(final String chave) {
+		getSessionMap().remove(chave);
+	}
+
 	public static boolean verificarNaSessaoPorChave(final String chave) {
 		return getSessionMap().containsKey(chave);
 	}

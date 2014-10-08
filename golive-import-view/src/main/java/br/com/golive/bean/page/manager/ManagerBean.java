@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 
 import br.com.golive.constants.ChaveSessao;
@@ -19,10 +18,10 @@ import br.com.golive.entity.Usuario;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.utils.JSFUtils;
+import br.com.golive.utils.PrettyUrl;
 import br.com.golive.utils.ServiceUtils;
 
 import com.ocpsoft.pretty.PrettyContext;
-import com.ocpsoft.pretty.faces.config.mapping.UrlMapping;
 
 @ManagedBean
 @ViewScoped
@@ -43,7 +42,6 @@ public class ManagerBean extends GenericBean {
 
 	@PostConstruct
 	public void init() {
-		super.postConstruct();
 		if (verificarSessao()) {
 			final Calendar cal = Calendar.getInstance();
 			setData(new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime()));
@@ -64,23 +62,14 @@ public class ManagerBean extends GenericBean {
 		}
 	}
 
-	public void setEmpresaSelecionada(final String url, final String empresa) {
-		for (final UrlMapping pretty : PrettyContext.getCurrentInstance().getConfig().getMappings()) {
-			if (pretty.getPattern().equals("/" + url)) {
-				logger.info("Abrindo nova aba = {}", pretty.getId());
-				final Map<String, Object> paramters = new HashMap<String, Object>();
-				paramters.put(ChaveSessao.EMPRESA_SELECIONADA.getChave(), empresa);
-				ServiceUtils.guardarObjetoSessao(pretty.getId(), paramters);
-			}
-		}
-	}
-
 	public boolean campoValido(final String campo) {
 		return ((campo != null) && (!campo.isEmpty()));
 	}
 
 	public void logout() {
-		ServiceUtils.removerObjetoSessao(ChaveSessao.USUARIO_LOGADO);
+		for (final String key : ServiceUtils.getSessionMap().keySet()) {
+			ServiceUtils.removerObjetoSessao(key);
+		}
 		usuario = null;
 		verificarSessao();
 	}
@@ -88,7 +77,11 @@ public class ManagerBean extends GenericBean {
 	private boolean verificarSessao() {
 		if (usuario == null) {
 			try {
-				ServiceUtils.guardarObjetoSessao(ChaveSessao.ULTIMA_PAGINA, PrettyContext.getCurrentInstance().getCurrentMapping().getId());
+				final PrettyUrl pretty = new PrettyUrl(PrettyContext.getCurrentInstance().getCurrentMapping());
+
+				if ((!pretty.getId().equals("welcome")) && (!pretty.getId().equals("login"))) {
+					ServiceUtils.guardarObjetoSessao(ChaveSessao.ULTIMA_PAGINA, new PrettyUrl(PrettyContext.getCurrentInstance().getCurrentMapping()));
+				}
 				JSFUtils.redirect("/login");
 				return false;
 			} catch (final IOException e) {
@@ -112,6 +105,15 @@ public class ManagerBean extends GenericBean {
 			e.printStackTrace();
 			throw new GoLiveException("Erro ao Obter campo da classe");
 		}
+	}
+
+	@Deprecated
+	public void newTab(final String url) {
+
+		final RequestContext context = RequestContext.getCurrentInstance();
+		context.execute("window.open('" + url + "', '_newtab')");
+
+		// JSFUtils.chamarJs(new FuncaoJavaScript("abrirNovaAba", url));
 	}
 
 	public String labelAnotado(final Class<?> clazz) {

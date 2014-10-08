@@ -129,12 +129,6 @@ public class GrupoProdutosBean extends CadastroBeanRules<GrupoProdutosModel> {
 	}
 
 	@Override
-	public void inicializarFiltros() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public FilterManager<GrupoProdutosModel> getFilterManager() {
 		// TODO Auto-generated method stub
 		return null;

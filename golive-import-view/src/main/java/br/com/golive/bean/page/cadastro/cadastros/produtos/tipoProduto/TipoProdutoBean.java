@@ -149,12 +149,6 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	@Override
-	public void inicializarFiltros() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	protected Logger getLogger() {
 		return logger;
 	}

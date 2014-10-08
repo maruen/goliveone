@@ -135,12 +135,6 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 	}
 
 	@Override
-	public void inicializarFiltros() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public FilterManager<ProdutoModel> getFilterManager() {
 		return null;
 	}

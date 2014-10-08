@@ -18,12 +18,13 @@
 <composite:implementation>
 
 
-	<p:dialog id="dialogFilter_string#{cc.attrs.widgetAnotado}" showHeader="true"
-		showEffect="fold" modal="true" width="225px" hideEffect="fold" header="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}"
+	<p:dialog id="dialogFilter_string#{cc.attrs.widgetAnotado}"
+		showHeader="true" showEffect="fold" modal="true" width="225px"
+		hideEffect="fold"
+		header="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}"
 		widgetVar="#{cc.attrs.widgetAnotado}" resizable="false">
 
-		<p:fieldset
-			legend="#{managerBean.get('label.parametros.filtro')}"
+		<p:fieldset legend="#{managerBean.get('label.parametros.filtro')}"
 			style="margin-bottom:20px">
 			<p:selectOneRadio id="filtro_number#{cc.attrs.widgetAnotado}"
 				styleClass="selectOneRadioInclusao"
@@ -53,29 +54,33 @@
 		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
 
-		<p:inputText
-			id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_intervalo"
-			styleClass="filtroDataInicial"
-			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
+	<p:inputText
+		id="headerfiltro_string#{cc.attrs.widgetAnotado}_inicio"
+		styleClass="filtroDataInicial" rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
+		<p:ajax event="change" update="#{cc.attrs.update}"
+			listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+	</p:inputText>
 
-			<p:ajax event="change" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
-		</p:inputText>
+	<p:inputText
+		id="headerfiltro_string#{cc.attrs.widgetAnotado}_inicio_disabled"
+		rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+		style="background-color: rgba(160, 160, 190, 1);" styleClass="filtroDataInicial" disabled="true"
+		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"/>
+
+	<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
+		value="/resources/images/stylistica-icons-set/24x24/settings.png"
+		styleClass="settings" />
 
 
-		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
-			value="/resources/images/stylistica-icons-set/24x24/settings.png"
-			styleClass="settings" />
+	<h:graphicImage
+		value="/resources/images/stylistica-icons-set/24x24/bin.png"
+		styleClass="limpar">
+		<p:ajax event="click" update="#{cc.attrs.update}"
+			listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
+	</h:graphicImage>
 
-
-		<h:graphicImage
-			value="/resources/images/stylistica-icons-set/24x24/bin.png"
-			styleClass="limpar">
-			<p:ajax event="click" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
-		</h:graphicImage>
-
-		<br />
+	<br />
 
 
 

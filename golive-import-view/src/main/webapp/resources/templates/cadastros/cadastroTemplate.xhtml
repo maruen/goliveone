@@ -9,6 +9,7 @@
 	template="/resources/templates/layoutTemplate.xhtml">
 
 	<ui:define name="linkRefs">
+		<h:outputStylesheet name="css/template/style_cadastro_template.css" />
 		<ui:insert name="css" />
 	</ui:define>
 
@@ -20,33 +21,44 @@
 
 		<h:form id="conteudoForm" styleClass="mainForm">
 			<ui:insert name="bean" />
+
+			<p:remoteCommand id="commandSetEmpresaSelecionadaProximoBean"
+				name="guardarEmpresaSelecionada"
+				actionListener="#{managerBean.setEmpresaSelecionada(bean.empresaSelecionada)}" />
+
+
 			<div id="opcoesDiv" class="opcoesDiv">
 				<ui:include src="/resources/includes/header/toolbar.xhtml" />
 			</div>
 
 			<div id="confirmar" class="confirmacaoDiv">
 
-				<h:panelGrid id="confirmarExclusao" columns="3" columnClasses="mensagemColunaExclusao, botaoSim, botaoNao"
+				<h:panelGrid id="confirmarExclusao" columns="3"
+					columnClasses="mensagemColunaExclusao, botaoSim, botaoNao"
 					styleClass="confirmacao">
 					<h:outputLabel value="Deseja Realmente excluir ?" />
-					<p:commandButton value="Sim" actionListener="#{bean.confirmarExclusao()}" update=":conteudoForm:conteudoTable"/>
-					<p:commandButton value="Nao" actionListener="#{bean.cancelarExclusao()}" />
+					<p:commandButton value="Sim"
+						update=":conteudoForm:conteudoTable" >
+						<p:ajax event="click" listener="#{bean.confirmarExclusao()}"/>
+					</p:commandButton>
+					<p:commandButton value="Nao" ajax="false"
+						action="#{bean.cancelarExclusao()}" />
 				</h:panelGrid>
 
 			</div>
-			
+
 			<div id="divConteudo" class="mainContentPage" align="center">
 
 				<p:messages id="mensagens" autoUpdate="true" closable="true"
 					showDetail="true" />
 
 				<h:panelGroup id="conteudoGroup"
-					rendered="#{bean.fluxo == bean.fluxoListagem}">
+					rendered="#{((bean.fluxo == bean.fluxoListagem) or (bean.fluxo == bean.fluxoExclusao))}">
 					<ui:insert name="conteudo" />
 				</h:panelGroup>
 
 				<h:panelGroup id="edicaoGroup"
-					rendered="#{bean.fluxo != bean.fluxoListagem}">
+					rendered="#{((bean.fluxo == bean.fluxoInclusao) or (bean.fluxo == bean.fluxoEdicao))}">
 					<ui:insert name="edicao" />
 				</h:panelGroup>
 
