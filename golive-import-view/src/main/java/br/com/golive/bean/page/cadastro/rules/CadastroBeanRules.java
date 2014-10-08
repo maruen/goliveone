@@ -19,20 +19,24 @@ import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.lang.WordUtils;
+import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.manager.GenericBean;
+import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
+import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
+import br.com.golive.utils.ServiceUtils;
 import br.com.golive.utils.Utils;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
 
@@ -61,6 +65,11 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	@Deprecated
 	protected boolean implementada = true;
 
+
+	@Inject
+	@LabelSystemInjected
+	private GoliveOneProperties labels;
+
 	@Inject
 	@GeradorRelatorioInjected
 	protected GeradorRelatorio<T> relatorios;
@@ -77,17 +86,11 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 	public abstract FilterManager<T> getFilterManager();
 
-	public abstract void imprimir();
-
 	public abstract void exportarXls();
 
 	public abstract void exportarPdf();
 
-	public abstract boolean isSelecionado();
-
 	public abstract Map<String, Object> obterParametrosRelatório();
-
-	public abstract void confirmarExclusao();
 
 	protected abstract Logger getLogger();
 
@@ -105,32 +108,33 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	 * @param listaConteudo
 	 */
 	protected void init(final List<T> listaConteudo) {
+		if (!relatorios.getPopUpImpressao()) {
+			showMenuBar();
+			logger = getLogger();
+			if (logger == null) {
+				throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o logger para que a página possa ser renderizada");
+			}
 
-		logger = getLogger();
-		if (logger == null) {
-			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o logger para que a página possa ser renderizada");
-		}
+			this.conteudo = listaConteudo;
+			this.filtrados = new ArrayList<T>();
+			this.temp = new ArrayList<T>();
+			filtrados.addAll(conteudo);
+			fluxo = getFluxoListagem();
+			inicializarClasse();
 
-		this.conteudo = listaConteudo;
-		this.filtrados = new ArrayList<T>();
-		this.temp = new ArrayList<T>();
-		filtrados.addAll(conteudo);
-		fluxo = getFluxoListagem();
-		inicializarClasse();
+			if (getFilterManager() != null) {
+				getFilterManager().setInstance(this);
+			}
+		} else {
+			filtrados = (List<T>) ServiceUtils.obterMapPorChave(ChaveSessao.LISTA_IMPRESSAO.getChave());
+			gerarRelatorio(TipoRelatorio.IMPRESSAO, getLabels());
 
-		if (getFilterManager() != null) {
-			getFilterManager().setInstance(this);
 		}
 	}
 
 	public void cancelarExclusao() {
 		fluxo = getFluxoListagem();
-		JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1100", "1000"));
-	}
-
-	public void selecionarOutroRegistro() {
-		fluxo = getFluxoListagem();
-		JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1000", "1000"));
+		showMenuBar();
 	}
 
 	/**
@@ -149,6 +153,22 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		}
 		genericClazzInstance = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
 		relatorios.setClazz(genericClazzInstance);
+	}
+
+	public boolean isSelecionado() {
+		showMenuBar();
+		return false;
+	}
+
+	public void imprimir() {
+		ServiceUtils.guardarObjetoSessao(ChaveSessao.LISTA_IMPRESSAO, filtrados);
+		final RequestContext context = RequestContext.getCurrentInstance();
+		context.execute("window.open('/golive-one" + JSFUtils.getPrettyPageAtual().getUrl() + "/print=true', '_blank')");
+		showMenuBar();
+	}
+
+	private void showMenuBar() {
+		JSFUtils.chamarJs(new FuncaoJavaScript("showMenuBar", "600", "500"));
 	}
 
 	/**
@@ -203,6 +223,8 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 	public void incluir() {
 		fluxo = getFluxoInclusao();
+		JSFUtils.chamarJs(new FuncaoJavaScript("showMenuBar", "1000", "1000"));
+
 	}
 
 	/**
@@ -217,6 +239,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	 */
 	public void editarRegistro() {
 		fluxo = getFluxoEdicao();
+		showMenuBar();
 	}
 
 	/**
@@ -230,7 +253,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	public void excluir() {
 		if (isSelecionado()) {
 			fluxo = getFluxoExclusao();
-			JSFUtils.chamarJs(new FuncaoJavaScript("showConfirmarExclusaoDiv", "1100", "1000"));
+			showMenuBar();
 		}
 	}
 
@@ -243,6 +266,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	 */
 	public void salvar() {
 		fluxo = getFluxoListagem();
+		showMenuBar();
 	}
 
 	/**
@@ -257,6 +281,8 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	public void cancelar() {
 		fluxo = getFluxoListagem();
 		registro = null;
+		showMenuBar();
+
 	}
 
 	/**
@@ -310,6 +336,11 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	 */
 	public Fluxo getFluxoEdicao() {
 		return Fluxo.EDICAO;
+	}
+
+	public void confirmarExclusao() {
+		fluxo = Fluxo.LISTAGEM;
+		showMenuBar();
 	}
 
 	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final GoliveOneProperties labels) {
@@ -414,6 +445,14 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 	public void setLogger(final Logger logger) {
 		this.logger = logger;
+	}
+
+	public GoliveOneProperties getLabels() {
+		return labels;
+	}
+
+	public void setLabels(final GoliveOneProperties labels) {
+		this.labels = labels;
 	}
 
 }

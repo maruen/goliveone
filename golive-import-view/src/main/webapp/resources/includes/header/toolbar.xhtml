@@ -11,7 +11,7 @@
 
 
 	<h:panelGrid columns="2" id="gridToolbarPage" width="100%;"
-		rendered="#{((bean.fluxo == bean.fluxoListagem) or (bean.fluxo == bean.fluxoExclusao))}"
+		rendered="#{bean.fluxo == bean.fluxoListagem}"
 		columnClasses="tituloToolBarDeafult, botoesToolBarDefault">
 
 		<h:outputLabel value="#{managerBean.get(bean.nomePagina())}"
@@ -110,5 +110,40 @@
 
 		</h:panelGrid>
 	</h:panelGrid>
+
+
+	<h:panelGrid id="gridExclusao" columns="2" width="100%;"
+		columnClasses="tituloToolBarEditar, botoesToolBarEditar"
+		rendered="#{bean.fluxo == bean.fluxoExclusao}">
+
+		<h:outputLabel 
+			value="#{managerBean.get(bean.nomePagina())} (#{managerBean.get('title.deseja.excluir')})" />
+
+		<h:panelGrid columns="6">
+
+
+			<h:commandLink actionListener="#{bean.confirmarExclusao()}" id="confirmarLink"
+				styleClass="linkButton">
+				<h:graphicImage
+					value="/resources/images/stylistica-icons-set/24x24/like.png"
+					styleClass="image" />
+				<h:outputLabel value="#{managerBean.get('label.confirmar')}"
+					styleClass="label little-font" />
+			</h:commandLink>
+
+			<h:commandLink actionListener="#{bean.cancelarExclusao()}"
+				styleClass="linkButton">
+				<h:graphicImage
+					value="/resources/images/stylistica-icons-set/24x24/repeat.png"
+					styleClass="image" />
+				<h:outputLabel value="#{managerBean.get('label.cancelar')}"
+					styleClass="label little-font" />
+			</h:commandLink>
+
+		</h:panelGrid>
+	</h:panelGrid>
+
+
+
 
 </ui:composition>

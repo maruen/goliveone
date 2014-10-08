@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+.confirmacaoDiv {
+	position: relative;
+	top: -100px;
+	height: 0px;
+}
+
+.confirmacao {
+	width: 100%;
+	text-align: right;
+	padding-right: 5%;
+	padding-top: 2px;
+}
+
+.botaoSim {
+	width: 70px;
+}
+
+.botaoNao {
+	width: 70px;
+}

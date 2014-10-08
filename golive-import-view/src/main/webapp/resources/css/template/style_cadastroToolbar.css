@@ -39,7 +39,8 @@
 
 .opcoesDiv {
 	position: relative;
-	height: 44px;
+	height: 0px; /*44*/
+	top: -100px;
 	background-color: rgba(160, 160, 190, 0.7);
 	-webkit-transition: 1s 0s;
 }

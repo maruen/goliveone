@@ -41,16 +41,6 @@ public class FilterManager<T> {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
-	public void validar(final GoliveFilter filtro) {
-
-		boolean filtroInvalido = filtro.getInicio() == null;
-
-		if ((filtro.getTipo().equals(TipoFiltro.PERIODO)) || (filtro.getTipo().equals(TipoFiltro.INTERVALO))) {
-			filtroInvalido = filtro.getFim() == null;
-		}
-	}
-
 	@SuppressWarnings({ "rawtypes" })
 	public void filtrar(final List<T> conteudo, final List<T> filtrados, final GoliveFilter filtro, final String field) {
 		try {

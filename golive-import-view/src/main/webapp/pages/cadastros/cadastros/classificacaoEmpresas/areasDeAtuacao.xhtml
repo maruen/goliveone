@@ -12,7 +12,6 @@
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_areasDeAtuacao.css" />
-		<h:outputStylesheet name="css/component/golive_filterTable.css" />
 	</ui:define>
 
 
@@ -27,8 +26,8 @@
 			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-			<p:ajax event="rowSelect" update="conteudoTable" listener="#{bean.selecionarOutroRegistro}" />
-			<p:ajax event="rowUnselect" update="conteudoTable" listener="#{bean.selecionarOutroRegistro}" />
+			<p:ajax event="rowSelect" update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
 
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
@@ -36,7 +35,11 @@
 
 				<f:facet name="header">
 					<filter:number update=":conteudoForm:conteudoTable"
-						widgetAnotado="id" bean="#{areasDeAtuacaoBean}" />
+						widgetAnotado="id" bean="#{areasDeAtuacaoBean}"
+						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
+						styleClassFiltroDois="filtroFinal"
+						styleClassFiltroUm="filtroInicial"
+						styleClassTitulo="tituloColunaFiltro" />
 				</f:facet>
 
 				<h:outputLabel value="#{list.cadastroAreaAtuacao.id}" />
@@ -46,7 +49,11 @@
 			<p:column>
 				<f:facet name="header">
 					<filter:date update=":conteudoForm:conteudoTable"
-						widgetAnotado="dataInclusao" bean="#{areasDeAtuacaoBean}" />
+						widgetAnotado="dataInclusao" bean="#{areasDeAtuacaoBean}"
+						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
+						styleClassFiltroDois="filtroFinal"
+						styleClassFiltroUm="filtroInicial"
+						styleClassTitulo="tituloColunaFiltro" />
 				</f:facet>
 				<h:outputText value="#{list.cadastroAreaAtuacao.dataInclusao.time}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
@@ -56,7 +63,11 @@
 			<p:column>
 				<f:facet name="header">
 					<filter:date update=":conteudoForm:conteudoTable"
-						widgetAnotado="dataAlteracao" bean="#{areasDeAtuacaoBean}" />
+						widgetAnotado="dataAlteracao" bean="#{areasDeAtuacaoBean}"
+						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
+						styleClassFiltroDois="filtroFinal"
+						styleClassFiltroUm="filtroInicial"
+						styleClassTitulo="tituloColunaFiltro" />
 				</f:facet>
 
 				<h:outputText value="#{list.cadastroAreaAtuacao.dataAlteracao.time}">
@@ -68,7 +79,10 @@
 			<p:column>
 				<f:facet name="header">
 					<filter:string update=":conteudoForm:conteudoTable"
-						widgetAnotado="areaDeAtuacao" bean="#{areasDeAtuacaoBean}" />
+						widgetAnotado="areaDeAtuacao" bean="#{areasDeAtuacaoBean}"
+						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
+						styleClassFiltroUm="filtroInicial"
+						styleClassTitulo="tituloColunaFiltro" />
 				</f:facet>
 
 				<h:outputLabel value="#{list.cadastroAreaAtuacao.areaDeAtuacao}" />

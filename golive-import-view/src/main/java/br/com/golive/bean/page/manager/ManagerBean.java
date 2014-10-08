@@ -112,8 +112,6 @@ public class ManagerBean extends GenericBean {
 
 		final RequestContext context = RequestContext.getCurrentInstance();
 		context.execute("window.open('" + url + "', '_newtab')");
-
-		// JSFUtils.chamarJs(new FuncaoJavaScript("abrirNovaAba", url));
 	}
 
 	public String labelAnotado(final Class<?> clazz) {
