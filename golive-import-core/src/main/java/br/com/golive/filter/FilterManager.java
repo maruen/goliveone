@@ -2,6 +2,7 @@ package br.com.golive.filter;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,28 +45,35 @@ public class FilterManager<T> {
 	@SuppressWarnings({ "rawtypes" })
 	public void filtrar(final List<T> conteudo, final List<T> filtrados, final GoliveFilter filtro, final String field) {
 		try {
-			temp.addAll(conteudo);
-			logger.info("Filtrando lista por data, campo = {}", field);
-			if (filtro != null) {
-				setFilterOnBean(filtro, field);
-				if (verificarFiltro(filtro)) {
-					if (filtro.getGenericType().getSimpleName().equals("Long")) {
-						retirarNumerosForaDoParametro(conteudo, temp, filtro, field);
-					} else if (filtro.getGenericType().getSimpleName().equals("String")) {
-						retirarStringForaDoParametro(conteudo, temp, filtro, field);
-					} else if (filtro.getGenericType().getSimpleName().equals("Date")) {
-						retirarDatasForaDoParametro(conteudo, temp, filtro, field);
+			if (!getterManagedBean.isEmpty()) {
+				temp.addAll(conteudo);
+				logger.info("Filtrando lista por data, campo = {}", field);
+				if (filtro != null) {
+					setFilterOnBean(filtro, field);
+					if (verificarFiltro(filtro)) {
+						if (filtro.getGenericType().getSimpleName().equals("Long")) {
+							retirarNumerosForaDoParametro(conteudo, temp, filtro, field);
+						} else if (filtro.getGenericType().getSimpleName().equals("String")) {
+							retirarStringForaDoParametro(conteudo, temp, filtro, field);
+						} else if (filtro.getGenericType().getSimpleName().equals("Date")) {
+							retirarDatasForaDoParametro(conteudo, temp, filtro, field);
+						}
 					}
+				} else {
+					setFilterOnBean(null, field);
 				}
+				atualizarListaDeFiltrados(conteudo, temp, filtrados);
+				filtrarPorPelosCamposRestantes(field, temp, filtrados);
+				atualizarListaDeFiltrados(conteudo, temp, filtrados);
+				temp.removeAll(conteudo);
 			} else {
-				setFilterOnBean(null, field);
+				throw new GoLiveException("Nenhum filtro foi definido.");
 			}
-			atualizarListaDeFiltrados(conteudo, temp, filtrados);
-			filtrarPorPelosCamposRestantes(field, temp, filtrados);
-			atualizarListaDeFiltrados(conteudo, temp, filtrados);
-			temp.removeAll(conteudo);
 		} catch (final Exception e) {
-			logger.error("Houve um ao realizar o filtro com esta data");
+			temp.removeAll(conteudo);
+			filtrados.removeAll(conteudo);
+			filtrados.addAll(conteudo);
+			logger.error("Houve um ao realizar o filtro");
 			e.printStackTrace();
 		}
 	}
@@ -128,7 +136,8 @@ public class FilterManager<T> {
 						instanceFilter.setInicio(null);
 						instanceFilter.setFim(null);
 					} else {
-						getInstance().getClass().getDeclaredMethod("set" + WordUtils.capitalize(campo.getName()), filter.getClass()).invoke(getInstance(), new Object[] { filter });
+						final Method setter = getInstance().getClass().getDeclaredMethod("set" + WordUtils.capitalize(campo.getName()), filter.getClass());
+						setter.invoke(getInstance(), new Object[] { filter });
 					}
 					inseriu = true;
 				}

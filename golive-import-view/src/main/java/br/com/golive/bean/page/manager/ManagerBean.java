@@ -16,7 +16,6 @@ import org.slf4j.Logger;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.entity.Usuario;
 import br.com.golive.exception.GoLiveException;
-import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.PrettyUrl;
 import br.com.golive.utils.ServiceUtils;
@@ -31,10 +30,6 @@ public class ManagerBean extends GenericBean {
 
 	@Inject
 	private Logger logger;
-
-	@Inject
-	@UsuarioLogadoInjected
-	private Usuario usuario;
 
 	private String data;
 
@@ -118,10 +113,12 @@ public class ManagerBean extends GenericBean {
 		return get(JSFUtils.getLabelPageName(clazz));
 	}
 
+	@Override
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
+	@Override
 	public void setUsuario(final Usuario usuario) {
 		this.usuario = usuario;
 	}

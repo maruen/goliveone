@@ -158,6 +158,7 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		return null;
 	}
 
+	@Override
 	public GoliveOneProperties getLabels() {
 		return labels;
 	}
@@ -179,10 +180,5 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		this.logger = logger;
 	}
 
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-
-	}
 
 }

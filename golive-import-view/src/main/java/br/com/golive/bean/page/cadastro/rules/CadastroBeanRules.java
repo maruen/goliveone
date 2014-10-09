@@ -7,33 +7,37 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.manager.GenericBean;
+import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
+import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
-import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
+import br.com.golive.utils.ServiceUtils;
 import br.com.golive.utils.Utils;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
 
@@ -59,16 +63,13 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	private static final long serialVersionUID = 1L;
 	private Logger logger;
 
-	@Deprecated
-	protected boolean implementada = true;
-
-	@Inject
-	@LabelSystemInjected
-	private GoliveOneProperties labels;
-
 	@Inject
 	@GeradorRelatorioInjected
 	protected GeradorRelatorio<T> relatorios;
+
+	@Inject
+	@FilterInjected
+	protected FilterManager<T> filterManager;
 
 	protected Fluxo fluxo;
 
@@ -80,31 +81,24 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 	public abstract void init();
 
-	public abstract FilterManager<T> getFilterManager();
-
-	public abstract void exportarXls();
-
-	public abstract void exportarPdf();
-
-	public abstract Map<String, Object> obterParametrosRelatório();
+	public Map<String, Object> obterParametrosRelatório() {
+		logger.info("Obtendo parametros para carregar relatório");
+		final Map<String, Object> parametros = new HashMap<String, Object>();
+		parametros.put("usuarioLogado", getUsuario().getNome());
+		parametros.put("label.usuario", getUsuario().getLabels().getField("label.usuario"));
+		try {
+			logger.info("Carregando logo da empresa");
+			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("01.png")));
+		} catch (final IOException e) {
+			logger.error("Erro ao carregar logo da empresa");
+		}
+		return parametros;
+	}
 
 	protected abstract Logger getLogger();
 
-	/**
-	 * @author Guilherme
-	 * @author Maruen
-	 * 
-	 *         <p>
-	 *         Método responsável por inicializar as listas e objetos para
-	 *         selecao nas páginas de cadastro este método é OBRIGATORIO, e lhe
-	 *         é esperado uma lista com a entidade definida como parametro esta
-	 *         entidade podera ser obtida através de algum {@link EJB}.
-	 *         </p>
-	 * 
-	 * @param listaConteudo
-	 */
 	protected void init(final List<T> listaConteudo) {
-		showMenuBar();
+		showMenuBar(500, 600);
 		logger = getLogger();
 		if (logger == null) {
 			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o logger para que a página possa ser renderizada");
@@ -119,12 +113,25 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 		if (getFilterManager() != null) {
 			getFilterManager().setInstance(this);
+			for (final Field field : this.getClass().getDeclaredFields()) {
+				if (field.isAnnotationPresent(Filter.class)) {
+					getFilterManager().putGetter(field.getAnnotation(Filter.class).campo());
+				}
+			}
 		}
 	}
 
 	public void cancelarExclusao() {
 		fluxo = getFluxoListagem();
-		showMenuBar();
+		showMenuBar(0, 0);
+	}
+
+	public void exportarPdf() {
+		gerarRelatorio(TipoRelatorio.PDF, getLabels());
+	}
+
+	public void exportarXls() {
+		gerarRelatorio(TipoRelatorio.EXCEL, getLabels());
 	}
 
 	/**
@@ -146,16 +153,27 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	}
 
 	public boolean isSelecionado() {
-		showMenuBar();
-		return false;
+		if (registro == null) {
+			JSFUtils.warnMessage(getLabels().getField("title.msg.selecione.registro") + ",", getLabels().getField("msg.selecionar.registro"));
+			logger.info("Não existe registro para processar");
+			fixarMenu();
+			return false;
+		}
+		return true;
+	}
+
+	private void fixarMenu() {
+		JSFUtils.chamarJs(new FuncaoJavaScript("fixarMenuBar"));
 	}
 
 	public void imprimir() {
-		showMenuBar();
+		showMenuBar(0, 0);
+		gerarRelatorio(TipoRelatorio.IMPRESSAO, getLabels());
+		JSFUtils.chamarJs(new FuncaoJavaScript("abrirPdf", new String(Base64.encodeBase64(ServiceUtils.obterValorPorChave(byte[].class, ChaveSessao.LISTA_IMPRESSAO)))));
 	}
 
-	private void showMenuBar() {
-		JSFUtils.chamarJs(new FuncaoJavaScript("showMenuBar", "600", "500"));
+	private void showMenuBar(final long height, final long top) {
+		JSFUtils.chamarJs(new FuncaoJavaScript("showMenuBar", Long.toString(height), Long.toString(top)));
 	}
 
 	/**
@@ -210,8 +228,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 	public void incluir() {
 		fluxo = getFluxoInclusao();
-		JSFUtils.chamarJs(new FuncaoJavaScript("showMenuBar", "1000", "1000"));
-
+		showMenuBar(0, 0);
 	}
 
 	/**
@@ -225,8 +242,11 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	 * 
 	 */
 	public void editarRegistro() {
-		fluxo = getFluxoEdicao();
-		showMenuBar();
+		if (isSelecionado()) {
+			fluxo = getFluxoEdicao();
+			showMenuBar(0, 0);
+			logger.info("Edicao de registro = {} ", registro);
+		}
 	}
 
 	/**
@@ -240,7 +260,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	public void excluir() {
 		if (isSelecionado()) {
 			fluxo = getFluxoExclusao();
-			showMenuBar();
+			showMenuBar(0, 0);
 		}
 	}
 
@@ -253,7 +273,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	 */
 	public void salvar() {
 		fluxo = getFluxoListagem();
-		showMenuBar();
+		showMenuBar(0, 0);
 	}
 
 	/**
@@ -266,9 +286,13 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	 * 
 	 */
 	public void cancelar() {
+		showMenuBar(0, 0);
 		fluxo = getFluxoListagem();
-		registro = null;
-		showMenuBar();
+		if (registro == null) {
+			logger.info("Cancelando inclusao de registro");
+		} else {
+			logger.info("Cancelando edicao do registro = {} ", registro);
+		}
 
 	}
 
@@ -326,8 +350,14 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	}
 
 	public void confirmarExclusao() {
-		fluxo = Fluxo.LISTAGEM;
-		showMenuBar();
+		if ((fluxo.equals(Fluxo.EXCLUSAO)) && (registro != null)) {
+			conteudo.remove(registro);
+			filtrados.remove(registro);
+			registro = null;
+			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
+			fluxo = Fluxo.LISTAGEM;
+			showMenuBar(0, 0);
+		}
 	}
 
 	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final GoliveOneProperties labels) {
@@ -363,14 +393,6 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		return null;
 	}
 
-	public boolean isImplementada() {
-		return implementada;
-	}
-
-	public void setImplementada(final boolean implementada) {
-		this.implementada = implementada;
-	}
-
 	public GeradorRelatorio<T> getRelatorios() {
 		return relatorios;
 	}
@@ -381,6 +403,14 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 	public Fluxo getFluxo() {
 		return fluxo;
+	}
+
+	public FilterManager<T> getFilterManager() {
+		return filterManager;
+	}
+
+	public void setFilterManager(final FilterManager<T> filterManager) {
+		this.filterManager = filterManager;
 	}
 
 	public void setFluxo(final Fluxo fluxo) {
@@ -436,11 +466,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	}
 
 	public GoliveOneProperties getLabels() {
-		return labels;
-	}
-
-	public void setLabels(final GoliveOneProperties labels) {
-		this.labels = labels;
+		return usuario.getLabels();
 	}
 
 }

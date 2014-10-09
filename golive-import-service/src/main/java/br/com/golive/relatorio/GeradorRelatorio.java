@@ -12,25 +12,22 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
-import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
-import net.sf.jasperreports.export.PdfExporterConfiguration;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
+import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.utils.GoliveOneProperties;
+import br.com.golive.utils.ServiceUtils;
 
-@Data
 public class GeradorRelatorio<T> {
 
 	private Class<T> clazz;
@@ -73,17 +70,20 @@ public class GeradorRelatorio<T> {
 		ServletOutputStream stream;
 
 		if (tipoRelatorio.equals(TipoRelatorio.IMPRESSAO)) {
-			stream = response.getOutputStream();
-			gerarImpressao(jasperPrint, stream);
-
+			gerarImpressao(jasperPrint);
 		} else {
 			response.addHeader("Content-disposition", "attachment; filename=" + getNomeDoArquivo(clazz, properties) + "." + tipoRelatorio.getExtensao());
 			stream = response.getOutputStream();
 			gerarArquivos(tipoRelatorio, jasperPrint, stream);
+			fecharStream(stream);
+			FacesContext.getCurrentInstance().responseComplete();
 		}
+
+	}
+
+	private void fecharStream(final ServletOutputStream stream) throws IOException {
 		stream.flush();
 		stream.close();
-		FacesContext.getCurrentInstance().responseComplete();
 	}
 
 	private boolean inserirParametroAnotado(final Map<String, Object> parametros, final GoliveOneProperties properties, final Field fieldChild) {
@@ -97,8 +97,6 @@ public class GeradorRelatorio<T> {
 	private void gerarArquivos(final TipoRelatorio tipoRelatorio, final JasperPrint jasperPrint, final ServletOutputStream stream) throws JRException {
 		if (tipoRelatorio.equals(TipoRelatorio.PDF)) {
 			JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("TESTE", JasperExportManager.exportReportToPdf(jasperPrint));
-
 		} else if (tipoRelatorio.equals(TipoRelatorio.EXCEL)) {
 			final JRXlsxExporter exporter = new JRXlsxExporter();
 			exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
@@ -107,16 +105,19 @@ public class GeradorRelatorio<T> {
 		}
 	}
 
-	private void gerarImpressao(final JasperPrint jasperPrint, final ServletOutputStream stream) throws IOException, JRException {
-		
+	private void gerarImpressao(final JasperPrint jasperPrint) throws IOException, JRException {
 
-		final JRPdfExporter exporter = new JRPdfExporter();
-		final SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
-		configuration.setPdfJavaScript(PdfExporterConfiguration.PROPERTY_PDF_JAVASCRIPT);
-		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-		exporter.setConfiguration(configuration);
-		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(stream));
-		exporter.exportReport();
+		ServiceUtils.guardarObjetoSessao(ChaveSessao.LISTA_IMPRESSAO, JasperExportManager.exportReportToPdf(jasperPrint));
+
+		// final JRPdfExporter exporter = new JRPdfExporter();
+		// final SimplePdfExporterConfiguration configuration = new
+		// SimplePdfExporterConfiguration();
+		// configuration.setPdfJavaScript(PdfExporterConfiguration.PROPERTY_PDF_JAVASCRIPT);
+		// exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+		// exporter.setConfiguration(configuration);
+		// exporter.setExporterOutput(new
+		// SimpleOutputStreamExporterOutput(stream));
+		// exporter.exportReport();
 	}
 
 	private void inserirParametro(final Map<String, Object> parametros, final String key, final Object value) {

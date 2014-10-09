@@ -171,10 +171,6 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 		return labels;
 	}
 
-	@Override
-	public void setLabels(final GoliveOneProperties labels) {
-		this.labels = labels;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -190,13 +186,8 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 		return filterManager;
 	}
 
+	@Override
 	public void setFilterManager(final FilterManager<CoresModel> filterManager) {
 		this.filterManager = filterManager;
 	}
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> a92c26f84bca16d08d7182fbde8cd44edeaf7b0c
 }

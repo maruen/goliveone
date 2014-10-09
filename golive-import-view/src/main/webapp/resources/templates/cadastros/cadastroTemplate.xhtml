@@ -21,19 +21,14 @@
 		<h:form id="conteudoForm" styleClass="mainForm">
 			<ui:insert name="bean" />
 
-			<p:remoteCommand id="commandSetEmpresaSelecionadaProximoBean"
-				name="guardarEmpresaSelecionada"
-				actionListener="#{managerBean.setEmpresaSelecionada(bean.empresaSelecionada)}" />
-
-
 			<div id="opcoesDiv" class="opcoesDiv">
 				<ui:include src="/resources/includes/header/toolbar.xhtml" />
 			</div>
 
 			<div id="divConteudo" class="mainContentPage" align="center">
+				
+				<p:growl id="mensagens" showDetail="true" sticky="true" />
 
-				<p:messages id="mensagens" autoUpdate="true" closable="true"
-					showDetail="true" />
 
 				<h:panelGroup id="conteudoGroup"
 					rendered="#{((bean.fluxo == bean.fluxoListagem) or (bean.fluxo == bean.fluxoExclusao))}">

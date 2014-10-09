@@ -1,18 +1,14 @@
 package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresas;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -20,18 +16,15 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoEmbed;
 import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
 import br.com.golive.entity.areaDeAtuacao.Cadastro;
 import br.com.golive.filter.DateFilter;
-import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.JSFUtils;
-import br.com.golive.utils.ServiceUtils;
 
 @Label(name = "label.cadastroDeAreaDeAtuacao")
 @ManagedBean
@@ -42,10 +35,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	@Inject
 	private Logger logger;
-
-	@Inject
-	@FilterInjected
-	private FilterManager<AreaDeAtuacaoEmbed> filterManager;
 
 	@Inject
 	@FilterInjected
@@ -83,67 +72,13 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	public void incluir() {
 		super.incluir();
-
 		final Cadastro cadastro = new Cadastro();
 		cadastro.setId(conteudo.get(conteudo.size() - 1).getCadastroAreaAtuacao().getId() + 1);
 		cadastro.setDataInclusao(Calendar.getInstance());
-
 		registro = new AreaDeAtuacaoEmbed(cadastro, new AuditoriaLog());
 		registro.setListaAuditoriaLogs(new ArrayList<AuditoriaLog>());
-
 	}
 
-	@Override
-	public void confirmarExclusao() {
-		if ((fluxo.equals(Fluxo.EXCLUSAO)) && (registro != null)) {
-			conteudo.remove(registro);
-			filtrados.remove(registro);
-			registro = null;
-			JSFUtils.infoMessage("Processo Ok", "Registro foi excluido");
-			super.confirmarExclusao();
-		}
-	}
-
-	@Override
-	public void editarRegistro() {
-		if (isSelecionado()) {
-			super.editarRegistro();
-			logger.info("Edicao de registro = {} ", registro.getCadastroAreaAtuacao().getId());
-
-		}
-	}
-
-	@Override
-	public Map<String, Object> obterParametrosRelatório() {
-		logger.info("Obtendo parametros para carregar relatório");
-		final Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("usuarioLogado", "Guilherme Desenvolvimento");
-		parametros.put("label.usuario", getLabels().getField("label.usuario"));
-		try {
-			logger.info("Carregando logo da empresa");
-			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("01.png")));
-		} catch (final IOException e) {
-			logger.error("Erro ao carregar logo da empresa");
-		}
-		return parametros;
-	}
-
-	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, getLabels());
-	}
-
-	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, getLabels());
-	}
-
-	@Override
-	public void imprimir() {
-		super.imprimir();
-		ServiceUtils.obterMapPorChave("TESTE");
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, getLabels());
-	}
 
 	@Override
 	public void salvar() {
@@ -176,7 +111,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 			registro.getListaAuditoriaLogs().add(new AuditoriaLog(1L, Calendar.getInstance(), "Area de Atuação", 1L, "Edição", "VAZIO", "VAZIO", "golive@apresentacao", "Edição"));
 
 			insert = true;
-			JSFUtils.infoMessage("Processo Ok", "Edição Concluída");
+			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.edicao.concluida"));
 
 		}
 
@@ -186,27 +121,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	}
 
-	@Override
-	public void cancelar() {
-		super.cancelar();
-		fluxo = getFluxoListagem();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
-	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(getLabels().getField("title.msg.selecione.registro") + ",", getLabels().getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return super.isSelecionado();
-		}
-		return true;
-	}
-
 	@Deprecated
 	public List<AreaDeAtuacaoEmbed> criarList() throws ParseException {
 		final List<AreaDeAtuacaoEmbed> lista = new ArrayList<AreaDeAtuacaoEmbed>();
@@ -214,31 +128,31 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		add.setListaAuditoriaLogs(getLista());
 		lista.add(add);
 
-		add = new AreaDeAtuacaoEmbed(new Cadastro(2L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Exportação"), new AuditoriaLog());
+		add = new AreaDeAtuacaoEmbed(new Cadastro(2L, getDate("05/08/2014 20:24"), getDate("15/08/2014 20:47"), "Exportação"), new AuditoriaLog());
 		add.setListaAuditoriaLogs(getLista());
 		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(3L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Industrialização"), new AuditoriaLog());
+		add = new AreaDeAtuacaoEmbed(new Cadastro(3L, getDate("07/08/2014 20:24"), getDate("16/08/2014 20:47"), "Industrialização"), new AuditoriaLog());
 		add.setListaAuditoriaLogs(getLista());
 		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(4L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Distribuição"), new AuditoriaLog());
+		add = new AreaDeAtuacaoEmbed(new Cadastro(4L, getDate("08/08/2014 20:24"), getDate("17/08/2014 20:47"), "Distribuição"), new AuditoriaLog());
 		add.setListaAuditoriaLogs(getLista());
 		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(5L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Comercialização Atacada"), new AuditoriaLog());
+		add = new AreaDeAtuacaoEmbed(new Cadastro(5L, getDate("09/08/2014 20:24"), getDate("18/08/2014 20:47"), "Comercialização Atacada"), new AuditoriaLog());
 		add.setListaAuditoriaLogs(getLista());
 		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(6L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Comercialização Varejo"), new AuditoriaLog());
+		add = new AreaDeAtuacaoEmbed(new Cadastro(6L, getDate("10/08/2014 20:24"), getDate("19/08/2014 20:47"), "Comercialização Varejo"), new AuditoriaLog());
 		add.setListaAuditoriaLogs(getLista());
 		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(7L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Revenda"), new AuditoriaLog());
+		add = new AreaDeAtuacaoEmbed(new Cadastro(7L, getDate("11/08/2014 20:24"), getDate("20/08/2014 20:47"), "Revenda"), new AuditoriaLog());
 		add.setListaAuditoriaLogs(getLista());
 		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(8L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Transporte"), new AuditoriaLog());
+		add = new AreaDeAtuacaoEmbed(new Cadastro(8L, getDate("12/08/2014 20:24"), getDate("21/08/2014 20:47"), "Transporte"), new AuditoriaLog());
 		add.setListaAuditoriaLogs(getLista());
 		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(9L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Logistica"), new AuditoriaLog());
+		add = new AreaDeAtuacaoEmbed(new Cadastro(9L, getDate("13/08/2014 20:24"), getDate("22/08/2014 20:47"), "Logistica"), new AuditoriaLog());
 		add.setListaAuditoriaLogs(getLista());
 		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(10L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Armazenagem"), new AuditoriaLog());
+		add = new AreaDeAtuacaoEmbed(new Cadastro(10L, getDate("14/08/2014 20:24"), getDate("23/08/2014 20:47"), "Armazenagem"), new AuditoriaLog());
 		add.setListaAuditoriaLogs(getLista());
 		lista.add(add);
 
@@ -246,6 +160,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	}
 
+	@Deprecated
 	private Calendar getDate(final String date) {
 		try {
 			final Calendar cal = Calendar.getInstance();
@@ -258,6 +173,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		return null;
 	}
 
+	@Deprecated
 	private List<AuditoriaLog> getLista() {
 		final List<AuditoriaLog> lista = new ArrayList<AuditoriaLog>();
 		lista.add(new AuditoriaLog(000001L, getDate2("25/08/2014 20:26:30"), "Area de atuação", 000001L, "Alteração do Valor", "HL25-LMI-0026", "HL25-LAM-EO-18", "roberto@acaopersianas.com.br", "campo Cód Produto"));
@@ -271,6 +187,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 		return lista;
 	}
 
+	@Deprecated
 	private Calendar getDate2(final String date) {
 		try {
 			final Calendar cal = Calendar.getInstance();
@@ -286,10 +203,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 	@Override
 	public Logger getLogger() {
 		return logger;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override
@@ -311,15 +224,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
 
 	public void setFiltroDataAlteracao(final DateFilter filtroDataAlteracao) {
 		this.filtroDataAlteracao = filtroDataAlteracao;
-	}
-
-	@Override
-	public FilterManager<AreaDeAtuacaoEmbed> getFilterManager() {
-		return filterManager;
-	}
-
-	public void setFilterManager(final FilterManager<AreaDeAtuacaoEmbed> filterManager) {
-		this.filterManager = filterManager;
 	}
 
 	public NumberFilter getFiltroId() {

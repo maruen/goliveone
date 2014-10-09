@@ -37,26 +37,26 @@
 				widgetVar="filtroDataComponent_#{cc.attrs.widgetAnotado}"
 				layout="grid" columns="1">
 
-				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.igual}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.igual.label)}" />
-				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.maior}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.maior.label)}" />
-				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.menor}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.menor.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.getFilterManager().igual}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.getFilterManager().igual.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.getFilterManager().maior}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.getFilterManager().maior.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.getFilterManager().menor}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.getFilterManager().menor.label)}" />
 
-				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.contem}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.contem.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.getFilterManager().contem}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.getFilterManager().contem.label)}" />
 
-				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.intervalo}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.intervalo.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.getFilterManager().intervalo}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.getFilterManager().intervalo.label)}" />
 
 
 				<p:ajax event="valueChange" update="#{cc.attrs.update}"
-					listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+					listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 
 
 				<p:ajax event="valueChange"
-					listener="#{cc.attrs.bean.filterManager.selecionarTipoFiltro(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado))}" />
+					listener="#{cc.attrs.bean.getFilterManager().selecionarTipoFiltro(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado))}" />
 
 			</p:selectOneRadio>
 
@@ -72,7 +72,7 @@
 	<br />
 
 	<h:panelGroup
-		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.filterManager.intervalo}">
+		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.getFilterManager().intervalo}">
 
 
 		<p:inputText
@@ -81,7 +81,7 @@
 			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
 			<p:ajax event="change" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+				listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 		</p:inputText>
 
 		<p:inputText
@@ -103,7 +103,7 @@
 			value="/resources/images/stylistica-icons-set/24x24/bin.png"
 			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
 			<p:ajax event="click" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
+				listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
 		</h:graphicImage>
 
 		<br />
@@ -113,7 +113,7 @@
 			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}">
 			<p:ajax event="change" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+				listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 		</p:inputText>
 
 		<p:inputText
@@ -122,12 +122,13 @@
 			styleClass="#{cc.attrs.styleClassFiltroDois}" disabled="true"
 			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}" />
+		<br />
 
 
 	</h:panelGroup>
 
 	<h:panelGroup
-		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo != cc.attrs.bean.filterManager.intervalo}">
+		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo != cc.attrs.bean.getFilterManager().intervalo}">
 
 		<p:inputText id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio"
 			styleClass="#{cc.attrs.styleClassFiltroUm}"
@@ -135,7 +136,7 @@
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
 
 			<p:ajax event="change" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+				listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 		</p:inputText>
 
 		<p:inputText
@@ -155,7 +156,7 @@
 			value="/resources/images/stylistica-icons-set/24x24/bin.png"
 			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
 			<p:ajax event="click" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
+				listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
 		</h:graphicImage>
 	</h:panelGroup>
 

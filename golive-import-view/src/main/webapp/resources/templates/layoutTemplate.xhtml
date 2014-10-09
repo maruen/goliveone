@@ -17,10 +17,15 @@
 
 	<script type="text/javascript">
 
-	function abrirNovaAba(url) {
-		var win = window.open(url, '_blank');
+	function abrirPdf(pdfByteArray){
+		var janela = window.open("data:application/pdf;base64, " + pdfByteArray);	
 	}
 	
+	function abrirNovaAba(url) {
+		var win = window.open(url, '_blank');
+		win.focus();
+	}
+
 	function load() {
 		$("#loadingPage").animate({height: "15%"}, 1000);
 	}
@@ -30,17 +35,15 @@
 	}
 
 	function showMenuBar(tempoAnimacaoTop, tempoAnimacaoHeight) {
-		$("#opcoesDiv").animate({height: "44px"}, tempoAnimacaoHeight);
-		$("#opcoesDiv").animate({top: "0px"}, tempoAnimacaoTop);
+		$("#opcoesDiv").animate({height: "44px"}, parseInt(tempoAnimacaoHeight));
+		$("#opcoesDiv").animate({top: "0px"}, parseInt(tempoAnimacaoTop));
 	}
 
-	function hideMenuBar(tempoAnimacaoTop, tempoAnimacaoHeight) {
-		$("#opcoesDiv").animate({top: "-100px"}, tempoAnimacaoTop);
-		$("#opcoesDiv").animate({height: "0px"}, tempoAnimacaoHeight);
+	function fixarMenuBar() {
+		$("#opcoesDiv").height("44px");
+		$("#opcoesDiv").css({ top: '0px' });
+		
 	}
-
-
-	
 
 	</script>
 
