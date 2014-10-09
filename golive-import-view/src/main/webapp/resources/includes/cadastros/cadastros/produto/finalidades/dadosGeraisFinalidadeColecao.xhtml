@@ -6,7 +6,7 @@
 
 <!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroUnidade.dadosGerais')}"
+		 header="#{userBean.properties.getField('label.cadastroFinalidadeColecao.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -42,29 +42,43 @@
            	<p:spacer/>
            				 
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroUnidade.inclusao')}" />
+      					  value="#{userBean.properties.getField('label.cadastroFinalidadeColecao.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      					  
       		
-      		<h:outputText id="codigoNomeOutputText" value="Código"/>
-      		<p:inputText id="codigoNomeInputText"
+      		<h:outputText id="finalidadeColecaoProdutoNomeOutputText" value="Finalidade Coleção Produto" styleClass="singleLine"/>
+      		<p:inputText id="finalidadeColecaoProdutoNomeInputText"
       					 required="true"
       					 disabled="false"
-      					 style="width: 90%"
-      					 value="MM" />	
+      					 style="width: 250%"
+      					 value="Compra" />	
       					 
       		<p:spacer/>
       		<p:spacer/>
      			
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroUnidade.ultimaAlteracao')}"/>
+       					  value="#{userBean.properties.getField('label.cadastroFinalidadeColecao.ultimaAlteracao')}"
+       					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      					  
 
-			<h:outputText value="Descrição" id="descricaoOutputText" />
-			<p:inputText id="descricaoInputText"
+			<h:outputText value="Nº Mínimo de Caracteres" id="numMinimoCaracteresOutputText" />
+			<p:inputText id="numMinimoCaracteresInputText"
 						 required="true"
 						 disabled="false"
-						 style="width: 500%"
-						 value="Milimetro" />      			
+						 style="width: 50%"
+						 value="00010" />  
+						 
+			<p:spacer/>
+			<p:spacer/>
+			<p:spacer/>
+			<p:spacer/>
+			
+			<h:outputText value="Nº Máximo de Caracteres" id="numMaximoCaracteresOutputText" />
+			<p:inputText id="numMaximoCaracteresInputText"
+						 required="true"
+						 disabled="false"
+						 style="width: 50%"
+						 value="00060" />  
+			    			
         </h:panelGrid>
 
 	</p:panel>

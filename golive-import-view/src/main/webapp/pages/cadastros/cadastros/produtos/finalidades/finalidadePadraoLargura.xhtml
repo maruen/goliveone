@@ -5,28 +5,280 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	xmlns:filter="http://java.sun.com/jsf/composite/components/filter"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:define name="css">
-		<script type="text/javascript">
-		
-		window.onload = function() {
-			alert('Pagina nao foi implementada');
-            window.close();
-		}
-
-	</script>
-
+		<h:outputStylesheet name="css/cadastros/style_finalidadePadraoLargura.css" />
+		<h:outputStylesheet name="css/component/golive_filterTable.css" />
 	</ui:define>
 
 	<ui:define name="bean">
+		<ui:param name="bean" value="#{finalidadePadraoLarguraBean}" />
 	</ui:define>
 
 	<ui:define name="conteudo">
+
+		<p:dataTable id="conteudoTable"
+			 		 var="row"
+					 selection="#{finalidadePadraoLarguraBean.registro}" 
+					 value="#{finalidadePadraoLarguraBean.conteudo}"
+					 selectionMode="single"
+					 rows="15"
+					 rowKey="#{row.id}"
+					 paginator="true"
+					 filteredValue="#{bean.filtrados}"
+					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect" 	update="conteudoTable"   listener="#{bean.selecionarOutroRegistro}" />
+			<p:ajax event="rowUnselect" update="conteudoTable" 	 listener="#{bean.selecionarOutroRegistro}" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column headerText="Data Inclusão"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  filterStyleClass="width-size-70;"
+					  styleClass="percentual-12 singleLine">
+				
+				<h:outputText value="25/08/2014 20:24" />
+			
+			</p:column>
+
+			<p:column headerText="Data Alteração"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-12 singleLine">
+
+				<h:outputText value="25/08/2014 20:47" />
+				
+			</p:column>
+
+			<p:column headerText="Id"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10">
+				
+				<h:outputText value="00000001"  styleClass="floatRight" style="margin-right: 10px;"/>
+																																																																																																																																																																		
+			</p:column>
+
+			<p:column headerText="Padrão de Largura do Produto" 
+					  filterMatchMode="contains"
+					  filterBy="${row.id}"
+					  styleClass="percentual-20 singleLine">
+				
+				<h:outputText value=" Tecido Rollô Nacional"  styleClass="floatRight" style="margin-right: 10px;"/>
+			
+			</p:column>
+			
+			<p:column headerText="Id"
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10">
+				
+				<h:outputText value="00000001"  styleClass="floatRight" style="margin-right: 10px;"/>
+			</p:column>
+			
+			<p:column headerText="Abreviação Un." 
+					  filterBy="${row.id}"
+					  filterMatchMode="contains"
+					  styleClass="percentual-10 ">
+				
+				<h:outputText value="MT"  styleClass="floatRight" style="margin-right: 10px;"/>
+																																																																																																																																																																		
+			</p:column>
+			
+			<p:column headerText="Unidade"
+					  filterMatchMode="contains"
+					  filterBy="${row.id}"
+					  styleClass="percentual-10 singleLine ">
+				
+				<h:outputText value="Metros"  styleClass="floatRight" style="margin-right: 10px;"/>
+			
+			</p:column>
+			
+		</p:dataTable>
+
 	</ui:define>
 
 	<ui:define name="edicao">
+		
+		
+		<!--  DADOS GERAIS PANEL -->
+		<p:panel id="dadosGerais"
+		 header="#{managerBean.get('label.cadastroProdutos.dadosGerais')}"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="dadosGeraisPanel"
+		 styleClass="little-font">
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<p:panelGrid cellpadding="2"  
+          				 cellspacing="2"
+          				 width="100%"
+          				 border="0">
+	           	
+	           	<!-- 1ST ROW -->
+	           	<p:row>
+	           		<p:column styleClass="percentual-15">
+	           			<h:outputText id="idOutputText" value="Id"   />
+	           		</p:column>
+	           		
+	           		<p:column styleClass="percentual-25">
+	           			<p:inputText id="idInputText" style="width: 20%" />
+	           		</p:column>
+	           		
+	           		<p:column styleClass="percentual-10">
+	           			<h:outputText id="dataInclusaoOutputText" 
+	      					  		  value="#{managerBean.get('label.cadastroProdutos.dataInclusao')}" />
+	      		
+	           		</p:column>
+	           		
+	           		<p:column styleClass="percentual-5">
+	           			
+	           			<p:calendar  id="dataInclusaoInputText"
+	      					 		 disabled="true" 
+	      					 		 value="#{finalidadeCodigoBean.registro.dataInclusao}"
+	      					 		 size="16"
+	      					 		 maxlength="16"
+	      					 		 pattern="MM/dd/yyyy HH:mm:ss"/>
+	           		</p:column>
+	           		
+	           	</p:row>
+	
+	      		<!-- 2ND ROW -->
+	      		<p:row>
+	      			<p:column styleClass="percentual-15">
+	      				<h:outputText id="finalidadeCodigoProdutoOutputText"
+	      					 		  value="Finalidade Cor Produto"
+	      					 		  styleClass="singleLine"  />
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-50">
+	      				<p:inputText id="finalidadeCodigoProdutoIntputText"
+	      				     		 value="Pedido de Compra - Tecido Rollô Nacional"
+	      				     		 style="width: 60%" />
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-10">
+	      				<h:outputText id="ultimaAlteracaoOutputText"
+	        					  	  value="#{managerBean.get('label.cadastroProdutos.ultimaAlteracao')}"
+	        					  	  styleClass="singleLine"/>
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-5">
+	      					<p:calendar   id="ultimaAlteracaoInputText"
+		        			      		  disabled="true"
+	        					  		  size="16"
+	        					  		  maxlength="16"
+	        					  		  value="#{finalidadeCodigoBean.registro.dataAlteracao}"
+	        					  		  pattern="MM/dd/yyyy HH:mm:ss"/>
+	      			</p:column>
+	      		</p:row>
+	      		
+	      		<!-- 3TH ROW -->
+	      		<p:row>
+	      			<p:column styleClass="percentual-15">
+	      				<h:outputText id="numeroMinimoCaracteresOutputText"
+	      					 		  value="Unidade Permitida"
+	      					 		  styleClass="singleLine"  />
+	      			</p:column>
+	      			
+	      			<p:column styleClass="percentual-60">
+	      				<p:inputText id="firstInputText"
+	      				     		 disabled="disabled"
+	      				     		 value="0000000001"
+	      				     		 style="width: 20%;"
+	      				     		 />
+						
+						<p:inputText id="secondInputText"
+	      				     		 value="MT"
+	      				     		 disabled="disabled"
+	      				     		 style="width: 10%;"
+	      				     		 />
+	      				     		 
+						<p:inputText id="thirdInputText"
+	      				     		 value="Metro"
+	      				     		 disabled="disabled"
+	      				     		 style="width: 27%;"
+	      				     		 />
+	      				     		 
+	      				<p:spacer> &nbsp;</p:spacer>
+	      				     		 
+						<p:commandLink onclick="PF('dlgDadosGerais').show();" immediate="true">
+  							 <h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>		      				     		 	      				     		 
+							      				     		 
+	      			</p:column>
+	      		</p:row>
+	      		
+        </p:panelGrid>
+	</p:panel>
+		
+	
+	<ui:include src="/resources/includes/cadastros/cadastros/finalidades/apresentacaoPanel.xhtml" >
+		<ui:param name="pojo" value="#{finalidadePadraoLarguraBean.registro}" />
+	</ui:include>
+	
+	<ui:include src="/resources/includes/cadastros/cadastros/finalidades/aplicacaoPanel.xhtml" >
+		<ui:param name="pojo" value="#{finalidadePadraoLarguraBean.registro}" />
+	</ui:include>
+	
+	<ui:include src="/resources/includes/cadastros/cadastros/finalidades/auditoriaLogPanel.xhtml" >
+		<ui:param name="pojo" value="#{finalidadePadraoLarguraBean.registro}" />
+	</ui:include>
+	
+	
+	<p:dialog header="Pesquisa de Unidades"
+			  widgetVar="dlgDadosGerais"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="60%">
+    			
+	   			<p:dataTable id="dadosGeraisDatatableId"
+	      	  	 	         var="dadosGeraisDatatableVar"
+	      	  	 	         value="#{produtoBean.codigoBarrasDatatable}"
+	      	  	 	         >
+					    
+					    <p:column headerText="Id"
+					    		  styleClass="percentual-5 singleLine">
+					     	
+					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
+					    </p:column>
+					    
+					    <p:column headerText="Cód. Unidade"
+					    		  styleClass="percentual-20 singleLine">
+					     	
+			     				   <h:outputText value="ML"
+			     					  		     styleClass="floatRight"/>
+					    </p:column>
+					    
+					    <p:column headerText="Descrição"
+					    		  styleClass="percentual-5 singleLine">
+					     	
+					     		  <h:outputText value="Metro Linear" styleClass="floatLeft"/>
+					    </p:column>
+					    
+				</p:dataTable>
+	</p:dialog>		
+		
+		
+		
+		
+		
+		
 	</ui:define>
-
 
 </ui:composition>
