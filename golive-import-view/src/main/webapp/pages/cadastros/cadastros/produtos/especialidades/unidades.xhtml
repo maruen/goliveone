@@ -8,8 +8,9 @@
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_finalidadeCodigo.css" />
+		<h:outputStylesheet name="css/cadastros/style_unidade.css" />
 	</ui:define>
+
 
 	<ui:define name="bean">
 		<ui:param name="bean" value="#{unidadeBean}" />
@@ -33,7 +34,7 @@
 			<p:ajax event="rowSelect"  update="conteudoTable" />
 			<p:ajax event="rowUnselect" update="conteudoTable" />
 
-			<p:column selectionMode="single"  style="width:16px;text-align:center" />
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column 
 				headerText="Data de Inclusão"
@@ -51,21 +52,23 @@
 			<p:column
 				headerText="Id"
 				styleClass="percentual-10">
-				<h:outputText value="000000001" />
+				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
 				headerText="Código"
-				styleClass="percentual-10">
+				styleClass="percentual-10 singleLine">
 				<h:outputText value="MM" />
 			</p:column>
-			
-			<p:column
+
+			<p:column 
 				headerText="Descrição"
-				styleClass="percentual-10">
+				styleClass="percentual-10 singleLine">
 				<h:outputText value="Milimetro" />
 			</p:column>
+
 		</p:dataTable>
+
 	</ui:define>
 
 	<ui:define name="edicao">

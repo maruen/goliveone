@@ -1,0 +1,87 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<!--  DADOS GERAIS PANEL -->
+	<p:panel id="dadosGerais"
+		header="#{userBean.properties.getField('label.cadastroFinalidadeTipo.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-5,
+						   percentual-50,
+						   percentual-10,
+						   percentual-10,
+						   percentual-10,
+						   percentual-5"
+			width="100%" border="0">
+
+			<h:outputText id="idOutputText" value="Id" />
+			<h:inputText id="idInputText" style="width: 125px;" disabled="true" />
+			
+			<p:spacer />
+			<p:spacer />
+
+			<h:outputText id="dataInclusaoOutputText"
+						value="#{userBean.properties.getField('label.cadastroFinalidadeTipo.inclusao')}" />
+			<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText"
+						disabled="true" />
+						
+			<h:outputText id="descricaoNomeOutputText"
+						value="Descrição" />
+			<p:inputText id="descricaoNomeInputText" required="true"
+						disabled="false" styleClass="singleLine"
+						value="Nota Fiscal Produtos de Revenda"
+						style="width: 70%;" />
+
+			<p:spacer />
+			<p:spacer />
+
+			<h:outputText id="ultimaAlteracaoOutputText"
+						value="#{userBean.properties.getField('label.cadastroFinalidadeTipo.ultimaAlteracao')}"
+						styleClass="singleLine" />
+			<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText"
+						disabled="true" />
+						
+		</h:panelGrid>
+		
+		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+					 columnClasses="percentual-5,
+						   			percentual-50,
+						   			percentual-10,
+						   			percentual-10,
+						   			percentual-10,
+						   			percentual-5"
+					width="100%" border="0">
+
+			<h:outputText value="Nº Mínimo de Caracteres"
+						styleClass="singleLine"
+						id="numMinCaracteresOutputText" />
+			<p:inputText id="numMinCaracteresInputText" required="true"
+						disabled="false" value="00010"
+						style="width: 10%;" />
+			
+			<p:spacer/>
+			<p:spacer/>
+			<p:spacer/>
+			<p:spacer/>
+			
+			<h:outputText value="Nº Máximo de Caracteres"
+						styleClass="singleLine"
+						id="numMaxCaracteresOutputText" />
+			<p:inputText id="numMaxCaracteresInputText" required="true"
+						disabled="false" value="00050"
+						style="width: 10%;" />
+		</h:panelGrid>
+	</p:panel>
+</ui:composition>

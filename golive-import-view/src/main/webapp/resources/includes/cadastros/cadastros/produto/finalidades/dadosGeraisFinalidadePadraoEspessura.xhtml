@@ -1,0 +1,115 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<!--  DADOS GERAIS PANEL -->
+	<p:panel id="dadosGerais"
+		header="#{userBean.properties.getField('label.cadastroFinalidadePadraoEspessura.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<p:panelGrid cellpadding="2" cellspacing="2" width="100%" border="0">
+
+			<p:row>
+				<p:column styleClass="percentual-10">
+					<h:outputText id="idOutputText" value="Id" />
+				</p:column>
+
+				<p:column styleClass="percentual-25">
+					<h:inputText id="idInputText" style="width: 125px;" disabled="true" />
+				</p:column>
+
+				<p:column styleClass="percentual-10">
+					<h:outputText id="dataInclusaoOutputText"
+						value="#{userBean.properties.getField('label.cadastroFinalidadePadraoEspessura.inclusao')}" />
+				</p:column>
+
+				<p:column styleClass="percentual-5">
+					<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText"
+						disabled="true" />
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column styleClass="percentual-10">
+					<h:outputText id="finalidadeCorProdutoNomeOutputText"
+						value="Finalidade Cor Produto" styleClass="singleLine" />
+				</p:column>
+
+				<p:column styleClass="percentual-50">
+					<p:inputText id="finalidadeCorProdutoNomeInputText" required="true"
+						disabled="false" style="width: 56%"
+						value="Pedido de Compra - Lâmina Horizontal Alumínio 0.18mm" />
+				</p:column>
+
+				<p:column styleClass="percentual-10">
+					<h:outputText id="ultimaAlteracaoOutputText"
+						value="#{userBean.properties.getField('label.cadastroFinalidadePadraoEspessura.ultimaAlteracao')}"
+						styleClass="singleLine" />
+				</p:column>
+
+				<p:column styleClass="percentual-5">
+					<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText"
+						disabled="true" />
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column styleClass="percentual-10">
+					<h:outputText value="Unidade Permitida"
+						id="unidadePermitidaOutputText" />
+				</p:column>
+
+				<p:column styleClass="percentual-60">
+					<h:inputText id="unidadePermitidaInputText" required="true"
+						disabled="true" style="width: 10%" value="0000000001" />
+
+					<h:inputText id="unidadePermitidaCodigoInputText" required="true"
+						disabled="true" style="width: 5%" value="MM" />
+
+					<h:inputText id="unidadePermitidaDescricaoInputText"
+						required="true" disabled="true" style="width: 40%"
+						value="Milimetro" />
+
+					<p:commandLink onclick="PF('dlgUnidade').show();" immediate="true">
+						<h:graphicImage
+							value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</p:panel>
+
+	<p:dialog header="Pesquisa de Unidade" widgetVar="dlgUnidade"
+		modal="false" resizable="false" appendToBody="true" height="100%"
+		width="40%">
+
+		<p:dataTable id="unidadeDatatableId" var="unidadeDatatableVar"
+			value="#{finalidadePadraoEspessuraBean.conteudo}">
+
+			<p:column headerText="Id" styleClass="percentual-10 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column headerText="Cód.Unid."
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="ML" />
+			</p:column>
+
+			<p:column headerText="Descrição"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="Metro Linear" />
+			</p:column>
+
+		</p:dataTable>
+	</p:dialog>
+</ui:composition>
