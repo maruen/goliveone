@@ -193,10 +193,5 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 	public void setFilterManager(final FilterManager<CoresModel> filterManager) {
 		this.filterManager = filterManager;
 	}
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> a92c26f84bca16d08d7182fbde8cd44edeaf7b0c
 }
