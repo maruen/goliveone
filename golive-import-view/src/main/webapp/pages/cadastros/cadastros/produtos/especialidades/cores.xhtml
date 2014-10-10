@@ -134,32 +134,32 @@
 	          				 width="100%"
 	          				 border="0">
 	           	
+		           	
+		           	<!--  1st ROW -->
 		           	<p:row>
 		           		<p:column styleClass="percentual-5">
-		           			<h:outputText id="idOutputText" value="Id"   />
+		           			<h:outputText id="idCorOutputText" value="Id"   />
 		           		</p:column>
+		           	
 		           		
 		           		<p:column styleClass="percentual-10">
-		           			<p:inputText id="idInputText"  style="width: 125px;" value="0000000000001" />
+		           			<p:inputText id="idCorInputText"  style="width: 125px;" value="0000000000001" />
 		           		</p:column>
 		           		
-		           		
 		           		<p:column styleClass="percentual-12">
-		      				<h:outputText id="descricaoOutputText"  value="Descrição" />
+		      				<p:spacer>&nbsp;</p:spacer>
 		      			</p:column>
 		      			
 		      			<p:column styleClass="percentual-68">
-		      				<p:inputText id="descricaoInputText"
-		      				     		 value="Vermelho"
-		      				     		 style="width: 90%"
-		      				     		 disabled="true"/>
+		      				<p:spacer>&nbsp;</p:spacer>
 		      			</p:column>
 		           		
 		           		
 		           		<p:column styleClass="percentual-10">
-		           			<h:outputText id="dataInclusaoOutputText"  value="Inclusão" />
-		      		
-		           		</p:column>
+		      				<h:outputText id="InclusaoOutputText"
+		        					  	  value="Inclusão"
+		        					  	  styleClass="singleLine"/>
+		      			</p:column>
 		           		
 		           		<p:column >
 		           			
@@ -173,24 +173,26 @@
 		           		
 		           	</p:row>
 		
-		      
+		      		<!--2st ROW -->
 		      		<p:row>
 		      			
 		      			<p:column styleClass="percentual-5">
-		           			<p:spacer>&nbsp;</p:spacer>	
-		           		
+		           			<h:outputText id="codCorOutputText singleLine" value="Cód. Cor"   />
 		           		</p:column>
 		           		
-		           		<p:column styleClass="percentual-15">
-		           			<p:spacer>&nbsp;</p:spacer>
+		           		<p:column styleClass="percentual-10">
+		           			<p:inputText id="codCorInputText"  style="width: 125px;" value="0000000000001" />
 		           		</p:column>
 		           		
 		           		<p:column styleClass="percentual-12">
-							<p:spacer>&nbsp;</p:spacer>						      				
+		      				<h:outputText id="ColecaoDescricaoOutputText"  value="Descrição" />
 		      			</p:column>
 		      			
 		      			<p:column styleClass="percentual-68">
-		      				<p:spacer>&nbsp;</p:spacer>
+		      				<p:inputText id="colecaoDescricaoInputText"
+		      				     		 value="Vermelho"
+		      				     		 style="width: 90%"
+		      				     		 disabled="true"/>
 		      			</p:column>
 		      			
 		      			

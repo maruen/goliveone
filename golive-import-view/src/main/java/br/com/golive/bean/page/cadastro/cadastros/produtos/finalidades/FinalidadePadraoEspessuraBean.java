@@ -62,22 +62,7 @@ public class FinalidadePadraoEspessuraBean extends CadastroBeanRules<FinalidadeP
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
-	}
-
-	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
-	}
-
-	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
-	}
-	
+		
 	@Override
 	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");
@@ -92,13 +77,7 @@ public class FinalidadePadraoEspessuraBean extends CadastroBeanRules<FinalidadeP
 		}
 		return parametros;
 	}
-
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	protected Logger getLogger() {
 		return logger;

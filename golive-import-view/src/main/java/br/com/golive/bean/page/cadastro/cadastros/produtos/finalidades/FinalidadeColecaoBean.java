@@ -17,7 +17,6 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.finalidadecolecao.FinalidadeColecaoModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
@@ -61,21 +60,7 @@ public class FinalidadeColecaoBean extends CadastroBeanRules<FinalidadeColecaoMo
 		return null;
 	}
 
-	@Override
-	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
-	}
-
-	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
-	}
-
-	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
-	}
-
+	
 	@Override
 	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");

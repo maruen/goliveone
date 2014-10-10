@@ -9,7 +9,7 @@ import br.com.golive.annotation.Jasper;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "GrupoProdutos", 
-		nomeDoArquivoGerado = "GrupoProdutos", 
+		nomeDoArquivoGerado = "file.name.model", 
 		nomeArquivoJasper = "GrupoProdutos")
 public class GrupoProdutosModel {
 

@@ -17,9 +17,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.finalidadeunidade.FinalidadeUnidadeModel;
-import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
@@ -56,22 +54,7 @@ public class FinalidadeUnidadeBean extends CadastroBeanRules<FinalidadeUnidadeMo
 		
 		return lista;
 	}
-
-	@Override
-	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
-	}
-
-	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
-	}
-
-	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
-	}
-
+	
 	@Override
 	public boolean isSelecionado() {
 		if (registro == null){
@@ -97,12 +80,6 @@ public class FinalidadeUnidadeBean extends CadastroBeanRules<FinalidadeUnidadeMo
 			logger.error("Erro ao carregar logo da empresa");
 		}
 		return parametros;
-	}
-
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -142,10 +119,5 @@ public class FinalidadeUnidadeBean extends CadastroBeanRules<FinalidadeUnidadeMo
 		}
 		return dataTableRows;
 	}
-
-	@Override
-	public FilterManager<FinalidadeUnidadeModel> getFilterManager() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

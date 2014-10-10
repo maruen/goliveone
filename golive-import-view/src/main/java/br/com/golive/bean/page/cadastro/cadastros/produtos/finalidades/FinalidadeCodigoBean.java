@@ -100,31 +100,7 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 		return lista;
 
 	}
-
-	@Override
-	public void imprimir() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void exportarPdf() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void exportarXls() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Map<String, Object> obterParametrosRelatório() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public FilterManager<ProdutoModel> getFilterManager() {
 		return null;
@@ -156,10 +132,6 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 		this.data = data;
 	}
 
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }

@@ -84,24 +84,6 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		}
 	}
 
-	@Override
-	public void imprimir() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void exportarPdf() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void exportarXls() {
-		// TODO Auto-generated method stub
-
-	}
-
 	public List<List<Object>> getAuditoriaLogDatatable() {
 		return getRowsByColumns();
 	}
@@ -129,12 +111,6 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		}
 		return lista;
 
-	}
-
-	@Override
-	public Map<String, Object> obterParametrosRelatório() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

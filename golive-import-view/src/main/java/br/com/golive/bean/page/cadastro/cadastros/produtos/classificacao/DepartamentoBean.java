@@ -81,21 +81,7 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 		return parametros;
 	}
 
-	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
-	}
-
-	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
-	}
-
-	@Override
-	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
-	}
-
+	
 	@Override
 	public void salvar() {
 		super.salvar();

@@ -82,22 +82,7 @@ public class GrupoProdutosBean extends CadastroBeanRules<GrupoProdutosModel> {
 		}
 		return parametros;
 	}
-
-	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
-	}
-
-	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
-	}
-
-	@Override
-	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
-	}
-
+	
 	@Override
 	public void salvar() {
 		super.salvar();
@@ -117,18 +102,6 @@ public class GrupoProdutosBean extends CadastroBeanRules<GrupoProdutosModel> {
 	@Override
 	protected Logger getLogger() {
 		return logger;
-	}
-
-	@Override
-	public FilterManager<GrupoProdutosModel> getFilterManager() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-
 	}
 	
 	public List<List<Object>> getAuditoriaLogDatatable() {

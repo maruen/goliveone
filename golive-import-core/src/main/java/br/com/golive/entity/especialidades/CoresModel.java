@@ -6,7 +6,7 @@ import br.com.golive.annotation.Jasper;
 
 
 @Jasper(titulo="Cores",
-		nomeDoArquivoGerado="Cores",
+		nomeDoArquivoGerado="file.name.model",
 		nomeArquivoJasper ="Cores"
 		)
 
