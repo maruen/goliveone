@@ -66,12 +66,9 @@ public class CoresBean extends CadastroBeanRules<CoresModel> {
 	
 	
 	@Override
-	@Deprecated
-	public void salvar() {
-		final boolean insert = false;
-		if (insert) {
-			super.salvar();
-		}
+	public void salvar(){
+		super.salvar();
+		logger.info("Salvando = {}");
 	}
 
 	@Deprecated
