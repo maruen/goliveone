@@ -22,7 +22,6 @@ import br.com.golive.entity.padroeslargura.PadroesLarguraModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
 
 @Label(name = "label.cadastroPadroesLargura")
 @ManagedBean
@@ -78,19 +77,7 @@ public class PadroesLarguraBean extends CadastroBeanRules<PadroesLarguraModel>{
 	public void exportarPdf() {
 		gerarRelatorio(TipoRelatorio.PDF, labels);
 	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null){
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			
-			return false;
-		}
-		
-		return true;
-	}
-
+	
 	@Override
 	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");

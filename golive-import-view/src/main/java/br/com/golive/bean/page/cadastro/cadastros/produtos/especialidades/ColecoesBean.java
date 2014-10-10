@@ -23,7 +23,6 @@ import br.com.golive.entity.colecoes.ColecoesModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
@@ -117,16 +116,7 @@ public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 		}
 	}
 
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return false;
-		}
-		return true;
-	}
-
+	
 	@Override
 	protected Logger getLogger() {
 		return logger;

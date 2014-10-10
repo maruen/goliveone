@@ -130,17 +130,7 @@ public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
 			logger.info("Cancelando edicao do registro = {} ", registro);
 		}
 	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return false;
-		}
-		return true;
-	}
-
+	
 	@Deprecated
 	public List<CoresModel> criarList() throws ParseException {
 		final List<CoresModel> lista = new ArrayList<CoresModel>();

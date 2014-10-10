@@ -16,7 +16,6 @@ import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
-import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
@@ -54,7 +53,6 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
  * @param <T>
  */
 
-@Data
 @ManagedBean
 @ViewScoped
 public abstract class CadastroBeanRules<T> extends GenericBean implements

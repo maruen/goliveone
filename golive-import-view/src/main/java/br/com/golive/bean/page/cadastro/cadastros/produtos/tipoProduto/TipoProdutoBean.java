@@ -19,7 +19,6 @@ import br.com.golive.entity.produto.ProdutoModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
@@ -119,17 +118,7 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		}
 		return dataTableRows;
 	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return false;
-		}
-		return true;
-	}
-
+	
 	public void criarLogsList() {
 	}
 

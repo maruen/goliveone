@@ -247,15 +247,6 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		}
 	}
 
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return false;
-		}
-		return true;
-	}
 
 	@Override
 	protected Logger getLogger() {
