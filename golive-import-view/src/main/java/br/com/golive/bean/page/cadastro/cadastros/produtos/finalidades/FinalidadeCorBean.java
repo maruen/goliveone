@@ -171,7 +171,6 @@ public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
 		return labels;
 	}
 
-	@Override
 	public void setLabels(final GoliveOneProperties labels) {
 		this.labels = labels;
 	}
