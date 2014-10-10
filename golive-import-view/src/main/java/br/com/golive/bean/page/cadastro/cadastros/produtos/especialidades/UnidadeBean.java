@@ -69,7 +69,7 @@ public class UnidadeBean extends CadastroBeanRules<UnidadeModel> {
 		}
 		return parametros;
 	}
-	
+
 	@Override
 	protected Logger getLogger() {
 		return logger;
@@ -79,16 +79,6 @@ public class UnidadeBean extends CadastroBeanRules<UnidadeModel> {
 	public void salvar(){
 		super.salvar();
 		logger.info("Salvando = {}");
-	}
-	
-	public void cancelar(){
-		super.cancelar();
-		
-		if (registro == null) {
-			logger.info("Cancelando inclusão de registro");
-		} else {
-			logger.info("Cancelando edição do registro = {} ", registro);
-		}
 	}
 	
 	public List<List<Object>> getAuditoriaLogDatatable() {

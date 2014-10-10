@@ -73,25 +73,17 @@ public class PadroesLarguraBean extends CadastroBeanRules<PadroesLarguraModel>{
 	}
 
 	@Override
+<<<<<<< HEAD
 	protected Logger getLogger() {
 		return logger;
 	}
 
 	@Override
+=======
+>>>>>>> 837357b02415a7b5ed94cf26f57f16e4eaeafa94
 	public void salvar(){
 		super.salvar();
 		logger.info("Salvando = {}");
-	}
-	
-	@Override
-	public void cancelar(){
-		super.cancelar();
-		
-		if (registro == null) {
-			logger.info("Cancelando inclusão de registro");
-		} else {
-			logger.info("Cancelando edição do registro = {} ", registro);
-		}
 	}
 	
 	public List<List<Object>> getAuditoriaLogDatatable() {
@@ -109,6 +101,11 @@ public class PadroesLarguraBean extends CadastroBeanRules<PadroesLarguraModel>{
 			dataTableRows.add(row);
 		}
 		return dataTableRows;
+	}
+
+	@Override
+	protected Logger getLogger() {
+		return logger;
 	}
 
 }

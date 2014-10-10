@@ -104,7 +104,6 @@ public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 		return logger;
 	}
 	
-	
 	public List<List<Object>> getAuditoriaLogDatatable() {
 		return getRowsByColumns();
 	}

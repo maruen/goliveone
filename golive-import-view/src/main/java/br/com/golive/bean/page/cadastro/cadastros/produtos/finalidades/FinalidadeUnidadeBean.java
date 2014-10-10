@@ -93,16 +93,6 @@ public class FinalidadeUnidadeBean extends CadastroBeanRules<FinalidadeUnidadeMo
 		logger.info("Salvando = {}");
 	}
 	
-	public void cancelar(){
-		super.cancelar();
-		
-		if (registro == null) {
-			logger.info("Cancelando inclusão de registro");
-		} else {
-			logger.info("Cancelando edição do registro = {} ", registro);
-		}
-	}
-	
 	public List<List<Object>> getAuditoriaLogDatatable() {
 		return getRowsByColumns();
 	}

@@ -51,6 +51,11 @@ public class CoresBean extends CadastroBeanRules<CoresModel> {
 	}
 
 	@Override
+	public void incluir() {
+		super.incluir();
+	}
+
+	@Override
 	public void editarRegistro() {
 		if (isSelecionado()) {
 			super.editarRegistro();
@@ -69,17 +74,6 @@ public class CoresBean extends CadastroBeanRules<CoresModel> {
 		}
 	}
 
-	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
-	}
-
-	
 	@Deprecated
 	public List<CoresModel> criarList() throws ParseException {
 		final List<CoresModel> lista = new ArrayList<CoresModel>();
