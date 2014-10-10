@@ -7,13 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
+	<ui:param name="bean" value="#{subGrupoProdutosBean}" />
+
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_subGrupoProdutos.css" />
-	</ui:define>
-
-
-	<ui:define name="bean">
-		<ui:param name="bean" value="#{subGrupoProdutosBean}" />
 	</ui:define>
 
 	<ui:define name="conteudo">
