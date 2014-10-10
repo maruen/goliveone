@@ -171,11 +171,6 @@ public class FinalidadeDescricaoBean extends CadastroBeanRules<CoresModel> {
 		return labels;
 	}
 
-	@Override
-	public void setLabels(final GoliveOneProperties labels) {
-		this.labels = labels;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -190,6 +185,7 @@ public class FinalidadeDescricaoBean extends CadastroBeanRules<CoresModel> {
 		return filterManager;
 	}
 
+	@Override
 	public void setFilterManager(final FilterManager<CoresModel> filterManager) {
 		this.filterManager = filterManager;
 	}

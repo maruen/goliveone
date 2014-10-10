@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -99,5 +100,10 @@ public class JSFUtils {
 	public static PrettyUrl getPrettyPageAtual() {
 		return new PrettyUrl(PrettyContext.getCurrentInstance().getCurrentMapping());
 	}
+
+	public static UIComponent obterComponentXhtml(final String formId, final String componentId) {
+		return getContext().getViewRoot().findComponent(formId).findComponent(componentId);
+	}
+
 
 }

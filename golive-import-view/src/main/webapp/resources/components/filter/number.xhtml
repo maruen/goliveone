@@ -54,13 +54,10 @@
 				<p:ajax event="valueChange" update="#{cc.attrs.update}"
 					listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
 
-
 				<p:ajax event="valueChange"
 					listener="#{cc.attrs.bean.getFilterManager().selecionarTipoFiltro(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado))}" />
 
 			</p:selectOneRadio>
-
-
 
 		</p:fieldset>
 	</p:dialog>
@@ -155,7 +152,7 @@
 		<h:graphicImage
 			value="/resources/images/stylistica-icons-set/24x24/bin.png"
 			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
-			<p:ajax event="click" update="#{cc.attrs.update}"
+			<p:ajax event="click" update="#{cc.attrs.update}" 
 				listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
 		</h:graphicImage>
 	</h:panelGroup>

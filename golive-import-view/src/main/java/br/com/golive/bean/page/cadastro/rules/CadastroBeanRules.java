@@ -15,24 +15,29 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
+import javax.persistence.Transient;
 
-import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.WordUtils;
+import org.primefaces.component.api.UIColumn;
+import org.primefaces.component.datatable.DataTable;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
+import br.com.golive.annotation.PropriedadesTemplate;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
+import br.com.golive.perfil.ConfiguracaoOrdemColunas;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
+import br.com.golive.qualifier.PrimefacesDataTableInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
@@ -54,13 +59,14 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
  * @param <T>
  */
 
-@Data
 @ManagedBean
 @ViewScoped
+@PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable")
 public abstract class CadastroBeanRules<T> extends GenericBean implements
 		Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2907332241303108246L;
+
 	private Logger logger;
 
 	@Inject
@@ -78,6 +84,12 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	protected List<T> temp;
 	protected T registro;
 	protected Class<T> genericClazzInstance;
+
+	protected List<ConfiguracaoOrdemColunas> colunas;
+
+	@Inject
+	@PrimefacesDataTableInjected
+	private DataTable dataTable;
 
 	public abstract void init();
 
@@ -110,12 +122,34 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		filtrados.addAll(conteudo);
 		fluxo = getFluxoListagem();
 		inicializarClasse();
-
+		verificarConfiguracaoDeOrdenacao();
 		if (getFilterManager() != null) {
 			getFilterManager().setInstance(this);
 			for (final Field field : this.getClass().getDeclaredFields()) {
 				if (field.isAnnotationPresent(Filter.class)) {
 					getFilterManager().putGetter(field.getAnnotation(Filter.class).campo());
+				}
+			}
+			getFilterManager().setPrimeFacesDataTable(dataTable);
+			getFilterManager().setColunas(colunas);
+			getFilterManager().setForm(getForm());
+		}
+		ServiceUtils.ordenarTabela(dataTable, colunas, getIdTable(), getForm());
+	}
+
+	public void ordernarTabela() {
+		final List<UIColumn> colunasDataTable = new ArrayList<UIColumn>();
+		colunasDataTable.addAll(dataTable.getColumns());
+		dataTable.getColumns().removeAll(colunasDataTable);
+		dataTable.getColumns().add(colunasDataTable.get(0));
+
+		for (final ConfiguracaoOrdemColunas conf : colunas) {
+			for (int i = 1; i < colunasDataTable.size(); i++) {
+				if (colunasDataTable.get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", "").equals(conf.getColuna())) {
+					if (conf.getVisibilidade()) {
+						dataTable.getColumns().add(colunasDataTable.get(i));
+						i = colunasDataTable.size();
+					}
 				}
 			}
 		}
@@ -391,6 +425,86 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 			}
 		}
 		return null;
+	}
+
+	private void verificarConfiguracaoDeOrdenacao() {
+		colunas = obterConfiruacaoTela();
+		final Field[] fields = getPojoClass("cadastroAreaAtuacao").getDeclaredFields();
+		// Verificar se o campo ainda nao foi cadastrado na tabela de ordem
+
+		verificarConfiguracaoDeOrdenacaoComEntidade(fields);
+
+		List<ConfiguracaoOrdemColunas> reorder = null;
+
+		// Verifica se o campo foi excluído da tabela.
+
+		for (final ConfiguracaoOrdemColunas conf : colunas) {
+			if (!Utils.obterColumnName(conf.getColuna(), fields)) {
+				if (reorder == null) {
+					reorder = new ArrayList<ConfiguracaoOrdemColunas>();
+				}
+				reorder.add(conf);
+			}
+		}
+
+		if (reorder != null) {
+			colunas.removeAll(reorder);
+			for (int i = 0; i < colunas.size(); i++) {
+				colunas.get(i).setOrdem(new Integer(i + 1).longValue());
+			}
+			// TODO update
+		}
+
+	}
+
+	private void verificarConfiguracaoDeOrdenacaoComEntidade(final Field[] fields) {
+		for (final Field field : fields) {
+			// TODO mudar este 'true' e Incluir apenas os @Column
+			if (!field.isAnnotationPresent(Transient.class)) {
+				if ((true) && (!Utils.verificarColuna(colunas, field.getName()))) {
+					// TODO inserir na base tambem;
+					// TODO Alterar o field.getname para o nome da colunas
+					// @COlumn
+					colunas.add(new ConfiguracaoOrdemColunas(usuario.getId(), new Integer(colunas.size() + 1).longValue(), genericClazzInstance.getName(), field.getName(), false));
+				}
+			}
+		}
+	}
+
+	public void guardarOrdemTabela() {
+
+		colunas.removeAll(colunas);
+
+		Long cont = 1L;
+
+		for (int i = 0; i < dataTable.getColumns().size(); i++) {
+			if (!dataTable.getColumns().get(i).getClientId().contains("seletor")) {
+				colunas.add(new ConfiguracaoOrdemColunas(usuario.getId(), cont++, getPojoClass("cadastroAreaAtuacao").getName(), dataTable.getColumns().get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", ""), true));
+			}
+		}
+		verificarConfiguracaoDeOrdenacaoComEntidade(getPojoClass("cadastroAreaAtuacao").getDeclaredFields());
+
+		System.out.println("UPDATE");
+
+	}
+
+	@Deprecated
+	public List<ConfiguracaoOrdemColunas> obterConfiruacaoTela() {
+		final List<ConfiguracaoOrdemColunas> returnList = new ArrayList<ConfiguracaoOrdemColunas>();
+		returnList.add(new ConfiguracaoOrdemColunas(usuario.getId(), 1L, getPojoClass("cadastroAreaAtuacao").getName(), "teste2", true));
+		returnList.add(new ConfiguracaoOrdemColunas(usuario.getId(), 2L, getPojoClass("cadastroAreaAtuacao").getName(), "id", true));
+		returnList.add(new ConfiguracaoOrdemColunas(usuario.getId(), 3L, getPojoClass("cadastroAreaAtuacao").getName(), "teste", true));
+		returnList.add(new ConfiguracaoOrdemColunas(usuario.getId(), 4L, getPojoClass("cadastroAreaAtuacao").getName(), "areaDeAtuacao", true));
+
+		return returnList;
+	}
+
+	public String getForm() {
+		return this.getClass().getSuperclass().getAnnotation(PropriedadesTemplate.class).form();
+	}
+
+	public String getIdTable() {
+		return this.getClass().getSuperclass().getAnnotation(PropriedadesTemplate.class).idTabela();
 	}
 
 	public GeradorRelatorio<T> getRelatorios() {

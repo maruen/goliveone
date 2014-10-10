@@ -19,6 +19,7 @@ public class Usuario implements Serializable {
 	private List<String> empresas;
 	private GoliveOneProperties labels;
 
+
 	public Long getId() {
 		return id;
 	}

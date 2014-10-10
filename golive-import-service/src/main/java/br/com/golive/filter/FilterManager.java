@@ -11,12 +11,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.WordUtils;
+import org.primefaces.component.datatable.DataTable;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Fake;
 import br.com.golive.annotation.Filter;
 import br.com.golive.constants.TipoFiltro;
 import br.com.golive.exception.GoLiveException;
+import br.com.golive.perfil.ConfiguracaoOrdemColunas;
+import br.com.golive.utils.ServiceUtils;
 
 public class FilterManager<T> {
 
@@ -27,6 +30,12 @@ public class FilterManager<T> {
 	private final List<T> temp;
 
 	private final List<String> getterManagedBean;
+
+	private DataTable primeFacesDataTable;
+
+	private List<ConfiguracaoOrdemColunas> colunas;
+
+	private String form;
 
 	public FilterManager(final Logger logger) {
 		this.logger = logger;
@@ -75,7 +84,10 @@ public class FilterManager<T> {
 			filtrados.addAll(conteudo);
 			logger.error("Houve um ao realizar o filtro");
 			e.printStackTrace();
+		} finally {
+			ServiceUtils.ordenarTabela(primeFacesDataTable, colunas, primeFacesDataTable.getId(), getForm());
 		}
+
 	}
 
 	public void setTipoFiltroMB(final String field, final TipoFiltro filter) {
@@ -393,6 +405,30 @@ public class FilterManager<T> {
 
 	public TipoFiltro getContem() {
 		return TipoFiltro.CONTEM;
+	}
+
+	public DataTable getPrimeFacesDataTable() {
+		return primeFacesDataTable;
+	}
+
+	public void setPrimeFacesDataTable(final DataTable primeFacesDataTable) {
+		this.primeFacesDataTable = primeFacesDataTable;
+	}
+
+	public List<ConfiguracaoOrdemColunas> getColunas() {
+		return colunas;
+	}
+
+	public void setColunas(final List<ConfiguracaoOrdemColunas> colunas) {
+		this.colunas = colunas;
+	}
+
+	public String getForm() {
+		return form;
+	}
+
+	public void setForm(final String form) {
+		this.form = form;
 	}
 
 }

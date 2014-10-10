@@ -11,33 +11,31 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <composite:interface>
-
-	<composite:attribute name="selected" required="true" />
-	<composite:attribute name="listTable" required="true"/>
-	<composite:attribute name="args" required="true"/>
-	<composite:attribute name="labelProperties" required="false" type="java.util.Properties" />
-	
+	<composite:attribute name="bean" required="true" />
+	<composite:attribute name="rowKey" required="true" />
+	<composite:attribute name="var" required="true" />
+	<composite:attribute name="styleClass" required="false" />
 
 </composite:interface>
 
 <composite:implementation>
 
-        
-
-		<p:dataTable selectionMode="single" selection="#{cc.attrs.selected}" rowKey="#{list.id}"
-		id="goLiveDataTable_#{cc.attrs.selected['class'].simpleName}_dataTable"
-		value="#{cc.attrs.listTable}" var="list">
-
-		<c:forEach items="#{cc.attrs.selected['class'].declaredFields}"
-			var="field">
-			<c:if
-				test="#{goLiveDataTableBean.validateField(field.name, cc.attrs.args)}">
-				<p:column headerText="#{goLiveDataTableBean.getHeaderColumn(cc.attrs.labelProperties, field.name)}">
-					<h:outputLabel value="#{goLiveDataTableBean.rowGenericTable(list, field.name)}" />
-				</p:column>
-
-			</c:if>
-		</c:forEach>
+	<p:dataTable id="conteudoTable"
+		selection="#{cc.attrs.bean.registro}"
+		value="#{cc.attrs.bean.conteudo}" 
+		selectionMode="single"
+		styleClass="#{cc.attrs.styleClass}"
+		rows="15" 
+		rowKey="#{cc.attrs.rowKey}" 
+		var="list"
+		paginator="true" 
+		widgetVar="conteudoTable" 
+		draggableColumns="true"
+		filteredValue="#{cc.attrs.bean.filtrados}"
+		emptyMessage="#{managerBean.get('msg.nao.ha.registros')}" 
+		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+		
+		
 	</p:dataTable>
 
 

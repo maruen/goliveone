@@ -2,13 +2,20 @@ package br.com.golive.entity.areaDeAtuacao;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import lombok.Data;
 import br.com.golive.annotation.Jasper;
 
 @Data
 @Jasper(titulo = "tittle.relatorio.cadastro", nomeDoArquivoGerado = "file.name.areaDeAtuacao.Cadastro", nomeArquivoJasper = "cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro")
+@Entity
+@Table(name = "Tabela1")
 public class AreaDeAtuacaoEmbed {
 
+	@Column(name = "id")
 	private Cadastro cadastroAreaAtuacao;
 
 	private AuditoriaLog auditoriaLog;
@@ -45,7 +52,7 @@ public class AreaDeAtuacaoEmbed {
 		return listaAuditoriaLogs;
 	}
 
-	public void setListaAuditoriaLogs(List<AuditoriaLog> listaAuditoriaLogs) {
+	public void setListaAuditoriaLogs(final List<AuditoriaLog> listaAuditoriaLogs) {
 		this.listaAuditoriaLogs = listaAuditoriaLogs;
 	}
 

@@ -3,6 +3,8 @@ package br.com.golive.entity.areaDeAtuacao;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.Transient;
+
 import lombok.Data;
 import br.com.golive.annotation.Label;
 
@@ -10,6 +12,7 @@ import br.com.golive.annotation.Label;
 @Data
 public class Cadastro implements Serializable {
 
+	@Transient
 	private static final long serialVersionUID = -7415246692175931894L;
 
 	@Label(name = "label.id")
