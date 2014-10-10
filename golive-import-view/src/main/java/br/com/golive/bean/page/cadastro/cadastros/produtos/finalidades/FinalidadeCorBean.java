@@ -18,7 +18,6 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.especialidades.CoresModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.FilterInjected;
@@ -85,12 +84,9 @@ public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
 	}
 
 	@Override
-	@Deprecated
-	public void salvar() {
-		final boolean insert = false;
-		if (insert) {
-			super.salvar();
-		}
+	public void salvar(){
+		super.salvar();
+		logger.info("Salvando = {}");
 	}
 
 	@Deprecated
