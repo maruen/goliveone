@@ -1,31 +1,24 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.especialidades.CoresModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
-import br.com.golive.utils.javascript.FuncaoJavaScript;
 
 @Label(name = "label.cadastroCores")
 @ManagedBean
@@ -63,17 +56,6 @@ public class CoresBean extends CadastroBeanRules<CoresModel> {
 	}
 
 	@Override
-	public void confirmarExclusao() {
-		if (registro != null) {
-			conteudo.remove(registro);
-			filtrados.remove(registro);
-			registro = null;
-			JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1000", "1000"));
-			JSFUtils.infoMessage("Processo Ok", "Registro foi excluido");
-		}
-	}
-
-	@Override
 	public void editarRegistro() {
 		if (isSelecionado()) {
 			super.editarRegistro();
@@ -81,64 +63,12 @@ public class CoresBean extends CadastroBeanRules<CoresModel> {
 
 		}
 	}
-
+	
+	
 	@Override
-	public Map<String, Object> obterParametrosRelatório() {
-		logger.info("Obtendo parametros para carregar relatório");
-		final Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("usuarioLogado", "Guilherme Desenvolvimento");
-		parametros.put("label.usuario", labels.getField("label.usuario"));
-		try {
-			logger.info("Carregando logo da empresa");
-			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("01.png")));
-		} catch (final IOException e) {
-			logger.error("Erro ao carregar logo da empresa");
-		}
-		return parametros;
-	}
-
-	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
-	}
-
-	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
-	}
-
-	@Override
-	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
-	}
-
-	@Override
-	@Deprecated
-	public void salvar() {
-		final boolean insert = false;
-		if (insert) {
-			super.salvar();
-		}
-	}
-
-	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
-	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return false;
-		}
-		return true;
+	public void salvar(){
+		super.salvar();
+		logger.info("Salvando = {}");
 	}
 
 	@Deprecated

@@ -17,12 +17,9 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.unidade.UnidadeModel;
-import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
 
 @Label(name = "label.cadastroUnidade")
 @ManagedBean
@@ -55,39 +52,7 @@ public class UnidadeBean extends CadastroBeanRules<UnidadeModel> {
 		return lista;
 	}
 
-	@Override
-	public FilterManager<UnidadeModel> getFilterManager() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
-	}
-
-	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
-	}
-
-	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
-	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null){
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			
-			return false;
-		}
 		
-		return true;
-	}
-
 	@Override
 	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");
@@ -104,12 +69,6 @@ public class UnidadeBean extends CadastroBeanRules<UnidadeModel> {
 	}
 
 	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	protected Logger getLogger() {
 		return logger;
 	}
@@ -118,16 +77,6 @@ public class UnidadeBean extends CadastroBeanRules<UnidadeModel> {
 	public void salvar(){
 		super.salvar();
 		logger.info("Salvando = {}");
-	}
-	
-	public void cancelar(){
-		super.cancelar();
-		
-		if (registro == null) {
-			logger.info("Cancelando inclusão de registro");
-		} else {
-			logger.info("Cancelando edição do registro = {} ", registro);
-		}
 	}
 	
 	public List<List<Object>> getAuditoriaLogDatatable() {

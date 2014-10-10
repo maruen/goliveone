@@ -7,13 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
+	<ui:param name="bean" value="#{finalidadeColecaoBean}" />
+
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_finalidadeColecao.css" />
-	</ui:define>
-
-
-	<ui:define name="bean">
-		<ui:param name="bean" value="#{finalidadeColecaoBean}" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -37,13 +34,13 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column 
-				headerText="Data de Inclusão"
+				headerText="Data Inclusão"
 				styleClass="percentual-10 singleLine">				
 				<h:outputText value="25/08/2014 20:24" />
 			</p:column>
 
 			<p:column
-				headerText="Data de Alteração"
+				headerText="Data Alteração"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="25/08/2014 20:47">
 				</h:outputText>

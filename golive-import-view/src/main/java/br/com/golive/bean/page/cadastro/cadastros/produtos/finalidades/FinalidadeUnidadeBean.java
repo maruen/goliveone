@@ -1,8 +1,7 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.finalidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,16 +17,16 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.subgrupoprodutos.SubGrupoProdutosModel;
+import br.com.golive.entity.finalidadeunidade.FinalidadeUnidadeModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
+@Label(name = "label.cadastroFinalidadeUnidade")
 @ManagedBean
 @ViewScoped
-@Label(name= "label.cadastroSubGrupoProdutos")
-public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosModel> {
+public class FinalidadeUnidadeBean extends CadastroBeanRules<FinalidadeUnidadeModel> {
 
-	private static final long serialVersionUID = -4440000091566924856L;
+	private static final long serialVersionUID = -1799398663194249370L;
 
 	@Inject
 	private Logger logger;
@@ -35,32 +34,26 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 	@Inject
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
-	private Calendar data;
-	
+
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(criarList());
+		super.init(criarLista());
 		
 		logger.info("Inicializando = {}", this.getClass().getName());
-		
-		fluxo = getFluxoListagem();
-		data = Calendar.getInstance();
 	}
-	
-	public List<SubGrupoProdutosModel> criarList(){
-		final List<SubGrupoProdutosModel> lista = new ArrayList<SubGrupoProdutosModel>();
+
+	private List<FinalidadeUnidadeModel> criarLista() {
+		final List<FinalidadeUnidadeModel> lista = new ArrayList<FinalidadeUnidadeModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new SubGrupoProdutosModel(new Long(i), new Date(), new Date(), 
-					"Acessórios, Partes e Peças para Persianas Horizontais em Alumínio", 
-					"0000000001", "Lâminas em Alumínio 25mm", "0000000001", 
-					"Lâminas em Alumínio 25mm X 0.18mm"));
+			lista.add(new FinalidadeUnidadeModel(new Long(i), new Date(), new Date(), 
+					"Unidades Legais - Emissões da NFe", "00010", "00050"));
 		}
 		
 		return lista;
 	}
-		
+	
 	@Override
 	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");
@@ -80,19 +73,11 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 	protected Logger getLogger() {
 		return logger;
 	}
-
-	public Calendar getDataInclusaoFiltro() {
-		return data;
-	}
-
-	public void setDataInclusaoFiltro(final Calendar data) {
-		this.data = data;
-	}
-
+	
 	@Override
-	public void salvar() {
+	public void salvar(){
 		super.salvar();
-		logger.info("Salvando = {} ");
+		logger.info("Salvando = {}");
 	}
 	
 	public List<List<Object>> getAuditoriaLogDatatable() {
@@ -111,4 +96,5 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 		}
 		return dataTableRows;
 	}
+	
 }

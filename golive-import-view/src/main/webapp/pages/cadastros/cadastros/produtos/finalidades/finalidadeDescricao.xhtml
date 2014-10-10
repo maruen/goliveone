@@ -8,13 +8,11 @@
 	xmlns:filter="http://java.sun.com/jsf/composite/components/filter"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
+	<ui:param name="bean" value="#{finalidadeDescricaoBean}" />
+
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_finalidadeDescricao.css" />
 		<h:outputStylesheet name="css/component/golive_filterTable.css" />
-	</ui:define>
-
-	<ui:define name="bean">
-		<ui:param name="bean" value="#{finalidadeDescricaoBean}" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -27,12 +25,12 @@
 					 rows="15"
 					 rowKey="#{row.id}"
 					 paginator="true"
-					 filteredValue="#{bean.filtrados}"
+					 filteredValue="#{finalidadeDescricaoBean.filtrados}"
 					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-			<p:ajax event="rowSelect" 	update="conteudoTable"   listener="#{bean.selecionarOutroRegistro}" />
-			<p:ajax event="rowUnselect" update="conteudoTable" 	 listener="#{bean.selecionarOutroRegistro}" />
+			<p:ajax event="rowSelect" 	update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
 
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 

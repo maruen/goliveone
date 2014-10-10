@@ -29,3 +29,7 @@
 .botaoNao {
 	width: 70px;
 }
+
+.childMainDiv {
+	overflow-x: hidden;
+}

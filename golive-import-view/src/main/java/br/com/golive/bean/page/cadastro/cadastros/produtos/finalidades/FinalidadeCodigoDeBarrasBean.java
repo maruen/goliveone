@@ -18,14 +18,11 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.especialidades.CoresModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
-import br.com.golive.utils.javascript.FuncaoJavaScript;
 
 @Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigoDeBarras")
 @ManagedBean
@@ -63,17 +60,6 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 	}
 
 	@Override
-	public void confirmarExclusao() {
-		if (registro != null) {
-			conteudo.remove(registro);
-			filtrados.remove(registro);
-			registro = null;
-			JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1000", "1000"));
-			JSFUtils.infoMessage("Processo Ok", "Registro foi excluido");
-		}
-	}
-
-	@Override
 	public void editarRegistro() {
 		if (isSelecionado()) {
 			super.editarRegistro();
@@ -98,47 +84,9 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 	}
 
 	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
-	}
-
-	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
-	}
-
-	@Override
-	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
-	}
-
-	@Override
-	@Deprecated
-	public void salvar() {
-		final boolean insert = false;
-		if (insert) {
-			super.salvar();
-		}
-	}
-
-	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
-	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return false;
-		}
-		return true;
+	public void salvar(){
+		super.salvar();
+		logger.info("Salvando = {}");
 	}
 
 	@Deprecated

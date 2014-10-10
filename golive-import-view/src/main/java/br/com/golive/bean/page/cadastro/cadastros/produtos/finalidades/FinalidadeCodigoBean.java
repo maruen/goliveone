@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +18,6 @@ import br.com.golive.entity.produto.ProdutoModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
@@ -78,26 +76,6 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 		logger.info("Salvando = {} ");
 	}
 
-	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
-	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return false;
-		}
-		return true;
-	}
-
 	public void criarLogsList() {
 	}
 
@@ -109,31 +87,7 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 		return lista;
 
 	}
-
-	@Override
-	public void imprimir() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void exportarPdf() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void exportarXls() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Map<String, Object> obterParametrosRelatório() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public FilterManager<ProdutoModel> getFilterManager() {
 		return null;
@@ -164,11 +118,4 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 	public void setData(final Calendar data) {
 		this.data = data;
 	}
-
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

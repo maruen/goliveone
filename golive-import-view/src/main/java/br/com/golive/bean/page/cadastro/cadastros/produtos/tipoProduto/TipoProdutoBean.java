@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +18,6 @@ import br.com.golive.entity.produto.ProdutoModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
@@ -85,24 +83,6 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		}
 	}
 
-	@Override
-	public void imprimir() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void exportarPdf() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void exportarXls() {
-		// TODO Auto-generated method stub
-
-	}
-
 	public List<List<Object>> getAuditoriaLogDatatable() {
 		return getRowsByColumns();
 	}
@@ -119,17 +99,7 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		}
 		return dataTableRows;
 	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return false;
-		}
-		return true;
-	}
-
+	
 	public void criarLogsList() {
 	}
 
@@ -140,12 +110,6 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		}
 		return lista;
 
-	}
-
-	@Override
-	public Map<String, Object> obterParametrosRelatório() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

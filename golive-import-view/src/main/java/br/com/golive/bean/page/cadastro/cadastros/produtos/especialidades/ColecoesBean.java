@@ -18,12 +18,9 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.colecoes.ColecoesModel;
-import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
@@ -85,22 +82,7 @@ public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 		}
 		return parametros;
 	}
-
-	@Override
-	public void exportarPdf() {
-		gerarRelatorio(TipoRelatorio.PDF, labels);
-	}
-
-	@Override
-	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, labels);
-	}
-
-	@Override
-	public void imprimir() {
-		gerarRelatorio(TipoRelatorio.IMPRESSAO, labels);
-	}
-
+	
 	@Override
 	public void salvar() {
 		super.salvar();
@@ -116,32 +98,10 @@ public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 			logger.info("Cancelando edicao do registro = {} ", registro);
 		}
 	}
-
-	@Override
-	public boolean isSelecionado() {
-		if (registro == null) {
-			JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro") + ",", labels.getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
-			return false;
-		}
-		return true;
-	}
-
+	
 	@Override
 	protected Logger getLogger() {
 		return logger;
-	}
-
-	@Override
-	public FilterManager<ColecoesModel> getFilterManager() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-
 	}
 	
 	public List<List<Object>> getAuditoriaLogDatatable() {

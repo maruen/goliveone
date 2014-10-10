@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "PadroesEspessura", 
-		nomeDoArquivoGerado = "PadroesEspessura", 
+		nomeDoArquivoGerado = "file.name.model", 
 		nomeArquivoJasper = "PadroesEspessura")
 public class PadroesEspessuraModel {
 
