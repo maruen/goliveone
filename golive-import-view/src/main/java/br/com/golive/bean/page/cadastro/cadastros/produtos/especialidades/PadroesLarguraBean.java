@@ -71,16 +71,7 @@ public class PadroesLarguraBean extends CadastroBeanRules<PadroesLarguraModel>{
 		}
 		return parametros;
 	}
-
-	@Override
-<<<<<<< HEAD
-	protected Logger getLogger() {
-		return logger;
-	}
-
-	@Override
-=======
->>>>>>> 837357b02415a7b5ed94cf26f57f16e4eaeafa94
+	
 	public void salvar(){
 		super.salvar();
 		logger.info("Salvando = {}");

@@ -100,7 +100,6 @@ public class GrupoProdutosBean extends CadastroBeanRules<GrupoProdutosModel> {
 		return null;
 	}
 
->>>>>>> 837357b02415a7b5ed94cf26f57f16e4eaeafa94
 	public List<List<Object>> getAuditoriaLogDatatable() {
 		return getRowsByColumns();
 	}
