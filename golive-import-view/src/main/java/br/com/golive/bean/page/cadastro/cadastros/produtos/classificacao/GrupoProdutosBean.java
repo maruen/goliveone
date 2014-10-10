@@ -105,16 +105,6 @@ public class GrupoProdutosBean extends CadastroBeanRules<GrupoProdutosModel> {
 	}
 
 	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
-	}
-	
-	@Override
 	protected Logger getLogger() {
 		return logger;
 	}
@@ -125,12 +115,6 @@ public class GrupoProdutosBean extends CadastroBeanRules<GrupoProdutosModel> {
 		return null;
 	}
 
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-
-	}
-	
 	public List<List<Object>> getAuditoriaLogDatatable() {
 		return getRowsByColumns();
 	}

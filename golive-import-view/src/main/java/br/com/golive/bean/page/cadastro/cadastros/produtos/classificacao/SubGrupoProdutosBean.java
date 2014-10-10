@@ -100,12 +100,6 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 	}
 
 	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	protected Logger getLogger() {
 		return logger;
 	}
@@ -122,16 +116,6 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 	public void salvar() {
 		super.salvar();
 		logger.info("Salvando = {} ");
-	}
-	
-	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
 	}
 	
 	public List<List<Object>> getAuditoriaLogDatatable() {

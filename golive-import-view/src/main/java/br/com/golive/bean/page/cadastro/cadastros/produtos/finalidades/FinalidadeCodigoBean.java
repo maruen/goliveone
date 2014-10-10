@@ -77,18 +77,6 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 		logger.info("Salvando = {} ");
 	}
 
-	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
-	}
-
-	
-	
 	public void criarLogsList() {
 	}
 
@@ -155,11 +143,4 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 	public void setData(final Calendar data) {
 		this.data = data;
 	}
-
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

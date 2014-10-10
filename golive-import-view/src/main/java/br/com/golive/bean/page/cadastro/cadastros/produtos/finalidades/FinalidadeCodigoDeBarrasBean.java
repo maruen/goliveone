@@ -24,8 +24,6 @@ import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
-import br.com.golive.utils.javascript.FuncaoJavaScript;
 
 @Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigoDeBarras")
 @ManagedBean
@@ -60,17 +58,6 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 	@Override
 	public void incluir() {
 		super.incluir();
-	}
-
-	@Override
-	public void confirmarExclusao() {
-		if (registro != null) {
-			conteudo.remove(registro);
-			filtrados.remove(registro);
-			registro = null;
-			JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1000", "1000"));
-			JSFUtils.infoMessage("Processo Ok", "Registro foi excluido");
-		}
 	}
 
 	@Override
@@ -120,17 +107,6 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 			super.salvar();
 		}
 	}
-
-	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
-	}
-	
 
 	@Deprecated
 	public List<CoresModel> criarList() throws ParseException {

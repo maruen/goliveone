@@ -105,17 +105,6 @@ public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 		super.salvar();
 		logger.info("Salvando = {} ");
 	}
-
-	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
-	}
-
 	
 	@Override
 	protected Logger getLogger() {
@@ -126,12 +115,6 @@ public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 	public FilterManager<ColecoesModel> getFilterManager() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-
 	}
 	
 	public List<List<Object>> getAuditoriaLogDatatable() {

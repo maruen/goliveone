@@ -100,12 +100,6 @@ public class FinalidadeUnidadeBean extends CadastroBeanRules<FinalidadeUnidadeMo
 	}
 
 	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	protected Logger getLogger() {
 		return logger;
 	}
@@ -114,16 +108,6 @@ public class FinalidadeUnidadeBean extends CadastroBeanRules<FinalidadeUnidadeMo
 	public void salvar(){
 		super.salvar();
 		logger.info("Salvando = {}");
-	}
-	
-	public void cancelar(){
-		super.cancelar();
-		
-		if (registro == null) {
-			logger.info("Cancelando inclusão de registro");
-		} else {
-			logger.info("Cancelando edição do registro = {} ", registro);
-		}
 	}
 	
 	public List<List<Object>> getAuditoriaLogDatatable() {

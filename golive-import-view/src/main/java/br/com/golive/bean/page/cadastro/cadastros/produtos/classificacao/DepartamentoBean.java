@@ -103,16 +103,6 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	}
 
 	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
-	}
-
-	@Override
 	protected Logger getLogger() {
 		return logger;
 	}
@@ -123,12 +113,6 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 		return null;
 	}
 
-	@Override
-	public void confirmarExclusao() {
-		// TODO Auto-generated method stub
-
-	}
-	
 	public List<List<Object>> getAuditoriaLogDatatable() {
 		return getRowsByColumns();
 	}
