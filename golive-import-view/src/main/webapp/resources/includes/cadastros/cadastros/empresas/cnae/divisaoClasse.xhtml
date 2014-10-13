@@ -1,0 +1,113 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="divisaoClasse"
+		 header="CNAE - Divisão"
+		 toggleable="true"
+		 closable="false"
+		 collapsed="true"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="divisao"
+		 styleClass="little-font" >
+		 
+		<f:facet name="actions">
+			<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+	    	
+          	<h:panelGrid columns="4"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-10,
+          				 				percentual-50,
+          				 				percentual-5,
+          				 				percentual-5"
+           				 width="100%"
+          				 border="0">
+				
+				<h:column>
+					<h:outputText id="divisaoIdOutputText"
+								  value="Id"   />
+				</h:column>
+				
+				<h:column>
+	            	<h:inputText id="divisaoIdInputText"
+	            				 value="0000000001" 
+	            				 style="width: 125px;"
+	            				 disabled="true"/>
+
+	 		       	<p:commandLink onclick="PF('dlgDivisao').show();" immediate="true">
+	  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+				</h:column>     
+				
+				<h:column/>
+				<h:column/>
+				
+				<h:column>       	
+	        		<h:outputText id="codDivisaoOutputText"
+	        					   		value="Cód.Divisão" />
+	        	</h:column>
+	        	
+	        	<h:column>
+	            	<h:inputText id="codDivisaoInputText"
+	            				 style="width: 125px;"
+	            				 value="01"
+	            				 disabled="true"/>
+	            </h:column>
+	            
+	            <h:column/>
+	            <h:column/>
+				
+				<h:column>
+					<h:outputText id="denominacaoDivisaoOutputText" 
+								  value="Denominação Divisão" />
+				</h:column>
+				
+				<h:column>
+	            	<h:inputText id="denominacaoDivisaoInputText"
+	            				 value="Agricultura, Pecuária e Serviços Relacionados" 
+	            				 style="width: 70%;"
+	            				 disabled="true"/>
+	            </h:column>
+        	
+        	</h:panelGrid>
+        
+</p:panel>
+
+<p:dialog header="Pesquisa de CNAE - Divisão"
+			  widgetVar="dlgDivisao"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="55%">
+      			
+     			<p:dataTable id="divisaoDatatableId"
+        	  	 	     var="divisaoDatatableVar"
+        			 	 value="#{classeBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-10 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Cód.Divisão"
+				    		  styleClass="percentual-10 singleLine">
+				     		<h:outputText value="01" />
+				    </p:column>
+				    
+				    <p:column headerText="Denominação Divisão"
+				    		  styleClass="percentual-50 singleLine">
+				     		<h:outputText value="Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura" />
+				    </p:column>
+				  
+		</p:dataTable>
+</p:dialog>
+
+</ui:composition>
