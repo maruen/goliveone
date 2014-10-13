@@ -6,6 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	xmlns:filter="http://java.sun.com/jsf/composite/components/filter"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:param name="bean" value="#{areasDeAtuacaoBean}" />
@@ -17,79 +18,82 @@
 
 	<ui:define name="conteudo">
 
-    	
+		<p:panelGrid style="border: 1px;">
+			<f:facet name="header">
+				<p:row>
+					<p:column colspan="2">Parametros de Filtragem</p:column>
+				</p:row>
+			</f:facet>
+			<p:row>
+				<p:column colspan="1" >
+					ID
+				</p:column>
+				<p:column colspan="1">
+					#{areasDeAtuacaoBean.filtroId.tipo}
+				</p:column>
+			</p:row>
+
+		</p:panelGrid>
+
 		<p:dataTable id="conteudoTable" var="list"
 			selection="#{areasDeAtuacaoBean.registro}"
 			value="#{areasDeAtuacaoBean.conteudo}" selectionMode="single"
 			rowKey="#{list.cadastroAreaAtuacao.id}" styleClass="tableCadastros"
-			rows="15" paginator="true" widgetVar="table"
-			draggableColumns="true"
+			rows="15" paginator="true" widgetVar="table" draggableColumns="true"
 			filteredValue="#{areasDeAtuacaoBean.filtrados}"
-			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}" 
+			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-			<p:ajax event="colReorder" listener="#{areasDeAtuacaoBean.guardarOrdemTabela()}" update="conteudoTable" />
+			<p:ajax event="colReorder"
+				listener="#{areasDeAtuacaoBean.guardarOrdemTabela()}"
+				update="conteudoTable" />
 
 			<p:ajax event="rowSelect" update="conteudoTable" />
 			<p:ajax event="rowUnselect" update="conteudoTable" />
 
-			<p:column id="seletor" selectionMode="single" style="width:16px;text-align:center" />
+			<p:column id="seletor" selectionMode="single"
+				style="width:16px;text-align:center" />
 
-			<p:column id="id" sortBy="#{list.cadastroAreaAtuacao.id}">
+			<p:columns value="#{areasDeAtuacaoBean.colunas}" var="coluna"
+				id="columns" columnIndexVar="colIndex">
 				<f:facet name="header">
-					<filter:number update=":conteudoForm:conteudoTable"
-						widgetAnotado="id" bean="#{areasDeAtuacaoBean}"
+					<filter:number id="componentFilterNumberId"
+						update=":conteudoForm:conteudoTable"
+						rendered="#{coluna.filtro.genericType.simpleName.equals('Long')}"
+						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
+						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
+						styleClassFiltroDois="filtroFinal"
+						styleClassFiltroUm="filtroInicial"
+						styleClassTitulo="tituloColunaFiltro" />
+					<filter:string id="componentFilterStringId"
+						update=":conteudoForm:conteudoTable"
+						rendered="#{coluna.filtro.genericType.simpleName.equals('String')}"
+						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
+						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
+						styleClassFiltroUm="filtroInicial"
+						styleClassTitulo="tituloColunaFiltro" />
+					<filter:date id="componentFilterDateId"
+						update=":conteudoForm:conteudoTable"
+						rendered="#{coluna.filtro.genericType.simpleName.equals('Date')}"
+						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
 						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
 						styleClassFiltroDois="filtroFinal"
 						styleClassFiltroUm="filtroInicial"
 						styleClassTitulo="tituloColunaFiltro" />
 				</f:facet>
 
-				<h:outputLabel value="#{list.cadastroAreaAtuacao.id}" />
-			</p:column>
-
-
-			<p:column id="dataInclusao" sortBy="#{list.cadastroAreaAtuacao.dataInclusao.time}">
-				<f:facet name="header">
-					<filter:date update=":conteudoForm:conteudoTable"
-						widgetAnotado="dataInclusao" bean="#{areasDeAtuacaoBean}"
-						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
-						styleClassFiltroDois="filtroFinal"
-						styleClassFiltroUm="filtroInicial"
-						styleClassTitulo="tituloColunaFiltro" />
-				</f:facet>
-				<h:outputText value="#{list.cadastroAreaAtuacao.dataInclusao.time}">
+				<h:outputText
+					rendered="#{coluna.filtro.genericType.simpleName.equals('Date')}"
+					value="#{areasDeAtuacaoBean.obterLabelColuna(coluna,list, 'cadastroAreaAtuacao')}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 				</h:outputText>
-			</p:column>
 
-			<p:column id="dataAlteracao" sortBy="#{list.cadastroAreaAtuacao.dataAlteracao.time}">
-				<f:facet name="header">
-					<filter:date update=":conteudoForm:conteudoTable"
-						widgetAnotado="dataAlteracao" bean="#{areasDeAtuacaoBean}"
-						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
-						styleClassFiltroDois="filtroFinal"
-						styleClassFiltroUm="filtroInicial"
-						styleClassTitulo="tituloColunaFiltro" />
-				</f:facet>
-
-				<h:outputText value="#{list.cadastroAreaAtuacao.dataAlteracao.time}">
-					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+				<h:outputText
+					rendered="#{!coluna.filtro.genericType.simpleName.equals('Date')}"
+					value="#{areasDeAtuacaoBean.obterLabelColuna(coluna,list, 'cadastroAreaAtuacao')}">
 				</h:outputText>
-			</p:column>
 
-
-			<p:column id="areaDeAtuacao" sortBy="#{list.cadastroAreaAtuacao.areaDeAtuacao}">
-				<f:facet name="header">
-					<filter:string update=":conteudoForm:conteudoTable"
-						widgetAnotado="areaDeAtuacao" bean="#{areasDeAtuacaoBean}"
-						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
-						styleClassFiltroUm="filtroInicial"
-						styleClassTitulo="tituloColunaFiltro" />
-				</f:facet>
-
-				<h:outputLabel value="#{list.cadastroAreaAtuacao.areaDeAtuacao}" />
-			</p:column>
+			</p:columns>
 
 		</p:dataTable>
 

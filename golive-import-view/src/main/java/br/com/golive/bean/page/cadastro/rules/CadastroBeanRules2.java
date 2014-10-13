@@ -4,15 +4,21 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.persistence.Transient;
@@ -21,7 +27,6 @@ import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.WordUtils;
-import org.primefaces.component.api.UIColumn;
 import org.primefaces.component.datatable.DataTable;
 import org.slf4j.Logger;
 
@@ -29,6 +34,7 @@ import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.annotation.PrimeInfoList;
 import br.com.golive.annotation.PropriedadesTemplate;
+import br.com.golive.bean.component.ColumnModel;
 import br.com.golive.bean.component.ColunaPerfil;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
@@ -63,7 +69,7 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
 @ManagedBean
 @ViewScoped
 @PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable")
-public abstract class CadastroBeanRules<T> extends GenericBean implements
+public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		Serializable {
 
 	private static final long serialVersionUID = 2907332241303108246L;
@@ -86,7 +92,9 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	protected T registro;
 	protected Class<T> genericClazzInstance;
 
-	protected List<ColunaPerfil> colunas;
+	private List<ColunaPerfil> colunas;
+
+	private List<ColumnModel> columns;
 
 	@Inject
 	@PrimeInfoList(list = "cadastroAreaAtuacao")
@@ -124,7 +132,6 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		filtrados.addAll(conteudo);
 		fluxo = getFluxoListagem();
 		inicializarClasse();
-		verificarConfiguracaoDeOrdenacao();
 		if (getFilterManager() != null) {
 			getFilterManager().setInstance(this);
 			for (final Field field : this.getClass().getDeclaredFields()) {
@@ -132,31 +139,73 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 					getFilterManager().putGetter(field.getAnnotation(Filter.class).campo());
 				}
 			}
-			// getFilterManager().setPrimeFacesDataTable(dataTable);
-			// getFilterManager().setColunas(colunas);
-			// getFilterManager().setForm(getForm());
 		}
-		// ServiceUtils.ordenarTabela(dataTable, colunas, getIdTable(),
-		// getForm());
+		try {
+			verificarConfiguracaoDeOrdenacao();
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
+
 	}
 
-	@Deprecated
-	public void ordernarTabela() {
-		final List<UIColumn> colunasDataTable = new ArrayList<UIColumn>();
-		colunasDataTable.addAll(dataTable.getColumns());
-		dataTable.getColumns().removeAll(colunasDataTable);
-		dataTable.getColumns().add(colunasDataTable.get(0));
+	private final String columnTemplate = "id brand year";
+	private final static List<String> VALID_COLUMN_KEYS = Arrays.asList("id", "brand", "year", "color", "price");
 
-		for (final ColunaPerfil conf : colunas) {
-			for (int i = 1; i < colunasDataTable.size(); i++) {
-				if (colunasDataTable.get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", "").equals(conf.getColuna())) {
-					if (conf.getVisibilidade()) {
-						dataTable.getColumns().add(colunasDataTable.get(i));
-						i = colunasDataTable.size();
-					}
+
+	private void createDynamicColumns() {
+
+		for (final ColunaPerfil col : colunas) {
+
+		}
+
+		final String[] columnKeys = columnTemplate.split(" ");
+		columns = new ArrayList<ColumnModel>();
+
+		for (final String columnKey : columnKeys) {
+			final String key = columnKey.trim();
+
+			if (VALID_COLUMN_KEYS.contains(key)) {
+				columns.add(new ColumnModel(columnKey.toUpperCase(), columnKey));
+			}
+		}
+	}
+
+	public List<GoliveFilter> obterFiltros() {
+		final List<GoliveFilter> filtros = new ArrayList<GoliveFilter>();
+
+		for (final Field field : this.getClass().getDeclaredFields()) {
+			if (field.isAnnotationPresent(Filter.class)) {
+				try {
+					filtros.add((GoliveFilter) this.getClass().getDeclaredMethod("get" + WordUtils.capitalize(field.getName())).invoke(this));
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+					e.printStackTrace();
 				}
 			}
 		}
+		return filtros;
+
+	}
+
+	public String getFilterLabel(final String filter) {
+		try {
+			final Field campoBean = this.getClass().getField(filter);
+			if ((campoBean != null) && (campoBean.isAnnotationPresent(Filter.class))) {
+				return campoBean.getAnnotation(Filter.class).label();
+			}
+		} catch (NoSuchFieldException | SecurityException e) {
+			e.printStackTrace();
+		}
+		return "";
+
+	}
+
+	public void updateColumns() {
+		// reset table state
+		final UIComponent table = FacesContext.getCurrentInstance().getViewRoot().findComponent(":form:cars");
+		table.setValueExpression("sortBy", null);
+
+		// update columns
+		createDynamicColumns();
 	}
 
 	public void cancelarExclusao() {
@@ -413,7 +462,8 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		for (final Field field : this.getClass().getDeclaredFields()) {
 			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).name().equals(widgetName))) {
 				try {
-					return (GoliveFilter) this.getClass().getMethod("get" + WordUtils.capitalize(field.getName())).invoke(this);
+					final GoliveFilter ret = (GoliveFilter) this.getClass().getMethod("get" + WordUtils.capitalize(field.getName())).invoke(this);
+					return ret;
 				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 					e.printStackTrace();
 				}
@@ -431,9 +481,9 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		return null;
 	}
 
-	@Deprecated
-	private void verificarConfiguracaoDeOrdenacao() {
-		colunas = obterConfiruacaoTela();
+	@SuppressWarnings("rawtypes")
+	private void verificarConfiguracaoDeOrdenacao() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		setColunas(obterConfiruacaoTela());
 		final Field[] fields = getPojoClass("cadastroAreaAtuacao").getDeclaredFields();
 		// Verificar se o campo ainda nao foi cadastrado na tabela de ordem
 
@@ -443,7 +493,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 		// Verifica se o campo foi excluído da tabela.
 
-		for (final ColunaPerfil conf : colunas) {
+		for (final ColunaPerfil conf : getColunas()) {
 			if (!Utils.obterColumnName(conf.getColuna(), fields)) {
 				if (reorder == null) {
 					reorder = new ArrayList<ColunaPerfil>();
@@ -453,43 +503,88 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		}
 
 		if (reorder != null) {
-			colunas.removeAll(reorder);
-			for (int i = 0; i < colunas.size(); i++) {
-				colunas.get(i).setOrdem(new Integer(i + 1).longValue());
+			getColunas().removeAll(reorder);
+			for (int i = 0; i < getColunas().size(); i++) {
+				getColunas().get(i).setOrdem(new Integer(i + 1).longValue());
 			}
 			// TODO update
 		}
-		System.out.println("Implementar Inserção");
-		System.out.println(dataTable);
+		
+		for (final ColunaPerfil coluna : colunas) {
+			for(final Field filtro : this.getClass().getDeclaredFields()){
+				if(filtro.isAnnotationPresent(Filter.class)){
+					if(filtro.getAnnotation(Filter.class).name().equals(coluna.getColuna())){
+						coluna.setFiltro((GoliveFilter) this.getClass().getMethod("get" + WordUtils.capitalize(filtro.getName())).invoke(this));
+					}
+				}
+			}
+			
+		}
+	}
+
+	public boolean obterTipoFiltroPagina(final ColunaPerfil coluna, final String tipo) {
+		
+		if (coluna.getFiltro() != null) {
+			return true;
+		}
+		return false;
+	}
+
+	public Object obterLabelColuna(final ColunaPerfil coluna, final T indice, final String caminho) {
+		Object ret = indice;
+		Method getter;
+		try {
+			if (caminho != null) {
+				for (final String string : caminho.replace(".", "_").split("_")) {
+					getter = genericClazzInstance.getMethod("get" + WordUtils.capitalize(string));
+					ret = getter.invoke(ret);
+				}
+				getter = ret.getClass().getMethod("get" + WordUtils.capitalize(coluna.getColuna()));
+				ret = getter.invoke(ret);
+			} else {
+				getter = genericClazzInstance.getMethod("get" + WordUtils.capitalize(coluna.getColuna()));
+				ret = getter.invoke(indice);				
+			}
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			logger.error("Erro ao obter label da coluna generica");
+			e.printStackTrace();
+		}
+		
+		if (ret != null) {
+			if ((coluna.getFiltro() != null) && (coluna.getFiltro().getGenericType().equals(Date.class))) {
+				return ((Calendar) ret).getTime();
+			} else {
+				return ret;
+			}
+		} else {
+			throw new GoLiveException("Não foi possivel obter label da coluna dinamica");
+		}
+
 	}
 
 	private void verificarConfiguracaoDeOrdenacaoComEntidade(final Field[] fields) {
 		for (final Field field : fields) {
 			// TODO mudar este 'true' e Incluir apenas os @Column
 			if (!field.isAnnotationPresent(Transient.class)) {
-				// if ((true) && (!Utils.verificarColuna(colunas,
-				// field.getName()))) {
-				// // TODO inserir na base tambem;
-				// // TODO Alterar o field.getname para o nome da colunas
-				// // @COlumn
-				// colunas.add(new ColunaPerfil(usuario.getId(), new
-				// Integer(colunas.size() + 1).longValue(),
-				// genericClazzInstance.getName(), field.getName(), false,
-				// getEmpresaSelecionada()));
-				// }
+				if ((true) && (!JSFUtils.verificarColuna(getColunas(), field.getName()))) {
+					// TODO inserir na base tambem;
+					// TODO Alterar o field.getname para o nome da colunas
+					// @COlumn
+					getColunas().add(new ColunaPerfil(usuario.getId(), new Integer(getColunas().size() + 1).longValue(), genericClazzInstance.getName(), field.getName(), false, getEmpresaSelecionada()));
+				}
 			}
 		}
 	}
 
 	public void guardarOrdemTabela() {
 
-		colunas.removeAll(colunas);
+		getColunas().removeAll(getColunas());
 
 		Long cont = 1L;
 
 		for (int i = 0; i < dataTable.getColumns().size(); i++) {
 			if (!dataTable.getColumns().get(i).getClientId().contains("seletor")) {
-				colunas.add(new ColunaPerfil(usuario.getId(), cont++, getPojoClass("cadastroAreaAtuacao").getName(), dataTable.getColumns().get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", ""), true, getEmpresaSelecionada()));
+				getColunas().add(new ColunaPerfil(usuario.getId(), cont++, getPojoClass("cadastroAreaAtuacao").getName(), dataTable.getColumns().get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", ""), true, getEmpresaSelecionada()));
 			}
 		}
 		verificarConfiguracaoDeOrdenacaoComEntidade(getPojoClass("cadastroAreaAtuacao").getDeclaredFields());
@@ -508,6 +603,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 		return returnList;
 	}
+
 
 	public String getForm() {
 		return this.getClass().getSuperclass().getAnnotation(PropriedadesTemplate.class).form();
@@ -591,6 +687,38 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 	public GoliveOneProperties getLabels() {
 		return usuario.getLabels();
+	}
+
+	public List<ColunaPerfil> getColunas() {
+		return colunas;
+	}
+
+	public void setColunas(final List<ColunaPerfil> colunas) {
+		this.colunas = colunas;
+	}
+
+	public List<ColumnModel> getColumns() {
+		return columns;
+	}
+
+	public void setColumns(final List<ColumnModel> columns) {
+		this.columns = columns;
+	}
+
+	public DataTable getDataTable() {
+		return dataTable;
+	}
+
+	public void setDataTable(final DataTable dataTable) {
+		this.dataTable = dataTable;
+	}
+
+	public String getColumnTemplate() {
+		return columnTemplate;
+	}
+
+	public static List<String> getValidColumnKeys() {
+		return VALID_COLUMN_KEYS;
 	}
 
 }

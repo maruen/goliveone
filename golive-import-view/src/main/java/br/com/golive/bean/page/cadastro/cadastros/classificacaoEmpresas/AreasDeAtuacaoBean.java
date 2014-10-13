@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
-import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
+import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules2;
 import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoEmbed;
 import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
 import br.com.golive.entity.areaDeAtuacao.Cadastro;
@@ -29,7 +29,7 @@ import br.com.golive.utils.JSFUtils;
 @Label(name = "label.cadastroDeAreaDeAtuacao")
 @ManagedBean
 @ViewScoped
-public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoEmbed> {
+public class AreasDeAtuacaoBean extends CadastroBeanRules2<AreaDeAtuacaoEmbed> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 

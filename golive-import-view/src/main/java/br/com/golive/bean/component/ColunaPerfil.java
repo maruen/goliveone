@@ -1,8 +1,12 @@
-package br.com.golive.perfil;
+package br.com.golive.bean.component;
 
 import java.io.Serializable;
 
-public class ConfiguracaoOrdemColunas implements Serializable {
+import javax.persistence.Transient;
+
+import br.com.golive.filter.GoliveFilter;
+
+public class ColunaPerfil implements Serializable {
 
 	private static final long serialVersionUID = -161500950585892955L;
 
@@ -11,18 +15,23 @@ public class ConfiguracaoOrdemColunas implements Serializable {
 	private String tabela;
 	private String coluna;
 	private Boolean visibilidade;
+	private String empresaSeleciona;
 
-	public ConfiguracaoOrdemColunas() {
+	@Transient
+	private GoliveFilter filtro;
+
+	public ColunaPerfil() {
 		super();
 	}
 
-	public ConfiguracaoOrdemColunas(final Long idUsuario, final Long ordem, final String tabela, final String coluna, final Boolean visibilidade) {
+	public ColunaPerfil(final Long idUsuario, final Long ordem, final String tabela, final String coluna, final Boolean visibilidade, final String empresaSeleciona) {
 		super();
 		this.idUsuario = idUsuario;
 		this.ordem = ordem;
 		this.tabela = tabela;
 		this.coluna = coluna;
 		this.visibilidade = visibilidade;
+		this.setEmpresaSeleciona(empresaSeleciona);
 	}
 
 	public Long getIdUsuario() {
@@ -65,5 +74,20 @@ public class ConfiguracaoOrdemColunas implements Serializable {
 		this.visibilidade = visibilidade;
 	}
 
+	public String getEmpresaSeleciona() {
+		return empresaSeleciona;
+	}
+
+	public void setEmpresaSeleciona(final String empresaSeleciona) {
+		this.empresaSeleciona = empresaSeleciona;
+	}
+
+	public GoliveFilter getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(final GoliveFilter filtro) {
+		this.filtro = filtro;
+	}
 
 }
