@@ -19,7 +19,6 @@ import br.com.golive.annotation.Filter;
 import br.com.golive.constants.TipoFiltro;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.perfil.ConfiguracaoOrdemColunas;
-import br.com.golive.utils.ServiceUtils;
 
 public class FilterManager<T> {
 
@@ -85,7 +84,8 @@ public class FilterManager<T> {
 			logger.error("Houve um ao realizar o filtro");
 			e.printStackTrace();
 		} finally {
-			ServiceUtils.ordenarTabela(primeFacesDataTable, colunas, primeFacesDataTable.getId(), getForm());
+			// ServiceUtils.ordenarTabela(primeFacesDataTable, colunas,
+			// primeFacesDataTable.getId(), getForm());
 		}
 
 	}

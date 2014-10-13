@@ -122,7 +122,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		filtrados.addAll(conteudo);
 		fluxo = getFluxoListagem();
 		inicializarClasse();
-		verificarConfiguracaoDeOrdenacao();
+		// verificarConfiguracaoDeOrdenacao();
 		if (getFilterManager() != null) {
 			getFilterManager().setInstance(this);
 			for (final Field field : this.getClass().getDeclaredFields()) {
@@ -130,11 +130,12 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 					getFilterManager().putGetter(field.getAnnotation(Filter.class).campo());
 				}
 			}
-			getFilterManager().setPrimeFacesDataTable(dataTable);
-			getFilterManager().setColunas(colunas);
-			getFilterManager().setForm(getForm());
+			// getFilterManager().setPrimeFacesDataTable(dataTable);
+			// getFilterManager().setColunas(colunas);
+			// getFilterManager().setForm(getForm());
 		}
-		ServiceUtils.ordenarTabela(dataTable, colunas, getIdTable(), getForm());
+		// ServiceUtils.ordenarTabela(dataTable, colunas, getIdTable(),
+		// getForm());
 	}
 
 	public void ordernarTabela() {
