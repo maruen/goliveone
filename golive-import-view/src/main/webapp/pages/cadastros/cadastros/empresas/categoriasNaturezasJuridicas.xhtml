@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
+
+	<ui:param name="bean" value="#{categoriasNaturezasJuridicasBean}" />
+
+	<ui:define name="css">
+		<h:outputStylesheet name="css/cadastros/style_categoriasNaturezasJuridicas.css" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="conteudoTable"
+			var="row" 
+			value="#{categoriasNaturezasJuridicasBean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{categoriasNaturezasJuridicasBean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="Não há Registros"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column 
+				headerText="Data Inclusão"
+				styleClass="percentual-10 singleLine text-align-center">				
+				<h:outputText value="25/08/2014 20:24" />
+			</p:column>
+
+			<p:column
+				headerText="Data Alteração"
+				styleClass="percentual-10 singleLine text-align-center">
+				<h:outputText value="25/08/2014 20:47">
+				</h:outputText>
+			</p:column>
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10 text-align-right">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="Cód.Cat.Nat.Jur."
+				styleClass="percentual-10 singleLine text-align-right">
+				<h:outputText value="1" />
+			</p:column>
+			
+			<p:column 
+				headerText="Categoria da Natureza Jurídica"
+				styleClass="percentual-10 singleLine text-align-left">
+				<h:outputText value="Administração Pública" />
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+
+	<ui:define name="edicao">
+
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/dadosGeraisCategoriasNaturezasJuridicas.xhtml">
+			<ui:param name="pojo" value="#{categoriasNaturezasJuridicasBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/auditoriaCategoriasNaturezasJuridicas.xhtml" >
+			<ui:param name="pojo" value="#{categoriasNaturezasJuridicasBean.registro}" />
+		</ui:include>
+
+	</ui:define>
+</ui:composition>

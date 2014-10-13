@@ -36,7 +36,27 @@
 			<pattern value="/Cadastros/Cadastros/Clientes" />
 			<view-id value="/pages/cadastros/cadastros/clientes.jsf" />
 		</url-mapping>
+		
+		<url-mapping id="cadastrosCadastrosEmpresasCargos">
+			<pattern value="/Cadastros/Cadastros/Empresas/Cargos" />
+			<view-id value="/pages/cadastros/cadastros/empresas/cargos.jsf" />
+		</url-mapping>
+		
+		<url-mapping id="cadastrosCadastrosEmpresasCategoriasNaturezasJuridicas">
+			<pattern value="/Cadastros/Cadastros/Empresas/CategoriasNaturezasJuridicas" />
+			<view-id value="/pages/cadastros/cadastros/empresas/categoriasNaturezasJuridicas.jsf" />
+		</url-mapping>
+		
+		<url-mapping id="cadastrosCadastrosEmpresasCnaeClasse">
+			<pattern value="/Cadastros/Cadastros/Empresas/Cnae/Classe" />
+			<view-id value="/pages/cadastros/cadastros/empresas/cnae/classe.jsf" />
+		</url-mapping>
 	
+		<url-mapping id="cadastrosCadastrosEmpresasCnaeDivisao">
+			<pattern value="/Cadastros/Cadastros/Empresas/Cnae/Divisao" />
+			<view-id value="/pages/cadastros/cadastros/empresas/cnae/divisao.jsf" />
+		</url-mapping>
+
 		<url-mapping id="cadastrosCadastrosEstoquePavimentos">
 			<pattern value="/Cadastros/Cadastros/Estoque/Pavimentos" />
 			<view-id value="/pages/cadastros/cadastros/estoque/pavimentos.jsf" />

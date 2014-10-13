@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
+
+	<ui:param name="bean" value="#{classeBean}" />
+
+	<ui:define name="css">
+		<h:outputStylesheet name="css/cadastros/style_classe.css" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="conteudoTable"
+			var="row" 
+			value="#{classeBean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{classeBean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="Não há Registros"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="Cód.Seção"
+				styleClass="percentual-10">				
+				<h:outputText value="A" />
+			</p:column>
+
+			<p:column
+				headerText="Denominação"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura">
+				</h:outputText>
+			</p:column>
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="Cód.Divisao"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="01" />
+			</p:column>
+
+			<p:column
+				headerText="Denominação"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Agricultura. Pecuária e Serviços Relacionados">
+				</h:outputText>
+			</p:column>
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="Cód.Grupo"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="01.1" />
+			</p:column>
+
+			<p:column
+				headerText="Denominação"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Produção de lavouras temporária.">
+				</h:outputText>
+			</p:column>
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="Cód.Classe"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="01.11-3" />
+			</p:column>
+
+			<p:column
+				headerText="Denominação"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Cultivo de cereais">
+				</h:outputText>
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+
+	<ui:define name="edicao">
+
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/dadosGeraisClasse.xhtml">
+			<ui:param name="pojo" value="#{classeBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/secaoClasse.xhtml" >
+			<ui:param name="pojo" value="#{classeBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/divisaoClasse.xhtml" >
+			<ui:param name="pojo" value="#{classeBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/grupoClasse.xhtml" >
+			<ui:param name="pojo" value="#{classeBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/auditoriaClasse.xhtml" >
+			<ui:param name="pojo" value="#{classeBean.registro}" />
+		</ui:include>
+
+	</ui:define>
+</ui:composition>
