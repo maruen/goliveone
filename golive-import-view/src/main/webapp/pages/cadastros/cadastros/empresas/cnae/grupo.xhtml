@@ -7,10 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{classeBean}" />
+	<ui:param name="bean" value="#{grupoBean}" />
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_classe.css" />
+		<h:outputStylesheet name="css/cadastros/style_grupo.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{classeBean.conteudo}"
+			value="#{grupoBean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{classeBean.registro}" 
+			selection="#{grupoBean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -59,7 +59,7 @@
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Divisão"
+				headerText="Cód.Divisao"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="01" />
 			</p:column>
@@ -90,45 +90,23 @@
 				</h:outputText>
 			</p:column>
 
-			<p:column
-				headerText="Id"
-				styleClass="percentual-10">
-				<h:outputText value="0000000001" />
-			</p:column>
-
-			<p:column 
-				headerText="Cód.Classe"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="01.11-3" />
-			</p:column>
-
-			<p:column
-				headerText="Denominação"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="Cultivo de cereais">
-				</h:outputText>
-			</p:column>
-
 		</p:dataTable>
 
 	</ui:define>
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/dadosGeraisClasse.xhtml">
-			<ui:param name="pojo" value="#{classeBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/dadosGeraisGrupo.xhtml">
+			<ui:param name="pojo" value="#{grupoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/secaoClasse.xhtml" >
-			<ui:param name="pojo" value="#{classeBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/secaoGrupo.xhtml" >
+			<ui:param name="pojo" value="#{grupoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/divisaoClasse.xhtml" >
-			<ui:param name="pojo" value="#{classeBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/divisaoGrupo.xhtml" >
+			<ui:param name="pojo" value="#{grupoBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/grupoClasse.xhtml" >
-			<ui:param name="pojo" value="#{classeBean.registro}" />
-		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/auditoriaClasse.xhtml" >
-			<ui:param name="pojo" value="#{classeBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/auditoriaGrupo.xhtml" >
+			<ui:param name="pojo" value="#{grupoBean.registro}" />
 		</ui:include>
 
 	</ui:define>

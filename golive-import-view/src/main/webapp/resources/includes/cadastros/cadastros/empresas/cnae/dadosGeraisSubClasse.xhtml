@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroDivisao.dadosGerais')}"
+		 header="#{userBean.properties.getField('label.cadastroSubClasse.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="true"
@@ -37,33 +37,33 @@
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroDivisao.inclusao')}" />
+      					  value="#{userBean.properties.getField('label.cadastroSubClasse.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
-      		<h:outputText id="codigoDivisaoOutputText" 
-      					  value="Cód.Divisão" 
+      		<h:outputText id="codigoSubClasseOutputText" 
+      					  value="Cód.SubClasse (CNAE)" 
       					  styleClass="singleLine" />
-      		<p:inputText id="codigoDivisaoInputText"
+      		<p:inputText id="codigoSubClasseInputText"
       					 required="true"
       					 disabled="false"
       					 style="width: 125px"
-      					 value="01" />		
+      					 value="01.11-3/01" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroDivisao.ultimaAlteracao')}"
+       					  value="#{userBean.properties.getField('label.cadastroSubClasse.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 	 					 
-			<h:outputText id="denominacaoDivisaoOutputText"
-						  value="Denominação Divisão"
+			<h:outputText id="denominacaoSubClasseOutputText"
+						  value="Denominação SubClasse"
 						  styleClass="singleLine"/>
-           	<p:inputText id="denominacaoClasseInputText"
+           	<p:inputText id="denominacaoSubClasseInputText"
            				 style="width: 84%"
-           				 value="Agricultura, Pecuária e Serviços Relacionados"
+           				 value="Cultivo de Arroz"
            				 disabled="false"/>
       		
          </h:panelGrid>

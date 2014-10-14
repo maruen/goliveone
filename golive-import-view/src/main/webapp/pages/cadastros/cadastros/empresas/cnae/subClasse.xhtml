@@ -7,10 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{classeBean}" />
+	<ui:param name="bean" value="#{subClasseBean}" />
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_classe.css" />
+		<h:outputStylesheet name="css/cadastros/style_subClasse.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{classeBean.conteudo}"
+			value="#{subClasseBean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{classeBean.registro}" 
+			selection="#{subClasseBean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -40,8 +40,27 @@
 			</p:column>
 
 			<p:column 
+				headerText="Cód.SubClasse"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="0111-3/01" />
+			</p:column>
+
+			<p:column
+				headerText="Denominação"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Cultivo de Arroz">
+				</h:outputText>
+			</p:column>
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
 				headerText="Cód.Seção"
-				styleClass="percentual-10">				
+				styleClass="percentual-10 singleLine">
 				<h:outputText value="A" />
 			</p:column>
 
@@ -57,7 +76,7 @@
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
-
+			
 			<p:column 
 				headerText="Cód.Divisão"
 				styleClass="percentual-10 singleLine">
@@ -67,7 +86,7 @@
 			<p:column
 				headerText="Denominação"
 				styleClass="percentual-10 singleLine">
-				<h:outputText value="Agricultura. Pecuária e Serviços Relacionados">
+				<h:outputText value="Agricultura, Pecuária e Serviços Relacionados">
 				</h:outputText>
 			</p:column>
 
@@ -76,7 +95,7 @@
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
-			
+
 			<p:column 
 				headerText="Cód.Grupo"
 				styleClass="percentual-10 singleLine">
@@ -115,20 +134,23 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/dadosGeraisClasse.xhtml">
-			<ui:param name="pojo" value="#{classeBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/dadosGeraisSubClasse.xhtml">
+			<ui:param name="pojo" value="#{subClasseBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/secaoClasse.xhtml" >
-			<ui:param name="pojo" value="#{classeBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/secaoSubClasse.xhtml" >
+			<ui:param name="pojo" value="#{subClasseBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/divisaoClasse.xhtml" >
-			<ui:param name="pojo" value="#{classeBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/divisaoSubClasse.xhtml" >
+			<ui:param name="pojo" value="#{subClasseBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/grupoClasse.xhtml" >
-			<ui:param name="pojo" value="#{classeBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/grupoSubClasse.xhtml" >
+			<ui:param name="pojo" value="#{subClasseBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/auditoriaClasse.xhtml" >
-			<ui:param name="pojo" value="#{classeBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/classeSubClasse.xhtml" >
+			<ui:param name="pojo" value="#{subClasseBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/auditoriaSubClasse.xhtml" >
+			<ui:param name="pojo" value="#{subClasseBean.registro}" />
 		</ui:include>
 
 	</ui:define>

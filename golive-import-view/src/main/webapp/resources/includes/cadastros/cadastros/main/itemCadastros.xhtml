@@ -41,7 +41,11 @@
 				styleClass="itemPanelMenu little-font"
 				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.classe')}');" />
 			<p:menuitem
-				value="#{managerBean.get('label.subclasseCnae')}"
+				value="#{managerBean.get('label.cnaesImpeditivosSimplesNacional')}"
+				styleClass="itemPanelMenu little-font"
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.cnaesimpeditivossimplesnacional')}');" />
+			<p:menuitem
+				value="#{managerBean.get('label.subclasse')}"
 				styleClass="itemPanelMenu little-font"
 				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.subclasse')}');" />
 		</p:submenu>
@@ -222,8 +226,8 @@
 			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.tipoproduto')}');" />
 	</p:submenu>
 
-	<p:submenu style="font-size: 13px;" label="#{managerBean.get('label.regioes')}">
-
+	<p:submenu style="font-size: 13px;" 
+	label="#{managerBean.get('label.regioes')}">
 		<p:menuitem value="#{managerBean.get('label.estados')}"
 			styleClass="itemPanelMenu little-font"
 			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.estado')}');" />
@@ -231,6 +235,49 @@
 			value="#{managerBean.get('label.municipios')}"
 			styleClass="itemPanelMenu little-font"
 			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.municipios')}');" />
+
+		<p:submenu styleClass="little-medium"
+			label="#{managerBean.get('label.paises')}">
+			<p:menuitem
+				value="#{managerBean.get('label.codigoInternet')}"
+				styleClass="itemPanelMenu little-font"
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigointernet')}');" />
+			<p:submenu styleClass="little-medium"
+				label="#{managerBean.get('label.codigoPaises')}">
+				<p:menuitem value="#{managerBean.get('label.iso3161')}"
+					styleClass="itemPanelMenu little-font"
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.iso3161')}');" />
+				<p:menuitem value="#{managerBean.get('label.fips')}"
+					styleClass="itemPanelMenu little-font"
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.fips')}');" />
+			</p:submenu>
+			<p:submenu styleClass="little-medium"
+				label="#{managerBean.get('label.codigoTelefonico')}">
+				<p:menuitem value="#{managerBean.get('label.pais')}"
+					styleClass="itemPanelMenu little-font"
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.pais')}');" />
+				<p:menuitem value="#{managerBean.get('label.internoPais')}"
+					styleClass="itemPanelMenu little-font"
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.internopais')}');" />
+			</p:submenu>
+			<p:menuitem
+				value="#{managerBean.get('label.linguas')}"
+				styleClass="itemPanelMenu little-font"
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.linguas')}');" />
+			<p:menuitem
+				value="#{managerBean.get('label.moedas')}"
+				styleClass="itemPanelMenu little-font"
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.moedas')}');" />
+			<p:menuitem
+				value="#{managerBean.get('label.paises')}"
+				styleClass="itemPanelMenu little-font"
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.paises')}');" />
+			<p:menuitem
+				value="#{managerBean.get('label.paisesBacen')}"
+				styleClass="itemPanelMenu little-font"
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.paisesbacen')}');" />
+		</p:submenu>
+		
 		<p:menuitem value="#{managerBean.get('label.regioes')}"
 			styleClass="itemPanelMenu little-font"
 			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.regioes')}');" />

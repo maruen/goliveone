@@ -1,0 +1,113 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="classeSubClasse"
+		 header="CNAE - Classe"
+		 toggleable="true"
+		 closable="false"
+		 collapsed="true"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="classe"
+		 styleClass="little-font" >
+		 
+		<f:facet name="actions">
+			<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+	    	
+          	<h:panelGrid columns="4"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-11,
+          				 				percentual-50,
+          				 				percentual-5,
+          				 				percentual-5"
+           				 width="100%"
+          				 border="0">
+				
+				<h:column>
+					<h:outputText id="classeIdOutputText"
+								  value="Id"   />
+				</h:column>
+				
+				<h:column>
+	            	<h:inputText id="classeIdInputText"
+	            				 value="0000000001" 
+	            				 style="width: 125px;"
+	            				 disabled="true"/>
+	
+	 		       	<p:commandLink onclick="PF('dlgClasse').show();" immediate="true">
+	  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+				</h:column>
+				
+				<h:column/>
+				<h:column/>
+				
+				<h:column>	            	
+	        		<h:outputText id="codClasseOutputText"
+	        					   		value="Cód.Classe" />
+	        	</h:column>
+	        	
+	        	<h:column>
+	            	<h:inputText id="codClasseInputText"
+	            				 style="width: 125px;"
+	            				 value="01.11-3"
+	            				 disabled="true"/>
+	            </h:column>
+				
+				<h:column/>
+				<h:column/>
+				
+				<h:column>					
+					<h:outputText id="denominacaoClasseOutputText" 
+								  value="Denominação Classe" />
+				</h:column>
+				
+				<h:column>
+	            	<h:inputText id="denominacaoClasseInputText"
+	            				 value="Cultivo de cereais" 
+	            				 style="width: 70%;"
+	            				 disabled="true"/>
+	            </h:column>
+        	
+        	</h:panelGrid>
+        
+</p:panel>
+
+<p:dialog header="Pesquisa de CNAE - Classe"
+			  widgetVar="dlgClasse"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="55%">
+      			
+     			<p:dataTable id="classeDatatableId"
+        	  	 	     var="classeDatatableVar"
+        			 	 value="#{subClasseBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-10 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Cód.Classe"
+				    		  styleClass="percentual-10 singleLine">
+				     		<h:outputText value="01.11-3" />
+				    </p:column>
+				    
+				    <p:column headerText="Denominação Classe"
+				    		  styleClass="percentual-50 singleLine">
+				     		<h:outputText value="Cultivo de cereais" />
+				    </p:column>
+				  
+		</p:dataTable>
+</p:dialog>
+
+</ui:composition>

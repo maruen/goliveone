@@ -43,9 +43,7 @@ public class DivisaoBean extends CadastroBeanRules<DivisaoModel> {
 		final List<DivisaoModel> lista = new ArrayList<DivisaoModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new DivisaoModel(new Long(i), new Date(), new Date(), "A", 
-					"Agricultura, Pecuária, Produção Florestal, Pesca e Agricultura", 
-					"0000000001", "01", "Agricultura, Pecuária e Serviços Relacionados"));
+			lista.add(new DivisaoModel(new Long(i), new Date(), new Date(), "A", "Agricultura, Pecuária, Produção Florestal, Pesca e Agricultura", "0000000001", "01", "Agricultura, Pecuária e Serviços Relacionados"));
 		}
 		return lista;
 	}
