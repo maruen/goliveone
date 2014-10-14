@@ -124,7 +124,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		filtrados.addAll(conteudo);
 		fluxo = getFluxoListagem();
 		inicializarClasse();
-		verificarConfiguracaoDeOrdenacao();
+		// verificarConfiguracaoDeOrdenacao();
 		if (getFilterManager() != null) {
 			getFilterManager().setInstance(this);
 			for (final Field field : this.getClass().getDeclaredFields()) {

@@ -18,22 +18,6 @@
 
 	<ui:define name="conteudo">
 
-		<p:panelGrid style="border: 1px;">
-			<f:facet name="header">
-				<p:row>
-					<p:column colspan="2">Parametros de Filtragem</p:column>
-				</p:row>
-			</f:facet>
-			<p:row>
-				<p:column colspan="1" >
-					ID
-				</p:column>
-				<p:column colspan="1">
-					#{areasDeAtuacaoBean.filtroId.tipo}
-				</p:column>
-			</p:row>
-
-		</p:panelGrid>
 
 		<p:dataTable id="conteudoTable" var="list"
 			selection="#{areasDeAtuacaoBean.registro}"
