@@ -7,10 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{departamentoBean}" />
+	<ui:param name="bean" value="#{cnaesImpeditivosSimplesNacionalBean}" />
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_departamento.css" />
+		<h:outputStylesheet name="css/cadastros/style_cnaesImpeditivosSimplesNacional.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{departamentoBean.conteudo}"
+			value="#{cnaesImpeditivosSimplesNacionalBean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{departamentoBean.registro}" 
+			selection="#{cnaesImpeditivosSimplesNacionalBean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -33,29 +33,29 @@
 
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
 			<p:column 
-				headerText="Data Inclusão"
-				styleClass="percentual-10 singleLine">				
-				<h:outputText value="#{row.dataInclusao}" />
+				headerText="Id"
+				styleClass="percentual-10">				
+				<h:outputText value="0000000035" />
 			</p:column>
 
 			<p:column
-				headerText="Data Alteração"
+				headerText="Cód.SubClasse (CNAE)"
 				styleClass="percentual-10 singleLine">
-				<h:outputText value="#{row.dataAlteracao}">
+				<h:outputText value="0111-3/01">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="Denominação"
 				styleClass="percentual-10">
-				<h:outputText value="#{row.id}" />
-			</p:column>
-
-			<p:column 
-				headerText="Descrição"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="#{row.descricao}" />
+				<h:outputText value="Cultivo de Arroz" />
 			</p:column>
 
 		</p:dataTable>
@@ -64,11 +64,11 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacao/dadosGeraisDepartamento.xhtml">
-			<ui:param name="pojo" value="#{departamentoBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/dadosGeraisCnaesImpeditivosSimplesNacional.xhtml">
+			<ui:param name="pojo" value="#{cnaesImpeditivosSimplesNacionalBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacao/auditoriaDepartamento.xhtml" >
-			<ui:param name="pojo" value="#{departamentoBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/auditoriaCnaesImpeditivosSimplesNacional.xhtml" >
+			<ui:param name="pojo" value="#{cnaesImpeditivosSimplesNacionalBean.registro}" />
 		</ui:include>
 
 	</ui:define>

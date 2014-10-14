@@ -1,22 +1,42 @@
-package br.com.golive.entity.departamento;
+package br.com.golive.entity.departamento.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import br.com.golive.annotation.Jasper;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Jasper(titulo = "Departamento", 
-		nomeDoArquivoGerado = "file.name.model", 
-		nomeArquivoJasper = "Departamento")
-public class DepartamentoModel {
+@Jasper(titulo 				 	= "Departamento", 
+		nomeDoArquivoGerado 	= "file.name.model", 
+		nomeArquivoJasper 		= "Departamento")
 
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+@Entity	
+@Table(name="tbDepartamentoProduto")  
+public class DepartamentoModel implements Serializable{
+
+	
+	private static final long serialVersionUID = 4180632229625300190L;
+
+	@Id
+	@Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+	
+	@Column(name="DepartamentoProduto")
 	private String descricao;
+	
+	@Column(name="SystemIncludeDateTime")
+	private Date dataInclusao;
+	
+	@Column(name="SystemChangeDateTime")
+	private Date dataAlteracao;
+	
 
 	public DepartamentoModel() {
 		this.dataInclusao = new Date();
@@ -24,7 +44,6 @@ public class DepartamentoModel {
 	}
 
 	public DepartamentoModel(Long id, Date dataInclusao, Date dataAlteracao, String descricao) {
-		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;
 		this.dataAlteracao = dataAlteracao;

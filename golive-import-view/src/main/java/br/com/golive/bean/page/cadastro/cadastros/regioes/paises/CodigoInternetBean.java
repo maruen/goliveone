@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.empresas.cnae;
+package br.com.golive.bean.page.cadastro.cadastros.regioes.paises;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,16 +13,16 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.cnae.classe.ClasseModel;
+import br.com.golive.entity.empresas.regioes.paises.codigointernet.CodigoInternetModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastroClasse")
+@Label(name = "label.cadastroCodigoInternet")
 @ManagedBean
 @ViewScoped
-public class ClasseBean extends CadastroBeanRules<ClasseModel> {
+public class CodigoInternetBean extends CadastroBeanRules<CodigoInternetModel> {
 
-	private static final long serialVersionUID = -5460720567498170177L;
+	private static final long serialVersionUID = 2145624921217156687L;
 
 	@Inject
 	private Logger logger;
@@ -39,11 +39,11 @@ public class ClasseBean extends CadastroBeanRules<ClasseModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<ClasseModel> criarLista() {
-		final List<ClasseModel> lista = new ArrayList<ClasseModel>();
+	private List<CodigoInternetModel> criarLista() {
+		final List<CodigoInternetModel> lista = new ArrayList<CodigoInternetModel>();
 		
-		for (Integer i = 0; i < 10; i ++){
-			lista.add(new ClasseModel(new Long(i), new Date(), new Date(), "A", "Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura", "000000001", "01", "Agricultura, Pecuária e Serviços Relacionados", "000000001", "01.1", "Produção de lavouras temporárias", "000000001", "01.11-3", "Cultivo de cereais"));
+		for (Integer i = 0; i < 10; i++){
+			lista.add(new CodigoInternetModel(new Long(i), new Date(), new Date(), ".af", "Afeganistão", "Afghnistan", ""));
 		}
 		return lista;
 	}
@@ -56,23 +56,27 @@ public class ClasseBean extends CadastroBeanRules<ClasseModel> {
 	@Override
 	public void salvar(){
 		super.salvar();
+		
 		logger.info("Salvando = {}");
 	}
 	
-	public List<List<Object>> getAuditoriaLogDatatable() {
+	public List<List<Object>> getAuditoriaLogDatatable(){
 		return getRowsByColumns();
 	}
-	
+
 	private List<List<Object>> getRowsByColumns() {
 		final List<List<Object>> dataTableRows = new ArrayList<List<Object>>();
-
-		for (int lines = 1; lines <= 5; lines++) {
-			final List<Object> row = new ArrayList<Object>();
-			for (int columns = 1; columns <= 20; columns++) {
-				row.add(new String("XXXXXX"));
+		
+		for (int lines = 1; lines <=5; lines++){
+			final List<Object> rows = new ArrayList<Object>();
+			
+			for (int columns = 1; columns < 20; columns++){
+				rows.add(new String("XXX"));
 			}
-			dataTableRows.add(row);
+			
+			dataTableRows.add(rows);
 		}
+		
 		return dataTableRows;
 	}
 }

@@ -1,0 +1,148 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="dadosGerais"
+		 header="#{userBean.properties.getField('label.cadastroCnaesImpeditivosSimplesNacional.dadosGerais')}"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="true"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="dadosGerais"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="4"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-10,
+          				 				percentual-50,
+          				 				percentual-5,
+          				 				percentual-5"
+           				 width="100%"
+          				 border="0">
+     
+     		<h:column>
+				<h:outputText id="idOutputText"
+							  value="Id"   />
+			</h:column>
+			
+			<h:column>
+	           	<h:inputText id="idInputText"
+	           				 style="width: 125px;"
+	           				 disabled="true"/>
+	      	</h:column>
+	      	
+	      	<h:column>
+	      		<h:outputText id="dataInclusaoOutputText" 
+	      					  value="#{userBean.properties.getField('label.cadastroCnaesImpeditivosSimplesNacional.inclusao')}" />
+	      	</h:column>
+	      	
+	      	<h:column>
+		 		<h:inputText value="25/08/2014 20:24" 
+		 					 id="dataInclusaoInputText" 
+		 					 disabled="true" />      					  
+	      	</h:column>
+	      	
+	      	<h:column>
+	      		<h:outputText id="idSubClasseOutputText" 
+	      					  value="Id" 
+	      					  styleClass="singleLine" />
+	      	</h:column>
+	      	
+	      	<h:column>
+	      		<h:inputText id="idSubClasseInputText"
+	      					 required="true"
+	      					 disabled="true"
+	      					 style="width: 125px"
+	      					 value="0000000001" />	
+      					 
+	 		    <p:commandLink onclick="PF('dlgIdSubClasse').show();" immediate="true">
+	 		    	<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+        	</h:column>
+        	
+        	<h:column>        	
+	       		<h:outputText id="ultimaAlteracaoOutputText"
+	       					  value="#{userBean.properties.getField('label.cadastroCnaesImpeditivosSimplesNacional.ultimaAlteracao')}"
+	       					  styleClass="singleLine"/>
+	       	</h:column>
+	       	
+	       	<h:column>
+		 		<h:inputText value="25/08/2014 20:47" 
+		 					 id="ultimaAlteracaoInputText" 
+		 					 disabled="true" />  
+		 	</h:column>
+		 	
+		 	<h:column>
+				<h:outputText id="codSubClasseOutputText"
+							  value="Cód.SubClasse (CNAE)"
+							  styleClass="singleLine"/>
+			</h:column>
+			
+			<h:column>
+	           	<h:inputText id="codSubClasseInputText"
+	           				 style="width: 125px"
+	           				 value="01.11-3/01"
+	           				 disabled="true"/>
+      		</h:column>
+      		
+      		<h:column/>
+      		<h:column/>
+      		
+      		<h:column>
+				<h:outputText id="denominacaoSubClasseOutputText"
+							  value="Denominação SubClasse"
+							  styleClass="singleLine"/>
+			</h:column>
+			
+			<h:column>
+	           	<h:inputText id="denominacaoSubClasseInputText"
+	           				 style="width: 84%"
+	           				 value="Cultivo de Arroz"
+	           				 disabled="true"/>
+      		</h:column>
+      		
+         </h:panelGrid>
+	</p:panel>
+	
+
+<p:dialog header="Pesquisa de CNAE - SubClasse"
+			  widgetVar="dlgIdSubClasse"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="55%">
+      			
+     			<p:dataTable id="subClasseDatatableId"
+        	  	 	     var="subClasseDatatableVar"
+        			 	 value="#{cnaesImpeditivosSimplesNacionalBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-15 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Cód.SubClasse (CNAE)"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="01.11-3/01" />
+				    </p:column>
+				    
+				    <p:column headerText="Denominação CNAE"
+				    		  styleClass="percentual-40 singleLine">
+				     		<h:outputText value="Cultivo de Arroz" />
+				    </p:column>
+				  
+		</p:dataTable>
+</p:dialog>
+	
+</ui:composition>

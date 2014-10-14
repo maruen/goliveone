@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroDivisao.dadosGerais')}"
+		 header="#{userBean.properties.getField('label.cadastroGrupo.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="true"
@@ -37,33 +37,33 @@
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroDivisao.inclusao')}" />
+      					  value="#{userBean.properties.getField('label.cadastroGrupo.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
-      		<h:outputText id="codigoDivisaoOutputText" 
-      					  value="Cód.Divisão" 
+      		<h:outputText id="codigoGrupoOutputText" 
+      					  value="Cód.Grupo" 
       					  styleClass="singleLine" />
       		<p:inputText id="codigoDivisaoInputText"
       					 required="true"
       					 disabled="false"
       					 style="width: 125px"
-      					 value="01" />		
+      					 value="01.1" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroDivisao.ultimaAlteracao')}"
+       					  value="#{userBean.properties.getField('label.cadastroGrupo.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 	 					 
-			<h:outputText id="denominacaoDivisaoOutputText"
-						  value="Denominação Divisão"
+			<h:outputText id="denominacaoGrupoOutputText"
+						  value="Denominação Grupo"
 						  styleClass="singleLine"/>
-           	<p:inputText id="denominacaoClasseInputText"
+           	<p:inputText id="denominacaoGrupoInputText"
            				 style="width: 84%"
-           				 value="Agricultura, Pecuária e Serviços Relacionados"
+           				 value="Produção de lavouras temporárias"
            				 disabled="false"/>
       		
          </h:panelGrid>
