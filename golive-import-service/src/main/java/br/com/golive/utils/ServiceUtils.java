@@ -1,17 +1,10 @@
 package br.com.golive.utils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
-import org.primefaces.component.api.UIColumn;
-import org.primefaces.component.datatable.DataTable;
-import org.primefaces.context.RequestContext;
-
 import br.com.golive.constants.ChaveSessao;
-import br.com.golive.perfil.ConfiguracaoOrdemColunas;
 
 public class ServiceUtils {
 
@@ -53,24 +46,27 @@ public class ServiceUtils {
 		return (Map<String, Object>) getSessionMap().get(chave);
 	}
 
-	public static void ordenarTabela(final DataTable dataTable, final List<ConfiguracaoOrdemColunas> colunas, final String idTabela, final String form) {
-		final List<UIColumn> colunasDataTable = new ArrayList<UIColumn>();
-		colunasDataTable.addAll(dataTable.getColumns());
-		dataTable.getColumns().removeAll(colunasDataTable);
-		dataTable.getColumns().add(colunasDataTable.get(0));
-
-		for (final ConfiguracaoOrdemColunas conf : colunas) {
-			for (int i = 1; i < colunasDataTable.size(); i++) {
-				if (colunasDataTable.get(i).getClientId().replace(form, "").replace(idTabela, "").replace(":", "").equals(conf.getColuna())) {
-					if (conf.getVisibilidade()) {
-						dataTable.getColumns().add(colunasDataTable.get(i));
-						i = colunasDataTable.size();
-					}
-				}
-			}
-		}
-
-		RequestContext.getCurrentInstance().update(dataTable.getClientId());
-	}
+	// public static void ordenarTabela(final DataTable dataTable, final
+	// List<ConfiguracaoOrdemColunas> colunas, final String idTabela, final
+	// String form) {
+	// final List<UIColumn> colunasDataTable = new ArrayList<UIColumn>();
+	// colunasDataTable.addAll(dataTable.getColumns());
+	// dataTable.getColumns().removeAll(colunasDataTable);
+	// dataTable.getColumns().add(colunasDataTable.get(0));
+	//
+	// for (final ConfiguracaoOrdemColunas conf : colunas) {
+	// for (int i = 1; i < colunasDataTable.size(); i++) {
+	// if (colunasDataTable.get(i).getClientId().replace(form,
+	// "").replace(idTabela, "").replace(":", "").equals(conf.getColuna())) {
+	// if (conf.getVisibilidade()) {
+	// dataTable.getColumns().add(colunasDataTable.get(i));
+	// i = colunasDataTable.size();
+	// }
+	// }
+	// }
+	// }
+	//
+	// RequestContext.getCurrentInstance().update(dataTable.getClientId());
+	// }
 
 }

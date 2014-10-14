@@ -8,7 +8,7 @@ import br.com.golive.constants.TipoFiltro;
 public abstract class GoliveFilter<T> {
 
 	private TipoFiltro tipo;
-	private Class<T> persistentClass;
+	private Class<T> clazz;
 
 	public GoliveFilter() {
 		super();
@@ -19,10 +19,10 @@ public abstract class GoliveFilter<T> {
 			type = this.getClass().getSuperclass().getGenericSuperclass();
 		}
 		try {
-			persistentClass = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
+			clazz = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
 		} catch (final java.lang.ClassCastException e) {
 			type = this.getClass().getSuperclass().getGenericSuperclass();
-			persistentClass = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
+			clazz = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
 		}
 	}
 
@@ -43,6 +43,6 @@ public abstract class GoliveFilter<T> {
 	}
 
 	public Class<T> getGenericType() {
-		return persistentClass;
+		return clazz;
 	}
 }

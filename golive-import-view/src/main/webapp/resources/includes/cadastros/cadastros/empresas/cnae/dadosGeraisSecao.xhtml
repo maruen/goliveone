@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="dadosGerais"
+		 header="#{userBean.properties.getField('label.cadastroSecao.dadosGerais')}"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="true"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="dadosGerais"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="4"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-10,
+          				 				percentual-50,
+          				 				percentual-5,
+          				 				percentual-5"
+           				 width="100%"
+          				 border="0">
+     
+			<h:outputText id="idOutputText"
+						  value="Id"   />
+           	<h:inputText id="idInputText"
+           				 style="width: 125px;"
+           				 disabled="true"/>
+      		
+      		<h:outputText id="dataInclusaoOutputText" 
+      					  value="#{userBean.properties.getField('label.cadastroSecao.inclusao')}" />
+	 		<h:inputText value="25/08/2014 20:24" 
+	 					 id="dataInclusaoInputText" 
+	 					 disabled="true" />      					  
+      		
+      		<h:outputText id="codigoSecaoOutputText" 
+      					  value="Cód.Seção" 
+      					  styleClass="singleLine" />
+      		<p:inputText id="codigoSecaoInputText"
+      					 required="true"
+      					 disabled="false"
+      					 style="width: 125px"
+      					 value="A" />		
+        		
+       		<h:outputText id="ultimaAlteracaoOutputText"
+       					  value="#{userBean.properties.getField('label.cadastroSecao.ultimaAlteracao')}"
+       					  styleClass="singleLine"/>
+	 		<h:inputText value="25/08/2014 20:47" 
+	 					 id="ultimaAlteracaoInputText" 
+	 					 disabled="true" />  
+	 					 
+			<h:outputText id="denominacaoSecaoOutputText"
+						  value="Denominação Seção"
+						  styleClass="singleLine"/>
+           	<p:inputText id="denominacaoSecaoInputText"
+           				 style="width: 84%"
+           				 value="Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura"
+           				 disabled="false"/>
+      		
+         </h:panelGrid>
+	</p:panel>
+</ui:composition>

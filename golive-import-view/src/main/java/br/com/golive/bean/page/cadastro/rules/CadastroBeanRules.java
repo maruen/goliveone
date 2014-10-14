@@ -27,14 +27,15 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
+import br.com.golive.annotation.PrimeInfoList;
 import br.com.golive.annotation.PropriedadesTemplate;
+import br.com.golive.bean.component.ColunaPerfil;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
-import br.com.golive.perfil.ConfiguracaoOrdemColunas;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.qualifier.PrimefacesDataTableInjected;
@@ -85,9 +86,10 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	protected T registro;
 	protected Class<T> genericClazzInstance;
 
-	protected List<ConfiguracaoOrdemColunas> colunas;
+	protected List<ColunaPerfil> colunas;
 
 	@Inject
+	@PrimeInfoList(list = "cadastroAreaAtuacao")
 	@PrimefacesDataTableInjected
 	private DataTable dataTable;
 
@@ -138,13 +140,14 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		// getForm());
 	}
 
+	@Deprecated
 	public void ordernarTabela() {
 		final List<UIColumn> colunasDataTable = new ArrayList<UIColumn>();
 		colunasDataTable.addAll(dataTable.getColumns());
 		dataTable.getColumns().removeAll(colunasDataTable);
 		dataTable.getColumns().add(colunasDataTable.get(0));
 
-		for (final ConfiguracaoOrdemColunas conf : colunas) {
+		for (final ColunaPerfil conf : colunas) {
 			for (int i = 1; i < colunasDataTable.size(); i++) {
 				if (colunasDataTable.get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", "").equals(conf.getColuna())) {
 					if (conf.getVisibilidade()) {
@@ -428,6 +431,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		return null;
 	}
 
+	@Deprecated
 	private void verificarConfiguracaoDeOrdenacao() {
 		colunas = obterConfiruacaoTela();
 		final Field[] fields = getPojoClass("cadastroAreaAtuacao").getDeclaredFields();
@@ -435,14 +439,14 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 		verificarConfiguracaoDeOrdenacaoComEntidade(fields);
 
-		List<ConfiguracaoOrdemColunas> reorder = null;
+		List<ColunaPerfil> reorder = null;
 
 		// Verifica se o campo foi excluído da tabela.
 
-		for (final ConfiguracaoOrdemColunas conf : colunas) {
+		for (final ColunaPerfil conf : colunas) {
 			if (!Utils.obterColumnName(conf.getColuna(), fields)) {
 				if (reorder == null) {
-					reorder = new ArrayList<ConfiguracaoOrdemColunas>();
+					reorder = new ArrayList<ColunaPerfil>();
 				}
 				reorder.add(conf);
 			}
@@ -455,19 +459,24 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 			}
 			// TODO update
 		}
-
+		System.out.println("Implementar Inserção");
+		System.out.println(dataTable);
 	}
 
 	private void verificarConfiguracaoDeOrdenacaoComEntidade(final Field[] fields) {
 		for (final Field field : fields) {
 			// TODO mudar este 'true' e Incluir apenas os @Column
 			if (!field.isAnnotationPresent(Transient.class)) {
-				if ((true) && (!Utils.verificarColuna(colunas, field.getName()))) {
-					// TODO inserir na base tambem;
-					// TODO Alterar o field.getname para o nome da colunas
-					// @COlumn
-					colunas.add(new ConfiguracaoOrdemColunas(usuario.getId(), new Integer(colunas.size() + 1).longValue(), genericClazzInstance.getName(), field.getName(), false));
-				}
+				// if ((true) && (!Utils.verificarColuna(colunas,
+				// field.getName()))) {
+				// // TODO inserir na base tambem;
+				// // TODO Alterar o field.getname para o nome da colunas
+				// // @COlumn
+				// colunas.add(new ColunaPerfil(usuario.getId(), new
+				// Integer(colunas.size() + 1).longValue(),
+				// genericClazzInstance.getName(), field.getName(), false,
+				// getEmpresaSelecionada()));
+				// }
 			}
 		}
 	}
@@ -480,7 +489,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 
 		for (int i = 0; i < dataTable.getColumns().size(); i++) {
 			if (!dataTable.getColumns().get(i).getClientId().contains("seletor")) {
-				colunas.add(new ConfiguracaoOrdemColunas(usuario.getId(), cont++, getPojoClass("cadastroAreaAtuacao").getName(), dataTable.getColumns().get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", ""), true));
+				colunas.add(new ColunaPerfil(usuario.getId(), cont++, getPojoClass("cadastroAreaAtuacao").getName(), dataTable.getColumns().get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", ""), true, getEmpresaSelecionada()));
 			}
 		}
 		verificarConfiguracaoDeOrdenacaoComEntidade(getPojoClass("cadastroAreaAtuacao").getDeclaredFields());
@@ -490,12 +499,12 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 	}
 
 	@Deprecated
-	public List<ConfiguracaoOrdemColunas> obterConfiruacaoTela() {
-		final List<ConfiguracaoOrdemColunas> returnList = new ArrayList<ConfiguracaoOrdemColunas>();
-		returnList.add(new ConfiguracaoOrdemColunas(usuario.getId(), 1L, getPojoClass("cadastroAreaAtuacao").getName(), "teste2", true));
-		returnList.add(new ConfiguracaoOrdemColunas(usuario.getId(), 2L, getPojoClass("cadastroAreaAtuacao").getName(), "id", true));
-		returnList.add(new ConfiguracaoOrdemColunas(usuario.getId(), 3L, getPojoClass("cadastroAreaAtuacao").getName(), "teste", true));
-		returnList.add(new ConfiguracaoOrdemColunas(usuario.getId(), 4L, getPojoClass("cadastroAreaAtuacao").getName(), "areaDeAtuacao", true));
+	public List<ColunaPerfil> obterConfiruacaoTela() {
+		final List<ColunaPerfil> returnList = new ArrayList<ColunaPerfil>();
+		returnList.add(new ColunaPerfil(usuario.getId(), 1L, getPojoClass("cadastroAreaAtuacao").getName(), "teste2", true, getEmpresaSelecionada()));
+		returnList.add(new ColunaPerfil(usuario.getId(), 2L, getPojoClass("cadastroAreaAtuacao").getName(), "id", true, getEmpresaSelecionada()));
+		returnList.add(new ColunaPerfil(usuario.getId(), 3L, getPojoClass("cadastroAreaAtuacao").getName(), "teste", true, getEmpresaSelecionada()));
+		returnList.add(new ColunaPerfil(usuario.getId(), 4L, getPojoClass("cadastroAreaAtuacao").getName(), "areaDeAtuacao", true, getEmpresaSelecionada()));
 
 		return returnList;
 	}
