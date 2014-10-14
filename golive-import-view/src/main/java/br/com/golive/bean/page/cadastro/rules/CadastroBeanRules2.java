@@ -8,7 +8,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,8 +16,6 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.persistence.Transient;
@@ -31,10 +28,8 @@ import org.primefaces.component.datatable.DataTable;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
-import br.com.golive.annotation.Label;
 import br.com.golive.annotation.PrimeInfoList;
 import br.com.golive.annotation.PropriedadesTemplate;
-import br.com.golive.bean.component.ColumnModel;
 import br.com.golive.bean.component.ColunaPerfil;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
@@ -94,14 +89,16 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 	private List<ColunaPerfil> colunas;
 
-	private List<ColumnModel> columns;
-
 	@Inject
 	@PrimeInfoList(list = "cadastroAreaAtuacao")
 	@PrimefacesDataTableInjected
 	private DataTable dataTable;
 
 	public abstract void init();
+
+	public void filtrar(final String widgetFiltro) {
+		filterManager.filtrar(conteudo, filtrados, getFilter(widgetFiltro), widgetFiltro);
+	}
 
 	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");
@@ -148,43 +145,6 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 	}
 
-	private final String columnTemplate = "id brand year";
-	private final static List<String> VALID_COLUMN_KEYS = Arrays.asList("id", "brand", "year", "color", "price");
-
-
-	private void createDynamicColumns() {
-
-		for (final ColunaPerfil col : colunas) {
-
-		}
-
-		final String[] columnKeys = columnTemplate.split(" ");
-		columns = new ArrayList<ColumnModel>();
-
-		for (final String columnKey : columnKeys) {
-			final String key = columnKey.trim();
-
-			if (VALID_COLUMN_KEYS.contains(key)) {
-				columns.add(new ColumnModel(columnKey.toUpperCase(), columnKey));
-			}
-		}
-	}
-
-	public List<GoliveFilter> obterFiltros() {
-		final List<GoliveFilter> filtros = new ArrayList<GoliveFilter>();
-
-		for (final Field field : this.getClass().getDeclaredFields()) {
-			if (field.isAnnotationPresent(Filter.class)) {
-				try {
-					filtros.add((GoliveFilter) this.getClass().getDeclaredMethod("get" + WordUtils.capitalize(field.getName())).invoke(this));
-				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return filtros;
-
-	}
 
 	public String getFilterLabel(final String filter) {
 		try {
@@ -197,15 +157,6 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		}
 		return "";
 
-	}
-
-	public void updateColumns() {
-		// reset table state
-		final UIComponent table = FacesContext.getCurrentInstance().getViewRoot().findComponent(":form:cars");
-		table.setValueExpression("sortBy", null);
-
-		// update columns
-		createDynamicColumns();
 	}
 
 	public void cancelarExclusao() {
@@ -221,13 +172,6 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		gerarRelatorio(TipoRelatorio.EXCEL, getLabels());
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responsável por obter a classe genérica instanciada.
-	 *         </p>
-	 */
 	@SuppressWarnings("unchecked")
 	private void inicializarClasse() {
 		logger.info("Inicializando Classe Generica");
@@ -263,34 +207,10 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		JSFUtils.chamarJs(new FuncaoJavaScript("showMenuBar", Long.toString(height), Long.toString(top)));
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responsável por o label da pagina, definindo assim o
-	 *         titulo na toolbar da pagina, para que este método funcione é
-	 *         necessario que a classe seja anotada com a anotação {@link Label}
-	 *         </p>
-	 * 
-	 * @return {@link String}
-	 * 
-	 */
 	public String nomePagina() {
 		return JSFUtils.getLabelPageName(this.getClass());
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responsável por obter a {@link Class} do pojo no qual
-	 *         deverá ser passado para os includes nas páginas de edição estas
-	 *         classes deverão ser propriedade da classe generica estendida
-	 *         </p>
-	 * 
-	 * @param fieldName
-	 * @return {@link Class}
-	 */
 	public Class<?> getPojoClass(final String fieldName) {
 		try {
 			return Utils.getClazz(genericClazzInstance, fieldName);
@@ -302,32 +222,12 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		throw new GoLiveException("Erro ao obter classe de pojo, a classe: " + genericClazzInstance.getName() + " nao possui o campo: " + fieldName);
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responsável por alterar o fluxo da pagina para inclusão,
-	 *         deixando de listar os objetos e habilitando a inclusão de um novo
-	 *         objeto
-	 *         </p>
-	 * 
-	 */
 
 	public void incluir() {
 		fluxo = getFluxoInclusao();
 		showMenuBar(0, 0);
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responsável por alterar o fluxo da pagina para edição,
-	 *         deixando de listar os objetos e habilitando a edição de um objeto
-	 *         selecionado
-	 *         </p>
-	 * 
-	 */
 	public void editarRegistro() {
 		if (isSelecionado()) {
 			fluxo = getFluxoEdicao();
@@ -336,14 +236,6 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		}
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responsável por alterar o fluxo da pagina para exclusão
-	 *         </p>
-	 * 
-	 */
 	public void excluir() {
 		if (isSelecionado()) {
 			fluxo = getFluxoExclusao();
@@ -351,27 +243,11 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		}
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responsável por salvar o objeto alterado ou criado.
-	 *         </p>
-	 */
 	public void salvar() {
 		fluxo = getFluxoListagem();
 		showMenuBar(0, 0);
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responsável por cancelar a edição o objeto alterado ou
-	 *         criado.
-	 *         </p>
-	 * 
-	 */
 	public void cancelar() {
 		showMenuBar(0, 0);
 		fluxo = getFluxoListagem();
@@ -383,55 +259,18 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responável por obter o fluxo de listagem
-	 *         </p>
-	 * 
-	 * @return {@link Fluxo}
-	 */
 	public Fluxo getFluxoExclusao() {
 		return Fluxo.EXCLUSAO;
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responável por obter o fluxo de listagem
-	 *         </p>
-	 * 
-	 * @return {@link Fluxo}
-	 */
 	public Fluxo getFluxoListagem() {
 		return Fluxo.LISTAGEM;
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responável por obter o fluxo de inclusao
-	 *         </p>
-	 * 
-	 * @return {@link Fluxo}
-	 * 
-	 */
 	public Fluxo getFluxoInclusao() {
 		return Fluxo.INCLUSAO;
 	}
 
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método responável por obter o fluxo de edicao
-	 *         </p>
-	 * 
-	 * @return {@link Fluxo}
-	 */
 	public Fluxo getFluxoEdicao() {
 		return Fluxo.EDICAO;
 	}
@@ -509,25 +348,6 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 			}
 			// TODO update
 		}
-		
-		for (final ColunaPerfil coluna : colunas) {
-			for(final Field filtro : this.getClass().getDeclaredFields()){
-				if(filtro.isAnnotationPresent(Filter.class)){
-					if(filtro.getAnnotation(Filter.class).name().equals(coluna.getColuna())){
-						coluna.setFiltro((GoliveFilter) this.getClass().getMethod("get" + WordUtils.capitalize(filtro.getName())).invoke(this));
-					}
-				}
-			}
-			
-		}
-	}
-
-	public boolean obterTipoFiltroPagina(final ColunaPerfil coluna, final String tipo) {
-		
-		if (coluna.getFiltro() != null) {
-			return true;
-		}
-		return false;
 	}
 
 	public Object obterLabelColuna(final ColunaPerfil coluna, final T indice, final String caminho) {
@@ -551,7 +371,7 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		}
 		
 		if (ret != null) {
-			if ((coluna.getFiltro() != null) && (coluna.getFiltro().getGenericType().equals(Date.class))) {
+			if ((getFilter(coluna.getColuna()) != null) && (getFilter(coluna.getColuna()).getGenericType().equals(Date.class))) {
 				return ((Calendar) ret).getTime();
 			} else {
 				return ret;
@@ -570,7 +390,7 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 					// TODO inserir na base tambem;
 					// TODO Alterar o field.getname para o nome da colunas
 					// @COlumn
-					getColunas().add(new ColunaPerfil(usuario.getId(), new Integer(getColunas().size() + 1).longValue(), genericClazzInstance.getName(), field.getName(), false, getEmpresaSelecionada()));
+					getColunas().add(new ColunaPerfil(usuario.getId(), new Integer(getColunas().size() + 1).longValue(), genericClazzInstance.getName(), field.getName(), false, getEmpresaSelecionada(), "igual"));
 				}
 			}
 		}
@@ -584,7 +404,7 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 		for (int i = 0; i < dataTable.getColumns().size(); i++) {
 			if (!dataTable.getColumns().get(i).getClientId().contains("seletor")) {
-				getColunas().add(new ColunaPerfil(usuario.getId(), cont++, getPojoClass("cadastroAreaAtuacao").getName(), dataTable.getColumns().get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", ""), true, getEmpresaSelecionada()));
+				getColunas().add(new ColunaPerfil(usuario.getId(), cont++, getPojoClass("cadastroAreaAtuacao").getName(), dataTable.getColumns().get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", ""), true, getEmpresaSelecionada(), "igual"));
 			}
 		}
 		verificarConfiguracaoDeOrdenacaoComEntidade(getPojoClass("cadastroAreaAtuacao").getDeclaredFields());
@@ -596,14 +416,13 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 	@Deprecated
 	public List<ColunaPerfil> obterConfiruacaoTela() {
 		final List<ColunaPerfil> returnList = new ArrayList<ColunaPerfil>();
-		returnList.add(new ColunaPerfil(usuario.getId(), 1L, getPojoClass("cadastroAreaAtuacao").getName(), "teste2", true, getEmpresaSelecionada()));
-		returnList.add(new ColunaPerfil(usuario.getId(), 2L, getPojoClass("cadastroAreaAtuacao").getName(), "id", true, getEmpresaSelecionada()));
-		returnList.add(new ColunaPerfil(usuario.getId(), 3L, getPojoClass("cadastroAreaAtuacao").getName(), "teste", true, getEmpresaSelecionada()));
-		returnList.add(new ColunaPerfil(usuario.getId(), 4L, getPojoClass("cadastroAreaAtuacao").getName(), "areaDeAtuacao", true, getEmpresaSelecionada()));
+		returnList.add(new ColunaPerfil(usuario.getId(), 1L, getPojoClass("cadastroAreaAtuacao").getName(), "teste2", true, getEmpresaSelecionada(), "igual"));
+		returnList.add(new ColunaPerfil(usuario.getId(), 2L, getPojoClass("cadastroAreaAtuacao").getName(), "id", true, getEmpresaSelecionada(), "igual"));
+		returnList.add(new ColunaPerfil(usuario.getId(), 3L, getPojoClass("cadastroAreaAtuacao").getName(), "teste", true, getEmpresaSelecionada(), "igual"));
+		returnList.add(new ColunaPerfil(usuario.getId(), 4L, getPojoClass("cadastroAreaAtuacao").getName(), "areaDeAtuacao", true, getEmpresaSelecionada(), "igual"));
 
 		return returnList;
 	}
-
 
 	public String getForm() {
 		return this.getClass().getSuperclass().getAnnotation(PropriedadesTemplate.class).form();
@@ -697,28 +516,12 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		this.colunas = colunas;
 	}
 
-	public List<ColumnModel> getColumns() {
-		return columns;
-	}
-
-	public void setColumns(final List<ColumnModel> columns) {
-		this.columns = columns;
-	}
-
 	public DataTable getDataTable() {
 		return dataTable;
 	}
 
 	public void setDataTable(final DataTable dataTable) {
 		this.dataTable = dataTable;
-	}
-
-	public String getColumnTemplate() {
-		return columnTemplate;
-	}
-
-	public static List<String> getValidColumnKeys() {
-		return VALID_COLUMN_KEYS;
 	}
 
 }

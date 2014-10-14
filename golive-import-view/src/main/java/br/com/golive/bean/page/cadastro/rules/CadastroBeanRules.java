@@ -15,7 +15,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
-import javax.persistence.Transient;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -431,83 +430,6 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		return null;
 	}
 
-	@Deprecated
-	private void verificarConfiguracaoDeOrdenacao() {
-		colunas = obterConfiruacaoTela();
-		final Field[] fields = getPojoClass("cadastroAreaAtuacao").getDeclaredFields();
-		// Verificar se o campo ainda nao foi cadastrado na tabela de ordem
-
-		verificarConfiguracaoDeOrdenacaoComEntidade(fields);
-
-		List<ColunaPerfil> reorder = null;
-
-		// Verifica se o campo foi excluído da tabela.
-
-		for (final ColunaPerfil conf : colunas) {
-			if (!Utils.obterColumnName(conf.getColuna(), fields)) {
-				if (reorder == null) {
-					reorder = new ArrayList<ColunaPerfil>();
-				}
-				reorder.add(conf);
-			}
-		}
-
-		if (reorder != null) {
-			colunas.removeAll(reorder);
-			for (int i = 0; i < colunas.size(); i++) {
-				colunas.get(i).setOrdem(new Integer(i + 1).longValue());
-			}
-			// TODO update
-		}
-		System.out.println("Implementar Inserção");
-		System.out.println(dataTable);
-	}
-
-	private void verificarConfiguracaoDeOrdenacaoComEntidade(final Field[] fields) {
-		for (final Field field : fields) {
-			// TODO mudar este 'true' e Incluir apenas os @Column
-			if (!field.isAnnotationPresent(Transient.class)) {
-				// if ((true) && (!Utils.verificarColuna(colunas,
-				// field.getName()))) {
-				// // TODO inserir na base tambem;
-				// // TODO Alterar o field.getname para o nome da colunas
-				// // @COlumn
-				// colunas.add(new ColunaPerfil(usuario.getId(), new
-				// Integer(colunas.size() + 1).longValue(),
-				// genericClazzInstance.getName(), field.getName(), false,
-				// getEmpresaSelecionada()));
-				// }
-			}
-		}
-	}
-
-	public void guardarOrdemTabela() {
-
-		colunas.removeAll(colunas);
-
-		Long cont = 1L;
-
-		for (int i = 0; i < dataTable.getColumns().size(); i++) {
-			if (!dataTable.getColumns().get(i).getClientId().contains("seletor")) {
-				colunas.add(new ColunaPerfil(usuario.getId(), cont++, getPojoClass("cadastroAreaAtuacao").getName(), dataTable.getColumns().get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", ""), true, getEmpresaSelecionada()));
-			}
-		}
-		verificarConfiguracaoDeOrdenacaoComEntidade(getPojoClass("cadastroAreaAtuacao").getDeclaredFields());
-
-		System.out.println("UPDATE");
-
-	}
-
-	@Deprecated
-	public List<ColunaPerfil> obterConfiruacaoTela() {
-		final List<ColunaPerfil> returnList = new ArrayList<ColunaPerfil>();
-		returnList.add(new ColunaPerfil(usuario.getId(), 1L, getPojoClass("cadastroAreaAtuacao").getName(), "teste2", true, getEmpresaSelecionada()));
-		returnList.add(new ColunaPerfil(usuario.getId(), 2L, getPojoClass("cadastroAreaAtuacao").getName(), "id", true, getEmpresaSelecionada()));
-		returnList.add(new ColunaPerfil(usuario.getId(), 3L, getPojoClass("cadastroAreaAtuacao").getName(), "teste", true, getEmpresaSelecionada()));
-		returnList.add(new ColunaPerfil(usuario.getId(), 4L, getPojoClass("cadastroAreaAtuacao").getName(), "areaDeAtuacao", true, getEmpresaSelecionada()));
-
-		return returnList;
-	}
 
 	public String getForm() {
 		return this.getClass().getSuperclass().getAnnotation(PropriedadesTemplate.class).form();

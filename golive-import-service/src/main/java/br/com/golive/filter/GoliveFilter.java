@@ -45,4 +45,28 @@ public abstract class GoliveFilter<T> {
 	public Class<T> getGenericType() {
 		return clazz;
 	}
+
+	public TipoFiltro getIgual() {
+		return TipoFiltro.IGUAL;
+	}
+
+	public TipoFiltro getMaior() {
+		return TipoFiltro.MAIOR;
+	}
+
+	public TipoFiltro getMenor() {
+		return TipoFiltro.MENOR;
+	}
+
+	public TipoFiltro getPeriodo() {
+		return TipoFiltro.PERIODO;
+	}
+
+	public TipoFiltro getIntervalo() {
+		return TipoFiltro.INTERVALO;
+	}
+
+	public TipoFiltro getContem() {
+		return TipoFiltro.CONTEM;
+	}
 }

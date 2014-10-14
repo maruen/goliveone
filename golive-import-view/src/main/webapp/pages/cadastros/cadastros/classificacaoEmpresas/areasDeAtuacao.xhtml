@@ -15,8 +15,22 @@
 		<h:outputStylesheet name="css/cadastros/style_areasDeAtuacao.css" />
 	</ui:define>
 
-
 	<ui:define name="conteudo">
+
+		<p:dataTable value="#{areasDeAtuacaoBean.colunas}" var="coluna"
+			styleClass="configuracaoPerfil">
+			<p:column headerText="#{managerBean.get('label.coluna')}">
+				<h:outputLabel
+					value="#{managerBean.get(areasDeAtuacaoBean.getLabelFilter(coluna.coluna))}" />
+			</p:column>
+			<p:column headerText="#{managerBean.get('label.parametros.filtro')}">
+				<filter:selectTipoFiltro filtro="#{areasDeAtuacaoBean.getFilter(coluna.coluna)}"/>
+			</p:column>
+			<p:column headerText="#{managerBean.get('label.visibilidade')}">
+				<p:selectBooleanCheckbox id="selectBooleanVisivel"
+					value="#{coluna.visibilidade}" />
+			</p:column>
+		</p:dataTable>
 
 
 		<p:dataTable id="conteudoTable" var="list"
@@ -43,7 +57,7 @@
 				<f:facet name="header">
 					<filter:number id="componentFilterNumberId"
 						update=":conteudoForm:conteudoTable"
-						rendered="#{coluna.filtro.genericType.simpleName.equals('Long')}"
+						rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Long')}"
 						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
 						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
 						styleClassFiltroDois="filtroFinal"
@@ -51,14 +65,14 @@
 						styleClassTitulo="tituloColunaFiltro" />
 					<filter:string id="componentFilterStringId"
 						update=":conteudoForm:conteudoTable"
-						rendered="#{coluna.filtro.genericType.simpleName.equals('String')}"
+						rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('String')}"
 						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
 						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
 						styleClassFiltroUm="filtroInicial"
 						styleClassTitulo="tituloColunaFiltro" />
 					<filter:date id="componentFilterDateId"
 						update=":conteudoForm:conteudoTable"
-						rendered="#{coluna.filtro.genericType.simpleName.equals('Date')}"
+						rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Date')}"
 						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
 						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
 						styleClassFiltroDois="filtroFinal"
@@ -67,13 +81,13 @@
 				</f:facet>
 
 				<h:outputText
-					rendered="#{coluna.filtro.genericType.simpleName.equals('Date')}"
+					rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Date')}"
 					value="#{areasDeAtuacaoBean.obterLabelColuna(coluna,list, 'cadastroAreaAtuacao')}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 				</h:outputText>
 
 				<h:outputText
-					rendered="#{!coluna.filtro.genericType.simpleName.equals('Date')}"
+					rendered="#{!areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Date')}"
 					value="#{areasDeAtuacaoBean.obterLabelColuna(coluna,list, 'cadastroAreaAtuacao')}">
 				</h:outputText>
 

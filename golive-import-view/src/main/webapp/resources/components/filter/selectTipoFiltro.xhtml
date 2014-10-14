@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="filtro"
+		type="br.com.golive.filter.GoliveFilter" required="true" />
+
+			
+
+</composite:interface>
+
+<composite:implementation>
+
+
+	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}"
+		rendered="#{cc.attrs.filtro.genericType.simpleName.equals('String')}">
+		<f:selectItem itemValue="#{cc.attrs.filtro.igual}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.igual.label)}" />
+		<f:selectItem itemValue="#{cc.attrs.filtro.contem}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.contem.label)}" />
+	</p:selectOneMenu>
+
+	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}"
+		rendered="#{cc.attrs.filtro.genericType.simpleName.equals('Long')}">
+		<f:selectItem itemValue="#{cc.attrs.filtro.igual}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.igual.label)}" />
+		<f:selectItem itemValue="#{cc.attrs.filtro.contem}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.contem.label)}" />
+		<f:selectItem itemValue="#{cc.attrs.filtro.contem}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.maior.label)}" />
+		<f:selectItem itemValue="#{cc.attrs.filtro.contem}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.menor.label)}" />
+		<f:selectItem itemValue="#{cc.attrs.filtro.intervalo}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.intervalo.label)}" />
+
+	</p:selectOneMenu>
+
+	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}"
+		rendered="#{cc.attrs.filtro.genericType.simpleName.equals('Date')}">
+		<f:selectItem itemValue="#{cc.attrs.filtro.igual}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.igual.label)}" />
+		<f:selectItem itemValue="#{cc.attrs.filtro.periodo}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.periodo.label)}" />
+		<f:selectItem itemValue="#{cc.attrs.filtro.contem}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.maior.label)}" />
+		<f:selectItem itemValue="#{cc.attrs.filtro.contem}"
+			itemLabel="#{managerBean.get(cc.attrs.filtro.menor.label)}" />
+	</p:selectOneMenu>
+</composite:implementation>
+
+</html>

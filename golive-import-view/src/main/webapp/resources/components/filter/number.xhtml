@@ -23,47 +23,6 @@
 <composite:implementation>
 
 
-	<p:dialog id="dialogFilter_number#{cc.attrs.widgetAnotado}"
-		showHeader="true" showEffect="fold" modal="true" width="225px"
-		hideEffect="fold"
-		header="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}"
-		widgetVar="#{cc.attrs.widgetAnotado}" resizable="false">
-
-		<p:fieldset legend="#{managerBean.get('label.parametros.filtro')}"
-			style="margin-bottom:20px">
-			<p:selectOneRadio id="filtro_number#{cc.attrs.widgetAnotado}"
-				styleClass="selectOneRadioInclusao"
-				value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo}"
-				widgetVar="filtroDataComponent_#{cc.attrs.widgetAnotado}"
-				layout="grid" columns="1">
-
-				<f:selectItem itemValue="#{cc.attrs.bean.getFilterManager().igual}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.getFilterManager().igual.label)}" />
-				<f:selectItem itemValue="#{cc.attrs.bean.getFilterManager().maior}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.getFilterManager().maior.label)}" />
-				<f:selectItem itemValue="#{cc.attrs.bean.getFilterManager().menor}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.getFilterManager().menor.label)}" />
-
-				<f:selectItem itemValue="#{cc.attrs.bean.getFilterManager().contem}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.getFilterManager().contem.label)}" />
-
-				<f:selectItem itemValue="#{cc.attrs.bean.getFilterManager().intervalo}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.getFilterManager().intervalo.label)}" />
-
-
-				<p:ajax event="valueChange" update="#{cc.attrs.update}"
-					listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
-
-				<p:ajax event="valueChange"
-					listener="#{cc.attrs.bean.getFilterManager().selecionarTipoFiltro(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado))}" />
-
-			</p:selectOneRadio>
-
-		</p:fieldset>
-	</p:dialog>
-
-
-
 	<h:outputLabel styleClass="#{cc.attrs.styleClassTitulo}"
 		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
@@ -78,7 +37,7 @@
 			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
 			<p:ajax event="change" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+				listener="#{cc.attrs.bean.filtrar(cc.attrs.widgetAnotado)}" />
 		</p:inputText>
 
 		<p:inputText
@@ -89,11 +48,6 @@
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			disabled="true" />
 
-
-
-		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
-			value="/resources/images/stylistica-icons-set/24x24/settings.png"
-			styleClass="#{cc.attrs.styleClassBotaoSettings}" />
 
 
 		<h:graphicImage
@@ -110,7 +64,7 @@
 			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}">
 			<p:ajax event="change" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+				listener="#{cc.attrs.bean.filtrar(cc.attrs.widgetAnotado)}" />
 		</p:inputText>
 
 		<p:inputText
@@ -133,7 +87,7 @@
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
 
 			<p:ajax event="change" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.getFilterManager().filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
+				listener="#{cc.attrs.bean.filtrar(cc.attrs.widgetAnotado)}" />
 		</p:inputText>
 
 		<p:inputText
@@ -143,11 +97,6 @@
 			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
 			disabled="true" />
-
-		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
-			value="/resources/images/stylistica-icons-set/24x24/settings.png"
-			styleClass="settings, #{cc.attrs.styleClassBotaoSettings}" />
-
 
 		<h:graphicImage
 			value="/resources/images/stylistica-icons-set/24x24/bin.png"

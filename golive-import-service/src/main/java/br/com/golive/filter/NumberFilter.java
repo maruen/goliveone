@@ -1,5 +1,6 @@
 package br.com.golive.filter;
 
+
 public class NumberFilter extends GoliveFilter<Long> {
 
 	private Long inicio;
