@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
@@ -18,9 +19,11 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.departamento.DepartamentoModel;
+import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
+import br.com.golive.service.DepartamentoService;
+import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 
 @ManagedBean
@@ -38,33 +41,27 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	private GoliveOneProperties labels;
 	private Calendar data;
 
+	@EJB
+	private DepartamentoService departamentoService;
+	
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(criarList());
-
 		logger.info("Inicializando = {}", this.getClass().getName());
-
-		fluxo = getFluxoListagem();
-		data = Calendar.getInstance();
+		this.conteudo = departamentoService.listar();
+		fluxo = Fluxo.LISTAGEM;
 	}
+	
 
-	public List<DepartamentoModel> criarList() {
-		final List<DepartamentoModel> lista = new ArrayList<DepartamentoModel>();
-		for (Integer i = 0; i < 10; i++) {
-			lista.add(new DepartamentoModel(new Long(i), new Date(), new Date(), "Acessórios, Partes e Peças para Persianas Horizontais em Alumínio"));
-		}
-		return lista;
+	@SuppressWarnings("unused")
+	private void saveExample() {
+		DepartamentoModel departamentoModel = new DepartamentoModel();
+		departamentoModel.setDataAlteracao(new Date());
+		departamentoModel.setDataInclusao(new Date());
+		departamentoModel.setDescricao("Teste");
+		departamentoService.salvar(departamentoModel);
 	}
-
-	public Calendar getDataInclusaoFiltro() {
-		return data;
-	}
-
-	public void setDataInclusaoFiltro(final Calendar dataInclusaoFiltro) {
-		data = dataInclusaoFiltro;
-	}
-
+	
 	@Override
 	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");
@@ -84,6 +81,14 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	public void salvar() {
 		super.salvar();
 		logger.info("Salvando = {} ");
+	}
+	
+	public Calendar getDataInclusaoFiltro() {
+		return data;
+	}
+
+	public void setDataInclusaoFiltro(final Calendar dataInclusaoFiltro) {
+		data = dataInclusaoFiltro;
 	}
 
 	@Override

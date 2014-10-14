@@ -36,26 +36,26 @@
 			<p:column 
 				headerText="Data Inclusão"
 				styleClass="percentual-10 singleLine">				
-				<h:outputText value="25/08/2014 20:24" />
+				<h:outputText value="#{row.dataInclusao}" />
 			</p:column>
 
 			<p:column
 				headerText="Data Alteração"
 				styleClass="percentual-10 singleLine">
-				<h:outputText value="25/08/2014 20:47">
+				<h:outputText value="#{row.dataAlteracao}">
 				</h:outputText>
 			</p:column>
 
 			<p:column
 				headerText="Id"
 				styleClass="percentual-10">
-				<h:outputText value="000000000000000000001" />
+				<h:outputText value="#{row.id}" />
 			</p:column>
 
 			<p:column 
 				headerText="Descrição"
 				styleClass="percentual-10 singleLine">
-				<h:outputText value="Acessórios Partas e Peças para Persianas Horizontal em Alumínio" />
+				<h:outputText value="#{row.descricao}" />
 			</p:column>
 
 		</p:dataTable>

@@ -11,11 +11,8 @@ import br.com.golive.annotation.Jasper;
 
 @Data
 @Jasper(titulo = "tittle.relatorio.cadastro", nomeDoArquivoGerado = "file.name.areaDeAtuacao.Cadastro", nomeArquivoJasper = "cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro")
-@Entity
-@Table(name = "Tabela1")
 public class AreaDeAtuacaoEmbed {
 
-	@Column(name = "id")
 	private Cadastro cadastroAreaAtuacao;
 
 	private AuditoriaLog auditoriaLog;
