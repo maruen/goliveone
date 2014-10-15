@@ -7,10 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{codigoInternetBean}" />
+	<ui:param name="bean" value="#{paisesFipsBean}" />
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_codigoInternet.css" />
+		<h:outputStylesheet name="css/cadastros/style_paisesfips.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{codigoInternetBean.conteudo}"
+			value="#{paisesFipsBean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{codigoInternetBean.registro}" 
+			selection="#{paisesFipsBean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -35,14 +35,14 @@
 
 			<p:column
 				headerText="Id"
-				styleClass="percentual-10">
+				styleClass="percentual-10 text-align-center">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Código TLD"
-				styleClass="percentual-10">				
-				<h:outputText value=".af" />
+				headerText="FIPS"
+				styleClass="percentual-10 text-align-center">				
+				<h:outputText value="AF" />
 			</p:column>
 
 			<p:column
@@ -70,11 +70,11 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/dadosGeraisCodigoInternet.xhtml">
-			<ui:param name="pojo" value="#{codigoInternetBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigopaises/dadosGeraisPaisesFips.xhtml">
+			<ui:param name="pojo" value="#{paisesFipsBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/auditoriaCodigoInternet.xhtml" >
-			<ui:param name="pojo" value="#{codigoInternetBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigopaises/auditoriaPaisesFips.xhtml" >
+			<ui:param name="pojo" value="#{paisesFipsBean.registro}" />
 		</ui:include>
 
 	</ui:define>

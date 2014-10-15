@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="estado"
+		 header="Estado"
+		 toggleable="true"
+		 collapsed="true"
+		 closable="true"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="estado"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="4"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-10,
+          				 				percentual-50,
+          				 				percentual-5,
+          				 				percentual-5"
+           				 width="100%"
+          				 border="0">
+     
+			<h:outputText id="idEstadoOutputText"
+						  value="Id"   />
+           	<h:inputText id="idEstadoInputText"
+           				 style="width: 125px;"
+           				 disabled="true"
+           				 value="0000000020"/>
+      		
+      		<p:spacer/>
+      		<p:spacer/>
+      		
+      		<h:outputText id="codigIbgeOutputText" 
+      					  value="Cód.IBGE" 
+      					  styleClass="singleLine" />
+      		<h:inputText id="codigoIbgeInputText"
+      					 required="true"
+      					 disabled="true"
+      					 style="width: 125px"
+      					 value="35" />		
+      					 
+      		<p:spacer/>
+      		<p:spacer/>
+      		
+      		<h:outputText id="abreviacaoOutputText" 
+      					  value="Abreviação" 
+      					  styleClass="singleLine" />
+      		<h:inputText id="abreviacaoInputText"
+      					 required="true"
+      					 disabled="true"
+      					 style="width: 125px"
+      					 value="SP" />		
+
+			<p:spacer/>
+			<p:spacer/>
+			
+      		<h:outputText id="estadoOutputText" 
+      					  value="Estado" 
+      					  styleClass="singleLine" />
+      		<h:inputText id="estadoInputText"
+      					 required="true"
+      					 disabled="true"
+      					 style="width: 50%"
+      					 value="São Paulo" />		
+      					 
+             		
+         </h:panelGrid>
+	</p:panel>
+</ui:composition>

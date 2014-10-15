@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroCodigoInternet.dadosGerais')}"
+		 header="#{userBean.properties.getField('label.cadastroTelefonicoMunicipios.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="true"
@@ -30,64 +30,35 @@
            				 width="100%"
           				 border="0">
      
-			<h:outputText id="idOutputText"
+			<h:outputText id="idDadosGeraisOutputText"
 						  value="Id"   />
-           	<h:inputText id="idInputText"
+           	<h:inputText id="idDadosGeraisInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroCodigoInternet.inclusao')}" />
+      					  value="#{userBean.properties.getField('label.cadastroTelefonicoMunicipios.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
-      		<h:outputText id="codigoTldOutputText" 
-      					  value="Cód.TLD" 
+      		<h:outputText id="codigoTelMunicipioOutputText" 
+      					  value="Código Tel. Município" 
       					  styleClass="singleLine" />
-      		<p:inputText id="codigoTldInputText"
+      		<p:inputText id="codigoTelMunicipioInputText"
       					 required="true"
       					 disabled="false"
       					 style="width: 125px"
-      					 value=".af" />		
-        		
+      					 value="19" />		
+      					 
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroCodigoInternet.ultimaAlteracao')}"
+       					  value="#{userBean.properties.getField('label.cadastroTelefonicoPaises.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
-	 					 
-			<h:outputText id="paisPortuguesOutputText"
-						  value="País em Português"
-						  styleClass="singleLine"/>
-           	<p:inputText id="paisPortuguesInputText"
-           				 style="width: 60%"
-           				 value="Afeganistão"
-           				 disabled="false"/>
-           				 
-           	<p:spacer/>
-           	<p:spacer/>
-
-			<h:outputText id="paisInglesOutputText"
-						  value="País em Inglês"
-						  styleClass="singleLine"/>
-           	<p:inputText id="paisInglesInputText"
-           				 style="width: 60%"
-           				 value="Afghnistan"
-           				 disabled="false"/>
-
-           	<p:spacer/>
-           	<p:spacer/>
-
-			<h:outputText id="paisNativoOutputText"
-						  value="País em Nativo"
-						  styleClass="singleLine"/>
-           	<p:inputText id="paisNativoInputText"
-           				 style="width: 60%"
-           				 value="ښبثلشدهسفګشخ"
-           				 disabled="false"/>
-      		
+      					 
+             		
          </h:panelGrid>
 	</p:panel>
 </ui:composition>
