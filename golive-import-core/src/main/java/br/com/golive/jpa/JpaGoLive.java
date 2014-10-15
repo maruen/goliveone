@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
@@ -157,8 +156,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @param entity
 	 *            entidade
 	 */
-	@Transactional
-	protected void save(final T entity) {
+	public void save(final T entity) {
 		try{
 			entityManager.persist(entity);
 		}catch(Exception e){

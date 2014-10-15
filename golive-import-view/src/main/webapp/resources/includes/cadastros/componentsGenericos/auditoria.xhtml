@@ -10,7 +10,7 @@
 			 toggleable="true" toggleSpeed="500">
 		
 			<p:dataTable id="auditoriaLogTable"
-					 	 var="list"
+					 	 var="row"
 					 	 value="#{bean.auditoriaLogs}"
 					 	 rowKey="#{list.id}"
 					 	 styleClass="tableCadastros" rows="15"
@@ -20,51 +20,32 @@
 
 		 			<p:column headerText="Id"
 				    		  styleClass="percentual-10">
-				        <h:outputText value="0000000000001" 
-				        			  styleClass="singleLine"/>
+				        <h:outputText value="0000000000001" styleClass="singleLine"/>
 				    </p:column>
 				    
 				    <p:column headerText="Data e Hora"
 				    		  styleClass="percentual-10">
-				        <h:outputText value="25/08/2013 8:21:05" 
-				        			  styleClass="singleLine"/>
+				        <h:outputText value="25/08/2013 8:21:05"  styleClass="singleLine"/>
 				    </p:column>
 				 
 				    <p:column headerText="Formulário"
 				    		  styleClass="percentual-10">
-				        <h:outputText value="Cadastro Departamento de Produtos" 
-				        			  styleClass="singleLine"/>
+				        <h:outputText value="Cadastro Departamento de Produtos" styleClass="singleLine"/>
 				    </p:column>
 				 
-				    <p:column headerText="Id"
-				    		  styleClass="percentual-10">
-				    	<h:outputText value="000000000000001" 
-				    				  styleClass="singleLine"/>
+				    <p:column headerText="Id" styleClass="percentual-10">
+				    	<h:outputText value="000000000000001" styleClass="singleLine"/>
 				    </p:column>
 				 
-			 	   <p:column headerText="Ação"
-			 	   			 styleClass="percentual-10">
-				    	<h:outputText value="Inclusão de Novo Registro"
-				    				 styleClass="singleLine"/>
-				    </p:column>
-				    
-				    <p:column headerText="Valor Alterado"
-				    		  styleClass="percentual-10">
-				    	<h:outputText />
-				    </p:column>
-				    
-				    <p:column headerText="Valor Atual"
-				    		  styleClass="percentual-10">
-				    	<h:outputText />
+			 	   <p:column headerText="Ação" styleClass="percentual-10">
+				    	<h:outputText value="Inclusão de Novo Registro" styleClass="singleLine"/>
 				    </p:column>
 				 
-				 	<p:column headerText="Usuário"
-				 			  styleClass="percentual-10">
+				 	<p:column headerText="Usuário" styleClass="percentual-10">
 				    	<h:outputText value="roberto@acaopersianas.com.br" />
 				    </p:column>
 				    
-				    <p:column headerText="Observação"
-				    		  styleClass="percentual-10">
+				    <p:column headerText="Observação" styleClass="percentual-10">
 				    	<h:outputText /> 
 				    </p:column>
 		

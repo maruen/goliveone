@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="tbAuditoria")
-public class Auditoria implements Serializable {
+public class AuditoriaModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -50,7 +50,7 @@ public class Auditoria implements Serializable {
 	@Column(name="UsuarioSistemaInformacaoAtual")
 	private String usuarioSistemaInformacaoAtual;
 
-	public Auditoria() {
+	public AuditoriaModel() {
 	}
 
 	public Long getId() {

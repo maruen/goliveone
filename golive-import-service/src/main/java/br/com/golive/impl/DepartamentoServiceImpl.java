@@ -6,19 +6,19 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import br.com.golive.entity.departamento.model.DepartamentoModel;
-import br.com.golive.entity.departamento.repositorio.DepartamentoJpa;
+import br.com.golive.entity.departamento.repositorio.DepartamentoJPA;
 import br.com.golive.service.DepartamentoService;
 
 @Stateless
 public class DepartamentoServiceImpl implements DepartamentoService {
 	
 	@Inject
-	private DepartamentoJpa departamentoJpa;
+	private DepartamentoJPA departamentoJpa;
 
 	
 	@Override
 	public void salvar(DepartamentoModel departamentoModel) {
-		departamentoJpa.salvar(departamentoModel);
+		departamentoJpa.save(departamentoModel);
 	}
 
 	@Override
