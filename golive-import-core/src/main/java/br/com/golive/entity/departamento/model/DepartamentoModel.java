@@ -19,9 +19,8 @@ import br.com.golive.annotation.Jasper;
 @Entity	
 @Table(name="tbDepartamentoProduto")  
 public class DepartamentoModel implements Serializable{
-
 	
-	private static final long serialVersionUID = 4180632229625300190L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id")
@@ -29,7 +28,7 @@ public class DepartamentoModel implements Serializable{
     private Long id;
 	
 	@Column(name="DepartamentoProduto")
-	private String descricao;
+	private String departamento;
 	
 	@Column(name="SystemIncludeDateTime")
 	private Date dataInclusao;
@@ -38,17 +37,7 @@ public class DepartamentoModel implements Serializable{
 	private Date dataAlteracao;
 	
 
-	public DepartamentoModel() {
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
-	}
-
-	public DepartamentoModel(Long id, Date dataInclusao, Date dataAlteracao, String descricao) {
-		this.id = id;
-		this.dataInclusao = dataInclusao;
-		this.dataAlteracao = dataAlteracao;
-		this.descricao = descricao;
-	}
+	public DepartamentoModel() {}
 
 	public Long getId() {
 		return id;
@@ -74,11 +63,11 @@ public class DepartamentoModel implements Serializable{
 		this.dataAlteracao = dataAlteracao;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDepartamento() {
+		return departamento;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
 	}
 }

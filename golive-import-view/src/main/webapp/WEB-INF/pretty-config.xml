@@ -112,8 +112,8 @@
 	
 		
 		<url-mapping id="cadastrosCadastrosProdutosClassificacaoDepartamentos">
-			<pattern value="/Cadastros/Cadastros/Produtos/Classificacao/Departamentos" />
-			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/departamentos.jsf" />
+			<pattern value="/Cadastros/Cadastros/Produtos/Classificacao/Departamento" />
+			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/departamento.jsf" />
 		</url-mapping>
 	
 		

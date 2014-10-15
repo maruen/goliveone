@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{departamentoBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{departamentoBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -36,26 +36,37 @@
 			<p:column 
 				headerText="Data Inclusão"
 				styleClass="percentual-10 singleLine">				
-				<h:outputText value="#{row.dataInclusao}" />
+			
+				<h:outputText value="#{row.dataInclusao}" styleClass="floatRight">
+  					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+				</h:outputText>
+				
 			</p:column>
 
 			<p:column
 				headerText="Data Alteração"
 				styleClass="percentual-10 singleLine">
-				<h:outputText value="#{row.dataAlteracao}">
+			
+				<h:outputText value="#{row.dataAlteracao}" styleClass="floatRight">
+  					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
 				</h:outputText>
+			
 			</p:column>
 
 			<p:column
 				headerText="Id"
-				styleClass="percentual-10">
-				<h:outputText value="#{row.id}" />
+				styleClass="percentual-5">
+				
+				<h:outputText value="#{row.id}" styleClass="floatRight"/>
+			
 			</p:column>
 
 			<p:column 
 				headerText="Descrição"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="#{row.descricao}" />
+				styleClass="percentual-15 singleLine">
+				
+				<h:outputText value="#{row.departamento}" styleClass="floatLeft"/>
+			
 			</p:column>
 
 		</p:dataTable>
@@ -65,11 +76,13 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacao/dadosGeraisDepartamento.xhtml">
-			<ui:param name="pojo" value="#{departamentoBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacao/auditoriaDepartamento.xhtml" >
-			<ui:param name="pojo" value="#{departamentoBean.registro}" />
+
+		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
+
 
 	</ui:define>
 </ui:composition>

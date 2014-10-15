@@ -14,6 +14,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	
 	@Inject
 	private DepartamentoJpa departamentoJpa;
+
 	
 	@Override
 	public void salvar(DepartamentoModel departamentoModel) {
@@ -21,8 +22,20 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	}
 	
 	@Override
-	public List<DepartamentoModel> listar() {
+	public List<DepartamentoModel> listarTodos() {
 		return departamentoJpa.findAll();
+	}
+	
+	
+	@Override
+	public List<DepartamentoModel> listarPorFiltro(String... args) {
+		return departamentoJpa.findByFilter(args);
+	}
+
+	@Override
+	public void excluir(DepartamentoModel departamentoModel) {
+		departamentoJpa.delete(departamentoModel);
+		
 	}
 
 }
