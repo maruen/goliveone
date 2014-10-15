@@ -20,22 +20,24 @@
 
 		<h:form id="conteudoForm" styleClass="mainForm">
 
+			<h:commandButton action="#{bean.formAction()}" value="formAction" styleClass="formHidden"/>
+
 			<ui:insert name="bean" />
 			<div id="opcoesDiv" class="opcoesDiv">
 				<ui:include src="/resources/includes/header/toolbar.xhtml" />
 			</div>
 
 			<div id="divConteudo" class="mainContentPage" align="center">
-				
+
 				<p:growl id="mensagens" showDetail="true" sticky="true" />
 
 
 				<h:panelGroup id="conteudoGroup"
 					rendered="#{((bean.fluxo == bean.fluxoListagem) or (bean.fluxo == bean.fluxoExclusao))}">
-					
+
 					<ui:insert name="conteudo" />
-					
-					
+
+
 				</h:panelGroup>
 
 				<h:panelGroup id="edicaoGroup"
@@ -44,7 +46,6 @@
 				</h:panelGroup>
 
 			</div>
-
 		</h:form>
 	</ui:define>
 

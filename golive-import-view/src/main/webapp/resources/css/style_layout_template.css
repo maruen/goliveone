@@ -8,8 +8,7 @@ html,body {
 	padding: 0;
 	margin: 0;
 	width: 100%;
-		overflow: hidden;
-
+	overflow: hidden;
 }
 
 .divMain {
@@ -41,8 +40,6 @@ html,body {
 	height: 110px;
 }
 
-
-
 .childMainDiv {
 	position: relative;
 	height: 85%;
@@ -67,7 +64,7 @@ html,body {
 	overflow-x: hidden;
 }
 
-.contentMainForm{
+.contentMainForm {
 	height: 90%;
 	padding-top: 10px;
 }
@@ -87,8 +84,6 @@ html,body {
 	position: relative;
 }
 
-
-
 .divFooter {
 	position: absolute;
 	height: 4%;
@@ -99,58 +94,54 @@ html,body {
 	z-index: 1000;
 }
 
-.gridHeaderGroup{
+.gridHeaderGroup {
 	padding: 1px;
 	width: 100%;
 }
 
-.gridHeader{
+.gridHeader {
 	position: relative;
 	top: 10px;
 	float: right;
 	right: 5%;
 }
 
-.gridHeaderNomeUsuario{
+.gridHeaderNomeUsuario {
 	position: relative;
 	width: 70%;
 	text-align: right;
 	right: 10%;
-    vertical-align: bottom;
+	vertical-align: bottom;
 	top: -3px;
 }
 
-.gridHeaderData{
+.gridHeaderData {
 	width: 25%;
 	position: relative;
-    vertical-align: bottom;
+	vertical-align: bottom;
 	text-align: center;
 }
 
-.gridHeaderLogout{
+.gridHeaderLogout {
 	width: 10%;
 	position: relative;
-    vertical-align: bottom;
+	vertical-align: bottom;
 	text-align: center;
 }
 
-.empresasHeaderGrid{
+.empresasHeaderGrid {
 	position: relative;
 	float: right;
 	margin-right: 10%;
-
-
 }
 
-.empresasHeaderGridNome{
-
-}
-
-.empresasHeaderGridSelectOneMenu{
+.empresasHeaderGridNome {
 	
 }
 
-
+.empresasHeaderGridSelectOneMenu {
+	
+}
 
 .panelLoading {
 	margin: 0 auto;
@@ -186,7 +177,6 @@ html,body {
 		50% 50% repeat-x !IMPORTANT;
 	color: #000000 !IMPORTANT;
 }*/
-
 .singleLine {
 	text-wrap: none;
 	white-space: nowrap;
@@ -243,4 +233,14 @@ html,body {
 	left: 1%;
 	width: 98%;
 	overflow-y: auto;
+}
+
+.formHidden {
+	position:fixed;
+	visibility: hidden;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	width: 0px;
+	height: 0px;
 }

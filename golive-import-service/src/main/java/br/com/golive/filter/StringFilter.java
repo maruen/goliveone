@@ -1,6 +1,5 @@
 package br.com.golive.filter;
 
-
 public class StringFilter extends GoliveFilter<String> {
 
 	private String inicio;

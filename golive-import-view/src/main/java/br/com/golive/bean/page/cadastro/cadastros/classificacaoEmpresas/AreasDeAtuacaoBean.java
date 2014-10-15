@@ -16,20 +16,18 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules2;
-import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoEmbed;
+import br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoModel;
 import br.com.golive.entity.areaDeAtuacao.AuditoriaLog;
-import br.com.golive.entity.areaDeAtuacao.Cadastro;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.utils.Fluxo;
-import br.com.golive.utils.JSFUtils;
 
 @Label(name = "label.cadastroDeAreaDeAtuacao")
 @ManagedBean
 @ViewScoped
-public class AreasDeAtuacaoBean extends CadastroBeanRules2<AreaDeAtuacaoEmbed> {
+public class AreasDeAtuacaoBean extends CadastroBeanRules2<AreaDeAtuacaoModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 
@@ -38,22 +36,22 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules2<AreaDeAtuacaoEmbed> {
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "dataInclusao", label = "label.dataInclusao", campo = "cadastroAreaAtuacao.dataInclusao")
+	@Filter(name = "dataInclusao", label = "label.dataInclusao")
 	private DateFilter filtroDataInclusao;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "dataAlteracao", label = "label.dataAlteracao", campo = "cadastroAreaAtuacao.dataAlteracao")
+	@Filter(name = "dataAlteracao", label = "label.dataAlteracao")
 	private DateFilter filtroDataAlteracao;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "id", label = "label.id", campo = "cadastroAreaAtuacao.id")
+	@Filter(name = "id", label = "label.id")
 	private NumberFilter filtroId;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "areaDeAtuacao", label = "label.areaDeAtuacao", campo = "cadastroAreaAtuacao.areaDeAtuacao")
+	@Filter(name = "areaDeAtuacao", label = "label.areaDeAtuacao")
 	private StringFilter filtroAtuacao;
 
 	@Override
@@ -72,46 +70,59 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules2<AreaDeAtuacaoEmbed> {
 	@Override
 	public void incluir() {
 		super.incluir();
-		final Cadastro cadastro = new Cadastro();
-		cadastro.setId(conteudo.get(conteudo.size() - 1).getCadastroAreaAtuacao().getId() + 1);
-		cadastro.setDataInclusao(Calendar.getInstance());
-		registro = new AreaDeAtuacaoEmbed(cadastro, new AuditoriaLog());
-		registro.setListaAuditoriaLogs(new ArrayList<AuditoriaLog>());
+		// final Cadastro cadastro = new Cadastro();
+		// cadastro.setId(conteudo.get(conteudo.size() -
+		// 1).getCadastroAreaAtuacao().getId() + 1);
+		// cadastro.setDataInclusao(Calendar.getInstance());
+		// registro = new AreaDeAtuacaoModel(cadastro, new AuditoriaLog());
+		// registro.setListaAuditoriaLogs(new ArrayList<AuditoriaLog>());
 	}
 
 
 	@Override
 	public void salvar() {
-		boolean insert = false;
+		final boolean insert = false;
 
 		if (fluxo.equals(Fluxo.INCLUSAO)) {
-			if ((registro.getCadastroAreaAtuacao().getAreaDeAtuacao() == null) || (registro.getCadastroAreaAtuacao().getAreaDeAtuacao().isEmpty())) {
-				JSFUtils.warnMessage(getLabels().getField("title.msg.erro.ao.inserir"), getLabels().getField("msg.preencher.registro"));
-			} else {
-				logger.info("Salvando = {} ", registro.getCadastroAreaAtuacao().getId());
-
-				registro.getCadastroAreaAtuacao().setDataAlteracao(Calendar.getInstance());
-				registro.getListaAuditoriaLogs().add(new AuditoriaLog(1L, Calendar.getInstance(), "Area de Atuação", 1L, "Inserção teste", "VAZIO", "VAZIO", "golive@apresentacao", "Inserção"));
-
-				final AreaDeAtuacaoEmbed novo = new AreaDeAtuacaoEmbed();
-
-				final Cadastro cadastro = registro.getCadastroAreaAtuacao();
-				novo.setCadastroAreaAtuacao(cadastro);
-				novo.setListaAuditoriaLogs(registro.getListaAuditoriaLogs());
-
-				conteudo.add(novo);
-				filtrados.add(novo);
-				insert = true;
-				JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.inserido.sucesso"));
-			}
-		} else {
-			logger.info("editando = {} ", registro.getCadastroAreaAtuacao().getId());
-
-			registro.getCadastroAreaAtuacao().setDataAlteracao(Calendar.getInstance());
-			registro.getListaAuditoriaLogs().add(new AuditoriaLog(1L, Calendar.getInstance(), "Area de Atuação", 1L, "Edição", "VAZIO", "VAZIO", "golive@apresentacao", "Edição"));
-
-			insert = true;
-			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.edicao.concluida"));
+			// if ((registro.getCadastroAreaAtuacao().getAreaDeAtuacao() ==
+			// null) ||
+			// (registro.getCadastroAreaAtuacao().getAreaDeAtuacao().isEmpty()))
+			// {
+			// JSFUtils.warnMessage(getLabels().getField("title.msg.erro.ao.inserir"),
+			// getLabels().getField("msg.preencher.registro"));
+			// } else {
+			// logger.info("Salvando = {} ",
+			// registro.getCadastroAreaAtuacao().getId());
+			//
+			// registro.getCadastroAreaAtuacao().setDataAlteracao(Calendar.getInstance());
+			// registro.getListaAuditoriaLogs().add(new AuditoriaLog(1L,
+			// Calendar.getInstance(), "Area de Atuação", 1L, "Inserção teste",
+			// "VAZIO", "VAZIO", "golive@apresentacao", "Inserção"));
+			//
+			// final AreaDeAtuacaoModel novo = new AreaDeAtuacaoModel();
+			//
+			// final Cadastro cadastro = registro.getCadastroAreaAtuacao();
+			// novo.setCadastroAreaAtuacao(cadastro);
+			// novo.setListaAuditoriaLogs(registro.getListaAuditoriaLogs());
+			//
+			// conteudo.add(novo);
+			// filtrados.add(novo);
+			// insert = true;
+			// JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"),
+			// getLabels().getField("msg.inserido.sucesso"));
+			// }
+			// } else {
+			// logger.info("editando = {} ",
+			// registro.getCadastroAreaAtuacao().getId());
+			//
+			// registro.getCadastroAreaAtuacao().setDataAlteracao(Calendar.getInstance());
+			// registro.getListaAuditoriaLogs().add(new AuditoriaLog(1L,
+			// Calendar.getInstance(), "Area de Atuação", 1L, "Edição", "VAZIO",
+			// "VAZIO", "golive@apresentacao", "Edição"));
+			//
+			// insert = true;
+			// JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"),
+			// getLabels().getField("msg.edicao.concluida"));
 
 		}
 
@@ -122,40 +133,18 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules2<AreaDeAtuacaoEmbed> {
 	}
 
 	@Deprecated
-	public List<AreaDeAtuacaoEmbed> criarList() throws ParseException {
-		final List<AreaDeAtuacaoEmbed> lista = new ArrayList<AreaDeAtuacaoEmbed>();
-		AreaDeAtuacaoEmbed add = new AreaDeAtuacaoEmbed(new Cadastro(1L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Importação"), new AuditoriaLog());
-		add.setListaAuditoriaLogs(getLista());
-		lista.add(add);
-
-		add = new AreaDeAtuacaoEmbed(new Cadastro(2L, getDate("05/08/2014 20:24"), getDate("15/08/2014 20:47"), "Exportação"), new AuditoriaLog());
-		add.setListaAuditoriaLogs(getLista());
-		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(3L, getDate("07/08/2014 20:24"), getDate("16/08/2014 20:47"), "Industrialização"), new AuditoriaLog());
-		add.setListaAuditoriaLogs(getLista());
-		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(4L, getDate("08/08/2014 20:24"), getDate("17/08/2014 20:47"), "Distribuição"), new AuditoriaLog());
-		add.setListaAuditoriaLogs(getLista());
-		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(5L, getDate("09/08/2014 20:24"), getDate("18/08/2014 20:47"), "Comercialização Atacada"), new AuditoriaLog());
-		add.setListaAuditoriaLogs(getLista());
-		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(6L, getDate("10/08/2014 20:24"), getDate("19/08/2014 20:47"), "Comercialização Varejo"), new AuditoriaLog());
-		add.setListaAuditoriaLogs(getLista());
-		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(7L, getDate("11/08/2014 20:24"), getDate("20/08/2014 20:47"), "Revenda"), new AuditoriaLog());
-		add.setListaAuditoriaLogs(getLista());
-		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(8L, getDate("12/08/2014 20:24"), getDate("21/08/2014 20:47"), "Transporte"), new AuditoriaLog());
-		add.setListaAuditoriaLogs(getLista());
-		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(9L, getDate("13/08/2014 20:24"), getDate("22/08/2014 20:47"), "Logistica"), new AuditoriaLog());
-		add.setListaAuditoriaLogs(getLista());
-		lista.add(add);
-		add = new AreaDeAtuacaoEmbed(new Cadastro(10L, getDate("14/08/2014 20:24"), getDate("23/08/2014 20:47"), "Armazenagem"), new AuditoriaLog());
-		add.setListaAuditoriaLogs(getLista());
-		lista.add(add);
-
+	public List<AreaDeAtuacaoModel> criarList() throws ParseException {
+		final List<AreaDeAtuacaoModel> lista = new ArrayList<AreaDeAtuacaoModel>();
+		lista.add(new AreaDeAtuacaoModel(1L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Importação", getLista()));
+		lista.add(new AreaDeAtuacaoModel(2L, getDate("05/08/2014 20:24"), getDate("15/08/2014 20:47"), "Exportação", getLista()));
+		lista.add(new AreaDeAtuacaoModel(3L, getDate("07/08/2014 20:24"), getDate("16/08/2014 20:47"), "Industrialização", getLista()));
+		lista.add(new AreaDeAtuacaoModel(4L, getDate("08/08/2014 20:24"), getDate("17/08/2014 20:47"), "Distribuição", getLista()));
+		lista.add(new AreaDeAtuacaoModel(5L, getDate("09/08/2014 20:24"), getDate("18/08/2014 20:47"), "Comercialização Atacada", getLista()));
+		lista.add(new AreaDeAtuacaoModel(6L, getDate("10/08/2014 20:24"), getDate("19/08/2014 20:47"), "Comercialização Varejo", getLista()));
+		lista.add(new AreaDeAtuacaoModel(7L, getDate("11/08/2014 20:24"), getDate("20/08/2014 20:47"), "Revenda", getLista()));
+		lista.add(new AreaDeAtuacaoModel(8L, getDate("12/08/2014 20:24"), getDate("21/08/2014 20:47"), "Transporte", getLista()));
+		lista.add(new AreaDeAtuacaoModel(9L, getDate("13/08/2014 20:24"), getDate("22/08/2014 20:47"), "Logistica", getLista()));
+		lista.add(new AreaDeAtuacaoModel(10L, getDate("14/08/2014 20:24"), getDate("23/08/2014 20:47"), "Armazenagem", getLista()));
 		return lista;
 
 	}

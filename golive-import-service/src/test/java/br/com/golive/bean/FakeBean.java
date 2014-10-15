@@ -22,13 +22,13 @@ public class FakeBean {
 	private List<EntidadeFakeSimples> lista;
 	private List<EntidadeFakeSimples> filtrada;
 
-	@Filter(name = "data", label = "", campo = "data")
+	@Filter(name = "data", label = "")
 	private DateFilter filtroData = new DateFilter();
 
-	@Filter(name = "id", label = "", campo = "id")
+	@Filter(name = "id", label = "")
 	private NumberFilter filtroNumero = new NumberFilter();
 
-	@Filter(name = "nome", label = "", campo = "nome")
+	@Filter(name = "nome", label = "")
 	private StringFilter filtroString = new StringFilter();
 
 	private FilterManager<EntidadeFakeSimples> filter;
@@ -43,7 +43,6 @@ public class FakeBean {
 		filtrada = new ArrayList<EntidadeFakeSimples>();
 		filter = new FilterManager<EntidadeFakeSimples>(logger);
 
-		filter.putGetter("id", "nome", "data");
 		filter.setInstance(this);
 		// System.out.println("---------------------------Lista--------------------------");
 		//

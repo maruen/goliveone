@@ -17,6 +17,4 @@ public @interface Filter {
 
 	public String label();
 
-	public String campo();
-
 }

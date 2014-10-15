@@ -31,6 +31,7 @@ public abstract class GenericBean implements Serializable {
 		}
 	}
 
+
 	public String getEmpresaSelecionada() {
 		return empresaSelecionada;
 	}

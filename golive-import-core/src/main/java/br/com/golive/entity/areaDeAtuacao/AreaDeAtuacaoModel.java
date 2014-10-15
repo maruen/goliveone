@@ -2,38 +2,48 @@ package br.com.golive.entity.areaDeAtuacao;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
-import javax.persistence.Transient;
+import javax.persistence.Column;
 
-import lombok.Data;
+import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 
-@Label(name = "label.dadosGerais")
-@Data
-@Deprecated
-public class Cadastro implements Serializable {
+@Jasper(titulo = "tittle.relatorio.cadastro", nomeDoArquivoGerado = "file.name.areaDeAtuacao.Cadastro", nomeArquivoJasper = "cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro")
+public class AreaDeAtuacaoModel implements Serializable{
 
-	@Transient
-	private static final long serialVersionUID = -7415246692175931894L;
+	private static final long serialVersionUID = 1L;
 
 	@Label(name = "label.id")
+	@Column
 	private Long id;
 
 	@Label(name = "label.inclusao")
+	@Column
 	private Calendar dataInclusao;
 
 	@Label(name = "label.ultimaAlteracao")
+	@Column
 	private Calendar dataAlteracao;
 
+
 	@Label(name = "label.descricao")
+	@Column
 	private String areaDeAtuacao;
 
-	public Cadastro(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao, final String areaDeAtuacao) {
+	private List<AuditoriaLog> listaAuditoriaLogs;
+
+	public AreaDeAtuacaoModel() {
+		super();
+	}
+
+	public AreaDeAtuacaoModel(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao, final String areaDeAtuacao, final List<AuditoriaLog> listaAuditoriaLogs) {
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;
 		this.dataAlteracao = dataAlteracao;
 		this.areaDeAtuacao = areaDeAtuacao;
+		this.listaAuditoriaLogs = listaAuditoriaLogs;
 	}
 
 	public Long getId() {
@@ -68,13 +78,12 @@ public class Cadastro implements Serializable {
 		this.areaDeAtuacao = areaDeAtuacao;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<AuditoriaLog> getListaAuditoriaLogs() {
+		return listaAuditoriaLogs;
 	}
 
-	public Cadastro() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setListaAuditoriaLogs(final List<AuditoriaLog> listaAuditoriaLogs) {
+		this.listaAuditoriaLogs = listaAuditoriaLogs;
 	}
 
 	@Override
@@ -85,6 +94,7 @@ public class Cadastro implements Serializable {
 		result = (prime * result) + ((dataAlteracao == null) ? 0 : dataAlteracao.hashCode());
 		result = (prime * result) + ((dataInclusao == null) ? 0 : dataInclusao.hashCode());
 		result = (prime * result) + ((id == null) ? 0 : id.hashCode());
+		result = (prime * result) + ((listaAuditoriaLogs == null) ? 0 : listaAuditoriaLogs.hashCode());
 		return result;
 	}
 
@@ -99,7 +109,7 @@ public class Cadastro implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		final Cadastro other = (Cadastro) obj;
+		final AreaDeAtuacaoModel other = (AreaDeAtuacaoModel) obj;
 		if (areaDeAtuacao == null) {
 			if (other.areaDeAtuacao != null) {
 				return false;
@@ -128,7 +138,19 @@ public class Cadastro implements Serializable {
 		} else if (!id.equals(other.id)) {
 			return false;
 		}
+		if (listaAuditoriaLogs == null) {
+			if (other.listaAuditoriaLogs != null) {
+				return false;
+			}
+		} else if (!listaAuditoriaLogs.equals(other.listaAuditoriaLogs)) {
+			return false;
+		}
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "AreaDeAtuacaoModel [id=" + id + ", dataInclusao=" + dataInclusao + ", dataAlteracao=" + dataAlteracao + ", areaDeAtuacao=" + areaDeAtuacao + ", listaAuditoriaLogs=" + listaAuditoriaLogs + "]";
 	}
 
 }

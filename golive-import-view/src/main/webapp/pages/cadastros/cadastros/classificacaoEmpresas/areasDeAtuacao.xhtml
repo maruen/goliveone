@@ -17,30 +17,50 @@
 
 	<ui:define name="conteudo">
 
-		<p:dataTable value="#{areasDeAtuacaoBean.colunas}" var="coluna"
-			styleClass="configuracaoPerfil">
-			<p:column headerText="#{managerBean.get('label.coluna')}">
-				<h:outputLabel
-					value="#{managerBean.get(areasDeAtuacaoBean.getLabelFilter(coluna.coluna))}" />
-			</p:column>
-			<p:column headerText="#{managerBean.get('label.parametros.filtro')}">
-				<filter:selectTipoFiltro filtro="#{areasDeAtuacaoBean.getFilter(coluna.coluna)}"/>
-			</p:column>
-			<p:column headerText="#{managerBean.get('label.visibilidade')}">
-				<p:selectBooleanCheckbox id="selectBooleanVisivel"
-					value="#{coluna.visibilidade}" />
-			</p:column>
-		</p:dataTable>
+		<p:dialog id="configuracoesTabela" widgetVar="confTableConteudo"
+			modal="true">
 
+			<p:dataTable id="configuracaoTable"
+				value="#{areasDeAtuacaoBean.colunasPagina}" var="coluna"
+				styleClass="configuracaoPerfil">
+				<p:column headerText="#{managerBean.get('label.coluna')}">
+					<h:outputLabel
+						value="#{managerBean.get(areasDeAtuacaoBean.getLabelFilter(coluna.coluna))}" />
+				</p:column>
+				<p:column headerText="#{managerBean.get('label.parametros.filtro')}">
+					<filter:selectTipoFiltro
+						filtro="#{areasDeAtuacaoBean.getFilter(coluna.coluna)}" />
+				</p:column>
+				<p:column headerText="#{managerBean.get('label.visibilidade')}">
+					<p:selectBooleanCheckbox id="selectBooleanVisivel"
+						value="#{coluna.visibilidade}" />
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton id="botaoSalvarConf" 
+						value="#{managerBean.get('label.salvar')}"
+						actionListener="#{areasDeAtuacaoBean.salvarPerfilPagina()}"
+						process="@parent"  update=":conteudoForm:conteudoTable"
+						onsuccess="PF('confTableConteudo').hide()" />
+				</f:facet>
+
+			</p:dataTable>
+		</p:dialog>
 
 		<p:dataTable id="conteudoTable" var="list"
 			selection="#{areasDeAtuacaoBean.registro}"
 			value="#{areasDeAtuacaoBean.conteudo}" selectionMode="single"
-			rowKey="#{list.cadastroAreaAtuacao.id}" styleClass="tableCadastros"
-			rows="15" paginator="true" widgetVar="table" draggableColumns="true"
+			rowKey="#{list.id}" styleClass="tableCadastros" rows="15"
+			paginator="true" widgetVar="table" draggableColumns="true"
 			filteredValue="#{areasDeAtuacaoBean.filtrados}"
 			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<f:facet name="header">
+				<p:commandButton value="#{managerBean.get('label.configuracoes')}"
+					onclick="PF('confTableConteudo').show()" />
+			</f:facet>
+
 
 			<p:ajax event="colReorder"
 				listener="#{areasDeAtuacaoBean.guardarOrdemTabela()}"
@@ -52,14 +72,15 @@
 			<p:column id="seletor" selectionMode="single"
 				style="width:16px;text-align:center" />
 
-			<p:columns value="#{areasDeAtuacaoBean.colunas}" var="coluna"
-				id="columns" columnIndexVar="colIndex">
+			<p:columns value="#{areasDeAtuacaoBean.configuracaoPerfil}"
+				styleClass="colunasStyle" var="coluna" id="columns"
+				columnIndexVar="colIndex">
 				<f:facet name="header">
 					<filter:number id="componentFilterNumberId"
 						update=":conteudoForm:conteudoTable"
 						rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Long')}"
 						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
-						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
+						styleClassBotaoLimpar="limpar"
 						styleClassFiltroDois="filtroFinal"
 						styleClassFiltroUm="filtroInicial"
 						styleClassTitulo="tituloColunaFiltro" />
@@ -82,13 +103,13 @@
 
 				<h:outputText
 					rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Date')}"
-					value="#{areasDeAtuacaoBean.obterLabelColuna(coluna,list, 'cadastroAreaAtuacao')}">
+					value="#{areasDeAtuacaoBean.obterLabelColuna(coluna,list)}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 				</h:outputText>
 
 				<h:outputText
 					rendered="#{!areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Date')}"
-					value="#{areasDeAtuacaoBean.obterLabelColuna(coluna,list, 'cadastroAreaAtuacao')}">
+					value="#{areasDeAtuacaoBean.obterLabelColuna(coluna,list)}">
 				</h:outputText>
 
 			</p:columns>
@@ -100,20 +121,12 @@
 	<ui:define name="edicao">
 		<ui:include
 			src="/resources/includes/cadastros/componentsGenericos/dadosGerais.xhtml">
-			<ui:param name="pojo"
-				value="#{areasDeAtuacaoBean.registro.cadastroAreaAtuacao}" />
+			<ui:param name="pojo" value="#{areasDeAtuacaoBean.registro}" />
 			<ui:param name="clazz"
-				value="#{areasDeAtuacaoBean.getPojoClass('cadastroAreaAtuacao')}" />
+				value="#{areasDeAtuacaoBean.genericClazzInstance}" />
 
 		</ui:include>
 
-		<ui:include
-			src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
-			<ui:param name="pojo"
-				value="#{areasDeAtuacaoBean.registro.listaAuditoriaLogs}" />
-			<ui:param name="clazz"
-				value="#{areasDeAtuacaoBean.getPojoClass('auditoriaLog')}" />
-		</ui:include>
 	</ui:define>
 
 

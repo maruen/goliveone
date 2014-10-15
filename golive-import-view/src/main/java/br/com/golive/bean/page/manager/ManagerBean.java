@@ -102,6 +102,7 @@ public class ManagerBean extends GenericBean {
 		}
 	}
 
+
 	@Deprecated
 	public void newTab(final String url) {
 

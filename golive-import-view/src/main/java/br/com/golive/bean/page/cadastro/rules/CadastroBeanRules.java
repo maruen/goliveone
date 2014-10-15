@@ -126,11 +126,11 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		// verificarConfiguracaoDeOrdenacao();
 		if (getFilterManager() != null) {
 			getFilterManager().setInstance(this);
-			for (final Field field : this.getClass().getDeclaredFields()) {
-				if (field.isAnnotationPresent(Filter.class)) {
-					getFilterManager().putGetter(field.getAnnotation(Filter.class).campo());
-				}
-			}
+			// for (final Field field : this.getClass().getDeclaredFields()) {
+			// if (field.isAnnotationPresent(Filter.class)) {
+			// getFilterManager().putGetter(field.getAnnotation(Filter.class).campo());
+			// }
+			// }
 			// getFilterManager().setPrimeFacesDataTable(dataTable);
 			// getFilterManager().setColunas(colunas);
 			// getFilterManager().setForm(getForm());

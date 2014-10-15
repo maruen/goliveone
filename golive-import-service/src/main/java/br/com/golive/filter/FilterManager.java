@@ -26,49 +26,50 @@ public class FilterManager<T> {
 
 	private final List<T> temp;
 
-	private final List<String> getterManagedBean;
+	// private final List<String> getterManagedBean;
 
 	public FilterManager(final Logger logger) {
 		this.logger = logger;
 		this.temp = new ArrayList<T>();
-		this.getterManagedBean = new ArrayList<String>();
+		// this.getterManagedBean = new ArrayList<String>();
 	}
 
-	public void putGetter(final String... fields) {
-		for (final String definicoes : fields) {
-			if (!getterManagedBean.contains(definicoes)) {
-				getterManagedBean.add(definicoes);
-			}
-		}
-	}
+	// public void putGetter(final String... fields) {
+	// for (final String definicoes : fields) {
+	// if (!getterManagedBean.contains(definicoes)) {
+	// getterManagedBean.add(definicoes);
+	// }
+	// }
+	// }
 
 	@SuppressWarnings({ "rawtypes" })
 	public void filtrar(final List<T> conteudo, final List<T> filtrados, final GoliveFilter filtro, final String field) {
 		try {
-			if (!getterManagedBean.isEmpty()) {
-				temp.addAll(conteudo);
-				logger.info("Filtrando lista por data, campo = {}", field);
-				if (filtro != null) {
-					setFilterOnBean(filtro, field);
-					if (verificarFiltro(filtro)) {
-						if (filtro.getGenericType().getSimpleName().equals("Long")) {
-							retirarNumerosForaDoParametro(conteudo, temp, filtro, field);
-						} else if (filtro.getGenericType().getSimpleName().equals("String")) {
-							retirarStringForaDoParametro(conteudo, temp, filtro, field);
-						} else if (filtro.getGenericType().getSimpleName().equals("Date")) {
-							retirarDatasForaDoParametro(conteudo, temp, filtro, field);
-						}
+			// if (!getterManagedBean.isEmpty()) {
+			temp.addAll(conteudo);
+			if (filtro != null) {
+				logger.info("filtrado lista por data, campo = {}", field);
+				setFilterOnBean(filtro, field);
+				if (verificarFiltro(filtro)) {
+					if (filtro.getGenericType().getSimpleName().equals("Long")) {
+						retirarNumerosForaDoParametro(conteudo, temp, filtro, field);
+					} else if (filtro.getGenericType().getSimpleName().equals("String")) {
+						retirarStringForaDoParametro(conteudo, temp, filtro, field);
+					} else if (filtro.getGenericType().getSimpleName().equals("Date")) {
+						retirarDatasForaDoParametro(conteudo, temp, filtro, field);
 					}
-				} else {
-					setFilterOnBean(null, field);
 				}
-				atualizarListaDeFiltrados(conteudo, temp, filtrados);
-				filtrarPorPelosCamposRestantes(field, temp, filtrados);
-				atualizarListaDeFiltrados(conteudo, temp, filtrados);
-				temp.removeAll(conteudo);
 			} else {
-				throw new GoLiveException("Nenhum filtro foi definido.");
+				logger.info("limpando lista por data, campo = {}", field);
+				setFilterOnBean(null, field);
 			}
+			atualizarListaDeFiltrados(conteudo, temp, filtrados);
+			filtrarPorPelosCamposRestantes(field, temp, filtrados);
+			atualizarListaDeFiltrados(conteudo, temp, filtrados);
+			temp.removeAll(conteudo);
+			// } else {
+			// throw new GoLiveException("Nenhum filtro foi definido.");
+			// }
 		} catch (final Exception e) {
 			temp.removeAll(conteudo);
 			filtrados.removeAll(conteudo);
@@ -264,22 +265,23 @@ public class FilterManager<T> {
 
 			Object retorno = null;
 
-			for (final String key : getterManagedBean) {
-				if (key.contains(field)) {
-					for (final String string : key.replace(".", " ").split(" ")) {
+			// for (final String key : getterManagedBean) {
+			// if (key.contains(field)) {
+			// for (final String string : key.replace(".", " ").split(" ")) {
 
-						if (retorno == null) {
-							if (index.getClass().getDeclaredField(string) != null) {
-								retorno = index.getClass().getDeclaredMethod("get" + WordUtils.capitalize(string)).invoke(index);
-							}
-						} else {
-							if (retorno.getClass().getDeclaredField(string) != null) {
-								retorno = retorno.getClass().getDeclaredMethod("get" + WordUtils.capitalize(string)).invoke(retorno);
-							}
-						}
-					}
-				}
+			// if (retorno == null) {
+			if (index.getClass().getDeclaredField(field) != null) {
+				retorno = index.getClass().getDeclaredMethod("get" + WordUtils.capitalize(field)).invoke(index);
 			}
+			// } else {
+			// if (retorno.getClass().getDeclaredField(string) != null) {
+			// retorno = retorno.getClass().getDeclaredMethod("get" +
+			// WordUtils.capitalize(string)).invoke(retorno);
+			// }
+			// }
+			// }
+			// }
+			// }
 
 			switch (retorno.getClass().getSimpleName()) {
 			case "Long":
