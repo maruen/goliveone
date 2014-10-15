@@ -34,10 +34,12 @@
 			<h:outputText id="idOutputText"  value="Id"   />
            	<h:inputText id="idInputText" style="width: 125px;" disabled="true" value="#{pojo.id}"/>
       		
-      		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroDepartamento.inclusao')}" />
-	 		<h:inputText value="#{pojo.dataInclusao}" id="dataInclusaoInputText" disabled="true" />      					  
-      		
+      		<h:outputText id="dataInclusaoOutputText"  value="#{userBean.properties.getField('label.cadastroDepartamento.inclusao')}" />
+	 		
+	 		<h:inputText value="#{pojo.dataInclusao}" id="dataInclusaoInputText" disabled="true" >
+	 			<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+	 		</h:inputText>
+	 		
       		<h:outputText id="departamentoNomeOutputText" value="Departamento Produto" styleClass="singleLine" />
       		<p:inputText id="departamentoNomeInputText"
       					 required="true"
@@ -45,10 +47,14 @@
       					 style="width: 90%"
       					 value="#{pojo.departamento}" />		
         		
+       		
+       		
        		<h:outputText id="ultimaAlteracaoOutputText"
        					  value="#{userBean.properties.getField('label.cadastroDepartamento.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
-	 		<h:inputText value="#{pojo.dataAlteracao}" id="ultimaAlteracaoInputText" disabled="true" />      					  
+	 		<h:inputText value="#{pojo.dataAlteracao}" id="ultimaAlteracaoInputText" disabled="true" >
+	 			<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+	 		</h:inputText>      					  
 	
         </h:panelGrid>
 
