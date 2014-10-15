@@ -43,7 +43,7 @@ public class CodigoInternetBean extends CadastroBeanRules<CodigoInternetModel> {
 		final List<CodigoInternetModel> lista = new ArrayList<CodigoInternetModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new CodigoInternetModel(new Long(i), new Date(), new Date(), ".af", "Afeganistão", "Afghnistan", ""));
+			lista.add(new CodigoInternetModel(new Long(i), new Date(), new Date(), ".af", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
 		}
 		return lista;
 	}

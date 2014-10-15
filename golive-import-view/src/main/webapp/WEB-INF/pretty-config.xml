@@ -112,8 +112,8 @@
 	
 		
 		<url-mapping id="cadastrosCadastrosProdutosClassificacaoDepartamentos">
-			<pattern value="/Cadastros/Cadastros/Produtos/Classificacao/Departamentos" />
-			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/departamentos.jsf" />
+			<pattern value="/Cadastros/Cadastros/Produtos/Classificacao/Departamento" />
+			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/departamento.jsf" />
 		</url-mapping>
 	
 		
@@ -237,6 +237,31 @@
 		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoInternet">
 			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoInternet" />
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigoInternet.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoPaisesFips">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoPaises/PaisesFips" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigopaises/paisesFips.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoPaisesIso">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoPaises/PaisesIso" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigopaises/paisesIso.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoTelefonicoMunicipios">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoTelefonico/Municipios" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigotelefonico/municipios.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoTelefonicoPaises">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoTelefonico/Paises" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigotelefonico/paises.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisesBacen">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/PaisesBacen" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisesBacen.jsf" />
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosRegioesRegioes">

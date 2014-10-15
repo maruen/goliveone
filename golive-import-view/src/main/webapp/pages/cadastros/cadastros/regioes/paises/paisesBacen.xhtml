@@ -7,10 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{departamentoBean}" />
+	<ui:param name="bean" value="#{paisesBacenBean}" />
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_departamento.css" />
+		<h:outputStylesheet name="css/cadastros/style_paisesbacen.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{departamentoBean.conteudo}"
+			value="#{paisesBacenBean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{departamentoBean.registro}" 
+			selection="#{paisesBacenBean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -33,29 +33,35 @@
 
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10 text-align-center">
+				<h:outputText value="0000000001" />
+			</p:column>
+
 			<p:column 
-				headerText="Data Inclusão"
-				styleClass="percentual-10 singleLine">				
-				<h:outputText value="#{row.dataInclusao}" />
+				headerText="Cód.Bacen"
+				styleClass="percentual-10 text-align-center">				
+				<h:outputText value="00132" />
 			</p:column>
 
 			<p:column
-				headerText="Data Alteração"
+				headerText="País (em Português)"
 				styleClass="percentual-10 singleLine">
-				<h:outputText value="#{row.dataAlteracao}">
+				<h:outputText value="Afeganistão">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="País (em Inglês)"
 				styleClass="percentual-10">
-				<h:outputText value="#{row.id}" />
+				<h:outputText value="Afghnistan" />
 			</p:column>
 
 			<p:column 
-				headerText="Descrição"
+				headerText="País (em Nativo)"
 				styleClass="percentual-10 singleLine">
-				<h:outputText value="#{row.descricao}" />
+				<h:outputText value="ښبثلشدهسفګشخ" />
 			</p:column>
 
 		</p:dataTable>
@@ -64,11 +70,11 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacao/dadosGeraisDepartamento.xhtml">
-			<ui:param name="pojo" value="#{departamentoBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/dadosGeraisPaisesBacen.xhtml">
+			<ui:param name="pojo" value="#{paisesBacenBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacao/auditoriaDepartamento.xhtml" >
-			<ui:param name="pojo" value="#{departamentoBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/auditoriaPaisesBacen.xhtml" >
+			<ui:param name="pojo" value="#{paisesBacenBean.registro}" />
 		</ui:include>
 
 	</ui:define>

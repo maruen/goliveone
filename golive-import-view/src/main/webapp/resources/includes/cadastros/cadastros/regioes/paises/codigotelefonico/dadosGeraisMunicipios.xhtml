@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="dadosGerais"
+		 header="#{userBean.properties.getField('label.cadastroTelefonicoMunicipios.dadosGerais')}"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="true"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="dadosGerais"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="4"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-10,
+          				 				percentual-50,
+          				 				percentual-5,
+          				 				percentual-5"
+           				 width="100%"
+          				 border="0">
+     
+			<h:outputText id="idDadosGeraisOutputText"
+						  value="Id"   />
+           	<h:inputText id="idDadosGeraisInputText"
+           				 style="width: 125px;"
+           				 disabled="true"/>
+      		
+      		<h:outputText id="dataInclusaoOutputText" 
+      					  value="#{userBean.properties.getField('label.cadastroTelefonicoMunicipios.inclusao')}" />
+	 		<h:inputText value="25/08/2014 20:24" 
+	 					 id="dataInclusaoInputText" 
+	 					 disabled="true" />      					  
+      		
+      		<h:outputText id="codigoTelMunicipioOutputText" 
+      					  value="Código Tel. Município" 
+      					  styleClass="singleLine" />
+      		<p:inputText id="codigoTelMunicipioInputText"
+      					 required="true"
+      					 disabled="false"
+      					 style="width: 125px"
+      					 value="19" />		
+      					 
+       		<h:outputText id="ultimaAlteracaoOutputText"
+       					  value="#{userBean.properties.getField('label.cadastroTelefonicoPaises.ultimaAlteracao')}"
+       					  styleClass="singleLine"/>
+	 		<h:inputText value="25/08/2014 20:47" 
+	 					 id="ultimaAlteracaoInputText" 
+	 					 disabled="true" />  
+      					 
+             		
+         </h:panelGrid>
+	</p:panel>
+</ui:composition>

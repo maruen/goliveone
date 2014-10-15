@@ -1,18 +1,13 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -20,7 +15,6 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
-import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.utils.Fluxo;
@@ -39,7 +33,7 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	@Inject
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
-	private Calendar data;
+	
 
 	@EJB
 	private DepartamentoService departamentoService;
@@ -48,74 +42,54 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	@PostConstruct
 	public void init() {
 		logger.info("Inicializando = {}", this.getClass().getName());
-		this.conteudo = departamentoService.listar();
+		super.init(departamentoService.listarPorFiltro());
 		fluxo = Fluxo.LISTAGEM;
 	}
-	
-
-	@SuppressWarnings("unused")
-	private void saveExample() {
-		DepartamentoModel departamentoModel = new DepartamentoModel();
-		departamentoModel.setDataAlteracao(new Date());
-		departamentoModel.setDataInclusao(new Date());
-		departamentoModel.setDescricao("Teste");
-		departamentoService.salvar(departamentoModel);
-	}
-	
+		
 	@Override
-	public Map<String, Object> obterParametrosRelatório() {
-		logger.info("Obtendo parametros para carregar relatório");
-		final Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("usuarioLogado", "Guilherme Desenvolvimento");
-		parametros.put("label.usuario", labels.getField("label.usuario"));
-		try {
-			logger.info("Carregando logo da empresa");
-			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("01.png")));
-		} catch (final IOException e) {
-			logger.error("Erro ao carregar logo da empresa");
-		}
-		return parametros;
+	public void incluir() {
+		super.incluir();
+		this.registro = new DepartamentoModel();
 	}
-	
+
+	@Override
+	public void excluir() {
+		departamentoService.excluir(this.registro);
+		super.excluir();
+	}
+
 	@Override
 	public void salvar() {
+		if (registro.getId() != null) {
+			registro.setDataAlteracao(new Date());
+			departamentoService.alterar(registro);
+		} else {
+			registro.setDataInclusao(new Date());
+			registro.setDataAlteracao(new Date());
+			departamentoService.salvar(registro);
+		}
+		conteudo = departamentoService.listarPorFiltro();
 		super.salvar();
-		logger.info("Salvando = {} ");
-	}
-	
-	public Calendar getDataInclusaoFiltro() {
-		return data;
-	}
-
-	public void setDataInclusaoFiltro(final Calendar dataInclusaoFiltro) {
-		data = dataInclusaoFiltro;
 	}
 
 	@Override
 	protected Logger getLogger() {
 		return logger;
 	}
-
-	@Override
-	public FilterManager<DepartamentoModel> getFilterManager() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<List<Object>> getAuditoriaLogDatatable() {
-		return getRowsByColumns();
-	}
 	
-	private List<List<Object>> getRowsByColumns() {
-		final List<List<Object>> dataTableRows = new ArrayList<List<Object>>();
-
-		for (int lines = 1; lines <= 5; lines++) {
-			final List<Object> row = new ArrayList<Object>();
-			for (int columns = 1; columns <= 20; columns++) {
-				row.add(new String("XXXXXX"));
-			}
-			dataTableRows.add(row);
-		}
-		return dataTableRows;
+	
+	public List<Object> getAuditoriaLogs() {
+		
+		ArrayList<Object> list = new ArrayList<Object>();
+		list.add(new Object());
+		list.add(new Object());
+		list.add(new Object());
+		
+		return list;  
 	}
+		
+		
+	
+	
+	
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
+
+	<ui:param name="bean" value="#{paisesIsoBean}" />
+
+	<ui:define name="css">
+		<h:outputStylesheet name="css/cadastros/style_paisesiso.css" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="conteudoTable"
+			var="row" 
+			value="#{paisesIsoBean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{paisesIsoBean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="Não há Registros"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10 text-align-center">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="ISO 3161-1 Alfa-3"
+				styleClass="percentual-10 text-align-center">				
+				<h:outputText value="AFG" />
+			</p:column>
+
+			<p:column
+				headerText="País (em Português)"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Afeganistão">
+				</h:outputText>
+			</p:column>
+
+			<p:column
+				headerText="País (em Inglês)"
+				styleClass="percentual-10">
+				<h:outputText value="Afghnistan" />
+			</p:column>
+
+			<p:column 
+				headerText="País (em Nativo)"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="ښبثلشدهسفګشخ" />
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+
+	<ui:define name="edicao">
+
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigopaises/dadosGeraisPaisesIso.xhtml">
+			<ui:param name="pojo" value="#{paisesIsoBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigopaises/auditoriaPaisesIso.xhtml" >
+			<ui:param name="pojo" value="#{paisesIsoBean.registro}" />
+		</ui:include>
+
+	</ui:define>
+</ui:composition>

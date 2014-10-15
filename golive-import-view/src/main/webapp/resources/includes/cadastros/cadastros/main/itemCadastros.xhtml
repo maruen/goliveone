@@ -146,7 +146,7 @@
 			<p:menuitem
 				value="#{managerBean.get('label.departamentos')}"
 				styleClass="itemPanelMenu little-font"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.departamentos')}');" />
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.departamento')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.gruposDeProdutos')}"
 				styleClass="itemPanelMenu little-font"
@@ -246,19 +246,19 @@
 				label="#{managerBean.get('label.codigoPaises')}">
 				<p:menuitem value="#{managerBean.get('label.iso3161')}"
 					styleClass="itemPanelMenu little-font"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.iso3161')}');" />
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.paisesiso')}');" />
 				<p:menuitem value="#{managerBean.get('label.fips')}"
 					styleClass="itemPanelMenu little-font"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.fips')}');" />
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.paisesfips')}');" />
 			</p:submenu>
 			<p:submenu styleClass="little-medium"
 				label="#{managerBean.get('label.codigoTelefonico')}">
-				<p:menuitem value="#{managerBean.get('label.pais')}"
+				<p:menuitem value="#{managerBean.get('label.municipios')}"
 					styleClass="itemPanelMenu little-font"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.pais')}');" />
-				<p:menuitem value="#{managerBean.get('label.internoPais')}"
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.municipios')}');" />
+				<p:menuitem value="#{managerBean.get('label.paises')}"
 					styleClass="itemPanelMenu little-font"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.internopais')}');" />
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.paises')}');" />
 			</p:submenu>
 			<p:menuitem
 				value="#{managerBean.get('label.linguas')}"

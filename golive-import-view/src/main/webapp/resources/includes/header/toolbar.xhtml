@@ -99,13 +99,15 @@
 					styleClass="label little-font" />
 			</h:commandLink>
 
-			<h:commandLink actionListener="#{bean.cancelar()}"
+			<h:commandLink actionListener="#{bean.cancelar()}" immediate="true"
 				styleClass="linkButton">
+				
 				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/repeat.png"
 					styleClass="image" />
 				<h:outputLabel value="#{managerBean.get('label.cancelar')}"
 					styleClass="label little-font" />
+			
 			</h:commandLink>
 
 		</h:panelGrid>

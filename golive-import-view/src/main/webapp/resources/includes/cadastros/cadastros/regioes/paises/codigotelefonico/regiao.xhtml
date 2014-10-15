@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="regiao"
+		 header="Região"
+		 toggleable="true"
+		 collapsed="true"
+		 closable="true"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="regiao"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="4"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-10,
+          				 				percentual-50,
+          				 				percentual-5,
+          				 				percentual-5"
+           				 width="100%"
+          				 border="0">
+     
+			<h:outputText id="idRegiaoOutputText"
+						  value="Id"   />
+           	<h:inputText id="idRegiaoInputText"
+           				 style="width: 125px;"
+           				 disabled="true"
+           				 value="0000000003"/>
+           	
+           	<p:spacer/>
+           	<p:spacer/>
+           	 
+      		<h:outputText id="regiaoOutputText" 
+      					  value="Região" 
+      					  styleClass="singleLine" />
+      		<h:inputText id="regiaoInputText"
+      					 required="true"
+      					 disabled="true"
+      					 style="width: 50%"
+      					 value="Região Sudeste" />		
+             		
+         </h:panelGrid>
+	</p:panel>
+</ui:composition>

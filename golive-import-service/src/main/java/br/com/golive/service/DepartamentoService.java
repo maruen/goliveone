@@ -8,5 +8,9 @@ import br.com.golive.entity.departamento.model.DepartamentoModel;
 public interface DepartamentoService {
 
 	public void salvar(DepartamentoModel departamentoModel);
-	public List<DepartamentoModel> listar();
+	public void alterar(DepartamentoModel departamentoModel);
+	public List<DepartamentoModel> listarTodos();
+	public List<DepartamentoModel> listarPorFiltro(String... args);
+	public void excluir(DepartamentoModel departamentoModel);
+	
 }

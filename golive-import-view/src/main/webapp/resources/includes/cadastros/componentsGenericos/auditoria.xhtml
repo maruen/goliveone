@@ -4,50 +4,51 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<p:panel id="auditoriaLog" styleClass="mainPanel"
-		header="#{managerBean.get('label.auditoria/Log')}"
-		toggleable="true" toggleSpeed="500">
-		<p:dataTable id="auditoriaLogTable" var="list" value="#{pojo}"
-			rowKey="#{list.id}" styleClass="tableCadastros" rows="15"
-			paginator="true"
-			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
-			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+	<p:panel id="auditoriaLog"
+			 styleClass="mainPanel"
+			 header="#{managerBean.get('label.auditoria/Log')}"
+			 toggleable="true" toggleSpeed="500">
+		
+			<p:dataTable id="auditoriaLogTable"
+					 	 var="row"
+					 	 value="#{bean.auditoriaLogs}"
+					 	 rowKey="#{list.id}"
+					 	 styleClass="tableCadastros" rows="15"
+					 	 paginator="true"
+					 	 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+						 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-
-
-			<p:column styleClass="percentual-3 singleLine"
-				headerText="#{managerBean.labelAnotado(clazz, 'id')}">
-				<h:outputLabel value="#{list.id}" />
-			</p:column>
-			<p:column headerText="#{managerBean.labelAnotado(clazz, 'calendar')}" styleClass="percentual-15 singleLine">
-				<h:outputLabel value="#{list.calendar.time}">
-					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-				</h:outputLabel>
-			</p:column>
-			<p:column headerText="#{managerBean.labelAnotado(clazz, 'formulario')}" styleClass="percentual-10 singleLine">
-				<h:outputLabel value="#{list.formulario}" />
-			</p:column>
-			<p:column styleClass="percentual-3 singleLine"
-				headerText="#{managerBean.labelAnotado(clazz, 'id2')}">
-				<h:outputLabel value="#{list.id2}" />
-			</p:column>
-			<p:column headerText="#{managerBean.labelAnotado(clazz, 'acao')}" styleClass="percentual-13 singleLine">
-				<h:outputLabel value="#{list.acao}" />
-			</p:column>
-			<p:column
-				headerText="#{managerBean.labelAnotado(clazz, 'valorAlterado')}" styleClass="percentual-10 singleLine">
-				<h:outputLabel value="#{list.valorAlterado}" />
-			</p:column>
-			<p:column headerText="#{managerBean.labelAnotado(clazz, 'valorAtual')}" styleClass="percentual-12 singleLine">
-				<h:outputLabel value="#{list.valorAtual}" />
-			</p:column>
-			<p:column headerText="#{managerBean.labelAnotado(clazz, 'usuario')}">
-				<h:outputLabel value="#{list.usuario}" />
-			</p:column>
-
-			<p:column headerText="#{managerBean.labelAnotado(clazz, 'observacao')}">
-				<h:outputLabel value="#{list.observacao}" />
-			</p:column>
+		 			<p:column headerText="Id"
+				    		  styleClass="percentual-10">
+				        <h:outputText value="0000000000001" styleClass="singleLine"/>
+				    </p:column>
+				    
+				    <p:column headerText="Data e Hora"
+				    		  styleClass="percentual-10">
+				        <h:outputText value="25/08/2013 8:21:05"  styleClass="singleLine"/>
+				    </p:column>
+				 
+				    <p:column headerText="Formulário"
+				    		  styleClass="percentual-10">
+				        <h:outputText value="Cadastro Departamento de Produtos" styleClass="singleLine"/>
+				    </p:column>
+				 
+				    <p:column headerText="Id" styleClass="percentual-10">
+				    	<h:outputText value="000000000000001" styleClass="singleLine"/>
+				    </p:column>
+				 
+			 	   <p:column headerText="Ação" styleClass="percentual-10">
+				    	<h:outputText value="Inclusão de Novo Registro" styleClass="singleLine"/>
+				    </p:column>
+				 
+				 	<p:column headerText="Usuário" styleClass="percentual-10">
+				    	<h:outputText value="roberto@acaopersianas.com.br" />
+				    </p:column>
+				    
+				    <p:column headerText="Observação" styleClass="percentual-10">
+				    	<h:outputText /> 
+				    </p:column>
+		
 		</p:dataTable>
 	</p:panel>
 
