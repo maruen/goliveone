@@ -20,6 +20,11 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	public void salvar(DepartamentoModel departamentoModel) {
 		departamentoJpa.salvar(departamentoModel);
 	}
+
+	@Override
+	public void alterar(DepartamentoModel departamentoModel) {
+		 departamentoJpa.update(departamentoModel);
+	}
 	
 	@Override
 	public List<DepartamentoModel> listarTodos() {

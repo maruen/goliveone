@@ -56,14 +56,18 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	public void excluir() {
 		departamentoService.excluir(this.registro);
 		super.excluir();
-		
 	}
 
 	@Override
 	public void salvar() {
-		registro.setDataInclusao(new Date());
-		registro.setDataAlteracao(new Date());
-		departamentoService.salvar(registro);
+		if (registro.getId() != null) {
+			registro.setDataAlteracao(new Date());
+			departamentoService.alterar(registro);
+		} else {
+			registro.setDataInclusao(new Date());
+			registro.setDataAlteracao(new Date());
+			departamentoService.salvar(registro);
+		}
 		conteudo = departamentoService.listarPorFiltro();
 		super.salvar();
 	}
