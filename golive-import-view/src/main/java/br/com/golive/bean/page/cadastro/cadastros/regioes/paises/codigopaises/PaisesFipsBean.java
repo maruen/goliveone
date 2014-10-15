@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.regioes.paises;
+package br.com.golive.bean.page.cadastro.cadastros.regioes.paises.codigopaises;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,16 +13,16 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.paises.codigointernet.CodigoInternetModel;
+import br.com.golive.entity.empresas.regioes.paises.codigopaises.fips.PaisesFipsModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastroCodigoInternet")
+@Label(name = "label.cadastroPaisesFips")
 @ManagedBean
 @ViewScoped
-public class CodigoInternetBean extends CadastroBeanRules<CodigoInternetModel> {
+public class PaisesFipsBean extends CadastroBeanRules<PaisesFipsModel> {
 
-	private static final long serialVersionUID = 2145624921217156687L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;
@@ -39,12 +39,13 @@ public class CodigoInternetBean extends CadastroBeanRules<CodigoInternetModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<CodigoInternetModel> criarLista() {
-		final List<CodigoInternetModel> lista = new ArrayList<CodigoInternetModel>();
+	private List<PaisesFipsModel> criarLista() {
+		final List<PaisesFipsModel> lista = new ArrayList<PaisesFipsModel>();
 		
-		for (Integer i = 0; i < 10; i++){
-			lista.add(new CodigoInternetModel(new Long(i), new Date(), new Date(), ".af", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
+		for (Integer i = 0; i <= 10; i++){
+			lista.add(new PaisesFipsModel(new Long(i), new Date(), new Date(), "AF", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
 		}
+		
 		return lista;
 	}
 
@@ -67,10 +68,10 @@ public class CodigoInternetBean extends CadastroBeanRules<CodigoInternetModel> {
 	private List<List<Object>> getRowsByColumns() {
 		final List<List<Object>> dataTableRows = new ArrayList<List<Object>>();
 		
-		for (int lines = 1; lines <=5; lines++){
+		for (int lines = 1; lines <= 5; lines ++){
 			final List<Object> rows = new ArrayList<Object>();
 			
-			for (int columns = 1; columns < 20; columns++){
+			for (int columns = 1; columns <= 20; columns++){
 				rows.add(new String("XXX"));
 			}
 			

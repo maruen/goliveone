@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroCodigoInternet.dadosGerais')}"
+		 header="#{userBean.properties.getField('label.cadastroPaisesFips.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="true"
@@ -37,22 +37,22 @@
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroCodigoInternet.inclusao')}" />
+      					  value="#{userBean.properties.getField('label.cadastroPaisesFips.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
-      		<h:outputText id="codigoTldOutputText" 
-      					  value="Cód.TLD" 
+      		<h:outputText id="codigoFipsOutputText" 
+      					  value="Código FIPS" 
       					  styleClass="singleLine" />
-      		<p:inputText id="codigoTldInputText"
+      		<p:inputText id="codigoFipsInputText"
       					 required="true"
       					 disabled="false"
       					 style="width: 125px"
-      					 value=".af" />		
+      					 value="AF" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroCodigoInternet.ultimaAlteracao')}"
+       					  value="#{userBean.properties.getField('label.cadastroPaisesFips.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
