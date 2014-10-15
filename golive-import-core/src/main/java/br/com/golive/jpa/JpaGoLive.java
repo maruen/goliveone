@@ -17,6 +17,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.golive.constants.Constantes;
+
 /**
  * @author guilherme.duarte
  * @param <T>
@@ -44,8 +46,8 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * 
 	 *         <p>
 	 *         Construtor protected obriga o objeto extendido a implementar um
-	 *         ponto de inje��o, para que possa funcionar a invers�o do controle
-	 *         de depend�ncias
+	 *         ponto de injeção, para que possa funcionar a inversão do controle
+	 *         de dependências
 	 *         </p>
 	 * 
 	 * @param entityManager
@@ -122,6 +124,13 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		final Criteria criteria = createCriteria(persistentClass);
 		return criteria.list();
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<T> findByFilter(String... args ) {
+		final Criteria criteria = createCriteria(persistentClass).setMaxResults(Constantes.MAX_RESULTS);
+		return criteria.list();
+	}
 
 	/**
 	 * @author guilherme.duarte
@@ -134,14 +143,15 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 *            entidade
 	 */
 	public void delete(final T entity) {
-		entityManager.remove(entity);
+		T objectToRemove = entityManager.merge(entity);
+		entityManager.remove(objectToRemove);
 	}
 
 	/**
 	 * @author guilherme.duarte
 	 * 
 	 *         <p>
-	 *         M�todo responsavel por persistir Entidade
+	 *         Método responsavel por persistir Entidade
 	 *         </p>
 	 * 
 	 * @param entity
@@ -160,7 +170,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @author guilherme.duarte
 	 * 
 	 *         <p>
-	 *         M�todo responsavel por realizar update/insert dependendo se o id
+	 *         Método responsavel por realizar update/insert dependendo se o id
 	 *         da entidade Entidade
 	 *         </p>
 	 * 
@@ -176,7 +186,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @author guilherme.duarte
 	 * 
 	 *         <p>
-	 *         M�todo responsavel por retornar uma lista da entidade
+	 *         Método responsavel por retornar uma lista da entidade
 	 *         </p>
 	 * 
 	 * @param queryName
@@ -193,7 +203,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @author guilherme.duarte
 	 * 
 	 *         <p>
-	 *         M�todo responsavel por retornar uma lista da entidade
+	 *         Método responsavel por retornar uma lista da entidade
 	 *         </p>
 	 * 
 	 * @param queryName
@@ -213,7 +223,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @author guilherme.duarte
 	 * 
 	 *         <p>
-	 *         M�todo responsavel por carregar atributos LAZY
+	 *         Método responsavel por carregar atributos LAZY
 	 *         </p>
 	 * 
 	 * @param entidade

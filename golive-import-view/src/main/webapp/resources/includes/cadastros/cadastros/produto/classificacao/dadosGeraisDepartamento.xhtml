@@ -31,26 +31,24 @@
            				 width="100%"
           				 border="0">
      
-			<h:outputText id="idOutputText"
-						  value="Id"   />
-           	<p:inputText id="idInputText"
-           				 style="width: 125px;"/>
+			<h:outputText id="idOutputText"  value="Id"   />
+           	<h:inputText id="idInputText" style="width: 125px;" disabled="true" value="#{pojo.id}"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
       					  value="#{userBean.properties.getField('label.cadastroDepartamento.inclusao')}" />
-	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      					  
+	 		<h:inputText value="#{pojo.dataInclusao}" id="dataInclusaoInputText" disabled="true" />      					  
       		
       		<h:outputText id="departamentoNomeOutputText" value="Departamento Produto" styleClass="singleLine" />
       		<p:inputText id="departamentoNomeInputText"
       					 required="true"
       					 disabled="false"
       					 style="width: 90%"
-      					 value="Acessórios, Partes e Peças para Persianas Horizontais em Alumínio" />		
+      					 value="#{pojo.departamento}" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
        					  value="#{userBean.properties.getField('label.cadastroDepartamento.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
-	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      					  
+	 		<h:inputText value="#{pojo.dataAlteracao}" id="ultimaAlteracaoInputText" disabled="true" />      					  
 	
         </h:panelGrid>
 

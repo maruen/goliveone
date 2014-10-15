@@ -209,7 +209,7 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		JSFUtils.chamarJs(new FuncaoJavaScript("abrirPdf", new String(Base64.encodeBase64(ServiceUtils.obterValorPorChave(byte[].class, ChaveSessao.LISTA_IMPRESSAO)))));
 	}
 
-	private void showMenuBar(final long height, final long top) {
+	protected void showMenuBar(final long height, final long top) {
 		JSFUtils.chamarJs(new FuncaoJavaScript("showMenuBar", Long.toString(height), Long.toString(top)));
 	}
 
