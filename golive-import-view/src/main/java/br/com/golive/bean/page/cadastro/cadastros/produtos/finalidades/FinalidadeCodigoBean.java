@@ -118,4 +118,14 @@ public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 	public void setData(final Calendar data) {
 		this.data = data;
 	}
+	
+	public List<Object> getAuditoriaLogs() {
+		ArrayList<Object> list = new ArrayList<Object>();
+		
+		list.add(new Object());
+		list.add(new Object());
+		list.add(new Object());
+
+		return list;
+	}
 }

@@ -7,26 +7,99 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
+	<ui:param name="bean" value="#{estadosBean}" />
+
 	<ui:define name="css">
-		<script type="text/javascript">
-		
-		window.onload = function() {
-			alert('Pagina nao foi implementada');
-            window.close();
-		}
-
-	</script>
-
-	</ui:define>
-
-	<ui:define name="bean">
+		<h:outputStylesheet name="css/cadastros/style_estados.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="conteudoTable"
+			var="row" 
+			value="#{estadosBean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{estadosBean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="Não há Registros"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="Cód.IBGE"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="35" />
+			</p:column>
+
+			<p:column
+				headerText="Abreviação"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="SP">
+				</h:outputText>
+			</p:column>
+
+			<p:column 
+				headerText="Estado"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="São Paulo" />
+			</p:column>
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="País"
+				styleClass="percentual-10">
+				<h:outputText value="Brasil" />
+			</p:column>
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="Região"
+				styleClass="percentual-10">
+				<h:outputText value="Região Sudeste" />
+			</p:column>
+
+		</p:dataTable>
+
 	</ui:define>
 
 	<ui:define name="edicao">
+
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/dadosGeraisEstados.xhtml">
+			<ui:param name="pojo" value="#{estadosBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/pais.xhtml">
+			<ui:param name="pojo" value="#{estadosBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/regiao.xhtml">
+			<ui:param name="pojo" value="#{estadosBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+			<ui:param name="pojo" value="#{estadosBean.registro}" />
+		</ui:include>
+
 	</ui:define>
-
-
 </ui:composition>

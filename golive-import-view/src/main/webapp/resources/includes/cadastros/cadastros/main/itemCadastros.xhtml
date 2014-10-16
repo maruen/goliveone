@@ -21,6 +21,10 @@
 		styleClass="itemPanelMenu little-font"
 		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.clientes')}');" />
 
+	<p:menuitem value="#{managerBean.get('label.departamentos')}"
+		styleClass="itemPanelMenu little-font"
+		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.departamentos')}');" />
+
 	<p:submenu label="#{managerBean.get('label.empresas')}">
 		<p:submenu styleClass="little-medium"
 			label="#{managerBean.get('label.cnae')}">
@@ -129,6 +133,20 @@
 			value="#{managerBean.get('label.reservaDeEndereço')}"
 			styleClass="itemPanelMenu little-font"
 			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.reservaDeEndereco')}');" />
+	</p:submenu>
+
+	<p:submenu style="font-size: 13px;" label="#{managerBean.get('label.financeiro')}">
+		<p:menuitem
+			value="#{managerBean.get('label.condicoesdepagamento')}"
+			styleClass="itemPanelMenu little-font"
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.condicoesDePagamento')}');" />
+		<p:menuitem value="#{managerBean.get('label.formasdepagamento')}"
+			styleClass="itemPanelMenu little-font"
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.formasDePagamento')}');" />
+		<p:menuitem
+			value="#{managerBean.get('label.moedas')}"
+			styleClass="itemPanelMenu little-font"
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.moedas')}');" />
 	</p:submenu>
 
 	<p:menuitem

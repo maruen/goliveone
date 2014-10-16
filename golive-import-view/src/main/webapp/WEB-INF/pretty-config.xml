@@ -37,6 +37,11 @@
 			<view-id value="/pages/cadastros/cadastros/clientes.jsf" />
 		</url-mapping>
 		
+		<url-mapping id="cadastrosCadastrosDepartamentos">
+			<pattern value="/Cadastros/Cadastros/Departamentos" />
+			<view-id value="/pages/cadastros/cadastros/departamentos.jsf" />
+		</url-mapping>
+
 		<url-mapping id="cadastrosCadastrosEmpresasCargos">
 			<pattern value="/Cadastros/Cadastros/Empresas/Cargos" />
 			<view-id value="/pages/cadastros/cadastros/empresas/cargos.jsf" />
@@ -98,6 +103,20 @@
 			<view-id value="/pages/cadastros/cadastros/estoque/reservaDeEndereco.jsf" />
 		</url-mapping>
 	
+		<url-mapping id="cadastrosCadastrosFinanceiroCondicoesPagamento">
+			<pattern value="/Cadastros/Cadastros/Financeiro/CondicoesPagamento" />
+			<view-id value="/pages/cadastros/cadastros/financeiro/condicoesPagamento.jsf" />
+		</url-mapping>
+	
+		<url-mapping id="cadastrosCadastrosFinanceiroFormasPagamento">
+			<pattern value="/Cadastros/Cadastros/Financeiro/FormasPagamento" />
+			<view-id value="/pages/cadastros/cadastros/financeiro/formasPagamento.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosFinanceiroMoedas">
+			<pattern value="/Cadastros/Cadastros/Financeiro/Moedas" />
+			<view-id value="/pages/cadastros/cadastros/financeiro/moedas.jsf" />
+		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosFornecedores">
 			<pattern value="/Cadastros/Cadastros/Fornecedores" />

@@ -75,26 +75,18 @@ public class PadroesLarguraBean extends CadastroBeanRules<PadroesLarguraModel>{
 		logger.info("Salvando = {}");
 	}
 	
-	public List<List<Object>> getAuditoriaLogDatatable() {
-		return getRowsByColumns();
-	}
-	
-	private List<List<Object>> getRowsByColumns() {
-		final List<List<Object>> dataTableRows = new ArrayList<List<Object>>();
-
-		for (int lines = 1; lines <= 5; lines++) {
-			final List<Object> row = new ArrayList<Object>();
-			for (int columns = 1; columns <= 20; columns++) {
-				row.add(new String("XXXXXX"));
-			}
-			dataTableRows.add(row);
-		}
-		return dataTableRows;
-	}
-
 	@Override
 	protected Logger getLogger() {
 		return logger;
 	}
 
+	public List<Object> getAuditoriaLogs() {
+		ArrayList<Object> list = new ArrayList<Object>();
+		
+		list.add(new Object());
+		list.add(new Object());
+		list.add(new Object());
+
+		return list;
+	}
 }

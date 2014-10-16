@@ -138,4 +138,14 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 	public void setFilterManager(final FilterManager<CoresModel> filterManager) {
 		this.filterManager = filterManager;
 	}
+	
+	public List<Object> getAuditoriaLogs() {
+		ArrayList<Object> list = new ArrayList<Object>();
+		
+		list.add(new Object());
+		list.add(new Object());
+		list.add(new Object());
+
+		return list;
+	}
 }
