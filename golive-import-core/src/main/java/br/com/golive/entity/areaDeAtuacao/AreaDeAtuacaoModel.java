@@ -5,30 +5,31 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Table;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 
+@Table(name = "tabela")
 @Jasper(titulo = "tittle.relatorio.cadastro", nomeDoArquivoGerado = "file.name.areaDeAtuacao.Cadastro", nomeArquivoJasper = "cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro")
 public class AreaDeAtuacaoModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Label(name = "label.id")
-	@Column
+	@Column(name = "id")
 	private Long id;
 
 	@Label(name = "label.inclusao")
-	@Column
+	@Column(name = "dataInclusao")
 	private Calendar dataInclusao;
 
 	@Label(name = "label.ultimaAlteracao")
-	@Column
+	@Column(name = "dataAlteracao")
 	private Calendar dataAlteracao;
 
-
 	@Label(name = "label.descricao")
-	@Column
+	@Column(name = "areaDeAtuacao")
 	private String areaDeAtuacao;
 
 	private List<AuditoriaLog> listaAuditoriaLogs;

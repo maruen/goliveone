@@ -26,16 +26,14 @@
 		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
 
-	<h:inputText
+	<p:inputText
 		id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_intervalo"
 		style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
 		styleClass="#{cc.attrs.styleClassFiltroUm}"
 		disabled="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
-		<p:ajax event="change"
-			listener="#{cc.attrs.bean.filtrar(cc.attrs.widgetAnotado)}"
-			update="#{cc.attrs.update}" />
-	</h:inputText>
+		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+		onchange="filtrar();">
+	</p:inputText>
 
 	<p:commandLink update="#{cc.attrs.update}"
 		action="#{cc.attrs.bean.limparFiltro(cc.attrs.widgetAnotado)}"
@@ -46,19 +44,18 @@
 	</p:commandLink>
 	<br />
 
-	<h:inputText id="headerfiltro_number#{cc.attrs.widgetAnotado}_fim"
+	<p:inputText id="headerfiltro_number#{cc.attrs.widgetAnotado}_fim"
+		style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
 		styleClass="#{cc.attrs.styleClassFiltroDois}"
 		disabled="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
 		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.getFilterManager().intervalo}"
-		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}">
-		<p:ajax event="change"
-			listener="#{cc.attrs.bean.filtrar(cc.attrs.widgetAnotado)}"
-			update="#{cc.attrs.update}" />
+		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+		onchange="filtrar();">
+	</p:inputText>
 
-	</h:inputText>
-
-
-
+	<p:remoteCommand name="filtrar"
+		actionListener="#{cc.attrs.bean.filtrar(cc.attrs.widgetAnotado)}"
+		update="#{cc.attrs.update}" />
 
 
 </composite:implementation>

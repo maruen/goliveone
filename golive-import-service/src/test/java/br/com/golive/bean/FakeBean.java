@@ -41,7 +41,7 @@ public class FakeBean {
 		logger.debug("----------------------------------------------------------");
 		lista = EntidadeFakeSimples.initList();
 		filtrada = new ArrayList<EntidadeFakeSimples>();
-		filter = new FilterManager<EntidadeFakeSimples>(logger);
+		filter = new FilterManager<EntidadeFakeSimples>();
 
 		filter.setInstance(this);
 		// System.out.println("---------------------------Lista--------------------------");

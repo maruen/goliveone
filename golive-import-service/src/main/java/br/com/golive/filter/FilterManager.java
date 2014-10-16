@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 
@@ -20,36 +22,25 @@ import br.com.golive.exception.GoLiveException;
 
 public class FilterManager<T> {
 
-	private final Logger logger;
+	@Inject
+	private Logger logger;
 
 	private Object instance;
 
 	private final List<T> temp;
 
-	// private final List<String> getterManagedBean;
-
-	public FilterManager(final Logger logger) {
-		this.logger = logger;
+	public FilterManager() {
+		super();
 		this.temp = new ArrayList<T>();
-		// this.getterManagedBean = new ArrayList<String>();
 	}
-
-	// public void putGetter(final String... fields) {
-	// for (final String definicoes : fields) {
-	// if (!getterManagedBean.contains(definicoes)) {
-	// getterManagedBean.add(definicoes);
-	// }
-	// }
-	// }
 
 	@SuppressWarnings({ "rawtypes" })
 	public void filtrar(final List<T> conteudo, final List<T> filtrados, final GoliveFilter filtro, final String field) {
 		try {
-			// if (!getterManagedBean.isEmpty()) {
 			temp.addAll(conteudo);
 			if (filtro != null) {
-				logger.info("filtrado lista por data, campo = {}", field);
 				setFilterOnBean(filtro, field);
+
 				if (verificarFiltro(filtro)) {
 					if (filtro.getGenericType().getSimpleName().equals("Long")) {
 						retirarNumerosForaDoParametro(conteudo, temp, filtro, field);
@@ -60,27 +51,19 @@ public class FilterManager<T> {
 					}
 				}
 			} else {
-				logger.info("limpando lista por data, campo = {}", field);
 				setFilterOnBean(null, field);
 			}
 			atualizarListaDeFiltrados(conteudo, temp, filtrados);
 			filtrarPorPelosCamposRestantes(field, temp, filtrados);
 			atualizarListaDeFiltrados(conteudo, temp, filtrados);
 			temp.removeAll(conteudo);
-			// } else {
-			// throw new GoLiveException("Nenhum filtro foi definido.");
-			// }
 		} catch (final Exception e) {
 			temp.removeAll(conteudo);
 			filtrados.removeAll(conteudo);
 			filtrados.addAll(conteudo);
 			logger.error("Houve um ao realizar o filtro");
 			e.printStackTrace();
-		} finally {
-			// ServiceUtils.ordenarTabela(primeFacesDataTable, colunas,
-			// primeFacesDataTable.getId(), getForm());
 		}
-
 	}
 
 	public void setTipoFiltroMB(final String field, final TipoFiltro filter) {
@@ -94,8 +77,10 @@ public class FilterManager<T> {
 				}
 			}
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			logger.error("Erro ao acessar o setter do filtro no managedBean");
 			throw new GoLiveException("Não existe o campo anotado com " + Filter.class.getName() + " no managedBean");
 		}
+		logger.error("Erro ao acessar o setter do filtro no managedBean");
 		throw new GoLiveException("Não existe o campo anotado com " + Filter.class.getName() + " no managedBean");
 
 	}
@@ -109,6 +94,7 @@ public class FilterManager<T> {
 				}
 			}
 		} catch (final Exception e) {
+			logger.error("Erro selecionar Tipo Filtro");
 			e.printStackTrace();
 		}
 
@@ -156,6 +142,9 @@ public class FilterManager<T> {
 			}
 		}
 		if (!inseriu) {
+			/**
+			 * Utilizado para testes
+			 */
 			if (!getInstance().getClass().isAnnotationPresent(Fake.class)) {
 				throw new GoLiveException("Não existe o campo anotado com " + Filter.class.getName() + " no managedBean");
 			}
@@ -263,38 +252,21 @@ public class FilterManager<T> {
 	private Object getAtributoPorFieldEntity(final T index, final String field) throws NoSuchFieldException, SecurityException, NoSuchMethodException {
 		try {
 
-			Object retorno = null;
-
-			// for (final String key : getterManagedBean) {
-			// if (key.contains(field)) {
-			// for (final String string : key.replace(".", " ").split(" ")) {
-
-			// if (retorno == null) {
 			if (index.getClass().getDeclaredField(field) != null) {
-				retorno = index.getClass().getDeclaredMethod("get" + WordUtils.capitalize(field)).invoke(index);
+				final Object retorno = index.getClass().getDeclaredMethod("get" + WordUtils.capitalize(field)).invoke(index);
+				switch (retorno.getClass().getSimpleName()) {
+				case "Long":
+					return Long.parseLong(retorno.toString());
+				case "GregorianCalendar":
+					return returnDate(retorno);
+				case "String":
+					return retorno.toString();
+				default:
+					break;
+				}
 			}
-			// } else {
-			// if (retorno.getClass().getDeclaredField(string) != null) {
-			// retorno = retorno.getClass().getDeclaredMethod("get" +
-			// WordUtils.capitalize(string)).invoke(retorno);
-			// }
-			// }
-			// }
-			// }
-			// }
-
-			switch (retorno.getClass().getSimpleName()) {
-			case "Long":
-				return Long.parseLong(retorno.toString());
-			case "GregorianCalendar":
-				return returnDate(retorno);
-			case "String":
-				return retorno.toString();
-			default:
-				break;
-			}
-
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			logger.error("Erro ao obterCampo da entidade no indice da lista");
 			e.printStackTrace();
 		}
 		return null;
@@ -357,6 +329,7 @@ public class FilterManager<T> {
 					}
 				}
 			} catch (NoSuchFieldException | SecurityException | NoSuchMethodException e) {
+				logger.error("Erro ao filtrar por parametros restantes");
 				e.printStackTrace();
 			}
 		}

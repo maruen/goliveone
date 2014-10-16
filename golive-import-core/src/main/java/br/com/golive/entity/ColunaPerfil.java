@@ -1,4 +1,4 @@
-package br.com.golive.bean.component;
+package br.com.golive.entity;
 
 import java.io.Serializable;
 

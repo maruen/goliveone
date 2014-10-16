@@ -194,7 +194,6 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules2<AreaDeAtuacaoModel> {
 		return logger;
 	}
 
-	@Override
 	public void setLogger(final Logger logger) {
 		this.logger = logger;
 	}

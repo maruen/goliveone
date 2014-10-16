@@ -18,39 +18,10 @@
 	<composite:attribute name="styleClassTitulo" required="false" />
 	<composite:attribute name="styleClassFiltroUm" required="false" />
 	<composite:attribute name="styleClassBotaoLimpar" required="false" />
-	<composite:attribute name="styleClassBotaoSettings" required="false" />
 </composite:interface>
 
 <composite:implementation>
 
-
-	<p:dialog id="dialogFilter_string#{cc.attrs.widgetAnotado}"
-		showHeader="true" showEffect="fold" modal="true" width="225px"
-		hideEffect="fold"
-		header="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}"
-		widgetVar="#{cc.attrs.widgetAnotado}" resizable="false">
-
-		<p:fieldset id="fieldSetFilter_#{cc.attrs.widgetAnotado}_string" legend="#{managerBean.get('label.parametros.filtro')}"
-			style="margin-bottom:20px">
-			<p:selectOneRadio id="filtro_number#{cc.attrs.widgetAnotado}"
-				styleClass="selectOneRadioInclusao"
-				value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo}"
-				widgetVar="filtroDataComponent_#{cc.attrs.widgetAnotado}"
-				layout="grid" columns="1">
-
-				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.igual}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.igual.label)}" />
-				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.contem}"
-					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.contem.label)}" />
-				<p:ajax event="valueChange" update="#{cc.attrs.update}"
-					listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
-				<p:ajax event="valueChange"
-					listener="#{cc.attrs.bean.filterManager.selecionarTipoFiltro(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado))}" />
-
-			</p:selectOneRadio>
-
-		</p:fieldset>
-	</p:dialog>
 
 
 	<h:outputLabel styleClass="#{cc.attrs.styleClassTitulo}"
@@ -58,32 +29,22 @@
 	<br />
 
 
-		<p:inputText id="headerfiltro_string#{cc.attrs.widgetAnotado}_inicio"
-			styleClass="#{cc.attrs.styleClassFiltroUm}"
-			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
-			<p:ajax event="change" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, cc.attrs.bean.getFilter(cc.attrs.widgetAnotado), cc.attrs.widgetAnotado)}" />
-		</p:inputText>
+	<p:inputText id="headerfiltro_string#{cc.attrs.widgetAnotado}_inicio"
+		style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
+		styleClass="#{cc.attrs.styleClassFiltroUm}"
+		disabled="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}">
+		<p:ajax event="change" update="#{cc.attrs.update}"
+			listener="#{cc.attrs.bean.filtrar(cc.attrs.widgetAnotado)}" />
+	</p:inputText>
 
-		<p:inputText
-			id="headerfiltro_string#{cc.attrs.widgetAnotado}_inicio_disabled"
-			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-			style="background-color: rgba(160, 160, 190, 1);"
-			styleClass="#{cc.attrs.styleClassFiltroUm}" disabled="true"
-			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}" />
-
-		<h:graphicImage onclick="PF('#{cc.attrs.widgetAnotado}').show()"
-			value="/resources/images/stylistica-icons-set/24x24/settings.png"
-			styleClass="#{cc.attrs.styleClassBotaoSettings}" />
-
-
+	<p:commandLink update="#{cc.attrs.update}"
+		action="#{cc.attrs.bean.limparFiltro(cc.attrs.widgetAnotado)}"
+		image="/resources/images/stylistica-icons-set/24x24/bin.png"
+		styleClass="#{cc.attrs.styleClassBotaoLimpar}">
 		<h:graphicImage
-			value="/resources/images/stylistica-icons-set/24x24/bin.png"
-			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
-			<p:ajax event="click" update="#{cc.attrs.update}"
-				listener="#{cc.attrs.bean.filterManager.filtrar(cc.attrs.bean.conteudo, cc.attrs.bean.filtrados, null, cc.attrs.widgetAnotado)}" />
-		</h:graphicImage>
+			value="/resources/images/stylistica-icons-set/24x24/bin.png" />
+	</p:commandLink>
 
 
 
