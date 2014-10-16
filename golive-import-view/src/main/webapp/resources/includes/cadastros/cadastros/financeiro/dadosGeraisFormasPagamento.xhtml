@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroGrupo.dadosGerais')}"
+		 header="#{userBean.properties.getField('label.cadastroFormasPagamento.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -30,42 +30,35 @@
            				 width="100%"
           				 border="0">
      
-			<h:outputText id="idOutputText"
+			<h:outputText id="idDadosGeraisOutputText"
 						  value="Id"   />
-           	<h:inputText id="idInputText"
+           	<h:inputText id="idDadosGeraisInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroGrupo.inclusao')}" />
+      					  value="#{userBean.properties.getField('label.cadastroFormasPagamento.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
-      		<h:outputText id="codigoGrupoOutputText" 
-      					  value="Cód.Grupo" 
+      		<h:outputText id="formaPagamentoOutputText" 
+      					  value="Forma de Pagamento" 
       					  styleClass="singleLine" />
-      		<p:inputText id="codigoDivisaoInputText"
+      		<p:inputText id="formaPagamentoInputText"
       					 required="true"
       					 disabled="false"
-      					 style="width: 125px"
-      					 value="01.1" />		
-        		
+      					 style="width: 60%"
+      					 value="Dinheiro" />		
+      					 
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroGrupo.ultimaAlteracao')}"
+       					  value="#{userBean.properties.getField('label.cadastroTelefonicoPaises.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
-	 					 
-			<h:outputText id="denominacaoGrupoOutputText"
-						  value="Denominação Grupo"
-						  styleClass="singleLine"/>
-           	<p:inputText id="denominacaoGrupoInputText"
-           				 style="width: 84%"
-           				 value="Produção de lavouras temporárias"
-           				 disabled="false"/>
-      		
+      					 
+             		
          </h:panelGrid>
 	</p:panel>
 </ui:composition>
