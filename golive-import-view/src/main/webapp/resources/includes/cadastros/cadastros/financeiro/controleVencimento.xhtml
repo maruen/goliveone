@@ -1,0 +1,120 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="controleVencimento"
+		 header="Controle de Vencimento"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="controleVencimento"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="6"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-1,
+          				 				percentual-2,
+          				 				percentual-1,
+          				 				percentual-2,
+          				 				percentual-2,
+          				 				percentual-15"
+           				 width="100%"
+          				 border="0">
+     			<h:column>
+					<h:outputText id="idControleVencimentoOutputText"
+								  value="Id"   />
+				</h:column>
+				
+				<h:column>
+		           	<h:inputText id="idControleVencimentoInputText"
+		           				 style="width: 100px;"
+		           				 disabled="true"/>
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<h:outputText id="numeroDiasOutputText" 
+		      					  value="Nº Dias" 
+		      					  styleClass="singleLine" />
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<p:inputText id="numeroDiasInputText"
+		      					 required="true"
+		      					 disabled="false"
+		      					 style="width: 100px"
+		      					 value="56" />		
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<p:selectOneRadio id="controleVencimentoRadio" value="XXX">
+			    		<f:selectItem itemLabel="Do Faturamento" itemValue="X" id="faturamentoItemlabel"  />
+			    		<f:selectItem itemLabel="Do Pedido" itemValue="X" id="pedidoItemLabel" />
+	         		</p:selectOneRadio>
+	         	</h:column>
+
+		      	<h:column>
+					<h:commandLink actionListener="#{condicoesPagamentoBean.salvarControleVencimento()}" id="salvarDtControleVencimento"
+						styleClass="linkButton">
+						<h:graphicImage
+							value="/resources/images/stylistica-icons-set/24x24/plus.png"
+							styleClass="image" />
+					</h:commandLink>
+
+				<h:commandLink actionListener="#{condicoesPagamentoBean.excluirControleVencimento()}" id="excluirDtControleVencimento"
+						styleClass="linkButton">
+						<h:graphicImage
+							value="/resources/images/stylistica-icons-set/24x24/delete.png"
+							styleClass="image" />
+					</h:commandLink>
+		      	</h:column>
+            		
+         </h:panelGrid>
+
+	      	
+		<p:dataTable id="controleVencimentoDataTable"
+					 	 var="row"
+					 	 value="#{condicoesPagamentoBean.controleVencimentoDataTable}"
+					 	 rowKey="#{list.id}"
+					 	 styleClass="tableCadastros" rows="15"
+					 	 paginator="true"
+					 	 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+						 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+		 			<p:column headerText="Id"
+				    		  styleClass="percentual-10">
+				        <h:outputText value="0000000000001" styleClass="singleLine"/>
+				    </p:column>
+				    
+				    <p:column headerText="Nº Dias"
+				    		  styleClass="percentual-10">
+				        <h:outputText value="28"  styleClass="singleLine"/>
+				    </p:column>
+				 
+				    <p:column headerText="Do Faturamento"
+				    		  styleClass="percentual-10">
+			    		<p:selectOneRadio id="faturamentoDtRadio" value="XXX">
+			    			<f:selectItem itemLabel="" itemValue="X" />
+	         			</p:selectOneRadio>
+				    </p:column>
+				 
+				    <p:column headerText="Do Pedido" styleClass="percentual-10">
+			    		<p:selectOneRadio id="PedidoDtRadio" value="XXX">
+			    			<f:selectItem itemLabel="" itemValue="X" />
+	         			</p:selectOneRadio>
+				    </p:column>
+				 
+		</p:dataTable>
+                   
+	</p:panel>
+</ui:composition>

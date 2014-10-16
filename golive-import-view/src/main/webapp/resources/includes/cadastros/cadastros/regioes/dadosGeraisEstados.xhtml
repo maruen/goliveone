@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroGrupo.dadosGerais')}"
+		 header="#{userBean.properties.getField('label.cadastroEstados.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -23,7 +23,7 @@
           	<h:panelGrid columns="4"
           				 cellpadding="3"  
           				 cellspacing="3"
-          				 columnClasses="percentual-10,
+          				 columnClasses="percentual-3,
           				 				percentual-50,
           				 				percentual-5,
           				 				percentual-5"
@@ -37,35 +37,46 @@
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroGrupo.inclusao')}" />
+      					  value="#{userBean.properties.getField('label.cadastroEstados.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
-      		<h:outputText id="codigoGrupoOutputText" 
-      					  value="Cód.Grupo" 
+      		<h:outputText id="codigoIbgeOutputText" 
+      					  value="Cód.IBGE" 
       					  styleClass="singleLine" />
-      		<p:inputText id="codigoDivisaoInputText"
+      		<p:inputText id="codigoIbgeInputText"
       					 required="true"
       					 disabled="false"
       					 style="width: 125px"
-      					 value="01.1" />		
+      					 value="35" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroGrupo.ultimaAlteracao')}"
+       					  value="#{userBean.properties.getField('label.cadastroEstados.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 	 					 
-			<h:outputText id="denominacaoGrupoOutputText"
-						  value="Denominação Grupo"
+			<h:outputText id="abreviacaoOutputText"
+						  value="Abreviação"
 						  styleClass="singleLine"/>
-           	<p:inputText id="denominacaoGrupoInputText"
-           				 style="width: 84%"
-           				 value="Produção de lavouras temporárias"
+           	<p:inputText id="abreviacaoInputText"
+           				 style="width: 125px"
+           				 value="SP"
            				 disabled="false"/>
-      		
+           				 
+           	<p:spacer/>
+           	<p:spacer/>
+
+			<h:outputText id="estadoOutputText"
+						  value="Estado"
+						  styleClass="singleLine"/>
+           	<p:inputText id="estadoInputText"
+           				 style="width: 60%"
+           				 value="São Paulo"
+           				 disabled="false"/>
+
          </h:panelGrid>
 	</p:panel>
 </ui:composition>
