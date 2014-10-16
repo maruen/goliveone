@@ -155,10 +155,6 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 		return getRowsByColumns();
 	}
 
-	public List<List<Object>> getAuditoriaLogDatatable() {
-		return getRowsByColumns();
-	}
-
 	public List<List<Object>> getCorDatatable() {
 		return getRowsByColumns();
 	}
@@ -268,5 +264,15 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 			JSFUtils.chamarJs(new FuncaoJavaScript("hideConfirmarExclusaoDiv", "1000", "1000"));
 			JSFUtils.infoMessage("Processo Ok", "Registro foi excluido");
 		}
+	}
+	
+	public List<Object> getAuditoriaLogs() {
+		ArrayList<Object> list = new ArrayList<Object>();
+		
+		list.add(new Object());
+		list.add(new Object());
+		list.add(new Object());
+
+		return list;
 	}
 }

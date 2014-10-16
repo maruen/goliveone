@@ -142,4 +142,13 @@ public class FinalidadePadraoLarguraBean extends CadastroBeanRules<CoresModel> {
 		this.filterManager = filterManager;
 	}
 
+	public List<Object> getAuditoriaLogs() {
+		ArrayList<Object> list = new ArrayList<Object>();
+		
+		list.add(new Object());
+		list.add(new Object());
+		list.add(new Object());
+
+		return list;
+	}
 }
