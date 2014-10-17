@@ -5,6 +5,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -64,5 +65,16 @@ public class Utils {
 			}
 		}
 	}
-
+	
+	@SuppressWarnings("rawtypes")
+	public static String explode(List<Long> ids) {
+		StringBuffer sbf = new StringBuffer();
+		Iterator it = ids.iterator();
+		while (it.hasNext()) {
+			sbf.append(it.next()).append(",");	
+		}
+		sbf.replace(sbf.lastIndexOf(","), sbf.length(), "");
+		return sbf.toString();
+	}
+	
 }

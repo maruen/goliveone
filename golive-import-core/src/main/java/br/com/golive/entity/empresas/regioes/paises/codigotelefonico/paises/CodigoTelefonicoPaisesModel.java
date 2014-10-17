@@ -2,19 +2,16 @@ package br.com.golive.entity.empresas.regioes.paises.codigotelefonico.paises;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "CodigoTelefonicoPaises",
 		nomeDoArquivoGerado = "CodigoTelefonicoPaises",
 		nomeArquivoJasper = "CodigoTelefonicoPaises")
-public class CodigoTelefonicoPaisesModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class CodigoTelefonicoPaisesModel extends Model {
+
+	private static final long serialVersionUID = 1L;
+	
 	private Long codTelPaises;
 	private String paisPortugues;
 	private String paisIngles;
@@ -41,31 +38,7 @@ public class CodigoTelefonicoPaisesModel {
 		this.paisIngles = paisIngles;
 		this.paisNativo = paisNativo;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
+	
 	public Long getCodTelPaises() {
 		return codTelPaises;
 	}

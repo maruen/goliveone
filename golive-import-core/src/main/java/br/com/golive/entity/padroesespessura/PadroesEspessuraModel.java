@@ -3,19 +3,16 @@ package br.com.golive.entity.padroesespessura;
 import java.util.Date;
 
 import br.com.golive.annotation.Jasper;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "PadroesEspessura", 
 		nomeDoArquivoGerado = "file.name.model", 
 		nomeArquivoJasper = "PadroesEspessura")
-public class PadroesEspessuraModel {
-
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class PadroesEspessuraModel extends Model{
+	
+	private static final long serialVersionUID = 1L;
+	
+	
 	private String espessura;
 	private String unidade;
 	private String descricao;
@@ -56,30 +53,6 @@ public class PadroesEspessuraModel {
 		this.idCor = idCor;
 		this.codCor = codCor;
 		this.cor = cor;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
 	}
 
 	public String getEspessura() {

@@ -1,16 +1,13 @@
 package br.com.golive.entity.departamento.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
 @Jasper(titulo 				 	= "Departamento", 
 		nomeDoArquivoGerado 	= "file.name.model", 
@@ -18,35 +15,17 @@ import br.com.golive.annotation.Jasper;
 
 @Entity	
 @Table(name="tbDepartamentoProduto")  
-public class DepartamentoModel implements Serializable{
+public class DepartamentoModel extends Model {
 	
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
 	@Column(name="DepartamentoProduto")
 	private String departamento;
-	
-	@Column(name="SystemIncludeDateTime")
-	private Date dataInclusao;
-	
-	@Column(name="SystemChangeDateTime")
-	private Date dataAlteracao;
 	
 
 	public DepartamentoModel() {}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	public Date getDataInclusao() {
 		return dataInclusao;
 	}

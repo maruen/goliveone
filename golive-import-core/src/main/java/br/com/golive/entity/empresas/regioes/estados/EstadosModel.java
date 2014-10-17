@@ -2,19 +2,16 @@ package br.com.golive.entity.empresas.regioes.estados;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "Estados",
 		nomeDoArquivoGerado = "Estados",
 		nomeArquivoJasper = "Estados")
-public class EstadosModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class EstadosModel extends Model{
+	
+	private static final long serialVersionUID = 1L;
+
 	private Long codIbge;
 	private String abreviacao;
 	private String estado;
@@ -50,31 +47,7 @@ public class EstadosModel {
 		this.idRegiao = idRegiao;
 		this.regiao = regiao;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
+	
 	public Long getCodIbge() {
 		return codIbge;
 	}

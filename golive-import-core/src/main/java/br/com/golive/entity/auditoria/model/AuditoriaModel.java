@@ -19,14 +19,15 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="tbAuditoria")
-public class AuditoriaModel implements Serializable {
+public class AuditoriaModel implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="Id")
-	private Long id;
-
+	@Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="DataHoraOcorrencia")
 	private Date dataHoraOcorrencia;
@@ -52,15 +53,7 @@ public class AuditoriaModel implements Serializable {
 
 	public AuditoriaModel() {
 	}
-
-	public Long getId() {
-		return this.id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	public Date getDataHoraOcorrencia() {
 		return this.dataHoraOcorrencia;
 	}
@@ -115,6 +108,14 @@ public class AuditoriaModel implements Serializable {
 
 	public void setUsuarioSistemaInformacaoAtual(String usuarioSistemaInformacaoAtual) {
 		this.usuarioSistemaInformacaoAtual = usuarioSistemaInformacaoAtual;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 

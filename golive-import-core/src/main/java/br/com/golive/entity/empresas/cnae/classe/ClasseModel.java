@@ -2,19 +2,19 @@ package br.com.golive.entity.empresas.cnae.classe;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
+
 @Jasper(titulo = "Classe",
 		nomeDoArquivoGerado = "Classe",
 		nomeArquivoJasper = "Classe")
-public class ClasseModel {
-	private Date dataInclusao;
-	private Date dataAlteracao;
-	private Long id;
+
+public class ClasseModel extends Model {
+	
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String codSecao;
 	private String denominacaoSecao;
 	private String idDivisao;
@@ -62,31 +62,7 @@ public class ClasseModel {
 		this.codClasse = codClasse;
 		this.denominacaoClasse = denominacaoClasse;
 	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	public String getCodSecao() {
 		return codSecao;
 	}

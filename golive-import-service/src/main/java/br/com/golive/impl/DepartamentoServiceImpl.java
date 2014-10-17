@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.departamento.repositorio.DepartamentoJPA;
 import br.com.golive.service.DepartamentoService;
@@ -13,33 +14,38 @@ import br.com.golive.service.DepartamentoService;
 public class DepartamentoServiceImpl implements DepartamentoService {
 	
 	@Inject
-	private DepartamentoJPA departamentoJpa;
-
+	private DepartamentoJPA departamentoJPA;
 	
 	@Override
 	public void salvar(DepartamentoModel departamentoModel) {
-		departamentoJpa.save(departamentoModel);
+		departamentoJPA.save(departamentoModel);
 	}
 
 	@Override
 	public void alterar(DepartamentoModel departamentoModel) {
-		 departamentoJpa.update(departamentoModel);
+		 departamentoJPA.update(departamentoModel);
 	}
 	
 	@Override
 	public List<DepartamentoModel> listarTodos() {
-		return departamentoJpa.findAll();
+		return departamentoJPA.findAll();
 	}
 	
 	
 	@Override
 	public List<DepartamentoModel> listarPorFiltro(String... args) {
-		return departamentoJpa.findByFilter(args);
+		return departamentoJPA.findByFilter(args);
 	}
 
 	@Override
 	public void excluir(DepartamentoModel departamentoModel) {
-		departamentoJpa.delete(departamentoModel);
+		departamentoJPA.delete(departamentoModel);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<AuditoriaModel> getAuditoriaLogs() {
+		return departamentoJPA.getAuditoriaLogs(DepartamentoModel.class);
 		
 	}
 

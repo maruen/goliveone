@@ -2,19 +2,17 @@ package br.com.golive.entity.unidade;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "Unidade", 
 		nomeDoArquivoGerado = "file.name.model", 
 		nomeArquivoJasper = "Unidade")	
-public class UnidadeModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+
+public class UnidadeModel extends Model{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String codigo;
 	private String descricao;
 	
@@ -32,29 +30,6 @@ public class UnidadeModel {
 		this.descricao = descricao;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
 
 	public String getCodigo() {
 		return codigo;

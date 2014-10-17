@@ -2,19 +2,16 @@ package br.com.golive.entity.finalidadeunidade;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "FinalidadeUnidade", 
 		nomeDoArquivoGerado = "file.name.model", 
 		nomeArquivoJasper = "FinalidadeUnidade")
-public class FinalidadeUnidadeModel {
-	private Long id;
-	private Date dataAlteracao;
-	private Date dataInclusao;
+public class FinalidadeUnidadeModel extends Model{
+	
+	private static final long serialVersionUID = 8436973716542827455L;
+	
 	private String finalidadeUnidadeProduto;
 	private String numMinCaracteres;
 	private String numMaxCaracteres;
@@ -38,31 +35,7 @@ public class FinalidadeUnidadeModel {
 		this.numMinCaracteres = numMinCaracteres;
 		this.numMaxCaracteres = numMaxCaracteres;		
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
+	
 	public String getFinalidadeUnidadeProduto() {
 		return finalidadeUnidadeProduto;
 	}
