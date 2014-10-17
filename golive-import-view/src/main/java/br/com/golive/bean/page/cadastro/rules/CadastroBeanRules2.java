@@ -7,18 +7,18 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
-import javax.persistence.Column;
+import javax.persistence.Table;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -33,7 +33,7 @@ import br.com.golive.annotation.PropriedadesTemplate;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
-import br.com.golive.entity.ColunaPerfil;
+import br.com.golive.entity.perfil.configuracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
@@ -43,6 +43,7 @@ import br.com.golive.qualifier.ListColunaInjected;
 import br.com.golive.qualifier.ListGenericaInjected;
 import br.com.golive.qualifier.PrimefacesDataTableInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
+import br.com.golive.service.PerfilService;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
@@ -91,12 +92,14 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 	@ListGenericaInjected
 	protected List<T> temp;
 
+	@EJB
+	protected PerfilService colunaPerfilService;
+
 	protected Fluxo fluxo = Fluxo.LISTAGEM;
 	protected List<T> conteudo;
 	protected T registro;
 
 	protected Class<T> genericClazzInstance;
-
 
 	private List<ColunaPerfil> configuracaoPerfil;
 
@@ -144,30 +147,18 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		this.conteudo = listaConteudo;
 		filtrados.addAll(conteudo);
 		inicializarClasse();
-		if (getFilterManager() != null) {
-			getFilterManager().setInstance(this);
-		}
+		colunasPagina = Utils.obterListaColunaTabela(genericClazzInstance, usuario, empresaSelecionada);
+		configuracaoPerfil = colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, usuario.getEmpresas().get(0), genericClazzInstance.getAnnotation(Table.class).name());
 
-		Utils.obterLista(colunasPagina, genericClazzInstance, usuario, getEmpresaSelecionada());
-
-		try {
-			verificarConfiguracaoDeOrdenacao();
-			popularColunasVisiveis();
-
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
-		}
+		verificarNecessidadeDeConfiguracao();
 
 	}
 
-	private void popularColunasVisiveis() {
-		if (configuracaoPerfil == null) {
-			setConfiguracaoPerfil(new ArrayList<ColunaPerfil>());
-		}
-
-		for (final ColunaPerfil coluna : colunasPagina) {
-			if ((coluna.getVisibilidade()) && (!getConfiguracaoPerfil().contains(coluna))) {
-				getConfiguracaoPerfil().add(coluna);
+	private void verificarNecessidadeDeConfiguracao() {
+		if (configuracaoPerfil.isEmpty()) {
+			configuracaoPerfil = ServiceUtils.criarConfiguracaoPaginaUsuario(colunasPagina, genericClazzInstance, genericClazzInstance.getSuperclass());
+			for (final ColunaPerfil coluna : configuracaoPerfil) {
+				colunaPerfilService.salvar(coluna);
 			}
 		}
 	}
@@ -207,6 +198,9 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		}
 		genericClazzInstance = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
 		relatorios.setClazz(genericClazzInstance);
+		if (getFilterManager() != null) {
+			getFilterManager().setInstance(this);
+		}
 	}
 
 	public boolean isSelecionado() {
@@ -314,26 +308,32 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 	@SuppressWarnings("rawtypes")
 	public GoliveFilter getFilter(final String widgetName) {
-		for (final Field field : this.getClass().getDeclaredFields()) {
-			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).name().equals(widgetName))) {
-				try {
-					final GoliveFilter ret = (GoliveFilter) this.getClass().getMethod("get" + WordUtils.capitalize(field.getName())).invoke(this);
-					return ret;
-				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-					e.printStackTrace();
-				}
+		if ((widgetName != null) && (!widgetName.isEmpty())) {
+			try {
+				return (GoliveFilter) this.getClass().getMethod("get" + WordUtils.capitalize(Utils.getFilter(widgetName, this.getClass()).getName())).invoke(this);
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+				e.printStackTrace();
 			}
 		}
 		return null;
 	}
 
 	public String getLabelFilter(final String widgetName) {
-		for (final Field field : this.getClass().getDeclaredFields()) {
-			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).name().equals(widgetName))) {
-				return field.getAnnotation(Filter.class).label();
-			}
+		try {
+			return Utils.getFilter(widgetName, this.getClass()).getAnnotation(Filter.class).label();
+		} catch (final GoLiveException e) {
+			getLogger().info("Erro ao obter filtro");
+			e.printStackTrace();
+			return "";
 		}
-		return null;
+
+	}
+
+	public String getFieldNameByColumn(final String nameColumn) {
+		if ((nameColumn != null) && (!nameColumn.isEmpty())) {
+			return Utils.getFieldNameByColumn(nameColumn, genericClazzInstance, genericClazzInstance.getSuperclass());
+		}
+		return "";
 	}
 
 	private void verificarConfiguracaoDeOrdenacao() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -368,22 +368,26 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 	}
 
-	private boolean verificarNovasColunas(final Field[] fields) {
-		boolean inseriu = false;
-		for (final Field field : fields) {
-			// TODO mudar este 'true' e Incluir apenas os @Column
-			if (field.isAnnotationPresent(Column.class)) {
-				if ((true) && (!JSFUtils.verificarColuna(colunasPagina, field.getName()))) {
-					// TODO inserir na base tambem;
-					// TODO Alterar o field.getname para o nome da colunas
-					// @COlumn
-					inseriu = true;
-					colunasPagina.add(new ColunaPerfil(usuario.getId(), new Integer(colunasPagina.size() + 1).longValue(), genericClazzInstance.getName(), field.getName(), false, getEmpresaSelecionada(), "igual"));
-				}
-			}
-		}
-		return inseriu;
-	}
+	// private boolean verificarNovasColunas(final Field[] fields) {
+	// boolean inseriu = false;
+	// for (final Field field : fields) {
+	// // TODO mudar este 'true' e Incluir apenas os @Column
+	// if (field.isAnnotationPresent(Column.class)) {
+	// if ((true) && (!JSFUtils.verificarColuna(colunasPagina,
+	// field.getName()))) {
+	// // TODO inserir na base tambem;
+	// // TODO Alterar o field.getname para o nome da colunas
+	// // @COlumn
+	// inseriu = true;
+	// colunasPagina.add(new ColunaPerfil(usuario.getId(), new
+	// Integer(colunasPagina.size() + 1).longValue(),
+	// genericClazzInstance.getName(), field.getName(), false,
+	// getEmpresaSelecionada(), "igual"));
+	// }
+	// }
+	// }
+	// return inseriu;
+	// }
 
 	public void salvarPerfilPagina() {
 		showMenuBar(0, 0);

@@ -15,8 +15,10 @@ import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.engine.transaction.jta.platform.spi.JtaPlatformException;
 
 import br.com.golive.constants.Constantes;
+import br.com.golive.exception.GoLiveException;
 
 /**
  * @author guilherme.duarte
@@ -79,10 +81,33 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @return {@link Criteria}
 	 */
 
-	public Criteria createCriteria(final Class<T> entityClass) {
+	public Criteria createCriteria(final Class<?> entityClass) {
 		final Session hibernateSession = entityManager.unwrap(Session.class);
 		final Criteria criteria = hibernateSession.createCriteria(entityClass);
 		return criteria;
+	}
+
+	/**
+	 * @author guilherme.duarte
+	 * 
+	 *         <p>
+	 *         Cria um criterio de acordo com a classe de entidade extendida
+	 *         </p>
+	 * 
+	 * @param entityClass
+	 * @return {@link Criteria}
+	 */
+
+	public Criteria createNativeCriteria() {
+		try {
+			final Session hibernateSession = entityManager.unwrap(Session.class);
+			final Criteria criteria = hibernateSession.createCriteria(persistentClass);
+			return criteria;
+		} catch (final JtaPlatformException e) {
+			e.printStackTrace();
+			throw new GoLiveException("Erro ao Obter Criteria");
+		}
+
 	}
 
 	/**
@@ -126,7 +151,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	
 	
 	@SuppressWarnings("unchecked")
-	public List<T> findByFilter(String... args ) {
+	public List<T> findByFilter(final String... args ) {
 		final Criteria criteria = createCriteria(persistentClass).setMaxResults(Constantes.MAX_RESULTS);
 		return criteria.list();
 	}
@@ -142,7 +167,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 *            entidade
 	 */
 	public void delete(final T entity) {
-		T objectToRemove = entityManager.merge(entity);
+		final T objectToRemove = entityManager.merge(entity);
 		entityManager.remove(objectToRemove);
 	}
 
@@ -159,7 +184,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	public void save(final T entity) {
 		try{
 			entityManager.persist(entity);
-		}catch(Exception e){
+		}catch(final Exception e){
 			e.printStackTrace();
 		}
 	}
@@ -217,6 +242,11 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		return entityManager;
 	}
 
+	@SuppressWarnings("unchecked")
+	protected List<T> extractListByCriteria(final Criteria criteria) {
+		return criteria.list();
+	}
+
 	/**
 	 * @author guilherme.duarte
 	 * 
@@ -231,14 +261,14 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		Hibernate.initialize(lazyAtrybute);
 	}
 
+
 	@SuppressWarnings("unchecked")
-	public List<T> findByAtrbuttes(final Map<String, Object> atributs) {
-		final Criteria criteria = createCriteria(persistentClass);
+	public List<T> findByAtributtes(final Map<String, Object> atributs) {
+		final Criteria criteria = createNativeCriteria();
 		for (final String key : atributs.keySet()) {
 			criteria.add(Restrictions.eq(key, atributs.get(key)));
 		}
 		return criteria.list();
-
 	}
 
 	@Override

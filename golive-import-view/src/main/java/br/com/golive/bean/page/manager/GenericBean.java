@@ -8,7 +8,8 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import br.com.golive.constants.ChaveSessao;
-import br.com.golive.entity.Usuario;
+import br.com.golive.entity.empresas.model.Empresa;
+import br.com.golive.entity.perfil.usuario.model.Usuario;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.utils.ServiceUtils;
 
@@ -22,27 +23,23 @@ public abstract class GenericBean implements Serializable {
 	@UsuarioLogadoInjected
 	protected Usuario usuario;
 
-	private String empresaSelecionada;
+	protected Empresa empresaSelecionada;
 
 	@PostConstruct
 	public void postConstruct() {
 		if (ServiceUtils.verificarNaSessaoPorChave(ChaveSessao.EMPRESA_SELECIONADA)) {
-			empresaSelecionada = ServiceUtils.obterValorPorChave(String.class, ChaveSessao.EMPRESA_SELECIONADA);
+			empresaSelecionada = ServiceUtils.obterValorPorChave(Empresa.class, ChaveSessao.EMPRESA_SELECIONADA);
 		}
 	}
 
 
-	public String getEmpresaSelecionada() {
-		return empresaSelecionada;
+	public void setEmpresaSelecionada(final Empresa empresaSelecionada) {
+		ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA, empresaSelecionada);
+		this.empresaSelecionada = empresaSelecionada;
 	}
 
 	public void novaAba() {
 		ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA, empresaSelecionada);
-	}
-
-	public void setEmpresaSelecionada(final String empresaSelecionada) {
-		ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA, empresaSelecionada);
-		this.empresaSelecionada = empresaSelecionada;
 	}
 
 	public Usuario getUsuario() {
@@ -51,6 +48,10 @@ public abstract class GenericBean implements Serializable {
 
 	public void setUsuario(final Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Empresa getEmpresaSelecionada() {
+		return empresaSelecionada;
 	}
 
 }

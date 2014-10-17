@@ -5,33 +5,30 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
+import br.com.golive.annotation.StandardColumn;
+import br.com.golive.entity.Model;
 
-@Table(name = "tabela")
+@Entity
+@Table(name = "tbCadastroClassificacaoAreaDeAtuacao")
 @Jasper(titulo = "tittle.relatorio.cadastro", nomeDoArquivoGerado = "file.name.areaDeAtuacao.Cadastro", nomeArquivoJasper = "cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro")
-public class AreaDeAtuacaoModel implements Serializable{
+public class AreaDeAtuacaoModel extends Model implements Serializable {
 
-	private static final long serialVersionUID = 1L;
 
-	@Label(name = "label.id")
-	@Column(name = "id")
-	private Long id;
+	@Transient
+	private static final long serialVersionUID = -4119335235341249584L;
 
-	@Label(name = "label.inclusao")
-	@Column(name = "dataInclusao")
-	private Calendar dataInclusao;
-
-	@Label(name = "label.ultimaAlteracao")
-	@Column(name = "dataAlteracao")
-	private Calendar dataAlteracao;
-
+	@StandardColumn
 	@Label(name = "label.descricao")
-	@Column(name = "areaDeAtuacao")
+	@Column(name = "Description")
 	private String areaDeAtuacao;
 
+	@Transient
 	private List<AuditoriaLog> listaAuditoriaLogs;
 
 	public AreaDeAtuacaoModel() {
@@ -47,26 +44,32 @@ public class AreaDeAtuacaoModel implements Serializable{
 		this.listaAuditoriaLogs = listaAuditoriaLogs;
 	}
 
+	@Override
 	public Long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(final Long id) {
 		this.id = id;
 	}
 
+	@Override
 	public Calendar getDataInclusao() {
 		return dataInclusao;
 	}
 
+	@Override
 	public void setDataInclusao(final Calendar dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
 
+	@Override
 	public Calendar getDataAlteracao() {
 		return dataAlteracao;
 	}
 
+	@Override
 	public void setDataAlteracao(final Calendar dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}

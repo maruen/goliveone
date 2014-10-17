@@ -13,7 +13,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 import br.com.golive.annotation.Label;
-import br.com.golive.entity.ColunaPerfil;
+import br.com.golive.entity.perfil.configuracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
 

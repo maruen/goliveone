@@ -33,11 +33,11 @@
 					<h:outputLabel value="#{managerBean.get('label.empresa')}" />
 
 					<p:selectOneMenu id="assinantesSelectOneMenu"
-						value="#{bean.empresaSelecionada}" style="width: 600px;"
+						value="#{bean.empresaSelecionada.nome}" style="width: 600px;"
 						effect="fold">
 
 						<c:forEach items="#{managerBean.usuario.empresas}" var="empresas">
-							<f:selectItem itemValue="#{empresas}" itemLabel="#{empresas}"/>
+							<f:selectItem itemValue="#{empresas}" itemLabel="#{empresas.nome}"/>
 						</c:forEach>
 						<p:ajax event="change" listener="#{bean.novaAba()}"/>
 					</p:selectOneMenu>

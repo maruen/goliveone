@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.enterprise.inject.Produces;
 
-import br.com.golive.entity.ColunaPerfil;
+import br.com.golive.entity.perfil.configuracao.model.ColunaPerfil;
 import br.com.golive.qualifier.ListColunaInjected;
 import br.com.golive.qualifier.ListGenericaInjected;
 

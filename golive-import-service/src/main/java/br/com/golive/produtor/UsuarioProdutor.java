@@ -6,7 +6,7 @@ import javax.enterprise.inject.Produces;
 import javax.faces.bean.SessionScoped;
 
 import br.com.golive.constants.ChaveSessao;
-import br.com.golive.entity.Usuario;
+import br.com.golive.entity.perfil.usuario.model.Usuario;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.ServiceUtils;

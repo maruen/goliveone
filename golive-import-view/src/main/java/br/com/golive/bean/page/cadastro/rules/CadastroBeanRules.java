@@ -31,7 +31,7 @@ import br.com.golive.annotation.PropriedadesTemplate;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
-import br.com.golive.entity.ColunaPerfil;
+import br.com.golive.entity.perfil.configuracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
@@ -149,10 +149,10 @@ public abstract class CadastroBeanRules<T> extends GenericBean implements
 		for (final ColunaPerfil conf : colunas) {
 			for (int i = 1; i < colunasDataTable.size(); i++) {
 				if (colunasDataTable.get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", "").equals(conf.getColuna())) {
-					if (conf.getVisibilidade()) {
-						dataTable.getColumns().add(colunasDataTable.get(i));
-						i = colunasDataTable.size();
-					}
+					// if (conf.getVisibilidade()) {
+					// dataTable.getColumns().add(colunasDataTable.get(i));
+					// i = colunasDataTable.size();
+					// }
 				}
 			}
 		}

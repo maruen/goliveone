@@ -65,7 +65,7 @@
 							value="#{loginBean.assinante}" style="width: 308px" effect="fold">
 							<f:selectItem itemLabel="" itemValue=""/>
 							<c:forEach items="#{loginBean.carregadoOnBlur.empresas}" var="empresas">
-								<f:selectItem itemValue="#{empresas}" itemLabel="#{empresas}"/>
+								<f:selectItem itemValue="#{empresas.nome}" itemLabel="#{empresas.nome}"/>
 							</c:forEach>
 								
 						</p:selectOneMenu>

@@ -11,7 +11,8 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import br.com.golive.constants.ChaveSessao;
-import br.com.golive.entity.Usuario;
+import br.com.golive.entity.empresas.model.Empresa;
+import br.com.golive.entity.perfil.usuario.model.Usuario;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.service.UsuarioBeanService;
@@ -70,8 +71,14 @@ public class LoginBean implements Serializable {
 			if ((assinante == null) || (assinante.isEmpty())) {
 				JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro"), labels.getField("msg.selecionar.empresa"));
 			} else {
+
+				for (final Empresa empresa : carregadoOnBlur.getEmpresas()) {
+					if (empresa.getNome().equals(assinante)) {
+						ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA, empresa);
+					}
+				}
 				ServiceUtils.guardarObjetoSessao(ChaveSessao.USUARIO_LOGADO, carregadoOnBlur);
-				ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA, assinante);
+
 
 				if (ServiceUtils.verificarNaSessaoPorChave(ChaveSessao.ULTIMA_PAGINA)) {
 					return "pretty:" + ServiceUtils.obterValorPorChave(PrettyUrl.class, ChaveSessao.ULTIMA_PAGINA).getId();

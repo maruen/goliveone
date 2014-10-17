@@ -28,11 +28,11 @@
         
 				<p:column headerText="#{managerBean.get('label.coluna')}">
 					<h:outputLabel
-						value="#{managerBean.get(areasDeAtuacaoBean.getLabelFilter(coluna.coluna))}" />
+						value="#{managerBean.get(areasDeAtuacaoBean.getLabelFilter(areasDeAtuacaoBean.getFieldNameByColumn(coluna.coluna)))}" />
 				</p:column>
 				<p:column headerText="#{managerBean.get('label.parametros.filtro')}">
 					<filter:selectTipoFiltro
-						filtro="#{areasDeAtuacaoBean.getFilter(coluna.coluna)}" />
+						filtro="#{areasDeAtuacaoBean.getFilter(areasDeAtuacaoBean.getFieldNameByColumn(coluna.coluna))}" />
 				</p:column>
 
 				<f:facet name="footer">
@@ -72,20 +72,20 @@
 				<f:facet name="header">
 					<filter:number id="componentFilterNumberId"
 						update=":conteudoForm:conteudoTable"
-						rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Long')}"
+						rendered="#{areasDeAtuacaoBean.getFilter(areasDeAtuacaoBean.getFieldNameByColumn(coluna.coluna)).genericType.simpleName.equals('Long')}"
 						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
 						styleClassBotaoLimpar="limpar" styleClassFiltroDois="filtroFinal"
 						styleClassFiltroUm="filtroInicial"
 						styleClassTitulo="tituloColunaFiltro" />
 					<filter:string id="componentFilterStringId"
 						update=":conteudoForm:conteudoTable"
-						rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('String')}"
+						rendered="#{areasDeAtuacaoBean.getFilter(areasDeAtuacaoBean.getFieldNameByColumn(coluna.coluna)).genericType.simpleName.equals('String')}"
 						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
 						styleClassBotaoLimpar="limpar" styleClassFiltroUm="filtroInicial"
 						styleClassTitulo="tituloColunaFiltro" />
 					<filter:date id="componentFilterDateId"
 						update=":conteudoForm:conteudoTable"
-						rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Date')}"
+						rendered="#{areasDeAtuacaoBean.getFilter(areasDeAtuacaoBean.getFieldNameByColumn(coluna.coluna)).genericType.simpleName.equals('Date')}"
 						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
 						styleClassBotaoLimpar="limpar" styleClassFiltroDois="filtroFinal"
 						styleClassFiltroUm="filtroInicial"
@@ -93,13 +93,13 @@
 				</f:facet>
 
 				<h:outputText
-					rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Date')}"
+					rendered="#{areasDeAtuacaoBean.getFilter(areasDeAtuacaoBean.getFieldNameByColumn(coluna.coluna)).genericType.simpleName.equals('Date')}"
 					value="#{areasDeAtuacaoBean.obterLabelColuna(coluna,list)}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 				</h:outputText>
 
 				<h:outputText
-					rendered="#{!areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Date')}"
+					rendered="#{!areasDeAtuacaoBean.getFilter(areasDeAtuacaoBean.getFieldNameByColumn(coluna.coluna)).genericType.simpleName.equals('Date')}"
 					value="#{areasDeAtuacaoBean.obterLabelColuna(coluna,list)}">
 				</h:outputText>
 

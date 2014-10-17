@@ -5,16 +5,20 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import br.com.golive.annotation.Filter;
+import br.com.golive.annotation.Label;
 import br.com.golive.constants.Criptografia;
 import br.com.golive.constants.TipoFiltro;
-import br.com.golive.entity.ColunaPerfil;
-import br.com.golive.entity.Usuario;
+import br.com.golive.entity.empresas.model.Empresa;
+import br.com.golive.entity.perfil.configuracao.model.ColunaPerfil;
+import br.com.golive.entity.perfil.usuario.model.Usuario;
 import br.com.golive.exception.GoLiveException;
 
 
@@ -51,18 +55,54 @@ public class Utils {
 		return (Class<?>) ((ParameterizedType) type).getActualTypeArguments()[0];
 	}
 
-	public static <T> void obterLista(final List<ColunaPerfil> colunasPagina, final Class<T> clazz, final Usuario usuario, final String empresaSeleciona) {
-		if ((colunasPagina == null) || (clazz == null)) {
+	public static List<ColunaPerfil> obterListaColunaTabela(final Class<?> clazz, final Usuario usuario, final Empresa empresaSeleciona) {
+		final List<ColunaPerfil> colunasPagina = new ArrayList<ColunaPerfil>();
+		if (clazz == null) {
 			throw new GoLiveException("Erro ao obter colunas da pagina");
 		}
 		Long cont = 1L;
+		cont = obterColunasEntity(colunasPagina, clazz.getSuperclass(), clazz.getAnnotation(Table.class).name(), usuario, empresaSeleciona, cont);
+		cont = obterColunasEntity(colunasPagina, clazz, clazz.getAnnotation(Table.class).name(), usuario, empresaSeleciona, cont);
+		return colunasPagina;
+	}
+
+	private static Long obterColunasEntity(final List<ColunaPerfil> colunasPagina, final Class<?> clazz, final String tableName, final Usuario usuario, final Empresa empresaSeleciona, Long cont) {
 		for (final Field field : clazz.getDeclaredFields()) {
 			if (!field.isAnnotationPresent(Transient.class)) {
 				if (field.isAnnotationPresent(Column.class)) {
-					colunasPagina.add(new ColunaPerfil(usuario.getId(), cont++, clazz.getAnnotation(Table.class).name(), field.getAnnotation(Column.class).name(), false, empresaSeleciona, TipoFiltro.IGUAL.getDescricao()));
+					if(field.isAnnotationPresent(Label.class)){
+						colunasPagina.add(new ColunaPerfil(usuario, cont++, empresaSeleciona, tableName, field.getAnnotation(Column.class).name(), TipoFiltro.IGUAL.name()));
+					} else {
+						throw new GoLiveException("Campo nao possui anotação de Label = " + tableName + "." + field.getName());
+					}
 				}
 			}
 		}
+		return cont;
+	}
+
+	public static String getFieldNameByColumn(final String nameColumn, final Class<?>... classes) throws GoLiveException {
+
+		for (final Class<?> clazz : classes) {
+			for (final Field field : clazz.getDeclaredFields()) {
+				if (field.isAnnotationPresent(Column.class)) {
+					if (field.getAnnotation(Column.class).name().equals(nameColumn)) {
+						return field.getName();
+					}
+				}
+			}
+		}
+
+		throw new GoLiveException("Classe nao possui anotação");
+	}
+
+	public static Field getFilter(final String widgetName, final Class<?> clazz) throws GoLiveException {
+		for (final Field field : clazz.getDeclaredFields()) {
+			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).name().equals(widgetName))) {
+				return field;
+			}
+		}
+		throw new GoLiveException("Não foi possivel encontrar o filtro");
 	}
 
 }
