@@ -30,15 +30,17 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.PrimeInfoList;
 import br.com.golive.annotation.PropriedadesTemplate;
-import br.com.golive.bean.component.ColunaPerfil;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
+import br.com.golive.entity.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
+import br.com.golive.qualifier.ListColunaInjected;
+import br.com.golive.qualifier.ListGenericaInjected;
 import br.com.golive.qualifier.PrimefacesDataTableInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.Fluxo;
@@ -69,8 +71,6 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 	private static final long serialVersionUID = 2907332241303108246L;
 
-	private Logger logger;
-
 	@Inject
 	@GeradorRelatorioInjected
 	protected GeradorRelatorio<T> relatorios;
@@ -79,15 +79,25 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 	@FilterInjected
 	protected FilterManager<T> filterManager;
 
-	protected Fluxo fluxo;
+	@Inject
+	@ListColunaInjected
+	private List<ColunaPerfil> colunasPagina;
 
-	protected List<T> conteudo;
+	@Inject
+	@ListGenericaInjected
 	protected List<T> filtrados;
+
+	@Inject
+	@ListGenericaInjected
 	protected List<T> temp;
+
+	protected Fluxo fluxo = Fluxo.LISTAGEM;
+	protected List<T> conteudo;
 	protected T registro;
+
 	protected Class<T> genericClazzInstance;
 
-	private List<ColunaPerfil> colunasPagina;
+
 	private List<ColunaPerfil> configuracaoPerfil;
 
 	@Inject
@@ -98,17 +108,7 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 	public abstract void init();
 
 	public void filtrar(final String widgetFiltro) {
-		final GoliveFilter filter = getFilter(widgetFiltro);
-
-		if (filter != null) {
-			if ((filter.getInicio() != null) && (!filter.getInicio().toString().isEmpty())) {
-				filterManager.filtrar(conteudo, filtrados, filter, widgetFiltro);
-			} else {
-				filterManager.filtrar(conteudo, filtrados, null, widgetFiltro);
-			}
-
-		}
-
+		filterManager.filtrar(conteudo, filtrados, getFilter(widgetFiltro), widgetFiltro);
 	}
 
 	public void limparFiltro(final String widgetFiltro) {
@@ -116,15 +116,15 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 	}
 
 	public Map<String, Object> obterParametrosRelatório() {
-		logger.info("Obtendo parametros para carregar relatório");
+		getLogger().info("Obtendo parametros para carregar relatório");
 		final Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("usuarioLogado", getUsuario().getNome());
 		parametros.put("label.usuario", getUsuario().getLabels().getField("label.usuario"));
 		try {
-			logger.info("Carregando logo da empresa");
+			getLogger().info("Carregando logo da empresa");
 			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("01.png")));
 		} catch (final IOException e) {
-			logger.error("Erro ao carregar logo da empresa");
+			getLogger().error("Erro ao carregar logo da empresa");
 		}
 		return parametros;
 	}
@@ -137,25 +137,19 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 	protected void init(final List<T> listaConteudo) {
 		showMenuBar(500, 600);
-		logger = getLogger();
-		if (logger == null) {
-			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o logger para que a página possa ser renderizada");
+		if (getLogger() == null) {
+			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o getLogger() para que a página possa ser renderizada");
 		}
 
 		this.conteudo = listaConteudo;
-		this.filtrados = new ArrayList<T>();
-		this.temp = new ArrayList<T>();
 		filtrados.addAll(conteudo);
-		fluxo = getFluxoListagem();
 		inicializarClasse();
 		if (getFilterManager() != null) {
 			getFilterManager().setInstance(this);
-			for (final Field field : this.getClass().getDeclaredFields()) {
-				if (field.isAnnotationPresent(Filter.class)) {
-					// getFilterManager().putGetter(field.getAnnotation(Filter.class).campo());
-				}
-			}
 		}
+
+		Utils.obterLista(colunasPagina, genericClazzInstance, usuario, getEmpresaSelecionada());
+
 		try {
 			verificarConfiguracaoDeOrdenacao();
 			popularColunasVisiveis();
@@ -206,7 +200,7 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 	@SuppressWarnings("unchecked")
 	private void inicializarClasse() {
-		logger.info("Inicializando Classe Generica");
+		getLogger().info("Inicializando Classe Generica");
 		Type type = getClass().getGenericSuperclass();
 		if (!(type instanceof ParameterizedType)) {
 			type = this.getClass().getSuperclass().getGenericSuperclass();
@@ -218,7 +212,7 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 	public boolean isSelecionado() {
 		if (registro == null) {
 			JSFUtils.warnMessage(getLabels().getField("title.msg.selecione.registro") + ",", getLabels().getField("msg.selecionar.registro"));
-			logger.info("Não existe registro para processar");
+			getLogger().info("Não existe registro para processar");
 			fixarMenu();
 			return false;
 		}
@@ -245,18 +239,6 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		return JSFUtils.getLabelPageName(this.getClass());
 	}
 
-	// public Class<?> getPojoClass(final String fieldName) {
-	// try {
-	// return Utils.getClazz(genericClazzInstance, fieldName);
-	// } catch (NoSuchFieldException | SecurityException e) {
-	// logger.error("Houve um erro ao tentar obter a classe membro da classe generica");
-	// logger.error(e.getMessage());
-	// e.printStackTrace();
-	// }
-	// throw new GoLiveException("Erro ao obter classe de pojo, a classe: " +
-	// genericClazzInstance.getName() + " nao possui o campo: " + fieldName);
-	// }
-
 	public void incluir() {
 		fluxo = getFluxoInclusao();
 		showMenuBar(0, 0);
@@ -266,7 +248,7 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		if (isSelecionado()) {
 			fluxo = getFluxoEdicao();
 			showMenuBar(0, 0);
-			logger.info("Edicao de registro = {} ", registro);
+			getLogger().info("Edicao de registro = {} ", registro);
 		}
 	}
 
@@ -286,9 +268,9 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		showMenuBar(0, 0);
 		fluxo = getFluxoListagem();
 		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
+			getLogger().info("Cancelando inclusao de registro");
 		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
+			getLogger().info("Cancelando edicao do registro = {} ", registro);
 		}
 
 	}
@@ -322,10 +304,10 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final GoliveOneProperties labels) {
 		try {
-			logger.info("Gerando relatório para classe = {}", genericClazzInstance.getName());
+			getLogger().info("Gerando relatório para classe = {}", genericClazzInstance.getName());
 			relatorios.gerarRelatorio(tipoRelatorio, filtrados, obterParametrosRelatório(), labels);
 		} catch (GoLiveException | JRException | IOException e) {
-			logger.error("Erro ao gerar relatorio = {}", genericClazzInstance.getName());
+			getLogger().error("Erro ao gerar relatorio = {}", genericClazzInstance.getName());
 			e.printStackTrace();
 		}
 	}
@@ -355,35 +337,9 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 	}
 
 	private void verificarConfiguracaoDeOrdenacao() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		colunasPagina = obterConfiruacaoTela();
-		final Field[] fields = genericClazzInstance.getDeclaredFields();
-		// Verificar se o campo ainda nao foi cadastrado na tabela de ordem
 
-		final boolean novasColunas = verificarNovasColunas(fields);
+		System.out.println("Arrumando");
 
-		if (novasColunas) {
-
-			List<ColunaPerfil> reorder = null;
-
-			// Verifica se o campo foi excluído da tabela.
-
-			for (final ColunaPerfil conf : colunasPagina) {
-				if (!Utils.obterColumnName(conf.getColuna(), fields)) {
-					if (reorder == null) {
-						reorder = new ArrayList<ColunaPerfil>();
-					}
-					reorder.add(conf);
-				}
-			}
-
-			if (reorder != null) {
-				colunasPagina.removeAll(reorder);
-				for (int i = 0; i < colunasPagina.size(); i++) {
-					colunasPagina.get(i).setOrdem(new Integer(i + 1).longValue());
-				}
-				// TODO update
-			}
-		}
 	}
 
 	public Object obterLabelColuna(final ColunaPerfil coluna, final T indice) {
@@ -396,7 +352,7 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 			getter = genericClazzInstance.getMethod("get" + WordUtils.capitalize(coluna.getColuna()));
 			ret = getter.invoke(indice);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			logger.error("Erro ao obter label da coluna generica");
+			getLogger().error("Erro ao obter label da coluna generica");
 			e.printStackTrace();
 		}
 
@@ -429,39 +385,8 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 		return inseriu;
 	}
 
-	@Deprecated
-	public void guardarOrdemTabela() {
-
-		colunasPagina.removeAll(colunasPagina);
-
-		Long cont = 1L;
-
-		for (int i = 0; i < dataTable.getColumns().size(); i++) {
-			if (!dataTable.getColumns().get(i).getClientId().contains("seletor")) {
-				colunasPagina.add(new ColunaPerfil(usuario.getId(), cont++, genericClazzInstance.getName(), dataTable.getColumns().get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", ""), false, getEmpresaSelecionada(), "igual"));
-			}
-		}
-		verificarNovasColunas(genericClazzInstance.getDeclaredFields());
-
-		System.out.println("UPDATE");
-
-	}
-
-	@Deprecated
-	public List<ColunaPerfil> obterConfiruacaoTela() {
-		final List<ColunaPerfil> returnList = new ArrayList<ColunaPerfil>();
-		returnList.add(new ColunaPerfil(usuario.getId(), 1L, genericClazzInstance.getName(), "teste2", true, getEmpresaSelecionada(), "igual"));
-		returnList.add(new ColunaPerfil(usuario.getId(), 2L, genericClazzInstance.getName(), "id", true, getEmpresaSelecionada(), "igual"));
-		returnList.add(new ColunaPerfil(usuario.getId(), 3L, genericClazzInstance.getName(), "teste", true, getEmpresaSelecionada(), "igual"));
-		returnList.add(new ColunaPerfil(usuario.getId(), 4L, genericClazzInstance.getName(), "areaDeAtuacao", true, getEmpresaSelecionada(), "igual"));
-
-		return returnList;
-	}
-
 	public void salvarPerfilPagina() {
 		showMenuBar(0, 0);
-		configuracaoPerfil.removeAll(colunasPagina);
-		popularColunasVisiveis();
 
 		for (final ColunaPerfil coluna : colunasPagina) {
 			if (!configuracaoPerfil.contains(coluna)) {
@@ -550,10 +475,6 @@ public abstract class CadastroBeanRules2<T> extends GenericBean implements
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
 	}
 
 	public GoliveOneProperties getLabels() {

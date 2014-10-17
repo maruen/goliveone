@@ -71,7 +71,12 @@ public class Model implements Serializable {
 	public void setDataAlteracao(Date dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
-
 	
+	public boolean hasId() {
+		if (this.id == null) {
+			return false;
+		}
+		return true;
+	}
 	
 }

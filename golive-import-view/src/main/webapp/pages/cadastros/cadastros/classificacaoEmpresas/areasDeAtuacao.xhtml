@@ -20,9 +20,12 @@
 		<p:dialog id="configuracoesTabela" widgetVar="confTableConteudo"
 			modal="true">
 
-			<p:dataTable id="configuracaoTable"
-				value="#{areasDeAtuacaoBean.colunasPagina}" var="coluna"
+			<p:dataTable id="configuracaoTable" draggableRows="true" selection="#{areasDeAtuacaoBean.configuracaoPerfil}"
+				value="#{areasDeAtuacaoBean.colunasPagina}" var="coluna" rowKey="#{coluna.coluna}"
 				styleClass="configuracaoPerfil">
+				
+				<p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+        
 				<p:column headerText="#{managerBean.get('label.coluna')}">
 					<h:outputLabel
 						value="#{managerBean.get(areasDeAtuacaoBean.getLabelFilter(coluna.coluna))}" />
@@ -31,27 +34,23 @@
 					<filter:selectTipoFiltro
 						filtro="#{areasDeAtuacaoBean.getFilter(coluna.coluna)}" />
 				</p:column>
-				<p:column headerText="#{managerBean.get('label.visibilidade')}">
-					<p:selectBooleanCheckbox id="selectBooleanVisivel"
-						value="#{coluna.visibilidade}" />
-				</p:column>
 
 				<f:facet name="footer">
-					<p:commandButton id="botaoSalvarConf" 
+					<p:commandButton id="botaoSalvarConf"
 						value="#{managerBean.get('label.salvar')}"
-						actionListener="#{areasDeAtuacaoBean.salvarPerfilPagina()}"
-						process="@parent"  update=":conteudoForm:conteudoTable"
+						actionListener="#{areasDeAtuacaoBean.salvarPerfilPagina()}" 
+						process="@parent" update=":conteudoForm:conteudoTable"
 						onsuccess="PF('confTableConteudo').hide()" />
 				</f:facet>
 
 			</p:dataTable>
 		</p:dialog>
 
-		<p:dataTable id="conteudoTable" var="list"
+		<p:dataTable id="conteudoTable" var="list" draggableColumns="true"
 			selection="#{areasDeAtuacaoBean.registro}"
 			value="#{areasDeAtuacaoBean.conteudo}" selectionMode="single"
 			rowKey="#{list.id}" styleClass="tableCadastros" rows="15"
-			paginator="true" widgetVar="table" draggableColumns="true"
+			paginator="true" widgetVar="table"
 			filteredValue="#{areasDeAtuacaoBean.filtrados}"
 			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
@@ -61,18 +60,13 @@
 					onclick="PF('confTableConteudo').show()" />
 			</f:facet>
 
-
-			<p:ajax event="colReorder"
-				listener="#{areasDeAtuacaoBean.guardarOrdemTabela()}"
-				update="conteudoTable" />
-
 			<p:ajax event="rowSelect" update="conteudoTable" />
 			<p:ajax event="rowUnselect" update="conteudoTable" />
 
 			<p:column id="seletor" selectionMode="single"
 				style="width:16px;text-align:center" />
 
-			<p:columns value="#{areasDeAtuacaoBean.configuracaoPerfil}"
+			<p:columns value="#{areasDeAtuacaoBean.configuracaoPerfil}" 
 				styleClass="colunasStyle" var="coluna" id="columns"
 				columnIndexVar="colIndex">
 				<f:facet name="header">
@@ -80,23 +74,20 @@
 						update=":conteudoForm:conteudoTable"
 						rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Long')}"
 						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
-						styleClassBotaoLimpar="limpar"
-						styleClassFiltroDois="filtroFinal"
+						styleClassBotaoLimpar="limpar" styleClassFiltroDois="filtroFinal"
 						styleClassFiltroUm="filtroInicial"
 						styleClassTitulo="tituloColunaFiltro" />
 					<filter:string id="componentFilterStringId"
 						update=":conteudoForm:conteudoTable"
 						rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('String')}"
 						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
-						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
-						styleClassFiltroUm="filtroInicial"
+						styleClassBotaoLimpar="limpar" styleClassFiltroUm="filtroInicial"
 						styleClassTitulo="tituloColunaFiltro" />
 					<filter:date id="componentFilterDateId"
 						update=":conteudoForm:conteudoTable"
 						rendered="#{areasDeAtuacaoBean.getFilter(coluna.coluna).genericType.simpleName.equals('Date')}"
 						widgetAnotado="#{coluna.coluna}" bean="#{areasDeAtuacaoBean}"
-						styleClassBotaoLimpar="limpar" styleClassBotaoSettings="settings"
-						styleClassFiltroDois="filtroFinal"
+						styleClassBotaoLimpar="limpar" styleClassFiltroDois="filtroFinal"
 						styleClassFiltroUm="filtroInicial"
 						styleClassTitulo="tituloColunaFiltro" />
 				</f:facet>

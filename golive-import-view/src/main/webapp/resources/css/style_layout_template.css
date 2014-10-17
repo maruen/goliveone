@@ -170,13 +170,13 @@ html,body {
 	background: none !IMPORTANT;
 	background-color: #C4CBDD !IMPORTANT;
 }
-/*
+
 .ui-datatable-even:hover {
 	background: #79c9ec
 		url("/golive-one/javax.faces.resource/images/ui-bg_glass_75_79c9ec_1x400.png.jsf?ln=primefaces-start")
 		50% 50% repeat-x !IMPORTANT;
 	color: #000000 !IMPORTANT;
-}*/
+}
 .singleLine {
 	text-wrap: none;
 	white-space: nowrap;

@@ -54,6 +54,7 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 
 	@Override
 	public void excluir() {
+		registro.setUsuario(getUsuario());
 		departamentoService.excluir(this.registro);
 		super.excluir();
 	}
