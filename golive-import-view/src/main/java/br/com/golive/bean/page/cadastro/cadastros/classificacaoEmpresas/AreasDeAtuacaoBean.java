@@ -135,16 +135,26 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules2<AreaDeAtuacaoModel> {
 	@Deprecated
 	public List<AreaDeAtuacaoModel> criarList() throws ParseException {
 		final List<AreaDeAtuacaoModel> lista = new ArrayList<AreaDeAtuacaoModel>();
-		lista.add(new AreaDeAtuacaoModel(1L, getDate("25/08/2014 20:24"), getDate("25/08/2014 20:47"), "Importação", getLista()));
-		lista.add(new AreaDeAtuacaoModel(2L, getDate("05/08/2014 20:24"), getDate("15/08/2014 20:47"), "Exportação", getLista()));
-		lista.add(new AreaDeAtuacaoModel(3L, getDate("07/08/2014 20:24"), getDate("16/08/2014 20:47"), "Industrialização", getLista()));
-		lista.add(new AreaDeAtuacaoModel(4L, getDate("08/08/2014 20:24"), getDate("17/08/2014 20:47"), "Distribuição", getLista()));
-		lista.add(new AreaDeAtuacaoModel(5L, getDate("09/08/2014 20:24"), getDate("18/08/2014 20:47"), "Comercialização Atacada", getLista()));
-		lista.add(new AreaDeAtuacaoModel(6L, getDate("10/08/2014 20:24"), getDate("19/08/2014 20:47"), "Comercialização Varejo", getLista()));
-		lista.add(new AreaDeAtuacaoModel(7L, getDate("11/08/2014 20:24"), getDate("20/08/2014 20:47"), "Revenda", getLista()));
-		lista.add(new AreaDeAtuacaoModel(8L, getDate("12/08/2014 20:24"), getDate("21/08/2014 20:47"), "Transporte", getLista()));
-		lista.add(new AreaDeAtuacaoModel(9L, getDate("13/08/2014 20:24"), getDate("22/08/2014 20:47"), "Logistica", getLista()));
-		lista.add(new AreaDeAtuacaoModel(10L, getDate("14/08/2014 20:24"), getDate("23/08/2014 20:47"), "Armazenagem", getLista()));
+		// lista.add(new AreaDeAtuacaoModel(1L, getDate("25/08/2014 20:24"),
+		// getDate("25/08/2014 20:47"), "Importação", getLista()));
+		// lista.add(new AreaDeAtuacaoModel(2L, getDate("05/08/2014 20:24"),
+		// getDate("15/08/2014 20:47"), "Exportação", getLista()));
+		// lista.add(new AreaDeAtuacaoModel(3L, getDate("07/08/2014 20:24"),
+		// getDate("16/08/2014 20:47"), "Industrialização", getLista()));
+		// lista.add(new AreaDeAtuacaoModel(4L, getDate("08/08/2014 20:24"),
+		// getDate("17/08/2014 20:47"), "Distribuição", getLista()));
+		// lista.add(new AreaDeAtuacaoModel(5L, getDate("09/08/2014 20:24"),
+		// getDate("18/08/2014 20:47"), "Comercialização Atacada", getLista()));
+		// lista.add(new AreaDeAtuacaoModel(6L, getDate("10/08/2014 20:24"),
+		// getDate("19/08/2014 20:47"), "Comercialização Varejo", getLista()));
+		// lista.add(new AreaDeAtuacaoModel(7L, getDate("11/08/2014 20:24"),
+		// getDate("20/08/2014 20:47"), "Revenda", getLista()));
+		// lista.add(new AreaDeAtuacaoModel(8L, getDate("12/08/2014 20:24"),
+		// getDate("21/08/2014 20:47"), "Transporte", getLista()));
+		// lista.add(new AreaDeAtuacaoModel(9L, getDate("13/08/2014 20:24"),
+		// getDate("22/08/2014 20:47"), "Logistica", getLista()));
+		// lista.add(new AreaDeAtuacaoModel(10L, getDate("14/08/2014 20:24"),
+		// getDate("23/08/2014 20:47"), "Armazenagem", getLista()));
 		return lista;
 
 	}

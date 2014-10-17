@@ -22,7 +22,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class PaisesBacenBean extends CadastroBeanRules<PaisesBacenModel> {
 
-	private static final long serialVersionUID = 6286581844381749904L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

@@ -2,19 +2,17 @@ package br.com.golive.entity.padroeslargura;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper=false)
 @Jasper(titulo="PadroesLargura",
 		nomeDoArquivoGerado="file.name.model",
 		nomeArquivoJasper="PadroesLargura")
-public class PadroesLarguraModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class PadroesLarguraModel extends Model {
+	
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String largura;
 	private String unidade;
 	private String descricao;
@@ -56,31 +54,7 @@ public class PadroesLarguraModel {
 		this.codCor = codCor;
 		this.cor = cor;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
+	
 	public String getLargura() {
 		return largura;
 	}

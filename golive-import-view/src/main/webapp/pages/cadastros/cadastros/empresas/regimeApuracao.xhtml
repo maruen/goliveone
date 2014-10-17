@@ -7,10 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{paisesBean}" />
+	<ui:param name="bean" value="#{regimeApuracaoBean}" />
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_codigotelefonicopaises.css" />
+		<h:outputStylesheet name="css/cadastros/style_regimeapuracao.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{paisesBean.conteudo}"
+			value="#{regimeApuracaoBean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{paisesBean.registro}" 
+			selection="#{regimeApuracaoBean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -35,32 +35,14 @@
 
 			<p:column
 				headerText="Id"
-				styleClass="percentual-10 text-align-center">
+				styleClass="percentual-10 text-align-left">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Tel.Países"
-				styleClass="percentual-10 text-align-center">				
-				<h:outputText value="93" />
-			</p:column>
-
-			<p:column
-				headerText="País (em Português)"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="Afeganistão" />
-			</p:column>
-
-			<p:column
-				headerText="País (em Inglês)"
-				styleClass="percentual-10">
-				<h:outputText value="Afghnistan" />
-			</p:column>
-
-			<p:column 
-				headerText="País (em Nativo)"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="ښبثلشدهسفګشخ" />
+				headerText="Regime de Apuração"
+				styleClass="percentual-10 singleLine text-align-left">
+				<h:outputText value="Lucro Real" />
 			</p:column>
 
 		</p:dataTable>
@@ -69,11 +51,11 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/dadosGeraisPaises.xhtml">
-			<ui:param name="pojo" value="#{paisesBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/empresas/dadosGeraisRegimeApuracao.xhtml">
+			<ui:param name="pojo" value="#{regimeApuracaoBean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{paisesBean.registro}" />
+			<ui:param name="pojo" value="#{regimeApuracaoBean.registro}" />
 		</ui:include>
 
 	</ui:define>

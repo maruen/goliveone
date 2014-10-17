@@ -28,7 +28,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @Label(name = "label.cadastroGrupoProdutos")
 public class GrupoProdutosBean extends CadastroBeanRules<GrupoProdutosModel> {
 	
-	private static final long serialVersionUID = -3050825402303409327L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

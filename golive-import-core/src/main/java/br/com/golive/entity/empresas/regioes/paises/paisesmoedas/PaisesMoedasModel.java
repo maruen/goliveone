@@ -1,4 +1,4 @@
-package br.com.golive.entity.empresas.regioes.paises.codigotelefonico.paises;
+package br.com.golive.entity.empresas.regioes.paises.paisesmoedas;
 
 import java.util.Date;
 
@@ -8,35 +8,41 @@ import br.com.golive.annotation.Jasper;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Jasper(titulo = "CodigoTelefonicoPaises",
-		nomeDoArquivoGerado = "CodigoTelefonicoPaises",
-		nomeArquivoJasper = "CodigoTelefonicoPaises")
-public class PaisesModel {
+@Jasper(titulo = "PaisesMoedas",
+		nomeDoArquivoGerado = "PaisesMoedas",
+		nomeArquivoJasper = "PaisesMoedas")
+public class PaisesMoedasModel {
 	private Long id;
 	private Date dataInclusao;
 	private Date dataAlteracao;
-	private Long codTelPaises;
+	private String iso;
+	private String moeda;
+	private String idPais;
 	private String paisPortugues;
 	private String paisIngles;
 	private String paisNativo;
 	
-	public PaisesModel(){
+	public PaisesMoedasModel(){
 		this.dataInclusao = new Date();
 		this.dataAlteracao = new Date();
 	}
-	
-	public PaisesModel(Long id,
-					   Date dataInclusao,
-					   Date dataAlteracao,
-					   Long codTelPaises,
-					   String paisPortugues,
-					   String paisIngles,
-					   String paisNativo){
+
+	public PaisesMoedasModel(Long id, 
+							 Date dataInclusao, 
+							 Date dataAlteracao,
+							 String iso, 
+							 String moeda, 
+							 String idPais, 
+							 String paisPortugues,
+							 String paisIngles, 
+							 String paisNativo) {
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;
 		this.dataAlteracao = dataAlteracao;
-		this.codTelPaises = codTelPaises;
+		this.iso = iso;
+		this.moeda = moeda;
+		this.idPais = idPais;
 		this.paisPortugues = paisPortugues;
 		this.paisIngles = paisIngles;
 		this.paisNativo = paisNativo;
@@ -66,12 +72,28 @@ public class PaisesModel {
 		this.dataAlteracao = dataAlteracao;
 	}
 
-	public Long getCodTelPaises() {
-		return codTelPaises;
+	public String getIso() {
+		return iso;
 	}
 
-	public void setCodTelPaises(Long codTelPaises) {
-		this.codTelPaises = codTelPaises;
+	public void setIso(String iso) {
+		this.iso = iso;
+	}
+
+	public String getMoeda() {
+		return moeda;
+	}
+
+	public void setMoeda(String moeda) {
+		this.moeda = moeda;
+	}
+
+	public String getIdPais() {
+		return idPais;
+	}
+
+	public void setIdPais(String idPais) {
+		this.idPais = idPais;
 	}
 
 	public String getPaisPortugues() {

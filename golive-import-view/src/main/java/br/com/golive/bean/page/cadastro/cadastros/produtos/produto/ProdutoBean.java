@@ -31,7 +31,7 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
 @Label(name = "label.cadastroProdutos.cadastroProdutos")
 public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 
-	private static final long serialVersionUID = 6286581844381749904L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

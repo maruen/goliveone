@@ -1,0 +1,28 @@
+.ui-panelgrid {
+	border-collapse: inherit !IMPORTANT;
+}
+
+.confirmacao {
+	width: 100%;
+	text-align: right;
+	padding-right: 5%;
+	padding-top: 2px;
+}
+
+.confirmacaoDiv {
+	position: relative;
+	top: -100px;	
+	height: 0px;
+}
+
+.botaoSim {
+	width: 70px;
+}
+
+.botaoNao {
+	width: 70px;
+}
+
+.childMainDiv {
+	overflow-x: hidden;
+}

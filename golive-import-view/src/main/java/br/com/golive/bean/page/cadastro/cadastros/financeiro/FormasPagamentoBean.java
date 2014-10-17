@@ -22,6 +22,8 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class FormasPagamentoBean extends CadastroBeanRules<FormasPagamentoModel>{
 
+	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private Logger logger;
 	

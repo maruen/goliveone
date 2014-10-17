@@ -42,16 +42,6 @@
 			<view-id value="/pages/cadastros/cadastros/departamentos.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosEmpresasCargos">
-			<pattern value="/Cadastros/Cadastros/Empresas/Cargos" />
-			<view-id value="/pages/cadastros/cadastros/empresas/cargos.jsf" />
-		</url-mapping>
-		
-		<url-mapping id="cadastrosCadastrosEmpresasCategoriasNaturezasJuridicas">
-			<pattern value="/Cadastros/Cadastros/Empresas/CategoriasNaturezasJuridicas" />
-			<view-id value="/pages/cadastros/cadastros/empresas/categoriasNaturezasJuridicas.jsf" />
-		</url-mapping>
-		
 		<url-mapping id="cadastrosCadastrosEmpresasCnaeSecao">
 			<pattern value="/Cadastros/Cadastros/Empresas/Cnae/Secao" />
 			<view-id value="/pages/cadastros/cadastros/empresas/cnae/secao.jsf" />
@@ -80,6 +70,21 @@
 		<url-mapping id="cadastrosCadastrosEmpresasCnaeSubClasse">
 			<pattern value="/Cadastros/Cadastros/Empresas/Cnae/SubClasse" />
 			<view-id value="/pages/cadastros/cadastros/empresas/cnae/subClasse.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosEmpresasCargos">
+			<pattern value="/Cadastros/Cadastros/Empresas/Cargos" />
+			<view-id value="/pages/cadastros/cadastros/empresas/cargos.jsf" />
+		</url-mapping>
+		
+		<url-mapping id="cadastrosCadastrosEmpresasCategoriasNaturezasJuridicas">
+			<pattern value="/Cadastros/Cadastros/Empresas/CategoriasNaturezasJuridicas" />
+			<view-id value="/pages/cadastros/cadastros/empresas/categoriasNaturezasJuridicas.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosEmpresasRegimeApuracao">
+			<pattern value="/Cadastros/Cadastros/Empresas/RegimeApuracao" />
+			<view-id value="/pages/cadastros/cadastros/empresas/regimeApuracao.jsf" />
 		</url-mapping>
 
 		<url-mapping id="cadastrosCadastrosEstoquePavimentos">
@@ -268,14 +273,24 @@
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigopaises/paisesIso.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoTelefonicoMunicipios">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoTelefonico/Municipios" />
-			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigotelefonico/municipios.jsf" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoTelefonicoCodigoTelefonicoMunicipios">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoTelefonico/CodigoTelefonicoMunicipios" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigotelefonico/codigoTelefonicoMunicipios.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoTelefonicoPaises">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoTelefonico/Paises" />
-			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigotelefonico/paises.jsf" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoTelefonicoCodigoTelefonicoPaises">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoTelefonico/CodigoTelefonicoPaises" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigotelefonico/codigoTelefonicoPaises.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosRegioesPaisesLinguas">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/Linguas" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/linguas.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisesMoedas">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/PaisesMoedas" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisesMoedas.jsf" />
 		</url-mapping>
 
 		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisesBacen">
@@ -289,8 +304,8 @@
 		</url-mapping>
 	
 		
-		<url-mapping id="cadastrosCadastrosRegioesTipoLogradouro">
-			<pattern value="/Cadastros/Cadastros/Regioes/TipoLogradouro" />
+		<url-mapping id="cadastrosCadastrosRegioesTiposLogradouro">
+			<pattern value="/Cadastros/Cadastros/Regioes/TiposLogradouro" />
 			<view-id value="/pages/cadastros/cadastros/regioes/tiposLogradouro.jsf" />
 		</url-mapping>
 	

@@ -1,7 +1,6 @@
 package br.com.golive.entity.areaDeAtuacao;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -35,43 +34,10 @@ public class AreaDeAtuacaoModel extends Model implements Serializable {
 		super();
 	}
 
-	public AreaDeAtuacaoModel(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao, final String areaDeAtuacao, final List<AuditoriaLog> listaAuditoriaLogs) {
+	public AreaDeAtuacaoModel(final String areaDeAtuacao, final List<AuditoriaLog> listaAuditoriaLogs) {
 		super();
-		this.id = id;
-		this.dataInclusao = dataInclusao;
-		this.dataAlteracao = dataAlteracao;
 		this.areaDeAtuacao = areaDeAtuacao;
 		this.listaAuditoriaLogs = listaAuditoriaLogs;
-	}
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	@Override
-	public Calendar getDataInclusao() {
-		return dataInclusao;
-	}
-
-	@Override
-	public void setDataInclusao(final Calendar dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	@Override
-	public Calendar getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	@Override
-	public void setDataAlteracao(final Calendar dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
 	}
 
 	public String getAreaDeAtuacao() {
@@ -90,14 +56,15 @@ public class AreaDeAtuacaoModel extends Model implements Serializable {
 		this.listaAuditoriaLogs = listaAuditoriaLogs;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = (prime * result) + ((areaDeAtuacao == null) ? 0 : areaDeAtuacao.hashCode());
-		result = (prime * result) + ((dataAlteracao == null) ? 0 : dataAlteracao.hashCode());
-		result = (prime * result) + ((dataInclusao == null) ? 0 : dataInclusao.hashCode());
-		result = (prime * result) + ((id == null) ? 0 : id.hashCode());
 		result = (prime * result) + ((listaAuditoriaLogs == null) ? 0 : listaAuditoriaLogs.hashCode());
 		return result;
 	}
@@ -107,7 +74,7 @@ public class AreaDeAtuacaoModel extends Model implements Serializable {
 		if (this == obj) {
 			return true;
 		}
-		if (obj == null) {
+		if (!super.equals(obj)) {
 			return false;
 		}
 		if (getClass() != obj.getClass()) {
@@ -119,27 +86,6 @@ public class AreaDeAtuacaoModel extends Model implements Serializable {
 				return false;
 			}
 		} else if (!areaDeAtuacao.equals(other.areaDeAtuacao)) {
-			return false;
-		}
-		if (dataAlteracao == null) {
-			if (other.dataAlteracao != null) {
-				return false;
-			}
-		} else if (!dataAlteracao.equals(other.dataAlteracao)) {
-			return false;
-		}
-		if (dataInclusao == null) {
-			if (other.dataInclusao != null) {
-				return false;
-			}
-		} else if (!dataInclusao.equals(other.dataInclusao)) {
-			return false;
-		}
-		if (id == null) {
-			if (other.id != null) {
-				return false;
-			}
-		} else if (!id.equals(other.id)) {
 			return false;
 		}
 		if (listaAuditoriaLogs == null) {
@@ -154,7 +100,8 @@ public class AreaDeAtuacaoModel extends Model implements Serializable {
 
 	@Override
 	public String toString() {
-		return "AreaDeAtuacaoModel [id=" + id + ", dataInclusao=" + dataInclusao + ", dataAlteracao=" + dataAlteracao + ", areaDeAtuacao=" + areaDeAtuacao + ", listaAuditoriaLogs=" + listaAuditoriaLogs + "]";
+		return "AreaDeAtuacaoModel [areaDeAtuacao=" + areaDeAtuacao + ", listaAuditoriaLogs=" + listaAuditoriaLogs + "]";
 	}
+
 
 }

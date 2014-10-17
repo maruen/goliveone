@@ -2,19 +2,16 @@ package br.com.golive.entity.finalidadepadraoespessura;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "FinalidadePadraoEspessura", 
 		nomeDoArquivoGerado = "file.name.model", 
 		nomeArquivoJasper = "FinalidadePadraoEspessura")	
-public class FinalidadePadraoEspessuraModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class FinalidadePadraoEspessuraModel extends Model {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String finalidadePadraoEspessura;
 	private String idUnidade;
 	private String abreviacaoUnidade;
@@ -33,39 +30,13 @@ public class FinalidadePadraoEspessuraModel {
 										  String abreviacaoUnidade,
 										  String unidade){
 		super();
-		this.id = id;
-		this.dataInclusao = dataInclusao;
-		this.dataAlteracao = dataAlteracao;
 		this.finalidadePadraoEspessura = finalidadePadraoEspessura;
 		this.idUnidade = idUnidade;
 		this.abreviacaoUnidade = abreviacaoUnidade;
 		this.unidade = unidade;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
+	
 	public String getFinalidadePadraoEspessura() {
 		return finalidadePadraoEspessura;
 	}

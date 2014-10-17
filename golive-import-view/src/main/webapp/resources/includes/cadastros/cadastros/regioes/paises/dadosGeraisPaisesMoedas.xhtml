@@ -1,0 +1,160 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="dadosGerais"
+		 header="#{userBean.properties.getField('label.cadastroPaisesMoedas.dadosGerais')}"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="dadosGerais"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="4"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-10,
+          				 				percentual-50,
+          				 				percentual-5,
+          				 				percentual-5"
+           				 width="100%"
+          				 border="0">
+     
+			<h:outputText id="idOutputText"
+						  value="Id"   />
+           	<h:inputText id="idInputText"
+           				 style="width: 125px;"
+           				 disabled="true"/>
+      		
+      		<h:outputText id="dataInclusaoOutputText" 
+      					  value="#{userBean.properties.getField('label.cadastroPaisesMoedas.inclusao')}" />
+	 		<h:inputText value="25/08/2014 20:24" 
+	 					 id="dataInclusaoInputText" 
+	 					 disabled="true" />      					  
+      		
+      		<h:outputText id="codigoIsoOutputText" 
+      					  value="Cód.ISO 4217" 
+      					  styleClass="singleLine" />
+      		<p:inputText id="codigoIsoInputText"
+      					 required="true"
+      					 disabled="false"
+      					 style="width: 125px"
+      					 value="AFN" />		
+        		
+       		<h:outputText id="ultimaAlteracaoOutputText"
+       					  value="#{userBean.properties.getField('label.cadastroPaisesMoedas.ultimaAlteracao')}"
+       					  styleClass="singleLine"/>
+	 		<h:inputText value="25/08/2014 20:47" 
+	 					 id="ultimaAlteracaoInputText" 
+	 					 disabled="true" />  
+
+      		<h:outputText id="simboloMonetarioOutputText" 
+      					  value="Símbolo Monetário" 
+      					  styleClass="singleLine" />
+      		<p:inputText id="simboloMonetarioInputText"
+      					 required="true"
+      					 disabled="false"
+      					 style="width: 125px"
+      					 value="؋" />		
+
+			<p:spacer/>
+			<p:spacer/>
+				 					 
+			<h:outputText id="moedaPortuguesOutputText"
+						  value="Moeda (Português)"
+						  styleClass="singleLine"/>
+           	<p:inputText id="moedaPortuguesInputText"
+           				 style="width: 60%"
+           				 value="Afegane afegão"
+           				 disabled="false"/>
+           				 
+           	<p:spacer/>
+           	<p:spacer/>
+
+			<h:outputText id="moedaInglesOutputText"
+						  value="Moeda (Inglês)"
+						  styleClass="singleLine"/>
+           	<p:inputText id="moedaInglesInputText"
+           				 style="width: 60%"
+           				 value="Afghan afghani"
+           				 disabled="false"/>
+
+           	<p:spacer/>
+           	<p:spacer/>
+
+			<h:outputText id="moedaNativoOutputText"
+						  value="Moeda (Nativo)"
+						  styleClass="singleLine"/>
+           	<p:inputText id="moedaNativoInputText"
+           				 style="width: 60%"
+           				 value="ؤخثیش"
+           				 disabled="false"/>
+      		
+			<p:spacer/>
+			<p:spacer/>
+      		
+			<h:outputText id="unidadeFracionadaPortuguesOutputText"
+						  value="Unidade Fracionada (Português)"
+						  styleClass="singleLine"/>
+           	<p:inputText id="unidadeFracionadaPortuguesInputText"
+           				 style="width: 60%"
+           				 value="centavos"
+           				 disabled="false"/>
+           				 
+           	<p:spacer/>
+           	<p:spacer/>
+
+			<h:outputText id="unidadeFracionadaInglesOutputText"
+						  value="Unidade Fracionada (Inglês)"
+						  styleClass="singleLine"/>
+           	<p:inputText id="unidadeFracionadaInglesInputText"
+           				 style="width: 60%"
+           				 value="Pu"
+           				 disabled="false"/>
+
+           	<p:spacer/>
+           	<p:spacer/>
+
+			<h:outputText id="unidadeFracionadaNativoOutputText"
+						  value="Unidade Fracionada (Nativo)"
+						  styleClass="singleLine"/>
+           	<p:inputText id="unidadeFracionadaNativoInputText"
+           				 style="width: 60%"
+           				 value="حعم"
+           				 disabled="false"/>
+           				 
+           	<p:spacer/>
+           	<p:spacer/>
+
+			<h:outputText id="divisaoOutputText"
+						  value="Divisão"
+						  styleClass="singleLine"/>
+           	<p:inputText id="divisaoInputText"
+           				 style="width: 125px"
+           				 value="100"
+           				 disabled="false"/>
+
+           	<p:spacer/>
+           	<p:spacer/>
+
+			<h:outputText id="casasDecimaisOutputText"
+						  value="Casas Decimais"
+						  styleClass="singleLine"/>
+           	<p:inputText id="casasDecimaisInputText"
+           				 style="width: 125px"
+           				 value="2"
+           				 disabled="false"/>
+      		
+         </h:panelGrid>
+	</p:panel>
+</ui:composition>

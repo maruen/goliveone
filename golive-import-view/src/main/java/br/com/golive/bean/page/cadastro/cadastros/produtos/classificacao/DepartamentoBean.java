@@ -1,6 +1,5 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
+import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.service.DepartamentoService;
@@ -54,12 +54,16 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 
 	@Override
 	public void excluir() {
+		registro.setUsuario(getUsuario());
 		departamentoService.excluir(this.registro);
 		super.excluir();
 	}
 
 	@Override
 	public void salvar() {
+		registro.setUsuario(getUsuario());
+		registro.setNomeFormulario(this.getClass().getAnnotation(Label.class).name()); 
+		
 		if (registro.getId() != null) {
 			registro.setDataAlteracao(new Date());
 			departamentoService.alterar(registro);
@@ -68,6 +72,7 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 			registro.setDataAlteracao(new Date());
 			departamentoService.salvar(registro);
 		}
+
 		conteudo = departamentoService.listarPorFiltro();
 		super.salvar();
 	}
@@ -78,18 +83,9 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	}
 	
 	
-	public List<Object> getAuditoriaLogs() {
-		
-		ArrayList<Object> list = new ArrayList<Object>();
-		list.add(new Object());
-		list.add(new Object());
-		list.add(new Object());
-		
-		return list;  
+	public List<AuditoriaModel> getAuditoriaLogs() {
+		return departamentoService.getAuditoriaLogs();  
 	}
-		
-		
-	
 	
 	
 }

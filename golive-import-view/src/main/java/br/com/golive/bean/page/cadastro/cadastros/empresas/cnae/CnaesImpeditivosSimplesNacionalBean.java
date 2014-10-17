@@ -22,7 +22,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class CnaesImpeditivosSimplesNacionalBean extends CadastroBeanRules<CnaesImpeditivosSimplesNacionalModel> {
 
-	private static final long serialVersionUID = 2931052551694628496L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

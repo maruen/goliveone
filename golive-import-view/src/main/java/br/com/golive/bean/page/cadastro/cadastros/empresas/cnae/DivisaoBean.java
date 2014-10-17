@@ -22,7 +22,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class DivisaoBean extends CadastroBeanRules<DivisaoModel> {
 
-	private static final long serialVersionUID = 5212735976694858900L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

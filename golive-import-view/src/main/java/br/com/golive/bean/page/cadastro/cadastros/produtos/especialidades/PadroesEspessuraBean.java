@@ -26,7 +26,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class PadroesEspessuraBean extends CadastroBeanRules<PadroesEspessuraModel> {
 
-	private static final long serialVersionUID = 6852219236531333383L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

@@ -2,19 +2,17 @@ package br.com.golive.entity.empresas.cargos;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "Cargos", 
 		nomeDoArquivoGerado = "file.name.model", 
 		nomeArquivoJasper = "Cargos")
-public class CargosModel {
-	private Date dataInclusao;
-	private Date dataAlteracao;
-	private Long id;
+
+public class CargosModel extends Model{
+	
+	private static final long serialVersionUID = 1L;
+
 	private String cargo;
 	
 	public CargosModel(){
@@ -33,30 +31,7 @@ public class CargosModel {
 		this.cargo = cargo;
 	}
 
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	public String getCargo() {
 		return cargo;
 	}

@@ -22,8 +22,8 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class CategoriasNaturezasJuridicasBean extends CadastroBeanRules<CategoriasNaturezasJuridicasModel> {
 
-	private static final long serialVersionUID = 5035092722189166834L;
-
+	private static final long serialVersionUID = 1L;
+	
 	@Inject
 	private Logger logger;
 	

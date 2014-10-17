@@ -2,19 +2,18 @@ package br.com.golive.entity.empresas.categoriasnaturezasjuridicas;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
+
 @Jasper(titulo = "CategoriasNaturezasJuridicas", 
 		nomeDoArquivoGerado = "CategoriasNaturezasJuridicas", 
 		nomeArquivoJasper = "CategoriasNaturezasJuridicas")	
-public class CategoriasNaturezasJuridicasModel {
-	private Date dataInclusao;
-	private Date dataAlteracao;
-	private Long id;
+
+public class CategoriasNaturezasJuridicasModel extends Model {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Long codCatNatJur;
 	private String categoriaNaturezaJuridica;
 	
@@ -36,30 +35,8 @@ public class CategoriasNaturezasJuridicasModel {
 		this.categoriaNaturezaJuridica = categoriaNaturezaJuridica;
 	}
 
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
+	
 	public Long getCodCatNatJur() {
 		return codCatNatJur;
 	}

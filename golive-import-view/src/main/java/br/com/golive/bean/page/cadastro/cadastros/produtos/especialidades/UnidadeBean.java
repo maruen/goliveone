@@ -26,7 +26,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class UnidadeBean extends CadastroBeanRules<UnidadeModel> {
 
-	private static final long serialVersionUID = 5987105899309809603L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

@@ -6,47 +6,46 @@
 
 	<p:panel id="auditoriaLog"
 			 styleClass="mainPanel"
-			 header="#{managerBean.get('label.auditoria/Log')}"
+			 header="Auditoria / Log"
 			 toggleable="true" toggleSpeed="500">
 		
 			<p:dataTable id="auditoriaLogTable"
 					 	 var="row"
 					 	 value="#{bean.auditoriaLogs}"
 					 	 rowKey="#{list.id}"
-					 	 styleClass="tableCadastros" rows="15"
+					 	 styleClass="tableCadastros" 
+					 	 rows="15"
 					 	 paginator="true"
 					 	 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 						 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 		 			<p:column headerText="Id"
-				    		  styleClass="percentual-10">
-				        <h:outputText value="0000000000001" styleClass="singleLine"/>
+				    		  styleClass="percentual-5">
+				        <h:outputText value="#{row.id}" styleClass="singleLine floatRight"/>
 				    </p:column>
 				    
 				    <p:column headerText="Data e Hora"
 				    		  styleClass="percentual-10">
-				        <h:outputText value="25/08/2013 8:21:05"  styleClass="singleLine"/>
+				        <h:outputText value="#{row.dataHoraOcorrencia}"  styleClass="singleLine floatRight">
+				        	<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+				        </h:outputText>
 				    </p:column>
 				 
 				    <p:column headerText="Formulário"
-				    		  styleClass="percentual-10">
-				        <h:outputText value="Cadastro Departamento de Produtos" styleClass="singleLine"/>
+				    		  styleClass="percentual-15">
+				        <h:outputText value="#{row.formularioNome}" styleClass="singleLine"/>
 				    </p:column>
-				 
-				    <p:column headerText="Id" styleClass="percentual-10">
-				    	<h:outputText value="000000000000001" styleClass="singleLine"/>
-				    </p:column>
-				 
+				   
 			 	   <p:column headerText="Ação" styleClass="percentual-10">
-				    	<h:outputText value="Inclusão de Novo Registro" styleClass="singleLine"/>
+				    	<h:outputText value="#{row.usuarioSistemaAcao}" styleClass="singleLine"/>
 				    </p:column>
 				 
 				 	<p:column headerText="Usuário" styleClass="percentual-10">
-				    	<h:outputText value="roberto@acaopersianas.com.br" />
+				    	<h:outputText value="#{row.usuarioSistemaAcao}" />
 				    </p:column>
 				    
 				    <p:column headerText="Observação" styleClass="percentual-10">
-				    	<h:outputText /> 
+				    	<h:outputText value="${row.observacao}" /> 
 				    </p:column>
 		
 		</p:dataTable>

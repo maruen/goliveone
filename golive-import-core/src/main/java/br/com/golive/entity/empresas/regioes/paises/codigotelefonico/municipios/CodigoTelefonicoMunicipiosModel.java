@@ -2,19 +2,16 @@ package br.com.golive.entity.empresas.regioes.paises.codigotelefonico.municipios
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "CodigoTelefonicoMunicipios",
 		nomeDoArquivoGerado = "CodigoTelefonicoMunicipios",
 		nomeArquivoJasper = "CodigoTelefonicoMunicipios")
-public class MunicipiosModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class CodigoTelefonicoMunicipiosModel extends Model {
+
+	private static final long serialVersionUID = 1L;
+	
 	private Long codTelPais;
 	private String idMunicipio;
 	private Long codTelMunicipio;
@@ -26,12 +23,12 @@ public class MunicipiosModel {
 	private String idPais;
 	private String pais;
 	
-	public MunicipiosModel(){
+	public CodigoTelefonicoMunicipiosModel(){
 		this.dataInclusao = new Date();
 		this.dataAlteracao = new Date();
 	}
 	
-	public MunicipiosModel(Long id,
+	public CodigoTelefonicoMunicipiosModel(Long id,
 						  Date dataInclusao,
 						  Date dataAlteracao,
 						  Long codTelPais,
@@ -59,31 +56,8 @@ public class MunicipiosModel {
 		this.idPais = idPais;
 		this.pais = pais;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
+	
+	
 	public Long getCodTelPais() {
 		return codTelPais;
 	}

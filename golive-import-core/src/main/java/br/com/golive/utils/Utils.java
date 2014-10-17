@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -104,5 +105,16 @@ public class Utils {
 		}
 		throw new GoLiveException("Não foi possivel encontrar o filtro");
 	}
-
+	
+	@SuppressWarnings("rawtypes")
+	public static String explode(final List<Long> ids) {
+		final StringBuffer sbf = new StringBuffer();
+		final Iterator it = ids.iterator();
+		while (it.hasNext()) {
+			sbf.append(it.next()).append(",");	
+		}
+		sbf.replace(sbf.lastIndexOf(","), sbf.length(), "");
+		return sbf.toString();
+	}
+	
 }

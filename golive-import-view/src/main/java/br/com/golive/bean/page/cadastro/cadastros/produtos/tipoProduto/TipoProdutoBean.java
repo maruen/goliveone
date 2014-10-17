@@ -24,7 +24,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @Label(name = "label.cadastros.produtos.tipoProduto.tipoProduto")
 public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 
-	private static final long serialVersionUID = 6286581844381749904L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;
