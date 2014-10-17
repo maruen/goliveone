@@ -3,6 +3,7 @@ package br.com.golive.entity.especialidades;
 import java.util.Date;
 
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
 
 @Jasper(titulo="Cores",
@@ -10,11 +11,11 @@ import br.com.golive.annotation.Jasper;
 		nomeArquivoJasper ="Cores"
 		)
 
-public class CoresModel {
+public class CoresModel extends Model{
 	
-	private Long 		 id;
-	private Date 	 dataInclusao; 
-	private Date 	 dataAlteracao;	
+	private static final long serialVersionUID = 1L;
+	
+		
 	private String 		 codigoCor;
 	private String 		 cor;
 	private String 		 idColecao;
@@ -46,30 +47,6 @@ public class CoresModel {
 	}
 	
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
 	public String getCodigoCor() {
 		return codigoCor;
 	}

@@ -2,19 +2,16 @@ package br.com.golive.entity.financeiro.condicoespagamento;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "CondicoesPagamento",
 		nomeDoArquivoGerado = "CondicoesPagamento",
 		nomeArquivoJasper = "CondicoesPagamento")
-public class CondicoesPagamentoModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class CondicoesPagamentoModel extends Model{
+	
+	
+	private static final long serialVersionUID = 1L;
 	private String condicaoPagamento;
 	
 	public CondicoesPagamentoModel(){
@@ -32,31 +29,7 @@ public class CondicoesPagamentoModel {
 		this.dataAlteracao = dataAlteracao;
 		this.condicaoPagamento = condicaoPagamento;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
+	
 	public String getCondicaoPagamento() {
 		return condicaoPagamento;
 	}

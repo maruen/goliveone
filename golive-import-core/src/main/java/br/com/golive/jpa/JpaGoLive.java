@@ -1,8 +1,10 @@
 package br.com.golive.jpa;
 
-import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.Table;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
@@ -17,6 +20,8 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.golive.constants.Constantes;
+import br.com.golive.entity.Model;
+import br.com.golive.entity.auditoria.model.AuditoriaModel;
 
 /**
  * @author guilherme.duarte
@@ -26,14 +31,13 @@ import br.com.golive.constants.Constantes;
  *            classe do id da entidade que foi extendida
  */
 
-public abstract class JpaGoLive<T extends Serializable, I extends Object> {
+public abstract class JpaGoLive<T extends Model, I extends Object> {
 
 	/**
 	 * EntityManager da JPA
 	 */
 	@PersistenceContext(name = "golive-one-PU")
 	protected EntityManager entityManager;
-
 	
 	/**
 	 * Classe de entidade extendida
@@ -159,6 +163,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	public void save(final T entity) {
 		try{
 			entityManager.persist(entity);
+			logAuditoria(entity); //TODO TRATAR QUANDO FOR UPDATE
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -261,5 +266,61 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	private boolean verifyAnnotation(final T classe) {
 		return classe.getClass().isAnnotationPresent(Entity.class);
 	}
+	
 
+	public void logAuditoria(T model){
+		
+		AuditoriaModel auditoria = new AuditoriaModel();
+		auditoria.setDataHoraOcorrencia(new Date());
+		auditoria.setSystemDateTime(new Date());
+		auditoria.setFormularioNome("Cadastro de Departamento de Produtos");
+		auditoria.setUsuarioSistemaAcao("Inserção");
+		auditoria.setUsuarioSistemaInformacaoAnterior("");
+		auditoria.setUsuarioSistemaInformacaoAtual("Inserção do registro: " + model.toString());
+				
+		entityManager.persist(auditoria);
+		
+		Table table = model.getClass().getAnnotation(Table.class);
+		
+		String sqlString =  "INSERT INTO tbAuditoria_" + table.name() + "  VALUES (?,?,?)";
+		Query query 	 =   entityManager.createNativeQuery(sqlString);
+		
+		query.setParameter(1, auditoria.getId());
+		query.setParameter(2, model.getUsuario().getId());
+		query.setParameter(3, model.getId());
+		query.executeUpdate();
+	
+	};
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List getAuditoriaLogs(Class clazz) {
+		List<AuditoriaModel> results = new ArrayList<AuditoriaModel>();
+		
+		String sqlString1 		=  "SELECT tbAuditoria_Id FROM tbAuditoria_" + ((Table) clazz.getAnnotation(Table.class)).name();
+		Query query1 			=  entityManager.createNativeQuery(sqlString1);
+		List<Long> 	ids 		=  query1.getResultList();
+		
+		if (ids != null && ids.size() > 0) {
+			Query query2 =  entityManager.createQuery("SELECT auditoriaModel FROM AuditoriaModel auditoriaModel WHERE auditoriaModel.id IN (" + explode(ids) + ")" , AuditoriaModel.class);
+			results 	 = query2.getResultList();
+		}
+
+		return results; 
+		
+	}
+	
+	@SuppressWarnings("rawtypes")
+	private String explode(List<Long> ids) {
+		StringBuffer sbf = new StringBuffer();
+		Iterator it = ids.iterator();
+		while (it.hasNext()) {
+			sbf.append(it.next()).append(",");	
+		}
+		sbf.replace(sbf.lastIndexOf(","), sbf.length(), "");
+		return sbf.toString();
+	}
+
+	
+	
+	
 }

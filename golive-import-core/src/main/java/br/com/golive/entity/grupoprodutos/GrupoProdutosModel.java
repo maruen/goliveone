@@ -2,20 +2,16 @@ package br.com.golive.entity.grupoprodutos;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "GrupoProdutos", 
 		nomeDoArquivoGerado = "file.name.model", 
 		nomeArquivoJasper = "GrupoProdutos")
-public class GrupoProdutosModel {
+public class GrupoProdutosModel extends Model{
 
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+	private static final long serialVersionUID = 1L;
+
 	private String departamento;
 	private String idGrupoProdutos;
 	private String grupoProdutos;
@@ -36,31 +32,7 @@ public class GrupoProdutosModel {
 		this.idGrupoProdutos = idGrupoProdutos;
 		this.grupoProdutos = grupoProdutos;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
+	
 	public String getDepartamento() {
 		return departamento;
 	}

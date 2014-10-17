@@ -2,19 +2,17 @@ package br.com.golive.entity.empresas.cnae.grupo;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "Grupo",
 		nomeDoArquivoGerado = "Grupo",
 		nomeArquivoJasper = "Grupo")
-public class GrupoModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class GrupoModel extends Model {
+	
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String codSecao;
 	private String denominacaoSecao;
 	private String idDivisao;
@@ -53,23 +51,7 @@ public class GrupoModel {
 		this.codGrupo = codGrupo;
 		this.denominacaoGrupo = denominacaoGrupo;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
+	
 	public Date getDataAlteracao() {
 		return dataAlteracao;
 	}

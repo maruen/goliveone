@@ -2,19 +2,16 @@ package br.com.golive.entity.empresas.cnae.secao;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "Secao",
 		nomeDoArquivoGerado = "Secao",
 		nomeArquivoJasper = "Secao")
-public class SecaoModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class SecaoModel extends Model {
+	
+	private static final long serialVersionUID = 1L;
+
 	private String codSecao;
 	private String denominacao;
 	
