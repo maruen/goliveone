@@ -99,7 +99,7 @@
 		<p:menuitem
 			value="#{managerBean.get('label.regimeApuracao')}"
 			styleClass="itemPanelMenu little-font"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.regimeapuracao')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.regimeApuracao')}');" />
 			
 		<p:submenu styleClass="little-medium"
 			label="#{managerBean.get('label.usuarios')}">
@@ -273,10 +273,10 @@
 				label="#{managerBean.get('label.codigoTelefonico')}">
 				<p:menuitem value="#{managerBean.get('label.municipios')}"
 					styleClass="itemPanelMenu little-font"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.municipios')}');" />
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.codigotelefonicomunicipios')}');" />
 				<p:menuitem value="#{managerBean.get('label.paises')}"
 					styleClass="itemPanelMenu little-font"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.paises')}');" />
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.codigotelefonicopaises')}');" />
 			</p:submenu>
 			<p:menuitem
 				value="#{managerBean.get('label.linguas')}"
@@ -285,7 +285,7 @@
 			<p:menuitem
 				value="#{managerBean.get('label.moedas')}"
 				styleClass="itemPanelMenu little-font"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.moedas')}');" />
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.paisesMoedas')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.paises')}"
 				styleClass="itemPanelMenu little-font"
@@ -302,7 +302,7 @@
 		<p:menuitem
 			value="#{managerBean.get('label.tiposLogradouro')}"
 			styleClass="itemPanelMenu little-font"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.tipologradouro')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.tiposlogradouro')}');" />
 
 	</p:submenu>
 	<p:menuitem value="#{managerBean.get('label.transportadoras')}"

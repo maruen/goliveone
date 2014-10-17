@@ -27,7 +27,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class FinalidadeColecaoBean extends CadastroBeanRules<FinalidadeColecaoModel> {
 
-	private static final long serialVersionUID = 3115143487043318755L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

@@ -7,10 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{municipiosBean}" />
+	<ui:param name="bean" value="#{codigoTelefonicoMunicipiosBean}" />
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_paisesiso.css" />
+		<h:outputStylesheet name="css/cadastros/style_codigotelefonicomunicipios.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{municipiosBean.conteudo}"
+			value="#{codigoTelefonicoMunicipiosBean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{municipiosBean.registro}" 
+			selection="#{codigoTelefonicoMunicipiosBean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -107,22 +107,22 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/dadosGeraisMunicipios.xhtml">
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/municipio.xhtml">
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/estado.xhtml">
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/regiao.xhtml">
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/pais.xhtml">
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
 		</ui:include>
 
 	</ui:define>

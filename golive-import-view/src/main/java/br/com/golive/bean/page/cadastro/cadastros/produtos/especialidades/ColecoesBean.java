@@ -27,7 +27,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @Label(name = "label.cadastroColecoes")
 public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 
-	private static final long serialVersionUID = 2189975521784098342L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

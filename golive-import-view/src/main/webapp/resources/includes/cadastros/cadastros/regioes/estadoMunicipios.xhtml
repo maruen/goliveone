@@ -1,0 +1,157 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="estado"
+		 header="Estado"
+		 toggleable="true"
+		 collapsed="true"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="estado"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="4"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-2,
+          				 				percentual-50,
+          				 				percentual-5,
+          				 				percentual-5"
+           				 width="100%"
+          				 border="0">
+          				 
+          		<h:column>
+					<h:outputText id="idEstadoOutputText"
+								  value="Id"   />
+				</h:column>
+				
+				<h:column>
+		           	<h:inputText id="idEstadoInputText"
+		           				 style="width: 125px;"
+		           				 disabled="true"
+		           				 value="0000000020"/>
+		           	<p:commandLink onclick="PF('dlgEstado').show();" immediate="true">
+		           		<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+				</h:column>
+				
+				<h:column/>
+				<h:column/>
+				
+				<h:column>
+		      		<h:outputText id="codigIbgeEstadoOutputText" 
+		      					  value="Cód.IBGE" 
+		      					  styleClass="singleLine" />
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<h:inputText id="codigoIbgeEstadoInputText"
+		      					 required="true"
+		      					 disabled="true"
+		      					 style="width: 125px"
+		      					 value="35" />	
+		      	</h:column>
+		      	
+		      	<h:column/>
+		      	<h:column/>
+		      	
+				<h:column>
+		      		<h:outputText id="abreviacaoOutputText" 
+		      					  value="Abreviação" 
+		      					  styleClass="singleLine" />
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<h:inputText id="abreviacaoInputText"
+		      					 required="true"
+		      					 disabled="true"
+		      					 style="width: 125px"
+		      					 value="SP" />	
+		      	</h:column>
+		      	
+		      	<h:column/>
+		      	<h:column/>
+		      	
+		      	<h:column>	
+		      		<h:outputText id="estadoOutputText" 
+		      					  value="Estado" 
+		      					  styleClass="singleLine" />
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<h:inputText id="estadoInputText"
+		      					 required="true"
+		      					 disabled="true"
+		      					 style="width: 50%"
+		      					 value="São Paulo" />	
+		      	</h:column>      					 
+             		
+         </h:panelGrid>
+	</p:panel>
+	
+<p:dialog header="Pesquisa de Estado"
+			  widgetVar="dlgEstado"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="80%">
+      			
+     			<p:dataTable id="estadoDatatableId"
+        	  	 	     var="estadoDatatableVar"
+        			 	 value="#{municipiosBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-15 singleLine">
+				     		<h:outputText value="0000000010" />
+				    </p:column>
+				    
+				    <p:column headerText="País"
+				    		  styleClass="percentual-10 singleLine">
+				     		<h:outputText value="Brasil" />
+				    </p:column>
+				    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Cód.IBGE"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="11" />
+				    </p:column>
+				    
+				    <p:column headerText="Estado"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Rondônia" />
+				    </p:column>
+				    
+				    <p:column headerText="Abreviação"
+				    		  styleClass="percentual-15 singleLine">
+				     		<h:outputText value="RO" />
+				    </p:column>
+				    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Região"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Região Norte" />
+				    </p:column>
+					    
+		</p:dataTable>
+</p:dialog>
+		
+</ui:composition>

@@ -22,7 +22,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class GrupoBean extends CadastroBeanRules<GrupoModel> {
 
-	private static final long serialVersionUID = 6968897038165525199L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

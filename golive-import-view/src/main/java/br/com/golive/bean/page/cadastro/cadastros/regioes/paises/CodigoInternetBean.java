@@ -22,7 +22,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class CodigoInternetBean extends CadastroBeanRules<CodigoInternetModel> {
 
-	private static final long serialVersionUID = 2145624921217156687L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

@@ -22,7 +22,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @ViewScoped
 public class CargosBean extends CadastroBeanRules<CargosModel> {
 
-	private static final long serialVersionUID = -2495714373030298081L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.regioes.paises.codigotelefonico;
+package br.com.golive.bean.page.cadastro.cadastros.regioes;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,20 +13,20 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.paises.codigotelefonico.paises.PaisesModel;
+import br.com.golive.entity.empresas.regioes.tiposlogradouro.TiposLogradouroModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastroTelefonicoPaises")
+@Label(name = "label.cadastroTiposLogradouro")
 @ManagedBean
 @ViewScoped
-public class PaisesBean extends CadastroBeanRules<PaisesModel> {
+public class TiposLogradouroBean extends CadastroBeanRules<TiposLogradouroModel> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;
-
+	
 	@Inject
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
@@ -35,18 +35,17 @@ public class PaisesBean extends CadastroBeanRules<PaisesModel> {
 	@PostConstruct
 	public void init() {
 		super.init(criarLista());
-
+		
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<PaisesModel> criarLista() {
-		final List<PaisesModel> lista = new ArrayList<PaisesModel>();
-
-		for (Integer i = 0; i <= 10; i++) {
-			lista.add(new PaisesModel(new Long(i), new Date(), new Date(),
-					new Long(93), "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
+	private List<TiposLogradouroModel> criarLista() {
+		final List<TiposLogradouroModel> lista = new ArrayList<TiposLogradouroModel>();
+		
+		for (Integer i = 0; i <= 10; i ++){
+			lista.add(new TiposLogradouroModel(new Long(i), new Date(), new Date(), "ALM", "Alameda"));
 		}
-
+		
 		return lista;
 	}
 
@@ -54,20 +53,21 @@ public class PaisesBean extends CadastroBeanRules<PaisesModel> {
 	protected Logger getLogger() {
 		return logger;
 	}
-
+	
 	@Override
-	public void salvar() {
+	public void salvar(){
 		super.salvar();
-
+		
 		logger.info("Salvando = {}");
 	}
-
-	public List<Object> getAuditoriaLogs() {
-		ArrayList<Object> list = new ArrayList<Object>();
-		list.add(new Object());
-		list.add(new Object());
-		list.add(new Object());
-
-		return list;
+	
+	public List<Object> getAuditoriaLogs(){
+		ArrayList<Object> lista = new ArrayList<Object>();		
+		
+		lista.add(new Object());
+		lista.add(new Object());
+		lista.add(new Object());
+		
+		return lista;
 	}
 }

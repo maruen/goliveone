@@ -11,7 +11,7 @@ import br.com.golive.annotation.Jasper;
 @Jasper(titulo = "CodigoTelefonicoPaises",
 		nomeDoArquivoGerado = "CodigoTelefonicoPaises",
 		nomeArquivoJasper = "CodigoTelefonicoPaises")
-public class PaisesModel {
+public class CodigoTelefonicoPaisesModel {
 	private Long id;
 	private Date dataInclusao;
 	private Date dataAlteracao;
@@ -20,12 +20,12 @@ public class PaisesModel {
 	private String paisIngles;
 	private String paisNativo;
 	
-	public PaisesModel(){
+	public CodigoTelefonicoPaisesModel(){
 		this.dataInclusao = new Date();
 		this.dataAlteracao = new Date();
 	}
 	
-	public PaisesModel(Long id,
+	public CodigoTelefonicoPaisesModel(Long id,
 					   Date dataInclusao,
 					   Date dataAlteracao,
 					   Long codTelPaises,
