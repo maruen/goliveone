@@ -2,19 +2,16 @@ package br.com.golive.entity.empresas.regioes.tiposlogradouro;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "TiposLogradouro",
 		nomeDoArquivoGerado = "TiposLogradouro",
 		nomeArquivoJasper = "TiposLogradouro")
-public class TiposLogradouroModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class TiposLogradouroModel extends Model {
+
+	private static final long serialVersionUID = 1L;
+
 	private String abreviacao;
 	private String tipoLogradouro;
 	
@@ -34,30 +31,6 @@ public class TiposLogradouroModel {
 		this.dataAlteracao = dataAlteracao;
 		this.abreviacao = abreviacao;
 		this.tipoLogradouro = tipoLogradouro;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
 	}
 
 	public String getAbreviacao() {
