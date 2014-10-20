@@ -1,20 +1,19 @@
 package br.com.golive.entity.perfil.configuracao.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import br.com.golive.entity.Model;
 import br.com.golive.entity.empresas.model.Empresa;
 import br.com.golive.entity.perfil.usuario.model.Usuario;
 
 @Entity
 @Table(name = "tbConfiguracaoColunaPagina")
 @IdClass(value = ColunaPerfilId.class)
-public class ColunaPerfil implements Serializable {
+public class ColunaPerfil extends Model {
 
 	private static final long serialVersionUID = -161500950585892955L;
 

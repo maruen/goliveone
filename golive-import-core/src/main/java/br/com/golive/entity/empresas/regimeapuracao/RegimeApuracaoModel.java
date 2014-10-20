@@ -2,19 +2,15 @@ package br.com.golive.entity.empresas.regimeapuracao;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "RegimeApuracao",
 		nomeDoArquivoGerado = "RegimeApuracao",
 		nomeArquivoJasper = "RegimeApuracao")
-public class RegimeApuracaoModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class RegimeApuracaoModel extends Model{
+	
+	private static final long serialVersionUID = 1L;
 	private String regimeApuracao;
 	
 	public RegimeApuracaoModel(){
@@ -33,26 +29,7 @@ public class RegimeApuracaoModel {
 		this.regimeApuracao = regimeApuracao;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
+	
 	public void setDataAlteracao(Date dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}

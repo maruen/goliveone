@@ -1,6 +1,5 @@
 package br.com.golive.entity.perfil.usuario.model;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
@@ -15,12 +14,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import br.com.golive.entity.Model;
 import br.com.golive.entity.empresas.model.Empresa;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Entity
 @Table(name = "tbUser")
-public class Usuario implements Serializable {
+public class Usuario extends Model {
 
 	private static final long serialVersionUID = -8750720313507700912L;
 
@@ -66,15 +66,7 @@ public class Usuario implements Serializable {
 		this.email = email;
 		this.labels = labels;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -83,14 +75,7 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 	}
 
-	public Calendar getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(final Calendar dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
+	
 	public String getSenha() {
 		return senha;
 	}
