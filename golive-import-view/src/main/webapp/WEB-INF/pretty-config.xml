@@ -82,6 +82,11 @@
 			<view-id value="/pages/cadastros/cadastros/empresas/categoriasNaturezasJuridicas.jsf" />
 		</url-mapping>
 
+		<url-mapping id="cadastrosCadastrosEmpresasNaturezasJuridicas">
+			<pattern value="/Cadastros/Cadastros/Empresas/NaturezasJuridicas" />
+			<view-id value="/pages/cadastros/cadastros/empresas/naturezasJuridicas.jsf" />
+		</url-mapping>
+
 		<url-mapping id="cadastrosCadastrosEmpresasRegimeApuracao">
 			<pattern value="/Cadastros/Cadastros/Empresas/RegimeApuracao" />
 			<view-id value="/pages/cadastros/cadastros/empresas/regimeApuracao.jsf" />
@@ -291,6 +296,11 @@
 		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisesMoedas">
 			<pattern value="/Cadastros/Cadastros/Regioes/Paises/PaisesMoedas" />
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisesMoedas.jsf" />
+		</url-mapping>
+
+		<url-mapping id="cadastrosCadastrosRegioesPaisesPaises">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/Paises" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/paises.jsf" />
 		</url-mapping>
 
 		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisesBacen">

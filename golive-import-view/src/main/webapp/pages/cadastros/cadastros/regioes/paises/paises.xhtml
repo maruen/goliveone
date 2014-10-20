@@ -7,10 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{fornecedoresBean}" />
+	<ui:param name="bean" value="#{paisesBean}" />
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_fornecedores.css" />
+		<h:outputStylesheet name="css/cadastros/style_paises.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{fornecedoresBean.conteudo}"
+			value="#{paisesBean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{fornecedoresBean.registro}" 
+			selection="#{paisesBean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -40,41 +40,47 @@
 			</p:column>
 
 			<p:column 
-				headerText="CNPJ"
-				styleClass="percentual-10 singleLine">				
-				<h:outputText value="09.363.143/0001-00" />
+				headerText="Bandeira"
+				styleClass="percentual-10 singleLine">
+					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/afeganistao.png" />
 			</p:column>
 
 			<p:column
-				headerText="Insc.Estadual"
+				headerText="País Inglês"
 				styleClass="percentual-10 singleLine">
-				<h:outputText value="111.222.333-11">
+				<h:outputText value="Afghanistan">
 				</h:outputText>
 			</p:column>
 
 			<p:column 
-				headerText="Nome Fantasia"
+				headerText="País Português"
 				styleClass="percentual-10 singleLine">
-				<h:outputText value="Alpex Alumínio" />
+				<h:outputText value="Afeganistão" />
 			</p:column>
 
 			<p:column
-				headerText="Razão Social"
+				headerText="País Nativo"
 				styleClass="percentual-10">
-				<h:outputText value="Ind.Com.de Alumínios Alpex Ltda." />
+				<h:outputText value="ښبثلشدهسفګشخ" />
 			</p:column>
+
 		</p:dataTable>
 
 	</ui:define>
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/dadosGeraisFornecedores.xhtml">
-			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/dadosGeraisPaises.xhtml">
+			<ui:param name="pojo" value="#{paisesBean.registro}" />
 		</ui:include>
-		<!-- <ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
-		</ui:include>-->
-
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/bacen.xhtml">
+			<ui:param name="pojo" value="#{paisesBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/nacionalizacao.xhtml">
+			<ui:param name="pojo" value="#{paisesBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+			<ui:param name="pojo" value="#{paisesBean.registro}" />
+		</ui:include>
 	</ui:define>
 </ui:composition>
