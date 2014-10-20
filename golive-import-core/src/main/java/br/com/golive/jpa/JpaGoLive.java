@@ -2,6 +2,7 @@ package br.com.golive.jpa;
 
 import static br.com.golive.constants.Operation.DELETE;
 import static br.com.golive.constants.Operation.INSERT;
+import static br.com.golive.constants.Operation.UPDATE;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -176,10 +177,10 @@ public abstract class JpaGoLive<T extends Model, I extends Object> {
 	 *            entidade
 	 */
 	public void delete(final T entity) {
-		final T objectToRemove = entityManager.merge(entity);
+		T objectToRemove = entityManager.merge(entity);
 		entityManager.remove(objectToRemove);
-		final Usuario usuario = entity.getUsuario();
-		final T entityMerged = entityManager.merge(entity);
+		Usuario usuario = entity.getUsuario();
+		T entityMerged = entityManager.merge(entity);
 		entityMerged.setUsuario(usuario);
 		logAuditoria(entityMerged,DELETE);
 		entityManager.remove(entityMerged);
@@ -197,20 +198,18 @@ public abstract class JpaGoLive<T extends Model, I extends Object> {
 	 *            entidade
 	 */
 	public void save(final T entity) {
-		// TODO Maruen acabou dando problema com merge e eu nao consegui arrumar
-		// try{
-		// Operation operation = INSERT;
-		// if (entity.hasId()) {
-		// operation = UPDATE;
-		// }
-		//
-		// entityManager.persist(entity);
-		// }catch(final Exception e){
-		// logAuditoria(entity,operation);
-		//
-		// }catch(final Exception e){
-		// e.printStackTrace();
-		// }
+		Operation operation = INSERT; 
+		if (entity.hasId()) {
+			operation = UPDATE;
+		}
+
+		try{
+			entityManager.persist(entity);
+			logAuditoria(entity,operation);
+		}catch(final Exception e){
+			e.printStackTrace();
+		}	 
+		 
 	}
 	
 	
@@ -332,12 +331,10 @@ public abstract class JpaGoLive<T extends Model, I extends Object> {
 		case INSERT:
 			
 			auditoria = new AuditoriaModel();
-			auditoria.setDataHoraOcorrencia(new Date());
-			auditoria.setSystemDateTime(new Date());
+			auditoria.setDataInclusao(new Date());
+			auditoria.setDataAlteracao(new Date());
 			auditoria.setFormularioNome("Cadastro de Departamento de Produtos");
-			auditoria.setUsuarioSistemaAcao(INSERT.getDescricao());
-			auditoria.setUsuarioSistemaInformacaoAnterior("");
-			auditoria.setUsuarioSistemaInformacaoAtual("Inserção do registro: " + model.toString());
+			auditoria.setAcaoUsuario(INSERT.getDescricao());
 			entityManager.persist(auditoria);
 			
 			sqlString =  "INSERT INTO tbAuditoria_" + table.name() + "  VALUES (?,?,?)";
@@ -353,12 +350,10 @@ public abstract class JpaGoLive<T extends Model, I extends Object> {
 		case DELETE:
 			
 			auditoria = new AuditoriaModel();
-			auditoria.setDataHoraOcorrencia(new Date());
-			auditoria.setSystemDateTime(new Date());
+			auditoria.setDataInclusao(new Date());
+			auditoria.setDataAlteracao(new Date());
 			auditoria.setFormularioNome("Cadastro de Departamento de Produtos");
-			auditoria.setUsuarioSistemaAcao(DELETE.getDescricao());
-			auditoria.setUsuarioSistemaInformacaoAnterior("");
-			auditoria.setUsuarioSistemaInformacaoAtual("Exclusão do registro: " + model.toString());
+			auditoria.setAcaoUsuario(DELETE.getDescricao());
 			entityManager.persist(auditoria);
 			
 			sqlString =  "INSERT INTO tbAuditoria_" + table.name() + "  VALUES (?,?,?)";
