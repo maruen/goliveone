@@ -20,7 +20,6 @@ import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.WordUtils;
-import org.primefaces.component.api.UIColumn;
 import org.primefaces.component.datatable.DataTable;
 import org.slf4j.Logger;
 
@@ -31,7 +30,6 @@ import br.com.golive.annotation.PropriedadesTemplate;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
-import br.com.golive.entity.Model;
 import br.com.golive.entity.perfil.configuracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
@@ -63,7 +61,8 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
 @ManagedBean
 @ViewScoped
 @PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable")
-public abstract class CadastroBeanRules<T extends Model> extends GenericBean implements	Serializable {
+public abstract class CadastroBeanRules<T extends Serializable> extends
+		GenericBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -140,24 +139,26 @@ public abstract class CadastroBeanRules<T extends Model> extends GenericBean imp
 		// getForm());
 	}
 
-	@Deprecated
-	public void ordernarTabela() {
-		final List<UIColumn> colunasDataTable = new ArrayList<UIColumn>();
-		colunasDataTable.addAll(dataTable.getColumns());
-		dataTable.getColumns().removeAll(colunasDataTable);
-		dataTable.getColumns().add(colunasDataTable.get(0));
-
-		for (final ColunaPerfil conf : colunas) {
-			for (int i = 1; i < colunasDataTable.size(); i++) {
-				if (colunasDataTable.get(i).getClientId().replace(getForm(), "").replace(getIdTable(), "").replace(":", "").equals(conf.getColuna())) {
-					// if (conf.getVisibilidade()) {
-					// dataTable.getColumns().add(colunasDataTable.get(i));
-					// i = colunasDataTable.size();
-					// }
-				}
-			}
-		}
-	}
+	// @Deprecated
+	// public void ordernarTabela() {
+	// final List<UIColumn> colunasDataTable = new ArrayList<UIColumn>();
+	// colunasDataTable.addAll(dataTable.getColumns());
+	// dataTable.getColumns().removeAll(colunasDataTable);
+	// dataTable.getColumns().add(colunasDataTable.get(0));
+	//
+	// for (final ColunaPerfil conf : colunas) {
+	// for (int i = 1; i < colunasDataTable.size(); i++) {
+	// if (colunasDataTable.get(i).getClientId().replace(getForm(),
+	// "").replace(getIdTable(), "").replace(":", "").equals(conf.getColuna()))
+	// {
+	// // if (conf.getVisibilidade()) {
+	// // dataTable.getColumns().add(colunasDataTable.get(i));
+	// // i = colunasDataTable.size();
+	// // }
+	// }
+	// }
+	// }
+	// }
 
 	public void cancelarExclusao() {
 		fluxo = getFluxoListagem();

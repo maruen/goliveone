@@ -37,7 +37,7 @@
 				headerText="Data Inclusão"
 				styleClass="percentual-10 singleLine">				
 			
-				<h:outputText value="#{row.dataInclusao}" styleClass="floatRight">
+				<h:outputText value="#{row.dataInclusao.time}" styleClass="floatRight">
   					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
 				</h:outputText>
 				
@@ -47,7 +47,7 @@
 				headerText="Data Alteração"
 				styleClass="percentual-10 singleLine">
 			
-				<h:outputText value="#{row.dataAlteracao}" styleClass="floatRight">
+				<h:outputText value="#{row.dataAlteracao.time}" styleClass="floatRight">
   					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
 				</h:outputText>
 			

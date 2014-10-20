@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import br.com.golive.entity.Model;
+import br.com.golive.entity.Model2;
 
 
 /**
@@ -13,10 +13,10 @@ import br.com.golive.entity.Model;
  */
 @Entity
 @Table(name="tbAuditoria")
-public class AuditoriaModel extends Model{
+public class AuditoriaModel extends Model2 {
 	
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -1516001937403226010L;
+
 	@Column(name="FormularioNome")
 	private String formularioNome;
 
@@ -36,7 +36,7 @@ public class AuditoriaModel extends Model{
 	}
 
 
-	public void setFormularioNome(String formularioNome) {
+	public void setFormularioNome(final String formularioNome) {
 		this.formularioNome = formularioNome;
 	}
 
@@ -46,7 +46,7 @@ public class AuditoriaModel extends Model{
 	}
 
 
-	public void setAcaoUsuario(String acaoUsuario) {
+	public void setAcaoUsuario(final String acaoUsuario) {
 		this.acaoUsuario = acaoUsuario;
 	}
 
@@ -56,7 +56,7 @@ public class AuditoriaModel extends Model{
 	}
 
 
-	public void setObservacao(String observacao) {
+	public void setObservacao(final String observacao) {
 		this.observacao = observacao;
 	}
 	

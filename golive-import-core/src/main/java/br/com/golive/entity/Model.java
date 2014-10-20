@@ -103,7 +103,7 @@ public class Model implements Serializable {
 	}
 	
 	public boolean hasId() {
-		if (this != null && this.id != null) {
+		if ((this != null) && (this.id != null)) {
 			return true;
 		}
 		return false;
