@@ -13,7 +13,6 @@ import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 import br.com.golive.annotation.Label;
-import br.com.golive.entity.perfil.configuracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
 
@@ -105,14 +104,15 @@ public class JSFUtils {
 	public static UIComponent obterComponentXhtml(final String formId, final String componentId) {
 		return getContext().getViewRoot().findComponent(formId).findComponent(componentId);
 	}
-
-	public static <T> boolean verificarColuna(final List<ColunaPerfil> colunas, final String name) {
-		for (final ColunaPerfil conf : colunas) {
-			if (conf.getColuna().equals(name)) {
-				return true;
-			}
-		}
-		return false;
-	}
+	//
+	// public static <T> boolean verificarColuna(final List<ColunaPerfil>
+	// colunas, final String name) {
+	// for (final ColunaPerfil conf : colunas) {
+	// if (conf.getColuna().equals(name)) {
+	// return true;
+	// }
+	// }
+	// return false;
+	// }
 
 }

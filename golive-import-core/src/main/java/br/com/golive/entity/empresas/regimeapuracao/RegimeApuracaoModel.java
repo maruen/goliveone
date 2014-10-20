@@ -8,6 +8,7 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "RegimeApuracao",
 		nomeDoArquivoGerado = "RegimeApuracao",
 		nomeArquivoJasper = "RegimeApuracao")
+	
 public class RegimeApuracaoModel extends Model {
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +30,9 @@ public class RegimeApuracaoModel extends Model {
 		this.dataAlteracao = dataAlteracao;
 		this.regimeApuracao = regimeApuracao;
 	}
+
+	
+	
 
 	public String getRegimeApuracao() {
 		return regimeApuracao;

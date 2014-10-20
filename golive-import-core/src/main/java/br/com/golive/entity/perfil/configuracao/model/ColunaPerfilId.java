@@ -80,5 +80,4 @@ public class ColunaPerfilId implements Serializable {
 		return "ColunaPerfilId [usuario=" + usuario + ", empresa=" + empresa + "]";
 	}
 
-
 }

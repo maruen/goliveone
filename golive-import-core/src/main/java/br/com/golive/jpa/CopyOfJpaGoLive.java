@@ -1,8 +1,13 @@
 package br.com.golive.jpa;
 
-import java.io.Serializable;
+import static br.com.golive.constants.Operation.DELETE;
+import static br.com.golive.constants.Operation.INSERT;
+import static br.com.golive.constants.Operation.UPDATE;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.Table;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
@@ -18,7 +24,12 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.engine.transaction.jta.platform.spi.JtaPlatformException;
 
 import br.com.golive.constants.Constantes;
+import br.com.golive.constants.Operation;
+import br.com.golive.entity.Model;
+import br.com.golive.entity.auditoria.model.AuditoriaModel;
+import br.com.golive.entity.perfil.usuario.model.Usuario;
 import br.com.golive.exception.GoLiveException;
+import br.com.golive.utils.Utils;
 
 /**
  * @author guilherme.duarte
@@ -28,7 +39,7 @@ import br.com.golive.exception.GoLiveException;
  *            classe do id da entidade que foi extendida
  */
 
-public abstract class JpaGoLive<T extends Serializable, I extends Object> {
+public abstract class CopyOfJpaGoLive<T extends Model, I extends Object> {
 
 	/**
 	 * EntityManager da JPA
@@ -53,7 +64,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @param entityManager
 	 */
 	@SuppressWarnings("unchecked")
-	protected JpaGoLive() {
+	protected CopyOfJpaGoLive() {
 		super();
 
 		Type type = getClass().getGenericSuperclass();
@@ -165,8 +176,13 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 *            entidade
 	 */
 	public void delete(final T entity) {
-		entityManager.merge(entity);
-		entityManager.remove(entity);
+		final T objectToRemove = entityManager.merge(entity);
+		entityManager.remove(objectToRemove);
+		final Usuario usuario = entity.getUsuario();
+		final T entityMerged = entityManager.merge(entity);
+		entityMerged.setUsuario(usuario);
+		logAuditoria(entityMerged, DELETE);
+		entityManager.remove(entityMerged);
 
 	}
 
@@ -181,8 +197,14 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 *            entidade
 	 */
 	public void save(final T entity) {
+		Operation operation = INSERT;
+		if (entity.hasId()) {
+			operation = UPDATE;
+		}
+
 		try {
 			entityManager.persist(entity);
+			logAuditoria(entity, operation);
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
@@ -261,6 +283,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		Hibernate.initialize(lazyAtrybute);
 	}
 
+
 	@SuppressWarnings("unchecked")
 	public List<T> findByAtributtes(final Map<String, Object> atributs) {
 		final Criteria criteria = createNativeCriteria();
@@ -287,94 +310,88 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		}
 	}
 
-	public Query createNativeQuery(final String query) {
-		return entityManager.createNativeQuery(query);
-	}
-
 	private boolean verifyAnnotation(final T classe) {
 		return classe.getClass().isAnnotationPresent(Entity.class);
 	}
 
-	// public void logAuditoria(final T model, final Operation operation) {
-	//
-	// AuditoriaModel auditoria;
-	// String sqlString;
-	// Query query;
-	//
-	// final Table table = model.getClass().getAnnotation(Table.class);
-	//
-	// switch (operation) {
-	// case INSERT:
-	//
-	// auditoria = new AuditoriaModel();
-	// auditoria.setDataInclusao(new Date());
-	// auditoria.setDataAlteracao(new Date());
-	// auditoria.setFormularioNome("Cadastro de Departamento de Produtos");
-	// auditoria.setAcaoUsuario(INSERT.getDescricao());
-	// entityManager.persist(auditoria);
-	//
-	// sqlString = "INSERT INTO tbAuditoria_" + table.name() +
-	// "  VALUES (?,?,?)";
-	// query = entityManager.createNativeQuery(sqlString);
-	//
-	// query.setParameter(1, auditoria.getId());
-	// query.setParameter(2, model.getUsuario().getId());
-	// query.setParameter(3, model.getId());
-	// query.executeUpdate();
-	//
-	// break;
-	//
-	// case DELETE:
-	//
-	// auditoria = new AuditoriaModel();
-	// auditoria.setDataInclusao(new Date());
-	// auditoria.setDataAlteracao(new Date());
-	// auditoria.setFormularioNome("Cadastro de Departamento de Produtos");
-	// auditoria.setAcaoUsuario(DELETE.getDescricao());
-	// entityManager.persist(auditoria);
-	//
-	// sqlString = "INSERT INTO tbAuditoria_" + table.name() +
-	// "  VALUES (?,?,?,?)";
-	// query = entityManager.createNativeQuery(sqlString);
-	//
-	// query.setParameter(1, auditoria.getId());
-	// query.setParameter(2, 1);
-	// query.setParameter(2, model.getUsuario().getId());
-	// query.setParameter(3, model.getId());
-	// query.executeUpdate();
-	//
-	// sqlString = "DELETE FROM tbAuditoria_" + table.name() + "  WHERE " +
-	// table.name() + "_Id =" + model.getId();
-	// query = entityManager.createNativeQuery(sqlString);
-	// query.executeUpdate();
-	//
-	// break;
-	//
-	// case UPDATE:
-	//
-	// break;
-	// }
-	// };
-	//
-	// @SuppressWarnings({ "rawtypes", "unchecked" })
-	// public List getAuditoriaLogs(final Class clazz) {
-	// List<AuditoriaModel> results = new ArrayList<AuditoriaModel>();
-	//
-	// String sql = "SELECT tbAuditoria_Id FROM tbAuditoria_" + ((Table)
-	// clazz.getAnnotation(Table.class)).name();
-	// Query query = entityManager.createNativeQuery(sql);
-	// final List<Long> ids = query.getResultList();
-	//
-	// if ((ids != null) && (ids.size() > 0)) {
-	// sql =
-	// "SELECT auditoriaModel FROM AuditoriaModel auditoriaModel WHERE auditoriaModel.id IN ("
-	// + Utils.explode(ids) + ")";
-	// query = entityManager.createQuery(sql, AuditoriaModel.class);
-	// results = query.getResultList();
-	// }
-	//
-	// return results;
-	//
-	// }
+	public void logAuditoria(final T model, final Operation operation) {
 
+		AuditoriaModel auditoria;
+		String sqlString;
+		Query query;
+
+		final Table table = model.getClass().getAnnotation(Table.class);
+
+		switch (operation) {
+		case INSERT:
+
+			auditoria = new AuditoriaModel();
+			auditoria.setDataInclusao(Calendar.getInstance());
+			auditoria.setDataAlteracao(Calendar.getInstance());
+			auditoria.setFormularioNome("Cadastro de Departamento de Produtos");
+			auditoria.setAcaoUsuario(INSERT.getDescricao());
+			entityManager.persist(auditoria);
+
+			sqlString = "INSERT INTO tbAuditoria_" + table.name() + "  VALUES (?,?,?)";
+			query = entityManager.createNativeQuery(sqlString);
+
+			query.setParameter(1, auditoria.getId());
+			query.setParameter(2, model.getUsuario().getId());
+			query.setParameter(3, model.getId());
+			query.executeUpdate();
+
+			break;
+
+		case DELETE:
+
+			auditoria = new AuditoriaModel();
+			auditoria.setDataInclusao(Calendar.getInstance());
+			auditoria.setDataAlteracao(Calendar.getInstance());
+			auditoria.setFormularioNome("Cadastro de Departamento de Produtos");
+			auditoria.setAcaoUsuario(DELETE.getDescricao());
+			entityManager.persist(auditoria);
+
+			sqlString = "INSERT INTO tbAuditoria_" + table.name() + "  VALUES (?,?,?,?)";
+			query = entityManager.createNativeQuery(sqlString);
+
+			query.setParameter(1, auditoria.getId());
+			query.setParameter(2, 1);
+			query.setParameter(2, model.getUsuario().getId());
+			query.setParameter(3, model.getId());
+			query.executeUpdate();
+
+			sqlString = "DELETE FROM tbAuditoria_" + table.name() + "  WHERE " + table.name() + "_Id =" + model.getId();
+			query = entityManager.createNativeQuery(sqlString);
+			query.executeUpdate();
+
+			break;
+
+		case UPDATE:
+
+			break;
+		}
+	};
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List getAuditoriaLogs(final Class clazz) {
+		List<AuditoriaModel> results = new ArrayList<AuditoriaModel>();
+
+		String sql = "SELECT tbAuditoria_Id FROM tbAuditoria_" + ((Table) clazz.getAnnotation(Table.class)).name();
+		Query query = entityManager.createNativeQuery(sql);
+		final List<Long> ids = query.getResultList();
+
+		if ((ids != null) && (ids.size() > 0)) {
+			sql = "SELECT auditoriaModel FROM AuditoriaModel auditoriaModel WHERE auditoriaModel.id IN (" + Utils.explode(ids) + ")";
+			query = entityManager.createQuery(sql, AuditoriaModel.class);
+			results = query.getResultList();
+		}
+
+		return results;
+
+	}
+
+
+	
+	
+	
 }
