@@ -51,7 +51,7 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 	private Usuario geradorUsuario(final String username) throws IOException {
 		Usuario ret = new Usuario();
 		ret.setId(1L);
-		ret.setDataInclusao(Calendar.getInstance());
+		ret.setDataInclusao(Calendar.getInstance().getTime());
 		ret.setLabels(new GoliveOneProperties(Locale.getDefault()));
 
 		final List<Empresa> lista = new ArrayList<Empresa>();
