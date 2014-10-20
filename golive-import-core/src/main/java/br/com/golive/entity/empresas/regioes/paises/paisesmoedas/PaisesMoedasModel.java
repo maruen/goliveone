@@ -2,19 +2,16 @@ package br.com.golive.entity.empresas.regioes.paises.paisesmoedas;
 
 import java.util.Date;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.entity.Model;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @Jasper(titulo = "PaisesMoedas",
 		nomeDoArquivoGerado = "PaisesMoedas",
 		nomeArquivoJasper = "PaisesMoedas")
-public class PaisesMoedasModel {
-	private Long id;
-	private Date dataInclusao;
-	private Date dataAlteracao;
+public class PaisesMoedasModel extends Model {
+	
+	private static final long serialVersionUID = 1L;
+
 	private String iso;
 	private String moeda;
 	private String idPais;
@@ -46,30 +43,6 @@ public class PaisesMoedasModel {
 		this.paisPortugues = paisPortugues;
 		this.paisIngles = paisIngles;
 		this.paisNativo = paisNativo;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
 	}
 
 	public String getIso() {
