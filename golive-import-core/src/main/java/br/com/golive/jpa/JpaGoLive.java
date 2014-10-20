@@ -356,10 +356,11 @@ public abstract class JpaGoLive<T extends Model, I extends Object> {
 			auditoria.setAcaoUsuario(DELETE.getDescricao());
 			entityManager.persist(auditoria);
 			
-			sqlString =  "INSERT INTO tbAuditoria_" + table.name() + "  VALUES (?,?,?)";
+			sqlString =  "INSERT INTO tbAuditoria_" + table.name() + "  VALUES (?,?,?,?)";
 			query 	  =   entityManager.createNativeQuery(sqlString);
 			
 			query.setParameter(1, auditoria.getId());
+			query.setParameter(2,1); 
 			query.setParameter(2, model.getUsuario().getId());
 			query.setParameter(3, model.getId());
 			query.executeUpdate();
