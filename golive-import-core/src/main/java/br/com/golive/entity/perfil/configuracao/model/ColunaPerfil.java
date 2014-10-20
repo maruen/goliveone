@@ -3,7 +3,6 @@ package br.com.golive.entity.perfil.configuracao.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import br.com.golive.entity.Model;
@@ -12,12 +11,11 @@ import br.com.golive.entity.perfil.usuario.model.Usuario;
 
 @Entity
 @Table(name = "tbConfiguracaoColunaPagina")
-@IdClass(value = ColunaPerfilId.class)
+//@IdClass(value = ColunaPerfilId.class)
 public class ColunaPerfil extends Model {
 
 	private static final long serialVersionUID = -161500950585892955L;
-
-	@Id
+	
 	@Column(name = "IdUser")
 	private Usuario usuario;
 

@@ -20,16 +20,10 @@ import br.com.golive.utils.GoliveOneProperties;
 public class Usuario extends Model {
 
 	private static final long serialVersionUID = -8750720313507700912L;
-
-	@Column(name = "IdUser")
-	private Long id;
-
+	
 	@Column(name = "NameUser")
 	private String nome;
-
-	@Column(name = "SystemIncludeDateTime")
-	private Calendar dataInclusao;
-
+	
 	@Column(name = "PasswordUser")
 	private String senha;
 
@@ -54,7 +48,7 @@ public class Usuario extends Model {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.dataInclusao = dataInclusao;
+		this.dataInclusao = dataInclusao.getTime();
 		this.senha = senha;
 		this.empresas = empresas;
 		this.locale = locale;

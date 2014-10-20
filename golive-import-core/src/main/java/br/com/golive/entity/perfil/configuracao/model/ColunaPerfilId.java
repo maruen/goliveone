@@ -1,12 +1,11 @@
 package br.com.golive.entity.perfil.configuracao.model;
 
-import java.io.Serializable;
-
+import br.com.golive.entity.Model;
 import br.com.golive.entity.empresas.model.Empresa;
 import br.com.golive.entity.perfil.usuario.model.Usuario;
 
 @SuppressWarnings("serial")
-public class ColunaPerfilId implements Serializable {
+public class ColunaPerfilId extends Model {
 
 	private Usuario usuario;
 	private Empresa empresa;
