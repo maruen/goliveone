@@ -1,16 +1,24 @@
 package br.com.golive.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
+import br.com.golive.constants.ChaveSessao;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.empresas.empresa.repositorio.EmpresaJpa;
 import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.entity.usuario.repositorio.UsuarioJpa;
 import br.com.golive.service.UsuarioBeanService;
+import br.com.golive.utils.GoliveOneProperties;
+import br.com.golive.utils.ServiceUtils;
 
 @Stateless
 public class UsuarioBeanServiceImpl implements UsuarioBeanService {
@@ -51,7 +59,6 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 
 	@Deprecated
 	private Usuario geradorUsuario(final String username) throws IOException {
-<<<<<<< HEAD
 		// Usuario ret = new Usuario();
 		// ret.setId(1L);
 		// ret.setDataInclusao(Calendar.getInstance().getTime());
@@ -67,29 +74,29 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 		//
 		// switch (username) {
 		// case "roberto.tradicao@gmail.com":
-		// ret.setNome("Roberto Tradição");
-		// ret.setSenha("tradicao1234");
+		// ret.setLogin("Roberto Tradição");
+		// ret.setPassword("tradicao1234");
 		// ret.setEmpresas(lista);
 		// break;
 		//
 		// case "Guilherme":
-		// ret.setNome("Guilherme");
-		// ret.setSenha("123");
+		// ret.setLogin("Guilherme");
+		// ret.setPassword("123");
 		// ret.setEmpresas(lista);
 		// break;
 		// case "Maruen":
-		// ret.setNome("Maruen");
-		// ret.setSenha("123");
+		// ret.setLogin("Maruen");
+		// ret.setPassword("123");
 		// ret.setEmpresas(lista);
 		// break;
 		// case "Antero":
-		// ret.setNome("Antero A. Costa");
-		// ret.setSenha("costa");
+		// ret.setLogin("Antero A. Costa");
+		// ret.setPassword("costa");
 		// ret.setEmpresas(lista);
 		// break;
 		// case "Anderson":
-		// ret.setNome("Anderson P. Moreira");
-		// ret.setSenha("moreira");
+		// ret.setLogin("Anderson P. Moreira");
+		// ret.setPassword("moreira");
 		// ret.setEmpresas(lista);
 		// break;
 		//
@@ -101,8 +108,6 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 		// ServiceUtils.guardarObjetoSessao(ChaveSessao.USUARIO_LOGADO, ret);
 		// }
 		// return ret;
-		return null;
-=======
 		Usuario ret = new Usuario();
 		ret.setId(1L);
 		ret.setDataInclusao(Calendar.getInstance());
@@ -114,29 +119,29 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 
 		switch (username) {
 		case "roberto.tradicao@gmail.com":
-			ret.setNome("Roberto Tradição");
-			ret.setSenha("tradicao1234");
+			ret.setLogin("Roberto Tradição");
+			ret.setPassword("tradicao1234");
 			ret.setEmpresas(lista);
 			break;
 
 		case "Guilherme":
-			ret.setNome("Guilherme");
-			ret.setSenha("123");
+			ret.setLogin("Guilherme");
+			ret.setPassword("123");
 			ret.setEmpresas(lista);
 			break;
 		case "Maruen":
-			ret.setNome("Maruen");
-			ret.setSenha("123");
+			ret.setLogin("Maruen");
+			ret.setPassword("123");
 			ret.setEmpresas(lista);
 			break;
 		case "Antero":
-			ret.setNome("Antero A. Costa");
-			ret.setSenha("costa");
+			ret.setLogin("Antero A. Costa");
+			ret.setPassword("costa");
 			ret.setEmpresas(lista);
 			break;
 		case "Anderson":
-			ret.setNome("Anderson P. Moreira");
-			ret.setSenha("moreira");
+			ret.setLogin("Anderson P. Moreira");
+			ret.setPassword("moreira");
 			ret.setEmpresas(lista);
 			break;
 
@@ -148,6 +153,5 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 			ServiceUtils.guardarObjetoSessao(ChaveSessao.USUARIO_LOGADO, ret);
 		}
 		return ret;
->>>>>>> 8557e5498c87cecf37e2b42731a91bb4ab735a1a
 	}
 }

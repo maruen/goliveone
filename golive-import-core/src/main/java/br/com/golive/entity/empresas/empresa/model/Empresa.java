@@ -1,5 +1,7 @@
 package br.com.golive.entity.empresas.empresa.model;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -20,6 +22,13 @@ public class Empresa extends Model {
 
 	@Column(name = "NomeFantasia")
 	private String nome;
+
+	@Deprecated
+	public Empresa(final long l, final String string) {
+		super();
+		this.id = l;
+		this.nome = string;
+	}
 
 	public String getCnpj() {
 		return cnpj;
@@ -45,5 +54,14 @@ public class Empresa extends Model {
 		this.nome = nome;
 	}
 
+	public Empresa() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Empresa(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao) {
+		super(id, dataInclusao, dataAlteracao);
+		// TODO Auto-generated constructor stub
+	}
 
 }

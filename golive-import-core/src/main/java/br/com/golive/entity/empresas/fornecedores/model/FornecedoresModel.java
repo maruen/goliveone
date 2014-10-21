@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.fornecedores.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -18,17 +18,16 @@ public class FornecedoresModel extends Model {
 	private String razaoSocial;
 	
 	public FornecedoresModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public FornecedoresModel(Long id,
-							 Date dataInclusao,
-							 Date dataAlteracao,
-							 String cnpj, 
-							 String inscricaoEstadual,
-							 String nomeFantasia, 
-							 String razaoSocial) {
+	public FornecedoresModel(final Long id,
+ final Calendar dataInclusao, final Calendar dataAlteracao,
+							 final String cnpj, 
+							 final String inscricaoEstadual,
+							 final String nomeFantasia, 
+							 final String razaoSocial) {
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;
@@ -43,7 +42,7 @@ public class FornecedoresModel extends Model {
 		return cnpj;
 	}
 
-	public void setCnpj(String cnpj) {
+	public void setCnpj(final String cnpj) {
 		this.cnpj = cnpj;
 	}
 
@@ -51,7 +50,7 @@ public class FornecedoresModel extends Model {
 		return inscricaoEstadual;
 	}
 
-	public void setInscricaoEstadual(String inscricaoEstadual) {
+	public void setInscricaoEstadual(final String inscricaoEstadual) {
 		this.inscricaoEstadual = inscricaoEstadual;
 	}
 
@@ -59,7 +58,7 @@ public class FornecedoresModel extends Model {
 		return nomeFantasia;
 	}
 
-	public void setNomeFantasia(String nomeFantasia) {
+	public void setNomeFantasia(final String nomeFantasia) {
 		this.nomeFantasia = nomeFantasia;
 	}
 
@@ -67,7 +66,7 @@ public class FornecedoresModel extends Model {
 		return razaoSocial;
 	}
 
-	public void setRazaoSocial(String razaoSocial) {
+	public void setRazaoSocial(final String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
 }

@@ -1,13 +1,10 @@
 package br.com.golive.entity.auditoria.repositorio;
 
-<<<<<<< HEAD
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-=======
 import java.util.ArrayList;
 import java.util.List;
 
->>>>>>> 8557e5498c87cecf37e2b42731a91bb4ab735a1a
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
@@ -24,18 +21,17 @@ public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
 	@Inject
 	protected AuditoriaJPA(final EntityManager entityManager) {
 		super(entityManager);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Transactional 
-	public void saveJoins(AuditoriaModel auditoria,
-						  List<AuditoriaItemModel> auditoriaItemList,
-						  Usuario usuario,
-						  Model entidade) {
+	public void saveJoins(final AuditoriaModel auditoria,
+						  final List<AuditoriaItemModel> auditoriaItemList,
+						  final Usuario usuario,
+						  final Model entidade) {
 		
-		Query query = createNativeQuery(entidade.getClass().getAnnotation(QueryAuditoria.class).query());
+		final Query query = createNativeQuery(entidade.getClass().getAnnotation(QueryAuditoria.class).query());
 		
-		for (AuditoriaItemModel item : auditoriaItemList) {
+		for (final AuditoriaItemModel item : auditoriaItemList) {
 			query.setParameter(1, auditoria.getId());
 			query.setParameter(2, item.getId());
 			query.setParameter(3, usuario.getId());
@@ -45,16 +41,17 @@ public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
 	}
 		
 	 @SuppressWarnings({ "rawtypes", "unchecked" })
-     public List getAuditoriaLogs(Class clazz) {
+     public List getAuditoriaLogs(final Class clazz) {
 	     List<AuditoriaModel> results = new ArrayList<AuditoriaModel>();
 	    
 	     String sql = "SELECT tbAuditoria_Id FROM tbAuditoria_" + ((Table) clazz.getAnnotation(Table.class)).name();
-	     Query query = entityManager.createNativeQuery(sql);
+		Query query = createNativeQuery(sql);
 	     final List<Long> ids = query.getResultList();
 	    
 	     if ((ids != null) && (ids.size() > 0)) {
 		     sql =  "SELECT auditoriaModel FROM AuditoriaModel auditoriaModel WHERE auditoriaModel.id IN (" + Utils.explode(ids) + ")";
-		     query = entityManager.createQuery(sql, AuditoriaModel.class);
+			query = createQuery(sql, AuditoriaModel.class);
+
 		     results = query.getResultList();
 	     }
 	     return results;

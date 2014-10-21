@@ -14,10 +14,6 @@ import javax.persistence.Temporal;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.annotation.StandardColumn;
-<<<<<<< HEAD
-import br.com.golive.entity.usuario.model.Usuario;
-=======
->>>>>>> 8557e5498c87cecf37e2b42731a91bb4ab735a1a
 
 @MappedSuperclass
 public class Model implements Serializable {

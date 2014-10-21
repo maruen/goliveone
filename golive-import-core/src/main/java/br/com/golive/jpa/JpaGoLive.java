@@ -195,9 +195,9 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * 
 	 * @param List<entity> entidade
 	 */
-	public void saveAll(List<T> entityList) {
+	public void saveAll(final List<T> entityList) {
 		try {
-			for (T entity : entityList) {
+			for (final T entity : entityList) {
 				entityManager.persist(entity);
 			}
 		} catch (final Exception e) {
@@ -301,6 +301,10 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		if (verifyAnnotation(classe)) {
 			merge(classe);
 		}
+	}
+
+	public Query createQuery(final String sql, final Class<?> clazz) {
+		return entityManager.createQuery(sql, clazz);
 	}
 
 	public Query createNativeQuery(final String query) {

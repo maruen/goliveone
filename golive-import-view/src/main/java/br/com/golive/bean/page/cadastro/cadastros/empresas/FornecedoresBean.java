@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.empresas;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class FornecedoresBean extends CadastroBeanRules<FornecedoresModel> {
 		final List<FornecedoresModel> lista = new ArrayList<FornecedoresModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new FornecedoresModel(new Long(i), new Date(), new Date(), "09.363.143/0001-00", "111.222.333-11", "Alpex Alumínio", "Ind.Com.de Alumínios Alpex Ltda."));
+			lista.add(new FornecedoresModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "09.363.143/0001-00", "111.222.333-11", "Alpex Alumínio", "Ind.Com.de Alumínios Alpex Ltda."));
 		}
 		
 		return lista;
@@ -61,7 +61,7 @@ public class FornecedoresBean extends CadastroBeanRules<FornecedoresModel> {
 	}
 	
 	public List<Object> getAuditoriaLogs() {
-		ArrayList<Object> lista = new ArrayList<Object>();
+		final ArrayList<Object> lista = new ArrayList<Object>();
 		
 		lista.add(new Object());
 		lista.add(new Object());
@@ -70,8 +70,8 @@ public class FornecedoresBean extends CadastroBeanRules<FornecedoresModel> {
 		return lista;
 	}
 	
-	public List<String> tipoPessoaComplete(String query) {
-        List<String> results = new ArrayList<String>();
+	public List<String> tipoPessoaComplete(final String query) {
+        final List<String> results = new ArrayList<String>();
         
         for(int i = 0; i < 10; i++) {
             results.add(query + i + " - Pessoa Jurídica");
@@ -88,8 +88,8 @@ public class FornecedoresBean extends CadastroBeanRules<FornecedoresModel> {
 		
 	}
 	
-	public List<String> tipoLogradouroComplete(String query) {
-        List<String> results = new ArrayList<String>();
+	public List<String> tipoLogradouroComplete(final String query) {
+        final List<String> results = new ArrayList<String>();
         
         for(int i = 0; i < 10; i++) {
             results.add(query + i + " - Rua");

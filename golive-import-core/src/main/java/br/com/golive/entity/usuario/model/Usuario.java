@@ -7,14 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import br.com.golive.entity.Model2;
+import br.com.golive.entity.Model;
 import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Entity
 @Table(name = "tbUsuario")
-public class Usuario extends Model2 {
+public class Usuario extends Model {
 
 	private static final long serialVersionUID = 2665034096496208974L;
 
