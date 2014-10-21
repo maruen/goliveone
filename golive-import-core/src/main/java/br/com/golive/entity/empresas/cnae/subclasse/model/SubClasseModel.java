@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.cnae.subclasse.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -28,13 +28,13 @@ public class SubClasseModel extends Model {
 	private String denominacaoClasse;
 	
 	public SubClasseModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public SubClasseModel(Long id,
-						  Date dataInclusao, 
-						  Date dataAlteracao,
+						  Calendar dataInclusao, 
+						  Calendar dataAlteracao,
 						  String codSubClasse,
 						  String denominacaoSubClasse,
 						  String idSecao,

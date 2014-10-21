@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.regioes.municipios.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -22,13 +22,13 @@ public class MunicipiosModel extends Model{
 	private String regiao;
 	
 	public MunicipiosModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 
 	public MunicipiosModel(Long id, 
-						   Date dataInclusao, 
-						   Date dataAlteracao,
+						   Calendar dataInclusao, 
+						   Calendar dataAlteracao,
 						   String codMunicipioIbge, 
 						   String municipio, 
 						   String idPais,

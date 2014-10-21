@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.regioes.paises.codigotelefonico;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class CodigoTelefonicoPaisesBean extends CadastroBeanRules<CodigoTelefoni
 		final List<CodigoTelefonicoPaisesModel> lista = new ArrayList<CodigoTelefonicoPaisesModel>();
 
 		for (Integer i = 0; i <= 10; i++) {
-			lista.add(new CodigoTelefonicoPaisesModel(new Long(i), new Date(), new Date(),
+			lista.add(new CodigoTelefonicoPaisesModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(),
 					new Long(93), "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
 		}
 

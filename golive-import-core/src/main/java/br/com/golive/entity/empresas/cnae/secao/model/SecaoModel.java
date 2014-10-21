@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.cnae.secao.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -16,13 +16,13 @@ public class SecaoModel extends Model {
 	private String denominacao;
 	
 	public SecaoModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public SecaoModel(Long id,
-					  Date dataInclusao,
-					  Date dataAlteracao,
+					  Calendar dataInclusao,
+					  Calendar dataAlteracao,
 					  String codSecao,
 					  String denominacao){
 		super();
@@ -41,19 +41,19 @@ public class SecaoModel extends Model {
 		this.id = id;
 	}
 
-	public Date getDataInclusao() {
+	public Calendar getDataInclusao() {
 		return dataInclusao;
 	}
 
-	public void setDataInclusao(Date dataInclusao) {
+	public void setDataInclusao(Calendar dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
 
-	public Date getDataAlteracao() {
+	public Calendar getDataAlteracao() {
 		return dataAlteracao;
 	}
 
-	public void setDataAlteracao(Date dataAlteracao) {
+	public void setDataAlteracao(Calendar dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
 

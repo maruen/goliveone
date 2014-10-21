@@ -1,29 +1,29 @@
 package br.com.golive.filter;
 
-import java.util.Date;
+import java.util.Calendar;
 
-public class DateFilter extends GoliveFilter<Date> {
+public class DateFilter extends GoliveFilter<Calendar> {
 
-	private Date inicio;
-	private Date fim;
+	private Calendar inicio;
+	private Calendar fim;
 
 	@Override
-	public Date getInicio() {
+	public Calendar getInicio() {
 		return inicio;
 	}
 
 	@Override
-	public void setInicio(final Date inicio) {
+	public void setInicio(final Calendar inicio) {
 		this.inicio = inicio;
 	}
 
 	@Override
-	public Date getFim() {
+	public Calendar getFim() {
 		return fim;
 	}
 
 	@Override
-	public void setFim(final Date fim) {
+	public void setFim(final Calendar fim) {
 		this.fim = fim;
 	}
 

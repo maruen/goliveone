@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.regioes.paises.codigotelefonico.municipios.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -24,13 +24,13 @@ public class CodigoTelefonicoMunicipiosModel extends Model {
 	private String pais;
 	
 	public CodigoTelefonicoMunicipiosModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public CodigoTelefonicoMunicipiosModel(Long id,
-						  Date dataInclusao,
-						  Date dataAlteracao,
+						  Calendar dataInclusao,
+						  Calendar dataAlteracao,
 						  Long codTelPais,
 						  String idMunicipio,
 						  Long codTelMunicipio,

@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.cnae.cnaesimpeditivossimpesnacional.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -20,13 +20,13 @@ public class CnaesImpeditivosSimplesNacionalModel extends Model{
 	private String denominacao;
 	
 	public CnaesImpeditivosSimplesNacionalModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public CnaesImpeditivosSimplesNacionalModel(Long id,
-												Date dataInclusao,
-												Date dataAlteracao,
+												Calendar dataInclusao,
+												Calendar dataAlteracao,
 												String idSubClasse,
 												String codSubClasse,
 												String denominacao){

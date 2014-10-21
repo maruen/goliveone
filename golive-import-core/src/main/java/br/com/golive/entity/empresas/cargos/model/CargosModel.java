@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.cargos.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -16,13 +16,13 @@ public class CargosModel extends Model{
 	private String cargo;
 	
 	public CargosModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public CargosModel(Long id, 
-					   Date dataInclucao, 
-					   Date dataAlteracao, 
+					   Calendar dataInclucao, 
+					   Calendar dataAlteracao, 
 					   String cargo){
 		super();
 		this.id = id;

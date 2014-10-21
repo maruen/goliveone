@@ -2,7 +2,6 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.tipoProduto;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -89,7 +88,7 @@ public class TipoProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	public List<ProdutoModel> criarList() {
 		final List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
 		for (Integer i = 0; i < 10; i++) {
-			lista.add(new ProdutoModel(new Long(i), new Date(), new Date()));
+			lista.add(new ProdutoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance()));
 		}
 		return lista;
 

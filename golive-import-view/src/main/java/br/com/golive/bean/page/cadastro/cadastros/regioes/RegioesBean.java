@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.regioes;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class RegioesBean extends CadastroBeanRules<RegioesModel> {
 		final List<RegioesModel> lista = new ArrayList<RegioesModel>();
 		
 		for (Integer i = 0; i <= 10; i ++){
-			lista.add(new RegioesModel(new Long(i), new Date(), new Date(), "Região Sudeste"));
+			lista.add(new RegioesModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Região Sudeste"));
 		}
 		
 		return lista;

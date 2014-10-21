@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.financeiro;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class FormasPagamentoBean extends CadastroBeanRules<FormasPagamentoModel>
 		final List<FormasPagamentoModel> lista = new ArrayList<FormasPagamentoModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new FormasPagamentoModel(new Long(i), new Date(), new Date(), "Boleto Bancário"));
+			lista.add(new FormasPagamentoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Boleto Bancário"));
 		}
 
 		return lista;

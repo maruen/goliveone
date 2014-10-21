@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.regioes.estados.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -21,13 +21,13 @@ public class EstadosModel extends Model{
 	private String regiao;
 	
 	public EstadosModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public EstadosModel(Long id,
-						Date dataInclusao,
-						Date dataAlteracao,
+						Calendar dataInclusao,
+						Calendar dataAlteracao,
 						Long codIbge,
 						String abreviacao,
 						String estado,

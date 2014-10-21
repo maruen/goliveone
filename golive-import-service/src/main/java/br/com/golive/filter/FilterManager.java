@@ -157,25 +157,26 @@ public class FilterManager<T> {
 		for (final T index : lista) {
 			switch (filtro.getTipo()) {
 			case IGUAL:
-				if (filtro.getInicio().getTime() != ((Date) getAtributoPorFieldEntity(index, field)).getTime()) {
+				if (filtro.getInicio().getTime() != ( (Calendar)getAtributoPorFieldEntity(index, field)).getTime()) {
 					temp.remove(index);
 				}
 				break;
 
 			case MENOR:
-				if (filtro.getInicio().getTime() <= ((Date) getAtributoPorFieldEntity(index, field)).getTime()) {
+				if (filtro.getInicio().before(getAtributoPorFieldEntity(index, field))) {
 					temp.remove(index);
 				}
 				break;
 
 			case MAIOR:
-				if (filtro.getInicio().getTime() >= ((Date) getAtributoPorFieldEntity(index, field)).getTime()) {
+				if (filtro.getInicio().after(getAtributoPorFieldEntity(index, field))) {
 					temp.remove(index);
 				}
 				break;
 
 			case PERIODO:
-				if (!(filtro.getInicio().getTime() <= ((Date) getAtributoPorFieldEntity(index, field)).getTime()) || !(((Date) getAtributoPorFieldEntity(index, field)).getTime() <= filtro.getFim().getTime())) {
+				if (!(filtro.getInicio().before(getAtributoPorFieldEntity(index, field))) ||
+				   !( (Calendar) getAtributoPorFieldEntity(index, field)).before(filtro.getFim())) {
 					temp.remove(index);
 				}
 				break;

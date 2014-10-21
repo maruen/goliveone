@@ -1,6 +1,6 @@
 package br.com.golive.entity.finalidadeunidade.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -17,13 +17,13 @@ public class FinalidadeUnidadeModel extends Model{
 	private String numMaxCaracteres;
 	
 	public FinalidadeUnidadeModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public FinalidadeUnidadeModel(Long id, 
-								  Date dataInclusao, 
-								  Date dataAlteracao, 
+								  Calendar dataInclusao, 
+								  Calendar dataAlteracao, 
 								  String finalidadeUnidadeProduto, 
 								  String numMinCaracteres, 
 								  String numMaxCaracteres){

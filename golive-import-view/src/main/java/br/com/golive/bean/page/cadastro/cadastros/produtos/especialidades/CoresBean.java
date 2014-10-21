@@ -2,7 +2,7 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -76,8 +76,8 @@ public class CoresBean extends CadastroBeanRules<CoresModel> {
 		final List<CoresModel> lista = new ArrayList<CoresModel>();
 		for (Integer i = 0; i < 10; i++) {
 			final CoresModel coresModel = new CoresModel(Long.valueOf(i.longValue()),
-												   new Date(),
-												   new Date(),
+												   Calendar.getInstance(),
+												   Calendar.getInstance(),
 												   "0000000025",
 												   "Vermelho",
 												   "0000000001",

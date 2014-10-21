@@ -3,7 +3,6 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +51,7 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 		final List<SubGrupoProdutosModel> lista = new ArrayList<SubGrupoProdutosModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new SubGrupoProdutosModel(new Long(i), new Date(), new Date(), 
+			lista.add(new SubGrupoProdutosModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), 
 					"Acessórios, Partes e Peças para Persianas Horizontais em Alumínio", 
 					"0000000001", "Lâminas em Alumínio 25mm", "0000000001", 
 					"Lâminas em Alumínio 25mm X 0.18mm"));

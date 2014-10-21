@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.cnae.grupo.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -23,13 +23,13 @@ public class GrupoModel extends Model {
 	private String denominacaoGrupo;
 	
 	public GrupoModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public GrupoModel(Long id,
-					  Date dataInclusao,
-					  Date dataAlteracao,
+					  Calendar dataInclusao,
+					  Calendar dataAlteracao,
 					  String codSecao,
 					  String denominacaoSecao,
 					  String idDivisao,
@@ -52,11 +52,11 @@ public class GrupoModel extends Model {
 		this.denominacaoGrupo = denominacaoGrupo;
 	}
 	
-	public Date getDataAlteracao() {
+	public Calendar getDataAlteracao() {
 		return dataAlteracao;
 	}
 
-	public void setDataAlteracao(Date dataAlteracao) {
+	public void setDataAlteracao(Calendar dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
 

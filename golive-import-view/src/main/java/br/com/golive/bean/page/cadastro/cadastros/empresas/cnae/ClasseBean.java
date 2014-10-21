@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.empresas.cnae;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class ClasseBean extends CadastroBeanRules<ClasseModel> {
 		final List<ClasseModel> lista = new ArrayList<ClasseModel>();
 		
 		for (Integer i = 0; i < 10; i ++){
-			lista.add(new ClasseModel(new Long(i), new Date(), new Date(), "A", "Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura", "000000001", "01", "Agricultura, Pecuária e Serviços Relacionados", "000000001", "01.1", "Produção de lavouras temporárias", "000000001", "01.11-3", "Cultivo de cereais"));
+			lista.add(new ClasseModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "A", "Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura", "000000001", "01", "Agricultura, Pecuária e Serviços Relacionados", "000000001", "01.1", "Produção de lavouras temporárias", "000000001", "01.11-3", "Cultivo de cereais"));
 		}
 		return lista;
 	}

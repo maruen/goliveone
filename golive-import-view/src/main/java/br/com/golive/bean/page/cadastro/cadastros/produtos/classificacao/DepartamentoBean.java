@@ -1,6 +1,5 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
 
-import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -49,30 +48,17 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	public void incluir() {
 		super.incluir();
 		this.registro = new DepartamentoModel();
-		// registro.setNomeFormulario("label.cadastroDepartamento");
 	}
 
 	@Override
 	public void excluir() {
-		// registro.setUsuario(getUsuario());
 		departamentoService.excluir(this.registro);
 		super.excluir();
 	}
 
 	@Override
 	public void salvar() {
-		// registro.setUsuario(getUsuario());
-		// registro.setNomeFormulario(this.getClass().getAnnotation(Label.class).name());
-		
-		if (registro.getId() != null) {
-			registro.setDataAlteracao(Calendar.getInstance());
-			departamentoService.alterar(registro);
-		} else {
-			registro.setDataInclusao(Calendar.getInstance());
-			registro.setDataAlteracao(Calendar.getInstance());
-			departamentoService.salvar(registro);
-		}
-
+		departamentoService.salvar(registro);
 		conteudo = departamentoService.listarPorFiltro();
 		super.salvar();
 	}

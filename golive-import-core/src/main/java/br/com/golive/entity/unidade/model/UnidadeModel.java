@@ -1,6 +1,6 @@
 package br.com.golive.entity.unidade.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -17,11 +17,11 @@ public class UnidadeModel extends Model{
 	private String descricao;
 	
 	public UnidadeModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
-	public UnidadeModel(Long id, Date dataInclusao, Date dataAlteracao, String codigo, String descricao){
+	public UnidadeModel(Long id, Calendar dataInclusao, Calendar dataAlteracao, String codigo, String descricao){
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;

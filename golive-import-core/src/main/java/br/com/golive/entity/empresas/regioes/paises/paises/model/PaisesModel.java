@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.regioes.paises.paises.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -18,13 +18,13 @@ public class PaisesModel extends Model {
 	private String paisNativo;
 	
 	public PaisesModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 
 	public PaisesModel(Long id,
-					   Date dataInclusao,
-					   Date dataAlteracao,
+					   Calendar dataInclusao,
+					   Calendar dataAlteracao,
 					   String bandeira, 
 					   String paisIngles,
 					   String paisPortugues, 

@@ -3,7 +3,6 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.produto;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -183,7 +182,7 @@ public class ProdutoBean extends CadastroBeanRules<ProdutoModel> {
 	public List<ProdutoModel> criarList() {
 		final List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
 		for (Integer i = 0; i < 10; i++) {
-			lista.add(new ProdutoModel(new Long(i), new Date(), new Date()));
+			lista.add(new ProdutoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance()));
 		}
 		return lista;
 

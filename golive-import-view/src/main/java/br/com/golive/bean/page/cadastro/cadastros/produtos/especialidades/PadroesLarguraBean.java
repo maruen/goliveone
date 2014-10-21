@@ -2,7 +2,7 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +47,7 @@ public class PadroesLarguraBean extends CadastroBeanRules<PadroesLarguraModel>{
 		final List<PadroesLarguraModel> lista = new ArrayList<PadroesLarguraModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new PadroesLarguraModel(new Long(i), new Date(), new Date(), "2.58", 
+			lista.add(new PadroesLarguraModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "2.58", 
 					"ML", "2.58ML de Largura da Peça", "0000000001", "0000000025", 
 					"Mountain Viber Glass Colors", "0000000001", "1234567Baec", "Vermelho"));
 		}

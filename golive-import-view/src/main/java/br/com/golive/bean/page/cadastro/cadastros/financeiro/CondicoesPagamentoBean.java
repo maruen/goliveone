@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.financeiro;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class CondicoesPagamentoBean extends CadastroBeanRules<CondicoesPagamento
 		final List<CondicoesPagamentoModel> lista = new ArrayList<CondicoesPagamentoModel>();
 			
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new CondicoesPagamentoModel(new Long(i), new Date(), new Date(), "28 / 56 dd"));
+			lista.add(new CondicoesPagamentoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "28 / 56 dd"));
 		}
 		
 		return lista;

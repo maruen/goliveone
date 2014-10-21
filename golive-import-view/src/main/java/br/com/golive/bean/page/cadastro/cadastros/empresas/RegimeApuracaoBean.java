@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.empresas;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class RegimeApuracaoBean extends CadastroBeanRules<RegimeApuracaoModel> {
 		final List<RegimeApuracaoModel> lista = new ArrayList<RegimeApuracaoModel>();
 		
 		for (Integer i = 0; i <= 10; i ++){
-			lista.add(new RegimeApuracaoModel(new Long(i), new Date(), new Date(), "Lucro Real"));
+			lista.add(new RegimeApuracaoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Lucro Real"));
 		}
 
 		return lista;

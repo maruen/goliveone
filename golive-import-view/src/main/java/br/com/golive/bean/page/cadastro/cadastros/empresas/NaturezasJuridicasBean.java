@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.empresas;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class NaturezasJuridicasBean extends CadastroBeanRules<NaturezasJuridicas
 		final List<NaturezasJuridicasModel> lista = new ArrayList<NaturezasJuridicasModel>();
 		
 		for (Integer i = 0; i <= 10; i ++){
-			lista.add(new NaturezasJuridicasModel(new Long(i), new Date(), new Date(), "101-5", "Órgão Público do Poder Executivo Federal", "Administador", "05. 10 ou 16", "000000001", "1", "Administração Pública"));
+			lista.add(new NaturezasJuridicasModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "101-5", "Órgão Público do Poder Executivo Federal", "Administador", "05. 10 ou 16", "000000001", "1", "Administração Pública"));
 		}
 
 		return lista;

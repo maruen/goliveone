@@ -1,6 +1,6 @@
 package br.com.golive.entity.financeiro.formaspagamento.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -15,13 +15,13 @@ public class FormasPagamentoModel extends Model {
 	private String formaPagamento;
 	
 	public FormasPagamentoModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 
 	public FormasPagamentoModel(Long id, 
-								Date dataInclusao, 
-								Date dataAlteracao,
+								Calendar dataInclusao, 
+								Calendar dataAlteracao,
 								String formaPagamento) {
 		super();
 		this.id = id;
@@ -31,7 +31,7 @@ public class FormasPagamentoModel extends Model {
 	}
 
 	
-	public void setDataAlteracao(Date dataAlteracao) {
+	public void setDataAlteracao(Calendar dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
 

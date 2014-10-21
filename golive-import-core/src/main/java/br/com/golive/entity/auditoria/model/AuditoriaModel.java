@@ -1,10 +1,13 @@
 package br.com.golive.entity.auditoria.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import br.com.golive.entity.Model2;
+import br.com.golive.entity.Model;
 
 
 /**
@@ -13,9 +16,9 @@ import br.com.golive.entity.Model2;
  */
 @Entity
 @Table(name="tbAuditoria")
-public class AuditoriaModel extends Model2 {
+public class AuditoriaModel extends Model {
 	
-	private static final long serialVersionUID = -1516001937403226010L;
+	private static final long serialVersionUID = 1L;
 
 	@Column(name="FormularioNome")
 	private String formularioNome;
@@ -26,6 +29,9 @@ public class AuditoriaModel extends Model2 {
 	@Column(name="Observacao")
 	private String observacao;
 
+	@OneToMany
+	private List<AuditoriaItemModel> items;
+	
 	
 	public AuditoriaModel() {
 	}

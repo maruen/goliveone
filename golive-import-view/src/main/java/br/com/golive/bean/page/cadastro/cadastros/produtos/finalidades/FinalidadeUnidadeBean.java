@@ -2,7 +2,7 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.finalidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +47,7 @@ public class FinalidadeUnidadeBean extends CadastroBeanRules<FinalidadeUnidadeMo
 		final List<FinalidadeUnidadeModel> lista = new ArrayList<FinalidadeUnidadeModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new FinalidadeUnidadeModel(new Long(i), new Date(), new Date(), 
+			lista.add(new FinalidadeUnidadeModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), 
 					"Unidades Legais - Emissões da NFe", "00010", "00050"));
 		}
 		
