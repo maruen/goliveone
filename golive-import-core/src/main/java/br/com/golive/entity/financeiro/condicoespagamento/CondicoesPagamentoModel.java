@@ -1,6 +1,6 @@
 package br.com.golive.entity.financeiro.condicoespagamento;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -15,13 +15,13 @@ public class CondicoesPagamentoModel extends Model{
 	private String condicaoPagamento;
 	
 	public CondicoesPagamentoModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public CondicoesPagamentoModel(Long id,
-								   Date dataInclusao,
-								   Date dataAlteracao,
+								   Calendar dataInclusao,
+								   Calendar dataAlteracao,
 								   String condicaoPagamento){
 		super();
 		this.id = id;

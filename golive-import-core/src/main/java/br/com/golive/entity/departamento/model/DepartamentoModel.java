@@ -7,14 +7,14 @@ import javax.persistence.Table;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 import br.com.golive.annotation.QueryAuditoria;
-import br.com.golive.entity.Model2;
+import br.com.golive.entity.Model;
 
 @Entity
 @Table(name = "tbDepartamentoProduto")
 @Label(name = "label.cadastroDepartamento")
 @QueryAuditoria(query = "INSERT INTO tbAuditoria_tbDepartamentoProduto VALUES (?,?,?,?)")
 @Jasper(titulo = "Departamento", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Departamento")
-public class DepartamentoModel extends Model2 {
+public class DepartamentoModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 

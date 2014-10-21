@@ -186,9 +186,27 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * @author Maruen Mehana
+	 * 
+	 *         <p>
+	 *         Método responsavel por persistir uma lista de entidades
+	 *         </p>
+	 * 
+	 * @param List<entity> entidade
+	 */
+	public void saveAll(List<T> entityList) {
+		try {
+			for (T entity : entityList) {
+				entityManager.persist(entity);
+			}
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * @author guilherme.duarte
 	 * 
@@ -295,86 +313,6 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		return classe.getClass().isAnnotationPresent(Entity.class);
 	}
 
-	// public void logAuditoria(final T model, final Operation operation) {
-	//
-	// AuditoriaModel auditoria;
-	// String sqlString;
-	// Query query;
-	//
-	// final Table table = model.getClass().getAnnotation(Table.class);
-	//
-	// switch (operation) {
-	// case INSERT:
-	//
-	// auditoria = new AuditoriaModel();
-	// auditoria.setDataInclusao(new Date());
-	// auditoria.setDataAlteracao(new Date());
-	// auditoria.setFormularioNome("Cadastro de Departamento de Produtos");
-	// auditoria.setAcaoUsuario(INSERT.getDescricao());
-	// entityManager.persist(auditoria);
-	//
-	// sqlString = "INSERT INTO tbAuditoria_" + table.name() +
-	// "  VALUES (?,?,?)";
-	// query = entityManager.createNativeQuery(sqlString);
-	//
-	// query.setParameter(1, auditoria.getId());
-	// query.setParameter(2, model.getUsuario().getId());
-	// query.setParameter(3, model.getId());
-	// query.executeUpdate();
-	//
-	// break;
-	//
-	// case DELETE:
-	//
-	// auditoria = new AuditoriaModel();
-	// auditoria.setDataInclusao(new Date());
-	// auditoria.setDataAlteracao(new Date());
-	// auditoria.setFormularioNome("Cadastro de Departamento de Produtos");
-	// auditoria.setAcaoUsuario(DELETE.getDescricao());
-	// entityManager.persist(auditoria);
-	//
-	// sqlString = "INSERT INTO tbAuditoria_" + table.name() +
-	// "  VALUES (?,?,?,?)";
-	// query = entityManager.createNativeQuery(sqlString);
-	//
-	// query.setParameter(1, auditoria.getId());
-	// query.setParameter(2, 1);
-	// query.setParameter(2, model.getUsuario().getId());
-	// query.setParameter(3, model.getId());
-	// query.executeUpdate();
-	//
-	// sqlString = "DELETE FROM tbAuditoria_" + table.name() + "  WHERE " +
-	// table.name() + "_Id =" + model.getId();
-	// query = entityManager.createNativeQuery(sqlString);
-	// query.executeUpdate();
-	//
-	// break;
-	//
-	// case UPDATE:
-	//
-	// break;
-	// }
-	// };
-	//
-	// @SuppressWarnings({ "rawtypes", "unchecked" })
-	// public List getAuditoriaLogs(final Class clazz) {
-	// List<AuditoriaModel> results = new ArrayList<AuditoriaModel>();
-	//
-	// String sql = "SELECT tbAuditoria_Id FROM tbAuditoria_" + ((Table)
-	// clazz.getAnnotation(Table.class)).name();
-	// Query query = entityManager.createNativeQuery(sql);
-	// final List<Long> ids = query.getResultList();
-	//
-	// if ((ids != null) && (ids.size() > 0)) {
-	// sql =
-	// "SELECT auditoriaModel FROM AuditoriaModel auditoriaModel WHERE auditoriaModel.id IN ("
-	// + Utils.explode(ids) + ")";
-	// query = entityManager.createQuery(sql, AuditoriaModel.class);
-	// results = query.getResultList();
-	// }
-	//
-	// return results;
-	//
-	// }
+	
 
 }

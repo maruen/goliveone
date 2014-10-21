@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.categoriasnaturezasjuridicas;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -18,13 +18,13 @@ public class CategoriasNaturezasJuridicasModel extends Model {
 	private String categoriaNaturezaJuridica;
 	
 	public CategoriasNaturezasJuridicasModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public CategoriasNaturezasJuridicasModel(Long id, 
-											 Date dataAlteracao, 
-											 Date dataInclusao, 
+											 Calendar dataAlteracao, 
+											 Calendar dataInclusao, 
 											 Long codCatNatJur, 
 											 String categoriaNaturezaJuridica){
 		super();

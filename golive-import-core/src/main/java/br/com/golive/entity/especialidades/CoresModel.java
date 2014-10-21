@@ -1,6 +1,6 @@
 package br.com.golive.entity.especialidades;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -23,13 +23,13 @@ public class CoresModel extends Model{
 	private String 		 colecao;
 	
 	public CoresModel() {
-		this.dataInclusao 	= new Date();
-		this.dataAlteracao 	= new Date();
+		this.dataInclusao 	= Calendar.getInstance();
+		this.dataAlteracao 	= Calendar.getInstance();
 	}
 
 	public CoresModel(Long id,
-					  Date dataInclusao,
-					  Date dataAlteracao,
+					  Calendar dataInclusao,
+					  Calendar dataAlteracao,
 					  String codigoCor,
 					  String cor,
 					  String idColecao,
@@ -37,8 +37,8 @@ public class CoresModel extends Model{
 					  String colecao) {
 		super();
 		this.id 			= id;
-		this.dataInclusao 	= new Date();
-		this.dataAlteracao 	= new Date();
+		this.dataInclusao 	= Calendar.getInstance();
+		this.dataAlteracao 	= Calendar.getInstance();
 		this.codigoCor 		= codigoCor;
 		this.cor 			= cor;
 		this.idColecao 		= idColecao;

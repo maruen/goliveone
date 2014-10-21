@@ -2,7 +2,7 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.finalidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +48,7 @@ public class FinalidadeColecaoBean extends CadastroBeanRules<FinalidadeColecaoMo
 		final List<FinalidadeColecaoModel> lista = new ArrayList<FinalidadeColecaoModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new FinalidadeColecaoModel(new Long(i), new Date(), new Date(), 
+			lista.add(new FinalidadeColecaoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), 
 					"Uso Interno", "00010", "00120"));
 		}
 		return lista;

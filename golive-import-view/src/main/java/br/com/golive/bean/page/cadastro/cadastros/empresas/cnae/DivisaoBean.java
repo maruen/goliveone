@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.empresas.cnae;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class DivisaoBean extends CadastroBeanRules<DivisaoModel> {
 		final List<DivisaoModel> lista = new ArrayList<DivisaoModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new DivisaoModel(new Long(i), new Date(), new Date(), "A", "Agricultura, Pecuária, Produção Florestal, Pesca e Agricultura", "0000000001", "01", "Agricultura, Pecuária e Serviços Relacionados"));
+			lista.add(new DivisaoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "A", "Agricultura, Pecuária, Produção Florestal, Pesca e Agricultura", "0000000001", "01", "Agricultura, Pecuária e Serviços Relacionados"));
 		}
 		return lista;
 	}

@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.regioes.paises;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class CodigoInternetBean extends CadastroBeanRules<CodigoInternetModel> {
 		final List<CodigoInternetModel> lista = new ArrayList<CodigoInternetModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new CodigoInternetModel(new Long(i), new Date(), new Date(), ".af", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
+			lista.add(new CodigoInternetModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), ".af", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
 		}
 		return lista;
 	}

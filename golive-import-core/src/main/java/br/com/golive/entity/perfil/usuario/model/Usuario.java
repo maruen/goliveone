@@ -48,7 +48,7 @@ public class Usuario extends Model {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.dataInclusao = dataInclusao.getTime();
+		this.dataInclusao = dataInclusao;
 		this.senha = senha;
 		this.empresas = empresas;
 		this.locale = locale;

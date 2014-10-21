@@ -1,6 +1,6 @@
 package br.com.golive.entity.finalidadecolecao;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -19,13 +19,13 @@ public class FinalidadeColecaoModel extends Model{
 	private String numMaximoCaracteres;
 	
 	public FinalidadeColecaoModel(){
-		this.dataAlteracao = new Date();
-		this.dataInclusao = new Date();
+		this.dataAlteracao = Calendar.getInstance();
+		this.dataInclusao = Calendar.getInstance();
 	}
 	
 	public FinalidadeColecaoModel(Long id, 
-								  Date dataAlteracao, 
-								  Date dataInclusao, 
+								  Calendar dataAlteracao, 
+								  Calendar dataInclusao, 
 								  String finalidadeColecaoProduto, 
 								  String numMinimoCaracteres, 
 								  String numMaximoCaracteres){

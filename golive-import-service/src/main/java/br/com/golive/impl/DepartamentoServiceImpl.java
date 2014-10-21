@@ -51,8 +51,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	public void excluir(final DepartamentoModel departamentoModel) {
 		departamentoJPA.delete(departamentoModel);
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<AuditoriaModel> getAuditoriaLogs() {
 		// return departamentoJPA.getAuditoriaLogs(DepartamentoModel.class);

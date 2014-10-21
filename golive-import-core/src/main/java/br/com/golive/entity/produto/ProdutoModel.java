@@ -1,6 +1,6 @@
 package br.com.golive.entity.produto;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.golive.annotation.Jasper;
@@ -29,15 +29,15 @@ public class ProdutoModel extends Model{
 	private List<String> padraoEspessura;
 
 	public ProdutoModel() {
-		this.dataInclusao 	= new Date();
-		this.dataAlteracao 	= new Date();
+		this.dataInclusao 	= Calendar.getInstance();
+		this.dataAlteracao 	= Calendar.getInstance();
 	}
 	
-	public ProdutoModel(Long id, Date dataInclusao, Date dataAlteracao) {
+	public ProdutoModel(Long id, Calendar dataInclusao, Calendar dataAlteracao) {
 		super();
 		this.id = id;
-		this.dataInclusao 	= new Date();
-		this.dataAlteracao 	= new Date();
+		this.dataInclusao 	= Calendar.getInstance();
+		this.dataAlteracao 	= Calendar.getInstance();
 	}
 	
 	public Long getCodigoProduto() {

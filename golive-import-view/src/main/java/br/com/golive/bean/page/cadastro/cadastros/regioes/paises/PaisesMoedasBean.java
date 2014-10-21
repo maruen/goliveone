@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.regioes.paises;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class PaisesMoedasBean extends CadastroBeanRules<PaisesMoedasModel> {
 		final List<PaisesMoedasModel> lista = new ArrayList<PaisesMoedasModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new PaisesMoedasModel(new Long(i), new Date(), new Date(), "AFN", "Afegane Afegão", "0000000010", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
+			lista.add(new PaisesMoedasModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "AFN", "Afegane Afegão", "0000000010", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
 		}
 		
 		return lista;

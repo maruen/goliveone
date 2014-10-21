@@ -1,6 +1,6 @@
 package br.com.golive.entity.padroeslargura;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -24,13 +24,13 @@ public class PadroesLarguraModel extends Model {
 	private String cor;
 	
 	public PadroesLarguraModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public PadroesLarguraModel(Long id, 
-							   Date dataInclusao, 
-							   Date dataAlteracao, 
+							   Calendar dataInclusao, 
+							   Calendar dataAlteracao, 
 							   String largura, 
 							   String unidade, 
 							   String descricao, 

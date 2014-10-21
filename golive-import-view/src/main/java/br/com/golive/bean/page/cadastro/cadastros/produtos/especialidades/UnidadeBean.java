@@ -2,7 +2,7 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +47,7 @@ public class UnidadeBean extends CadastroBeanRules<UnidadeModel> {
 		final List<UnidadeModel> lista = new ArrayList<UnidadeModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new UnidadeModel(new Long(i), new Date(), new Date(), "MM", "Mililitro"));
+			lista.add(new UnidadeModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "MM", "Mililitro"));
 		}
 		return lista;
 	}

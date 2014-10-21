@@ -3,7 +3,6 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +50,7 @@ public class ColecoesBean extends CadastroBeanRules<ColecoesModel> {
 	public List<ColecoesModel> criarList() {
 		final List<ColecoesModel> lista = new ArrayList<ColecoesModel>();
 		for (Integer i = 0; i < 10; i++) {
-			lista.add(new ColecoesModel(new Long(i), new Date(), new Date(), 
+			lista.add(new ColecoesModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), 
 					"Acessórios, Partes e Peças para Persianas Horizontal", "000000001", 
 					"Lâminas em Alumínio 25mm", "000000001", 
 					"Lâminas em Alumínio 25mm X 0.18mm", "000000001", "1234567Baec", 

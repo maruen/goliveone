@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.regioes.regioes;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -15,13 +15,13 @@ public class RegioesModel extends Model {
 	private String regiao;
 	
 	public RegioesModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 
 	public RegioesModel(Long id, 
-						Date dataInclusao, 
-						Date dataAlteracao,
+						Calendar dataInclusao, 
+						Calendar dataAlteracao,
 						String regiao) {
 		super();
 		this.id = id;

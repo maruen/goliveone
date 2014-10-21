@@ -1,6 +1,6 @@
 package br.com.golive.entity.padroesespessura;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -24,13 +24,13 @@ public class PadroesEspessuraModel extends Model{
 	private String cor;
 
 	public PadroesEspessuraModel() {
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 
 	public PadroesEspessuraModel(Long id, 
-								 Date dataInclusao, 
-								 Date dataAlteracao,
+								 Calendar dataInclusao, 
+								 Calendar dataAlteracao,
 								 String espessura,
 								 String unidade,
 								 String descricao,

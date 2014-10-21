@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.regioes.paises.codigotelefonico;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class CodigoTelefonicoMunicipiosBean extends CadastroBeanRules<CodigoTele
 		final List<CodigoTelefonicoMunicipiosModel> lista = new ArrayList<CodigoTelefonicoMunicipiosModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new CodigoTelefonicoMunicipiosModel(new Long(i), new Date(), new Date(), new Long(55), "0000000001", new Long(19), "0000000001", "SP", "São Paulo", "0000000001", "Região Sudeste", "0000000010", "Brasil"));
+			lista.add(new CodigoTelefonicoMunicipiosModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), new Long(55), "0000000001", new Long(19), "0000000001", "SP", "São Paulo", "0000000001", "Região Sudeste", "0000000010", "Brasil"));
 		}
 		
 		return lista;

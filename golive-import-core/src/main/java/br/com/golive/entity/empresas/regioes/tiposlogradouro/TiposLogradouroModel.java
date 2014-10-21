@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.regioes.tiposlogradouro;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -16,13 +16,13 @@ public class TiposLogradouroModel extends Model {
 	private String tipoLogradouro;
 	
 	public TiposLogradouroModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 
 	public TiposLogradouroModel(Long id, 
-								Date dataInclusao, 
-								Date dataAlteracao,
+								Calendar dataInclusao, 
+								Calendar dataAlteracao,
 								String abreviacao, 
 								String tipoLogradouro) {
 		super();

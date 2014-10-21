@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.regioes.paises.codigointernet;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,13 +23,13 @@ public class CodigoInternetModel extends Model{
 	private String paisNativo;
 	
 	public CodigoInternetModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public CodigoInternetModel(Long id,
-							   Date dataInclusao,
-							   Date dataAlteracao,
+							   Calendar dataInclusao,
+							   Calendar dataAlteracao,
 							   String codigoTld,
 							   String paisPortugues,
 							   String paisIngles,

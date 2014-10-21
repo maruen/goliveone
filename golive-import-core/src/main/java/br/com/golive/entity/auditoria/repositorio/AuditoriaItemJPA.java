@@ -6,29 +6,31 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import br.com.golive.annotation.QueryAuditoria;
-import br.com.golive.entity.Model;
 import br.com.golive.entity.auditoria.model.AuditoriaItemModel;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.perfil.usuario.model.Usuario;
 import br.com.golive.jpa.JpaGoLive;
 
-public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
+public class AuditoriaItemJPA extends JpaGoLive<AuditoriaItemModel, Long> {
 
-	@Transactional 
-	public void saveJoins(AuditoriaModel auditoria,
+	@Transactional
+	public void saveJoins(AuditoriaModel auditoriaModel,
 						  List<AuditoriaItemModel> auditoriaItemList,
-						  Usuario usuario,
-						  Model entidade) {
+						  Usuario usuario) {
 		
-		Query query = createNativeQuery(entidade.getClass().getAnnotation(QueryAuditoria.class).query());
 		
-		for (AuditoriaItemModel item : auditoriaItemList) {
-			query.setParameter(1, auditoria.getId());
-			query.setParameter(2, item.getId());
+		for (AuditoriaItemModel auditoriaItemModel : auditoriaItemList) {
+			Query query = createNativeQuery(AuditoriaItemModel.class.getAnnotation(QueryAuditoria.class).query());
+			query.setParameter(1, auditoriaModel.getId());
+			query.setParameter(2,auditoriaItemModel.getId());
 			query.setParameter(3, usuario.getId());
-			query.setParameter(4, entidade.getId());
 			query.executeUpdate();
 		}
 	}
+	
+	
+	
+	
+	
 
 }

@@ -1,6 +1,6 @@
 package br.com.golive.entity.finalidadepadraoespessura;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -18,13 +18,13 @@ public class FinalidadePadraoEspessuraModel extends Model {
 	private String unidade;
 	
 	public FinalidadePadraoEspessuraModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public FinalidadePadraoEspessuraModel(Long id, 
-										  Date dataInclusao,
-										  Date dataAlteracao,
+										  Calendar dataInclusao,
+										  Calendar dataAlteracao,
 										  String finalidadePadraoEspessura,
 										  String idUnidade,
 										  String abreviacaoUnidade,

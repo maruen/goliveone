@@ -1,6 +1,6 @@
 package br.com.golive.entity.grupoprodutos;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -17,11 +17,11 @@ public class GrupoProdutosModel extends Model{
 	private String grupoProdutos;
 
 	public GrupoProdutosModel() {
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public GrupoProdutosModel(Long id, Date dataInclusao, Date dataAlteracao, 
+	public GrupoProdutosModel(Long id, Calendar dataInclusao, Calendar dataAlteracao, 
 							  String departamento, String idGrupoProdutos, 
 							  String grupoProdutos) {
 		super();

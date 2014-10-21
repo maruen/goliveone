@@ -1,6 +1,6 @@
 package br.com.golive.entity.empresas.cnae.divisao;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
@@ -20,13 +20,13 @@ public class DivisaoModel extends Model {
 	private String denominacaoDivisao;
 	
 	public DivisaoModel(){
-		this.dataInclusao = new Date();
-		this.dataAlteracao = new Date();
+		this.dataInclusao = Calendar.getInstance();
+		this.dataAlteracao = Calendar.getInstance();
 	}
 	
 	public DivisaoModel(Long id,
-						Date dataInclusao,
-						Date dataAlteracao,
+						Calendar dataInclusao,
+						Calendar dataAlteracao,
 						String codSecao,
 						String denominacao,
 						String idDivisao,

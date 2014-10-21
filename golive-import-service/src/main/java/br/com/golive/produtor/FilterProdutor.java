@@ -19,7 +19,7 @@ public class FilterProdutor {
 
 	@Produces
 	@FilterInjected
-	public DateFilter dateFilterProdutor() {
+	public DateFilter CalendarFilterProdutor() {
 		return new DateFilter();
 	}
 
