@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import br.com.golive.entity.empresas.model.Empresa;
-import br.com.golive.entity.perfil.configuracao.model.ColunaPerfil;
-import br.com.golive.entity.perfil.usuario.model.Usuario;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
+import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.impl.PerfilServiceImpl;
 
 @Local(PerfilServiceImpl.class)

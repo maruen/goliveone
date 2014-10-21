@@ -2,7 +2,7 @@ package br.com.golive.service;
 
 import javax.ejb.Local;
 
-import br.com.golive.entity.perfil.usuario.model.Usuario;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.impl.UsuarioBeanServiceImpl;
 
 @Local(UsuarioBeanServiceImpl.class)

@@ -1,4 +1,4 @@
-package br.com.golive.entity.perfil.configuracao.model;
+package br.com.golive.entity.perfilconfiguracao.model;
 
 import java.io.Serializable;
 

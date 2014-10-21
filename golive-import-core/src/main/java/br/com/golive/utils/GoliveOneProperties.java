@@ -27,6 +27,11 @@ public class GoliveOneProperties extends Properties {
 		load(Thread.currentThread().getContextClassLoader().getResourceAsStream(locale + ".properties"));
 	}
 
+	public GoliveOneProperties(final String file) throws IOException {
+		super();
+		load(Thread.currentThread().getContextClassLoader().getResourceAsStream(file + ".properties"));
+	}
+
 	public GoliveOneProperties() {
 		super();
 		put(PROPERTY_KEY_NAO_FOI_CARREGADO, "não foi possivel carregar os properties de label");

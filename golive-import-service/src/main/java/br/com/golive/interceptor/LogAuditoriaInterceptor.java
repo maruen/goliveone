@@ -14,7 +14,7 @@ import br.com.golive.constants.Operation;
 import br.com.golive.entity.Model2;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
-import br.com.golive.entity.perfil.usuario.model.Usuario;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 
 public class LogAuditoriaInterceptor {

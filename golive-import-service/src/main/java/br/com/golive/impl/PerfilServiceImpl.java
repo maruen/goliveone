@@ -9,11 +9,11 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import br.com.golive.entity.empresas.model.Empresa;
-import br.com.golive.entity.perfil.configuracao.model.ColunaPerfil;
-import br.com.golive.entity.perfil.configuracao.model.ColunaPerfilId;
-import br.com.golive.entity.perfil.configuracao.repositorio.ColunaPerfilJpa;
-import br.com.golive.entity.perfil.usuario.model.Usuario;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
+import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
+import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfilId;
+import br.com.golive.entity.perfilconfiguracao.repositorio.ColunaPerfilJpa;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.service.PerfilService;
 
 @Stateless

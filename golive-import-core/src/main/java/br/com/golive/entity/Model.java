@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.annotation.StandardColumn;
-import br.com.golive.entity.perfil.usuario.model.Usuario;
+import br.com.golive.entity.usuario.model.Usuario;
 
 @MappedSuperclass
 public class Model implements Serializable {

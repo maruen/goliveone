@@ -11,8 +11,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import br.com.golive.constants.ChaveSessao;
-import br.com.golive.entity.empresas.model.Empresa;
-import br.com.golive.entity.perfil.usuario.model.Usuario;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.service.UsuarioBeanService;
@@ -72,11 +71,12 @@ public class LoginBean implements Serializable {
 				JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro"), labels.getField("msg.selecionar.empresa"));
 			} else {
 
-				for (final Empresa empresa : carregadoOnBlur.getEmpresas()) {
-					if (empresa.getNome().equals(assinante)) {
-						ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA, empresa);
-					}
-				}
+				// for (final Empresa empresa : carregadoOnBlur.getEmpresas()) {
+				// if (empresa.getNome().equals(assinante)) {
+				// ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA,
+				// empresa);
+				// }
+				// }
 				ServiceUtils.guardarObjetoSessao(ChaveSessao.USUARIO_LOGADO, carregadoOnBlur);
 
 
@@ -99,13 +99,13 @@ public class LoginBean implements Serializable {
 
 	public boolean obterUsuarioPorLoginSenha() {
 		if (carregadoOnBlur != null) {
-			if (carregadoOnBlur.getSenha().equals(getSenha())) {
+			if (carregadoOnBlur.getPassword().equals(getSenha())) {
 				return true;
 			}
 		} else {
 			if (campoValido(getLogin())) {
-				carregadoOnBlur = usuarioService.obterPorUserName(getLogin());
-				return ((campoValido(getSenha())) && (carregadoOnBlur != null) && (carregadoOnBlur.getSenha().equals(getSenha())));
+				carregadoOnBlur = usuarioService.logar(getLogin());
+				return ((campoValido(getSenha())) && (carregadoOnBlur != null) && (carregadoOnBlur.getPassword().equals(getSenha())));
 			}
 		}
 		return false;
@@ -123,7 +123,7 @@ public class LoginBean implements Serializable {
 
 	public void verificarUsuarioPorLogin() {
 		if (!login.isEmpty()) {
-			carregadoOnBlur = usuarioService.obterPorUserName(getLogin());
+			carregadoOnBlur = usuarioService.logar(getLogin());
 			if (carregadoOnBlur == null) {
 				setErrouLogin(true);
 				JSFUtils.warnMessage(labels.getField("label.aviso"), labels.getField("msg.usuario.nao.existe"));

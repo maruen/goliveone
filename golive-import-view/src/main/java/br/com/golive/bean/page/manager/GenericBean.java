@@ -8,8 +8,8 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import br.com.golive.constants.ChaveSessao;
-import br.com.golive.entity.empresas.model.Empresa;
-import br.com.golive.entity.perfil.usuario.model.Usuario;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.utils.ServiceUtils;
 

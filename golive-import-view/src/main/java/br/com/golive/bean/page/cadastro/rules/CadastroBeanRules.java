@@ -30,7 +30,7 @@ import br.com.golive.annotation.PropriedadesTemplate;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
-import br.com.golive.entity.perfil.configuracao.model.ColunaPerfil;
+import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
@@ -96,7 +96,7 @@ public abstract class CadastroBeanRules<T extends Serializable> extends
 	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");
 		final Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("usuarioLogado", getUsuario().getNome());
+		parametros.put("usuarioLogado", getUsuario().getLogin());
 		parametros.put("label.usuario", getUsuario().getLabels().getField("label.usuario"));
 		try {
 			logger.info("Carregando logo da empresa");

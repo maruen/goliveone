@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 import lombok.Data;
 import br.com.golive.constants.ChaveSessao;
-import br.com.golive.entity.perfil.usuario.model.Usuario;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.qualifier.UsuarioLogadoInjected;

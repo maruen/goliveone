@@ -14,7 +14,7 @@ import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 
 import br.com.golive.constants.ChaveSessao;
-import br.com.golive.entity.perfil.usuario.model.Usuario;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.PrettyUrl;

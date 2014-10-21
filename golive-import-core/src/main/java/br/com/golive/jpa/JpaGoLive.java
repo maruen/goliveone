@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.hibernate.Criteria;
@@ -33,8 +32,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	/**
 	 * EntityManager da JPA
 	 */
-	@PersistenceContext(name = "golive-one-PU")
-	protected EntityManager entityManager;
+	private final EntityManager entityManager;
 
 	/**
 	 * Classe de entidade extendida
@@ -53,9 +51,9 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @param entityManager
 	 */
 	@SuppressWarnings("unchecked")
-	protected JpaGoLive() {
+	protected JpaGoLive(final EntityManager entityManager) {
 		super();
-
+		this.entityManager = entityManager;
 		Type type = getClass().getGenericSuperclass();
 		if (!(type instanceof ParameterizedType)) {
 			type = this.getClass().getSuperclass().getGenericSuperclass();
