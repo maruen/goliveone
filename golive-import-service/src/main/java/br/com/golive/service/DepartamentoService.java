@@ -21,6 +21,6 @@ public interface DepartamentoService {
 
 	public void excluir(DepartamentoModel departamentoModel);
 
-	public List<AuditoriaModel> getAuditoriaLogs();
+	public List<AuditoriaModel> getAuditoriaLogs(DepartamentoModel departamentoModel);
 
 }

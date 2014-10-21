@@ -43,15 +43,18 @@ public class LogAuditoriaInterceptor {
 	@AroundInvoke
 	public Object interceptarCrud(final InvocationContext ctx) throws Exception {
 		logger.info("Verificando método interceptado, iniciando verificação da operação");
-		final Object[] parameters = ctx.getParameters();
-
-		final Model model = (Model) parameters[0];
-		Object ret = null;
-
+		Object[] 	parameters =  ctx.getParameters();
+		Model 		model 	   =  (Model) parameters[0];
+		Object 		ret 	   =  null;
+		
+		model.setDataInclusao(Calendar.getInstance());
+		model.setDataAlteracao(Calendar.getInstance());
+		
 		if (ctx.getMethod().isAnnotationPresent(CrudOperation.class)) {
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(DELETE)) {
 
 			}
+		
 			ret = ctx.proceed();
 
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(INSERT)) {

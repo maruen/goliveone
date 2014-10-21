@@ -24,24 +24,31 @@
 				        <h:outputText value="#{row.id}" styleClass="singleLine floatRight"/>
 				    </p:column>
 				    
-				    <p:column headerText="Data e Hora"
+				    <p:column headerText="Data e Hora Inclusão"
 				    		  styleClass="percentual-10">
-				        <h:outputText value="#{row.dataHoraOcorrencia}"  styleClass="singleLine floatRight">
+				        <h:outputText value="#{row.dataInclusao.time}"  styleClass="singleLine floatRight">
 				        	<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
 				        </h:outputText>
 				    </p:column>
-				 
+				    
+				    <p:column headerText="Data e Hora Alteração"
+				    		  styleClass="percentual-10">
+				        <h:outputText value="#{row.dataAlteracao.time}"  styleClass="singleLine floatRight">
+				        	<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+				        </h:outputText>
+				    </p:column>
+				    
 				    <p:column headerText="Formulário"
 				    		  styleClass="percentual-15">
 				        <h:outputText value="#{row.formularioNome}" styleClass="singleLine"/>
 				    </p:column>
 				   
 			 	   <p:column headerText="Ação" styleClass="percentual-10">
-				    	<h:outputText value="#{row.usuarioSistemaAcao}" styleClass="singleLine"/>
+				    	<h:outputText value="#{row.acaoUsuario}" styleClass="singleLine"/>
 				    </p:column>
 				 
 				 	<p:column headerText="Usuário" styleClass="percentual-10">
-				    	<h:outputText value="#{row.usuarioSistemaAcao}" />
+				    	<h:outputText value="" />
 				    </p:column>
 				    
 				    <p:column headerText="Observação" styleClass="percentual-10">

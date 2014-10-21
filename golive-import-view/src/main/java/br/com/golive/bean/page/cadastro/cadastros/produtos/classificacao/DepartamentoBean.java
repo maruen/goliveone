@@ -70,8 +70,10 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	
 	
 	public List<AuditoriaModel> getAuditoriaLogs() {
-		return departamentoService.getAuditoriaLogs();  
+		return departamentoService.getAuditoriaLogs(registro);  
 	}
+
+	
 	
 	
 }

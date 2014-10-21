@@ -1,8 +1,10 @@
 package br.com.golive.entity.auditoria.repositorio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.Table;
 import javax.transaction.Transactional;
 
 import br.com.golive.annotation.QueryAuditoria;
@@ -11,6 +13,7 @@ import br.com.golive.entity.auditoria.model.AuditoriaItemModel;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.perfil.usuario.model.Usuario;
 import br.com.golive.jpa.JpaGoLive;
+import br.com.golive.utils.Utils;
 
 public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
 
@@ -30,5 +33,22 @@ public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
 			query.executeUpdate();
 		}
 	}
+		
+	 @SuppressWarnings({ "rawtypes", "unchecked" })
+     public List getAuditoriaLogs(Class clazz) {
+	     List<AuditoriaModel> results = new ArrayList<AuditoriaModel>();
+	    
+	     String sql = "SELECT tbAuditoria_Id FROM tbAuditoria_" + ((Table) clazz.getAnnotation(Table.class)).name();
+	     Query query = entityManager.createNativeQuery(sql);
+	     final List<Long> ids = query.getResultList();
+	    
+	     if ((ids != null) && (ids.size() > 0)) {
+		     sql =  "SELECT auditoriaModel FROM AuditoriaModel auditoriaModel WHERE auditoriaModel.id IN (" + Utils.explode(ids) + ")";
+		     query = entityManager.createQuery(sql, AuditoriaModel.class);
+		     results = query.getResultList();
+	     }
+	     return results;
+	 }
+	
 
 }
