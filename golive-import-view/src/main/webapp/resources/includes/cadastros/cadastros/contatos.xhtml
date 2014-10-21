@@ -1,0 +1,156 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="contatos"
+		 header="Contatos"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="contatos"
+		 styleClass="little-font" >
+		 
+	<f:facet name="actions">
+		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+			<h:outputText styleClass="ui-icon ui-icon-help" />
+		</h:commandLink>
+	</f:facet>
+	   		       	
+	<h:panelGrid columns="1"
+				 cellpadding="3"  
+				 cellspacing="3"
+				 columnClasses="percentual-100"
+				 width="100%"
+				 border="0">
+		
+		<p:fieldset legend="Empresa" collapsed="true"
+					toggleable="true"
+					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+			
+			<h:panelGrid columns="6"
+						 cellpadding="3"
+						 cellspacing="3"
+						 columnClasses="percentual-7,
+						 				percentual-15,
+						 				percentual-7,
+						 				percentual-15,
+						 				percentual-10,
+						 				percentual-80"
+						 width="100%"
+						 border="0">
+				
+				<h:outputText id="fone1OutputText"
+								  value="Fone 1"
+								  styleClass="singleLine" />
+				<p:inputText id="fone1InputText"
+								 style="width: 80%;"
+								 value="+55 (11) 2091-3511"/>	
+
+				<h:outputText id="fone3OutputText"
+								  value="Fone 3"
+								  styleClass="singleLine" />
+				<p:inputText id="fone3InputText"
+								 style="width: 80%;"
+								 value="+55 (11) 2091-3511"/>	
+
+				<h:outputText id="websiteOutputText"
+								  value="WebSite"
+								  styleClass="singleLine" />
+				<p:inputText id="websiteInputText"
+								 style="width: 90%;"
+								 value="www.acaopersianas.com.br"/>	
+
+				<h:outputText id="fone2OutputText"
+								  value="Fone 2"
+								  styleClass="singleLine" />
+				<p:inputText id="fone2InputText"
+								 style="width: 80%;"
+								 value="+55 (11) 2091-3511"/>	
+
+				<h:outputText id="faxOutputText"
+								  value="Fax"
+								  styleClass="singleLine" />
+				<p:inputText id="faxInputText"
+								 style="width: 80%;"
+								 value="+55 (11) 2091-3511"/>	
+
+				<h:outputText id="emailEnvioNfeOutputText"
+								  value="E-Mail Envio NF-e"
+								  styleClass="singleLine" />
+				<p:inputText id="emailEnvioNfeInputText"
+								 style="width: 90%;"
+								 value="nfe@acaopersianas.com.br"/>	
+
+				<p:spacer/>
+				<p:spacer/>
+				
+				<p:spacer/>
+				<p:spacer/>
+				
+				<h:outputText id="emailEnvioCobrancaOutputText"
+								  value="E-Mail Envio Cobrança"
+								  styleClass="singleLine" />
+				<p:inputText id="emailEnviioCobrancaInputText"
+								 style="width: 90%;"
+								 value="financeiro@acaopersianas.com.br"/>	
+				
+			</h:panelGrid>
+		</p:fieldset>
+		
+		<p:fieldset legend="Pessoas" collapsed="false"
+					toggleable="true"
+					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+		
+			<h:panelGrid columns="4"
+						 cellpadding="3"
+						 cellspacing="3"
+						 columnClasses="percentual-5,
+						 				percentual-50,
+						 				percentual-5,
+						 				percentual-50"
+						 width="100%"
+						 border="0">
+				
+				<h:column>
+					<h:outputText id="idPessoasOutputText"
+								  value="Id"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<h:inputText id="idPessoasInputText"
+								 style="width: 125px;"
+								 disabled="true"
+								 value=""/>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="departamentoPessoasOutputText"
+								  value="Departamento"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<h:inputText id="departamentoPessoasInputText"
+								 style="width: 125px;"
+								 disabled="true"
+								 value="0000000001"/>
+								 
+					<p:spacer width="1" height="1"/>
+					
+					<h:inputText id="departamentoDescricaoPessoasInputText"
+								 style="width: 30%;"
+								 disabled="true"
+								 value="Diretoria"/>
+				</h:column>
+								 
+				
+			</h:panelGrid>		
+		</p:fieldset>
+	</h:panelGrid>
+</p:panel>
+</ui:composition>
