@@ -60,7 +60,7 @@
 
 			<p:column
 				headerText="Razão Social"
-				styleClass="percentual-10">
+				styleClass="percentual-30 singleLine">
 				<h:outputText value="Ind.Com.de Alumínios Alpex Ltda." />
 			</p:column>
 		</p:dataTable>
@@ -70,6 +70,30 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/dadosGeraisFornecedores.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/documentos.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/nomes.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/cnaes.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/naturezaJuridica.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/regimeApuracao.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/enderecos.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/contatos.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/observacoes.xhtml">
 			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
 		</ui:include>
 		<!-- <ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
