@@ -51,6 +51,7 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 
 	@Deprecated
 	private Usuario geradorUsuario(final String username) throws IOException {
+<<<<<<< HEAD
 		// Usuario ret = new Usuario();
 		// ret.setId(1L);
 		// ret.setDataInclusao(Calendar.getInstance().getTime());
@@ -101,5 +102,52 @@ public class UsuarioBeanServiceImpl implements UsuarioBeanService {
 		// }
 		// return ret;
 		return null;
+=======
+		Usuario ret = new Usuario();
+		ret.setId(1L);
+		ret.setDataInclusao(Calendar.getInstance());
+		ret.setLabels(new GoliveOneProperties(Locale.getDefault()));
+
+		final List<Empresa> lista = new ArrayList<Empresa>();
+		lista.add(new Empresa(1L, "Tradição Distribuidora de Persianas Ltda"));
+		lista.add(new Empresa(2L, "Ação Persianas e Distribuidora Ltda"));
+
+		switch (username) {
+		case "roberto.tradicao@gmail.com":
+			ret.setNome("Roberto Tradição");
+			ret.setSenha("tradicao1234");
+			ret.setEmpresas(lista);
+			break;
+
+		case "Guilherme":
+			ret.setNome("Guilherme");
+			ret.setSenha("123");
+			ret.setEmpresas(lista);
+			break;
+		case "Maruen":
+			ret.setNome("Maruen");
+			ret.setSenha("123");
+			ret.setEmpresas(lista);
+			break;
+		case "Antero":
+			ret.setNome("Antero A. Costa");
+			ret.setSenha("costa");
+			ret.setEmpresas(lista);
+			break;
+		case "Anderson":
+			ret.setNome("Anderson P. Moreira");
+			ret.setSenha("moreira");
+			ret.setEmpresas(lista);
+			break;
+
+		default:
+			ret = null;
+			break;
+		}
+		if (ret != null) {
+			ServiceUtils.guardarObjetoSessao(ChaveSessao.USUARIO_LOGADO, ret);
+		}
+		return ret;
+>>>>>>> 8557e5498c87cecf37e2b42731a91bb4ab735a1a
 	}
 }

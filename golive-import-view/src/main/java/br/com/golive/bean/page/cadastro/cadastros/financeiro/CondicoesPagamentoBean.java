@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.financeiro;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.financeiro.condicoespagamento.CondicoesPagamentoModel;
+import br.com.golive.entity.financeiro.condicoespagamento.model.CondicoesPagamentoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
@@ -43,7 +43,7 @@ public class CondicoesPagamentoBean extends CadastroBeanRules<CondicoesPagamento
 		final List<CondicoesPagamentoModel> lista = new ArrayList<CondicoesPagamentoModel>();
 			
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new CondicoesPagamentoModel(new Long(i), new Date(), new Date(), "28 / 56 dd"));
+			lista.add(new CondicoesPagamentoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "28 / 56 dd"));
 		}
 		
 		return lista;

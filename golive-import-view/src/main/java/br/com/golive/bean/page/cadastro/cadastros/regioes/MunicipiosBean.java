@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.regioes;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.municipios.MunicipiosModel;
+import br.com.golive.entity.empresas.regioes.municipios.model.MunicipiosModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
@@ -43,7 +43,7 @@ public class MunicipiosBean extends CadastroBeanRules<MunicipiosModel>{
 		final List<MunicipiosModel> lista = new ArrayList<MunicipiosModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new MunicipiosModel(new Long(i), new Date(), new Date(), "3550308", "São Paulo", "0000000010", "Brasil", "0000000001", "35", "SP", "Região Sudeste"));
+			lista.add(new MunicipiosModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "3550308", "São Paulo", "0000000010", "Brasil", "0000000001", "35", "SP", "Região Sudeste"));
 		}
 		
 		return lista;

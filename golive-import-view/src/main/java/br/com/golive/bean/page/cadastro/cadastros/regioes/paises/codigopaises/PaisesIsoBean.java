@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.regioes.paises.codigopaises;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.paises.codigopaises.iso.PaisesIsoModel;
+import br.com.golive.entity.empresas.regioes.paises.codigopaises.iso.model.PaisesIsoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
@@ -43,7 +43,7 @@ public class PaisesIsoBean extends CadastroBeanRules<PaisesIsoModel> {
 		final List<PaisesIsoModel> lista = new ArrayList<PaisesIsoModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new PaisesIsoModel(new Long(i), new Date(), new Date(), "AFG", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
+			lista.add(new PaisesIsoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "AFG", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
 		}
 		
 		return lista;

@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.empresas.cnae;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.cnae.grupo.GrupoModel;
+import br.com.golive.entity.empresas.cnae.grupo.model.GrupoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
@@ -43,7 +43,7 @@ public class GrupoBean extends CadastroBeanRules<GrupoModel> {
 		final List<GrupoModel> lista = new ArrayList<GrupoModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new GrupoModel(new Long(i), new Date(), new Date(), "A", "Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura", "0000000001", "01", "Agricultura, Pecuária e Serviços Relacionados", "0000000001", "01.1", "Produção de lavouras temporárias"));
+			lista.add(new GrupoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "A", "Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura", "0000000001", "01", "Agricultura, Pecuária e Serviços Relacionados", "0000000001", "01.1", "Produção de lavouras temporárias"));
 		}
 		
 		return lista;

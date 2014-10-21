@@ -3,7 +3,7 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.finalidades;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.especialidades.CoresModel;
+import br.com.golive.entity.especialidades.model.CoresModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
@@ -94,8 +94,8 @@ public class FinalidadeCodigoDeBarrasBean extends CadastroBeanRules<CoresModel> 
 		final List<CoresModel> lista = new ArrayList<CoresModel>();
 		for (Integer i = 0; i < 10; i++) {
 			final CoresModel coresModel = new CoresModel(Long.valueOf(i.longValue()),
-												   new Date(),
-												   new Date(),
+												   Calendar.getInstance(),
+												   Calendar.getInstance(),
 												   "0000000025",
 												   "Vermelho",
 												   "0000000001",

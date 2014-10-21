@@ -7,26 +7,98 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
+	<ui:param name="bean" value="#{fornecedoresBean}" />
+
 	<ui:define name="css">
-		<script type="text/javascript">
-		
-		window.onload = function() {
-			alert('Pagina nao foi implementada');
-            window.close();
-		}
-
-	</script>
-
-	</ui:define>
-
-	<ui:define name="bean">
+		<h:outputStylesheet name="css/cadastros/style_fornecedores.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="conteudoTable"
+			var="row" 
+			value="#{fornecedoresBean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{fornecedoresBean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="Não há Registros"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column
+				headerText="Id"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="CNPJ"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="09.363.143/0001-00" />
+			</p:column>
+
+			<p:column
+				headerText="Insc.Estadual"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="111.222.333-11">
+				</h:outputText>
+			</p:column>
+
+			<p:column 
+				headerText="Nome Fantasia"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Alpex Alumínio" />
+			</p:column>
+
+			<p:column
+				headerText="Razão Social"
+				styleClass="percentual-30 singleLine">
+				<h:outputText value="Ind.Com.de Alumínios Alpex Ltda." />
+			</p:column>
+		</p:dataTable>
+
 	</ui:define>
 
 	<ui:define name="edicao">
+
+		<ui:include src="/resources/includes/cadastros/cadastros/dadosGeraisFornecedores.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/documentos.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/nomes.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/cnaes.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/naturezaJuridica.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/regimeApuracao.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/enderecos.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/contatos.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/observacoes.xhtml">
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>
+		<!-- <ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+			<ui:param name="pojo" value="#{fornecedoresBean.registro}" />
+		</ui:include>-->
+
 	</ui:define>
-
-
 </ui:composition>

@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.empresas.cnae;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.cnae.cnaesimpeditivossimpesnacional.CnaesImpeditivosSimplesNacionalModel;
+import br.com.golive.entity.empresas.cnae.cnaesimpeditivossimpesnacional.model.CnaesImpeditivosSimplesNacionalModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
@@ -43,7 +43,7 @@ public class CnaesImpeditivosSimplesNacionalBean extends CadastroBeanRules<Cnaes
 		final List<CnaesImpeditivosSimplesNacionalModel> lista = new ArrayList<CnaesImpeditivosSimplesNacionalModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new CnaesImpeditivosSimplesNacionalModel(new Long(i), new Date(), new Date(), "0000000035", "0111-3/01", "Cultivo de arroz"));
+			lista.add(new CnaesImpeditivosSimplesNacionalModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "0000000035", "0111-3/01", "Cultivo de arroz"));
 		}
 		
 		return lista;

@@ -2,7 +2,7 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.finalidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +17,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.finalidadetipo.FinalidadeTipoModel;
+import br.com.golive.entity.finalidadetipo.model.FinalidadeTipoModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
@@ -48,7 +48,7 @@ public class FinalidadeTipoBean extends CadastroBeanRules<FinalidadeTipoModel> {
 		final List<FinalidadeTipoModel> lista = new ArrayList<FinalidadeTipoModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new FinalidadeTipoModel(new Long(i), new Date(), new Date(), 
+			lista.add(new FinalidadeTipoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), 
 					"Nota Fiscal Produtos de Revenda", "00010", "00050"));
 		}
 		

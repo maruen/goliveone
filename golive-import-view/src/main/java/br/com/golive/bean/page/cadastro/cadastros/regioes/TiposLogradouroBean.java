@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.regioes;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.tiposlogradouro.TiposLogradouroModel;
+import br.com.golive.entity.empresas.regioes.tiposlogradouro.model.TiposLogradouroModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
@@ -43,7 +43,7 @@ public class TiposLogradouroBean extends CadastroBeanRules<TiposLogradouroModel>
 		final List<TiposLogradouroModel> lista = new ArrayList<TiposLogradouroModel>();
 		
 		for (Integer i = 0; i <= 10; i ++){
-			lista.add(new TiposLogradouroModel(new Long(i), new Date(), new Date(), "ALM", "Alameda"));
+			lista.add(new TiposLogradouroModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "ALM", "Alameda"));
 		}
 		
 		return lista;

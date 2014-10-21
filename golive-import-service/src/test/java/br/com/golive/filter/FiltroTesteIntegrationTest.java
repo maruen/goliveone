@@ -2,6 +2,7 @@ package br.com.golive.filter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -100,7 +101,9 @@ public class FiltroTesteIntegrationTest {
 		parametroRetorno.put(dataPorString("15/11/2014"), 59);
 		filtrarSetInicio(parametroRetorno, dateFilter, widget, TipoFiltro.MENOR);
 
-		dateFilter.setFim(dataPorString("15/10/2014"));
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dataPorString("15/10/2014"));
+		dateFilter.setFim(cal);
 		parametroRetorno.put(dataPorString("02/09/2014"), 38);
 		parametroRetorno.put(dataPorString("05/09/2014"), 29);
 		parametroRetorno.put(dataPorString("10/10/2014"), 6);
@@ -232,7 +235,9 @@ public class FiltroTesteIntegrationTest {
 
 	public void filtrarDateDataSetInicio(final String date) {
 		try {
-			bean.getFiltroData().setInicio(dataPorString(date));
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(dataPorString(date));
+			bean.getFiltroData().setInicio(cal);
 			bean.getFilter().filtrar(bean.getLista(), bean.getFiltrada(), bean.getFiltroData(), "data");
 		} catch (final GoLiveException e) {
 			bean.getLogger().error("Erro ao converter data");

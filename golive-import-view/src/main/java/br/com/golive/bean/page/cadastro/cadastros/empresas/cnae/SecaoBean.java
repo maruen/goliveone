@@ -1,7 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.empresas.cnae;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.cnae.secao.SecaoModel;
+import br.com.golive.entity.empresas.cnae.secao.model.SecaoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
@@ -43,7 +43,7 @@ public class SecaoBean extends CadastroBeanRules<SecaoModel> {
 		final List<SecaoModel> lista = new ArrayList<SecaoModel>();
 		
 		for (Integer i = 0; i < 10; i ++){
-			lista.add(new SecaoModel(new Long(i), new Date(), new Date(), "A", "Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura"));
+			lista.add(new SecaoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "A", "Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura"));
 		}
 		return lista;
 	}

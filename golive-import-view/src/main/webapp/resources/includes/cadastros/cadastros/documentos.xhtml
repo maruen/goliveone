@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="documentos"
+		 header="Documentos"
+		 toggleable="true"
+		 collapsed="true"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="documentos"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="6"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-1,
+          				 				percentual-15,
+          				 				percentual-4,
+          				 				percentual-15,
+          				 				percentual-5,
+          				 				percentual-10"
+           				 width="100%"
+          				 border="0">
+          	
+          		<p:column>     
+					<h:outputText id="cnpjOutputText"
+								  value="CNPJ"   />
+				</p:column>
+				
+				<p:column>
+		           	<p:inputText id="cnpjInputText"
+		           				 style="width: 160px;"
+		           				 disabled="false"
+		           				 value="09.363.143/0001-00"/>
+		        </p:column>
+		        
+		        <p:column>		           				 
+		      		<h:outputText id="inscricaoSuframaOutputText" 
+		      					  value="Inscrição Suframa"
+		      					  styleClass="singleLine" />
+		      	</p:column>
+		      	
+		      	<p:column>
+		           	<p:inputText id="inscricaoSuframaInputText"
+		           				 style="width: 125px;"
+		           				 disabled="false"
+		           				 value="1.111.111-1"/>
+		        </p:column>
+		        
+		        <p:column/>
+		        <p:column/>
+		        
+		        <p:column>			 				  
+		      		<h:outputText id="inscricaoEstadualOutputText" 
+		      					  value="Inscrição Estadual" />
+		      	</p:column>
+		      	
+		      	<p:column>
+			 		<p:inputText value="111.111.111.111-11" 
+			 					 id="inscricaoEstadualInputText" 
+			 					 disabled="false"
+			 					 style="width: 160px;" />   
+			 					
+			 		<p:spacer width="10"/>
+			 		 
+					<p:selectBooleanCheckbox value="checked"
+											 id="isentoCheckbox" />
+											 
+					<p:spacer width="5"/>
+					
+					<h:outputText id="isentoOutputText"
+								  value="Isento"/>
+				</p:column>
+				
+				<p:column/>
+				<p:column/>
+				<p:column/>
+				<p:column/>
+				
+				<p:column>
+		      		<h:outputText id="inscricaoMunicipalOutputText" 
+		      					  value="Inscrição Municipal" 
+		      					  styleClass="singleLine" />
+		      	</p:column>
+		      	
+		      	<p:column>
+			 		<p:inputText value="1.111.111-1" 
+			 					 id="inscricaoMunicipalInputText" 
+			 					 disabled="false"
+			 					 style="width: 160px;" />   
+			 	</p:column>   					  
+        </h:panelGrid>
+	</p:panel>
+</ui:composition>

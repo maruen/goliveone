@@ -1,0 +1,109 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="bacen"
+		 header="Bacen (Banco Central do Brasil)"
+		 toggleable="true"
+		 collapsed="true"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="bacen"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="6"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-2,
+          				 				percentual-5,
+          				 				percentual-7,
+          				 				percentual-5,
+          				 				percentual-3,
+          				 				percentual-50"
+           				 width="100%"
+          				 border="0">
+	     		<h:column>
+					<h:outputText id="idBacenOutputText"
+								  value="Id"   />
+				</h:column>
+				
+				<h:column>
+		           	<h:inputText id="idBacenInputText"
+		           				 style="width: 125px;"
+		           				 disabled="true"
+		           				 value="0000000010"/>
+				</h:column>
+				
+	     		<h:column>
+					<h:outputText id="codigoBacenOutputText"
+								  value="Código Bacen"
+								  styleClass="singleLine"   />
+				</h:column>
+				
+				<h:column>
+		           	<h:inputText id="codigoBacenInputText"
+		           				 style="width: 125px;"
+		           				 disabled="true"
+		           				 value="00132"/>
+				</h:column>
+	
+				<h:column>	            
+		      		<h:outputText id="paisOutputText" 
+		      					  value="País" 
+		      					  styleClass="singleLine" />
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<h:inputText id="paisInputText"
+		      					 required="true"
+		      					 disabled="true"
+		      					 style="width: 60%"
+		      					 value="Afeganistão" />	
+		           	<p:commandLink onclick="PF('dlgPais').show();" immediate="true">
+		           		<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+		      	</h:column>	
+             		
+         </h:panelGrid>
+	</p:panel>
+	
+<p:dialog header="Pesquisa de País BACEN"
+			  widgetVar="dlgPais"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="40%">
+      			
+     			<p:dataTable id="paisBacenDatatableId"
+        	  	 	     var="paisBacenDatatableVar"
+        			 	 value="#{paisesBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-15 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Código Bacen"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="00132" />
+				    </p:column>
+				    
+				    <p:column headerText="País"
+				    		  styleClass="percentual-30 singleLine">
+				     		<h:outputText value="Afeganistão" />
+				    </p:column>
+				    
+		</p:dataTable>
+</p:dialog>
+	
+</ui:composition>

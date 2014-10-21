@@ -1,0 +1,783 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="nacionalizacao" 
+			 header="Nacionalização" 
+			 toggleable="true"
+			 collapsed="true" 
+			 closable="false" 
+			 toggleSpeed="500" 
+			 closeSpeed="500"
+			 widgetVar="nacionalizacao" 
+			 styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="2" 
+					 cellpadding="3" 
+					 cellspacing="3"
+					 columnClasses="percentual-50,
+					 				percentual-50"
+					 width="100%" 
+					 border="0">
+
+			<h:column>
+				<p:fieldset legend="ISO 3161-1 Alfa-3"
+							toggleable="true"
+							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
+
+					<h:panelGrid columns="2"
+								 cellpadding="3" 
+								 cellspacing="3" 
+								 columnClasses="percentual-5,
+								 				percentual-50"
+								 width="100%"
+								 border="0">
+
+						<h:column>
+							<h:outputText id="idIsoOutputText"
+								  		  value="Id" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="idIsoInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="0000000001"/>
+							<p:commandLink onclick="PF('dlgIso').show();" immediate="true">
+								<h:graphicImage
+									value="/resources/images/stylistica-icons-set/24x24/search.png" />
+							</p:commandLink>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="codigoIsoOutputText"
+								  		  value="Código" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="codigoIsoInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="AFG"/>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="paisIsoOutputText"
+								  		  value="País" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="paisIsoInputText"
+					        			 style="width: 60%;"
+					        			 disabled="true"
+					        			 value="Afghanistan"/>
+						</h:column>
+					</h:panelGrid>
+				</p:fieldset>
+			</h:column>
+
+			<h:column>
+				<p:fieldset legend="FIPS"
+							toggleable="true"
+							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
+
+					<h:panelGrid columns="2"
+								 cellpadding="3" 
+								 cellspacing="3" 
+								 columnClasses="percentual-5,
+								 				percentual-50"
+								 width="100%"
+								 border="0">
+
+						<h:column>
+							<h:outputText id="idFipsOutputText"
+								  		  value="Id" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="idFipsInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="0000000001"/>
+							<p:commandLink onclick="PF('dlgFips').show();" immediate="true">
+								<h:graphicImage
+									value="/resources/images/stylistica-icons-set/24x24/search.png" />
+							</p:commandLink>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="codigoFipsOutputText"
+								  		  value="Código" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="codigoFipsInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="AF"/>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="paisFipsOutputText"
+								  		  value="País" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="paisFipsInputText"
+					        			 style="width: 60%;"
+					        			 disabled="true"
+					        			 value="Afeganistão"/>
+						</h:column>
+					</h:panelGrid>
+				</p:fieldset>
+			</h:column>
+
+			<h:column>
+				<p:fieldset legend="Moeda - ISO 4217"
+							toggleable="true"
+							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
+
+					<h:panelGrid columns="4"
+								 cellpadding="3" 
+								 cellspacing="3" 
+								 columnClasses="percentual-3,
+								 				percentual-10,
+								 				percentual-3,
+								 				percentual-20"
+								 width="100%"
+								 border="0">
+
+						<h:column>
+							<h:outputText id="idMoedaOutputText"
+								  		  value="Id" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="idMoedaInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="0000000001"/>
+							<p:commandLink onclick="PF('dlgMoeda').show();" immediate="true">
+								<h:graphicImage
+									value="/resources/images/stylistica-icons-set/24x24/search.png" />
+							</p:commandLink>
+						</h:column>
+
+						<h:column/>
+						<h:column/>
+						
+						<h:column>
+							<h:outputText id="numeroMoedaOutputText"
+								  		  value="Número" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="numeroMoedaInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="971"/>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="casasDecimaisOutputText"
+								  		  value="Casas Decimais"
+								  		  styleClass="singleLine" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="casasDecimaisInputText"
+					        			 style="width: 100px;"
+					        			 disabled="true"
+					        			 value="02"/>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="codigoMoedaOutputText"
+								  		  value="Código Moeda"
+								  		  styleClass="singleLine" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="codigoMoedaInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="Afghanistan"/>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="simboloMonetarioOutputText"
+								  		  value="Símbolo Monetário"
+								  		  styleClass="singleLine" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="simboloMonetarioInputText"
+					        			 style="width: 100px;"
+					        			 disabled="true"
+					        			 value="؋"/>
+							<h:graphicImage
+								value="/resources/images/simbolo.png"
+								styleClass="image" />
+					        			 
+						</h:column>
+						
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2"
+								 cellpadding="3" 
+								 cellspacing="3" 
+								 columnClasses="percentual-11,
+								 				percentual-50"
+								 width="100%"
+								 border="0">
+
+						<h:column>
+							<h:outputText id="moedaOutputText"
+								  		  value="Moeda" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="MoedaInputText"
+					        			 style="width: 95%;"
+					        			 disabled="true"
+					        			 value="Afghanistan"/>
+						</h:column>
+						
+					</h:panelGrid>
+				</p:fieldset>
+			</h:column>
+
+			<h:column>
+				<p:fieldset legend="Fuso Horário"
+							toggleable="true"
+							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
+
+					<h:panelGrid columns="2"
+								 cellpadding="3" 
+								 cellspacing="3" 
+								 columnClasses="percentual-5,
+								 				percentual-50"
+								 width="100%"
+								 border="0">
+
+						<h:column>
+							<h:outputText id="utcOutputText"
+								  		  value="UTC" />
+						</h:column>
+
+						<h:column>
+				      		<p:selectOneRadio id="UtcORadio" value="XXX">
+					    		<f:selectItem itemLabel="+" itemValue="X" id="maisItemlabel"  />
+					    		<f:selectItem itemLabel="-" itemValue="X" id="menosItemLabel" />
+			         		</p:selectOneRadio>
+						</h:column>
+						
+						<h:column/>
+						
+						<h:column>
+					        <h:inputText id="horaAtualInputText"
+					        			 style="width: 80px;"
+					        			 disabled="true"
+					        			 value="04:30"/>
+						</h:column>
+												
+
+						<h:column>
+							<h:outputText id="horaAtualOutputText"
+								  		  value="Hora Atual"
+								  		  styleClass="singleLine" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="horaAtual2InputText"
+					        			 style="width: 80px;"
+					        			 disabled="true"
+					        			 value="12:30"/>
+					        <h:inputText id="horaAtual3InputText"
+					        			 style="width: 50px;"
+					        			 disabled="true"
+					        			 value="PM"/>
+						</h:column>
+					</h:panelGrid>
+				</p:fieldset>
+			</h:column>
+		</h:panelGrid>
+
+		<h:panelGrid columns="1" 
+					 cellpadding="3" 
+					 cellspacing="3"
+					 columnClasses="percentual-80"
+					 width="100%" 
+					 border="0">
+
+			<h:column>
+				<p:fieldset legend="Língua"
+							toggleable="true"
+							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+
+					<h:panelGrid columns="2"
+								 cellpadding="3" 
+								 cellspacing="3" 
+								 columnClasses="percentual-5,
+								 				percentual-50"
+								 width="100%"
+								 border="0">
+
+						<h:column>
+							<h:outputText id="idLInguaOutputText"
+								  		  value="Id" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="idLinguaInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="0000000001"/>
+							<p:commandLink onclick="PF('dlgLingua').show();" immediate="true">
+								<h:graphicImage
+									value="/resources/images/stylistica-icons-set/24x24/search.png" />
+							</p:commandLink>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="isoOutputText"
+								  		  value="ISO 639-1" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="isoInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="ps"/>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="nomeInglesOutputText"
+								  		  value="Nome Inglês" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="nomeInglesInputText"
+					        			 style="width: 60%;"
+					        			 disabled="true"
+					        			 value="Pushto"/>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="nomePortuguesOutputText"
+								  		  value="Nome Português" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="nomePortuguesInputText"
+					        			 style="width: 60%;"
+					        			 disabled="true"
+					        			 value="Pachto"/>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="nomeNativoOutputText"
+								  		  value="Nome Nativo" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="nomeNativoInputText"
+					        			 style="width: 60%;"
+					        			 disabled="true"
+					        			 value="څشزافخ"/>
+						</h:column>
+						
+						<h:column/>
+						
+						<h:column>
+							<p:selectBooleanCheckbox value="checked"
+													 id="principalCheckbox" />
+							<h:outputText id="principalOutputText"
+										  value="Principal"
+										  styleClass="percentual-50"/>
+							
+							<p:spacer width="10" height="5"/>				 
+							
+							<p:selectBooleanCheckbox value="checked" 
+													 id="secundariaCheckbox" />
+							<h:outputText id="secundariaOutputText"
+										  value="Secundária"/>
+							
+							<p:spacer width="400" height="5"/>
+							
+							<h:commandLink actionListener="#{paisesBean.salvarLingua()}" id="salvarLingua"
+								styleClass="linkButton">
+								<h:graphicImage
+									value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
+									styleClass="image" />
+							</h:commandLink>
+		
+							<h:commandLink actionListener="#{paisesBean.excluirLingua()}" id="excluirLingua"
+								styleClass="linkButton">
+								<h:graphicImage
+									value="/resources/images/stylistica-icons-set/24x24/delete.png"
+									styleClass="image" />
+							</h:commandLink>
+						</h:column>
+					</h:panelGrid>
+					<p:dataTable id="LinguaDataTable"
+										 var="row"
+										 value="#{paisesBean.linguaDataTable}"
+										 rowKey="#{list.id}"
+										 styleClass="tableCadastros" rows="15"
+										 paginator="true"
+										 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+				      					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+								<p:column styleClass="percentual-7">
+						      		<p:selectOneRadio id="dataTableORadio" value="XXX">
+							    		<f:selectItem itemValue="X" id="dataTableItemlabel"  />
+					         		</p:selectOneRadio>
+								</p:column>
+								
+						
+								<p:column headerText="Id"
+									      styleClass="percentual-10">
+									<h:outputText value="0000000000001" 
+												  styleClass="singleLine"/>
+								</p:column>
+									    
+								<p:column headerText="Cód.ISO 639-1"
+									      styleClass="percentual-10">
+									<h:outputText value="ps"  
+												  styleClass="singleLine"/>
+								</p:column>
+									 
+								<p:column headerText="Nome Inglês"
+									    		  styleClass="percentual-10">
+									<h:outputText value="Pushto"  
+												  styleClass="singleLine"/>
+								</p:column>
+									 
+								<p:column headerText="Nome Português" 
+										  styleClass="percentual-10">
+									<h:outputText value="Pashto"  
+												  styleClass="singleLine"/>
+								</p:column>
+
+								<p:column headerText="Nome Nativo" 
+										  styleClass="percentual-10">
+									<h:outputText value="څشسافخ"  
+												  styleClass="singleLine"/>
+								</p:column>
+
+								<p:column headerText="Principal" 
+										  styleClass="percentual-10">
+									<p:selectBooleanCheckbox value="checked"
+															 id="principalDtCheckbox" />
+								</p:column>
+									 
+								<p:column headerText="Secundária" 
+										  styleClass="percentual-10">
+									<p:selectBooleanCheckbox value="checked"
+															 id="secundariaDtCheckbox" />
+								</p:column>
+							</p:dataTable>
+				</p:fieldset>
+			</h:column>
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" 
+					 cellpadding="3" 
+					 cellspacing="3"
+					 columnClasses="percentual-50,
+					 				percentual-50"
+					 width="100%" 
+					 border="0">
+
+			<h:column>
+				<p:fieldset legend="Código Telefônico"
+							toggleable="true"
+							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
+
+					<h:panelGrid columns="2"
+								 cellpadding="3" 
+								 cellspacing="3" 
+								 columnClasses="percentual-5,
+								 				percentual-50"
+								 width="100%"
+								 border="0">
+
+						<h:column>
+							<h:outputText id="idCodigoTelefonicoOutputText"
+								  		  value="Id" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="idCodigoTelefonicoInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="0000000001"/>
+							<p:commandLink onclick="PF('dlgCodTelefonico').show();" immediate="true">
+								<h:graphicImage
+									value="/resources/images/stylistica-icons-set/24x24/search.png" />
+							</p:commandLink>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="codigoTelefonicoOutputText"
+								  		  value="Cód.Tel" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="codigoTelefonicoInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="93"/>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="paisCodigoTelefonicoOutputText"
+								  		  value="País" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="paisCodigoTelefonicoInputText"
+					        			 style="width: 60%;"
+					        			 disabled="true"
+					        			 value="Afghanistan"/>
+						</h:column>
+					</h:panelGrid>
+				</p:fieldset>
+			</h:column>
+
+			<h:column>
+				<p:fieldset legend="TLD"
+							toggleable="true"
+							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
+
+					<h:panelGrid columns="2"
+								 cellpadding="3" 
+								 cellspacing="3" 
+								 columnClasses="percentual-5,
+								 				percentual-50"
+								 width="100%"
+								 border="0">
+
+						<h:column>
+							<h:outputText id="idTldOutputText"
+								  		  value="Id" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="idTldInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value="0000000001"/>
+							<p:commandLink onclick="PF('dlgTld').show();" immediate="true">
+								<h:graphicImage
+									value="/resources/images/stylistica-icons-set/24x24/search.png" />
+							</p:commandLink>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="codigoTldOutputText"
+								  		  value="Cód.TLD" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="codigoTldInputText"
+					        			 style="width: 125px;"
+					        			 disabled="true"
+					        			 value=".af"/>
+						</h:column>
+
+						<h:column>
+							<h:outputText id="paisTldOutputText"
+								  		  value="País" />
+						</h:column>
+
+						<h:column>
+					        <h:inputText id="paisTldInputText"
+					        			 style="width: 60%;"
+					        			 disabled="true"
+					        			 value="Afghanistan"/>
+						</h:column>
+					</h:panelGrid>
+				</p:fieldset>
+			</h:column>
+		</h:panelGrid>
+	</p:panel>
+
+	<p:dialog header="Pesquisa de País ISO 3161-1 Alfa-3" 
+			  widgetVar="dlgIso"
+			  modal="false" 
+			  resizable="false" 
+			  appendToBody="true" 
+			  height="100%"
+			  width="55%">
+
+		<p:dataTable id="isoDatatableId" 
+					 var="isoDatatableVar"
+					 value="#{paisesBean.conteudo}">
+
+			<p:column headerText="Id" 
+					  styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column headerText="Código"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="AFG" />
+			</p:column>
+
+			<p:column headerText="País"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="Afghanistan" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="Pesquisa de País FIPS" 
+			  widgetVar="dlgFips"
+			  modal="false" 
+			  resizable="false" 
+			  appendToBody="true" 
+			  height="100%"
+			  width="55%">
+
+		<p:dataTable id="fipsDatatableId" 
+					 var="fipsDatatableVar"
+					 value="#{paisesBean.conteudo}">
+
+			<p:column headerText="Id" 
+					  styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column headerText="Código"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="AF" />
+			</p:column>
+
+			<p:column headerText="País"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="Afghanistan" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="Pesquisa de Moeda - ISO 4217" 
+			  widgetVar="dlgMoeda"
+			  modal="false" 
+			  resizable="false" 
+			  appendToBody="true" 
+			  height="100%"
+			  width="85%">
+
+		<p:dataTable id="moedaDatatableId" 
+					 var="moedaDatatableVar"
+					 value="#{paisesBean.conteudo}">
+
+			<p:column headerText="Id" 
+					  styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column headerText="Número"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="971" />
+			</p:column>
+
+			<p:column headerText="Código"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="AFN" />
+			</p:column>
+
+			<p:column headerText="Casas Decimais"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="02" />
+			</p:column>
+
+			<p:column headerText="Símbolo Monetário"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="؋" />
+			</p:column>
+
+			<p:column headerText="Símbolo Monetário Imagem"
+					  styleClass="percentual-30 singleLine">
+				<h:graphicImage value="/resources/images/simbolo.png"
+								styleClass="image" />
+			</p:column>
+
+			<p:column headerText="Moeda"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="Afegane" />
+			</p:column>
+			
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="Pesquisa de País - Código Telefônico" 
+			  widgetVar="dlgCodTelefonico"
+			  modal="false" 
+			  resizable="false" 
+			  appendToBody="true" 
+			  height="100%"
+			  width="55%">
+
+		<p:dataTable id="codigoTelefonicoDatatableId" 
+					 var="codigoTelefonicoDatatableVar"
+					 value="#{paisesBean.conteudo}">
+
+			<p:column headerText="Id" 
+					  styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column headerText="Código Telefônico"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="93" />
+			</p:column>
+
+			<p:column headerText="País"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="Afeganistão" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="Pesquisa de País TLD" 
+			  widgetVar="dlgTld"
+			  modal="false" 
+			  resizable="false" 
+			  appendToBody="true" 
+			  height="100%"
+			  width="55%">
+
+		<p:dataTable id="tldDatatableId" 
+					 var="tldDatatableVar"
+					 value="#{paisesBean.conteudo}">
+
+			<p:column headerText="Id" 
+					  styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column headerText="Código TLD"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value=".af" />
+			</p:column>
+
+			<p:column headerText="País"
+					  styleClass="percentual-20 singleLine">
+				<h:outputText value="Afeganistão" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+</ui:composition>
