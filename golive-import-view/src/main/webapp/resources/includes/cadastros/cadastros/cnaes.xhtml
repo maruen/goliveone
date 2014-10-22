@@ -81,9 +81,9 @@
 				</h:column>
         </h:panelGrid>
         
-		<p:dataTable id="LinguaDataTable"
+		<p:dataTable id="cnaeDataTable"
 					 var="row"
-					 value="#{paisesBean.linguaDataTable}"
+					 value="#{fornecedoresBean.cnaeDataTable}"
 					 rowKey="#{list.id}"
 					 styleClass="tableCadastros" 
 					 rows="15"
@@ -111,14 +111,20 @@
 									 
 			<p:column headerText="Principal" 
   					  styleClass="percentual-10">
-				<p:selectOneRadio id="principalDtRadio" value="XXX" styleClass="floatRight">
+				<p:selectOneRadio id="principalDtRadio" 
+								  value="XXX" 
+								  styleClass="floatRight" 
+								  disabled="true">
 						<f:selectItem itemValue="X" id="principalItemlabel"  />
 				</p:selectOneRadio>
 			</p:column>
 									 
 			<p:column headerText="Secundário" 
 					  styleClass="percentual-10">
-				<p:selectOneRadio id="secundarioDtRadio" value="XXX" styleClass="floatRight">
+				<p:selectOneRadio id="secundarioDtRadio" 
+								  value="XXX" 
+								  styleClass="floatRight"
+								  disabled="true">
 						<f:selectItem itemValue="X" id="secundarioItemlabel"  />
 				</p:selectOneRadio>
 			</p:column>

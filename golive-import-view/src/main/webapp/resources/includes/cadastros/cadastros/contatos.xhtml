@@ -7,7 +7,7 @@
 <p:panel id="contatos"
 		 header="Contatos"
 		 toggleable="true"
-		 collapsed="false"
+		 collapsed="true"
 		 closable="false"
 		 toggleSpeed="500"
 		 closeSpeed="500"
@@ -27,7 +27,7 @@
 				 width="100%"
 				 border="0">
 		
-		<p:fieldset legend="Empresa" collapsed="true"
+		<p:fieldset legend="Empresa" collapsed="false"
 					toggleable="true"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
 			
@@ -136,21 +136,445 @@
 				
 				<h:column>
 					<h:inputText id="departamentoPessoasInputText"
-								 style="width: 125px;"
+								 style="width: 90px;"
 								 disabled="true"
 								 value="0000000001"/>
 								 
 					<p:spacer width="1" height="1"/>
 					
 					<h:inputText id="departamentoDescricaoPessoasInputText"
-								 style="width: 30%;"
+								 style="width: 52%;"
 								 disabled="true"
 								 value="Diretoria"/>
+								 
+					<p:spacer width="5" height="1"/>
+								 
+					<p:commandLink onclick="PF('dlgDepartamento').show();" immediate="true">
+						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+				</h:column>
+							
+				<h:column>
+					<h:outputText id="nomePessoasOutputText"
+								  value="Nome"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="nomePessoasInputText"
+								 style="width: 90%;"
+								 disabled="false"
+								 value="Roberto de Andrade da Costa"/>
 				</h:column>
 								 
+				<h:column>
+					<h:outputText id="cargoPessoasOutputText"
+								  value="Cargo"
+								  styleClass="singleLine" />
+				</h:column>
 				
+				<h:column>
+					<h:inputText id="cargoPessoasInputText"
+								 style="width: 90px;"
+								 disabled="true"
+								 value="0000000001"/>
+								 
+					<p:spacer width="1" height="1"/>
+					
+					<h:inputText id="cargoDescricaoPessoasInputText"
+								 style="width: 52%;"
+								 disabled="true"
+								 value="Diretor"/>
+					
+					<p:spacer width="5" height="1"/>
+					
+					<p:commandLink onclick="PF('dlgCargo').show();" immediate="true">
+						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="foneTrabalho1PessoasOutputText"
+								  value="Fone Trabalho 1"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="foneTrabalho1PessoasInputText"
+								 style="width: 125px;"
+								 disabled="false"
+								 value="+55 (11) 2091-3511"/>
+								 
+					<p:spacer width="20" height="1"/>
+								 
+					<h:outputText id="ramalTrabalho1PessoasOutputText"
+								  value="Ramal"
+								  styleClass="singleLine" />
+								  
+					<p:spacer width="10" height="1"/>
+								  
+					<p:inputText id="ramalTrabalho1PessoasInputText"
+								 style="width: 60px;"
+								 disabled="false"
+								 value="784545"/>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="emailPessoasOutputText"
+								  value="E-mail"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="emailPessoasInputText"
+								 style="width: 74%;"
+								 disabled="false"
+								 value="roberto@acaopersianas.com.br"/>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="foneTrabalho2PessoasOutputText"
+								  value="Fone Trabalho 2"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="foneTrabalho2PessoasInputText"
+								 style="width: 125px;"
+								 disabled="false"
+								 value="+55 (11) 2091-3511"/>
+					
+					<p:spacer width="20" height="1"/>
+					
+					<h:outputText id="ramalTrabalho2PessoasOutputText"
+								  value="Ramal"
+								  styleClass="singleLine" />
+								  
+					<p:spacer width="10" height="1"/>
+					
+					<p:inputText id="ramalTrabalho2PessoasInputText"
+								 style="width: 60px;"
+								 disabled="false"
+								 value="784545"/>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="skypePessoasOutputText"
+								  value="Skype"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="skypePessoasInputText"
+								 style="width: 74%;"
+								 disabled="false"
+								 value="RobertoAcaoPersianas"/>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="faxTrabalhoPessoasOutputText"
+								  value="Fax Trabalho"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="faxTrabalhoPessoasInputText"
+								 style="width: 125px;"
+								 disabled="false"
+								 value="+55 (11) 2091-3511"/>
+					
+					<p:spacer width="20" height="1"/>
+					
+					<h:outputText id="ramalFaxPessoasOutputText"
+								  value="Ramal"
+								  styleClass="singleLine" />
+					
+					<p:spacer width="10" height="1"/>
+					
+					<p:inputText id="ramalFaxPessoasInputText"
+								 style="width: 60px;"
+								 disabled="false"
+								 value="784545"/>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="facebookPessoasOutputText"
+								  value="Facebook"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="facebookPessoasInputText"
+								 style="width: 74%;"
+								 disabled="false"
+								 value="Roberto Costa"/>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="celular1PessoasOutputText"
+								  value="Celular 1"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="celular1PessoasInputText"
+								 style="width: 125px;"
+								 disabled="false"
+								 value="+55 (11) 98456-0236"/>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="twitterPessoasOutputText"
+								  value="Twitter"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="twitterPessoasInputText"
+								 style="width: 74%;"
+								 disabled="false"
+								 value="@robertocosta"/>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="celular2PessoasOutputText"
+								  value="Celular 2"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="celular2PessoasInputText"
+								 style="width: 125px;"
+								 disabled="false"
+								 value="+55 (11) 98236-1574"/>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="observacaoPessoasOutputText"
+								  value="Observação"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputTextarea id="observacaoPessoasInputText"
+						 rows="1" 
+						 style="width: 74%;"/>
+								 
+					<h:commandLink actionListener="#{fornecedoresBean.excluirPessoas()}" 
+								   id="excluirPessoas"
+								   styleClass="linkButton">
+						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png"
+										styleClass="image floatRight" />
+					</h:commandLink>
+					
+					<h:commandLink actionListener="#{fornecedoresBean.salvarPessoas()}" 
+								   id="salvaPessoas"
+								   styleClass="linkButton">
+				   		<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
+										styleClass="image floatRight" />
+					</h:commandLink>
+				</h:column>
+				
+				<h:column>
+					<h:outputText id="radioPessoasOutputText"
+								  value="Rádio"
+								  styleClass="singleLine" />
+				</h:column>
+
+				<h:column>
+					<p:inputText id="radioPessoasInputText"
+								 style="width: 125px;"
+								 disabled="false"
+								 value="55*11*4785"/>
+				</h:column>
+
+				<h:column/>
+				<h:column/>
+								
+				<h:column>
+					<h:outputText id="aniversarioPessoasOutputText"
+								  value="Aniversário"
+								  styleClass="singleLine" />
+				</h:column>
+				
+				<h:column>
+					<p:inputText id="aniversarioPessoasInputText"
+								 style="width: 125px;"
+								 disabled="false"
+								 value="20/07"/>
+				</h:column>
 			</h:panelGrid>		
+
+			<br />
+			
+			<p:dataTable id="pessoasDataTable" 
+						 var="row"
+						 value="#{fornecedoresBean.pessoasDataTable}" 
+						 rowKey="#{list.id}"
+						 styleClass="tableCadastros" 
+						 rows="15" 
+						 paginator="true"
+						 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+						 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+		
+				<p:column headerText="Id" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+		
+				<p:column headerText="Nome" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Fone Trabalho 1" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Fone Trabalho 2" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Fax Trabalho" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Celular 1" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Celular 2" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Rádio" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Aniversário" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Id" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Departamento" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Id" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Cargo" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="E-mail" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Skype" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Facebook" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Twitter" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+				<p:column headerText="Observação" 
+						  styleClass="percentual-10">
+					<h:outputText value="" 
+								  styleClass="singleLine" />
+				</p:column>
+
+			</p:dataTable>
 		</p:fieldset>
 	</h:panelGrid>
 </p:panel>
+
+	<p:dialog header="Pesquisa de Departamento"
+			  widgetVar="dlgDepartamento"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="40%">
+      			
+     			<p:dataTable id="departamentoDatatableId"
+        	  	 	     var="departamentoDatatableVar"
+        			 	 value="#{fornecedoresBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-15 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Departamento"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Diretoria" />
+				    </p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="Pesquisa de Cargo"
+			  widgetVar="dlgCargo"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="40%">
+      			
+     			<p:dataTable id="cargoDatatableId"
+        	  	 	     var="cargoDatatableVar"
+        			 	 value="#{fornecedoresBean.conteudo}" >
+		    
+				    <p:column headerText="Id"
+				    		  styleClass="percentual-15 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="Cargo"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Diretor" />
+				    </p:column>
+		</p:dataTable>
+	</p:dialog>	
 </ui:composition>
