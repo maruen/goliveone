@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import br.com.golive.constants.ChaveSessao;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
@@ -59,7 +60,6 @@ public class LoginBean implements Serializable {
 		assinante = "";
 	}
 
-
 	public GoliveOneProperties getLabels() {
 		return labels;
 	}
@@ -68,20 +68,25 @@ public class LoginBean implements Serializable {
 		logger.info("Logando usuario = {}", getLogin());
 		if (obterUsuarioPorLoginSenha()) {
 			if ((assinante == null) || (assinante.isEmpty())) {
-				JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro"), labels.getField("msg.selecionar.empresa"));
+				JSFUtils.warnMessage(
+						labels.getField("title.msg.selecione.registro"),
+						labels.getField("msg.selecionar.empresa"));
 			} else {
 
-				// for (final Empresa empresa : carregadoOnBlur.getEmpresas()) {
-				// if (empresa.getNome().equals(assinante)) {
-				// ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA,
-				// empresa);
-				// }
-				// }
-				ServiceUtils.guardarObjetoSessao(ChaveSessao.USUARIO_LOGADO, carregadoOnBlur);
+				for (final Empresa empresa : carregadoOnBlur.getEmpresas()) {
+					if (empresa.getNome().equals(assinante)) {
+						ServiceUtils.guardarObjetoSessao(
+								ChaveSessao.EMPRESA_SELECIONADA, empresa);
+					}
+				}
+				ServiceUtils.guardarObjetoSessao(ChaveSessao.USUARIO_LOGADO,
+						carregadoOnBlur);
 
-
-				if (ServiceUtils.verificarNaSessaoPorChave(ChaveSessao.ULTIMA_PAGINA)) {
-					return "pretty:" + ServiceUtils.obterValorPorChave(PrettyUrl.class, ChaveSessao.ULTIMA_PAGINA).getId();
+				if (ServiceUtils
+						.verificarNaSessaoPorChave(ChaveSessao.ULTIMA_PAGINA)) {
+					return "pretty:"
+							+ ServiceUtils.obterValorPorChave(PrettyUrl.class,
+									ChaveSessao.ULTIMA_PAGINA).getId();
 				} else {
 					return "pretty:welcome";
 				}
@@ -94,7 +99,8 @@ public class LoginBean implements Serializable {
 
 	public void messageLoginInvalido() {
 		logger.info("Erro ao realizar Login.");
-		JSFUtils.warnMessage(labels.getField("title.msg.usuario.invalido"), labels.getField("msg.usuario.invalido"));
+		JSFUtils.warnMessage(labels.getField("title.msg.usuario.invalido"),
+				labels.getField("msg.usuario.invalido"));
 	}
 
 	public boolean obterUsuarioPorLoginSenha() {
@@ -105,7 +111,8 @@ public class LoginBean implements Serializable {
 		} else {
 			if (campoValido(getLogin())) {
 				carregadoOnBlur = usuarioService.logar(getLogin());
-				return ((campoValido(getSenha())) && (carregadoOnBlur != null) && (carregadoOnBlur.getPassword().equals(getSenha())));
+				return ((campoValido(getSenha())) && (carregadoOnBlur != null) && (carregadoOnBlur
+						.getPassword().equals(getSenha())));
 			}
 		}
 		return false;
@@ -123,10 +130,11 @@ public class LoginBean implements Serializable {
 
 	public void verificarUsuarioPorLogin() {
 		if (!login.isEmpty()) {
-			carregadoOnBlur = usuarioService.logar(getLogin());
+			carregadoOnBlur = usuarioService.obterPorUserName(getLogin());
 			if (carregadoOnBlur == null) {
 				setErrouLogin(true);
-				JSFUtils.warnMessage(labels.getField("label.aviso"), labels.getField("msg.usuario.nao.existe"));
+				JSFUtils.warnMessage(labels.getField("label.aviso"),
+						labels.getField("msg.usuario.nao.existe"));
 			}
 		}
 	}
