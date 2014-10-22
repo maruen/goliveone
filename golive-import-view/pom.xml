@@ -68,11 +68,11 @@
 			<artifactId>jasperreports</artifactId>
 		</dependency>
 
-<dependency>
-	<groupId>commons-codec</groupId>
-	<artifactId>commons-codec</artifactId>
-	<version>1.2</version>
-</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.2</version>
+		</dependency>
 
 	</dependencies>
 
@@ -120,7 +120,7 @@
 				<artifactId>maven-antrun-plugin</artifactId>
 				<configuration>
 					<tasks>
-						<delete dir="${jboss.deploy.path}"/> 
+						<delete dir="${jboss.deploy.path}" />
 
 						<delete>
 							<fileset dir="${jrxml.path.folder}">
@@ -129,7 +129,13 @@
 						</delete>
 
 						<delete>
-							<fileset dir="${jboss.module.labes.properties}">
+							<fileset dir="${jboss.module.labels.properties}">
+								<include name="*.properties" />
+							</fileset>
+						</delete>
+
+						<delete>
+							<fileset dir="${jboss.module.persistence.properties}">
 								<include name="*.properties" />
 							</fileset>
 						</delete>
@@ -137,12 +143,17 @@
 						<copy file="${basedir}/target/${context.root}.war" tofile="${jboss.deploy.path}/${context.root}.war" />
 
 
-						<copy todir="${jboss.module.labes.properties}">
+						<copy todir="${jboss.module.labels.properties}">
 							<fileset dir="${basedir}/${properties.project.folder}">
 								<include name="*.properties" />
 							</fileset>
 						</copy>
-
+						<copy todir="${jboss.module.persistence.properties}">
+							<fileset dir="${basedir}/${properties.persistence.folder}">
+								<include name="*.properties" />
+								<include name="*.xml" />
+							</fileset>
+						</copy>
 					</tasks>
 				</configuration>
 				<executions>

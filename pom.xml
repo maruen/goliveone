@@ -52,9 +52,13 @@
 	
 		<context.root>golive-one</context.root>
 		<jboss.deploy.path>${JBOSS_HOME}/standalone/deployments</jboss.deploy.path>
-		<jboss.module.labes.properties>${JBOSS_HOME}/modules/br/com/golive/labels/main</jboss.module.labes.properties>
+		<jboss.module.labels.properties>${JBOSS_HOME}/modules/br/com/golive/labels/main</jboss.module.labels.properties>
+		<jboss.module.persistence.properties>${JBOSS_HOME}/modules/br/com/golive/persistence/main</jboss.module.persistence.properties>
+		
+		
 		
 		<properties.project.folder>/src/main/resources/br/com/golive/labels</properties.project.folder>
+		<properties.persistence.folder>/src/main/resources/br/com/golive/persistence</properties.persistence.folder>
 		
 		<jrxml.path.folder>src/main/resources/br/com/golive/jrxml</jrxml.path.folder>
 		<jasper.compiled.files.folder>src/main/webapp/jasper/br/com/golive</jasper.compiled.files.folder>
