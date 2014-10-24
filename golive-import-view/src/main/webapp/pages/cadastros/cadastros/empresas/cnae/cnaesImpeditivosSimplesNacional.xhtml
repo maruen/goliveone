@@ -25,7 +25,7 @@
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,26 +34,26 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.id')}"
 				styleClass="percentual-10">				
 				<h:outputText value="0000000035" />
 			</p:column>
 
 			<p:column
-				headerText="Cód.SubClasse (CNAE)"
+				headerText="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.codSubClasseCnae')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="0111-3/01">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.denominacao')}"
 				styleClass="percentual-10">
 				<h:outputText value="Cultivo de Arroz" />
 			</p:column>
@@ -67,9 +67,9 @@
 		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/dadosGeraisCnaesImpeditivosSimplesNacional.xhtml">
 			<ui:param name="pojo" value="#{cnaesImpeditivosSimplesNacionalBean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+		<!-- <ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
 			<ui:param name="pojo" value="#{cnaesImpeditivosSimplesNacionalBean.registro}" />
-		</ui:include>
+		</ui:include>-->
 
 	</ui:define>
 </ui:composition>

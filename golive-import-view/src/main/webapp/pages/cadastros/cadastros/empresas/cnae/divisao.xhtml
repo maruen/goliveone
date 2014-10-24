@@ -25,7 +25,7 @@
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroDivisao.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,38 +34,38 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroDivisao.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Seção"
+				headerText="#{managerBean.get('label.cadastroDivisao.codSecao')}"
 				styleClass="percentual-10">				
 				<h:outputText value="A" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroDivisao.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroDivisao.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Divisao"
+				headerText="#{managerBean.get('label.cadastroDivisao.codDivisao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="01" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroDivisao.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Agricultura. Pecuária e Serviços Relacionados">
 				</h:outputText>

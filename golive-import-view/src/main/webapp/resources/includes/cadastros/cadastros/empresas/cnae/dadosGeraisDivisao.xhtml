@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroDivisao.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroDivisao.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroDivisao.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroDivisao.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroDivisao.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="codigoDivisaoOutputText" 
-      					  value="Cód.Divisão" 
+      					  value="#{managerBean.get('label.cadastroDivisao.codDivisao')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="codigoDivisaoInputText"
       					 required="true"
@@ -52,14 +52,14 @@
       					 value="01" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroDivisao.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroDivisao.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 	 					 
 			<h:outputText id="denominacaoDivisaoOutputText"
-						  value="Denominação Divisão"
+						  value="#{managerBean.get('label.cadastroDivisao.denominacaoDivisao')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="denominacaoClasseInputText"
            				 style="width: 84%"

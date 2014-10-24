@@ -25,7 +25,7 @@
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroClasse.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,76 +34,76 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroClasse.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Seção"
+				headerText="#{managerBean.get('label.cadastroClasse.codSecao')}"
 				styleClass="percentual-10">				
 				<h:outputText value="A" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroClasse.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroClasse.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Divisão"
+				headerText="#{managerBean.get('label.cadastroClasse.codDivisao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="01" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroClasse.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Agricultura. Pecuária e Serviços Relacionados">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroClasse.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 			
 			<p:column 
-				headerText="Cód.Grupo"
+				headerText="#{managerBean.get('label.cadastroClasse.codGrupo')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="01.1" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroClasse.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Produção de lavouras temporárias">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroClasse.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Classe"
+				headerText="#{managerBean.get('label.cadastroClasse.codClasse')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="01.11-3" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroClasse.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Cultivo de cereais">
 				</h:outputText>

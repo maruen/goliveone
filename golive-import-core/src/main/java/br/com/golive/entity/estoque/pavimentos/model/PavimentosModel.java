@@ -22,12 +22,12 @@ public class PavimentosModel extends Model {
 	public PavimentosModel(Long id, 
 						   Calendar dataInclusao,
 						   Calendar dataAlteracao, 
-						   String paviemtno) {
+						   String pavimento) {
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;
 		this.dataAlteracao = dataAlteracao;
-		this.pavimento = paviemtno;
+		this.pavimento = pavimento;
 	}
 
 	public String getPavimento() {
