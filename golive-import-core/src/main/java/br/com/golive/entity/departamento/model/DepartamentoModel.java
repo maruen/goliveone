@@ -16,7 +16,7 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "Departamento", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Departamento")
 public class DepartamentoModel extends Model {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -7554696042401221262L;
 
 	@Column(name = "DepartamentoProduto")
 	private String departamento;

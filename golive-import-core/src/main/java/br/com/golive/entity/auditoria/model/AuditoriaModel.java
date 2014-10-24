@@ -4,67 +4,58 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.golive.entity.Model;
-
 
 /**
  * The persistent class for the tbAuditoria database table.
  * 
  */
 @Entity
-@Table(name="tbAuditoria")
+@Table(name = "tbAuditoria")
 public class AuditoriaModel extends Model {
-	
+
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="FormularioNome")
+	@Column(name = "FormularioNome")
 	private String formularioNome;
 
-	@Column(name="AcaoUsuario")
+	@Column(name = "AcaoUsuario")
 	private String acaoUsuario;
-	
-	@Column(name="Observacao")
+
+	@Column(name = "Observacao")
 	private String observacao;
 
-	@OneToMany
+	@Transient
 	private List<AuditoriaItemModel> items;
-	
-	
+
 	public AuditoriaModel() {
 	}
-
 
 	public String getFormularioNome() {
 		return formularioNome;
 	}
 
-
 	public void setFormularioNome(final String formularioNome) {
 		this.formularioNome = formularioNome;
 	}
-
 
 	public String getAcaoUsuario() {
 		return acaoUsuario;
 	}
 
-
 	public void setAcaoUsuario(final String acaoUsuario) {
 		this.acaoUsuario = acaoUsuario;
 	}
-
 
 	public String getObservacao() {
 		return observacao;
 	}
 
-
 	public void setObservacao(final String observacao) {
 		this.observacao = observacao;
 	}
-	
 
 }

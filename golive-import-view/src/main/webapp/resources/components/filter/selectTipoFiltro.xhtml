@@ -12,15 +12,12 @@
 <composite:interface>
 	<composite:attribute name="filtro"
 		type="br.com.golive.filter.GoliveFilter" required="true" />
-
-			
-
 </composite:interface>
 
 <composite:implementation>
 
 
-	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}"
+	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}" styleClass="selectOneMenuTiposFiltro"
 		rendered="#{cc.attrs.filtro.genericType.simpleName.equals('String')}">
 		<f:selectItem itemValue="#{cc.attrs.filtro.igual}"
 			itemLabel="#{managerBean.get(cc.attrs.filtro.igual.label)}" />
@@ -28,7 +25,7 @@
 			itemLabel="#{managerBean.get(cc.attrs.filtro.contem.label)}" />
 	</p:selectOneMenu>
 
-	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}"
+	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}"  styleClass="selectOneMenuTiposFiltro"
 		rendered="#{cc.attrs.filtro.genericType.simpleName.equals('Long')}">
 		<f:selectItem itemValue="#{cc.attrs.filtro.igual}"
 			itemLabel="#{managerBean.get(cc.attrs.filtro.igual.label)}" />
@@ -43,8 +40,8 @@
 
 	</p:selectOneMenu>
 
-	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}"
-		rendered="#{cc.attrs.filtro.genericType.simpleName.equals('Date')}">
+	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}" styleClass="selectOneMenuTiposFiltro"
+		rendered="#{cc.attrs.filtro.genericType.simpleName.equals('Calendar')}">
 		<f:selectItem itemValue="#{cc.attrs.filtro.igual}"
 			itemLabel="#{managerBean.get(cc.attrs.filtro.igual.label)}" />
 		<f:selectItem itemValue="#{cc.attrs.filtro.periodo}"

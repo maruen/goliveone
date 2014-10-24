@@ -3,8 +3,6 @@ package br.com.golive.entity.auditoria.repositorio;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
@@ -18,19 +16,12 @@ import br.com.golive.jpa.JpaGoLive;
 import br.com.golive.utils.Utils;
 
 public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
-	@Inject
-	protected AuditoriaJPA(final EntityManager entityManager) {
-		super(entityManager);
-	}
 
-	@Transactional 
-	public void saveJoins(final AuditoriaModel auditoria,
-						  final List<AuditoriaItemModel> auditoriaItemList,
-						  final Usuario usuario,
-						  final Model entidade) {
-		
+	@Transactional
+	public void saveJoins(final AuditoriaModel auditoria, final List<AuditoriaItemModel> auditoriaItemList, final Usuario usuario, final Model entidade) {
+
 		final Query query = createNativeQuery(entidade.getClass().getAnnotation(QueryAuditoria.class).query());
-		
+
 		for (final AuditoriaItemModel item : auditoriaItemList) {
 			query.setParameter(1, auditoria.getId());
 			query.setParameter(2, item.getId());
@@ -39,23 +30,22 @@ public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
 			query.executeUpdate();
 		}
 	}
-		
-	 @SuppressWarnings({ "rawtypes", "unchecked" })
-     public List getAuditoriaLogs(final Class clazz) {
-	     List<AuditoriaModel> results = new ArrayList<AuditoriaModel>();
-	    
-	     String sql = "SELECT tbAuditoria_Id FROM tbAuditoria_" + ((Table) clazz.getAnnotation(Table.class)).name();
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List getAuditoriaLogs(final Class clazz) {
+		List<AuditoriaModel> results = new ArrayList<AuditoriaModel>();
+
+		String sql = "SELECT tbAuditoria_Id FROM tbAuditoria_" + ((Table) clazz.getAnnotation(Table.class)).name();
 		Query query = createNativeQuery(sql);
-	     final List<Long> ids = query.getResultList();
-	    
-	     if ((ids != null) && (ids.size() > 0)) {
-		     sql =  "SELECT auditoriaModel FROM AuditoriaModel auditoriaModel WHERE auditoriaModel.id IN (" + Utils.explode(ids) + ")";
+		final List<Long> ids = query.getResultList();
+
+		if ((ids != null) && (ids.size() > 0)) {
+			sql = "SELECT auditoriaModel FROM AuditoriaModel auditoriaModel WHERE auditoriaModel.id IN (" + Utils.explode(ids) + ")";
 			query = createQuery(sql, AuditoriaModel.class);
 
-		     results = query.getResultList();
-	     }
-	     return results;
-	 }
-	
+			results = query.getResultList();
+		}
+		return results;
+	}
 
 }

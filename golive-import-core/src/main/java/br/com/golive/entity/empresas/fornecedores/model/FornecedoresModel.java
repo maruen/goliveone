@@ -5,29 +5,22 @@ import java.util.Calendar;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
 
-@Jasper(titulo = "Fornecedores",
-		nomeDoArquivoGerado = "Fornecedores",
-		nomeArquivoJasper = "Fornecedores")
+@Jasper(titulo = "Fornecedores", nomeDoArquivoGerado = "Fornecedores", nomeArquivoJasper = "Fornecedores")
 public class FornecedoresModel extends Model {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String cnpj;
 	private String inscricaoEstadual;
 	private String nomeFantasia;
 	private String razaoSocial;
-	
-	public FornecedoresModel(){
+
+	public FornecedoresModel() {
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public FornecedoresModel(final Long id,
- final Calendar dataInclusao, final Calendar dataAlteracao,
-							 final String cnpj, 
-							 final String inscricaoEstadual,
-							 final String nomeFantasia, 
-							 final String razaoSocial) {
+	public FornecedoresModel(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao, final String cnpj, final String inscricaoEstadual, final String nomeFantasia, final String razaoSocial) {
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;

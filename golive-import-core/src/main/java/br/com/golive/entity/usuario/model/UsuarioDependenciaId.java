@@ -10,85 +10,85 @@ import javax.persistence.Transient;
 public class UsuarioDependenciaId implements Serializable {
 
 	@Transient
-	private static final long serialVersionUID = -6949103089268523542L;
+	private static final long serialVersionUID = 7198573869537771373L;
 
 	@Column(name = "tbUsuario_Id", insertable = false, updatable = false)
-	private Long tbUsuario_Id;
+	private Long tbUsuario;
 
 	@Column(name = "tbEmpresa_Id", insertable = false, updatable = false)
-	private Long tbEmpresa_Id;
+	private Long tbEmpresa;
 
 	@Column(name = "tbDatabase_Id", insertable = false, updatable = false)
-	private Long tbDatabase_Id;
+	private Long tbDatabase;
 
 	@Column(name = "tbDatabaseUser_Id", insertable = false, updatable = false)
-	private Long tbDatabaseUser_Id;
+	private Long tbDatabaseUser;
 
 	@Column(name = "tbDatabaseAddress_Id", insertable = false, updatable = false)
-	private Long tbDatabaseAddress_Id;
+	private Long tbDatabaseAddress;
 
 	public UsuarioDependenciaId() {
 		super();
 	}
 
-	public UsuarioDependenciaId(final Long tbUsuario_Id, final Long tbEmpresa_Id, final Long tbDatabase_Id, final Long tbDatabaseUser_Id, final Long tbDatabaseAddress_Id) {
+	public UsuarioDependenciaId(final Long tbUsuario, final Long tbEmpresa, final Long tbDatabase, final Long tbDatabaseUser, final Long tbDatabaseAddress) {
 		super();
-		this.tbUsuario_Id = tbUsuario_Id;
-		this.tbEmpresa_Id = tbEmpresa_Id;
-		this.tbDatabase_Id = tbDatabase_Id;
-		this.tbDatabaseUser_Id = tbDatabaseUser_Id;
-		this.tbDatabaseAddress_Id = tbDatabaseAddress_Id;
+		this.tbUsuario = tbUsuario;
+		this.tbEmpresa = tbEmpresa;
+		this.tbDatabase = tbDatabase;
+		this.tbDatabaseUser = tbDatabaseUser;
+		this.tbDatabaseAddress = tbDatabaseAddress;
 	}
 
-	public Long getTbUsuario_Id() {
-		return tbUsuario_Id;
+	public Long getTbUsuario() {
+		return tbUsuario;
 	}
 
-	public void setTbUsuario_Id(final Long tbUsuario_Id) {
-		this.tbUsuario_Id = tbUsuario_Id;
+	public void setTbUsuario(final Long tbUsuario) {
+		this.tbUsuario = tbUsuario;
 	}
 
-	public Long getTbEmpresa_Id() {
-		return tbEmpresa_Id;
+	public Long getTbEmpresa() {
+		return tbEmpresa;
 	}
 
-	public void setTbEmpresa_Id(final Long tbEmpresa_Id) {
-		this.tbEmpresa_Id = tbEmpresa_Id;
+	public void setTbEmpresa(final Long tbEmpresa) {
+		this.tbEmpresa = tbEmpresa;
 	}
 
-	public Long getTbDatabase_Id() {
-		return tbDatabase_Id;
+	public Long getTbDatabase() {
+		return tbDatabase;
 	}
 
-	public void setTbDatabase_Id(final Long tbDatabase_Id) {
-		this.tbDatabase_Id = tbDatabase_Id;
+	public void setTbDatabase(final Long tbDatabase) {
+		this.tbDatabase = tbDatabase;
 	}
 
-	public Long getTbDatabaseUser_Id() {
-		return tbDatabaseUser_Id;
+	public Long getTbDatabaseUser() {
+		return tbDatabaseUser;
 	}
 
-	public void setTbDatabaseUser_Id(final Long tbDatabaseUser_Id) {
-		this.tbDatabaseUser_Id = tbDatabaseUser_Id;
+	public void setTbDatabaseUser(final Long tbDatabaseUser) {
+		this.tbDatabaseUser = tbDatabaseUser;
 	}
 
-	public Long getTbDatabaseAddress_Id() {
-		return tbDatabaseAddress_Id;
+	public Long getTbDatabaseAddress() {
+		return tbDatabaseAddress;
 	}
 
-	public void setTbDatabaseAddress_Id(final Long tbDatabaseAddress_Id) {
-		this.tbDatabaseAddress_Id = tbDatabaseAddress_Id;
+	public void setTbDatabaseAddress(final Long tbDatabaseAddress) {
+		this.tbDatabaseAddress = tbDatabaseAddress;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + ((tbDatabaseAddress_Id == null) ? 0 : tbDatabaseAddress_Id.hashCode());
-		result = (prime * result) + ((tbDatabaseUser_Id == null) ? 0 : tbDatabaseUser_Id.hashCode());
-		result = (prime * result) + ((tbDatabase_Id == null) ? 0 : tbDatabase_Id.hashCode());
-		result = (prime * result) + ((tbEmpresa_Id == null) ? 0 : tbEmpresa_Id.hashCode());
-		result = (prime * result) + ((tbUsuario_Id == null) ? 0 : tbUsuario_Id.hashCode());
+		result = (prime * result) + ((tbDatabase == null) ? 0 : tbDatabase.hashCode());
+		result = (prime * result) + ((tbDatabaseAddress == null) ? 0 : tbDatabaseAddress.hashCode());
+		result = (prime * result) + ((tbDatabaseUser == null) ? 0 : tbDatabaseUser.hashCode());
+		result = (prime * result) + ((tbEmpresa == null) ? 0 : tbEmpresa.hashCode());
+		result = (prime * result) + ((tbUsuario == null) ? 0 : tbUsuario.hashCode());
 		return result;
 	}
 
@@ -104,39 +104,39 @@ public class UsuarioDependenciaId implements Serializable {
 			return false;
 		}
 		final UsuarioDependenciaId other = (UsuarioDependenciaId) obj;
-		if (tbDatabaseAddress_Id == null) {
-			if (other.tbDatabaseAddress_Id != null) {
+		if (tbDatabase == null) {
+			if (other.tbDatabase != null) {
 				return false;
 			}
-		} else if (!tbDatabaseAddress_Id.equals(other.tbDatabaseAddress_Id)) {
+		} else if (!tbDatabase.equals(other.tbDatabase)) {
 			return false;
 		}
-		if (tbDatabaseUser_Id == null) {
-			if (other.tbDatabaseUser_Id != null) {
+		if (tbDatabaseAddress == null) {
+			if (other.tbDatabaseAddress != null) {
 				return false;
 			}
-		} else if (!tbDatabaseUser_Id.equals(other.tbDatabaseUser_Id)) {
+		} else if (!tbDatabaseAddress.equals(other.tbDatabaseAddress)) {
 			return false;
 		}
-		if (tbDatabase_Id == null) {
-			if (other.tbDatabase_Id != null) {
+		if (tbDatabaseUser == null) {
+			if (other.tbDatabaseUser != null) {
 				return false;
 			}
-		} else if (!tbDatabase_Id.equals(other.tbDatabase_Id)) {
+		} else if (!tbDatabaseUser.equals(other.tbDatabaseUser)) {
 			return false;
 		}
-		if (tbEmpresa_Id == null) {
-			if (other.tbEmpresa_Id != null) {
+		if (tbEmpresa == null) {
+			if (other.tbEmpresa != null) {
 				return false;
 			}
-		} else if (!tbEmpresa_Id.equals(other.tbEmpresa_Id)) {
+		} else if (!tbEmpresa.equals(other.tbEmpresa)) {
 			return false;
 		}
-		if (tbUsuario_Id == null) {
-			if (other.tbUsuario_Id != null) {
+		if (tbUsuario == null) {
+			if (other.tbUsuario != null) {
 				return false;
 			}
-		} else if (!tbUsuario_Id.equals(other.tbUsuario_Id)) {
+		} else if (!tbUsuario.equals(other.tbUsuario)) {
 			return false;
 		}
 		return true;
@@ -144,9 +144,7 @@ public class UsuarioDependenciaId implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UsuarioDependenciaId [tbUsuario_Id=" + tbUsuario_Id + ", tbEmpresa_Id=" + tbEmpresa_Id + ", tbDatabase_Id=" + tbDatabase_Id + ", tbDatabaseUser_Id=" + tbDatabaseUser_Id + ", tbDatabaseAddress_Id=" + tbDatabaseAddress_Id + "]";
+		return "UsuarioDependenciaId [tbUsuario=" + tbUsuario + ", tbEmpresa=" + tbEmpresa + ", tbDatabase=" + tbDatabase + ", tbDatabaseUser=" + tbDatabaseUser + ", tbDatabaseAddress=" + tbDatabaseAddress + "]";
 	}
-
-
 
 }

@@ -14,6 +14,8 @@ public interface PerfilService {
 
 	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final Empresa empresa, final String tabela);
 
+	public void salvarLista(final List<ColunaPerfil> colunaPerfil);
+
 	public void salvar(final ColunaPerfil colunaPerfil);
 
 }
