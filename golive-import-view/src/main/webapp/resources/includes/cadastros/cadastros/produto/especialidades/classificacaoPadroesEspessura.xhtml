@@ -7,7 +7,7 @@
 
 <!--  CLASSIFICAÇÃO  -->
 <p:panel id="classificacaoPadroesEspessura"
-		 header="#{userBean.properties.getField('label.cadastroPadroesEspessura.classificacao')}"
+		 header="#{managerBean.get('label.cadastroPadroesEspessura.classificacao')}"
 		 toggleable="true"
 		 closable="false"
 		 collapsed="false"
@@ -33,14 +33,14 @@
 						 border="0">
 				
 				<h:outputText id="departamentoIdOutputText"
-							  value="Id"   />
+							  value="#{managerBean.get('label.cadastroPadroesEspessura.id')}"   />
             	<p:inputText id="departamentoIdInputText"
             				 value="0000000001" 
             				 style="width: 125px;"
             				 disabled="true"/>
             	
         		<h:outputText id="departamentoNomeOutputText"
-        					   		value="Departamento" />
+        					   		value="#{managerBean.get('label.cadastroPadroesEspessura.departamento')}" />
             	<p:inputText id="departamentoNomeInputText"
             				 style="width: 95%"
             				 value="Acessórios, Partes e Peças para Persianas Horizontais em Alumínio"
@@ -51,14 +51,14 @@
 				</p:commandLink>
 			
 				<h:outputText id="grupoProdutosIdOutputText" 
-							  value="Id" />
+							  value="#{managerBean.get('label.cadastroPadroesEspessura.id')}" />
             	<p:inputText id="grupoProdutosIdInputText"
             				 value="0000000001" 
             				 style="width: 125px;"
             				 disabled="true" />
             	
         		<h:outputText  id="grupoProdutosNomeOutputText"
-        		 			   value="Grupo de Produtos"
+        		 			   value="#{managerBean.get('label.cadastroPadroesEspessura.grupoProdutos')}"
         		 			   style="white-space: nowrap"/>
             	<p:inputText id="grupoProdutosNomeInputText"
             				 style="width: 95%"
@@ -70,14 +70,14 @@
 				</p:commandLink>
 			
 				<h:outputText id="subGrupoProdutosIdOutputText"
-							   value="Id"   />
+							   value="#{managerBean.get('label.cadastroPadroesEspessura.id')}"   />
             	<p:inputText id="subGrupoProdutosIdInputText"
             				 value="0000000001"
             				 style="width: 125px;"
             				 disabled="true" />
             	
         		<h:outputText id="subGrupoProdutosNomeOutputText"
-        					   value="SubGrupo de Produtos"
+        					   value="#{managerBean.get('label.cadastroPadroesEspessura.subGrupoProdutos')}"
         					   styleClass="singleLine"/>
             	<p:inputText id="subGrupoProdutosNomeInputText"
             				 style="width: 95%"
@@ -92,7 +92,7 @@
         
 </p:panel>
 
-<p:dialog header="Pesquisa de Departamento"
+<p:dialog header="#{managerBean.get('label.cadastroPadroesEspessura.pesquisaDepartamento')}"
 			  widgetVar="dlgDepartamento"
 			  modal="false"
 			  resizable="false"
@@ -104,19 +104,19 @@
         	  	 	     var="departamentoDatatableVar"
         			 	 value="#{padroesEspessuraBean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
 				    		  styleClass="percentual-5 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Departamento"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.departamento')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio" />
 				    </p:column>
 		</p:dataTable>
 </p:dialog>
 
-<p:dialog header="Pesquisa de Grupo de Produtos"
+<p:dialog header="#{managerBean.get('label.cadastroPadroesEspessura.pesquisaGrupoProdutos')}"
 			  widgetVar="dlgGrupoProdutos"
 			  modal="false"
 			  resizable="false"
@@ -128,29 +128,29 @@
         	  	 	     var="grupoProdutosDatatableVar"
         			 	 value="#{padroesEspessuraBean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Departamento"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.departamento')}"
 				    		  styleClass="percentual-30 singleLine">
 				     		<h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio" />
 				    </p:column>
 				    
-   				    <p:column headerText="Id"
+   				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Grupo de Produtos"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.grupoProdutos')}"
 				    		  styleClass="percentual-25 singleLine">
 				     		<h:outputText value="Lâminas em Alumínio 25mm X 0.18mm" />
 				    </p:column>
 		</p:dataTable>
 </p:dialog>
 
-<p:dialog header="Pesquisa de SubGrupo de Produtos"
+<p:dialog header="#{managerBean.get('label.cadastroPadroesEspessura.pesquisaSubGrupoProdutos')}"
 			  widgetVar="dlgSubGrupProdutos"
 			  modal="false"
 			  resizable="false"
@@ -162,32 +162,32 @@
         	  	 	     var="subGrupoProdutosDatatableVar"
         			 	 value="#{padroesEspessuraBean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Departamento"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.departamento')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio" />
 				    </p:column>
 				    
-   				    <p:column headerText="Id"
+   				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Grupo de Produtos"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.grupoProdutos')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Lâminas em Alumínio 25mm X 0.18mm" />
 				    </p:column>
 				    
-   				    <p:column headerText="Id"
+   				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="SubGrupo de Produtos"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.subGrupoProdutos')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Lâminas em Alumínio 25mm" />
 				    </p:column>

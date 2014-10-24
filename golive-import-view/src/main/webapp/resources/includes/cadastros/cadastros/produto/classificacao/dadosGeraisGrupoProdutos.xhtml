@@ -6,7 +6,7 @@
 
 <!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroGrupoProdutos.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroGrupoProdutos.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -34,11 +34,11 @@
            				 width="100%"
           				 border="0">
      
-			<h:outputText id="idOutputText" value="Id"   />
+			<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroGrupoProdutos.id')}"   />
            	<p:inputText id="idInputText"
            				 style="width: 125px;"/>
 
-      		<h:outputText id="descricaoNomeOutputText" value="Descrição"/>
+      		<h:outputText id="descricaoNomeOutputText" value="#{managerBean.get('label.cadastroGrupoProdutos.descricao')}"/>
       		<p:inputText id="descricaoNomeInputText"
       					 required="true"
       					 disabled="false"
@@ -48,16 +48,16 @@
       		<p:spacer/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroGrupoProdutos.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroGrupoProdutos.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      	
 	 		
 	 		<h:outputText id="idDepartamentoOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroGrupoProdutos.id')}"   />
            	<p:inputText id="idDepartamentoInputText"
            				 style="width: 125px;"
            				 value="0000000000001" disabled="true"/>
 
-      		<h:outputText id="departamentoNomeOutputText" value="Departamento"/>
+      		<h:outputText id="departamentoNomeOutputText" value="#{managerBean.get('label.cadastroGrupoProdutos.departamento')}"/>
       		<p:inputText id="departamentoNomeInputText"
       					 required="true"
       					 disabled="true"
@@ -69,7 +69,7 @@
 			</p:commandLink>
       			
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroGrupoProdutos.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroGrupoProdutos.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      					  
 	
@@ -77,7 +77,7 @@
 
 	</p:panel>
 	
-	<p:dialog header="Pesquisa de Departamento"
+	<p:dialog header="#{managerBean.get('label.cadastroGrupoProdutos.pesquisaDepartamento')}"
 			  widgetVar="dlgDepartamento"
 			  modal="false"
 			  resizable="false"
@@ -89,12 +89,12 @@
         	  	 	     var="departamentoDatatableVar"
         			 	 value="#{grupoProdutosBean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroGrupoProdutos.id')}"
 				    		  styleClass="percentual-5 singleLine">
 				     		<h:outputText value="00000000000001" styleClass="floatRight" />
 				    </p:column>
 				    
-				    <p:column headerText="Departamento"
+				    <p:column headerText="#{managerBean.get('label.cadastroGrupoProdutos.departamento')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio" />
 				    </p:column>

@@ -25,7 +25,7 @@
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroPadroesLargura.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,74 +34,74 @@
 			<p:column selectionMode="single"  style="width:16px;text-align:center" />
 
 			<p:column 
-				headerText="Data Inclusão"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.dataInclusao')}"
 				styleClass="percentual-10 singleLine">				
 				<h:outputText value="25/08/2014 20:24" />
 			</p:column>
 
 			<p:column
-				headerText="Data Alteração"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.dataAlteracao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="25/08/2014 20:47">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Largura"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.largura')}"
 				styleClass="percentual-10">
 				<h:outputText value="2.58" />
 			</p:column>
 			
 			<p:column
-				headerText="Un."
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.un')}"
 				styleClass="percentual-10">
 				<h:outputText value="ML" />
 			</p:column>
 			
 			<p:column 
-				headerText="Descrição"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.descricao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="2.58ML de Largura da Peça" />
 			</p:column>
 			
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="000000001" />
 			</p:column>
 			
 			<p:column 
-				headerText="Cód.Coleção"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.codColecao')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000025" />
 			</p:column>
 			
 			<p:column
-				headerText="Coleção"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.colecao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Mountain Viber Glass Colors" />
 			</p:column>
 			
 			<p:column 
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="000000001" />
 			</p:column>
 			
 			<p:column 
-				headerText="Cód.Cor"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.codCor')}"
 				styleClass="percentual-10">
 				<h:outputText value="1234567Baec" />
 			</p:column>			
 
 			<p:column 
-				headerText="Cor"
+				headerText="#{managerBean.get('label.cadastroPadroesLargura.cor')}"
 				styleClass="percentual-10">
 				<h:outputText value="Vermelho" />
 			</p:column>			

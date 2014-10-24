@@ -6,7 +6,7 @@
 
 <!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroPadroesLargura.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroPadroesLargura.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -33,7 +33,7 @@
           				 width="100%"
           				 border="0">
      
-			<h:outputText id="idOutputText" value="Id"   />
+			<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroPadroesLargura.id')}"   />
            	<p:inputText id="idInputText"
            				 style="width: 125px;"/>
            				 
@@ -41,10 +41,10 @@
            	<p:spacer />
 
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroPadroesLargura.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroPadroesLargura.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      					  
       		
-      		<h:outputText id="larguraNomeOutputText" value="Largura"/>
+      		<h:outputText id="larguraNomeOutputText" value="#{managerBean.get('label.cadastroPadroesLargura.largura')}"/>
       		<p:inputText id="larguraNomeInputText"
       					 required="true"
       					 disabled="false"
@@ -62,11 +62,12 @@
 			</p:commandLink>
       			
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroPadroesEspessura.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroPadroesLargura.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      					  
 
-			<h:outputText value="Descrição" id="descricaoOutputText" />
+			<h:outputText value="#{managerBean.get('label.cadastroPadroesLargura.descricao')}" 
+						  id="descricaoOutputText" />
 			<p:inputText id="descricaoInputText"
 						 required="true"
 						 disabled="false"
@@ -77,7 +78,7 @@
 
 	</p:panel>
 	
-	<p:dialog header="Pesquisa de Unidades"
+	<p:dialog header="#{managerBean.get('label.cadastroPadroesLargura.pesquisaUnidades')}"
 			  widgetVar="dlgUnidade"
 			  modal="false"
 			  resizable="false"
@@ -89,17 +90,17 @@
         	  	 	     var="unidadeDatatableVar"
         			 	 value="#{padroesLarguraBean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}"
 				    		  styleClass="percentual-5 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Cód.Unid."
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesLargura.codUnid')}"
 				    		  styleClass="percentual-5 singleLine">
 				     		<h:outputText value="ML" />
 				    </p:column>
 				    
-				    <p:column headerText="Descrição"
+				    <p:column headerText="#{managerBean.get('label.cadastroPadroesLargura.descricao')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="Metro Linear" />
 				    </p:column>
