@@ -33,30 +33,6 @@ public class NcmSecaoModel extends Model {
 		this.secao = secao;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Calendar getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(Calendar dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Calendar getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Calendar dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
 	public String getCodSecao() {
 		return codSecao;
 	}
