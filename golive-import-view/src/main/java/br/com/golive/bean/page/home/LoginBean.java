@@ -1,5 +1,6 @@
 package br.com.golive.bean.page.home;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
@@ -47,7 +48,7 @@ public class LoginBean implements Serializable {
 
 	private String senha;
 
-	private String assinante;
+	private Long assinante;
 
 	private boolean errouLogin;
 
@@ -57,7 +58,6 @@ public class LoginBean implements Serializable {
 	public void init() {
 		login = "";
 		senha = "";
-		assinante = "";
 	}
 
 	public GoliveOneProperties getLabels() {
@@ -67,28 +67,22 @@ public class LoginBean implements Serializable {
 	public String logar() {
 		logger.info("Logando usuario = {}", getLogin());
 		if (obterUsuarioPorLoginSenha()) {
-			if ((assinante == null) || (assinante.isEmpty())) {
-				JSFUtils.warnMessage(
-						labels.getField("title.msg.selecione.registro"),
-						labels.getField("msg.selecionar.empresa"));
+			if (getAssinante() == null) {
+				JSFUtils.warnMessage(labels.getField("title.msg.selecione.registro"), labels.getField("msg.selecionar.empresa"));
 			} else {
 
-				for (final Empresa empresa : carregadoOnBlur.getEmpresas()) {
-					if (empresa.getNome().equals(assinante)) {
-						ServiceUtils.guardarObjetoSessao(
-								ChaveSessao.EMPRESA_SELECIONADA, empresa);
-					}
-				}
-				ServiceUtils.guardarObjetoSessao(ChaveSessao.USUARIO_LOGADO,
-						carregadoOnBlur);
+				guardarEmpresaSelesionada();
+				ServiceUtils.guardarObjetoSessao(ChaveSessao.USUARIO_LOGADO, carregadoOnBlur);
+				try {
 
-				if (ServiceUtils
-						.verificarNaSessaoPorChave(ChaveSessao.ULTIMA_PAGINA)) {
-					return "pretty:"
-							+ ServiceUtils.obterValorPorChave(PrettyUrl.class,
-									ChaveSessao.ULTIMA_PAGINA).getId();
-				} else {
-					return "pretty:welcome";
+					if (ServiceUtils.verificarNaSessaoPorChave(ChaveSessao.ULTIMA_PAGINA)) {
+						JSFUtils.redirect(ServiceUtils.obterValorPorChave(PrettyUrl.class, ChaveSessao.ULTIMA_PAGINA).getPrettyUrl());
+					} else {
+						JSFUtils.redirect("/");
+					}
+
+				} catch (final IOException e) {
+					e.printStackTrace();
 				}
 			}
 		} else {
@@ -97,10 +91,17 @@ public class LoginBean implements Serializable {
 		return "";
 	}
 
+	private void guardarEmpresaSelesionada() {
+		for (final Empresa empresa : carregadoOnBlur.getEmpresas()) {
+			if (empresa.getId().equals(getAssinante())) {
+				ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA, empresa);
+			}
+		}
+	}
+
 	public void messageLoginInvalido() {
 		logger.info("Erro ao realizar Login.");
-		JSFUtils.warnMessage(labels.getField("title.msg.usuario.invalido"),
-				labels.getField("msg.usuario.invalido"));
+		JSFUtils.warnMessage(labels.getField("title.msg.usuario.invalido"), labels.getField("msg.usuario.invalido"));
 	}
 
 	public boolean obterUsuarioPorLoginSenha() {
@@ -111,8 +112,7 @@ public class LoginBean implements Serializable {
 		} else {
 			if (campoValido(getLogin())) {
 				carregadoOnBlur = usuarioService.logar(getLogin());
-				return ((campoValido(getSenha())) && (carregadoOnBlur != null) && (carregadoOnBlur
-						.getPassword().equals(getSenha())));
+				return ((campoValido(getSenha())) && (carregadoOnBlur != null) && (carregadoOnBlur.getPassword().equals(getSenha())));
 			}
 		}
 		return false;
@@ -125,26 +125,16 @@ public class LoginBean implements Serializable {
 	public void limpar() {
 		setLogin("");
 		setSenha("");
-		setAssinante("");
 	}
 
 	public void verificarUsuarioPorLogin() {
 		if (!login.isEmpty()) {
-			carregadoOnBlur = usuarioService.obterPorUserName(getLogin());
+			carregadoOnBlur = usuarioService.logar(getLogin());
 			if (carregadoOnBlur == null) {
 				setErrouLogin(true);
-				JSFUtils.warnMessage(labels.getField("label.aviso"),
-						labels.getField("msg.usuario.nao.existe"));
+				JSFUtils.warnMessage(labels.getField("label.aviso"), labels.getField("msg.usuario.nao.existe"));
 			}
 		}
-	}
-
-	public String getAssinante() {
-		return assinante;
-	}
-
-	public void setAssinante(final String assinante) {
-		this.assinante = assinante;
 	}
 
 	public boolean isErrouLogin() {
@@ -197,6 +187,14 @@ public class LoginBean implements Serializable {
 
 	public void setLabels(final GoliveOneProperties labels) {
 		this.labels = labels;
+	}
+
+	public Long getAssinante() {
+		return assinante;
+	}
+
+	public void setAssinante(final Long assinante) {
+		this.assinante = assinante;
 	}
 
 }

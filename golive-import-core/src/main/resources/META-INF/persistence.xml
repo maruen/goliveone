@@ -7,11 +7,11 @@
 	<!-- Central -->
 	<persistence-unit name="golive-one-central-PU"
 		transaction-type="JTA">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/golivecentralDS</jta-data-source>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>java:jboss/golivecentralDS</jta-data-source>
 
 		<class>br.com.golive.entity.Model</class>
-		<class>br.com.golive.entity.areaDeAtuacao.AreaDeAtuacaoModel</class>
+		<class>br.com.golive.entity.areaDeAtuacao.model.AreaDeAtuacaoModel</class>
 		<class>br.com.golive.entity.auditoria.model.AuditoriaModel</class>
 		<class>br.com.golive.entity.database.model.DataBase</class>
 		<class>br.com.golive.entity.database.model.EnderecoBase</class>
@@ -21,7 +21,6 @@
 		<class>br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil</class>
 		<class>br.com.golive.entity.usuario.model.Usuario</class>
 		<class>br.com.golive.entity.usuario.model.UsuarioDependencia</class>
-		<class>br.com.golive.entity.usuario.model.UsuarioDependenciaId</class>
 
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
@@ -36,12 +35,17 @@
 	<!-- acao -->
 	<persistence-unit name="golive-one-acao-PU"
 		transaction-type="JTA">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/goliveacaoDS</jta-data-source>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
+		<jta-data-source>java:jboss/goliveacaoDS</jta-data-source>
+		<class>br.com.golive.entity.departamento.model.DepartamentoModel</class>
+		<class>br.com.golive.entity.auditoria.model.AuditoriaItemModel</class>
+		<class>br.com.golive.entity.auditoria.model.AuditoriaModel</class>
+		<class>br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil</class>
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
 				value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
@@ -52,8 +56,8 @@
 	<!-- tradicao -->
 	<persistence-unit name="golive-one-tradicao-PU"
 		transaction-type="JTA">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/golivetradicaoDS</jta-data-source>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>java:jboss/golivetradicaoDS</jta-data-source>
 
 		<properties>
 			<property name="hibernate.transaction.jta.platform"

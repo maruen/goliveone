@@ -58,12 +58,12 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
  * @param <T>
  */
 
+@Deprecated
 @ManagedBean
 @ViewScoped
 @PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable")
-public abstract class CadastroBeanRules<T extends Serializable> extends
-		GenericBean implements Serializable {
-	
+public abstract class CadastroBeanRules<T extends Serializable> extends GenericBean implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	private Logger logger;
@@ -110,7 +110,7 @@ public abstract class CadastroBeanRules<T extends Serializable> extends
 	protected abstract Logger getLogger();
 
 	protected void init(final List<T> listaConteudo) {
-		
+
 		showMenuBar(500, 600);
 		logger = getLogger();
 		if (logger == null) {
@@ -431,7 +431,6 @@ public abstract class CadastroBeanRules<T extends Serializable> extends
 		}
 		return null;
 	}
-
 
 	public String getForm() {
 		return this.getClass().getSuperclass().getAnnotation(PropriedadesTemplate.class).form();

@@ -1,6 +1,7 @@
 package br.com.golive.bean.page.manager;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,7 +16,6 @@ import org.slf4j.Logger;
 
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.entity.usuario.model.Usuario;
-import br.com.golive.exception.GoLiveException;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.PrettyUrl;
 import br.com.golive.utils.ServiceUtils;
@@ -93,15 +93,23 @@ public class ManagerBean extends GenericBean {
 		return "";
 	}
 
-	public String labelAnotado(final Class<?> clazz, final String field) {
+	public String labelAnotado(final Class<?> clazz, final String fieldName) {
+		Field field = null;
 		try {
-			return get(JSFUtils.getLabelFieldName(clazz.getDeclaredField(field)));
+			field = clazz.getDeclaredField(fieldName);
 		} catch (NoSuchFieldException | SecurityException e) {
-			e.printStackTrace();
-			throw new GoLiveException("Erro ao Obter campo da classe");
+			logger.warn("Campo não existe na classe");
 		}
+		if (field == null) {
+			try {
+				field = clazz.getSuperclass().getDeclaredField(fieldName);
+			} catch (NoSuchFieldException | SecurityException e) {
+				logger.warn("Campo não existe na classe mae");
+				e.printStackTrace();
+			}
+		}
+		return get(JSFUtils.getLabelFieldName(field));
 	}
-
 
 	@Deprecated
 	public void newTab(final String url) {

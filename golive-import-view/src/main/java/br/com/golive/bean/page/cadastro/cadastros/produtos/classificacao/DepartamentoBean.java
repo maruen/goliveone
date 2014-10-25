@@ -32,10 +32,10 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	@Inject
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
-	
+
 	@EJB
 	private DepartamentoService departamentoService;
-	
+
 	@Override
 	@PostConstruct
 	public void init() {
@@ -43,16 +43,16 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 		super.init(departamentoService.listarPorFiltro());
 		fluxo = Fluxo.LISTAGEM;
 	}
-		
+
 	@Override
 	public void incluir() {
 		super.incluir();
-		this.registro = new DepartamentoModel();
+		registro = new DepartamentoModel();
 	}
 
 	@Override
 	public void excluir() {
-		departamentoService.excluir(this.registro);
+		departamentoService.excluir(registro);
 		super.excluir();
 	}
 
@@ -67,13 +67,10 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	protected Logger getLogger() {
 		return logger;
 	}
-	
-	
+
 	public List<AuditoriaModel> getAuditoriaLogs() {
-		return departamentoService.getAuditoriaLogs(registro);  
+		// return departamentoService.getAuditoriaLogs(registro);
+		return null;
 	}
 
-	
-	
-	
 }

@@ -1,6 +1,5 @@
 package br.com.golive.entity;
 
-import static javax.persistence.GenerationType.IDENTITY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 import java.io.Serializable;
@@ -8,6 +7,7 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -22,22 +22,22 @@ public class Model implements Serializable {
 
 	@Id
 	@StandardColumn
-	@Column(name="id")
+	@Column(name = "id")
 	@Label(name = "label.id")
-    @GeneratedValue(strategy = IDENTITY)
-    protected Long id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected Long id;
+
 	@StandardColumn
 	@Label(name = "label.inclusao")
-	@Column(name="SystemIncludeDateTime")
+	@Column(name = "SystemIncludeDateTime")
 	@Temporal(TIMESTAMP)
 	protected Calendar dataInclusao;
-	
+
 	@Label(name = "label.ultimaAlteracao")
-	@Column(name="SystemChangeDateTime")
+	@Column(name = "SystemChangeDateTime")
 	@Temporal(TIMESTAMP)
 	protected Calendar dataAlteracao;
-	
+
 	public Model() {
 		super();
 	}
@@ -72,15 +72,14 @@ public class Model implements Serializable {
 	public void setDataAlteracao(final Calendar dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
-	
+
 	public boolean hasId() {
-		if ((this != null) && (this.id != null)) {
+		if ((this != null) && (id != null)) {
 			return true;
 		}
 		return false;
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -126,6 +125,5 @@ public class Model implements Serializable {
 		}
 		return true;
 	}
-	
 
 }

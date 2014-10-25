@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -32,7 +33,8 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	/**
 	 * EntityManager da JPA
 	 */
-	private final EntityManager entityManager;
+	@Inject
+	private EntityManager entityManager;
 
 	/**
 	 * Classe de entidade extendida
@@ -51,9 +53,8 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @param entityManager
 	 */
 	@SuppressWarnings("unchecked")
-	protected JpaGoLive(final EntityManager entityManager) {
+	protected JpaGoLive() {
 		super();
-		this.entityManager = entityManager;
 		Type type = getClass().getGenericSuperclass();
 		if (!(type instanceof ParameterizedType)) {
 			type = this.getClass().getSuperclass().getGenericSuperclass();
@@ -178,9 +179,11 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @param entity
 	 *            entidade
 	 */
+
 	public void save(final T entity) {
 		try {
 			entityManager.persist(entity);
+			entityManager.joinTransaction();
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
@@ -193,18 +196,21 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 *         Método responsavel por persistir uma lista de entidades
 	 *         </p>
 	 * 
-	 * @param List<entity> entidade
+	 * @param List
+	 *            <entity> entidade
 	 */
 	public void saveAll(final List<T> entityList) {
 		try {
 			for (final T entity : entityList) {
-				entityManager.persist(entity);
+				save(entity);
+				// entityManager.persist(entity);
 			}
+			// entityManager.joinTransaction();
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * @author guilherme.duarte
 	 * 
@@ -314,7 +320,5 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	private boolean verifyAnnotation(final T classe) {
 		return classe.getClass().isAnnotationPresent(Entity.class);
 	}
-
-	
 
 }
