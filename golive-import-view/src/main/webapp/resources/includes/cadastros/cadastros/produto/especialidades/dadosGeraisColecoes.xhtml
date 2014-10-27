@@ -6,7 +6,7 @@
 
 <!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroColecoes.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroColecoes.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -34,11 +34,13 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroColecoes.id')}"   />
            	<p:inputText id="idInputText"
            				 style="width: 125px;"/>
       		
-      		<h:outputText id="descricaoNomeOutputText" value="Departamento" styleClass="floatLeft" />
+      		<h:outputText id="descricaoNomeOutputText" 
+      					  value="#{managerBean.get('label.cadastroColecoes.departamento')}" 
+      					  styleClass="floatLeft" />
       		<p:inputText id="descricao"
       					 required="true"
       					 disabled="false"
@@ -46,7 +48,7 @@
       					 value="Mountain Viber Blass Colors" />		
 
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroColecoes.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroColecoes.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      					  
       		
       		<p:spacer/>
@@ -55,7 +57,7 @@
       		<p:spacer/>
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroColecoes.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroColecoes.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      					  
 	

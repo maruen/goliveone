@@ -7,7 +7,7 @@
 <p:panel id="enderecos"
 		 header="Endereços"
 		 toggleable="true"
-		 collapsed="true"
+		 collapsed="false"
 		 closable="false"
 		 toggleSpeed="500"
 		 closeSpeed="500"
@@ -96,7 +96,7 @@
 					
 					<p:inputText id="complementoPrincipalInputText"
 								 style="width: 51%;"
-								 value=""/>
+								 value=" "/>
 				</h:column>				 
 
 				<h:column>
@@ -245,7 +245,7 @@
 
 					<p:spacer width="5" height="1"/>
 					
-					<p:commandLink action="#">
+					<p:commandLink action="#{fornecedoresBean.limparEntrega()}">
 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/bin.png"
 										styleClass="image" />
 					</p:commandLink>
@@ -347,7 +347,7 @@
 					
 					<p:inputText id="complementoSecundarioInputText"
 								 style="width: 49%;"
-								 value=""/>
+								 value=" "/>
 				</h:column>				 
 
 				<h:column>
@@ -469,7 +469,7 @@
 
 					<p:spacer width="5" height="1"/>
 					
-					<p:commandLink action="#">
+					<p:commandLink action="#{fornecedoresBean.limparCobranca()}">
 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/bin.png"
 										styleClass="image" />
 					</p:commandLink>
@@ -571,7 +571,7 @@
 					
 					<p:inputText id="complementoCobrancaInputText"
 								 style="width: 49%;"
-								 value=""/>
+								 value=" "/>
 				</h:column>				 
 
 				<h:column>
@@ -798,15 +798,19 @@
 								  styleClass="singleLine" />
 		
 		<p:spacer width="10" height="1"/>
-						  
-		<p:selectOneRadio id="localEntregaRadio" value="XXX" layout="grid" columns="1">
-						<f:selectItem itemLabel="Outra Empresa (Fornecedor)" 
-									  itemValue="X" 
-									  id="outraEmpresaItemlabel" />
-					    <f:selectItem itemLabel="Uma Transportadora" 
-					    			  itemValue="X" 
-					    			  id="transportadoraItemLabel" />
-			        </p:selectOneRadio>
+		
+		<p:selectOneRadio id="localEntregaRadio" 
+						  value="XXX" 
+						  layout="grid" 
+						  columns="1" onchange="PF('dlgTransportadora').show();">
+			<f:selectItem itemLabel="Outra Empresa (Fornecedor)" 
+						  itemValue="X" 
+						  id="outraEmpresaItemlabel" />
+			<f:selectItem itemLabel="Uma Transportadora" 
+			   			  itemValue="X" 
+			   			  id="transportadoraItemLabel" />
+		</p:selectOneRadio>
+		
 	</h:panelGrid>
 
 	</p:dialog>

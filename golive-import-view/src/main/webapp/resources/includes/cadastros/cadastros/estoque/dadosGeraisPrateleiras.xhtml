@@ -1,0 +1,179 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panel id="dadosGerais"
+		 header="#{managerBean.get('label.cadastroPrateleiras.dadosGerais')}"
+		 toggleable="true"
+		 collapsed="false"
+		 closable="false"
+		 toggleSpeed="500"
+		 closeSpeed="500"
+		 widgetVar="dadosGerais"
+		 styleClass="little-font" >
+		 
+	     	<f:facet name="actions">
+          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+          			<h:outputText styleClass="ui-icon ui-icon-help" />
+          		</h:commandLink>
+      		</f:facet>
+   		       	
+          	<h:panelGrid columns="6"
+          				 cellpadding="3"  
+          				 cellspacing="3"
+          				 columnClasses="percentual-5,
+          				 				percentual-15,
+          				 				percentual-5,
+          				 				percentual-50,
+          				 				percentual-5
+          				 				percentual-10"
+           				 width="100%"
+          				 border="0">
+     			
+     			<h:column>
+					<h:outputText id="idOutputText"
+								  value="#{managerBean.get('label.cadastroPrateleiras.id')}"/>
+				</h:column>
+				
+				<h:column>
+		           	<p:inputText id="idInputText"
+		           				 style="width: 125px;"
+		           				 disabled="false"/>
+		        </h:column>
+		        
+    			<h:column>
+					<h:outputText id="prateleiraOutputText"
+								  value="#{managerBean.get('label.cadastroPrateleiras.prateleira')}"/>
+				</h:column>
+				
+				<h:column>
+		           	<p:inputText id="prateleiraInputText"
+		           				 style="width: 125px;"
+		           				 disabled="false"
+		           				 value="000001"/>
+		        </h:column>		        
+		      		
+		      	<h:column>
+		      		<h:outputText id="dataInclusaoOutputText" 
+		      					  value="#{managerBean.get('label.cadastroPrateleiras.inclusao')}" />
+		      	</h:column>
+		      	
+		      	<h:column>
+			 		<h:inputText value="25/08/2014 20:24" 
+			 					 id="dataInclusaoInputText" 
+			 					 disabled="true" /> 
+			 	</h:column>
+			 	
+			 	<h:column>
+		      		<h:outputText id="idRuaOutputText" 
+		      					  value="#{managerBean.get('label.cadastroPrateleiras.id')}" 
+		      					  styleClass="singleLine" />
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<p:inputText id="idRuaInputText"
+		      					 required="true"
+		      					 disabled="true"
+		      					 style="width: 125px"
+		      					 value="0000000001" />	
+		      	</h:column>
+		      	
+			 	<h:column>
+		      		<h:outputText id="ruaOutputText" 
+		      					  value="#{managerBean.get('label.cadastroPrateleiras.rua')}" 
+		      					  styleClass="singleLine" />
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<p:inputText id="ruaInputText"
+		      					 required="true"
+		      					 disabled="true"
+		      					 style="width: 80%"
+		      					 value="Térreo" />	
+		      					 
+		      		<p:spacer width="5" height="1"/>
+		      		
+		      		<p:commandLink onclick="PF('dlgRua').show();" immediate="true">
+						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+		      	</h:column>
+		      	
+		      	<h:column>
+		       		<h:outputText id="ultimaAlteracaoOutputText"
+		       					  value="#{managerBean.get('label.cadastroPrateleiras.ultimaAlteracao')}"
+		       					  styleClass="singleLine"/>
+		       	</h:column>
+		       	
+		       	<h:column>
+			 		<h:inputText value="25/08/2014 20:47" 
+			 					 id="ultimaAlteracaoInputText" 
+			 					 disabled="true" />   
+			 	</h:column>
+			 	
+			 	<h:column>
+		      		<h:outputText id="idPavimentoOutputText" 
+		      					  value="#{managerBean.get('label.cadastroPrateleiras.pavimento')}" 
+		      					  styleClass="singleLine" />
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<p:inputText id="idPavimentoInputText"
+		      					 required="true"
+		      					 disabled="true"
+		      					 style="width: 125px"
+		      					 value="0000000001" />	
+		      	</h:column>
+		      	
+			 	<h:column>
+		      		<h:outputText id="pavimentoOutputText" 
+		      					  value="#{managerBean.get('label.cadastroPrateleiras.pavimento')}" 
+		      					  styleClass="singleLine" />
+		      	</h:column>
+		      	
+		      	<h:column>
+		      		<p:inputText id="pavimentoInputText"
+		      					 required="true"
+		      					 disabled="true"
+		      					 style="width: 80%"
+		      					 value="Térreo" />	
+		      	</h:column>
+			 	
+        </h:panelGrid>
+	</p:panel>
+	
+	<p:dialog header="#{managerBean.get('label.cadastroPrateleiras.pesquisaRua')}"
+			  widgetVar="dlgRua"
+			  modal="false"
+			  resizable="false"
+			  appendToBody="true"
+			  height="100%"
+			  width="50%">
+      			
+     			<p:dataTable id="ruaDatatableId"
+        	  	 	     var="ruaDatatableVar"
+        			 	 value="#{prateleirasBean.conteudo}" >
+		    
+				    <p:column headerText="#{managerBean.get('label.cadastroPrateleiras.id')}"
+				    		  styleClass="percentual-15 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="#{managerBean.get('label.cadastroPrateleiras.rua')}"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Rua A" />
+				    </p:column>
+				    
+				    <p:column headerText="#{managerBean.get('label.cadastroPrateleiras.id')}"
+				    		  styleClass="percentual-15 singleLine">
+				     		<h:outputText value="0000000001" />
+				    </p:column>
+				    
+				    <p:column headerText="#{managerBean.get('label.cadastroPrateleiras.pavimento')}"
+				    		  styleClass="percentual-20 singleLine">
+				     		<h:outputText value="Térreo" />
+				    </p:column>
+		</p:dataTable>
+	</p:dialog>
+</ui:composition>

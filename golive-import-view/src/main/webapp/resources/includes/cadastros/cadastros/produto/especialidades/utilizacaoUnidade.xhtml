@@ -4,7 +4,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<p:panel id="utilizacao" header="Utilização da Unidade"
+	<p:panel id="utilizacao" header="#{managerBean.get('label.cadastroUnidade.utilizacaoUnidade')}"
 		toggleable="true" closable="false" collapsed="false" toggleSpeed="500"
 		closeSpeed="500" widgetVar="utilizacao" styleClass="little-font">
 
@@ -20,7 +20,7 @@
 
 			<p:row>
 				<p:column styleClass="percentual-25">
-					<p:fieldset legend="Produto" toggleable="true"
+					<p:fieldset legend="#{managerBean.get('label.cadastroUnidade.produto')}" toggleable="true"
 						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 205px;">
 
 						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
@@ -31,7 +31,7 @@
 									<p:selectBooleanCheckbox value="checked" id="produtosCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="produtosOutputText" value="Produtos" />
+									<h:outputText id="produtosOutputText" value="#{managerBean.get('label.cadastroUnidade.produtos')}" />
 								</p:column>
 							</p:row>
 
@@ -42,7 +42,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="codBarrasProdutosOutputText"
-										value="Cód.Barras de Produtos" />
+										value="#{managerBean.get('label.cadastroUnidade.codBarrasProdutos')}" />
 								</p:column>
 							</p:row>
 
@@ -53,7 +53,7 @@
 								</p:column>
 								<p:column styleClass="percentual-98">
 									<h:outputText id="padraoLarguraOutputText"
-										value="Padrão de Largura" />
+										value="#{managerBean.get('label.cadastroUnidade.padraoLargura')}" />
 								</p:column>
 							</p:row>
 
@@ -64,7 +64,7 @@
 								</p:column>
 								<p:column styleClass="percentual-98">
 									<h:outputText id="padraoEspessuraOutputText"
-										value="Padrão de Espessura" />
+										value="#{managerBean.get('label.cadastroUnidade.padraoEspessura')}" />
 								</p:column>
 							</p:row>
 
@@ -74,7 +74,7 @@
 										id="pesoLiquidoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-98">
-									<h:outputText id="pesoLiquidoOutputText" value="Peso Líquido" />
+									<h:outputText id="pesoLiquidoOutputText" value="#{managerBean.get('label.cadastroUnidade.pesoLiquido')}" />
 								</p:column>
 							</p:row>
 
@@ -83,7 +83,7 @@
 									<p:selectBooleanCheckbox value="checked" id="pesoBrutoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-98">
-									<h:outputText id="pesoBrutoOutputText" value="Peso Bruto" />
+									<h:outputText id="pesoBrutoOutputText" value="#{managerBean.get('label.cadastroUnidade.pesoBruto')}" />
 								</p:column>
 							</p:row>
 						</p:panelGrid>
@@ -91,7 +91,7 @@
 				</p:column>
 
 				<p:column styleClass="percentual-25">
-					<p:fieldset legend="Vendas" toggleable="true" 
+					<p:fieldset legend="#{managerBean.get('label.cadastroUnidade.vendas')}" toggleable="true" 
 						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 205px;">
 
 						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
@@ -104,7 +104,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="quantMinPedidoVendaOutputText"
-										value="Quant.Mín.Pedido de Venda" />
+										value="#{managerBean.get('label.cadastroUnidade.quantMinPedidoVenda')}" />
 								</p:column>
 							</p:row>
 
@@ -115,7 +115,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="quantMaxPedidoVendaOutputText"
-										value="Quant.Máx.Pedido de Venda" />
+										value="#{managerBean.get('label.cadastroUnidade.quantMaxPedidoVenda')}" />
 								</p:column>
 							</p:row>
 
@@ -126,7 +126,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="tabelaPrecosOutputText"
-										value="Tabela de Preços" />
+										value="#{managerBean.get('label.cadastroUnidade.tabelaPrecos')}" />
 								</p:column>
 							</p:row>
 							
@@ -135,7 +135,7 @@
 				</p:column>
 				
 				<p:column styleClass="percentual-25">
-					<p:fieldset legend="Compras" toggleable="true"
+					<p:fieldset legend="#{managerBean.get('label.cadastroUnidade.compras')}" toggleable="true"
 						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 205px;">
 
 						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
@@ -148,7 +148,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="quantiMaxPedidoCompraOutputText"
-												  value="Quant.Mín.Pedido de Compra" />
+												  value="#{managerBean.get('label.cadastroUnidade.quantMinPedidoCompra')}" />
 								</p:column>
 							</p:row>
 
@@ -159,7 +159,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="quantMaxPedidoCompraOutputText"
-												  value="Quant.Máx.Pedido de Compra" />
+												  value="#{managerBean.get('label.cadastroUnidade.quantMaxPedidoCompra')}" />
 								</p:column>
 							</p:row>
 
@@ -170,7 +170,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="analiseComparativaPedCompraOutputText"
-												  value="Análise Comparativa Ped.Compra" />
+												  value="#{managerBean.get('label.cadastroUnidade.analiseComparativaPedCompra')}" />
 								</p:column>
 							</p:row>
 
@@ -181,7 +181,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="analiseComparativaEstoqueOutputText"
-												  value="Análise Comparativa Estoque" />
+												  value="#{managerBean.get('label.cadastroUnidade.analiseComparativaEstoque')}" />
 								</p:column>
 							</p:row>
 						</p:panelGrid>
@@ -189,7 +189,7 @@
 				</p:column>
 
 				<p:column styleClass="percentual-25">
-					<p:fieldset legend="Faturamento" toggleable="true"
+					<p:fieldset legend="#{managerBean.get('label.cadastroUnidade.faturamento')}" toggleable="true"
 						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 205px;">
 
 						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
@@ -203,7 +203,7 @@
 								<p:column styleClass="percentual-10">
 									<h:outputText
 										id="cupomFiscalSatOutputTExt"
-										value="Cuspom Fiscal / SAT" />
+										value="#{managerBean.get('label.cadastroUnidade.cupomFiscalSat')}" />
 								</p:column>
 							</p:row>
 
@@ -214,7 +214,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="nfceVendaConsumidorOutputText"
-												  value="NFC-e Venda Consumidor" />
+												  value="#{managerBean.get('label.cadastroUnidade.nfceVendaConsumidor')}" />
 								</p:column>
 							</p:row>
 
@@ -225,7 +225,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="nfeVendaOutputText"
-												  value="NF-e Venda" />
+												  value="#{managerBean.get('label.cadastroUnidade.nfeVenda')}" />
 								</p:column>
 							</p:row>
 
@@ -236,7 +236,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="nfeDevolucaoOutputText"
-												  value="NF-e Devolução" />
+												  value="#{managerBean.get('label.cadastroUnidade.nfeDevolucao')}" />
 								</p:column>
 							</p:row>
 
@@ -247,7 +247,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="nfeBeneficiamentoOutputText"
-												  value="NF-e Beneficiamento" />
+												  value="#{managerBean.get('label.cadastroUnidade.nfeBeneficiamento')}" />
 								</p:column>
 							</p:row>
 
@@ -258,7 +258,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="nfeServicoOutputText"
-												  value="NF-e Serviço" />
+												  value="#{managerBean.get('label.cadastroUnidade.nfeServico')}" />
 								</p:column>
 							</p:row>
 						</p:panelGrid>

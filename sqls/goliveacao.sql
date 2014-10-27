@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbTipoProduto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0024`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0020`
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCodigoBarrasPro
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0034`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0030`
@@ -234,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbUnidade` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0023`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0019`
@@ -610,7 +610,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCodigoProduto` 
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0032`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0028`
@@ -716,7 +716,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeColecaoProduto`
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0033`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0029`
@@ -822,7 +822,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCorProduto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0035`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0031`
@@ -928,7 +928,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeDescricaoProdut
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0036`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0032`
@@ -967,7 +967,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadePadraoEspessura
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0037`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0033`
@@ -1006,7 +1006,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadePadraoLarguraPr
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0038`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0034`
@@ -1112,7 +1112,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeTipoProduto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0039`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0035`
@@ -1218,7 +1218,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeUnidadeProduto`
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0040`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0036`
@@ -1276,7 +1276,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbDepartamentoProduto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0025`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0021`
@@ -1358,7 +1358,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbGrupoProduto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0026`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0022`
@@ -1464,7 +1464,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbSubGrupoProduto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0027`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0023`
@@ -1685,7 +1685,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbPadroesEspessuraProduto` 
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0028`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0024`
@@ -1867,7 +1867,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbPadroesLarguraProduto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0029`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0025`
@@ -1978,7 +1978,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbColecoesProduto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0030`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0026`
@@ -2116,7 +2116,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCorProduto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0031`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0027`
@@ -2225,7 +2225,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProduto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0009`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0008`
@@ -2264,7 +2264,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoCodigo` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0010`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0009`
@@ -2355,7 +2355,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoDescricao` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0011`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0010`
@@ -2706,7 +2706,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoUnidade` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0012`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0011`
@@ -2834,7 +2834,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoCodigoBarras` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0013`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0012`
@@ -2911,7 +2911,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCategoriaNaturezaJuridica
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0014`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0037`
@@ -2997,7 +2997,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbNaturezaJuridica` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0015`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0038`
@@ -3055,7 +3055,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbRegimeApuracao` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0016`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0039`
@@ -3114,7 +3114,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeSecao` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0017`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0013`
@@ -3200,7 +3200,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeDivisao` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0018`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0014`
@@ -3292,7 +3292,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeGrupo` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0019`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0015`
@@ -3390,7 +3390,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeClasse` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0020`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0016`
@@ -3494,7 +3494,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeSubClasse` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0021`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0017`
@@ -3581,7 +3581,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeImpeditivoSimplesNaci
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0022`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0018`
@@ -3642,7 +3642,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoInternet` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0004`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0003`
@@ -3703,7 +3703,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbLinguas` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0005`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0004`
@@ -3786,7 +3786,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbMoeda` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0006`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0005`
@@ -3847,7 +3847,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesFips` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0007`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0006`
@@ -3908,7 +3908,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesIso3161_1_Alf
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0008`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbAuditoriaItem0007`
@@ -3946,7 +3946,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoriaItem_tbAuditoria` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0003`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -3979,12 +3979,12 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbUsuario` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0001`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0002`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -4006,7 +4006,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUsuario_tbFuncionario` (
   PRIMARY KEY (`tbUsuario_Id`, `tbFuncionario_Id`),
   CONSTRAINT `FK_tbUsuario0041`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -4032,7 +4032,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUsuario_tbCliente` (
   PRIMARY KEY (`tbUsuario_Id`, `tbCliente_Id`, `tbClienteContato_Id`),
   CONSTRAINT `FK_tbUsuario0042`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -4058,7 +4058,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUsuario_tbFornecedor` (
   PRIMARY KEY (`tbUsuario_Id`, `tbFornecedor_Id`, `tbFornecedorContato_Id`),
   CONSTRAINT `FK_tbUsuario0043`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -4115,7 +4115,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesBacen` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0044`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbCodigoPaisesBacen0001`
@@ -4181,7 +4181,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoTelefonicoPaises` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0045`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbCodigoTelefonicoPaises0001`
@@ -4317,7 +4317,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoTelefonicoMunicipio
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0046`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbCodigoTelefonicoMunicipios0002`
@@ -4356,7 +4356,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbRegiao` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0047`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbRegiao0001`
@@ -4395,7 +4395,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbEstado` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0048`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbEstado0001`
@@ -4482,7 +4482,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbMunicipio` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0049`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_FK_tbMunicipio0001`
@@ -4575,7 +4575,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbTipoLogradouro` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0050`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbTipoLogradouro0001`
@@ -4639,7 +4639,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbPais` (
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbUsuario0051`
     FOREIGN KEY (`tbUsuario_Id`)
-    REFERENCES `goliveacao`.`tbUsuario` (`Id`)
+    REFERENCES `golivecentral`.`tbUsuario` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbPais0001`

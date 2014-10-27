@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="grupoClasse"
-		 header="CNAE - Grupo"
+		 header="#{managerBean.get('label.cadastroClasse.cnaeGrupo')}"
 		 toggleable="true"
 		 closable="false"
 		 collapsed="true"
@@ -32,7 +32,7 @@
 				
 				<h:column>
 					<h:outputText id="grupoIdOutputText"
-								  value="Id"   />
+								  value="#{managerBean.get('label.cadastroClasse.id')}"   />
 				</h:column>
 				
 				<h:column>
@@ -51,7 +51,7 @@
 				
 				<h:column>	            	
 	        		<h:outputText id="codGrupoOutputText"
-	        					   		value="Cód.Grupo" />
+	        					   		value="#{managerBean.get('label.cadastroClasse.codGrupo')}" />
 	        	</h:column>
 	        	
 	        	<h:column>
@@ -66,7 +66,7 @@
 				
 				<h:column>					
 					<h:outputText id="denominacaoGrupoOutputText" 
-								  value="Denominação Grupo" />
+								  value="#{managerBean.get('label.cadastroClasse.denominacaoGrupo')}" />
 				</h:column>
 				
 				<h:column>
@@ -80,7 +80,7 @@
         
 </p:panel>
 
-<p:dialog header="Pesquisa de CNAE - Grupo"
+<p:dialog header="#{managerBean.get('label.cadastroClasse.pesquisaCnaeGrupo')}"
 			  widgetVar="dlgGrupo"
 			  modal="false"
 			  resizable="false"
@@ -92,17 +92,17 @@
         	  	 	     var="grupoDatatableVar"
         			 	 value="#{classeBean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroClasse.id')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Cód.Grupo"
+				    <p:column headerText="#{managerBean.get('label.cadastroClasse.codGrupo')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="01.1" />
 				    </p:column>
 				    
-				    <p:column headerText="Denominação Grupo"
+				    <p:column headerText="#{managerBean.get('label.cadastroClasse.denominacaoGrupo')}"
 				    		  styleClass="percentual-50 singleLine">
 				     		<h:outputText value="Produção de lavouras temporárias" />
 				    </p:column>

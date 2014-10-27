@@ -26,7 +26,7 @@
 					 rowKey="#{row.id}"
 					 paginator="true"
 					 filteredValue="#{coresBean.filtrados}"
-					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+					 emptyMessage="#{managerBean.get('label.cadastroCores.msnNaoHaRegistros')}"
 					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect" 	update="conteudoTable" />
@@ -34,7 +34,7 @@
 
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
-			<p:column headerText="Data Inclusão"
+			<p:column headerText="#{managerBean.get('label.cadastroCores.dataInclusao')}"
 					  filterBy="${row.id}"
 					  filterMatchMode="contains"
 					  filterStyleClass="width-size-70;"
@@ -44,7 +44,7 @@
 			
 			</p:column>
 
-			<p:column headerText="Data Alteração"
+			<p:column headerText="#{managerBean.get('label.cadastroCores.dataAlteracao')}"
 					  filterBy="${row.id}"
 					  filterMatchMode="contains"
 					  styleClass="percentual-10 singleLine">
@@ -53,7 +53,7 @@
 				
 			</p:column>
 
-			<p:column headerText="Id"
+			<p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					  filterBy="${row.id}"
 					  filterMatchMode="contains"
 					  styleClass="percentual-10">
@@ -62,7 +62,7 @@
 																																																																																																																																																																		
 			</p:column>
 
-			<p:column headerText="Cód. Cor" 
+			<p:column headerText="#{managerBean.get('label.cadastroCores.codCor')}" 
 					  filterMatchMode="contains"
 					  filterBy="${row.id}"
 					  styleClass="percentual-10 singleLine">
@@ -71,7 +71,7 @@
 			
 			</p:column>
 			
-			<p:column headerText="Cor" 
+			<p:column headerText="#{managerBean.get('label.cadastroCores.cor')}" 
 					  filterBy="${row.id}"
 					  filterMatchMode="contains"
 					  styleClass="percentual-10">
@@ -80,7 +80,7 @@
 																																																																																																																																																																		
 			</p:column>
 			
-			<p:column headerText="Id"
+			<p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					  filterMatchMode="contains"
 					  filterBy="${row.id}"
 					  styleClass="percentual-10 singleLine">
@@ -89,7 +89,7 @@
 			
 			</p:column>
 			
-			<p:column headerText="Cód.Coleção"
+			<p:column headerText="#{managerBean.get('label.cadastroCores.codColecao')}"
 					  filterBy="${row.id}"
 					  filterMatchMode="contains"
 					  styleClass="percentual-10">
@@ -98,7 +98,7 @@
 																																																																																																																																																																		
 			</p:column>
 			
-			<p:column headerText="Coleção"		
+			<p:column headerText="#{managerBean.get('label.cadastroCores.colecao')}"		
 					  filterMatchMode="contains"
 					  filterBy="${row.id}"
 					  styleClass="percentual-10 singleLine">
@@ -114,7 +114,7 @@
 		
 		<!--  DADOS GERAIS PANEL -->
 		<p:panel id="dadosGerais"
-			 	 header="#{managerBean.get('label.cadastroProdutos.dadosGerais')}"
+			 	 header="#{managerBean.get('label.cadastroCores.dadosGerais')}"
 			 	 toggleable="true"
 			 	 collapsed="false"
 			 	 closable="false"
@@ -138,7 +138,7 @@
 		           	<!--  1st ROW -->
 		           	<p:row>
 		           		<p:column styleClass="percentual-5">
-		           			<h:outputText id="idCorOutputText" value="Id"   />
+		           			<h:outputText id="idCorOutputText" value="#{managerBean.get('label.cadastroCores.id')}"   />
 		           		</p:column>
 		           	
 		           		
@@ -157,7 +157,7 @@
 		           		
 		           		<p:column styleClass="percentual-10">
 		      				<h:outputText id="InclusaoOutputText"
-		        					  	  value="Inclusão"
+		        					  	  value="#{managerBean.get('label.cadastroCores.inclusao')}"
 		        					  	  styleClass="singleLine"/>
 		      			</p:column>
 		           		
@@ -177,7 +177,7 @@
 		      		<p:row>
 		      			
 		      			<p:column styleClass="percentual-5 singleLine">
-		           			<h:outputText id="codCorOutputText" value="Cód. Cor"   />
+		           			<h:outputText id="codCorOutputText" value="#{managerBean.get('label.cadastroCores.codCor')}"   />
 		           		</p:column>
 		           		
 		           		<p:column styleClass="percentual-10">
@@ -185,7 +185,7 @@
 		           		</p:column>
 		           		
 		           		<p:column styleClass="percentual-12">
-		      				<h:outputText id="ColecaoDescricaoOutputText"  value="Descrição" />
+		      				<h:outputText id="ColecaoDescricaoOutputText"  value="#{managerBean.get('label.cadastroCores.descricao')}" />
 		      			</p:column>
 		      			
 		      			<p:column styleClass="percentual-68">
@@ -198,7 +198,7 @@
 		      			
 		      			<p:column styleClass="percentual-10">
 		      				<h:outputText id="ultimaAlteracaoOutputText"
-		        					  	  value="Última Alteração"
+		        					  	  value="#{managerBean.get('label.cadastroCores.ultimaAlteracao')}"
 		        					  	  styleClass="singleLine"/>
 		      			</p:column>
 		      			
@@ -221,7 +221,7 @@
 		
 		<!--  CLASSIFICAÇÃO DO PRODUTO PANEL  -->
 		<p:panel id="classificacaoProduto"
-				 header="#{managerBean.get('label.cadastroProdutos.classificacaoProduto')}"
+				 header="#{managerBean.get('label.cadastroCores.classificacaoProduto')}"
 		 		 toggleable="true"
 		 		 closable="false"
 		 		 collapsed="false"
@@ -247,14 +247,14 @@
 						 border="0">
 				
 				<h:outputText id="departamentoIdOutputText"
-							  value="#{managerBean.get('label.cadastroProdutos.id')}"   />
+							  value="#{managerBean.get('label.cadastroCores.id')}"   />
             	
             	<p:inputText id="departamentoIdInputText"
             				 value="00000000001" 
             				 style="width: 125px;"/>
             	
         		<h:outputText id="departamentoNomeOutputText"
-        			   		  value="#{managerBean.get('label.cadastroProdutos.departamento')}" />
+        			   		  value="#{managerBean.get('label.cadastroCores.departamento')}" />
             	
             	<p:inputText id="departamentoNomeInputText"
             				 style="width: 95%"
@@ -266,14 +266,14 @@
 				
 			
 				<h:outputText id="grupoProdutosIdOutputText" 
-							  value="#{managerBean.get('label.cadastroProdutos.id')}" />
+							  value="#{managerBean.get('label.cadastroCores.id')}" />
             	
             	<p:inputText id="grupoProdutosIdInputText"
             				 value="00000000001" 
             				 style="width: 125px;"/>
             	
         		<h:outputText  id="grupoProdutosNomeOutputText"
-        		 			   value="#{managerBean.get('label.cadastroProdutos.grupoProdutos')}"
+        		 			   value="#{managerBean.get('label.cadastroCores.grupoProdutos')}"
         		 			   style="white-space: nowrap"/>
             	
             	<p:inputText id="grupoProdutosNomeInputText"
@@ -285,7 +285,7 @@
 				</p:commandLink>
 			
 				<h:outputText id="subGrupoProdutosIdOutputText"
-							   value="#{managerBean.get('label.cadastroProdutos.id')}"   />
+							   value="#{managerBean.get('label.cadastroCores.id')}"   />
             	
             	<p:inputText id="subGrupoProdutosIdInputText"
             				 value="00000000001"
@@ -293,7 +293,7 @@
             	
         		<h:outputText id="subGrupoProdutosNomeOutputText"
         					  styleClass="singleLine"
-        					  value="SubGrupo de Produtos"/>
+        					  value="#{managerBean.get('label.cadastroCores.subGrupoProdutos')}"/>
             	
             	<p:inputText id="subGrupoProdutosNomeInputText"
             				 style="width: 95%"
@@ -312,7 +312,7 @@
 		
 		<!--  ESPECIFICIDADES -->
  		<p:panel id="especificidades"
-		 		 header="Especificidades"
+		 		 header="#{managerBean.get('label.cadastroCores.especificidades')}"
 		 		 toggleable="true"
 		 		 closable="false"
 		 		 collapsed="false"
@@ -341,12 +341,12 @@
         			 
         	
 			        	<h:outputText id="especificidadesIdOutputText"
-			        				  value="Id"
+			        				  value="#{managerBean.get('label.cadastroCores.id')}"
 			        				  styleClass="singleLine" /> 
 				        <p:inputText id="especificidadesdInputText" value="00000000001"  style="width: 125px;"/>
 			        	
 			        	<h:outputText id="colecoesOutputText"
-			        				  value="Coleções" />
+			        				  value="#{managerBean.get('label.cadastroCores.colecoes')}" />
 			        	<p:inputText id="colecoesInputText"  style="width: 95%;" value="Mountain Viber Glass Colors"/>
 			        	
 			        	<p:commandLink onclick="PF('dlgEspecificidades').show();" immediate="true">
@@ -360,7 +360,7 @@
 		<!--  AUDITORIA/LOG PANEL  -->
 		
 		<p:panel id="auditoriaLogId"
-		 header="Auditoria / Log"
+		 header="#{managerBean.get('label.cadastroCores.auditoriaLog')}"
 		 toggleable="true"
 		 collapsed="false" 
 		 closable="false"
@@ -397,55 +397,55 @@
 			        	 var="auditoriaLog">
 			        	 
 	        		    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-10">
 					        
 					        <h:outputText value="0000000001" />
 					    </p:column>
 					    
-					    <p:column headerText="Data e Hora"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.dataHora')}"
 					    		  styleClass="percentual-15">
 					        
 					        <h:outputText value="25/08/2013 8:21:05" />
 					    </p:column>
 					 
-					    <p:column headerText="Formulário"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.formulario')}"
 					    		  styleClass="percentual-15">
 					        
 					        <h:outputText value="Cadastro de Cores" />
 					    </p:column>
 					 
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-10">
 					    	
 					    	<h:outputText value="0000000001" />
 					    </p:column>
 					 
-				 	   <p:column headerText="Ação"
+				 	   <p:column headerText="#{managerBean.get('label.cadastroCores.acao')}"
 				 	   			 styleClass="percentual-20">
 					    	
 					    	<h:outputText value="Inclusão de Novo Registro" />
 					    </p:column>
 					    
-					    <p:column headerText="Valor Alterado"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.valorAlterado')}"
 					    		  styleClass="percentual-10">
 					    	
 					    	<h:outputText  />
 					    </p:column>
 					    
-					    <p:column headerText="Valor Atual"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.valorAtual')}"
 					    		  styleClass="percentual-10">
 					    	
 					    	<h:outputText  />
 					    </p:column>
 					 
-					 	<p:column headerText="Usuário"
+					 	<p:column headerText="#{managerBean.get('label.cadastroCores.usuario')}"
 					 			  styleClass="percentual-10">
 					    	
 					    	<h:outputText value="roberto@acapeninos.com.br" />
 					    </p:column>
 					    
-					    <p:column headerText="Observação"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.observacao')}"
 					    		  styleClass="percentual-10">
 					    	
 					    	<h:outputText value="Inclusão Registro ID 000000000001" />
@@ -459,7 +459,7 @@
 		 
 		</p:panel>
 		
-		<p:dialog header="Pesquisa de Departamento"
+		<p:dialog header="#{managerBean.get('label.cadastroCores.pesquisaDepartamento')}"
 			  widgetVar="dlgDepartamento"
 			  modal="false"
 			  resizable="false"
@@ -471,13 +471,13 @@
 	      	  	 	     var="enderecamentoEstoqueDatatableVar"
 	      			 	 value="#{produtoBean.codigoBarrasDatatable}" >
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-2 singleLine">
 					     	
 					     		  <h:outputText value="00000000000001" styleClass="floatLeft"/>
 					    </p:column>
 					    
-					    <p:column headerText="Departamento"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.departamento')}"
 					    		  styleClass="percentual-5 singleLine">
 					     	
 			     				   <h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio"
@@ -489,7 +489,7 @@
 		</p:dialog>
 		
 		
-		<p:dialog header="Pesquisa de Grupo de Produtos"
+		<p:dialog header="#{managerBean.get('label.cadastroCores.pesquisaGrupoProdutos')}"
 			  widgetVar="dlgGrupoProdutos"
 			  modal="false"
 			  resizable="false"
@@ -501,26 +501,26 @@
 	      	  	 	         var="grupoProdutosDatatableVar"
 	      			 	     value="#{produtoBean.codigoBarrasDatatable}" >
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-4 singleLine">
 					     	
 					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
 					    </p:column>
 					    
-					    <p:column headerText="Departamento"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.departamento')}"
 					    		  styleClass="percentual-15 singleLine">
 					     	
 			     				   <h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio"
 			     					  		     styleClass="floatRight"/>
 					    </p:column>
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-4 singleLine">
 					     	
 					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
 					    </p:column>
 					    
-					    <p:column headerText="Grupo de Produto"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.grupoProdutos')}"
 					    		  styleClass="percentual-10 singleLine">
 					     	
 			     				   <h:outputText value="Lâminas em Alumínio 25mm x 018mm"
@@ -531,7 +531,7 @@
 		</p:dialog>
 		
 		
-		<p:dialog header="Pesquisa de SubGrupo de Produto"
+		<p:dialog header="#{managerBean.get('label.cadastroCores.pesquisaSubGrupoProdutos')}"
 			  widgetVar="dlgSubGrupoProduto"
 			  modal="false"
 			  resizable="false"
@@ -543,26 +543,26 @@
 	      	  	 	         var="subGrupoProdutosDatatableVar"
 	      			 	     value="#{produtoBean.codigoBarrasDatatable}" >
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-5 singleLine">
 					     	
 					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
 					    </p:column>
 					    
-					    <p:column headerText="Departamento"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.departamento')}"
 					    		  styleClass="percentual-20 singleLine">
 					     	
 			     				   <h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio"
 			     					  		     styleClass="floatRight"/>
 					    </p:column>
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-5 singleLine">
 					     	
 					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
 					    </p:column>
 					    
-					    <p:column headerText="Grupo de Produto"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.grupoProdutos')}"
 					    		  styleClass="percentual-15 singleLine">
 					     	
 			     				   <h:outputText value="Lâminas em Alumínio 25mm x 018mm"
@@ -570,13 +570,13 @@
 					    </p:column>
 					    
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-5 singleLine">
 					     	
 					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
 					    </p:column>
 					    
-					    <p:column headerText="SubGrupo de Produtos"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.subGrupoProdutos')}"
 					    		  styleClass="percentual-10 singleLine">
 					     	
 			     				   <h:outputText value="Lâminas em Alumínio"
@@ -592,7 +592,7 @@
 		
 		
 		
-		<p:dialog header="Pesquisa de Coleções"
+		<p:dialog header="#{managerBean.get('label.cadastroCores.pesquisaColecoes')}"
 			  widgetVar="dlgEspecificidades"
 			  modal="false"
 			  resizable="false"
@@ -604,26 +604,26 @@
 	      	  	 	         var="especificidadesDatatableVar"
 	      			 	     value="#{produtoBean.codigoBarrasDatatable}" >
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-5 singleLine">
 					     	
 					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
 					    </p:column>
 					    
-					    <p:column headerText="Departamento"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.departamento')}"
 					    		  styleClass="percentual-20 singleLine">
 					     	
 			     				   <h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio"
 			     					  		     styleClass="floatRight"/>
 					    </p:column>
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-5 singleLine">
 					     	
 					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
 					    </p:column>
 					    
-					    <p:column headerText="Grupo de Produto"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.grupoProdutos')}"
 					    		  styleClass="percentual-15 singleLine">
 					     	
 			     				   <h:outputText value="Lâminas em Alumínio 25mm x 018mm"
@@ -631,13 +631,13 @@
 					    </p:column>
 					    
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-5 singleLine">
 					     	
 					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
 					    </p:column>
 					    
-					    <p:column headerText="SubGrupo de Produtos"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.subGrupoProdutos')}"
 					    		  styleClass="percentual-10 singleLine">
 					     	
 			     				   <h:outputText value="Lâminas em Alumínio"
@@ -646,13 +646,13 @@
 					    
 					    
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
 					    		  styleClass="percentual-5 singleLine">
 					     	
 					     		  <h:outputText value="00000000001" styleClass="floatLeft"/>
 					    </p:column>
 					    
-					    <p:column headerText="Coleções"
+					    <p:column headerText="#{managerBean.get('label.cadastroCores.colecoes')}"
 					    		  styleClass="percentual-10 singleLine">
 					     	
 			     				   <h:outputText value="Mountain Viber Glass"

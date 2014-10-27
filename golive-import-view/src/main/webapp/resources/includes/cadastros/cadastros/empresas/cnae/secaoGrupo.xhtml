@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="secaoGrupo"
-		 header="CNAE - Seção"
+		 header="#{managerBean.get('label.cadastroGrupo.cnaeSecao')}"
 		 toggleable="true"
 		 closable="false"
 		 collapsed="false"
@@ -32,7 +32,7 @@
 						 
 				<h:column>
 					<h:outputText id="secaoIdOutputText"
-								  value="Id"   />
+								  value="#{managerBean.get('label.cadastroGrupo.id')}"   />
 				</h:column>
 				
 				<h:column>
@@ -51,7 +51,7 @@
             	
             	<h:column>
 	        		<h:outputText id="codSecaoOutputText"
-	        					   		value="Cód.Seção" />
+	        					   		value="#{managerBean.get('label.cadastroGrupo.codSecao')}" />
         		</h:column>
         		
         		<h:column>
@@ -66,7 +66,7 @@
 				
 				<h:column>
 					<h:outputText id="denominacaoSecaoOutputText" 
-								  value="Denominação Seção"
+								  value="#{managerBean.get('label.cadastroGrupo.denominacaoSecao')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -83,7 +83,7 @@
         
 </p:panel>
 
-<p:dialog header="Pesquisa de CNAE - Seção"
+<p:dialog header="#{managerBean.get('label.cadastroGrupo.pesquisaCnaeSecao')}"
 			  widgetVar="dlgSecao"
 			  modal="false"
 			  resizable="false"
@@ -95,17 +95,17 @@
         	  	 	     var="secaoDatatableVar"
         			 	 value="#{grupoBean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroGrupo.id')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Cód.Seção"
+				    <p:column headerText="#{managerBean.get('label.cadastroGrupo.codSecao')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="A" />
 				    </p:column>
 				    
-				    <p:column headerText="Denominação Seção"
+				    <p:column headerText="#{managerBean.get('label.cadastroGrupo.denominacaoSecao')}"
 				    		  styleClass="percentual-50 singleLine">
 				     		<h:outputText value="Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura" />
 				    </p:column>

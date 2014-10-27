@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroCnaesImpeditivosSimplesNacional.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -32,7 +32,7 @@
      
      		<h:column>
 				<h:outputText id="idOutputText"
-							  value="Id"   />
+							  value="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.id')}"   />
 			</h:column>
 			
 			<h:column>
@@ -43,7 +43,7 @@
 	      	
 	      	<h:column>
 	      		<h:outputText id="dataInclusaoOutputText" 
-	      					  value="#{userBean.properties.getField('label.cadastroCnaesImpeditivosSimplesNacional.inclusao')}" />
+	      					  value="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.inclusao')}" />
 	      	</h:column>
 	      	
 	      	<h:column>
@@ -54,7 +54,7 @@
 	      	
 	      	<h:column>
 	      		<h:outputText id="idSubClasseOutputText" 
-	      					  value="Id" 
+	      					  value="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.id')}" 
 	      					  styleClass="singleLine" />
 	      	</h:column>
 	      	
@@ -72,7 +72,7 @@
         	
         	<h:column>        	
 	       		<h:outputText id="ultimaAlteracaoOutputText"
-	       					  value="#{userBean.properties.getField('label.cadastroCnaesImpeditivosSimplesNacional.ultimaAlteracao')}"
+	       					  value="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.ultimaAlteracao')}"
 	       					  styleClass="singleLine"/>
 	       	</h:column>
 	       	
@@ -84,7 +84,7 @@
 		 	
 		 	<h:column>
 				<h:outputText id="codSubClasseOutputText"
-							  value="Cód.SubClasse (CNAE)"
+							  value="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.codSubClasseCnae')}"
 							  styleClass="singleLine"/>
 			</h:column>
 			
@@ -100,7 +100,7 @@
       		
       		<h:column>
 				<h:outputText id="denominacaoSubClasseOutputText"
-							  value="Denominação SubClasse"
+							  value="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.denominacaoSubClasse')}"
 							  styleClass="singleLine"/>
 			</h:column>
 			
@@ -115,7 +115,7 @@
 	</p:panel>
 	
 
-<p:dialog header="Pesquisa de CNAE - SubClasse"
+<p:dialog header="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.pesquisaCnaeSubClasse')}"
 			  widgetVar="dlgIdSubClasse"
 			  modal="false"
 			  resizable="false"
@@ -127,17 +127,17 @@
         	  	 	     var="subClasseDatatableVar"
         			 	 value="#{cnaesImpeditivosSimplesNacionalBean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Cód.SubClasse (CNAE)"
+				    <p:column headerText="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.codSubClasseCnae')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="01.11-3/01" />
 				    </p:column>
 				    
-				    <p:column headerText="Denominação CNAE"
+				    <p:column headerText="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.denominacaoCnae')}"
 				    		  styleClass="percentual-40 singleLine">
 				     		<h:outputText value="Cultivo de Arroz" />
 				    </p:column>

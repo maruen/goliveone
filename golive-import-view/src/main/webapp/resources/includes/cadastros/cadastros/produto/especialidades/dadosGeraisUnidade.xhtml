@@ -6,7 +6,7 @@
 
 <!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroUnidade.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroUnidade.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -33,7 +33,7 @@
           				 width="100%"
           				 border="0">
      
-			<h:outputText id="idOutputText" value="Id"  />
+			<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroUnidade.id')}"  />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
@@ -42,10 +42,10 @@
            	<p:spacer/>
            				 
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroUnidade.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroUnidade.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      					  
       		
-      		<h:outputText id="codigoNomeOutputText" value="Código"/>
+      		<h:outputText id="codigoNomeOutputText" value="#{managerBean.get('label.cadastroUnidade.codigo')}"/>
       		<p:inputText id="codigoNomeInputText"
       					 required="true"
       					 disabled="false"
@@ -56,10 +56,10 @@
       		<p:spacer/>
      			
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroUnidade.ultimaAlteracao')}"/>
+       					  value="#{managerBean.get('label.cadastroUnidade.ultimaAlteracao')}"/>
 	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      					  
 
-			<h:outputText value="Descrição" id="descricaoOutputText" />
+			<h:outputText value="#{managerBean.get('label.cadastroUnidade.descricao')}" id="descricaoOutputText" />
 			<p:inputText id="descricaoInputText"
 						 required="true"
 						 disabled="false"

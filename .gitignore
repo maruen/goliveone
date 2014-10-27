@@ -1,0 +1,12 @@
+.project
+.settings/
+golive-import-core/.classpath
+golive-import-core/.project
+golive-import-core/.settings/
+golive-import-service/.classpath
+golive-import-service/.project
+golive-import-service/.settings/
+golive-import-view/.classpath
+golive-import-view/.project
+golive-import-view/.settings/
+

@@ -7,26 +7,92 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
+	<ui:param name="bean" value="#{prateleirasBean}" />
+
 	<ui:define name="css">
-		<script type="text/javascript">
-		
-		window.onload = function() {
-			alert('Pagina nao foi implementada');
-            window.close();
-		}
-
-	</script>
-
-	</ui:define>
-
-	<ui:define name="bean">
+		<h:outputStylesheet name="css/cadastros/style_prateleiras.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="conteudoTable"
+			var="row" 
+			value="#{prateleirasBean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{prateleirasBean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="#{managerBean.get('label.cadastroPrateleiras.msnNaoHaRegistros')}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroPrateleiras.dataInclusao')}"
+				styleClass="percentual-10 singleLine text-align-left">				
+				<h:outputText value="25/08/2014 20:24" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroPrateleiras.dataAlteracao')}"
+				styleClass="percentual-10 singleLine text-align-left">
+				<h:outputText value="25/08/2014 20:47">
+				</h:outputText>
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroPrateleiras.id')}"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroPrateleiras.prateleira')}"
+				styleClass="percentual-10">				
+				<h:outputText value="000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroPrateleiras.id')}"
+				styleClass="percentual-10">				
+				<h:outputText value="0000000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroPrateleiras.rua')}"
+				styleClass="percentual-10">				
+				<h:outputText value="Rua A" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroPrateleiras.id')}"
+				styleClass="percentual-10">				
+				<h:outputText value="0000000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroPrateleiras.pavimento')}"
+				styleClass="percentual-10">				
+				<h:outputText value="Térreo" />
+			</p:column>
+		</p:dataTable>
+
 	</ui:define>
 
 	<ui:define name="edicao">
+
+		<ui:include src="/resources/includes/cadastros/cadastros/estoque/dadosGeraisPrateleiras.xhtml">
+			<ui:param name="pojo" value="#{prateleirasBean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+			<ui:param name="pojo" value="#{prateleirasBean.registro}" />
+		</ui:include>
+
 	</ui:define>
-
-
 </ui:composition>

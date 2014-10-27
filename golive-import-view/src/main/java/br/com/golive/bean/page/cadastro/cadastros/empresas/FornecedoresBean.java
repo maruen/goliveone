@@ -81,11 +81,11 @@ public class FornecedoresBean extends CadastroBeanRules<FornecedoresModel> {
     }
 	
 	public void salvarCnae(){
-		
+		logger.info("Salvar CNAE");
 	}
 	
 	public void excluirCnae(){
-		
+		logger.info("Excluir CNAE");
 	}
 	
 	public List<String> tipoLogradouroComplete(final String query) {
@@ -97,4 +97,50 @@ public class FornecedoresBean extends CadastroBeanRules<FornecedoresModel> {
          
         return results;
     }
+	
+	public void salvarPessoas(){
+		logger.info("Salvar contato");
+	}
+	
+	public void excluirPessoas(){
+		logger.info("Excluir contato");
+	}
+	
+	public List<Object> getCnaeDataTable(){
+		ArrayList<Object> lista = new ArrayList<Object>();
+		
+		lista.add(new Object());
+		lista.add(new Object());
+		lista.add(new Object());
+		
+		return lista;
+	}
+	
+	public List<Object> getPessoasDataTable(){
+		ArrayList<Object> lista = new ArrayList<Object>();
+		
+		lista.add(new Object());
+		lista.add(new Object());
+		lista.add(new Object());
+		
+		return lista;
+	}
+	
+	public void limparEntrega(){
+		logger.info("Limpar dados entrega");
+	}
+	
+	public List<Object> getCondicaoPagamentoDataTable(){
+		ArrayList<Object> lista = new ArrayList<Object>();
+		
+		lista.add(new Object());
+		lista.add(new Object());
+		lista.add(new Object());
+		
+		return lista;
+	}
+	
+	public void limparCobranca(){
+		logger.info("Limpar dados cobrança");
+	}
 }
