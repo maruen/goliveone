@@ -17,7 +17,7 @@
 <composite:implementation>
 
 
-	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}" styleClass="selectOneMenuTiposFiltro"
+	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}" style="width: 100%" styleClass="selectOneMenuTiposFiltro"
 		rendered="#{cc.attrs.filtro.genericType.simpleName.equals('String')}">
 		<f:selectItem itemValue="#{cc.attrs.filtro.igual}"
 			itemLabel="#{managerBean.get(cc.attrs.filtro.igual.label)}" />
@@ -25,7 +25,7 @@
 			itemLabel="#{managerBean.get(cc.attrs.filtro.contem.label)}" />
 	</p:selectOneMenu>
 
-	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}"  styleClass="selectOneMenuTiposFiltro"
+	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}" style="width: 100%" styleClass="selectOneMenuTiposFiltro"
 		rendered="#{cc.attrs.filtro.genericType.simpleName.equals('Long')}">
 		<f:selectItem itemValue="#{cc.attrs.filtro.igual}"
 			itemLabel="#{managerBean.get(cc.attrs.filtro.igual.label)}" />
@@ -40,7 +40,7 @@
 
 	</p:selectOneMenu>
 
-	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}" styleClass="selectOneMenuTiposFiltro"
+	<p:selectOneMenu value="#{cc.attrs.filtro.tipo}" style="width: 100%" styleClass="selectOneMenuTiposFiltro"
 		rendered="#{cc.attrs.filtro.genericType.simpleName.equals('Calendar')}">
 		<f:selectItem itemValue="#{cc.attrs.filtro.igual}"
 			itemLabel="#{managerBean.get(cc.attrs.filtro.igual.label)}" />

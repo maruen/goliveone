@@ -52,9 +52,11 @@ public class AreasDeAtuacaoBean extends CadastroGenericBean<AreaDeAtuacaoModel> 
 		final boolean insert = false;
 		if (registro != null) {
 			if ((registro.getAreaDeAtuacao() != null) && (!registro.getAreaDeAtuacao().isEmpty())) {
-
+				// areaDeAtuacaoService.salvar(registro);
 			}
 		}
+		super.init(areaDeAtuacaoService.obterLista());
+		super.salvar();
 	}
 
 	@Override
