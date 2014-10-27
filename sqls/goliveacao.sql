@@ -4,7 +4,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 DROP SCHEMA IF EXISTS `goliveacao` ;
 CREATE SCHEMA IF NOT EXISTS `goliveacao` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-SHOW WARNINGS;
 USE `goliveacao` ;
 
 -- -----------------------------------------------------
@@ -12,7 +11,7 @@ USE `goliveacao` ;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbTipoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbTipoProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `TipoProduto` VARCHAR(45) NOT NULL,
@@ -21,17 +20,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbTipoProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbTipoProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `FormularioNome` VARCHAR(120) NOT NULL,
@@ -42,16 +41,16 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbAuditoria` (`Id` ASC);
 
-SHOW WARNINGS;
+
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoriaItem`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoriaItem` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoriaItem` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Campo` VARCHAR(2500) NOT NULL,
@@ -62,17 +61,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoriaItem` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbAuditoriaItem` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbTipoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbTipoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbTipoProduto` (
   `tbAuditoria_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -101,17 +100,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbTipoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbTipoProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadeCodigoBarrasProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadeCodigoBarrasProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeCodigoBarrasProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `FinalidadeCodigoBarrasProduto` VARCHAR(45) NOT NULL,
@@ -166,17 +165,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeCodigoBarrasProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbFinalidadeCodigoBarrasProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbFinalidadeCodigoBarrasProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCodigoBarrasProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCodigoBarrasProduto` (
   `tbAuditoria_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -205,17 +204,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCodigoBarrasPro
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbFinalidadeCodigoBarrasProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbUnidade`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbUnidade` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbUnidade` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -244,17 +243,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbUnidade` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbUnidade` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadePadraoEspessuraProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadePadraoEspessuraProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadePadraoEspessuraProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `FinalidadePadraoEspessuraProduto` VARCHAR(45) NOT NULL,
@@ -309,17 +308,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadePadraoEspessuraProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbFinalidadePadraoEspessuraProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadePadraoEspessuraProduto_tbUnidade`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadePadraoEspessuraProduto_tbUnidade` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadePadraoEspessuraProduto_tbUnidade` (
   `tbFinalidadePadraoEspessuraProduto_Id` INT UNSIGNED NOT NULL,
   `tbUnidade_Id` INT UNSIGNED NOT NULL,
@@ -336,17 +335,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadePadraoEspessuraProduto_tbUn
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbFinalidadePadraoEspessuraProduto_Id_UNIQUE` ON `goliveacao`.`tbFinalidadePadraoEspessuraProduto_tbUnidade` (`tbFinalidadePadraoEspessuraProduto_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadePadraoLarguraProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadePadraoLarguraProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadePadraoLarguraProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `FinalidadePadraoLarguraProduto` VARCHAR(45) NOT NULL,
@@ -401,17 +400,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadePadraoLarguraProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbFinalidadePadraoLarguraProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadePadraoLarguraProduto_tbUnidade`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadePadraoLarguraProduto_tbUnidade` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadePadraoLarguraProduto_tbUnidade` (
   `tbFinalidadePadraoLarguraProduto_Id` INT UNSIGNED NOT NULL,
   `tbUnidade_Id` INT UNSIGNED NOT NULL,
@@ -428,17 +427,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadePadraoLarguraProduto_tbUnid
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbFinalidadeCodigoBarrasProduto_Id_UNIQUE` ON `goliveacao`.`tbFinalidadePadraoLarguraProduto_tbUnidade` (`tbFinalidadePadraoLarguraProduto_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbUnidade`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbUnidade` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUnidade` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Abreviacao` VARCHAR(3) NOT NULL,
@@ -487,17 +486,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUnidade` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbUnidade` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadeCodigoBarrasProduto_tbUnidade`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadeCodigoBarrasProduto_tbUnidade` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeCodigoBarrasProduto_tbUnidade` (
   `tbFinalidadeCodigoBarrasProduto_Id` INT UNSIGNED NOT NULL,
   `tbUnidade_Id` INT UNSIGNED NOT NULL,
@@ -514,17 +513,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeCodigoBarrasProduto_tbUnida
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbFinalidadeCodigoBarrasProduto_Id_UNIQUE` ON `goliveacao`.`tbFinalidadeCodigoBarrasProduto_tbUnidade` (`tbFinalidadeCodigoBarrasProduto_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadeCodigoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadeCodigoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeCodigoProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `FinalidadeCodigoProduto` VARCHAR(45) NOT NULL,
@@ -581,17 +580,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeCodigoProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbFinalidadeCodigoProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbFinalidadeCodigoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCodigoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCodigoProduto` (
   `tbAuditoria_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -620,17 +619,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCodigoProduto` 
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbFinalidadeCodigoProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadeColecaoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadeColecaoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeColecaoProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `FinalidadeColecaoProduto` VARCHAR(45) NOT NULL,
@@ -687,17 +686,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeColecaoProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbFinalidadeColecaoProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbFinalidadeColecaoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeColecaoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeColecaoProduto` (
   `tbAuditoria_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -726,17 +725,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeColecaoProduto`
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbFinalidadeColecaoProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadeCorProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadeCorProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeCorProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `FinalidadeCorProduto` VARCHAR(45) NOT NULL,
@@ -793,17 +792,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeCorProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbFinalidadeCorProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbFinalidadeCorProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCorProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCorProduto` (
   `tbAuditoria_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -832,17 +831,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeCorProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbFinalidadeCorProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadeDescricaoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadeDescricaoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeDescricaoProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `FinalidadeDescricaoProduto` VARCHAR(45) NOT NULL,
@@ -899,17 +898,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeDescricaoProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbFinalidadeDescricaoProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbFinalidadeDescricaoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeDescricaoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeDescricaoProduto` (
   `tbAuditoria_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -938,17 +937,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeDescricaoProdut
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbFinalidadeDescricaoProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbFinalidadePadraoEspessuraProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbFinalidadePadraoEspessuraProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadePadraoEspessuraProduto` (
   `tbAuditoria_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -977,17 +976,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadePadraoEspessura
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbFinalidadePadraoEspessuraProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbFinalidadePadraoLarguraProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbFinalidadePadraoLarguraProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadePadraoLarguraProduto` (
   `tbAuditoria_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1016,17 +1015,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadePadraoLarguraPr
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbFinalidadePadraoLarguraProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadeTipoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadeTipoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeTipoProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `FinalidadeTipoProduto` VARCHAR(45) NOT NULL,
@@ -1083,17 +1082,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeTipoProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbFinalidadeTipoProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbFinalidadeTipoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeTipoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeTipoProduto` (
   `tbAuditoria_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1122,17 +1121,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeTipoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbFinalidadeTipoProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbFinalidadeUnidadeProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbFinalidadeUnidadeProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeUnidadeProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `FinalidadeUnidadeProduto` VARCHAR(45) NOT NULL,
@@ -1189,17 +1188,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbFinalidadeUnidadeProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbFinalidadeUnidadeProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbFinalidadeUnidadeProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeUnidadeProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeUnidadeProduto` (
   `tbAuditoria_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1228,17 +1227,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbFinalidadeUnidadeProduto`
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbFinalidadeUnidadeProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbDepartamentoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbDepartamentoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbDepartamentoProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `DepartamentoProduto` VARCHAR(120) NOT NULL,
@@ -1247,17 +1246,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbDepartamentoProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbDepartamentoProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbDepartamentoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbDepartamentoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbDepartamentoProduto` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1286,17 +1285,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbDepartamentoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbDepartamentoProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbGrupoProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `GrupoProduto` VARCHAR(120) NOT NULL,
@@ -1305,17 +1304,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbGrupoProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbGrupoProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbGrupoProduto_tbDepartamentoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbGrupoProduto_tbDepartamentoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbGrupoProduto_tbDepartamentoProduto` (
   `tbGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbDepartamentoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1332,14 +1331,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbGrupoProduto_tbDepartamentoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbGrupoProduto` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1368,17 +1367,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbGrupoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbGrupoProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbSubGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbSubGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbSubGrupoProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `SubGrupoProduto` VARCHAR(120) NOT NULL,
@@ -1387,17 +1386,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbSubGrupoProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbSubGrupoProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbSubGrupoProduto_tbGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbSubGrupoProduto_tbGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbSubGrupoProduto_tbGrupoProduto` (
   `tbSubGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1414,14 +1413,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbSubGrupoProduto_tbGrupoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbSubGrupoProduto_tbDepartamentoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbSubGrupoProduto_tbDepartamentoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbSubGrupoProduto_tbDepartamentoProduto` (
   `tbSubGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbDepartamentoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1438,14 +1437,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbSubGrupoProduto_tbDepartamentoProduto
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbSubGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbSubGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbSubGrupoProduto` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1474,17 +1473,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbSubGrupoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbSubGrupoProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesEspessuraProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesEspessuraProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Espessura` DECIMAL(6,3) NOT NULL,
@@ -1494,17 +1493,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbPadroesEspessuraProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesEspessuraProduto_tbDepartamento`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbDepartamento` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbDepartamento` (
   `tbPadroesEspessurasProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbDepartamentoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1521,14 +1520,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbDepartament
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesEspessuraProduto_tbGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbGrupoProduto` (
   `tbPadroesEspessuraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1545,14 +1544,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbGrupoProdut
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesEspessuraProduto_tbSubGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbSubGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbSubGrupoProduto` (
   `tbPadroesEspessuraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbSubGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1569,14 +1568,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbSubGrupoPro
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbColecoesProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbColecoesProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbColecoesProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL,
   `Colecao` VARCHAR(120) NOT NULL,
@@ -1585,17 +1584,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbColecoesProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbColecoesProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesEspessuraProduto_tbColecoesProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbColecoesProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbColecoesProduto` (
   `tbPadroesEspessuraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbColecoesProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1612,14 +1611,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbColecoesPro
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCorProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCorProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCorProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CorCodigo` VARCHAR(15) NULL,
@@ -1629,17 +1628,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCorProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCorProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesEspessuraProduto_tbCorProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbCorProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbCorProduto` (
   `tbPadoresEspessuraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCorProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1656,17 +1655,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbCorProduto`
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCorProduto_Id_UNIQUE` ON `goliveacao`.`tbPadroesEspessuraProduto_tbCorProduto` (`tbCorProduto_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbPadroesEspessuraProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbPadroesEspessuraProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbPadroesEspessuraProduto` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1695,17 +1694,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbPadroesEspessuraProduto` 
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbPadroesEspessuraProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesLarguraProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesLarguraProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Largura` DECIMAL(6,3) NOT NULL,
@@ -1715,17 +1714,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbPadroesLarguraProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesLarguraProduto_tbDepartamentoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbDepartamentoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbDepartamentoProduto` (
   `tbPadroesLarguraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbDepartamentoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1742,14 +1741,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbDepartamentoP
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesLarguraProduto_tbGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbGrupoProduto` (
   `tbPadroesLarguraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbGrupoProduto` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1766,14 +1765,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbGrupoProduto`
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesLarguraProduto_tbSubGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbSubGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbSubGrupoProduto` (
   `tbPadroesLarguraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbSubGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1790,14 +1789,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbSubGrupoProdu
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesLarguraProduto_tbColecoesProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbColecoesProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbColecoesProduto` (
   `tbPadroesLarguraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbColecoesProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1814,14 +1813,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbColecoesProdu
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPadroesLarguraProduto_tbCorProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbCorProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbCorProduto` (
   `tbPadroesLarguraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCorProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1838,17 +1837,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesLarguraProduto_tbCorProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCorProduto_Id_UNIQUE` ON `goliveacao`.`tbPadroesLarguraProduto_tbCorProduto` (`tbCorProduto_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbPadroesLarguraProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbPadroesLarguraProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbPadroesLarguraProduto` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1877,17 +1876,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbPadroesLarguraProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbPadroesLarguraProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbColecoesProduto_tbDepartamentoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbColecoesProduto_tbDepartamentoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbColecoesProduto_tbDepartamentoProduto` (
   `tbColecoesProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbDepartamentoProduto_Id` INT UNSIGNED NOT NULL,
@@ -1904,14 +1903,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbColecoesProduto_tbDepartamentoProduto
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbColecoesProduto_tbGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbColecoesProduto_tbGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbColecoesProduto_tbGrupoProduto` (
   `tbColecoesProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1928,14 +1927,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbColecoesProduto_tbGrupoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbColecoesProduto_tbSubGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbColecoesProduto_tbSubGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbColecoesProduto_tbSubGrupoProduto` (
   `tbColecoesProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbSubGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1952,14 +1951,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbColecoesProduto_tbSubGrupoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbColecoesProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbColecoesProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbColecoesProduto` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -1988,17 +1987,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbColecoesProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbColecoesProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCorProduto_tbDepartamentoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCorProduto_tbDepartamentoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCorProduto_tbDepartamentoProduto` (
   `tbCorProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbDepartamentoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2015,14 +2014,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCorProduto_tbDepartamentoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCorProduto_tbGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCorProduto_tbGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCorProduto_tbGrupoProduto` (
   `tbCorProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2039,14 +2038,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCorProduto_tbGrupoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCorProduto_tbSubGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCorProduto_tbSubGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCorProduto_tbSubGrupoProduto` (
   `tbCorProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbSubGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2063,14 +2062,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCorProduto_tbSubGrupoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCorProduto_tbColecoesProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCorProduto_tbColecoesProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCorProduto_tbColecoesProduto` (
   `tbCorProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbColecoesProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2087,17 +2086,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCorProduto_tbColecoesProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCorProduto_Id_UNIQUE` ON `goliveacao`.`tbCorProduto_tbColecoesProduto` (`tbCorProduto_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCorProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCorProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCorProduto` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2126,17 +2125,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCorProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCorProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Observacao` VARCHAR(8000) NULL,
@@ -2145,17 +2144,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbProduto` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProdutoCodigo`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProdutoCodigo` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProdutoCodigo` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL,
   `Codigo` VARCHAR(8000) NOT NULL,
@@ -2163,17 +2162,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProdutoCodigo` (
   `SystemChangeDateTime` DATETIME NULL)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbProdutoCodigo` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbProdutoCodigo`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbProdutoCodigo` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbProdutoCodigo` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbProdutoCodigo_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2196,17 +2195,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbProdutoCodigo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbProdutoCodigo_Id_UNIQUE` ON `goliveacao`.`tbProduto_tbProdutoCodigo` (`tbProdutoCodigo_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProduto` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2235,17 +2234,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbProduto` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbProdutoCodigo`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbProdutoCodigo` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoCodigo` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2274,17 +2273,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoCodigo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbProdutoCodigo` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProdutoDescricao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProdutoDescricao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProdutoDescricao` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Descricao` VARCHAR(8000) NOT NULL,
@@ -2293,17 +2292,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProdutoDescricao` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbProdutoDescricao` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbProdutoDescricao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbProdutoDescricao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbProdutoDescricao` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbProdutoDescricao_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2326,17 +2325,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbProdutoDescricao` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbProdutoDescricao_Id_UNIQUE` ON `goliveacao`.`tbProduto_tbProdutoDescricao` (`tbProdutoDescricao_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbProdutoDescricao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbProdutoDescricao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoDescricao` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2365,17 +2364,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoDescricao` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbProdutoDescricao` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbDepartamentoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbDepartamentoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbDepartamentoProduto` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbDepartamentoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2392,17 +2391,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbDepartamentoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbProduto_Id_UNIQUE` ON `goliveacao`.`tbProduto_tbDepartamentoProduto` (`tbProduto_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbGrupoProduto` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2419,17 +2418,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbGrupoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbProduto_Id_UNIQUE` ON `goliveacao`.`tbProduto_tbGrupoProduto` (`tbProduto_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbSubGrupoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbSubGrupoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbSubGrupoProduto` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbSubGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2446,17 +2445,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbSubGrupoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbProduto_Id_UNIQUE` ON `goliveacao`.`tbProduto_tbSubGrupoProduto` (`tbProduto_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbColecoesProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbColecoesProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbColecoesProduto` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbColecoesProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2479,14 +2478,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbColecoesProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbCorProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbCorProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbCorProduto` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCorProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2509,14 +2508,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbCorProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbPadroesLarguraProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbPadroesLarguraProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbPadroesLarguraProduto` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbPadroesLarguraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2539,14 +2538,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbPadroesLarguraProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbPadroesEspessuraProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbPadroesEspessuraProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbPadroesEspessuraProduto` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbPadroesEspessuraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2569,14 +2568,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbPadroesEspessuraProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbTipoProduto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbTipoProduto` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbTipoProduto` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbTipoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2599,14 +2598,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbTipoProduto` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProdutoUnidade`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProdutoUnidade` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProdutoUnidade` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `UnidadePrincipal` BIT NOT NULL,
@@ -2635,17 +2634,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProdutoUnidade` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbProdutoUnidade` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbProdutoUnidade`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbProdutoUnidade` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbProdutoUnidade` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbUnidade_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2674,20 +2673,20 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbProdutoUnidade` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbProduto_Id_UNIQUE` ON `goliveacao`.`tbProduto_tbProdutoUnidade` (`tbProduto_Id` ASC);
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbProdutoUnidade_Id_UNIQUE` ON `goliveacao`.`tbProduto_tbProdutoUnidade` (`tbProdutoUnidade_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbProdutoUnidade`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbProdutoUnidade` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoUnidade` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2716,17 +2715,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoUnidade` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbProdutoUnidade` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProdutoCodigoBarras`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProdutoCodigoBarras` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProdutoCodigoBarras` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoBarras` BIGINT(14) ZEROFILL NOT NULL,
@@ -2736,17 +2735,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProdutoCodigoBarras` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbProdutoCodigoBarras` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbProdutoCodigoBarras`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbProdutoCodigoBarras` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbProdutoCodigoBarras` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbProdutoCodigoBarras_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2769,14 +2768,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbProdutoCodigoBarras` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProdutoCodigoBarras_tbUnidade`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProdutoCodigoBarras_tbUnidade` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProdutoCodigoBarras_tbUnidade` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbProdutoCodigoBarras_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2805,17 +2804,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProdutoCodigoBarras_tbUnidade` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbProdutoCodigoBarras_Id_UNIQUE` ON `goliveacao`.`tbProdutoCodigoBarras_tbUnidade` (`tbProdutoCodigoBarras_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbProdutoCodigoBarras`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbProdutoCodigoBarras` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoCodigoBarras` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2844,17 +2843,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbProdutoCodigoBarras` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbProdutoCodigoBarras` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbProduto_tbFornecedor`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbProduto_tbFornecedor` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbFornecedor` (
   `tbProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbFornecedor_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2866,14 +2865,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbProduto_tbFornecedor` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCategoriaNaturezaJuridica`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCategoriaNaturezaJuridica` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCategoriaNaturezaJuridica` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CategoriaNaturezaJuridica` VARCHAR(120) NOT NULL,
@@ -2882,17 +2881,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCategoriaNaturezaJuridica` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCategoriaNaturezaJuridica` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCategoriaNaturezaJuridica`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCategoriaNaturezaJuridica` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCategoriaNaturezaJuridica` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2921,17 +2920,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCategoriaNaturezaJuridica
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCategoriaNaturezaJuridica` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbNaturezaJuridica`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbNaturezaJuridica` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbNaturezaJuridica` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoNaturezaJuridica` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2941,17 +2940,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbNaturezaJuridica` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbNaturezaJuridica` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbNaturezaJuridica_tbCategoriaNaturezaJuridica`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbNaturezaJuridica_tbCategoriaNaturezaJuridica` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbNaturezaJuridica_tbCategoriaNaturezaJuridica` (
   `tbNaturezaJuridica_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCategoriaNaturezaJuridica_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -2968,17 +2967,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbNaturezaJuridica_tbCategoriaNaturezaJ
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbNaturezaJuridica_Id_UNIQUE` ON `goliveacao`.`tbNaturezaJuridica_tbCategoriaNaturezaJuridica` (`tbNaturezaJuridica_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbNaturezaJuridica`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbNaturezaJuridica` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbNaturezaJuridica` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3007,17 +3006,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbNaturezaJuridica` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbNaturezaJuridica` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbRegimeApuracao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbRegimeApuracao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbRegimeApuracao` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `RegimeApuracao` VARCHAR(120) NOT NULL,
@@ -3026,17 +3025,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbRegimeApuracao` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbRegimeApuracao` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbRegimeApuracao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbRegimeApuracao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbRegimeApuracao` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3065,17 +3064,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbRegimeApuracao` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbRegimeApuracao` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeSecao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeSecao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeSecao` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoSecao` CHAR(1) NOT NULL,
@@ -3085,17 +3084,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeSecao` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCnaeSecao` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCnaeSecao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCnaeSecao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeSecao` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3124,17 +3123,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeSecao` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCnaeSecao` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeDivisao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeDivisao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeDivisao` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoDivisao` INT(2) UNSIGNED ZEROFILL NOT NULL,
@@ -3144,17 +3143,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeDivisao` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCnaeDivisao` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeDivisao_tbCnaeSecao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeDivisao_tbCnaeSecao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeDivisao_tbCnaeSecao` (
   `tbCnaeDivisao_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCnaeSecao_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3171,17 +3170,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeDivisao_tbCnaeSecao` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCnaeDivisao_Id_UNIQUE` ON `goliveacao`.`tbCnaeDivisao_tbCnaeSecao` (`tbCnaeDivisao_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCnaeDivisao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCnaeDivisao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeDivisao` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3210,17 +3209,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeDivisao` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCnaeDivisao` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeGrupo`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeGrupo` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeGrupo` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoGrupo` INT(1) UNSIGNED ZEROFILL NOT NULL,
@@ -3230,17 +3229,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeGrupo` (
   PRIMARY KEY (`Id`, `CodigoGrupo`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCnaeGrupo` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeGrupo_Dependencies`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeGrupo_Dependencies` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeGrupo_Dependencies` (
   `tbCnaeGrupo_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCnaeSecao_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3263,17 +3262,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeGrupo_Dependencies` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCnaeGrupo_Id_UNIQUE` ON `goliveacao`.`tbCnaeGrupo_Dependencies` (`tbCnaeGrupo_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCnaeGrupo`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCnaeGrupo` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeGrupo` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3302,17 +3301,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeGrupo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCnaeGrupo` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeClasse`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeClasse` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeClasse` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoClasse` INT(2) ZEROFILL UNSIGNED NOT NULL,
@@ -3322,17 +3321,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeClasse` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCnaeClasse` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeClasse_Dependencies`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeClasse_Dependencies` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeClasse_Dependencies` (
   `tbCnaeClasse_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCnaeSecao_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3361,17 +3360,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeClasse_Dependencies` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCnaeClasse_Id_UNIQUE` ON `goliveacao`.`tbCnaeClasse_Dependencies` (`tbCnaeClasse_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCnaeClasse`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCnaeClasse` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeClasse` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3400,17 +3399,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeClasse` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCnaeClasse` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeSubClasse`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeSubClasse` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeSubClasse` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoSubClasse` INT(2) UNSIGNED ZEROFILL NOT NULL,
@@ -3420,17 +3419,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeSubClasse` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCnaeSubClasse` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeSubClasse_Dependencies`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeSubClasse_Dependencies` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeSubClasse_Dependencies` (
   `tbCnaeSubClasse_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCnaeSecao_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3465,17 +3464,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeSubClasse_Dependencies` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCnaeSubClasse_Id_UNIQUE` ON `goliveacao`.`tbCnaeSubClasse_Dependencies` (`tbCnaeSubClasse_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCnaeSubClasse`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCnaeSubClasse` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeSubClasse` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3504,17 +3503,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeSubClasse` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCnaeSubClasse` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeImpeditivoSimplesNacional`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeImpeditivoSimplesNacional` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeImpeditivoSimplesNacional` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `SystemIncludeDateTime` DATETIME NOT NULL,
@@ -3522,17 +3521,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeImpeditivoSimplesNacional` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCnaeImpeditivoSimplesNacional` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCnaeImpeditivoSimplesNacional_tbCnaeSubClasse`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCnaeImpeditivoSimplesNacional_tbCnaeSubClasse` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeImpeditivoSimplesNacional_tbCnaeSubClasse` (
   `tbCnaeImpeditivoSimplesNacional_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCnaeSubClasse_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3549,20 +3548,20 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCnaeImpeditivoSimplesNacional_tbCnaeS
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCnaeImpeditivoSimplesNacional_Id_UNIQUE` ON `goliveacao`.`tbCnaeImpeditivoSimplesNacional_tbCnaeSubClasse` (`tbCnaeImpeditivoSimplesNacional_Id` ASC);
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCnaeSubClasse_Id_UNIQUE` ON `goliveacao`.`tbCnaeImpeditivoSimplesNacional_tbCnaeSubClasse` (`tbCnaeSubClasse_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCnaeImpeditivoSimplesNacional`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCnaeImpeditivoSimplesNacional` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeImpeditivoSimplesNacional` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3591,17 +3590,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCnaeImpeditivoSimplesNaci
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCnaeImpeditivoSimplesNacional` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCodigoInternet`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCodigoInternet` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoInternet` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoTld` CHAR(2) NOT NULL,
@@ -3613,17 +3612,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoInternet` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCodigoInternet` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCodigoInternet`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCodigoInternet` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoInternet` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3652,17 +3651,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoInternet` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCodigoInternet` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbLinguas`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbLinguas` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbLinguas` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoISO639-1` CHAR(2) NOT NULL,
@@ -3674,17 +3673,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbLinguas` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbLinguas` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbLinguas`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbLinguas` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbLinguas` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3713,17 +3712,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbLinguas` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbLinguas` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbMoeda`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbMoeda` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbMoeda` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL,
   `CodigoIso4217` CHAR(3) NOT NULL,
@@ -3741,14 +3740,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbMoeda` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbMoeda_tbPais`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbMoeda_tbPais` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbMoeda_tbPais` (
   `tbMoeda_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbPais_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3760,14 +3759,14 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbMoeda_tbPais` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbMoeda`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbMoeda` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbMoeda` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3796,17 +3795,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbMoeda` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbMoeda` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCodigoPaisesFips`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCodigoPaisesFips` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoPaisesFips` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoFips` CHAR(2) NOT NULL,
@@ -3818,17 +3817,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoPaisesFips` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCodigoPaisesFips` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCodigoPaisesFips`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesFips` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesFips` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3857,17 +3856,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesFips` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCodigoPaisesFips` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCodigoPaisesIso3161_1_Alfa_3`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCodigoPaisesIso3161_1_Alfa_3` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoPaisesIso3161_1_Alfa_3` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoISO3161_1_Alfa_3` CHAR(3) NOT NULL,
@@ -3879,17 +3878,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoPaisesIso3161_1_Alfa_3` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCodigoPaisesIso3161_1_Alfa_3` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCodigoPaisesIso3161_1_Alfa_3`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesIso3161_1_Alfa_3` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesIso3161_1_Alfa_3` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3918,17 +3917,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesIso3161_1_Alf
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCodigoPaisesIso3161_1_Alfa_3` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoriaItem_tbAuditoria`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoriaItem_tbAuditoria` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoriaItem_tbAuditoria` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3951,17 +3950,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoriaItem_tbAuditoria` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoriaItem_tbAuditoria` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbUsuario`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbUsuario` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbUsuario` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -3989,17 +3988,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbUsuario` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbUsuario` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbUsuario_tbFuncionario`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbUsuario_tbFuncionario` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUsuario_tbFuncionario` (
   `tbUsuario_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbFuncionario_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4011,20 +4010,20 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUsuario_tbFuncionario` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbUsuario_Id_UNIQUE` ON `goliveacao`.`tbUsuario_tbFuncionario` (`tbUsuario_Id` ASC);
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbFuncionario_Id_UNIQUE` ON `goliveacao`.`tbUsuario_tbFuncionario` (`tbFuncionario_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbUsuario_tbCliente`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbUsuario_tbCliente` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUsuario_tbCliente` (
   `tbUsuario_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCliente_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4037,20 +4036,20 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUsuario_tbCliente` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbUsuario_Id_UNIQUE` ON `goliveacao`.`tbUsuario_tbCliente` (`tbUsuario_Id` ASC);
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbClienteContato_Id_UNIQUE` ON `goliveacao`.`tbUsuario_tbCliente` (`tbClienteContato_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbUsuario_tbFornecedor`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbUsuario_tbFornecedor` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUsuario_tbFornecedor` (
   `tbUsuario_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbFornecedor_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4063,20 +4062,20 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUsuario_tbFornecedor` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbUsuario_Id_UNIQUE` ON `goliveacao`.`tbUsuario_tbFornecedor` (`tbUsuario_Id` ASC);
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbFornecedorContato_Id_UNIQUE` ON `goliveacao`.`tbUsuario_tbFornecedor` (`tbFornecedorContato_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCodigoPaisesBacen`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCodigoPaisesBacen` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoPaisesBacen` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoBacen` INT(5) UNSIGNED ZEROFILL NOT NULL,
@@ -4088,20 +4087,20 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoPaisesBacen` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCodigoPaisesBacen` (`Id` ASC);
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `CodigoBacen_UNIQUE` ON `goliveacao`.`tbCodigoPaisesBacen` (`CodigoBacen` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCodigoPaisesBacen`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesBacen` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesBacen` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4130,17 +4129,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoPaisesBacen` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCodigoPaisesBacen` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCodigoTelefonicoPaises`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCodigoTelefonicoPaises` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoTelefonicoPaises` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoTelefonicoPais` INT(3) UNSIGNED NOT NULL,
@@ -4152,17 +4151,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoTelefonicoPaises` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCodigoTelefonicoPaises` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCodigoTelefonicoPaises`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCodigoTelefonicoPaises` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoTelefonicoPaises` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4191,17 +4190,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoTelefonicoPaises` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCodigoTelefonicoPaises` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCodigoTelefonicoMunicipios`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCodigoTelefonicoMunicipios` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoTelefonicoMunicipios` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoTelefonicoMunicipio` INT(3) UNSIGNED NOT NULL,
@@ -4210,17 +4209,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoTelefonicoMunicipios` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbCodigoTelefonicoMunicipios` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbRegiao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbRegiao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbRegiao` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Regiao` VARCHAR(120) NOT NULL,
@@ -4229,17 +4228,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbRegiao` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbRegiao` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbEstado`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbEstado` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbEstado` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoIbge` INT(2) UNSIGNED NOT NULL,
@@ -4250,17 +4249,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbEstado` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbEstado` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbCodigoTelefonicoMunicipios_tbMunicipio`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbCodigoTelefonicoMunicipios_tbMunicipio` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoTelefonicoMunicipios_tbMunicipio` (
   `tbCodigoTelefonicoMunicipios_Id` INT ZEROFILL UNSIGNED NOT NULL,
   `tbMunicipio_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4285,20 +4284,20 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbCodigoTelefonicoMunicipios_tbMunicipi
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCodigoTelefonicoMunicipios_Id_UNIQUE` ON `goliveacao`.`tbCodigoTelefonicoMunicipios_tbMunicipio` (`tbCodigoTelefonicoMunicipios_Id` ASC);
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbMunicipio_Id_UNIQUE` ON `goliveacao`.`tbCodigoTelefonicoMunicipios_tbMunicipio` (`tbMunicipio_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbCodigoTelefonicoMunicipios`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbCodigoTelefonicoMunicipios` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoTelefonicoMunicipios` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4327,17 +4326,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbCodigoTelefonicoMunicipio
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbCodigoTelefonicoMunicipios` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbRegiao`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbRegiao` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbRegiao` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4366,17 +4365,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbRegiao` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbRegiao` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbEstado`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbEstado` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbEstado` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4405,17 +4404,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbEstado` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbEstado` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbEstado_tbPais`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbEstado_tbPais` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbEstado_tbPais` (
   `tbEstado_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbPais_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4433,17 +4432,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbEstado_tbPais` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbEstado_Id_UNIQUE` ON `goliveacao`.`tbEstado_tbPais` (`tbEstado_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbMunicipio`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbMunicipio` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbMunicipio` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `CodigoIbge` INT(7) UNSIGNED NOT NULL,
@@ -4453,17 +4452,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbMunicipio` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbMunicipio` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbMunicipio`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbMunicipio` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbMunicipio` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4492,17 +4491,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbMunicipio` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbMunicipio` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbMunicipio_tbPais`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbMunicipio_tbPais` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbMunicipio_tbPais` (
   `tbMunicipio_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbPais_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4526,17 +4525,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbMunicipio_tbPais` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbMunicipio_Id_UNIQUE` ON `goliveacao`.`tbMunicipio_tbPais` (`tbMunicipio_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbTipoLogradouro`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbTipoLogradouro` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbTipoLogradouro` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Abreviacao` VARCHAR(4) NOT NULL,
@@ -4546,17 +4545,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbTipoLogradouro` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbTipoLogradouro` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbTipoLogradouro`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbTipoLogradouro` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbTipoLogradouro` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4585,17 +4584,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbTipoLogradouro` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbTipoLogradouro` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPais`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPais` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPais` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Bandeira` BLOB NULL,
@@ -4610,17 +4609,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPais` (
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `goliveacao`.`tbPais` (`Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbAuditoria_tbPais`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbAuditoria_tbPais` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbPais` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4649,17 +4648,17 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbPais` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `goliveacao`.`tbAuditoria_tbPais` (`tbAuditoriaItem_Id` ASC);
 
-SHOW WARNINGS;
+
 
 -- -----------------------------------------------------
 -- Table `goliveacao`.`tbPais_Dependecies`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `goliveacao`.`tbPais_Dependecies` ;
 
-SHOW WARNINGS;
+
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPais_Dependecies` (
   `tbPais_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbCodigoPaisesBacen_Id` INT UNSIGNED ZEROFILL NOT NULL,
@@ -4670,19 +4669,19 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPais_Dependecies` (
   PRIMARY KEY (`tbPais_Id`, `tbCodigoPaisesBacen_Id`, `tbCodigoPaisesIso3161_1_Alfa_3_Id`, `tbCodigoPaisesFips_Id`, `tbMoeda_Id`, `tbLinguas_Id`))
 ENGINE = InnoDB;
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbPais_Id_UNIQUE` ON `goliveacao`.`tbPais_Dependecies` (`tbPais_Id` ASC);
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCodigoPaisesBacen_Id_UNIQUE` ON `goliveacao`.`tbPais_Dependecies` (`tbCodigoPaisesBacen_Id` ASC);
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCodigoPaisesIso3161_1_Alfa_3_Id_UNIQUE` ON `goliveacao`.`tbPais_Dependecies` (`tbCodigoPaisesIso3161_1_Alfa_3_Id` ASC);
 
-SHOW WARNINGS;
+
 CREATE UNIQUE INDEX `tbCodigoPaisesFips_Id_UNIQUE` ON `goliveacao`.`tbPais_Dependecies` (`tbCodigoPaisesFips_Id` ASC);
 
-SHOW WARNINGS;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
