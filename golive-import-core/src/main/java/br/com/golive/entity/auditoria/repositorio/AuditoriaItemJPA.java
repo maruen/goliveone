@@ -14,7 +14,9 @@ import br.com.golive.jpa.JpaGoLive;
 public class AuditoriaItemJPA extends JpaGoLive<AuditoriaItemModel, Long> {
 
 	@Transactional
-	public void saveJoins(final AuditoriaModel auditoriaModel, final List<AuditoriaItemModel> auditoriaItemList, final Usuario usuario) {
+	public void saveJoins(final AuditoriaModel auditoriaModel,
+						  final List<AuditoriaItemModel> auditoriaItemList,
+						  final Usuario usuario) {
 
 		for (final AuditoriaItemModel auditoriaItemModel : auditoriaItemList) {
 			final Query query = createNativeQuery(AuditoriaItemModel.class.getAnnotation(QueryAuditoria.class).query());

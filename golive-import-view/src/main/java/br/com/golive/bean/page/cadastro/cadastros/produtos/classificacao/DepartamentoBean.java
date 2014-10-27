@@ -32,10 +32,10 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	@Inject
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
-
+	
 	@EJB
 	private DepartamentoService departamentoService;
-
+	
 	@Override
 	@PostConstruct
 	public void init() {
@@ -43,11 +43,11 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 		super.init(departamentoService.listarPorFiltro());
 		fluxo = Fluxo.LISTAGEM;
 	}
-
+		
 	@Override
 	public void incluir() {
 		super.incluir();
-		registro = new DepartamentoModel();
+		this.registro = new DepartamentoModel();
 	}
 
 	@Override
@@ -58,7 +58,13 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 
 	@Override
 	public void salvar() {
-		departamentoService.salvar(registro);
+		
+		if (registro.hasId()) {
+			departamentoService.alterar(registro);
+		} else {
+			departamentoService.salvar(registro);
+		}
+		
 		conteudo = departamentoService.listarPorFiltro();
 		super.salvar();
 	}
@@ -67,10 +73,23 @@ public class DepartamentoBean extends CadastroBeanRules<DepartamentoModel> {
 	protected Logger getLogger() {
 		return logger;
 	}
-
+	
+	
 	public List<AuditoriaModel> getAuditoriaLogs() {
-		// return departamentoService.getAuditoriaLogs(registro);
-		return null;
+		return departamentoService.getAuditoriaLogs(registro);  
+	}
+	
+	public String getUsuarioLog() {
+		return departamentoService.getUsuarioLog(registro);
+	}
+	
+
+	@Override
+	public void editarRegistro() {
+		super.editarRegistro();
 	}
 
+	
+	
+	
 }
