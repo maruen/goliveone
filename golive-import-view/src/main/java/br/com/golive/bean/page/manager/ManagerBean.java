@@ -98,7 +98,7 @@ public class ManagerBean extends GenericBean {
 		try {
 			field = clazz.getDeclaredField(fieldName);
 		} catch (NoSuchFieldException | SecurityException e) {
-			logger.warn("Campo não existe na classe");
+			// logger.warn("Campo não existe na classe");
 		}
 		if (field == null) {
 			try {
