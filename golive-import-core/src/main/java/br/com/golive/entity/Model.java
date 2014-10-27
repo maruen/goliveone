@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.annotation.StandardColumn;
@@ -18,6 +19,7 @@ import br.com.golive.annotation.StandardColumn;
 @MappedSuperclass
 public class Model implements Serializable {
 
+	@Transient
 	private static final long serialVersionUID = 1L;
 
 	@Id

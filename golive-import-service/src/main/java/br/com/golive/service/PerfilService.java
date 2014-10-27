@@ -18,4 +18,6 @@ public interface PerfilService {
 
 	public void salvar(final ColunaPerfil colunaPerfil);
 
+	public void atualizarLista(final List<ColunaPerfil> colunas);
+
 }

@@ -1,0 +1,314 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="reservaEndereco"
+		header="#{managerBean.get('label.cadastroReservaEndereco.reservaEnderecoEstoque')}"
+		toggleable="true" closable="false" collapsed="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="reservaEndereco" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-1,percentual-10,percentual-10,percentual-68"
+			width="100%" border="0">
+
+			<h:column>
+				<h:outputText id="departamentoIdOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.id')}" />
+			</h:column>
+			
+			<h:column>
+				<h:inputText id="departamentoIdInputText" value="00000000001"
+					style="width: 125px;" disabled="true" />
+			</h:column>
+			
+			<h:column>	
+				<h:outputText id="departamentoNomeOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.departamento')}"
+					styleClass="singleLine" />
+			</h:column>
+			
+			<h:column>
+				<h:inputText id="departamentoNomeInputText" style="width: 90%"
+					value="Acessórios, Partes e Peças para Persianas Horizontais em Alumínio"
+					disabled="true" />
+	
+				<p:spacer width="5" height="1"/>
+				
+				<p:commandLink onclick="PF('dlgDepartamento').show();"
+					immediate="true">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:column>
+			
+			<h:column>	
+				<h:outputText id="grupoProdutosIdOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.id')}" />
+			</h:column>
+			
+			<h:column>
+				<h:inputText id="grupoProdutosIdInputText" value="00000000001"
+					style="width: 125px;" disabled="true" />
+			</h:column>
+			
+			<h:column>	
+				<h:outputText id="grupoProdutosReservaOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.grupoProdutos')}"
+					styleClass="singleLine" />
+			</h:column>
+			
+			<h:column>
+				<h:inputText id="grupoProdutosReservaInputText" style="width: 90%"
+					value="Lâminas em Alumínio 25mm" disabled="true" />
+	
+				<p:spacer width="5" height="1"/>
+				
+				<p:commandLink onclick="PF('dlgGrupoProdutos').show();"
+					immediate="true">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:column>
+			
+			<h:column>	
+				<h:outputText id="subGrupoProdutosIdOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.id')}" />
+			</h:column>
+			
+			<h:column>
+				<h:inputText id="subGrupoProdutosIdInputText" value="00000000001"
+					style="width: 125px;" disabled="true" />
+			</h:column>
+			
+			<h:column>	
+				<h:outputText id="subGrupoProdutosNomeOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.subGrupoProdutos')}"
+					styleClass="singleLine" />
+			</h:column>
+			
+			<h:column>
+				<h:inputText id="subGrupoProdutosNomeInputText" style="width: 90%"
+					value="Lâminas em Alumínio 25mm X 0.18mm" disabled="true" />
+	
+				<p:spacer width="5" height="1"/>
+				
+				<p:commandLink onclick="PF('dlgSubGrupoProdutos').show();"
+					immediate="true">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:column>
+			
+			<h:column>	
+				<h:outputText id="produtoIdOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.id')}" />
+			</h:column>
+			
+			<h:column>
+				<h:inputText id="produtoIdInputText" value="00000000001"
+					style="width: 125px;" disabled="true" />
+			</h:column>
+			
+			<h:column>	
+				<h:outputText id="produtoNomeOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.produto')}"
+					styleClass="singleLine" />
+			</h:column>
+			
+			<h:column>					
+				<h:inputText id="produtoNomeInputText" style="width: 20%"
+					value="H25-LAM-CO25-E0.18" disabled="true" />
+					
+				<p:spacer width="3" height="1"/>
+	
+				<h:inputText id="produtoDescricaoInputText" style="width: 69%"
+					value="Lâminas em Alumínio 25mm X 0.18mm" disabled="true" />
+	
+				<p:spacer width="5" height="1"/>
+				
+				<p:commandLink onclick="PF('dlgProdutos').show();" immediate="true">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:column>
+
+		</h:panelGrid>
+	</p:panel>
+
+	<p:dialog header="#{managerBean.get('label.cadastroReservaEndereco.pesquisaDepartamento')}"
+		widgetVar="dlgDepartamento" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="55%">
+
+		<p:dataTable id="departamentoDatatableId"
+			var="departamentoDatatableVar"
+			value="#{reservaEnderecoBean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-5 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.departamento')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText
+					value="Acessórios, Partes e Peças para Persianas Horizontais em Alumínio" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="#{managerBean.get('label.cadastroReservaEndereco.pesquisaGrupoProdutos')}"
+		widgetVar="dlgGrupoProdutos" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="55%">
+
+		<p:dataTable id="grupoProdutosDatatableId"
+			var="grupoProdutosDatatableVar"
+			value="#{reservaEnderecoBean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.departamento')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText
+					value="Acessórios, Partes e Peças para Persianas Horizontais em Alumínio" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.grupoProdutos')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Lâminas em Alumínio 25mm X 0.18mm" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="#{managerBean.get('label.cadastroReservaEndereco.pesquisaSubGrupoProdutos')}"
+		widgetVar="dlgSubGrupoProdutos" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="80%">
+
+		<p:dataTable id="subGrupoProdutosDatatableId"
+			var="subGrupoProdutosDatatableVar"
+			value="#{reservaEnderecoBean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.subGrupoProdutos')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Lâminas em Alumínio 25mm X 0.18mm" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.grupoProdutos')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Lâminas em Alumínio 25mm" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.departamento')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Acessórios, Partes e Peças" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="#{managerBean.get('label.cadastroReservaEndereco.pesquisaProdutos')}"
+		widgetVar="dlgProdutos" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="90%">
+
+		<p:dataTable id="produtosDatatableId" var="produtosDatatableVar"
+			value="#{reservaEnderecoBean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.codProduto')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="H25-LAM-CO25-E0.18" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.descricao')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Lâmina de Alumínio 25mm X 0.18mm" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.departamento')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Acessórios, Partes e Peças" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.grupo')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Lâminas em Alumínio 25mm" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.subGrupo')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Lâminas em Alumínio 25mm X 0.18mm" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+</ui:composition>

@@ -4,9 +4,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroCargos.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroCargos.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -32,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroCargos.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroCargos.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroCargos.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="cargoOutputText" 
-      					  value="Cargo" 
+      					  value="#{managerBean.get('label.cadastroCargos.cargo')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="cargoInputText"
       					 required="true"
@@ -53,7 +52,7 @@
       					 value="Diretor" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroCargos.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroCargos.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 

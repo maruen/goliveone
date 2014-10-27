@@ -25,7 +25,7 @@
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroCargos.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,26 +34,26 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column 
-				headerText="Data Inclusão"
+				headerText="#{managerBean.get('label.cadastroCargos.dataInclusao')}"
 				styleClass="percentual-10 singleLine text-align-left">				
 				<h:outputText value="25/08/2014 20:24" />
 			</p:column>
 
 			<p:column
-				headerText="Data Alteração"
+				headerText="#{managerBean.get('label.cadastroCargos.dataAlteracao')}"
 				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="25/08/2014 20:47">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroCargos.id')}"
 				styleClass="percentual-10 text-align-left">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cargo"
+				headerText="#{managerBean.get('label.cadastroCargos.cargo')}"
 				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Diretor" />
 			</p:column>

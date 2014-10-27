@@ -199,14 +199,9 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @param List
 	 *            <entity> entidade
 	 */
-	public void saveAll(final List<T> entityList) {
-		try {
-			for (T entity : entityList) {
-				entityManager.joinTransaction();
-				entityManager.persist(entity);
-			}
-		} catch (final Exception e) {
-			e.printStackTrace();
+	public void saveAll(List<T> entityList) {
+		for (T entity : entityList) {
+			save(entity);
 		}
 	}
 
@@ -318,6 +313,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	public void update(final T classe) {
 		if (verifyAnnotation(classe)) {
 			merge(classe);
+			save(classe);
 		}
 	}
 

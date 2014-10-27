@@ -9,7 +9,6 @@ import javax.faces.context.FacesContext;
 import javax.persistence.Column;
 import javax.persistence.Transient;
 
-import br.com.golive.annotation.StandardColumn;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
@@ -61,14 +60,11 @@ public class ServiceUtils {
 		for (final Class<?> entityClass : entityClasses) {
 			for (final Field field : entityClass.getDeclaredFields()) {
 				if (!field.isAnnotationPresent(Transient.class)) {
-					if (field.isAnnotationPresent(StandardColumn.class)) {
-						final String coluna = field.getAnnotation(Column.class).name();
-						try {
-							ret.add(getColuna(coluna, tableColunas, cont++));
-						} catch (final GoLiveException e) {
-							throw new GoLiveException("Classe = " + entityClass.getName() + ", coluna = " + coluna);
-						}
-
+					final String coluna = field.getAnnotation(Column.class).name();
+					try {
+						ret.add(getColuna(coluna, tableColunas, cont++));
+					} catch (final GoLiveException e) {
+						throw new GoLiveException("Classe = " + entityClass.getName() + ", coluna = " + coluna);
 					}
 				}
 			}
@@ -80,7 +76,7 @@ public class ServiceUtils {
 	private static ColunaPerfil getColuna(final String coluna, final List<ColunaPerfil> colunasTabela, final Long cont) throws GoLiveException {
 		for (final ColunaPerfil colunaPerfil : colunasTabela) {
 			if (colunaPerfil.getId().getColuna().equals(coluna)) {
-				colunaPerfil.getId().setOrdem(cont);
+				colunaPerfil.setOrdem(cont);
 				return colunaPerfil;
 			}
 		}

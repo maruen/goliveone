@@ -43,4 +43,19 @@ public class PerfilServiceImpl implements PerfilService {
 		colunaPerfilJpa.save(colunaPerfil);
 	}
 
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void atualizarLista(final List<ColunaPerfil> colunas) {
+		logger.info("Atualizando configuracoes de usuario ={}", colunas);
+
+		ColunaPerfil update;
+		for (final ColunaPerfil colunaPerfil : colunas) {
+			update = colunaPerfilJpa.obterPorId(colunaPerfil.getId());
+			update.setOrdem(colunaPerfil.getOrdem());
+			update.setPadraoFiltro(colunaPerfil.getPadraoFiltro());
+			colunaPerfilJpa.update(update);
+		}
+
+	}
+
 }

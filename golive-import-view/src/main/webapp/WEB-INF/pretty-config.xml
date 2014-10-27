@@ -106,6 +106,21 @@
 			<pattern value="/Cadastros/Cadastros/Empresas/RegimeApuracao" />
 			<view-id value="/pages/cadastros/cadastros/empresas/regimeApuracao.jsf" />
 		</url-mapping>
+		
+		<url-mapping id="cadastrosCadastrosEmpresasUsuariosGrupoPermissao">
+			<pattern value="/Cadastros/Cadastros/Empresas/Usuarios/GrupoPermissao" />
+			<view-id value="/pages/cadastros/cadastros/empresas/usuarios/grupoPermissao.jsf" />
+		</url-mapping>
+		
+		<url-mapping id="cadastrosCadastrosEmpresasUsuarios/Permissao">
+			<pattern value="/Cadastros/Cadastros/Empresas/Usuarios/Permissao" />
+			<view-id value="/pages/cadastros/cadastros/empresas/usuarios/permissao.jsf" />
+		</url-mapping>
+		
+		<url-mapping id="cadastrosCadastrosEmpresasUsuariosUsuarios">
+			<pattern value="/Cadastros/Cadastros/Empresas/Usuarios/Usuarios" />
+			<view-id value="/pages/cadastros/cadastros/empresas/usuarios/usuarios.jsf" />
+		</url-mapping>
 
 		<url-mapping id="cadastrosCadastrosEstoquePavimentos">
 			<pattern value="/Cadastros/Cadastros/Estoque/Pavimentos" />

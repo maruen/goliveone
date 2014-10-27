@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
+import br.com.golive.annotation.StandardColumn;
 import br.com.golive.constants.Criptografia;
 import br.com.golive.constants.TipoFiltro;
 import br.com.golive.entity.empresas.empresa.model.Empresa;
@@ -77,7 +78,7 @@ public class Utils {
 			if (!field.isAnnotationPresent(Transient.class)) {
 				if (field.isAnnotationPresent(Column.class)) {
 					if (field.isAnnotationPresent(Label.class)) {
-						colunasPagina.add(new ColunaPerfil(new ColunaPerfilId(usuario.getId(), cont++, tableName, field.getAnnotation(Column.class).name(), TipoFiltro.IGUAL.name())));
+						colunasPagina.add(new ColunaPerfil(new ColunaPerfilId(usuario.getId(), tableName, field.getAnnotation(Column.class).name()), TipoFiltro.IGUAL.getDescricao(), cont++, field.isAnnotationPresent(StandardColumn.class)));
 					} else {
 						throw new GoLiveException("Campo nao possui anotação de Label = " + tableName + "." + field.getName());
 					}

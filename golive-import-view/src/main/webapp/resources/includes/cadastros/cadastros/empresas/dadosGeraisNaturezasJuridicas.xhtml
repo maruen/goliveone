@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroNaturezasJuridicas.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroNaturezasJuridicas.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,33 +31,33 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroNaturezasJuridicas.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroNaturezasJuridicas.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroNaturezasJuridicas.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="categoriaOutputText" 
-      					  value="Categoria" 
+      					  value="#{managerBean.get('label.cadastroNaturezasJuridicas.categoria')}" 
       					  styleClass="singleLine" />
 			<p:autoComplete id="categoriaDropDown" 
 							dropdown="true" 
 							completeMethod="#{naturezasJuridicasBean.completeText}" size="60"/>
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroNaturezasJuridicas.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroNaturezasJuridicas.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 	 					 
 			<h:outputText id="codNatJuridicaOutputText"
-						  value="Cód.Nat.Jurídica"
+						  value="#{managerBean.get('label.cadastroNaturezasJuridicas.codNatJuridica')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="codNatJuridicaInputText"
            				 style="width: 125px"
@@ -68,7 +68,7 @@
            	<p:spacer/>
 
 			<h:outputText id="naturezaJuridicaOutputText"
-						  value="Natureza Jurídica"
+						  value="#{managerBean.get('label.cadastroNaturezasJuridicas.naturezaJuridica')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="naturezaJuridicaInputText"
            				 style="width: 70%"

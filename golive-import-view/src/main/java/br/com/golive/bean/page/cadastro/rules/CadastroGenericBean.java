@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,7 +25,6 @@ import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.WordUtils;
-import org.primefaces.event.ReorderEvent;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
@@ -41,7 +41,6 @@ import br.com.golive.filter.GoliveFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
-import br.com.golive.qualifier.ListColunaInjected;
 import br.com.golive.qualifier.ListGenericaInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.service.PerfilService;
@@ -81,10 +80,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	protected FilterManager<T> filterManager;
 
 	@Inject
-	@ListColunaInjected
-	protected List<ColunaPerfil> colunasPagina;
-
-	@Inject
 	@ListGenericaInjected
 	protected List<T> filtrados;
 
@@ -110,6 +105,8 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
 	private DateFilter filtroDataAlteracao;
 
+	private boolean selecionarTodos;
+
 	protected Fluxo fluxo = Fluxo.LISTAGEM;
 	protected List<T> conteudo;
 	protected T registro;
@@ -117,6 +114,8 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	protected Class<T> genericClazzInstance;
 
 	protected List<ColunaPerfil> configuracaoPerfil;
+
+	private List<ColunaPerfil> colunasPagina;
 
 	public abstract void init();
 
@@ -129,13 +128,17 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		this.conteudo = listaConteudo;
 		filtrados.addAll(conteudo);
 		inicializarClasse();
-		colunasPagina = Utils.obterListaColunaTabela(genericClazzInstance, usuario, empresaSelecionada);
 		configuracaoPerfil = colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, empresaSelecionada, genericClazzInstance.getAnnotation(Table.class).name());
 
 		if (verificarNecessidadeDeConfiguracao()) {
 
 		}
-
+		colunasPagina = new ArrayList<ColunaPerfil>();
+		for (final ColunaPerfil colunaPerfil : configuracaoPerfil) {
+			if (colunaPerfil.isVisivel()) {
+				colunasPagina.add(colunaPerfil);
+			}
+		}
 	}
 
 	public void filtrar(final String widgetFiltro) {
@@ -166,9 +169,24 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		showMenuBar(500, 600);
 	}
 
+	public void selecionarTodos() {
+		for (final ColunaPerfil coluna : configuracaoPerfil) {
+			coluna.setVisivel(selecionarTodos);
+		}
+	}
+
+	public void mudarValorColunasSelecionadas() {
+		for (final ColunaPerfil coluna : configuracaoPerfil) {
+			if (!coluna.isVisivel()) {
+				selecionarTodos = false;
+				return;
+			}
+		}
+	}
+
 	private boolean verificarNecessidadeDeConfiguracao() {
 		if (configuracaoPerfil.isEmpty()) {
-			configuracaoPerfil = ServiceUtils.criarConfiguracaoPaginaUsuario(colunasPagina, genericClazzInstance, genericClazzInstance.getSuperclass());
+			configuracaoPerfil = ServiceUtils.criarConfiguracaoPaginaUsuario(Utils.obterListaColunaTabela(genericClazzInstance, usuario, empresaSelecionada), genericClazzInstance.getSuperclass(), genericClazzInstance);
 			colunaPerfilService.salvarLista(configuracaoPerfil);
 			return false;
 		}
@@ -343,16 +361,17 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	}
 
-	public void reordenarLinha(final ReorderEvent event) {
-		for (final ColunaPerfil col : colunasPagina) {
-			System.out.println(col.getId().getColuna());
+	public void reorder() {
+		for (final ColunaPerfil perfil : configuracaoPerfil) {
+			perfil.setVisivel(false);
 		}
+	}
 
-		for (final ColunaPerfil col : configuracaoPerfil) {
-			System.out.println(col.getId().getColuna());
+	public void reordenarLinha() {
+		Long count = 1L;
+		for (final ColunaPerfil perfil : configuracaoPerfil) {
+			perfil.setOrdem(count++);
 		}
-
-		System.out.println("Fim");
 	}
 
 	public Object obterLabelColuna(final ColunaPerfil coluna, final T indice) {
@@ -383,17 +402,21 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void salvarPerfilPagina() {
 		showMenuBar(0, 0);
+		reordenarLinha();
 
-		for (final ColunaPerfil coluna : colunasPagina) {
-			if (!configuracaoPerfil.contains(coluna)) {
-				final GoliveFilter filtro = getFilter(coluna.getId().getColuna());
-				filtro.setInicio(null);
-				filtro.setFim(null);
-			}
+		for (final ColunaPerfil coluna : configuracaoPerfil) {
+			final GoliveFilter filtro = getFilter(coluna.getId().getColuna());
+			filtro.setInicio(null);
+			filtro.setFim(null);
 		}
 
-		if (configuracaoPerfil.size() > 0) {
-			filtrar(configuracaoPerfil.get(0).getId().getColuna());
+		colunaPerfilService.salvarLista(configuracaoPerfil);
+		colunasPagina.removeAll(colunasPagina);
+
+		for (final ColunaPerfil coluna : configuracaoPerfil) {
+			if ((coluna.isVisivel()) && (!colunasPagina.contains(coluna))) {
+				colunasPagina.add(coluna);
+			}
 		}
 	}
 
@@ -477,14 +500,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		return usuario.getLabels();
 	}
 
-	public List<ColunaPerfil> getColunasPagina() {
-		return colunasPagina;
-	}
-
-	public void setColunasPagina(final List<ColunaPerfil> colunasPagina) {
-		this.colunasPagina = colunasPagina;
-	}
-
 	public List<ColunaPerfil> getConfiguracaoPerfil() {
 		return configuracaoPerfil;
 	}
@@ -515,6 +530,22 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void setFiltroDataAlteracao(final DateFilter filtroDataAlteracao) {
 		this.filtroDataAlteracao = filtroDataAlteracao;
+	}
+
+	public boolean isSelecionarTodos() {
+		return selecionarTodos;
+	}
+
+	public void setSelecionarTodos(final boolean selecionarTodos) {
+		this.selecionarTodos = selecionarTodos;
+	}
+
+	public List<ColunaPerfil> getColunasPagina() {
+		return colunasPagina;
+	}
+
+	public void setColunasPagina(final List<ColunaPerfil> colunasPagina) {
+		this.colunasPagina = colunasPagina;
 	}
 
 }
