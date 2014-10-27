@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="controleVencimento"
-		 header="Controle de Vencimento"
+		 header="#{managerBean.get('label.cadastroCondicoesPagamento.controleVencimento')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -33,7 +33,7 @@
           				 border="0">
      			<h:column>
 					<h:outputText id="idControleVencimentoOutputText"
-								  value="Id"   />
+								  value="#{managerBean.get('label.cadastroCondicoesPagamento.id')}"   />
 				</h:column>
 				
 				<h:column>
@@ -44,7 +44,7 @@
 		      	
 		      	<h:column>
 		      		<h:outputText id="numeroDiasOutputText" 
-		      					  value="Nº Dias" 
+		      					  value="#{managerBean.get('label.cadastroCondicoesPagamento.nDias')}" 
 		      					  styleClass="singleLine" />
 		      	</h:column>
 		      	
@@ -58,8 +58,10 @@
 		      	
 		      	<h:column>
 		      		<p:selectOneRadio id="controleVencimentoRadio" value="XXX">
-			    		<f:selectItem itemLabel="Do Faturamento" itemValue="X" id="faturamentoItemlabel"  />
-			    		<f:selectItem itemLabel="Do Pedido" itemValue="X" id="pedidoItemLabel" />
+			    		<f:selectItem itemLabel="#{managerBean.get('label.cadastroCondicoesPagamento.doFaturamento')}" 
+			    					  itemValue="X" id="faturamentoItemlabel"  />
+			    		<f:selectItem itemLabel="#{managerBean.get('label.cadastroCondicoesPagamento.doPedido')}" 
+			    					  itemValue="X" id="pedidoItemLabel" />
 	         		</p:selectOneRadio>
 	         	</h:column>
 
@@ -88,27 +90,28 @@
 					 	 rowKey="#{list.id}"
 					 	 styleClass="tableCadastros" rows="15"
 					 	 paginator="true"
-					 	 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+					 	 emptyMessage="#{managerBean.get('label.cadastroCondicoesPagamento.')}"
 						 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-		 			<p:column headerText="Id"
+		 			<p:column headerText="#{managerBean.get('label.cadastroCondicoesPagamento.id')}"
 				    		  styleClass="percentual-10">
 				        <h:outputText value="0000000000001" styleClass="singleLine"/>
 				    </p:column>
 				    
-				    <p:column headerText="Nº Dias"
+				    <p:column headerText="#{managerBean.get('label.cadastroCondicoesPagamento.nDias')}"
 				    		  styleClass="percentual-10">
 				        <h:outputText value="28"  styleClass="singleLine"/>
 				    </p:column>
 				 
-				    <p:column headerText="Do Faturamento"
+				    <p:column headerText="#{managerBean.get('label.cadastroCondicoesPagamento.doFaturamento')}"
 				    		  styleClass="percentual-10">
 			    		<p:selectOneRadio id="faturamentoDtRadio" value="XXX">
 			    			<f:selectItem itemLabel="" itemValue="X" />
 	         			</p:selectOneRadio>
 				    </p:column>
 				 
-				    <p:column headerText="Do Pedido" styleClass="percentual-10">
+				    <p:column headerText="#{managerBean.get('label.cadastroCondicoesPagamento.doPedido')}" 
+				    		  styleClass="percentual-10">
 			    		<p:selectOneRadio id="PedidoDtRadio" value="XXX">
 			    			<f:selectItem itemLabel="" itemValue="X" />
 	         			</p:selectOneRadio>

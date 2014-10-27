@@ -4,9 +4,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroCategoriasNaturezasJuridicas.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -32,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroCategoriasNaturezasJuridicas.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="codigoCategoriaOutputText" 
-      					  value="Cód.Categoria" 
+      					  value="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.codCategoria')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="codigoCategoriaInputText"
       					 required="true"
@@ -53,14 +52,14 @@
       					 value="1" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroCategoriasNaturezasJuridicas.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 	 					 
 			<h:outputText id="descricaoCategoriaOutputText"
-						  value="Descrição Categoria"
+						  value="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.descricaoCategoria')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="descricaoCategoriaInputText"
            				 style="width: 70%"

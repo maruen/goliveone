@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{managerBean.get('label.cadastroFormasPagamento.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroUsuarios.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -23,42 +23,51 @@
           	<h:panelGrid columns="4"
           				 cellpadding="3"  
           				 cellspacing="3"
-          				 columnClasses="percentual-10,
+          				 columnClasses="percentual-5,
           				 				percentual-50,
           				 				percentual-5,
           				 				percentual-5"
            				 width="100%"
           				 border="0">
      
-			<h:outputText id="idDadosGeraisOutputText"
-						  value="#{managerBean.get('label.cadastroFormasPagamento.id')}"   />
-           	<h:inputText id="idDadosGeraisInputText"
+			<h:outputText id="idOutputText"
+						  value="#{managerBean.get('label.cadastroUsuarios.id')}"   />
+           	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{managerBean.get('label.cadastroFormasPagamento.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroUsuarios.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
-      		<h:outputText id="formaPagamentoOutputText" 
-      					  value="#{managerBean.get('label.cadastroFormasPagamento.formaPagamento')}" 
+      		<h:outputText id="loginOutputText" 
+      					  value="#{managerBean.get('label.cadastroUsuarios.login')}" 
       					  styleClass="singleLine" />
-      		<p:inputText id="formaPagamentoInputText"
+      		<p:inputText id="loginInputText"
       					 required="true"
       					 disabled="false"
       					 style="width: 60%"
-      					 value="Dinheiro" />		
-      					 
+      					 value="roberto.tradicao@gmail.com" />		
+        		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{managerBean.get('label.cadastroFormasPagamento.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroUsuarios.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
-	 					 disabled="true" />  
-      					 
-             		
-         </h:panelGrid>
+	 					 disabled="true" />      					  
+
+      		<h:outputText id="senhaOutputText" 
+      					  value="#{managerBean.get('label.cadastroUsuarios.senha')}" 
+      					  styleClass="singleLine" />
+      		<p:password id="senhaInputText" 
+      					 required="true"
+      					 disabled="false"
+      					 style="width: 60%"
+      					 value="123456789" />		
+        </h:panelGrid>
+
 	</p:panel>
+	
 </ui:composition>

@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroSubClasse.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroSubClasse.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroSubClasse.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroSubClasse.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroSubClasse.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="codigoSubClasseOutputText" 
-      					  value="Cód.SubClasse (CNAE)" 
+      					  value="#{managerBean.get('label.cadastroSubClasse.codSubClasseCnae')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="codigoSubClasseInputText"
       					 required="true"
@@ -52,14 +52,14 @@
       					 value="01.11-3/01" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroSubClasse.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroSubClasse.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 	 					 
 			<h:outputText id="denominacaoSubClasseOutputText"
-						  value="Denominação SubClasse"
+						  value="#{managerBean.get('label.cadastroSubClasse.denominacaoSubClasse')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="denominacaoSubClasseInputText"
            				 style="width: 84%"
