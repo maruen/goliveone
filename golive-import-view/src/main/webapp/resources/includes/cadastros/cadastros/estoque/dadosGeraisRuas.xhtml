@@ -73,7 +73,7 @@
 		      	</h:column>
 		      	
 		      	<h:column>
-		      		<p:inputText id="idPavimentoInputText"
+		      		<h:inputText id="idPavimentoInputText"
 		      					 required="true"
 		      					 disabled="true"
 		      					 style="width: 125px"
@@ -86,8 +86,8 @@
 				</h:column>
 				
 				<h:column>
-		           	<p:inputText id="pavimentoInputText"
-		           				 style="width: 80%;"
+		           	<h:inputText id="pavimentoInputText"
+		           				 style="width: 81%;"
 		           				 disabled="true"
 		           				 value="Térreo"/>
 
@@ -122,7 +122,7 @@
       			
      			<p:dataTable id="pavimentoDatatableId"
         	  	 	     var="pavimentoDatatableVar"
-        			 	 value="#{ruasBean.conteudo}" >
+        			 	 value="#{bean.conteudo}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroRuas.id')}"
 				    		  styleClass="percentual-15 singleLine">

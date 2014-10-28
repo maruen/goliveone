@@ -4,9 +4,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroDepartamento.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroDepartamento.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,16 +30,16 @@
            				 width="100%"
           				 border="0">
      
-			<h:outputText id="idOutputText"  value="Id"   />
+			<h:outputText id="idOutputText"  value="#{managerBean.get('label.cadastroDepartamento.id')}"   />
            	<h:inputText id="idInputText" style="width: 125px;" disabled="true" value="#{pojo.id}"/>
       		
-      		<h:outputText id="dataInclusaoOutputText"  value="#{userBean.properties.getField('label.cadastroDepartamento.inclusao')}" />
+      		<h:outputText id="dataInclusaoOutputText"  value="#{managerBean.get('label.cadastroDepartamento.inclusao')}" />
 	 		
 	 		<h:inputText value="#{pojo.dataInclusao.time}" id="dataInclusaoInputText" disabled="true" >
 	 			<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
 	 		</h:inputText>
 	 		
-      		<h:outputText id="departamentoNomeOutputText" value="Departamento Produto" styleClass="singleLine" />
+      		<h:outputText id="departamentoNomeOutputText" value="#{managerBean.get('label.cadastroDepartamento.departamentoProduto')}" styleClass="singleLine" />
       		<p:inputText id="departamentoNomeInputText"
       					 required="true"
       					 disabled="false"
@@ -50,7 +49,7 @@
        		
        		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroDepartamento.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroDepartamento.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="#{pojo.dataAlteracao.time}" id="ultimaAlteracaoInputText" disabled="true" >
 	 			<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>

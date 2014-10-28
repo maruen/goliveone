@@ -66,14 +66,14 @@
 	         	</h:column>
 
 		      	<h:column>
-					<h:commandLink actionListener="#{condicoesPagamentoBean.salvarControleVencimento()}" id="salvarDtControleVencimento"
+					<h:commandLink actionListener="#{bean.salvarControleVencimento()}" id="salvarDtControleVencimento"
 						styleClass="linkButton">
 						<h:graphicImage
 							value="/resources/images/stylistica-icons-set/24x24/plus.png"
 							styleClass="image" />
 					</h:commandLink>
 
-				<h:commandLink actionListener="#{condicoesPagamentoBean.excluirControleVencimento()}" id="excluirDtControleVencimento"
+				<h:commandLink actionListener="#{bean.excluirControleVencimento()}" id="excluirDtControleVencimento"
 						styleClass="linkButton">
 						<h:graphicImage
 							value="/resources/images/stylistica-icons-set/24x24/delete.png"
@@ -86,7 +86,7 @@
 	      	
 		<p:dataTable id="controleVencimentoDataTable"
 					 	 var="row"
-					 	 value="#{condicoesPagamentoBean.controleVencimentoDataTable}"
+					 	 value="#{bean.conteudo}"
 					 	 rowKey="#{list.id}"
 					 	 styleClass="tableCadastros" rows="15"
 					 	 paginator="true"

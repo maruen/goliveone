@@ -7,26 +7,86 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
+	<ui:param name="bean" value="#{transportadorasBean}" />
+
 	<ui:define name="css">
-		<script type="text/javascript">
-		
-		window.onload = function() {
-			alert('Pagina nao foi implementada');
-            window.close();
-		}
-
-	</script>
-
-	</ui:define>
-
-	<ui:define name="bean">
+		<h:outputStylesheet name="css/cadastros/style_transportadoras.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="conteudoTable"
+			var="row" 
+			value="#{transportadorasBean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{transportadorasBean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="#{managerBean.get('label.cadastroTransportadoras.msnNaoHaRegistros')}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.id')}"
+				styleClass="percentual-10">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroTransportadoras.cnpj')}"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="09.363.143/0001-00" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.inscEstadual')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="111.222.333-11">
+				</h:outputText>
+			</p:column>
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroTransportadoras.nomeFantasia')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Ligeirinho" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.razaoSocial')}"
+				styleClass="percentual-30 singleLine">
+				<h:outputText value="Transportadoras de Entregas Rápidas Ligeirinho Ltda." />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroTransportadoras.tel1')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="55 (11) 2235-9966" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroTransportadoras.tel2')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="55 (11) 2235-7676" />
+			</p:column>
+		</p:dataTable>
+
 	</ui:define>
 
 	<ui:define name="edicao">
+
+		<ui:include src="/resources/includes/cadastros/cadastros/dadosGeraisTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{transportadorasBean.registro}" />
+		</ui:include>
+		<!-- <ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+			<ui:param name="pojo" value="#{transportadorasBean.registro}" />
+		</ui:include>-->
+
 	</ui:define>
-
-
 </ui:composition>

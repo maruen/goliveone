@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{regimeApuracaoBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{regimeApuracaoBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -52,10 +52,10 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/empresas/dadosGeraisRegimeApuracao.xhtml">
-			<ui:param name="pojo" value="#{regimeApuracaoBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{regimeApuracaoBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include> 
 
 	</ui:define>

@@ -1,0 +1,229 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="identificacaoCliente"
+		header="#{managerBean.get('label.cadastroUsuarios.identificacaoCliente')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="identificacaoCliente"
+		styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-3,percentual-50" width="100%" border="0">
+
+			<h:column>
+				<h:outputText id="idClienteOutputText"
+					value="#{managerBean.get('label.cadastroUsuarios.id')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="idClienteInputText" style="width: 125px;"
+					disabled="true" value="0000001" />
+
+				<p:spacer width="5" height="1" />
+
+				<p:commandLink onclick="PF('dlgCliente').show();" immediate="true">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:column>
+
+			<h:column>
+				<h:outputText id="nomeFantasiaOutputText"
+					value="#{managerBean.get('label.cadastroUsuarios.nomeFantasia')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText value="Persianas New York" id="nomeFantasiaInputText"
+					disabled="true" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="razaoSocialOutputText"
+					value="#{managerBean.get('label.cadastroUsuarios.razaoSocial')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="razaoSocialInputText" required="true"
+					disabled="true" style="width: 50%"
+					value="Indústria e Comércio de Persianas New York Ltda." />
+			</h:column>
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-50,percentual-10" width="100%" border="0">
+		
+			<h:column>
+				<p:fieldset legend="#{managerBean.get('label.cadastroUsuarios.contato')}"
+					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; width: 75%">
+	
+					<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+						columnClasses="percentual-3,percentual-50" width="100%" border="0">
+	
+						<h:column>
+							<h:outputText id="contatoOutputText"
+								value="#{managerBean.get('label.cadastroUsuarios.contato')}"
+								styleClass="singleLine" />
+						</h:column>
+	
+						<h:column>
+							<p:autoComplete id="contatoDropDown" 
+								dropdown="true" 
+								completeMethod="#{usuariosBean.completeText}" size="80"/>
+						</h:column>
+	
+						<h:column>
+							<h:outputText id="departamentoOutputText"
+								value="#{managerBean.get('label.cadastroUsuarios.departamento')}"
+								styleClass="singleLine" />
+						</h:column>
+	
+						<h:column>
+							<h:inputText id="departamentoClienteIdInputText" required="true"
+								disabled="true" style="width: 125px" value="00000001" />
+	
+							<p:spacer width="3" height="1" />
+	
+							<h:inputText id="departamentoInputText" required="true"
+								disabled="true" style="width: 73%" value="Diretoria" />
+						</h:column>
+	
+						<h:column>
+							<h:outputText id="cargoOutputText"
+								value="#{managerBean.get('label.cadastroUsuarios.cargo')}"
+								styleClass="singleLine" />	
+						</h:column>
+						
+						<h:column>
+							<h:inputText id="cargoClienteIdInputText" required="true" disabled="true"
+								style="width: 125px" value="00000001" />
+									
+							<p:spacer width="3" height="1" />
+							
+							<h:inputText id="cargoInputText" required="true" disabled="true"
+								style="width: 73%" value="Diretor" />
+						</h:column>
+					</h:panelGrid>
+				</p:fieldset>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink actionListener="#{usuariosBean.excluirContato()}"
+					id="excluirContato" styleClass="linkButton">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/delete.png"
+						styleClass="image floatRight" />
+				</h:commandLink>
+
+				<h:commandLink actionListener="#{usuariosBean.salvarContato()}"
+					id="salvarContato" styleClass="linkButton">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
+						styleClass="image floatRight" />
+				</h:commandLink>
+			</h:column>
+		</h:panelGrid>
+
+		<p:dataTable id="contatoDataTable" var="row"
+			value="#{usuariosBean.conteudo}" rowKey="#{list.id}"
+			styleClass="tableCadastros" rows="15" paginator="true"
+			emptyMessage="#{managerBean.get('label.cadastroUsuarios.msnNaoHaRegistros')}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
+				styleClass="percentual-10">
+				<h:outputText value="0000000000001" styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.nomeFantasia')}"
+				styleClass="percentual-10">
+				<h:outputText value="Persianas New York" styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.razaoSocial')}"
+				styleClass="percentual-10">
+				<h:outputText
+					value="Indústria e Comércio de Persianas New York Ltda"
+					styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
+				styleClass="percentual-10">
+				<h:outputText value="0000001" styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.contato')}"
+				styleClass="percentual-10">
+				<h:outputText value="Roberto de Andrade da Costa"
+					styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
+				styleClass="percentual-10">
+				<h:outputText value="0000001" styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.departamento')}"
+				styleClass="percentual-10">
+				<h:outputText value="Diretoria" styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
+				styleClass="percentual-10">
+				<h:outputText value="0000001" styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.cargo')}"
+				styleClass="percentual-10">
+				<h:outputText value="Diretor" styleClass="singleLine" />
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+
+	<p:dialog header="#{managerBean.get('label.cadastroUsuarios.pesquisaClientes')}"
+		widgetVar="dlgCliente" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="70%">
+
+		<p:dataTable id="clientesDatatableId"
+			var="clientesDatatableVar" value="#{usuariosBean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.nomeFantasia')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Persianas New York" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.razaoSocial')}"
+				styleClass="percentual-30 singleLine">
+				<h:outputText value="Indústria e Comércio de Persianas New York Ltda" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+</ui:composition>
