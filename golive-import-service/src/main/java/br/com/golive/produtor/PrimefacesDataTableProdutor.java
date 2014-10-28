@@ -18,7 +18,9 @@ public class PrimefacesDataTableProdutor {
 		if (inject.getMember().getDeclaringClass().isAnnotationPresent(PropriedadesTemplate.class)) {
 			final String form = inject.getMember().getDeclaringClass().getAnnotation(PropriedadesTemplate.class).form();
 			final String tableId = inject.getMember().getDeclaringClass().getAnnotation(PropriedadesTemplate.class).idTabela();
-			return (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent(form).findComponent(tableId);
+			final String component = inject.getMember().getDeclaringClass().getAnnotation(PropriedadesTemplate.class).component();
+
+			return (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent(form).findComponent(component).findComponent(tableId);
 		} else {
 			throw new GoLiveException("Erro ao injetar DataTable, o ManagedBean nao possui a anotação @PropriedadesTemplate");
 		}

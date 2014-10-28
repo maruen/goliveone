@@ -20,12 +20,10 @@ import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.WordUtils;
-import org.primefaces.component.datatable.DataTable;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
-import br.com.golive.annotation.PrimeInfoList;
 import br.com.golive.annotation.PropriedadesTemplate;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
@@ -36,7 +34,6 @@ import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
-import br.com.golive.qualifier.PrimefacesDataTableInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
@@ -61,7 +58,7 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
 @Deprecated
 @ManagedBean
 @ViewScoped
-@PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable")
+@PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable", component = "modelTable")
 public abstract class CadastroBeanRules<T extends Serializable> extends GenericBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -85,11 +82,6 @@ public abstract class CadastroBeanRules<T extends Serializable> extends GenericB
 	protected Class<T> genericClazzInstance;
 
 	protected List<ColunaPerfil> colunas;
-
-	@Inject
-	@PrimeInfoList(list = "cadastroAreaAtuacao")
-	@PrimefacesDataTableInjected
-	private DataTable dataTable;
 
 	public abstract void init();
 

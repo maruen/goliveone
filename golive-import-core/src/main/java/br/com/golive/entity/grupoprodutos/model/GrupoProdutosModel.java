@@ -1,59 +1,76 @@
 package br.com.golive.entity.grupoprodutos.model;
 
-import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.golive.annotation.Jasper;
+import br.com.golive.annotation.Label;
 import br.com.golive.entity.Model;
 
-@Jasper(titulo = "GrupoProdutos", 
-		nomeDoArquivoGerado = "file.name.model", 
-		nomeArquivoJasper = "GrupoProdutos")
-public class GrupoProdutosModel extends Model{
+@Entity
+@Table(name = "tbgrupoproduto")
+@Label(name = "label.gruposDeProdutos")
+@Jasper(titulo = "GrupoProdutos", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "GrupoProdutos")
+public class GrupoProdutosModel extends Model {
 
-	private static final long serialVersionUID = 1L;
+	@Transient
+	private static final long serialVersionUID = 3207826601684568970L;
 
-	private String departamento;
-	private String idGrupoProdutos;
-	private String grupoProdutos;
+	@Column(name = "GrupoProduto")
+	private String grupoDeProduto;
 
 	public GrupoProdutosModel() {
-		this.dataInclusao = Calendar.getInstance();
-		this.dataAlteracao = Calendar.getInstance();
-	}
-
-	public GrupoProdutosModel(Long id, Calendar dataInclusao, Calendar dataAlteracao, 
-							  String departamento, String idGrupoProdutos, 
-							  String grupoProdutos) {
 		super();
-		this.id = id;
-		this.dataInclusao = dataInclusao;
-		this.dataAlteracao = dataAlteracao;
-		this.departamento = departamento;
-		this.idGrupoProdutos = idGrupoProdutos;
-		this.grupoProdutos = grupoProdutos;
-	}
-	
-	public String getDepartamento() {
-		return departamento;
 	}
 
-	public void setDepartamento(String departamento) {
-		this.departamento = departamento;
+	public GrupoProdutosModel(final String grupoDeProduto) {
+		super();
+		this.grupoDeProduto = grupoDeProduto;
 	}
 
-	public String getIdGrupoProdutos() {
-		return idGrupoProdutos;
+	public String getGrupoDeProduto() {
+		return grupoDeProduto;
 	}
 
-	public void setIdGrupoProdutos(String idGrupoProdutos) {
-		this.idGrupoProdutos = idGrupoProdutos;
+	public void setGrupoDeProduto(final String grupoDeProduto) {
+		this.grupoDeProduto = grupoDeProduto;
 	}
 
-	public String getGrupoProdutos() {
-		return grupoProdutos;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = (prime * result) + ((grupoDeProduto == null) ? 0 : grupoDeProduto.hashCode());
+		return result;
 	}
 
-	public void setGrupoProdutos(String grupoProdutos) {
-		this.grupoProdutos = grupoProdutos;
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!super.equals(obj)) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final GrupoProdutosModel other = (GrupoProdutosModel) obj;
+		if (grupoDeProduto == null) {
+			if (other.grupoDeProduto != null) {
+				return false;
+			}
+		} else if (!grupoDeProduto.equals(other.grupoDeProduto)) {
+			return false;
+		}
+		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "GrupoProdutosModel [grupoDeProduto=" + grupoDeProduto + "]";
+	}
+
 }

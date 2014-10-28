@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.empresas;
+package br.com.golive.bean.page.cadastro.cadastros;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.fornecedores.model.FornecedoresModel;
+import br.com.golive.entity.transportadoras.model.TransportadorasModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastroFornecedores")
+@Label(name = "label.cadastroTransportadoras")
 @ManagedBean
 @ViewScoped
-public class FornecedoresBean extends CadastroBeanRules<FornecedoresModel> {
+public class TransportadorasBean extends CadastroBeanRules<TransportadorasModel> {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -39,11 +39,11 @@ public class FornecedoresBean extends CadastroBeanRules<FornecedoresModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 	
-	private List<FornecedoresModel> criarLista() {
-		final List<FornecedoresModel> lista = new ArrayList<FornecedoresModel>();
+	private List<TransportadorasModel> criarLista() {
+		final List<TransportadorasModel> lista = new ArrayList<TransportadorasModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new FornecedoresModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "09.363.143/0001-00", "111.222.333-11", "Alpex Alumínio", "Ind.Com.de Alumínios Alpex Ltda."));
+			lista.add(new TransportadorasModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "09.363.143/0001-00", "111.222.333-11", "Ligeirinho", "Transportadora de Entregas Rápidas Ligeirinho Ltda.", "55 (11) 2235-9966", "55 (11) 2235-7676"));
 		}
 		
 		return lista;

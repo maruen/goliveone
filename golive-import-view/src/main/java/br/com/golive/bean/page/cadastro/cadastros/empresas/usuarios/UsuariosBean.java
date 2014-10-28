@@ -69,4 +69,22 @@ public class UsuariosBean extends CadastroBeanRules<UsuariosModel> {
 
 		return list;
 	}
+	
+	public void salvarContato(){
+		
+	}
+	
+	public void excluirContato(){
+		
+	}
+	
+	public List<String> completeText(String query) {
+        List<String> results = new ArrayList<String>();
+        
+        for(int i = 0; i < 10; i++) {
+            results.add(query + i + " - Roberto de Andrade da Costa");
+        }
+         
+        return results;
+    }
 }

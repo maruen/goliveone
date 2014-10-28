@@ -17,4 +17,6 @@ public @interface Filter {
 
 	public String label();
 
+	public String path() default "";
+
 }
