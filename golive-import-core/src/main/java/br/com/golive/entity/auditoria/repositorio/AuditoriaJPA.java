@@ -8,7 +8,6 @@ import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
 
-import br.com.golive.annotation.QueryAuditoria;
 import br.com.golive.entity.Model;
 import br.com.golive.entity.auditoria.model.AuditoriaItemModel;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
@@ -17,23 +16,45 @@ import br.com.golive.jpa.JpaGoLive;
 import br.com.golive.utils.Utils;
 
 public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
-
+	
 	@Transactional
-	public void saveJoins(final AuditoriaModel auditoria,
-						  final List<AuditoriaItemModel> auditoriaItemList,
-						  final Usuario usuario,
-						  final Model entidade) {
+	public void saveJoins(AuditoriaModel auditoria,
+						  List<AuditoriaItemModel> auditoriaItemList,
+						  Usuario usuario,
+						  Model model) {
 
-		final Query query = createNativeQuery(entidade.getClass().getAnnotation(QueryAuditoria.class).query());
+		String tableName = ((Table) model.getClass().getAnnotation(Table.class)).name();
+		
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO tbAuditoria_").append(tableName).append(" VALUES (?,?,?,?)");
+		
+		Query query = createNativeQuery(sql.toString());
 
-		for (final AuditoriaItemModel item : auditoriaItemList) {
+		for (AuditoriaItemModel item : auditoriaItemList) {
 			query.setParameter(1, auditoria.getId());
 			query.setParameter(2, item.getId());
 			query.setParameter(3, usuario.getId());
-			query.setParameter(4, entidade.getId());
+			query.setParameter(4, model.getId());
 			query.executeUpdate();
 		}
 	}
+	
+	@Transactional
+	public void deleteJoins(Model model) {
+
+		getEntityManager().joinTransaction();
+		
+		String tableName = ((Table) model.getClass().getAnnotation(Table.class)).name();
+		StringBuffer sql = new StringBuffer();
+		sql.append("DELETE FROM tbAuditoria_").append(tableName).append(" ");
+		sql.append("WHERE ").append(tableName).append("_Id=?");
+		
+		Query query = createNativeQuery(sql.toString());
+		query.setParameter(1, model.getId());
+		query.executeUpdate();
+		
+	}
+	
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List getAuditoriaLogs(Long id, Class clazz) {
