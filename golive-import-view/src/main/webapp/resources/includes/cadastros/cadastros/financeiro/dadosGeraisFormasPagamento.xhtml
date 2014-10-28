@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroFormasPagamento.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroFormasPagamento.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idDadosGeraisOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroFormasPagamento.id')}"   />
            	<h:inputText id="idDadosGeraisInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroFormasPagamento.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroFormasPagamento.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="formaPagamentoOutputText" 
-      					  value="Forma de Pagamento" 
+      					  value="#{managerBean.get('label.cadastroFormasPagamento.formaPagamento')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="formaPagamentoInputText"
       					 required="true"
@@ -52,7 +52,7 @@
       					 value="Dinheiro" />		
       					 
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroTelefonicoPaises.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroFormasPagamento.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 

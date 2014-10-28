@@ -33,11 +33,11 @@
 	</persistence-unit>
 
 	<!-- acao -->
-	<persistence-unit name="golive-one-acao-PU"
-		transaction-type="JTA">
+	<persistence-unit name="golive-one-acao-PU"	transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<jta-data-source>java:jboss/goliveacaoDS</jta-data-source>
+		<class>br.com.golive.entity.usuario.model.Usuario</class>
 		<class>br.com.golive.entity.departamento.model.DepartamentoModel</class>
 		<class>br.com.golive.entity.auditoria.model.AuditoriaItemModel</class>
 		<class>br.com.golive.entity.auditoria.model.AuditoriaModel</class>
@@ -58,10 +58,10 @@
 	</persistence-unit>
 
 	<!-- tradicao -->
-	<persistence-unit name="golive-one-tradicao-PU"
-		transaction-type="JTA">
+	<persistence-unit name="golive-one-tradicao-PU"	transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:jboss/golivetradicaoDS</jta-data-source>
+		<class>br.com.golive.entity.usuario.model.Usuario</class>
 
 		<class>br.com.golive.entity.departamento.model.DepartamentoModel</class>
 		<class>br.com.golive.entity.auditoria.model.AuditoriaItemModel</class>

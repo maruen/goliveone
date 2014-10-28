@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{cnaesImpeditivosSimplesNacionalBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{cnaesImpeditivosSimplesNacionalBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -65,11 +65,11 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/dadosGeraisCnaesImpeditivosSimplesNacional.xhtml">
-			<ui:param name="pojo" value="#{cnaesImpeditivosSimplesNacionalBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<!-- <ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{cnaesImpeditivosSimplesNacionalBean.registro}" />
-		</ui:include>-->
+		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
 
 	</ui:define>
 </ui:composition>

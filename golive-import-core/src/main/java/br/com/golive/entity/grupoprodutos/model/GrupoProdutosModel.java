@@ -7,13 +7,11 @@ import javax.persistence.Transient;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
-import br.com.golive.annotation.QueryAuditoria;
 import br.com.golive.entity.Model;
 
 @Entity
 @Table(name = "tbgrupoproduto")
 @Label(name = "label.gruposDeProdutos")
-@QueryAuditoria(query = "INSERT INTO tbauditoria_tbgrupoproduto VALUES (?,?,?,?)")
 @Jasper(titulo = "GrupoProdutos", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "GrupoProdutos")
 public class GrupoProdutosModel extends Model {
 

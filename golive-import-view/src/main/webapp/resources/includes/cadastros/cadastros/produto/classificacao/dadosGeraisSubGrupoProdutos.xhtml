@@ -4,9 +4,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroSubGrupoProdutos.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroSubGrupoProdutos.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -34,11 +33,11 @@
            				 width="100%"
           				 border="0">
      
-			<h:outputText id="idOutputText" value="Id"   />
+			<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroSubGrupoProdutos.id')}"   />
            	<p:inputText id="idInputText"
            				 style="width: 125px;"/>
 
-      		<h:outputText id="descricaoNomeOutputText" value="Descrição"/>
+      		<h:outputText id="descricaoNomeOutputText" value="#{managerBean.get('label.cadastroSubGrupoProdutos.descricao')}"/>
       		<p:inputText id="descricaoNomeInputText"
       					 required="true"
       					 disabled="false"
@@ -48,17 +47,17 @@
       		<p:spacer/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroSubGrupoProdutos.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroSubGrupoProdutos.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      	
 	 		
 	 		<h:outputText id="idDepartamentoOutputText"
-						  value="Id"   />
-           	<p:inputText id="idDepartamentoInputText"
+						  value="#{managerBean.get('label.cadastroSubGrupoProdutos.id')}"   />
+           	<h:inputText id="idDepartamentoInputText"
            				 style="width: 125px;"
            				 value="0000000000001" disabled="true"/>
 
-      		<h:outputText id="departamentoNomeOutputText" value="Departamento"/>
-      		<p:inputText id="departamentoNomeInputText"
+      		<h:outputText id="departamentoNomeOutputText" value="#{managerBean.get('label.cadastroSubGrupoProdutos.departamento')}"/>
+      		<h:inputText id="departamentoNomeInputText"
       					 required="true"
       					 disabled="true"
       					 style="width: 98%"
@@ -69,18 +68,18 @@
 			</p:commandLink>
       			
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroSubGrupoProdutos.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroSubGrupoProdutos.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      	
 	 		
 	 		<h:outputText id="idGrupoProdutosOutputText"
-						  value="Id"   />
-           	<p:inputText id="idGrupoProdutosInputText"
+						  value="#{managerBean.get('label.cadastroSubGrupoProdutos.id')}"   />
+           	<h:inputText id="idGrupoProdutosInputText"
            				 style="width: 125px;"
            				 value="0000000000001" disabled="true"/>
 
-      		<h:outputText id="grupoProdutosNomeOutputText" value="Grupo de Produtos" styleClass="singleLine"/>
-      		<p:inputText id="grupoProdutosNomeInputText"
+      		<h:outputText id="grupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroSubGrupoProdutos.grupoProdutos')}" styleClass="singleLine"/>
+      		<h:inputText id="grupoProdutosNomeInputText"
       					 required="true"
       					 disabled="true"
       					 style="width: 98%"
@@ -94,7 +93,7 @@
 
 	</p:panel>
 	
-	<p:dialog header="Pesquisa de Departamento"
+	<p:dialog header="#{managerBean.get('label.cadastroSubGrupoProdutos.pesquisaDepartamento')}"
 			  widgetVar="dlgDepartamento"
 			  modal="false"
 			  resizable="false"
@@ -104,21 +103,21 @@
       			
      			<p:dataTable id="departamentoDatatableId"
         	  	 	     var="departamentoDatatableVar"
-        			 	 value="#{subGrupoProdutosBean.conteudo}" >
+        			 	 value="#{bean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProdutos.id')}"
 				    		  styleClass="percentual-5 singleLine">
 				     		<h:outputText value="00000000000001" styleClass="floatRight" />
 				    </p:column>
 				    
-				    <p:column headerText="Departamento"
+				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProdutos.departamento')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio" />
 				    </p:column>
 		</p:dataTable>
 	</p:dialog>
 	
-	<p:dialog header="Pesquisa de Grupo de Produtos"
+	<p:dialog header="#{managerBean.get('label.cadastroSubGrupoProdutos.pesquisaGrupoProdutos')}"
 			  widgetVar="dlgGrupoProdutos"
 			  modal="false"
 			  resizable="false"
@@ -128,24 +127,24 @@
       			
      			<p:dataTable id="grupoProdutosDatatableId"
         	  	 	     var="grupoProdutosDatatableVar"
-        			 	 value="#{subGrupoProdutosBean.conteudo}" >
+        			 	 value="#{bean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProdutos.id')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="00000000000001" styleClass="floatRight" />
 				    </p:column>
 				    
-				    <p:column headerText="Departamento"
+				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProdutos.departamento')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Acessórios Partes e Peças para Persianas Horizontais em Alumínio" />
 				    </p:column>
 				    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProdutos.id')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="00000000000001" styleClass="floatRight" />
 				    </p:column>
 				    
-				    <p:column headerText="Grupo de Produtos"
+				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProdutos.grupoProdutos')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Lâminas em Alumínio 25mm X 0.18mm" />
 				    </p:column>

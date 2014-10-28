@@ -34,7 +34,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * EntityManager da JPA
 	 */
 	@Inject
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 
 	/**
 	 * Classe de entidade extendida
@@ -164,8 +164,13 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 *            entidade
 	 */
 	public void delete(final T entity) {
-		entityManager.merge(entity);
-		entityManager.remove(entity);
+		try {
+			entityManager.joinTransaction();
+			entityManager.merge(entity);
+			entityManager.remove(entity);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -182,9 +187,9 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 
 	public void save(final T entity) {
 		try {
-			entityManager.persist(entity);
 			entityManager.joinTransaction();
-		} catch (final Exception e) {
+			entityManager.persist(entity);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -199,13 +204,9 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @param List
 	 *            <entity> entidade
 	 */
-	public void saveAll(final List<T> entityList) {
-		try {
-			for (final T entity : entityList) {
-				save(entity);
-			}
-		} catch (final Exception e) {
-			e.printStackTrace();
+	public void saveAll(List<T> entityList) {
+		for (T entity : entityList) {
+			save(entity);
 		}
 	}
 
@@ -222,8 +223,21 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 */
 
 	protected T merge(final T entity) {
+		entityManager.joinTransaction();
 		return entityManager.merge(entity);
 	}
+	
+	
+	
+	/**
+	 * @author maruen
+	 * 
+	 * @param entity
+	 */
+	public void  detach(T entity) {
+		entityManager.detach(entity);
+	}
+	
 
 	/**
 	 * @author guilherme.duarte
@@ -304,7 +318,6 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	public void update(final T classe) {
 		if (verifyAnnotation(classe)) {
 			merge(classe);
-			save(classe);
 		}
 	}
 
@@ -319,5 +332,8 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	private boolean verifyAnnotation(final T classe) {
 		return classe.getClass().isAnnotationPresent(Entity.class);
 	}
+	
+	
+	
 
 }

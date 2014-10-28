@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{subClasseBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{subClasseBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroSubClasse.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,95 +34,95 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroSubClasse.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.SubClasse"
+				headerText="#{managerBean.get('label.cadastroSubClasse.codSubClasse')}"
 				styleClass="percentual-10 singleLine">				
 				<h:outputText value="0111-3/01" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroSubClasse.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Cultivo de Arroz">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroSubClasse.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Seção"
+				headerText="#{managerBean.get('label.cadastroSubClasse.codSecao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="A" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroSubClasse.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroSubClasse.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 			
 			<p:column 
-				headerText="Cód.Divisão"
+				headerText="#{managerBean.get('label.cadastroSubClasse.codDivisao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="01" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroSubClasse.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Agricultura, Pecuária e Serviços Relacionados">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroSubClasse.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Grupo"
+				headerText="#{managerBean.get('label.cadastroSubClasse.codGrupo')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="01.1" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroSubClasse.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Produção de lavouras temporárias">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroSubClasse.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Classe"
+				headerText="#{managerBean.get('label.cadastroSubClasse.codClasse')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="01.11-3" />
 			</p:column>
 
 			<p:column
-				headerText="Denominação"
+				headerText="#{managerBean.get('label.cadastroSubClasse.denominacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Cultivo de cereais">
 				</h:outputText>
@@ -135,22 +135,22 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/dadosGeraisSubClasse.xhtml">
-			<ui:param name="pojo" value="#{subClasseBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/secaoSubClasse.xhtml" >
-			<ui:param name="pojo" value="#{subClasseBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/divisaoSubClasse.xhtml" >
-			<ui:param name="pojo" value="#{subClasseBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/grupoSubClasse.xhtml" >
-			<ui:param name="pojo" value="#{subClasseBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/empresas/cnae/classeSubClasse.xhtml" >
-			<ui:param name="pojo" value="#{subClasseBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{subClasseBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>

@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{naturezasJuridicasBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{naturezasJuridicasBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroNaturezasJuridicas.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,49 +34,49 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroNaturezasJuridicas.id')}"
 				styleClass="percentual-10 text-align-right">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Nat.Jur."
+				headerText="#{managerBean.get('label.cadastroNaturezasJuridicas.codNatJur')}"
 				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="101-5" />
 			</p:column>
 			
 			<p:column 
-				headerText="Natureza Jurídica"
+				headerText="#{managerBean.get('label.cadastroNaturezasJuridicas.naturezaJuridica')}"
 				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Órgão Público do Poder Executivo Federal" />
 			</p:column>
 
 			<p:column 
-				headerText="Representante"
+				headerText="#{managerBean.get('label.cadastroNaturezasJuridicas.representanteEntidade')}"
 				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Administrador" />
 			</p:column>
 			
 			<p:column 
-				headerText="Qualificação"
+				headerText="#{managerBean.get('label.cadastroNaturezasJuridicas.qualificacao')}"
 				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="05. 10 ou 16" />
 			</p:column>
 
 			<p:column 
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroNaturezasJuridicas.id')}"
 				styleClass="percentual-10 singleLine text-align-right">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Cat.Nat.Jur."
+				headerText="#{managerBean.get('label.cadastroNaturezasJuridicas.codCatNatJur')}"
 				styleClass="percentual-10 singleLine text-align-right">
 				<h:outputText value="1" />
 			</p:column>
 			
 			<p:column 
-				headerText="Categoria da Natureza Jurídica"
+				headerText="#{managerBean.get('label.cadastroNaturezasJuridicas.categoriaNaturezaJuridica')}"
 				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Administração Pública" />
 			</p:column>
@@ -88,11 +88,11 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/empresas/dadosGeraisNaturezasJuridicas.xhtml">
-			<ui:param name="pojo" value="#{naturezasJuridicasBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{naturezasJuridicasBean.registro}" />
-		</ui:include>
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include> 
 
 	</ui:define>
 </ui:composition>

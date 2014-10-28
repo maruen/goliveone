@@ -13,7 +13,7 @@ import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Entity
-@Table(name = "tbUsuario")
+@Table(name = "tbUsuario" , schema = "golivecentral")
 public class Usuario extends Model {
 
 	private static final long serialVersionUID = 2665034096496208974L;

@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import br.com.golive.annotation.QueryAuditoria;
 import br.com.golive.entity.Model;
 
 
@@ -14,7 +13,7 @@ import br.com.golive.entity.Model;
  */
 @Entity
 @Table(name="tbAuditoriaItem")
-@QueryAuditoria(query = "INSERT INTO tbAuditoriaItem_tbAuditoria VALUES (?,?,?)")
+
 public class AuditoriaItemModel extends Model {
 	
 	

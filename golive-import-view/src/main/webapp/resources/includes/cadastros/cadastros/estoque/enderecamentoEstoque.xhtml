@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="enderecamento"
+		header="#{managerBean.get('label.cadastroReservaEndereco.enderecamentoEstoque')}"
+		toggleable="true" closable="false" collapsed="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="enderecamento" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-1,percentual-10,percentual-13,percentual-68"
+			width="100%" border="0">
+
+			<h:column>
+				<h:outputText id="prateleiraIdOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.id')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="prateleiraIdInputText" value="00000000001"
+					style="width: 125px;" disabled="true" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="prateleiraNomeOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.prateleira')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="prateleiraNomeInputText" style="width: 125px"
+					value="000001" disabled="true" />
+
+				<p:spacer width="5" height="1"/>
+				
+				<p:commandLink onclick="PF('dlgPrateleira').show();"
+					immediate="true">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:column>
+
+			<h:column>
+				<h:outputText id="ruaIdOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.id')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="ruaIdInputText" value="00000000001"
+					style="width: 125px;" disabled="true" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="ruaNomeOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.rua')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="grupoProdutosNomeInputText" style="width: 90%"
+					value="Rua A" disabled="true" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="pavimentoIdOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.id')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="pavimentoIdInputText" value="00000000001"
+					style="width: 125px;" disabled="true" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="pavimentoNomeOutputText"
+					value="#{managerBean.get('label.cadastroReservaEndereco.pavimento')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="pavimentoNomeInputText" style="width: 90%"
+					value="Térreo" disabled="true" />
+			</h:column>
+		</h:panelGrid>
+	</p:panel>
+
+	<p:dialog header="#{managerBean.get('label.cadastroReservaEndereco.pesquisaPrateleira')}"
+		widgetVar="dlgPrateleira" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="80%">
+
+		<p:dataTable id="prateleiraDatatableId" var="prateleiraDatatableVar"
+			value="#{bean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.prateleira')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.rua')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Rua A" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="00000000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.pavimento')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Térreo" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+</ui:composition>

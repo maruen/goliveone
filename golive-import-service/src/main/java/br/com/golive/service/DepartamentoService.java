@@ -12,15 +12,11 @@ import br.com.golive.impl.DepartamentoServiceImpl;
 public interface DepartamentoService {
 
 	public void salvar(DepartamentoModel departamentoModel);
-
 	public void alterar(DepartamentoModel departamentoModel);
-
 	public List<DepartamentoModel> listarTodos();
-
 	public List<DepartamentoModel> listarPorFiltro(String... args);
-
 	public void excluir(DepartamentoModel departamentoModel);
-
 	public List<AuditoriaModel> getAuditoriaLogs(DepartamentoModel departamentoModel);
+	public String getUsuarioLog(DepartamentoModel departamentoModel);
 
 }

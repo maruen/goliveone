@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{categoriasNaturezasJuridicasBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{categoriasNaturezasJuridicasBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,32 +34,32 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column 
-				headerText="Data Inclusão"
+				headerText="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.dataInclusao')}"
 				styleClass="percentual-10 singleLine text-align-center">				
 				<h:outputText value="25/08/2014 20:24" />
 			</p:column>
 
 			<p:column
-				headerText="Data Alteração"
+				headerText="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.dataAlteracao')}"
 				styleClass="percentual-10 singleLine text-align-center">
 				<h:outputText value="25/08/2014 20:47">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.id')}"
 				styleClass="percentual-10 text-align-right">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Cat.Nat.Jur."
+				headerText="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.codCatNatJur')}"
 				styleClass="percentual-10 singleLine text-align-right">
 				<h:outputText value="1" />
 			</p:column>
 			
 			<p:column 
-				headerText="Categoria da Natureza Jurídica"
+				headerText="#{managerBean.get('label.cadastroCategoriasNaturezasJuridicas.categoriaNaturezaJuridica')}"
 				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Administração Pública" />
 			</p:column>
@@ -71,10 +71,10 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/empresas/dadosGeraisCategoriasNaturezasJuridicas.xhtml">
-			<ui:param name="pojo" value="#{categoriasNaturezasJuridicasBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{categoriasNaturezasJuridicasBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>

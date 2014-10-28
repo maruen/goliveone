@@ -70,16 +70,6 @@ public class CondicoesPagamentoBean extends CadastroBeanRules<CondicoesPagamento
 		return list;
 	}
 	
-	public List<Object> getControleVencimentoDataTable(){
-		ArrayList<Object> lista = new ArrayList<Object>();
-		
-		lista.add(new Object());
-		lista.add(new Object());
-		lista.add(new Object());
-		
-		return lista;
-	}
-	
 	public void salvarControleVencimento(){
 		logger.info("Salvar controle vencimento");
 	}

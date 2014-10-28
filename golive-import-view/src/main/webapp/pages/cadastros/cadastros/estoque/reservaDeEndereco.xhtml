@@ -7,26 +7,141 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
+	<ui:param name="bean" value="#{reservaEnderecoBean}" />
+
 	<ui:define name="css">
-		<script type="text/javascript">
-		
-		window.onload = function() {
-			alert('Pagina nao foi implementada');
-            window.close();
-		}
-
-	</script>
-
-	</ui:define>
-
-	<ui:define name="bean">
+		<h:outputStylesheet name="css/cadastros/style_reservaendereco.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="conteudoTable"
+			var="row" 
+			value="#{bean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{bean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="#{managerBean.get('label.cadastroReservaEndereco.msnNaoHaRegistros')}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10 singleLine text-align-left">				
+				<h:outputText value="000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.codProduto')}"
+				styleClass="percentual-10 singleLine text-align-left">
+				<h:outputText value="H24-MAM-O25-E0.18">
+				</h:outputText>
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.produto')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Lâmina de Alumínio 25mm X 0.18mm" />
+			</p:column>
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10">				
+				<h:outputText value="000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.prateleira')}"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10">				
+				<h:outputText value="000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.rua')}"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="Rua A" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10">				
+				<h:outputText value="0000000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.pavimento')}"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="Térreo" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10">				
+				<h:outputText value="0000000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.departamento')}"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="Acessórios Parte e Peças para Persianas" />
+			</p:column>
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10">				
+				<h:outputText value="0000000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.grupoProdutos')}"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="Lâminas em Alumínio 25mm" />
+			</p:column>
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
+				styleClass="percentual-10">				
+				<h:outputText value="0000000001" />
+			</p:column>
+			
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroReservaEndereco.subGrupoProdutos')}"
+				styleClass="percentual-10 singleLine">				
+				<h:outputText value="Lâminas em Alumínio 25mm X 0.18mm" />
+			</p:column>
+			
+		</p:dataTable>
+
 	</ui:define>
 
 	<ui:define name="edicao">
+
+		<ui:include src="/resources/includes/cadastros/cadastros/estoque/dadosGeraisReservaEndereco.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/estoque/enderecamentoEstoque.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/estoque/reservaEnderecoEstoque.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+
 	</ui:define>
-
-
 </ui:composition>

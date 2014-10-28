@@ -1,0 +1,149 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="identificacaoFuncionario"
+		header="#{managerBean.get('label.cadastroUsuarios.identificacaoFuncionario')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="identificacaoFuncionario"
+		styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-3,percentual-50"
+			width="100%" border="0">
+
+			<h:column>
+				<h:outputText id="idFuncionarioOutputText"
+					value="#{managerBean.get('label.cadastroUsuarios.id')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="idFuncionarioInputText" style="width: 125px;"
+					disabled="true" value="0000001" />
+
+				<p:spacer width="5" height="1" />
+
+				<p:commandLink onclick="PF('dlgFuncionario').show();"
+					immediate="true">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:column>
+
+			<h:column>
+				<h:outputText id="conhecidoComoOutputText"
+					value="#{managerBean.get('label.cadastroUsuarios.conhecidoComo')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText value="Sr. Roberto" id="conhecidoComoInputText"
+					disabled="true" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="nomeFuncionarioOutputText"
+					value="#{managerBean.get('label.cadastroUsuarios.nome')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="nomeFuncionarioInputText" required="true"
+					disabled="true" style="width: 60%" value="Roberto Costa" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="cargoIdOutputText"
+					value="#{managerBean.get('label.cadastroUsuarios.cargo')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText value="0000001" id="cargoIdInputText" disabled="true" style="width: 125px;" />
+
+				<p:spacer width="3" height="1" />
+
+				<h:inputText id="cargoDescricaoInputText" value="Diretor"
+					disabled="true" style="width: 47.7%" styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="departamentoIdOutputText"
+					value="#{managerBean.get('label.cadastroUsuarios.departamento')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText value="0000001" id="departamentoIdInputText"
+					disabled="true" style="width: 125px;" />
+
+				<p:spacer width="3" height="1" />
+
+				<h:inputText id="departamentoDescricaoInputText" value="Diretoria"
+					disabled="true" style="width: 47.7%" styleClass="singleLine" />
+			</h:column>
+
+		</h:panelGrid>
+
+	</p:panel>
+
+	<p:dialog header="#{managerBean.get('label.cadastroUsuarios.pesquisaFuncionarios')}"
+		widgetVar="dlgFuncionario" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="70%">
+
+		<p:dataTable id="funcionariosDatatableId" var="funcionariosDatatableVar"
+			value="#{usuariosBean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.conhecidoComo')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Sr. Roberto" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.nome')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Roberto Costa" />
+			</p:column>
+			
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.departamento')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Diretoria" />
+			</p:column>
+			
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroUsuarios.cargo')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Diretor" />
+			</p:column>
+
+		</p:dataTable>
+	</p:dialog>
+</ui:composition>

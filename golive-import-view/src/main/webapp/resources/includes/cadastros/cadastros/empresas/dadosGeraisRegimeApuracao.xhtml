@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroRegimeApuracao.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroRegimeApuracao.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroRegimeApuracao.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroRegimeApuracao.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroRegimeApuracao.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="regimeApuracaoOutputText" 
-      					  value="Regime de Apuração" 
+      					  value="#{managerBean.get('label.cadastroRegimeApuracao.regimeApuracao')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="regimeApuracaoInputText"
       					 required="true"
@@ -52,7 +52,7 @@
       					 value="Lucro Real" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroRegimeApuracao.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroRegimeApuracao.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 

@@ -4,7 +4,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
 		 header="#{managerBean.get('label.cadastroGrupoProdutos.dadosGerais')}"
 		 toggleable="true"
@@ -53,15 +52,15 @@
 	 		
 	 		<h:outputText id="idDepartamentoOutputText"
 						  value="#{managerBean.get('label.cadastroGrupoProdutos.id')}"   />
-           	<p:inputText id="idDepartamentoInputText"
+           	<h:inputText id="idDepartamentoInputText"
            				 style="width: 125px;"
            				 value="0000000000001" disabled="true"/>
 
       		<h:outputText id="departamentoNomeOutputText" value="#{managerBean.get('label.cadastroGrupoProdutos.departamento')}"/>
-      		<p:inputText id="departamentoNomeInputText"
+      		<h:inputText id="departamentoNomeInputText"
       					 required="true"
       					 disabled="true"
-      					 style="width: 98%"
+      					 style="width: 99%"
       					 value="Acessórios, Partes e Peças para Persianas Horizontais em Alumínio"  />	
       		
       		<p:commandLink onclick="PF('dlgDepartamento').show();" immediate="true">
@@ -87,7 +86,7 @@
       			
      			<p:dataTable id="departamentoDatatableId"
         	  	 	     var="departamentoDatatableVar"
-        			 	 value="#{grupoProdutosBean.conteudo}" >
+        			 	 value="#{bean.conteudo}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroGrupoProdutos.id')}"
 				    		  styleClass="percentual-5 singleLine">
