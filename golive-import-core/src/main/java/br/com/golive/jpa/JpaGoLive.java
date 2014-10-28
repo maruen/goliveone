@@ -313,7 +313,6 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	public void update(final T classe) {
 		if (verifyAnnotation(classe)) {
 			merge(classe);
-			save(classe);
 		}
 	}
 
