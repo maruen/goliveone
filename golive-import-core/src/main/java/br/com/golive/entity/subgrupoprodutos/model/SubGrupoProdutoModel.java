@@ -9,7 +9,7 @@ import br.com.golive.entity.Model;
 		nomeDoArquivoGerado = "file.name.model", 
 		nomeArquivoJasper = "SubGrupoProdutos")
 
-public class SubGrupoProdutosModel extends Model {
+public class SubGrupoProdutoModel extends Model {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -21,12 +21,12 @@ public class SubGrupoProdutosModel extends Model {
 	private String idSubGrupoProdutos;
 	private String subGrupoProdutos;
 
-	public SubGrupoProdutosModel() {
+	public SubGrupoProdutoModel() {
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public SubGrupoProdutosModel(Long id, 
+	public SubGrupoProdutoModel(Long id, 
 								 Calendar dataInclusao, 
 								 Calendar dataAlteracao,
 								 String departamento,

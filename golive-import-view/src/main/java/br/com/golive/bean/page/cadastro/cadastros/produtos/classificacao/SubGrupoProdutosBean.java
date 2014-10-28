@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
@@ -17,14 +18,16 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutosModel;
+import br.com.golive.entity.auditoria.model.AuditoriaModel;
+import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
+import br.com.golive.service.SubGrupoProdutoService;
 import br.com.golive.utils.GoliveOneProperties;
 
 @ManagedBean
 @ViewScoped
 @Label(name= "label.cadastroSubGrupoProdutos")
-public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosModel> {
+public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,6 +38,10 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
 	private Calendar data;
+	
+	@EJB
+	private SubGrupoProdutoService subGrupoProdutoService;
+	
 	
 	@Override
 	@PostConstruct
@@ -47,11 +54,11 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 		data = Calendar.getInstance();
 	}
 	
-	public List<SubGrupoProdutosModel> criarList(){
-		final List<SubGrupoProdutosModel> lista = new ArrayList<SubGrupoProdutosModel>();
+	public List<SubGrupoProdutoModel> criarList(){
+		final List<SubGrupoProdutoModel> lista = new ArrayList<SubGrupoProdutoModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new SubGrupoProdutosModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), 
+			lista.add(new SubGrupoProdutoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), 
 					"Acessórios, Partes e Peças para Persianas Horizontais em Alumínio", 
 					"0000000001", "Lâminas em Alumínio 25mm", "0000000001", 
 					"Lâminas em Alumínio 25mm X 0.18mm"));
@@ -94,13 +101,14 @@ public class SubGrupoProdutosBean extends CadastroBeanRules<SubGrupoProdutosMode
 		logger.info("Salvando = {} ");
 	}
 	
-	public List<Object> getAuditoriaLogs() {
-		ArrayList<Object> list = new ArrayList<Object>();
-		
-		list.add(new Object());
-		list.add(new Object());
-		list.add(new Object());
-
-		return list;
+	public List<AuditoriaModel> getAuditoriaLogs() {
+		return subGrupoProdutoService.getAuditoriaLogs(registro); 
 	}
+	
+	public String getUsuarioLog() {
+		return subGrupoProdutoService.getUsuarioLog(registro);
+	}
+	
+	
+	
 }
