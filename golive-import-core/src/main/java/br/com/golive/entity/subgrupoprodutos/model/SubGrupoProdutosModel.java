@@ -5,16 +5,11 @@ import java.util.Calendar;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
 
-@Jasper(titulo = "SubGrupoProdutos", 
-		nomeDoArquivoGerado = "file.name.model", 
-		nomeArquivoJasper = "SubGrupoProdutos")
-
+@Jasper(titulo = "SubGrupoProdutos", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "SubGrupoProdutos")
 public class SubGrupoProdutosModel extends Model {
 
-	
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	private String departamento;
 	private String idGrupoProdutos;
 	private String grupoProdutos;
@@ -22,18 +17,11 @@ public class SubGrupoProdutosModel extends Model {
 	private String subGrupoProdutos;
 
 	public SubGrupoProdutosModel() {
-		this.dataInclusao = Calendar.getInstance();
-		this.dataAlteracao = Calendar.getInstance();
+		dataInclusao = Calendar.getInstance();
+		dataAlteracao = Calendar.getInstance();
 	}
 
-	public SubGrupoProdutosModel(Long id, 
-								 Calendar dataInclusao, 
-								 Calendar dataAlteracao,
-								 String departamento,
-								 String idGrupoProdutos,
-								 String grupoProdutos,
-								 String idSubGrupoProdutos,
-								 String subGrupoProdutos) {
+	public SubGrupoProdutosModel(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao, final String departamento, final String idGrupoProdutos, final String grupoProdutos, final String idSubGrupoProdutos, final String subGrupoProdutos) {
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;
@@ -44,12 +32,12 @@ public class SubGrupoProdutosModel extends Model {
 		this.idSubGrupoProdutos = idSubGrupoProdutos;
 		this.subGrupoProdutos = subGrupoProdutos;
 	}
-	
+
 	public String getDepartamento() {
 		return departamento;
 	}
 
-	public void setDepartamento(String departamento) {
+	public void setDepartamento(final String departamento) {
 		this.departamento = departamento;
 	}
 
@@ -57,7 +45,7 @@ public class SubGrupoProdutosModel extends Model {
 		return idGrupoProdutos;
 	}
 
-	public void setIdGrupoProdutos(String idGrupoProdutos) {
+	public void setIdGrupoProdutos(final String idGrupoProdutos) {
 		this.idGrupoProdutos = idGrupoProdutos;
 	}
 
@@ -65,7 +53,7 @@ public class SubGrupoProdutosModel extends Model {
 		return grupoProdutos;
 	}
 
-	public void setGrupoProdutos(String grupoProdutos) {
+	public void setGrupoProdutos(final String grupoProdutos) {
 		this.grupoProdutos = grupoProdutos;
 	}
 
@@ -73,7 +61,7 @@ public class SubGrupoProdutosModel extends Model {
 		return idSubGrupoProdutos;
 	}
 
-	public void setIdSubGrupoProdutos(String idSubGrupoProdutos) {
+	public void setIdSubGrupoProdutos(final String idSubGrupoProdutos) {
 		this.idSubGrupoProdutos = idSubGrupoProdutos;
 	}
 
@@ -81,7 +69,7 @@ public class SubGrupoProdutosModel extends Model {
 		return subGrupoProdutos;
 	}
 
-	public void setSubGrupoProdutos(String subGrupoProdutos) {
+	public void setSubGrupoProdutos(final String subGrupoProdutos) {
 		this.subGrupoProdutos = subGrupoProdutos;
 	}
 }

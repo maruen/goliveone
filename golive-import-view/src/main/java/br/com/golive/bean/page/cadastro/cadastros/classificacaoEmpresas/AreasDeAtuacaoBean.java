@@ -5,6 +5,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.persistence.Table;
 
 import org.slf4j.Logger;
 
@@ -12,6 +13,8 @@ import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.entity.areaDeAtuacao.model.AreaDeAtuacaoModel;
+import br.com.golive.filter.DateFilter;
+import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.service.AreaDeAtuacaoService;
@@ -34,10 +37,25 @@ public class AreasDeAtuacaoBean extends CadastroGenericBean<AreaDeAtuacaoModel> 
 	@Filter(name = "Description", label = "label.areaDeAtuacao")
 	private StringFilter filtroAtuacao;
 
+	@Inject
+	@FilterInjected
+	@Filter(name = "id", label = "label.id")
+	protected NumberFilter filtroId;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
+	private DateFilter filtroDataInclusao;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
+	private DateFilter filtroDataAlteracao;
+
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(areaDeAtuacaoService.obterLista());
+		super.init(areaDeAtuacaoService.obterLista(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, genericClazzInstance.getAnnotation(Table.class).name()));
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
@@ -55,7 +73,7 @@ public class AreasDeAtuacaoBean extends CadastroGenericBean<AreaDeAtuacaoModel> 
 				// areaDeAtuacaoService.salvar(registro);
 			}
 		}
-		super.init(areaDeAtuacaoService.obterLista());
+		super.init(areaDeAtuacaoService.obterLista(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, genericClazzInstance.getAnnotation(Table.class).name()));
 		super.salvar();
 	}
 
@@ -74,5 +92,29 @@ public class AreasDeAtuacaoBean extends CadastroGenericBean<AreaDeAtuacaoModel> 
 
 	public void setFiltroAtuacao(final StringFilter filtroAtuacao) {
 		this.filtroAtuacao = filtroAtuacao;
+	}
+
+	public NumberFilter getFiltroId() {
+		return filtroId;
+	}
+
+	public void setFiltroId(final NumberFilter filtroId) {
+		this.filtroId = filtroId;
+	}
+
+	public DateFilter getFiltroDataInclusao() {
+		return filtroDataInclusao;
+	}
+
+	public void setFiltroDataInclusao(final DateFilter filtroDataInclusao) {
+		this.filtroDataInclusao = filtroDataInclusao;
+	}
+
+	public DateFilter getFiltroDataAlteracao() {
+		return filtroDataAlteracao;
+	}
+
+	public void setFiltroDataAlteracao(final DateFilter filtroDataAlteracao) {
+		this.filtroDataAlteracao = filtroDataAlteracao;
 	}
 }

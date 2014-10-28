@@ -9,7 +9,6 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.entity.perfilconfiguracao.repositorio.ColunaPerfilJpa;
 import br.com.golive.entity.usuario.model.Usuario;
@@ -25,9 +24,9 @@ public class PerfilServiceImpl implements PerfilService {
 	private Logger logger;
 
 	@Override
-	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final Empresa empresa, final String tabela) {
+	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final String... tabela) {
 		logger.info("Obtendo configurações para a tabela = {}", tabela);
-		return colunaPerfilJpa.obterColunaPerfil();
+		return colunaPerfilJpa.obterColunaPerfil(usuario.getId(), tabela);
 	}
 
 	@Override

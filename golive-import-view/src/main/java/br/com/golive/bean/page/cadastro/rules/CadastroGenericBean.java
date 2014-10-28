@@ -19,12 +19,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
-import javax.persistence.Table;
 
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.WordUtils;
+import org.primefaces.component.datatable.DataTable;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
@@ -32,16 +32,14 @@ import br.com.golive.annotation.PropriedadesTemplate;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
-import br.com.golive.entity.Model;
 import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
-import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
-import br.com.golive.filter.NumberFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.qualifier.ListGenericaInjected;
+import br.com.golive.qualifier.PrimefacesDataTableInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.service.PerfilService;
 import br.com.golive.utils.Fluxo;
@@ -66,8 +64,8 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
 
 @ManagedBean
 @ViewScoped
-@PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable")
-public abstract class CadastroGenericBean<T extends Model> extends GenericBean implements Serializable {
+@PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable", component = "modelTable")
+public abstract class CadastroGenericBean<T> extends GenericBean implements Serializable {
 
 	private static final long serialVersionUID = 2907332241303108246L;
 
@@ -90,21 +88,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	@EJB
 	protected PerfilService colunaPerfilService;
 
-	@Inject
-	@FilterInjected
-	@Filter(name = "id", label = "label.id")
-	protected NumberFilter filtroId;
-
-	@Inject
-	@FilterInjected
-	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
-	private DateFilter filtroDataInclusao;
-
-	@Inject
-	@FilterInjected
-	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
-	private DateFilter filtroDataAlteracao;
-
 	private boolean selecionarTodos;
 
 	protected Fluxo fluxo = Fluxo.LISTAGEM;
@@ -119,7 +102,11 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public abstract void init();
 
-	protected void init(final List<T> listaConteudo) {
+	@Inject
+	@PrimefacesDataTableInjected
+	protected DataTable dataTable;
+
+	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
 		showMenuBar(500, 600);
 		if (getLogger() == null) {
 			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o getLogger() para que a página possa ser renderizada");
@@ -128,7 +115,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		this.conteudo = listaConteudo;
 		filtrados.addAll(conteudo);
 		inicializarClasse();
-		configuracaoPerfil = colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, empresaSelecionada, genericClazzInstance.getAnnotation(Table.class).name());
+		configuracaoPerfil = configuracoes;
 
 		if (verificarNecessidadeDeConfiguracao()) {
 
@@ -141,8 +128,8 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 	}
 
-	public void filtrar(final String widgetFiltro) {
-		filterManager.filtrar(conteudo, filtrados, getFilter(widgetFiltro), widgetFiltro);
+	public void filtrar(final ColunaPerfil widgetFiltro) {
+		filterManager.filtrar(conteudo, filtrados, getFilter(widgetFiltro), widgetFiltro.getId().getColuna());
 	}
 
 	public void limparFiltro(final String widgetFiltro) {
@@ -186,7 +173,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	private boolean verificarNecessidadeDeConfiguracao() {
 		if (configuracaoPerfil.isEmpty()) {
-			configuracaoPerfil = ServiceUtils.criarConfiguracaoPaginaUsuario(Utils.obterListaColunaTabela(genericClazzInstance, usuario, empresaSelecionada), genericClazzInstance.getSuperclass(), genericClazzInstance);
+			configuracaoPerfil = Utils.obterListaColunaTabela(genericClazzInstance, usuario, empresaSelecionada);
 			colunaPerfilService.salvarLista(configuracaoPerfil);
 			return false;
 		}
@@ -335,12 +322,12 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	@SuppressWarnings("rawtypes")
-	public GoliveFilter getFilter(final String widgetName) {
+	public GoliveFilter getFilter(final ColunaPerfil coluna) {
 
 		final GoliveFilter filtro = null;
 
-		final Field field = Utils.getFilter(widgetName, this.getClass(), this.getClass().getSuperclass());
-		if ((widgetName != null) && (!widgetName.isEmpty())) {
+		final Field field = Utils.getFilter(genericClazzInstance, coluna, this.getClass(), this.getClass().getSuperclass());
+		if ((coluna != null) && (!coluna.getId().getColuna().isEmpty())) {
 			try {
 				return (GoliveFilter) Utils.invokeGetterByField(field, this, getLogger(), this.getClass(), this.getClass().getSuperclass());
 			} catch (final Exception e) {
@@ -350,11 +337,12 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		return filtro;
 	}
 
-	public String getLabelFilter(final String widgetName) {
+	public String getLabelFilter(final ColunaPerfil coluna) {
 		try {
-			return Utils.getFilter(widgetName, this.getClass(), this.getClass().getSuperclass()).getAnnotation(Filter.class).label();
+			final Field field = Utils.getFilter(genericClazzInstance, coluna, this.getClass(), this.getClass().getSuperclass());
+			return field.getAnnotation(Filter.class).label();
 		} catch (final GoLiveException e) {
-			getLogger().info("Erro ao obter filtro = {}", widgetName);
+			getLogger().info("Erro ao obter filtro = {}", coluna);
 			e.printStackTrace();
 			return "";
 		}
@@ -389,7 +377,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 
 		if (ret != null) {
-			if ((getFilter(coluna.getId().getColuna()) != null) && (getFilter(coluna.getId().getColuna()).getGenericType().equals(Date.class))) {
+			if ((getFilter(coluna) != null) && (getFilter(coluna).getGenericType().equals(Date.class))) {
 				return ((Calendar) ret).getTime();
 			} else {
 				return ret;
@@ -405,12 +393,12 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		reordenarLinha();
 
 		for (final ColunaPerfil coluna : configuracaoPerfil) {
-			final GoliveFilter filtro = getFilter(coluna.getId().getColuna());
+			final GoliveFilter filtro = getFilter(coluna);
 			filtro.setInicio(null);
 			filtro.setFim(null);
 		}
 
-		colunaPerfilService.salvarLista(configuracaoPerfil);
+		colunaPerfilService.atualizarLista(configuracaoPerfil);
 		colunasPagina.removeAll(colunasPagina);
 
 		for (final ColunaPerfil coluna : configuracaoPerfil) {
@@ -506,30 +494,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void setConfiguracaoPerfil(final List<ColunaPerfil> configuracaoPerfil) {
 		this.configuracaoPerfil = configuracaoPerfil;
-	}
-
-	public NumberFilter getFiltroId() {
-		return filtroId;
-	}
-
-	public void setFiltroId(final NumberFilter filtroId) {
-		this.filtroId = filtroId;
-	}
-
-	public DateFilter getFiltroDataInclusao() {
-		return filtroDataInclusao;
-	}
-
-	public void setFiltroDataInclusao(final DateFilter filtroDataInclusao) {
-		this.filtroDataInclusao = filtroDataInclusao;
-	}
-
-	public DateFilter getFiltroDataAlteracao() {
-		return filtroDataAlteracao;
-	}
-
-	public void setFiltroDataAlteracao(final DateFilter filtroDataAlteracao) {
-		this.filtroDataAlteracao = filtroDataAlteracao;
 	}
 
 	public boolean isSelecionarTodos() {
