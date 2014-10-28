@@ -93,7 +93,7 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 	}
 	
 	
-	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void registrarUpdate(Model model, Usuario usuario) {
 		
 		List<AuditoriaItemModel> auditoriaItemList;
@@ -154,48 +154,18 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void registrarDelete(Model model, Usuario usuario) {
-	
-		List<AuditoriaItemModel> auditoriaItemList;
-		AuditoriaItemModel auditoriaItem;
-		Field[] fields;
+			
+		auditoriaJPA.deleteJoins(model);
+		
 		AuditoriaModel auditoriaModel;
-		
-		
-		auditoriaItemList 	= new ArrayList<AuditoriaItemModel>();
-		auditoriaItem 		= new AuditoriaItemModel();
-		
-		fields = model.getClass().getDeclaredFields();
-		for(int i=0; i< fields.length; i++ ) {
-			String fieldName  = fields[i].getName();
-			if (fieldName.contains("serialVersion")) {
-				continue;
-			}
-			
-			fields[i].setAccessible(true);
-			String fieldValue;
-			try {
-				fieldValue = String.valueOf(fields[i].get(model));
-			} catch (IllegalArgumentException | IllegalAccessException e) {
-				continue;
-			} 
-			
-			auditoriaItem.setCampo(fieldName);
-			auditoriaItem.setInformacaoAnterior(fieldValue);
-			auditoriaItem.setInformacaoAtual("");
-			auditoriaItem.setDataInclusao(Calendar.getInstance());
-			auditoriaItem.setDataAlteracao(Calendar.getInstance());
-			auditoriaItemList.add(auditoriaItem);
-		}
-		auditoriaItemJPA.saveAll(auditoriaItemList);
-		
-		
 		auditoriaModel = new AuditoriaModel();
 		auditoriaModel.setDataInclusao(Calendar.getInstance());
 		auditoriaModel.setDataAlteracao(Calendar.getInstance());
 		auditoriaModel.setFormularioNome(model.getClass().getAnnotation(Label.class).name());
 		auditoriaModel.setAcaoUsuario(DELETE.getDescricao());
 		auditoriaJPA.save(auditoriaModel);
-		auditoriaJPA.saveJoins(auditoriaModel, auditoriaItemList, usuario, model);
+		
+		
 	}
 	
 	

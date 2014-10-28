@@ -164,8 +164,13 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 *            entidade
 	 */
 	public void delete(final T entity) {
-		entityManager.merge(entity);
-		entityManager.remove(entity);
+		try {
+			entityManager.joinTransaction();
+			entityManager.merge(entity);
+			entityManager.remove(entity);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -184,7 +189,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		try {
 			entityManager.joinTransaction();
 			entityManager.persist(entity);
-		} catch (final Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -313,7 +318,6 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	public void update(final T classe) {
 		if (verifyAnnotation(classe)) {
 			merge(classe);
-			save(classe);
 		}
 	}
 
