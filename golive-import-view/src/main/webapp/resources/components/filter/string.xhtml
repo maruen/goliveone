@@ -29,7 +29,7 @@
 	<br />
 
 
-	<p:inputText id="headerfiltro_string#{cc.attrs.widgetAnotado}_inicio"
+	<p:inputText id="headerfiltro_string#{cc.attrs.widgetAnotado.id.coluna}_inicio"
 		style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
 		styleClass="#{cc.attrs.styleClassFiltroUm}"
 		disabled="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"

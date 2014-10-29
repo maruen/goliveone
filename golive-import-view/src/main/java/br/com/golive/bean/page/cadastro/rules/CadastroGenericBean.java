@@ -24,7 +24,6 @@ import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.WordUtils;
-import org.primefaces.component.datatable.DataTable;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
@@ -39,7 +38,6 @@ import br.com.golive.filter.GoliveFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.qualifier.ListGenericaInjected;
-import br.com.golive.qualifier.PrimefacesDataTableInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.service.PerfilService;
 import br.com.golive.utils.Fluxo;
@@ -101,10 +99,6 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	private List<ColunaPerfil> colunasPagina;
 
 	public abstract void init();
-
-	@Inject
-	@PrimefacesDataTableInjected
-	protected DataTable dataTable;
 
 	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
 		showMenuBar(500, 600);
