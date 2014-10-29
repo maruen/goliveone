@@ -1,11 +1,12 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
@@ -18,19 +19,20 @@ import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
-import br.com.golive.entity.grupoprodutodepartamento.GrupoProdutoDepartamento;
+import br.com.golive.entity.grupoprodutodepartamento.model.GrupoProdutoDepartamento;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
+import br.com.golive.service.DepartamentoService;
+import br.com.golive.service.GrupoProdutoService;
+import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroGrupoProdutos")
 public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutoDepartamento> {
-
-	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;
@@ -75,12 +77,22 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutoDepartame
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "id.departamento.dataAlteracao")
 	private DateFilter filtroDataAletracaoDepartamento;
 
+	@EJB
+	private DepartamentoService departamentoService;
+
+	@EJB
+	private GrupoProdutoService grupoProdutoService;
+
+	private List<DepartamentoModel> departamentos;
+
 	@Override
 	@PostConstruct
 	public void init() {
-		logger.info("Inicializando = {}", this.getClass().getName());
-		super.init(new ArrayList<GrupoProdutoDepartamento>(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, DepartamentoModel.class.getAnnotation(Table.class).name(), GrupoProdutosModel.class.getAnnotation(Table.class).name()));
-		fluxo = getFluxoListagem();
+		if (usuario != null) {
+			logger.info("Inicializando = {}", this.getClass().getName());
+			super.init(grupoProdutoService.obterGrupoProdutoDepartamentos(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, DepartamentoModel.class.getAnnotation(Table.class).name(), GrupoProdutosModel.class.getAnnotation(Table.class).name()));
+			fluxo = getFluxoListagem();
+		}
 	}
 
 	@Override
@@ -107,7 +119,30 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutoDepartame
 	@Override
 	public void salvar() {
 		super.salvar();
-		logger.info("Salvando = {} ");
+		logger.info("Salvando = {} ", registro);
+		if (registro != null) {
+			if (registro.getId().getGrupoProdutosModel().getId() == null) {
+				if (validarInclusao()) {
+					grupoProdutoService.salvar(registro.getId().getGrupoProdutosModel());
+					grupoProdutoService.salvarGrupoProdutoDepartamento(registro);
+				} else {
+					JSFUtils.warnMessage("title.msg.erro.ao.inserir", "msg.preencher.registro");
+				}
+			} else {
+
+			}
+		}
+
+	}
+
+	private boolean validarInclusao() {
+		final String desc = registro.getId().getGrupoProdutosModel().getGrupoDeProduto();
+		if ((desc != null) && (!desc.isEmpty())) {
+			if (registro.getId().getDepartamentoModel().getId() != null) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -177,6 +212,18 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutoDepartame
 
 	public void setFiltroDataAletracaoDepartamento(final DateFilter filtroDataAletracaoDepartamento) {
 		this.filtroDataAletracaoDepartamento = filtroDataAletracaoDepartamento;
+	}
+
+	public List<DepartamentoModel> getDepartamentos() {
+		if (departamentos == null) {
+			departamentos = departamentoService.listarTodos();
+		}
+
+		return departamentos;
+	}
+
+	public void setDepartamentos(final List<DepartamentoModel> departamentos) {
+		this.departamentos = departamentos;
 	}
 
 }

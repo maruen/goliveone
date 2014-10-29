@@ -23,7 +23,8 @@
 			value="#{cc.attrs.bean.configuracaoPerfil}" var="coluna"
 			rowKey="#{coluna}" styleClass="dataTableConfiguracaoTabela">
 
-			<p:ajax event="rowReorder" listener="#{cc.attrs.bean.reorder}" update=":conteudoForm:modelTable:configuracaoTable"/>
+			<p:ajax event="rowReorder" listener="#{cc.attrs.bean.reorder}"
+				update=":conteudoForm:modelTable:configuracaoTable" />
 
 
 			<p:column style="width:16px;text-align:center">
@@ -47,8 +48,7 @@
 			</p:column>
 			<p:column headerText="#{managerBean.get('label.parametros.filtro')}"
 				styleClass="colunaDataTableSelectOneMenu">
-				<filter:selectTipoFiltro
-					filtro="#{cc.attrs.bean.getFilter(coluna)}" />
+				<filter:selectTipoFiltro filtro="#{cc.attrs.bean.getFilter(coluna)}" />
 			</p:column>
 
 			<f:facet name="footer">
@@ -67,8 +67,8 @@
 		value="#{cc.attrs.bean.conteudo}" selectionMode="single"
 		rowKey="#{list.id}" styleClass="tableCadastros" rows="15"
 		paginator="true" widgetVar="table"
-		filteredValue="#{cc.attrs.bean.filtrados}" scrollable="true" 
-		emptyMessage="#{managerBean.get('msg.nao.ha.registros')}" 
+		filteredValue="#{cc.attrs.bean.filtrados}" scrollable="true"
+		emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 		<f:facet name="header">
@@ -82,44 +82,47 @@
 		<p:column id="seletor" selectionMode="single"
 			style="width:16px;text-align:center" />
 
-		<p:columns value="#{cc.attrs.bean.colunasPagina}" 
-			var="coluna" id="columns"
-			columnIndexVar="colIndex">
-			<f:facet name="header" >
-				<filter:number id="componentFilterNumberId"
-					update=":conteudoForm:modelTable:conteudoTable"
-					rendered="#{(coluna.visivel) and (cc.attrs.bean.getFilter(coluna).genericType.simpleName.equals('Long'))}"
-					widgetAnotado="#{coluna}" bean="#{cc.attrs.bean}"
-					styleClassBotaoLimpar="limpar" styleClassFiltroDois="filtroFinal"
-					styleClassFiltroUm="filtroInicial"
-					styleClassTitulo="tituloColunaFiltro" />
-				<filter:string id="componentFilterStringId"
-					update=":conteudoForm:modelTable:conteudoTable"
-					rendered="#{(coluna.visivel) and (cc.attrs.bean.getFilter(coluna).genericType.simpleName.equals('String'))}"
-					widgetAnotado="#{coluna}" bean="#{cc.attrs.bean}"
-					styleClassBotaoLimpar="limpar" styleClassFiltroUm="filtroInicial"
-					styleClassTitulo="tituloColunaFiltro" />
-				<filter:date id="componentFilterDateId"
-					update=":conteudoForm:modelTable:conteudoTable"
+		<c:forEach items="#{cc.attrs.bean.colunasPagina}" var="coluna">
+
+			<p:column style="width: 70px;">
+				<f:facet name="header">
+					<filter:number id="componentFilterNumberId"
+						update=":conteudoForm:modelTable:conteudoTable"
+						rendered="#{(coluna.visivel) and (cc.attrs.bean.getFilter(coluna).genericType.simpleName.equals('Long'))}"
+						widgetAnotado="#{coluna}" bean="#{cc.attrs.bean}"
+						styleClassBotaoLimpar="limpar" styleClassFiltroDois="filtroFinal"
+						styleClassFiltroUm="filtroInicial"
+						styleClassTitulo="tituloColunaFiltro" />
+					<filter:string id="componentFilterStringId"
+						update=":conteudoForm:modelTable:conteudoTable"
+						rendered="#{(coluna.visivel) and (cc.attrs.bean.getFilter(coluna).genericType.simpleName.equals('String'))}"
+						widgetAnotado="#{coluna}" bean="#{cc.attrs.bean}"
+						styleClassBotaoLimpar="limpar" styleClassFiltroUm="filtroInicial"
+						styleClassTitulo="tituloColunaFiltro" />
+					<filter:date id="componentFilterDateId"
+						update=":conteudoForm:modelTable:conteudoTable"
+						rendered="#{(coluna.visivel) and (cc.attrs.bean.getFilter(coluna).genericType.simpleName.equals('Calendar'))}"
+						widgetAnotado="#{coluna}" bean="#{cc.attrs.bean}"
+						styleClassBotaoLimpar="limpar" styleClassFiltroDois="filtroFinal"
+						styleClassFiltroUm="filtroInicial"
+						styleClassTitulo="tituloColunaFiltro" />
+				</f:facet>
+
+				<h:outputText
 					rendered="#{(coluna.visivel) and (cc.attrs.bean.getFilter(coluna).genericType.simpleName.equals('Calendar'))}"
-					widgetAnotado="#{coluna}" bean="#{cc.attrs.bean}"
-					styleClassBotaoLimpar="limpar" styleClassFiltroDois="filtroFinal"
-					styleClassFiltroUm="filtroInicial"
-					styleClassTitulo="tituloColunaFiltro" />
-			</f:facet>
+					value="#{cc.attrs.bean.obterLabelColuna(coluna,list)}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+				</h:outputText>
 
-			<h:outputText
-				rendered="#{(coluna.visivel) and (cc.attrs.bean.getFilter(coluna).genericType.simpleName.equals('Calendar'))}"
-				value="#{cc.attrs.bean.obterLabelColuna(coluna,list)}">
-				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-			</h:outputText>
+				<h:outputText
+					rendered="#{(coluna.visivel) and (!cc.attrs.bean.getFilter(coluna).genericType.simpleName.equals('Calendar'))}"
+					value="#{cc.attrs.bean.obterLabelColuna(coluna,list)}">
+				</h:outputText>
+			</p:column>
 
-			<h:outputText
-				rendered="#{(coluna.visivel) and (!cc.attrs.bean.getFilter(coluna).genericType.simpleName.equals('Calendar'))}"
-				value="#{cc.attrs.bean.obterLabelColuna(coluna,list)}">
-			</h:outputText>
+		</c:forEach>
 
-		</p:columns>
+
 
 	</p:dataTable>
 

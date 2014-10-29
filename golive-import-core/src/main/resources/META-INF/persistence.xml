@@ -44,7 +44,7 @@
 		<class>br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil</class>
 		<class>br.com.golive.entity.colecoes.model.ColecoesModel</class>
 		<class>br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel</class>
-		<class>br.com.golive.entity.grupoprodutodepartamento.GrupoProdutoDepartamento</class>
+		<class>br.com.golive.entity.grupoprodutodepartamento.model.GrupoProdutoDepartamento</class>
 
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
@@ -69,7 +69,7 @@
 		<class>br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil</class>
 		<class>br.com.golive.entity.colecoes.model.ColecoesModel</class>
 		<class>br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel</class>
-		<class>br.com.golive.entity.grupoprodutodepartamento.GrupoProdutoDepartamento</class>
+		<class>br.com.golive.entity.grupoprodutodepartamento.model.GrupoProdutoDepartamento</class>
 
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
