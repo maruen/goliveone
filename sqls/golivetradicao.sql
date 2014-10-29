@@ -4649,6 +4649,15 @@ CREATE TABLE IF NOT EXISTS `golivetradicao`.`tbAuditoria_tbPais` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `goliveacao`.`tbConfiguracaoColunaPagina` (
+  `tbUsuario_Id` INT UNSIGNED NOT NULL,
+  `Ordernation` INT UNSIGNED NOT NULL,
+  `TableName` VARCHAR(45),
+  `ColumnName` VARCHAR(45),
+  `PatternFilter` VARCHAR(45),
+  `Visible` BIT(1))
+ENGINE = InnoDB;
+
 
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `golivetradicao`.`tbAuditoria_tbPais` (`tbAuditoriaItem_Id` ASC);
 
