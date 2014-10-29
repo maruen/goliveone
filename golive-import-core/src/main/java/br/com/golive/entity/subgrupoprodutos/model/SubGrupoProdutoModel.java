@@ -1,79 +1,32 @@
 package br.com.golive.entity.subgrupoprodutos.model;
 
-import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.annotation.Label;
 import br.com.golive.entity.Model;
 
-@Jasper(titulo = "SubGrupoProdutos", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "SubGrupoProdutos")
-public class SubGrupoProdutoModel extends Model {
+@Jasper(titulo 				= "SubGrupoProdutos",
+		nomeDoArquivoGerado = "file.name.model",
+		nomeArquivoJasper 	= "SubGrupoProdutos")
 
+
+@Data
+@EqualsAndHashCode(callSuper=false)
+@Entity
+@Table(name = "tbSubGrupoProduto")
+@Label(name = "label.cadastroSubGrupoProduto")
+public class SubGrupoProdutoModel extends Model {
 	
 	private static final long serialVersionUID = 1L;
-
-	private String departamento;
-	private String idGrupoProdutos;
-	private String grupoProdutos;
-	private String idSubGrupoProdutos;
-	private String subGrupoProdutos;
+		
+	@Column(name="SubGrupoProduto")
+	private String subGrupoProduto;
 	
-	public SubGrupoProdutoModel(Long id,
-								Calendar dataInclusao,
-								Calendar dataAlteracao,
-								String departamento,
-								String idGrupoProdutos,
-								String grupoProdutos,
-								String idSubGrupoProdutos,
-								String subGrupoProdutos) {
-		
-		
-	 this.id = id;
-        this.dataInclusao = dataInclusao;
-        this.dataAlteracao = dataAlteracao;
-		this.departamento = departamento;
-		this.idGrupoProdutos = idGrupoProdutos;
-		this.grupoProdutos = grupoProdutos;
-		this.idSubGrupoProdutos = idSubGrupoProdutos;
-		this.subGrupoProdutos = subGrupoProdutos;
-	}
-
-	public String getDepartamento() {
-		return departamento;
-	}
-
-	public void setDepartamento(final String departamento) {
-		this.departamento = departamento;
-	}
-
-	public String getIdGrupoProdutos() {
-		return idGrupoProdutos;
-	}
-
-	public void setIdGrupoProdutos(final String idGrupoProdutos) {
-		this.idGrupoProdutos = idGrupoProdutos;
-	}
-
-	public String getGrupoProdutos() {
-		return grupoProdutos;
-	}
-
-	public void setGrupoProdutos(final String grupoProdutos) {
-		this.grupoProdutos = grupoProdutos;
-	}
-
-	public String getIdSubGrupoProdutos() {
-		return idSubGrupoProdutos;
-	}
-
-	public void setIdSubGrupoProdutos(final String idSubGrupoProdutos) {
-		this.idSubGrupoProdutos = idSubGrupoProdutos;
-	}
-
-	public String getSubGrupoProdutos() {
-		return subGrupoProdutos;
-	}
-
-	public void setSubGrupoProdutos(final String subGrupoProdutos) {
-		this.subGrupoProdutos = subGrupoProdutos;
-	}
+	
+	
 }

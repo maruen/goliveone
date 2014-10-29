@@ -11,14 +11,10 @@
 		<jta-data-source>java:jboss/golivecentralDS</jta-data-source>
 
 		<class>br.com.golive.entity.Model</class>
-		<class>br.com.golive.entity.areaDeAtuacao.model.AreaDeAtuacaoModel</class>
-		<class>br.com.golive.entity.auditoria.model.AuditoriaModel</class>
 		<class>br.com.golive.entity.database.model.DataBase</class>
 		<class>br.com.golive.entity.database.model.EnderecoBase</class>
 		<class>br.com.golive.entity.database.model.UsuarioBaseDados</class>
-		<class>br.com.golive.entity.departamento.model.DepartamentoModel</class>
 		<class>br.com.golive.entity.empresas.empresa.model.Empresa</class>
-		<class>br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil</class>
 		<class>br.com.golive.entity.usuario.model.Usuario</class>
 		<class>br.com.golive.entity.usuario.model.UsuarioDependencia</class>
 
@@ -35,8 +31,8 @@
 	<!-- acao -->
 	<persistence-unit name="golive-one-acao-PU"	transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
 		<jta-data-source>java:jboss/goliveacaoDS</jta-data-source>
+
 		<class>br.com.golive.entity.usuario.model.Usuario</class>
 		<class>br.com.golive.entity.departamento.model.DepartamentoModel</class>
 		<class>br.com.golive.entity.auditoria.model.AuditoriaItemModel</class>
@@ -44,6 +40,7 @@
 		<class>br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil</class>
 		<class>br.com.golive.entity.colecoes.model.ColecoesModel</class>
 		<class>br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel</class>
+		<class>br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel</class>
 		<class>br.com.golive.entity.grupoprodutodepartamento.GrupoProdutoDepartamento</class>
 
 		<properties>
@@ -61,14 +58,15 @@
 	<persistence-unit name="golive-one-tradicao-PU"	transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:jboss/golivetradicaoDS</jta-data-source>
-		<class>br.com.golive.entity.usuario.model.Usuario</class>
 
+		<class>br.com.golive.entity.usuario.model.Usuario</class>
 		<class>br.com.golive.entity.departamento.model.DepartamentoModel</class>
 		<class>br.com.golive.entity.auditoria.model.AuditoriaItemModel</class>
 		<class>br.com.golive.entity.auditoria.model.AuditoriaModel</class>
 		<class>br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil</class>
 		<class>br.com.golive.entity.colecoes.model.ColecoesModel</class>
 		<class>br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel</class>
+		<class>br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel</class>
 		<class>br.com.golive.entity.grupoprodutodepartamento.GrupoProdutoDepartamento</class>
 
 		<properties>

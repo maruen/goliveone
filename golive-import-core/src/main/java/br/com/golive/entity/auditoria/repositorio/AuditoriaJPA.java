@@ -60,7 +60,9 @@ public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
 	public List getAuditoriaLogs(Long id, Class clazz) {
 		List<AuditoriaModel> results = new ArrayList<AuditoriaModel>();
 
-		String sql = "SELECT tbAuditoria_Id FROM tbAuditoria_" + ((Table) clazz.getAnnotation(Table.class)).name() + " WHERE " + ((Table) clazz.getAnnotation(Table.class)).name() + "_Id=" + id ;
+		String tableName = ((Table) clazz.getAnnotation(Table.class)).name();
+		
+		String sql = "SELECT tbAuditoria_Id FROM tbAuditoria_" + tableName + " WHERE " + tableName + "_Id=" + id ;
 		Query query = createNativeQuery(sql);
 		final List<Long> ids = query.getResultList();
 
@@ -82,7 +84,9 @@ public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
 	public String getUsuarioLog(Long id, Class clazz) {
 		Query query;
 
-		String sql      = "SELECT tbUsuario_Id FROM tbAuditoria_" + ((Table) clazz.getAnnotation(Table.class)).name() + " WHERE " + ((Table) clazz.getAnnotation(Table.class)).name() + "_Id=" + id ;
+		String tableName = ((Table) clazz.getAnnotation(Table.class)).name();
+		
+		String sql      = "SELECT tbUsuario_Id FROM tbAuditoria_" + tableName + " WHERE " + tableName + "_Id=" + id ;
 		query           = entityManager.createNativeQuery(sql);
 		Integer userId  = (Integer) query.setMaxResults(1).getResultList().get(0);
 

@@ -27,14 +27,14 @@
 				    <p:column headerText="Data e Hora Inclusão"
 				    		  styleClass="percentual-10">
 				        <h:outputText value="#{row.dataInclusao.time}"  styleClass="singleLine floatRight">
-				        	<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+				        	<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
 				        </h:outputText>
 				    </p:column>
 				    
 				    <p:column headerText="Data e Hora Alteração"
 				    		  styleClass="percentual-10">
 				        <h:outputText value="#{row.dataAlteracao.time}"  styleClass="singleLine floatRight">
-				        	<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+				        	<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
 				        </h:outputText>
 				    </p:column>
 				    

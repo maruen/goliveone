@@ -87,7 +87,7 @@ public class Utils {
 
 			obterColunasEntity(colunasPagina, usuario, classes);
 		} else {
-			obterColunasEntity(colunasPagina, usuario, clazz, clazz.getSuperclass());
+			obterColunasEntity(colunasPagina, usuario, clazz.getAnnotation(Table.class).name() , clazz,clazz.getSuperclass());
 		}
 		return colunasPagina;
 	}
@@ -100,10 +100,10 @@ public class Utils {
 		}
 	}
 
-	private static void obterColunasEntity(final List<ColunaPerfil> colunasPagina, final Usuario usuario, final Class<?>... classes) {
+	private static void obterColunasEntity(final List<ColunaPerfil> colunasPagina, final Usuario usuario, final String tableName, final Class<?>... classes) {
 		Long count = 1L;
 		for (final Class<?> clazz : classes) {
-			count = obterColunas(colunasPagina, usuario, count, clazz, clazz.getAnnotation(Table.class).name());
+			count = obterColunas(colunasPagina, usuario, count, clazz, tableName);
 		}
 	}
 
