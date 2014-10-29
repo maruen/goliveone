@@ -2,6 +2,7 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
 
 import static br.com.golive.utils.Fluxo.LISTAGEM;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -86,6 +87,11 @@ public class SubGrupoProdutoBean extends CadastroBeanRules<SubGrupoProdutoModel>
 	
 	public List<DepartamentoModel> getDepartamentos() {
 		return departamentoService.listarTodos();
+	}
+	
+	
+	public List<GrupoProdutosModel> getGrupoProdutoList() {
+		return new ArrayList<GrupoProdutosModel>();
 	}
 	
 	

@@ -11,8 +11,8 @@
 		
 			<p:dataTable id="auditoriaLogTable"
 					 	 var="row"
-					 	 value="#{pojo}"
-					 	 rowKey="#{row.id}"
+					 	 value="#{bean.auditoriaLogs}"
+                         rowKey="#{list.id}"
 					 	 styleClass="tableCadastros" 
 					 	 rows="15"
 					 	 paginator="true"
@@ -41,7 +41,8 @@
 				    <p:column headerText="Formulário"
 				    		  styleClass="percentual-15">
 				    		  
-				        	  <h:outputText value="#{managerBean.get(row.formularioNome)}" styleClass="singleLine"/>
+				        	   <h:outputText value="#{row.formularioNome}" styleClass="singleLine"/>
+
 				    </p:column>
 				   
 			 	   <p:column headerText="Ação" styleClass="percentual-10">
