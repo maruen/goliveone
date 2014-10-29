@@ -168,7 +168,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 			entityManager.joinTransaction();
 			entityManager.merge(entity);
 			entityManager.remove(entity);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 
@@ -189,7 +189,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		try {
 			entityManager.joinTransaction();
 			entityManager.persist(entity);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -204,8 +204,8 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * @param List
 	 *            <entity> entidade
 	 */
-	public void saveAll(List<T> entityList) {
-		for (T entity : entityList) {
+	public void saveAll(final List<T> entityList) {
+		for (final T entity : entityList) {
 			save(entity);
 		}
 	}
@@ -226,18 +226,15 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		entityManager.joinTransaction();
 		return entityManager.merge(entity);
 	}
-	
-	
-	
+
 	/**
 	 * @author maruen
 	 * 
 	 * @param entity
 	 */
-	public void  detach(T entity) {
+	public void detach(final T entity) {
 		entityManager.detach(entity);
 	}
-	
 
 	/**
 	 * @author guilherme.duarte
@@ -329,11 +326,12 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		return entityManager.createNativeQuery(query);
 	}
 
+	public Query createQueryByClassWithSql(final String sql, final Class<?> clazz) {
+		return entityManager.createNativeQuery(sql, clazz);
+	}
+
 	private boolean verifyAnnotation(final T classe) {
 		return classe.getClass().isAnnotationPresent(Entity.class);
 	}
-	
-	
-	
 
 }

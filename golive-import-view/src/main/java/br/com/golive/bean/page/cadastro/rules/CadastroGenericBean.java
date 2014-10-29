@@ -99,7 +99,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	private List<ColunaPerfil> colunasPagina;
 
 	public abstract void init();
-	
+
 	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
 		showMenuBar(500, 600);
 		if (getLogger() == null) {

@@ -27,7 +27,7 @@
 	<br />
 
 	<p:inputText
-		id="headerfiltro_number#{cc.attrs.widgetAnotado}_inicio_intervalo"
+		id="headerfiltro_number#{cc.attrs.widgetAnotado.id.coluna}_inicio_intervalo"
 		style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
 		styleClass="#{cc.attrs.styleClassFiltroUm}"
 		disabled="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
@@ -44,7 +44,7 @@
 	</p:commandLink>
 	<br />
 
-	<p:inputText id="headerfiltro_number#{cc.attrs.widgetAnotado}_fim"
+	<p:inputText id="headerfiltro_number#{cc.attrs.widgetAnotado.id.coluna}_fim"
 		style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
 		styleClass="#{cc.attrs.styleClassFiltroDois}"
 		disabled="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"

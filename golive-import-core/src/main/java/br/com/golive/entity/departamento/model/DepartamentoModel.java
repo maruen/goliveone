@@ -19,7 +19,6 @@ import br.com.golive.entity.Model;
 @Entity
 @Table(name = "tbDepartamentoProduto")
 @Label(name = "label.cadastroDepartamento")
-
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class DepartamentoModel extends Model {
@@ -29,6 +28,5 @@ public class DepartamentoModel extends Model {
 	
 	@Column(name = "DepartamentoProduto")
 	private String departamento;
-
 	
 }
