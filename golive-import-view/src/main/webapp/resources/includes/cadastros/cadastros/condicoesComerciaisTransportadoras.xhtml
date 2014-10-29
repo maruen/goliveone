@@ -1,0 +1,440 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="condicoesComerciaisTransportadoras"
+		header="#{managerBean.get('label.cadastroTransportadoras.condicoesComerciais')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="condicoesComerciaisTransportadoras"
+		styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="1" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-100" width="100%" border="0">
+
+			<p:fieldset legend="#{managerBean.get('label.cadastroTransportadoras.condicaoPagamento')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+
+				<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-3,percentual-40,percentual-1,percentual-10,percentual-1,percentual-10"
+					width="100%" border="0">
+
+					<h:column>
+						<h:outputText id="idCondicaoPagamentoOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.id')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idCondicaoPagamentoInputText"
+							style="width: 125px;" disabled="true" value="0000000001" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgCondicaoPagamento').show();"
+							immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+
+					<h:column />
+					<h:column />
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="condicaoPagamentoOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.condPagto')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="condicaoPagamentoInputText" style="width: 90%;"
+							disabled="true" value="28 / 56 dd" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="acrescimoCondicaoPagamentoOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.acrescimo')}"
+							styleClass="singleLine" />
+
+					</h:column>
+
+					<h:column>
+						<p:inputText id="acrescimoCondicaoPagamentoInputText"
+							style="width: 60px;" value="1,00 %" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="descontoCondicaoPagamentoOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.desconto')}"
+							styleClass="singleLine" />
+
+					</h:column>
+
+					<h:column>
+						<p:inputText id="descontoCondicaoPagamentoInputText"
+							style="width: 60px;" value="1,00 %" />
+					</h:column>
+				</h:panelGrid>
+
+				<br />
+
+				<p:dataTable id="condicaoPagamentoDataTable" var="row"
+					value="#{bean.conteudo}" rowKey="#{list.id}"
+					styleClass="tableCadastros" rows="15" paginator="true"
+					emptyMessage="#{managerBean.get('label.cadastroTransportadoras.msnNaoHaRegistros')}"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroTransportadoras.id')}"
+						styleClass="percentual-10">
+						<h:outputText value="0000000001" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroTransportadoras.nDias')}"
+						styleClass="percentual-10">
+						<h:outputText value="28" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroTransportadoras.diasFaturamento')}"
+						styleClass="percentual-10">
+						<p:selectOneRadio id="diasFaturamentoDtRadio" value="XXX"
+							disabled="true">
+							<f:selectItem itemValue="X"
+								id="diasFaturamentoCondicaoPagamentoItemlabel" />
+						</p:selectOneRadio>
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroTransportadoras.diasPedido')}"
+						styleClass="percentual-10">
+						<p:selectOneRadio id="diasPedidoDtRadio" value="XXX"
+							disabled="true">
+							<f:selectItem itemValue="X" id="diasPedidoItemlabel" />
+						</p:selectOneRadio>
+					</p:column>
+
+				</p:dataTable>
+
+			</p:fieldset>
+
+			<p:fieldset legend="#{managerBean.get('label.cadastroTransportadoras.formaPagamento')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+				<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-3,percentual-30,percentual-15,percentual-15"
+					width="100%" border="0">
+
+					<h:column>
+						<h:outputText id="idFormaPagamentoOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.id')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idFormaPagamentoInputText" style="width: 125px;"
+							disabled="true" value="0000000001" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgFormaPagamento').show();"
+							immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="formaPagamentoOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.formaPagto')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="formaPagamentoInputText" style="width: 90%;"
+							disabled="true" value="Boleto Bancário" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="acrescimoOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.acrescimo')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:inputText id="acrescimoInputText" style="width: 50px;"
+							value="1,00 %" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:inputText id="acrescimoValorInputText" style="width: 50px;"
+							value="R$ 2,50" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="descontoOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.desconto')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:inputText id="descontoInputText" style="width: 50px;"
+							value="1,00 %" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:inputText id="descontoValorInputText" style="width: 50px;"
+							value="R$ 2,50" />
+					</h:column>
+				</h:panelGrid>
+
+			</p:fieldset>
+
+			<p:fieldset legend="#{managerBean.get('label.cadastroTransportadoras.moeda')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+				<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-1,percentual-30,percentual-15,percentual-15"
+					width="100%" border="0">
+
+					<h:column>
+						<h:outputText id="idMoedaOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.id')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idMoedaInputText" style="width: 125px;"
+							disabled="true" styleClass="text-align-right" value="0000000001" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgMoeda').show();" immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="numeroOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.numero')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="numeroInputText" style="width: 125px;"
+							disabled="true" styleClass="text-align-right" value="971" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="casasDecimaisOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.casasDecimais')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:inputText id="casasDecimaisInputText" style="width: 125px;"
+							styleClass="text-align-right" disabled="true" value="02" />
+					</h:column>
+
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="codigoMoedaOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.codigoMoeda')}"
+							styleClass="singleLine" />
+
+					</h:column>
+
+					<h:column>
+						<h:inputText id="codigoMoedaInputText" style="width: 125px;"
+							styleClass="text-align-right" disabled="true" value="AFN" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="simboloMonetarioOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.simboloMonetario')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="5" height="1" />
+
+						<h:inputText id="simboloMonetarioInputText" style="width: 125px;"
+							disabled="true" styleClass="text-align-right" value="؋" />
+
+						<p:spacer width="10" height="1" />
+
+						<h:graphicImage value="/resources/images/simbolo.png"
+							styleClass="image" />
+					</h:column>
+
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="moedaOutputText"
+							value="#{managerBean.get('label.cadastroTransportadoras.moeda')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="moedaInputText" style="width: 83%;"
+							disabled="true" value="Afghanistan" />
+
+					</h:column>
+				</h:panelGrid>
+			</p:fieldset>
+		</h:panelGrid>
+	</p:panel>
+
+	<p:dialog header="#{managerBean.get('label.cadastroTransportadoras.pesquisaFormaPagamento')}"
+		widgetVar="dlgFormaPagamento" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="60%">
+
+		<p:dataTable id="formaPagamentoDatatableId"
+			var="formaPagamentoDatatableVar" value="#{bean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.formaPagamento')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Boleto Bancário" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.acrescimo%')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="1.00%" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.acrescimoR$')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="R$ 2,50" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.desconto%')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="1.00%" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.descontoR$')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="R$ 2,50" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="#{managerBean.get('label.cadastroTransportadoras.pesquisaMoeda')}"
+		widgetVar="dlgMoeda" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="80%">
+
+		<p:dataTable id="moedaDatatableId" var="moedaDatatableVar"
+			value="#{bean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.id')}"
+				styleClass="percentual-15 singleLine text-align-right">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.numero')}"
+				styleClass="percentual-10 singleLine text-align-right">
+				<h:outputText value="971" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.codigo')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="AFN" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.casasDecimais')}"
+				styleClass="percentual-15 singleLine text-align-right">
+				<h:outputText value="02" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.simboloMonetario')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="؋" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.simboloMonetarioImagem')}"
+				styleClass="percentual-25 singleLine">
+				<h:graphicImage value="/resources/images/simbolo.png"
+					styleClass="image" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.moeda')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Afegane" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="#{managerBean.get('label.cadastroTransportadoras.pesquisaCondicaoPagamento')}"
+		widgetVar="dlgCondicaoPagamento" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="60%">
+
+		<p:dataTable id="condicaoPagamentoDatatableId"
+			var="condicaoPagamentoDatatableVar" value="#{bean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.condicaoPagamento')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="28 / 56 dd" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.acrescimo')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="1.00%" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroTransportadoras.desconto')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="1.00%" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+</ui:composition>

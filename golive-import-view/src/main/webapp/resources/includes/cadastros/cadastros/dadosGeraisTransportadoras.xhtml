@@ -4,71 +4,52 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:panel id="dadosGerais"
-		 header="#{managerBean.get('label.cadastroTransportadoras.dadosGerais')}"
-		 toggleable="true"
-		 collapsed="false"
-		 closable="false"
-		 toggleSpeed="500"
-		 closeSpeed="500"
-		 widgetVar="dadosGerais"
-		 styleClass="little-font" >
-		 
-	     	<f:facet name="actions">
-          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
-          			<h:outputText styleClass="ui-icon ui-icon-help" />
-          		</h:commandLink>
-      		</f:facet>
-   		       	
-          	<h:panelGrid columns="6"
-          				 cellpadding="3"  
-          				 cellspacing="3"
-          				 columnClasses="percentual-4,
-          				 				percentual-10,
-          				 				percentual-4,
-          				 				percentual-15,
-          				 				percentual-5,
-          				 				percentual-10"
-           				 width="100%"
-          				 border="0">
-     
+	<p:panel id="dadosGerais"
+		header="#{managerBean.get('label.cadastroTransportadoras.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-4,percentual-10,percentual-4,percentual-15,percentual-5,percentual-10"
+			width="100%" border="0">
+
 			<h:outputText id="idOutputText"
-						  value="#{managerBean.get('label.cadastroTransportadoras.id')}"   />
-           	<h:inputText id="idInputText"
-           				 style="width: 125px;"
-           				 disabled="true"/>
-           				 
-      		<h:outputText id="clienteDesdeOutputText" 
-      					  value="#{managerBean.get('label.cadastroTransportadoras.clienteDesde')}"
-      					  styleClass="singleLine" />
-			<p:calendar id="clienteDesdeCalendar" 
-						showOn="button"
-						size="10"
-						pattern="dd/MM/yyyy" />
-      		
-      		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{managerBean.get('label.cadastroTransportadoras.inclusao')}" />
-	 		<h:inputText value="25/08/2014 20:24" 
-	 					 id="dataInclusaoInputText" 
-	 					 disabled="true" />      					  
-      		
-      		<h:outputText id="tipoPessoaOutputText" 
-      					  value="#{managerBean.get('label.cadastroTransportadoras.tipoPessoa')}" 
-      					  styleClass="singleLine" />
-			<p:autoComplete id="tipoPessoaDropDown" 
-							dropdown="true" 
-							completeMethod="#{transportadorasBean.tipoPessoaComplete}" size="15"/>
-        		
-			<p:spacer/>
-			<p:spacer/>
-			        		
-       		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{managerBean.get('label.cadastroTransportadoras.ultimaAlteracao')}"
-       					  styleClass="singleLine"/>
-	 		<h:inputText value="25/08/2014 20:47" 
-	 					 id="ultimaAlteracaoInputText" 
-	 					 disabled="true" />      					  
-	
-        </h:panelGrid>
+				value="#{managerBean.get('label.cadastroTransportadoras.id')}" />
+			<h:inputText id="idInputText" style="width: 125px;" disabled="true" />
+
+			<h:outputText id="clienteDesdeOutputText"
+				value="#{managerBean.get('label.cadastroTransportadoras.clienteDesde')}"
+				styleClass="singleLine" />
+			<p:calendar id="clienteDesdeCalendar" showOn="button" size="10"
+				pattern="dd/MM/yyyy" />
+
+			<h:outputText id="dataInclusaoOutputText"
+				value="#{managerBean.get('label.cadastroTransportadoras.inclusao')}" />
+			<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText"
+				disabled="true" />
+
+			<h:outputText id="tipoPessoaOutputText"
+				value="#{managerBean.get('label.cadastroTransportadoras.tipoPessoa')}"
+				styleClass="singleLine" />
+			<p:autoComplete id="tipoPessoaDropDown" dropdown="true"
+				completeMethod="#{bean.tipoPessoaComplete}" size="15" />
+
+			<p:spacer />
+			<p:spacer />
+
+			<h:outputText id="ultimaAlteracaoOutputText"
+				value="#{managerBean.get('label.cadastroTransportadoras.ultimaAlteracao')}"
+				styleClass="singleLine" />
+			<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText"
+				disabled="true" />
+
+		</h:panelGrid>
 	</p:panel>
 </ui:composition>
