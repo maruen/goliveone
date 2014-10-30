@@ -7,35 +7,29 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{usuariosBean}" />
+	<ui:param name="bean" value="#{usuarioBean}" />
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_usuarios.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
-		
-		<p:dataTable 
-			id="conteudoTable"
-			var="row" 
-			value="#{usuariosBean.conteudo}"
-			selectionMode="single"
-			rowKey="#{row.id}"
-			selection="#{usuariosBean.registro}" 
-			styleClass="tableCadastros"
-			rows="15"
+
+		<p:dataTable id="conteudoTable" var="row" value="#{bean.conteudo}"
+			selectionMode="single" rowKey="#{row.id}"
+			selection="#{bean.registro}" styleClass="tableCadastros" rows="15"
 			paginator="true"
 			emptyMessage="#{managerBean.get('label.cadastroUsuarios.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowSelect" update="conteudoTable" />
 			<p:ajax event="rowUnselect" update="conteudoTable" />
 
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
-			<p:column 
+			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
-				styleClass="percentual-10 singleLine text-align-left">				
+				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="000001" />
 			</p:column>
 
@@ -52,33 +46,33 @@
 				<h:outputText value="000001" />
 			</p:column>
 
-			<p:column 
+			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.funcionario')}"
-				styleClass="percentual-10">				
+				styleClass="percentual-10">
 				<h:outputText value="Roberto Costa" />
 			</p:column>
-			
-			<p:column 
+
+			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
-				styleClass="percentual-10">				
+				styleClass="percentual-10">
 				<h:outputText value="000001" />
 			</p:column>
-			
-			<p:column 
+
+			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.cliente')}"
-				styleClass="percentual-10">				
+				styleClass="percentual-10">
 				<h:outputText value="Persianas New York" />
 			</p:column>
-			
-			<p:column 
+
+			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
-				styleClass="percentual-10">				
+				styleClass="percentual-10">
 				<h:outputText value="Rua A" />
 			</p:column>
-			
-			<p:column 
+
+			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.fornecedor')}"
-				styleClass="percentual-10">				
+				styleClass="percentual-10">
 				<h:outputText value="China Export" />
 			</p:column>
 		</p:dataTable>
@@ -87,21 +81,26 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/usuarios/dadosGeraisUsuarios.xhtml">
-			<ui:param name="pojo" value="#{usuariosBean.registro}" />
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/usuarios/dadosGeraisUsuarios.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/usuarios/identificacaoFuncionario.xhtml">
-			<ui:param name="pojo" value="#{usuariosBean.registro}" />
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/usuarios/identificacaoFuncionario.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/usuarios/identificacaoCliente.xhtml">
-			<ui:param name="pojo" value="#{usuariosBean.registro}" />
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/usuarios/identificacaoCliente.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/empresas/usuarios/identificacaoFornecedor.xhtml">
-			<ui:param name="pojo" value="#{usuariosBean.registro}" />
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/usuarios/identificacaoFornecedor.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{usuariosBean.registro}" />
-		</ui:include>
+		<!-- <ui:include
+			src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>-->
 
 	</ui:define>
 </ui:composition>

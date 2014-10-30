@@ -1,4 +1,4 @@
-package br.com.golive.entity.empresas.usuarios.model;
+package br.com.golive.entity.empresa.usuario.model;
 
 import java.util.Calendar;
 
@@ -8,7 +8,7 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "Usuarios",
 		nomeDoArquivoGerado = "Usuarios",
 		nomeArquivoJasper = "Usuarios")
-public class UsuariosModel extends Model {
+public class UsuarioModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -20,12 +20,12 @@ public class UsuariosModel extends Model {
 	private String idFornecedor;
 	private String fornecedor;
 	
-	public UsuariosModel(){
+	public UsuarioModel(){
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public UsuariosModel(Long id,
+	public UsuarioModel(Long id,
 						 Calendar dataInclusao,
 						 Calendar dataAlteracao,
 						 String usuario, 

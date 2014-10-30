@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.empresas.usuarios;
+package br.com.golive.bean.page.cadastro.cadastros.empresa.usuario;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.usuarios.model.UsuariosModel;
+import br.com.golive.entity.empresa.usuario.model.UsuarioModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroUsuarios")
 @ManagedBean
 @ViewScoped
-public class UsuariosBean extends CadastroBeanRules<UsuariosModel> {
+public class UsuarioBean extends CadastroBeanRules<UsuarioModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class UsuariosBean extends CadastroBeanRules<UsuariosModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<UsuariosModel> criarLista() {
-		final List<UsuariosModel> lista = new ArrayList<UsuariosModel>();
+	private List<UsuarioModel> criarLista() {
+		final List<UsuarioModel> lista = new ArrayList<UsuarioModel>();
 		
 		for (Integer i = 0; i < 10; i ++){
-			lista.add(new UsuariosModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "roberto.tradicao@gmail.com", "000001", "Roberto Costa", "000001", "Persianas New York", "000001", "China Export"));
+			lista.add(new UsuarioModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "roberto.tradicao@gmail.com", "000001", "Roberto Costa", "000001", "Persianas New York", "000001", "China Export"));
 		}
 		return lista;
 	}
