@@ -15,6 +15,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
+import javax.persistence.Column;
 import javax.persistence.Transient;
 
 import org.hibernate.Criteria;
@@ -92,7 +93,8 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 	}
 
 	private boolean verificarCampo(final Field field) {
-		return (field.getName().contains("serialVersion")) || (field.isAnnotationPresent(Transient.class));
+
+		return ((field.getName().contains("serialVersion")) || (field.isAnnotationPresent(Transient.class)) || (!field.isAnnotationPresent(Column.class)));
 	}
 
 	@Override
@@ -165,6 +167,12 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		auditoriaModel.setAcaoUsuario(DELETE.getDescricao());
 		auditoriaJPA.save(auditoriaModel);
 
+	}
+
+	@Override
+	public List<AuditoriaModel> getAuditoriaLogs(final Model model) {
+		logger.info("Buscando logs de auditoria = {}", model);
+		return auditoriaJPA.getListModel(model);
 	}
 
 }

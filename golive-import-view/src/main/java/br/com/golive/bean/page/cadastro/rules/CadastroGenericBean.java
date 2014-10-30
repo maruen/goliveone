@@ -9,7 +9,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +18,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
+import javax.persistence.Column;
+import javax.persistence.Table;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -106,6 +107,9 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o getLogger() para que a página possa ser renderizada");
 		}
 
+		esvaziarLista(conteudo);
+		esvaziarLista(filtrados);
+
 		this.conteudo = listaConteudo;
 		filtrados.addAll(conteudo);
 		inicializarClasse();
@@ -119,6 +123,12 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 			if (colunaPerfil.isVisivel()) {
 				colunasPagina.add(colunaPerfil);
 			}
+		}
+	}
+
+	private void esvaziarLista(final List<T> lista) {
+		if (lista != null) {
+			lista.removeAll(lista);
 		}
 	}
 
@@ -320,7 +330,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 
 		final GoliveFilter filtro = null;
 
-		final Field field = Utils.getFilter(genericClazzInstance, coluna, this.getClass(), this.getClass().getSuperclass());
+		final Field field = Utils.getFilterField(genericClazzInstance, coluna, this.getClass(), this.getClass().getSuperclass());
 		if ((coluna != null) && (!coluna.getId().getColuna().isEmpty())) {
 			try {
 				return (GoliveFilter) Utils.invokeGetterByField(field, this, getLogger(), this.getClass(), this.getClass().getSuperclass());
@@ -333,7 +343,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 
 	public String getLabelFilter(final ColunaPerfil coluna) {
 		try {
-			final Field field = Utils.getFilter(genericClazzInstance, coluna, this.getClass(), this.getClass().getSuperclass());
+			final Field field = Utils.getFilterField(genericClazzInstance, coluna, this.getClass(), this.getClass().getSuperclass());
 			return field.getAnnotation(Filter.class).label();
 		} catch (final GoLiveException e) {
 			getLogger().info("Erro ao obter filtro = {}", coluna);
@@ -361,17 +371,33 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 			return "";
 		}
 		Object ret = indice;
-		Method getter;
+		Method getter = null;
+
 		try {
-			getter = genericClazzInstance.getMethod("get" + WordUtils.capitalize(coluna.getId().getColuna()));
-			ret = getter.invoke(indice);
+
+			for (final Field field : genericClazzInstance.getDeclaredFields()) {
+				if (getter == null) {
+
+					if (Utils.getRelationShip(field)) {
+						if (field.getType().getAnnotation(Table.class).name().equals(coluna.getId().getTabela())) {
+							getter = genericClazzInstance.getMethod("get" + WordUtils.capitalize(field.getName()));
+							ret = getter.invoke(indice);
+						}
+					}
+				}
+			}
+
+			final Field field = obterNomeFieldPorNomeDeColuna(coluna, ret.getClass(), ret.getClass().getSuperclass());
+			getter = ret.getClass().getMethod("get" + WordUtils.capitalize(field.getName()));
+			ret = getter.invoke(ret);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			getLogger().error("Erro ao obter label da coluna generica");
 			e.printStackTrace();
 		}
 
 		if (ret != null) {
-			if ((getFilter(coluna) != null) && (getFilter(coluna).getGenericType().equals(Date.class))) {
+			final GoliveFilter filter = getFilter(coluna);
+			if ((filter != null) && (filter.getGenericType().equals(Calendar.class))) {
 				return ((Calendar) ret).getTime();
 			} else {
 				return ret;
@@ -380,6 +406,19 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 			throw new GoLiveException("Não foi possivel obter label da coluna dinamica");
 		}
 
+	}
+
+	public Field obterNomeFieldPorNomeDeColuna(final ColunaPerfil coluna, final Class<?>... classes) {
+		for (final Class<?> clazz : classes) {
+			for (final Field field : clazz.getDeclaredFields()) {
+				if (field.isAnnotationPresent(Column.class)) {
+					if (field.getAnnotation(Column.class).name().equals(coluna.getId().getColuna())) {
+						return field;
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	public void salvarPerfilPagina() {

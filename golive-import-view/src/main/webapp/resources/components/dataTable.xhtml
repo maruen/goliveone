@@ -62,12 +62,14 @@
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dataTable id="conteudoTable" var="list"
-		selection="#{cc.attrs.bean.registro}"
+	<p:remoteCommand name="resizeTable" actionListener="#{cc.attrs.bean.mudarWidthColumns}" update=":conteudoForm:modelTable:conteudoTable"/>
+
+	<p:dataTable id="conteudoTable" var="list" style="width: 100%; position: relative;"
+		selection="#{cc.attrs.bean.registro}" scrollable="true"
 		value="#{cc.attrs.bean.conteudo}" selectionMode="single"
 		rowKey="#{list.id}" styleClass="tableCadastros" rows="15"
-		paginator="true" widgetVar="table"
-		filteredValue="#{cc.attrs.bean.filtrados}" scrollable="true"
+		paginator="true" widgetVar="table" scrollWidth="#{cc.attrs.bean.widthColunasDinamicas}"
+		filteredValue="#{cc.attrs.bean.filtrados}" 
 		emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -80,11 +82,11 @@
 		<p:ajax event="rowUnselect" update="conteudoTable" />
 
 		<p:column id="seletor" selectionMode="single"
-			style="width:16px;text-align:center" />
+			style="width:10px;text-align:center" />
 
 		<c:forEach items="#{cc.attrs.bean.colunasPagina}" var="coluna">
 
-			<p:column style="width: 70px;">
+			<p:column style="width: 300px;">
 				<f:facet name="header">
 					<filter:number id="componentFilterNumberId"
 						update=":conteudoForm:modelTable:conteudoTable"

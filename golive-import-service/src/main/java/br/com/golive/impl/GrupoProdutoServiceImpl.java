@@ -36,20 +36,14 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 
 	@Override
 	public List<GrupoProdutosModel> obterGrupoProdutos() {
-		return null;
+		logger.info("Obtendo lista de grupos de produto");
+		return grupoProdutoJPA.obterLista();
 	}
 
 	@Override
 	public List<GrupoProdutoDepartamento> obterGrupoProdutoDepartamentos() {
 		logger.info("Obtendo lista de grupos departamento");
-		return grupoProdutoDepartamentoJPA.findAll();
-	}
-
-	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void salvarGrupoProdutoDepartamento(final GrupoProdutoDepartamento grupoProdutoDepartamento) {
-		logger.info("Salvando grupo produto departamento = {}", grupoProdutoDepartamento);
-		grupoProdutoDepartamentoJPA.save(grupoProdutoDepartamento);
+		return grupoProdutoDepartamentoJPA.obterLista();
 	}
 
 	@Override
@@ -59,6 +53,15 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	public void salvar(final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Salvando grupo produto = {}", grupoProdutosModel);
 		grupoProdutoJPA.save(grupoProdutosModel);
+	}
+
+	@Override
+	@CrudOperation(type = Operation.UPDATE)
+	@Interceptors(LogAuditoriaInterceptor.class)
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void update(final GrupoProdutosModel grupoProdutosModel) {
+		logger.info("Atualizando grupo produto = {}", grupoProdutosModel);
+		grupoProdutoJPA.update(grupoProdutosModel);
 	}
 
 }

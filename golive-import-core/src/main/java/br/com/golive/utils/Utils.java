@@ -13,8 +13,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -22,8 +25,8 @@ import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
+import br.com.golive.annotation.LogList;
 import br.com.golive.annotation.StandardColumn;
-import br.com.golive.annotation.UniqueEntity;
 import br.com.golive.constants.Criptografia;
 import br.com.golive.constants.TipoFiltro;
 import br.com.golive.entity.Model;
@@ -66,30 +69,52 @@ public class Utils {
 		return (Class<?>) ((ParameterizedType) type).getActualTypeArguments()[0];
 	}
 
-	public static List<ColunaPerfil> obterListaColunaTabela(final Class<?> clazz, final Usuario usuario, final Empresa empresaSeleciona) {
+	public static List<ColunaPerfil> obterColunasPagina(final Usuario usuario, final Class<?>... classes) {
 		final List<ColunaPerfil> colunasPagina = new ArrayList<ColunaPerfil>();
-		if (clazz == null) {
-			throw new GoLiveException("Erro ao obter colunas da pagina");
-		}
-
-		if (clazz.isAnnotationPresent(UniqueEntity.class)) {
-			final List<Class<?>> classes = new ArrayList<Class<?>>();
-
-			for (final Field field : clazz.getDeclaredFields()) {
-				if (field.isAnnotationPresent(EmbeddedId.class)) {
-					for (final Field fieldIdClass : field.getType().getDeclaredFields()) {
-						addClasses(classes, fieldIdClass);
-					}
-				} else {
-					addClasses(classes, field);
-				}
-			}
-
-			obterColunasEntity(colunasPagina, usuario, classes);
-		} else {
-			obterColunasEntity(colunasPagina, usuario, clazz, clazz.getSuperclass());
+		for (final Class<?> clazz : classes) {
+			obterColunasEntity(colunasPagina, clazz.getAnnotation(Table.class).name(), usuario, clazz, clazz.getSuperclass());
 		}
 		return colunasPagina;
+	}
+
+	public static String[] getNameTablesByClasses(final Class<?>... classes) {
+		final String[] tabelas = new String[classes.length];
+
+		for (int i = 0; i < tabelas.length; i++) {
+			tabelas[i] = classes[i].getAnnotation(Table.class).name();
+		}
+		return tabelas;
+	}
+
+	@Deprecated
+	public static List<ColunaPerfil> obterListaColunaTabela(final Class<?> clazz, final Usuario usuario, final Empresa empresaSeleciona) {
+		// final List<ColunaPerfil> colunasPagina = new
+		// ArrayList<ColunaPerfil>();
+		// if (clazz == null) {
+		// throw new GoLiveException("Erro ao obter colunas da pagina");
+		// }
+		//
+		// if (clazz.isAnnotationPresent(UniqueEntity.class)) {
+		// final List<Class<?>> classes = new ArrayList<Class<?>>();
+		//
+		// for (final Field field : clazz.getDeclaredFields()) {
+		// if (field.isAnnotationPresent(EmbeddedId.class)) {
+		// for (final Field fieldIdClass : field.getType().getDeclaredFields())
+		// {
+		// addClasses(classes, fieldIdClass);
+		// }
+		// } else {
+		// addClasses(classes, field);
+		// }
+		// }
+		//
+		// obterColunasEntity(colunasPagina, usuario, classes);
+		// } else {
+		// obterColunasEntity(colunasPagina, usuario, clazz,
+		// clazz.getSuperclass());
+		// }
+		// return colunasPagina;
+		return null;
 	}
 
 	private static void addClasses(final List<Class<?>> classes, final Field field) {
@@ -100,10 +125,10 @@ public class Utils {
 		}
 	}
 
-	private static void obterColunasEntity(final List<ColunaPerfil> colunasPagina, final Usuario usuario, final Class<?>... classes) {
+	private static void obterColunasEntity(final List<ColunaPerfil> colunasPagina, final String nameTable, final Usuario usuario, final Class<?>... classes) {
 		Long count = 1L;
 		for (final Class<?> clazz : classes) {
-			count = obterColunas(colunasPagina, usuario, count, clazz, clazz.getAnnotation(Table.class).name());
+			count = obterColunas(colunasPagina, usuario, count, clazz, nameTable);
 		}
 	}
 
@@ -119,7 +144,7 @@ public class Utils {
 
 	private static Long obterColunas(final List<ColunaPerfil> colunasPagina, final Usuario usuario, Long count, final Class<?> clazz, final String nameTable) {
 		for (final Field field : clazz.getDeclaredFields()) {
-			if (!field.isAnnotationPresent(Transient.class)) {
+			if (isNotRelationShip(field)) {
 				if (field.isAnnotationPresent(Column.class)) {
 					if (field.isAnnotationPresent(Column.class)) {
 						colunasPagina.add(new ColunaPerfil(new ColunaPerfilId(usuario.getId(), nameTable, field.getAnnotation(Column.class).name()), TipoFiltro.IGUAL.getDescricao(), count++, field.isAnnotationPresent(StandardColumn.class)));
@@ -130,6 +155,27 @@ public class Utils {
 			}
 		}
 		return count;
+	}
+
+	private static boolean isNotRelationShip(final Field field) {
+
+		if (field.isAnnotationPresent(Transient.class)) {
+			return false;
+		}
+		if (field.isAnnotationPresent(OneToOne.class)) {
+			return false;
+		}
+		if (field.isAnnotationPresent(ManyToOne.class)) {
+			return false;
+		}
+		if (field.isAnnotationPresent(OneToMany.class)) {
+			return false;
+		}
+		if (field.isAnnotationPresent(ManyToMany.class)) {
+			return false;
+		}
+		return true;
+
 	}
 
 	public static Field getFilter(final String widgetName, final Class<?>... clazzes) {
@@ -143,6 +189,7 @@ public class Utils {
 		return null;
 	}
 
+	@Deprecated
 	public static Field getFilter(final Class<?> instance, final ColunaPerfil coluna, final Class<?>... clazzes) {
 		for (final Class<?> clazz : clazzes) {
 			for (final Field field : clazz.getDeclaredFields()) {
@@ -154,6 +201,17 @@ public class Utils {
 					} else {
 						return field;
 					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public static Field getFilterField(final Class<?> instance, final ColunaPerfil coluna, final Class<?>... clazzes) {
+		for (final Class<?> clazz : clazzes) {
+			for (final Field field : clazz.getDeclaredFields()) {
+				if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).name().equals(coluna.getId().getColuna()))) {
+					return field;
 				}
 			}
 		}
@@ -225,5 +283,10 @@ public class Utils {
 			}
 		}
 		return getter.invoke(instance);
+	}
+
+	public static boolean getRelationShip(final Field field) {
+		final boolean ret = !isNotRelationShip(field);
+		return ((!field.isAnnotationPresent(Transient.class)) && (ret) && (!field.isAnnotationPresent(LogList.class)));
 	}
 }

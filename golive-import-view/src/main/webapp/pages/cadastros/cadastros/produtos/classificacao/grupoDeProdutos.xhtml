@@ -16,7 +16,6 @@
 
 	<ui:define name="conteudo">
 		<golive:dataTable id="modelTable" bean="#{grupoProdutosBean}" />
-
 	</ui:define>
 
 	<ui:define name="edicao">
@@ -26,7 +25,7 @@
 		</ui:include>
 		<ui:include
 			src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
-			<ui:param name="pojo" value="#{grupoProdutosBean.registro.id.grupoProdutosModel.auditoriaLogs}" />
+			<ui:param name="pojo" value="#{grupoProdutosBean.registro.auditoriaLogs}" />
 		</ui:include>
 
 	</ui:define>

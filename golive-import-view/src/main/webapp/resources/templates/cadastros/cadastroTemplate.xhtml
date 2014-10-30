@@ -10,6 +10,13 @@
 
 	<ui:define name="linkRefs">
 		<ui:insert name="css" />
+		<script type="text/javascript">
+			function getWidthTable(){
+				var table=document.getElementById("conteudoForm:modelTable:conteudoTable");
+				  resizeTable([{name:'width', value:table.clientWidth}]);
+			}
+	</script>
+
 	</ui:define>
 
 	<ui:define name="header">
@@ -20,7 +27,8 @@
 
 		<h:form id="conteudoForm" styleClass="mainForm">
 
-			<h:commandButton action="#{bean.formAction()}" value="formAction" styleClass="formHidden"/>
+			<h:commandButton action="#{bean.formAction()}" value="formAction"
+				styleClass="formHidden" />
 
 			<ui:insert name="bean" />
 			<div id="opcoesDiv" class="opcoesDiv">

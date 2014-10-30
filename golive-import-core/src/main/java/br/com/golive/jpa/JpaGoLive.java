@@ -278,6 +278,11 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		return criteria.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	protected <T> T extractSingleResultByCriteria(final Criteria criteria) {
+		return (T) criteria.uniqueResult();
+	}
+
 	/**
 	 * @author guilherme.duarte
 	 * 
