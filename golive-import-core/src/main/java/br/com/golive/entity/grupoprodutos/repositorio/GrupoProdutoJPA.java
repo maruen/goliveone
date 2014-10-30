@@ -15,4 +15,5 @@ public class GrupoProdutoJPA extends JpaGoLive<GrupoProdutosModel, Long> {
 		criteria.setFetchMode("departamentoModel", FetchMode.EAGER);
 		return extractListByCriteria(criteria);
 	}
+
 }

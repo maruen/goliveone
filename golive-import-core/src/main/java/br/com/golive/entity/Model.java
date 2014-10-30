@@ -17,7 +17,7 @@ import br.com.golive.annotation.Label;
 import br.com.golive.annotation.StandardColumn;
 
 @MappedSuperclass
-public class Model implements Serializable {
+public abstract class Model implements Serializable {
 
 	@Transient
 	private static final long serialVersionUID = 7292963894354973008L;

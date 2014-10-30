@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -130,6 +131,15 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 */
 	protected T findById(final I id) {
 		return entityManager.find(persistentClass, id);
+	}
+
+	public T findByIdWithLazys(final Long id, final String... lazyFieldName) {
+		final Criteria criteria = createNativeCriteria();
+		criteria.add(Restrictions.eq("id", id));
+		for (final String field : lazyFieldName) {
+			criteria.setFetchMode(field, FetchMode.EAGER);
+		}
+		return extractSingleResultByCriteria(criteria);
 	}
 
 	/**

@@ -21,7 +21,7 @@ import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 
 @Entity
-@Table(name = "tbgrupoproduto")
+@Table(name = "tbGrupoProduto")
 @Label(name = "label.gruposDeProdutos")
 @Jasper(titulo = "GrupoProdutos", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "GrupoProdutos")
 public class GrupoProdutosModel extends Model {
@@ -37,7 +37,7 @@ public class GrupoProdutosModel extends Model {
 	private DepartamentoModel departamentoModel;
 
 	@LogList
-	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "tbauditoria_tbgrupoproduto", joinColumns = @JoinColumn(name = "tbGrupoProduto", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbAuditoria_Id", referencedColumnName = "Id"))
 	private List<AuditoriaModel> auditoriaLogs;
 

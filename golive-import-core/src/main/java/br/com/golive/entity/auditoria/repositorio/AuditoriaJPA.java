@@ -8,13 +8,6 @@ import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
 
-import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Property;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.criterion.Subqueries;
-
 import br.com.golive.entity.Model;
 import br.com.golive.entity.auditoria.model.AuditoriaItemModel;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
@@ -76,18 +69,6 @@ public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
 			results = query.getResultList();
 		}
 		return results;
-	}
-
-	@SuppressWarnings("deprecation")
-	public List<AuditoriaModel> getListModel(final Model model) {
-		final DetachedCriteria subQuery = DetachedCriteria.forClass(model.getClass());
-		subQuery.add(Restrictions.eq("id", model.getId()));
-		subQuery.setFetchMode("auditoriaLogs", FetchMode.EAGER);
-		subQuery.setProjection(Property.forName("auditoriaLogs"));
-		final Criteria query = createNativeCriteria();
-		query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		query.add(Subqueries.propertyIn("id", subQuery));
-		return extractListByCriteria(query);
 	}
 
 	@Override

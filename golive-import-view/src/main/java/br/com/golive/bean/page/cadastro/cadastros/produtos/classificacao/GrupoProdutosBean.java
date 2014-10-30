@@ -115,7 +115,8 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	public void editarRegistro() {
 		super.editarRegistro();
 		if (registro != null) {
-			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
+			// registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
+			registro = grupoProdutoService.obterGrupoProdutoAtual(registro);
 		}
 	}
 

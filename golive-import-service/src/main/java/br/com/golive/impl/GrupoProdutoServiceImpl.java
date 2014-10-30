@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
+import br.com.golive.entity.Model;
 import br.com.golive.entity.grupoprodutodepartamento.model.GrupoProdutoDepartamento;
 import br.com.golive.entity.grupoprodutodepartamento.repositorio.GrupoProdutoDepartamentoJPA;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
@@ -38,6 +39,12 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	public List<GrupoProdutosModel> obterGrupoProdutos() {
 		logger.info("Obtendo lista de grupos de produto");
 		return grupoProdutoJPA.obterLista();
+	}
+
+	@Override
+	public GrupoProdutosModel obterGrupoProdutoAtual(final Model model) {
+		logger.info("Obtendo objeto atual de grupos de produto");
+		return grupoProdutoJPA.findByIdWithLazys(model.getId(), "auditoriaLogs", "departamentoModel");
 	}
 
 	@Override
