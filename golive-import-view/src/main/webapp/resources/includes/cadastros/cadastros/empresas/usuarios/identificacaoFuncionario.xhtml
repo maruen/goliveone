@@ -18,8 +18,7 @@
 		</f:facet>
 
 		<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
-			columnClasses="percentual-3,percentual-50"
-			width="100%" border="0">
+			columnClasses="percentual-3,percentual-50" width="100%" border="0">
 
 			<h:column>
 				<h:outputText id="idFuncionarioOutputText"
@@ -67,7 +66,8 @@
 			</h:column>
 
 			<h:column>
-				<h:inputText value="0000001" id="cargoIdInputText" disabled="true" style="width: 125px;" />
+				<h:inputText value="0000001" id="cargoIdInputText" disabled="true"
+					style="width: 125px;" />
 
 				<p:spacer width="3" height="1" />
 
@@ -95,12 +95,13 @@
 
 	</p:panel>
 
-	<p:dialog header="#{managerBean.get('label.cadastroUsuarios.pesquisaFuncionarios')}"
+	<p:dialog
+		header="#{managerBean.get('label.cadastroUsuarios.pesquisaFuncionarios')}"
 		widgetVar="dlgFuncionario" modal="false" resizable="false"
 		appendToBody="true" height="100%" width="70%">
 
-		<p:dataTable id="funcionariosDatatableId" var="funcionariosDatatableVar"
-			value="#{usuariosBean.conteudo}">
+		<p:dataTable id="funcionariosDatatableId"
+			var="funcionariosDatatableVar" value="#{bean.conteudo}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
@@ -119,7 +120,7 @@
 				styleClass="percentual-20 singleLine">
 				<h:outputText value="Roberto Costa" />
 			</p:column>
-			
+
 			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
 				styleClass="percentual-10 singleLine">
@@ -131,7 +132,7 @@
 				styleClass="percentual-20 singleLine">
 				<h:outputText value="Diretoria" />
 			</p:column>
-			
+
 			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
 				styleClass="percentual-10 singleLine">

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import lombok.Data;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 import br.com.golive.annotation.UniqueEntity;
@@ -13,9 +14,10 @@ import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 
 @UniqueEntity
-@Table(name = "tbgrupoproduto_tbdepartamentoproduto")
+@Table(name = "tbGrupoProduto_tbDepartamentoProduto")
 @Label(name = "label.gruposDeProdutos")
 @Jasper(titulo = "GrupoProdutos", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "GrupoProdutos")
+@Data
 public class GrupoProdutoDepartamento implements Serializable {
 
 	@Transient
@@ -29,32 +31,6 @@ public class GrupoProdutoDepartamento implements Serializable {
 	@Column(name = "tbDepartamentoProduto_Id")
 	private DepartamentoModel departamentoModel;
 
-	public GrupoProdutoDepartamentoId getId() {
-		return id;
-	}
-
-	public void setId(final GrupoProdutoDepartamentoId id) {
-		this.id = id;
-	}
-
-	public GrupoProdutosModel getGrupoProdutosModel() {
-		return grupoProdutosModel;
-	}
-
-	public void setGrupoProdutosModel(final GrupoProdutosModel grupoProdutosModel) {
-		this.grupoProdutosModel = grupoProdutosModel;
-	}
-
-	public DepartamentoModel getDepartamentoModel() {
-		return departamentoModel;
-	}
-
-	public void setDepartamentoModel(final DepartamentoModel departamentoModel) {
-		this.departamentoModel = departamentoModel;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 
 }

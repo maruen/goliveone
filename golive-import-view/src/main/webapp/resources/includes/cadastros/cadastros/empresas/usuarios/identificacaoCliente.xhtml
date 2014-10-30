@@ -62,70 +62,70 @@
 
 		<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
 			columnClasses="percentual-50,percentual-10" width="100%" border="0">
-		
+
 			<h:column>
-				<p:fieldset legend="#{managerBean.get('label.cadastroUsuarios.contato')}"
+				<p:fieldset
+					legend="#{managerBean.get('label.cadastroUsuarios.contato')}"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; width: 75%">
-	
+
 					<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
 						columnClasses="percentual-3,percentual-50" width="100%" border="0">
-	
+
 						<h:column>
 							<h:outputText id="contatoOutputText"
 								value="#{managerBean.get('label.cadastroUsuarios.contato')}"
 								styleClass="singleLine" />
 						</h:column>
-	
+
 						<h:column>
-							<p:autoComplete id="contatoDropDown" 
-								dropdown="true" 
-								completeMethod="#{usuariosBean.completeText}" size="80"/>
+							<p:autoComplete id="contatoDropDown" dropdown="true"
+								completeMethod="#{bean.completeText}" size="80" />
 						</h:column>
-	
+
 						<h:column>
 							<h:outputText id="departamentoOutputText"
 								value="#{managerBean.get('label.cadastroUsuarios.departamento')}"
 								styleClass="singleLine" />
 						</h:column>
-	
+
 						<h:column>
 							<h:inputText id="departamentoClienteIdInputText" required="true"
 								disabled="true" style="width: 125px" value="00000001" />
-	
+
 							<p:spacer width="3" height="1" />
-	
+
 							<h:inputText id="departamentoInputText" required="true"
 								disabled="true" style="width: 73%" value="Diretoria" />
 						</h:column>
-	
+
 						<h:column>
 							<h:outputText id="cargoOutputText"
 								value="#{managerBean.get('label.cadastroUsuarios.cargo')}"
-								styleClass="singleLine" />	
+								styleClass="singleLine" />
 						</h:column>
-						
+
 						<h:column>
-							<h:inputText id="cargoClienteIdInputText" required="true" disabled="true"
-								style="width: 125px" value="00000001" />
-									
+							<h:inputText id="cargoClienteIdInputText" required="true"
+								disabled="true" style="width: 125px" value="00000001" />
+
 							<p:spacer width="3" height="1" />
-							
+
 							<h:inputText id="cargoInputText" required="true" disabled="true"
 								style="width: 73%" value="Diretor" />
 						</h:column>
 					</h:panelGrid>
 				</p:fieldset>
 			</h:column>
-			
+
 			<h:column>
-				<h:commandLink actionListener="#{usuariosBean.excluirContato()}"
+				<h:commandLink actionListener="#{bean.excluirContato()}"
 					id="excluirContato" styleClass="linkButton">
 					<h:graphicImage
 						value="/resources/images/stylistica-icons-set/24x24/delete.png"
 						styleClass="image floatRight" />
 				</h:commandLink>
 
-				<h:commandLink actionListener="#{usuariosBean.salvarContato()}"
+				<h:commandLink actionListener="#{bean.salvarContato()}"
 					id="salvarContato" styleClass="linkButton">
 					<h:graphicImage
 						value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
@@ -134,9 +134,9 @@
 			</h:column>
 		</h:panelGrid>
 
-		<p:dataTable id="contatoDataTable" var="row"
-			value="#{usuariosBean.conteudo}" rowKey="#{list.id}"
-			styleClass="tableCadastros" rows="15" paginator="true"
+		<p:dataTable id="contatoDataTable" var="row" value="#{bean.conteudo}"
+			rowKey="#{list.id}" styleClass="tableCadastros" rows="15"
+			paginator="true"
 			emptyMessage="#{managerBean.get('label.cadastroUsuarios.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -199,12 +199,13 @@
 		</p:dataTable>
 	</p:panel>
 
-	<p:dialog header="#{managerBean.get('label.cadastroUsuarios.pesquisaClientes')}"
+	<p:dialog
+		header="#{managerBean.get('label.cadastroUsuarios.pesquisaClientes')}"
 		widgetVar="dlgCliente" modal="false" resizable="false"
 		appendToBody="true" height="100%" width="70%">
 
-		<p:dataTable id="clientesDatatableId"
-			var="clientesDatatableVar" value="#{usuariosBean.conteudo}">
+		<p:dataTable id="clientesDatatableId" var="clientesDatatableVar"
+			value="#{bean.conteudo}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"
@@ -221,7 +222,8 @@
 			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.razaoSocial')}"
 				styleClass="percentual-30 singleLine">
-				<h:outputText value="Indústria e Comércio de Persianas New York Ltda" />
+				<h:outputText
+					value="Indústria e Comércio de Persianas New York Ltda" />
 			</p:column>
 		</p:dataTable>
 	</p:dialog>

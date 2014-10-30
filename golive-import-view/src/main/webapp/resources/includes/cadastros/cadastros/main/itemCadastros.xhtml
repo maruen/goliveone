@@ -14,7 +14,7 @@
 			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.classificacaoEmpresas.AreasDeAtuacao')}');" />
 		<p:menuitem value="#{managerBean.get('label.segmentos')}"
 			styleClass="itemPanelMenu little-font"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.classificacaoEmpresas.segmentos')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.classificacaoEmpresas.segmento')}');" />
 	</p:submenu>
 
 	<p:menuitem value="#{managerBean.get('label.clientes')}"
@@ -112,7 +112,7 @@
 			<p:menuitem
 				value="#{managerBean.get('label.usuarios')}"
 				styleClass="itemPanelMenu little-font"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.usuarios.usuarios')}');" />
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.usuarios.usuario')}');" />
 		</p:submenu>
 			
 	</p:submenu>
@@ -121,18 +121,18 @@
 		<p:menuitem
 			value="#{managerBean.get('label.pavimentos')}"
 			styleClass="itemPanelMenu little-font"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.pavimentos')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.pavimento')}');" />
 		<p:menuitem value="#{managerBean.get('label.ruas')}"
 			styleClass="itemPanelMenu little-font"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.ruas')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.rua')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.prateleiras')}"
 			styleClass="itemPanelMenu little-font"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.prateleiras')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.prateleira')}');" />
 		<p:menuitem
-			value="#{managerBean.get('label.reservaDeEndereço')}"
+			value="#{managerBean.get('label.reservaEndereco')}"
 			styleClass="itemPanelMenu little-font"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.reservaDeEndereco')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.reservaEndereco')}');" />
 	</p:submenu>
 
 	<p:submenu style="font-size: 13px;" label="#{managerBean.get('label.financeiro')}">

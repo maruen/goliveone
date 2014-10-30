@@ -6,7 +6,7 @@
 
 	<p:panel id="identificacaoFornecedor"
 		header="#{managerBean.get('label.cadastroUsuarios.identificacaoFornecedor')}"
-		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
 		closeSpeed="500" widgetVar="identificacaoFornecedor"
 		styleClass="little-font">
 
@@ -31,7 +31,8 @@
 
 				<p:spacer width="5" height="1" />
 
-				<p:commandLink onclick="PF('dlgFornecedor').show();" immediate="true">
+				<p:commandLink onclick="PF('dlgFornecedor').show();"
+					immediate="true">
 					<h:graphicImage
 						value="/resources/images/stylistica-icons-set/24x24/search.png" />
 				</p:commandLink>
@@ -43,8 +44,8 @@
 			</h:column>
 
 			<h:column>
-				<h:inputText value="China Export" id="nomeFantasiaFornecedorInputText"
-					disabled="true" />
+				<h:inputText value="China Export"
+					id="nomeFantasiaFornecedorInputText" disabled="true" />
 			</h:column>
 
 			<h:column>
@@ -55,77 +56,77 @@
 
 			<h:column>
 				<h:inputText id="razaoSocialFornecedorInputText" required="true"
-					disabled="true" style="width: 50%"
-					value="China Export Inc." />
+					disabled="true" style="width: 50%" value="China Export Inc." />
 			</h:column>
 		</h:panelGrid>
 
 		<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
 			columnClasses="percentual-50,percentual-10" width="100%" border="0">
-		
+
 			<h:column>
-				<p:fieldset legend="#{managerBean.get('label.cadastroUsuarios.contato')}"
+				<p:fieldset
+					legend="#{managerBean.get('label.cadastroUsuarios.contato')}"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; width: 75%">
-	
+
 					<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
 						columnClasses="percentual-3,percentual-50" width="100%" border="0">
-	
+
 						<h:column>
 							<h:outputText id="contatoFornecedorOutputText"
 								value="#{managerBean.get('label.cadastroUsuarios.contato')}"
 								styleClass="singleLine" />
 						</h:column>
-	
+
 						<h:column>
-							<p:autoComplete id="contatoFornecedorDropDown" 
-								dropdown="true" 
-								completeMethod="#{usuariosBean.completeText}" size="80"/>
+							<p:autoComplete id="contatoFornecedorDropDown" dropdown="true"
+								completeMethod="#{bean.completeText}" size="80" />
 						</h:column>
-	
+
 						<h:column>
 							<h:outputText id="departamentoFornecedorOutputText"
 								value="#{managerBean.get('label.cadastroUsuarios.departamento')}"
 								styleClass="singleLine" />
 						</h:column>
-	
+
 						<h:column>
-							<h:inputText id="departamentoFornecedorIdInputText" required="true"
-								disabled="true" style="width: 125px" value="00000001" />
-	
+							<h:inputText id="departamentoFornecedorIdInputText"
+								required="true" disabled="true" style="width: 125px"
+								value="00000001" />
+
 							<p:spacer width="3" height="1" />
-	
+
 							<h:inputText id="departamentoFornecedorInputText" required="true"
 								disabled="true" style="width: 73%" value="Diretoria" />
 						</h:column>
-	
+
 						<h:column>
 							<h:outputText id="cargoFornecedorOutputText"
 								value="#{managerBean.get('label.cadastroUsuarios.cargo')}"
-								styleClass="singleLine" />	
+								styleClass="singleLine" />
 						</h:column>
-						
+
 						<h:column>
-							<h:inputText id="cargoFornecedorIdInputText" required="true" disabled="true"
-								style="width: 125px" value="00000001" />
-									
+							<h:inputText id="cargoFornecedorIdInputText" required="true"
+								disabled="true" style="width: 125px" value="00000001" />
+
 							<p:spacer width="3" height="1" />
-							
-							<h:inputText id="cargoFornecedorInputText" required="true" disabled="true"
-								style="width: 73%" value="Diretor" />
+
+							<h:inputText id="cargoFornecedorInputText" required="true"
+								disabled="true" style="width: 73%" value="Diretor" />
 						</h:column>
 					</h:panelGrid>
 				</p:fieldset>
 			</h:column>
-			
+
 			<h:column>
-				<h:commandLink actionListener="#{usuariosBean.excluirContato()}"
+				<h:commandLink actionListener="#{bean.excluirContato()}"
 					id="excluirContatoFornecedor" styleClass="linkButton">
 					<h:graphicImage
 						value="/resources/images/stylistica-icons-set/24x24/delete.png"
 						styleClass="image floatRight" />
 				</h:commandLink>
 
-				<h:commandLink actionListener="#{usuariosBean.salvarContato()}"
+				<h:commandLink actionListener="#{bean.salvarContato()}"
 					id="salvarContatoFornecedor" styleClass="linkButton">
 					<h:graphicImage
 						value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
@@ -135,7 +136,7 @@
 		</h:panelGrid>
 
 		<p:dataTable id="contatoFornecedorDataTable" var="row"
-			value="#{usuariosBean.conteudo}" rowKey="#{list.id}"
+			value="#{bean.conteudo}" rowKey="#{list.id}"
 			styleClass="tableCadastros" rows="15" paginator="true"
 			emptyMessage="#{managerBean.get('label.cadastroUsuarios.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
@@ -155,9 +156,7 @@
 			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.razaoSocial')}"
 				styleClass="percentual-10">
-				<h:outputText
-					value="China Export Inc."
-					styleClass="singleLine" />
+				<h:outputText value="China Export Inc." styleClass="singleLine" />
 			</p:column>
 
 			<p:column
@@ -199,12 +198,13 @@
 		</p:dataTable>
 	</p:panel>
 
-	<p:dialog header="#{managerBean.get('label.cadastroUsuarios.pesquisaFornecedor')}"
+	<p:dialog
+		header="#{managerBean.get('label.cadastroUsuarios.pesquisaFornecedor')}"
 		widgetVar="dlgFornecedor" modal="false" resizable="false"
 		appendToBody="true" height="100%" width="70%">
 
-		<p:dataTable id="fornecedorDatatableId"
-			var="fornecedorDatatableVar" value="#{usuariosBean.conteudo}">
+		<p:dataTable id="fornecedorDatatableId" var="fornecedorDatatableVar"
+			value="#{bean.conteudo}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroUsuarios.id')}"

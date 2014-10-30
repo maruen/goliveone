@@ -27,9 +27,9 @@
 		</url-mapping>
 	
 	
-		<url-mapping id="cadastrosCadastrosClassificacaoEmpresasSegmentos">
-			<pattern value="/Cadastros/Cadastros/ClassificacaoEmpresas/Segmentos" />
-			<view-id value="/pages/cadastros/cadastros/classificacaoEmpresas/segmentos.jsf" />
+		<url-mapping id="cadastrosCadastrosClassificacaoEmpresasSegmento">
+			<pattern value="/Cadastros/Cadastros/ClassificacaoEmpresas/Segmento" />
+			<view-id value="/pages/cadastros/cadastros/classificacaoEmpresas/segmento.jsf" />
 		</url-mapping>
 	
 		<url-mapping id="cadastrosCadastrosClientes">
@@ -117,30 +117,30 @@
 			<view-id value="/pages/cadastros/cadastros/empresas/usuarios/permissao.jsf" />
 		</url-mapping>
 		
-		<url-mapping id="cadastrosCadastrosEmpresasUsuariosUsuarios">
-			<pattern value="/Cadastros/Cadastros/Empresas/Usuarios/Usuarios" />
-			<view-id value="/pages/cadastros/cadastros/empresas/usuarios/usuarios.jsf" />
+		<url-mapping id="cadastrosCadastrosEmpresasUsuariosUsuario">
+			<pattern value="/Cadastros/Cadastros/Empresas/Usuarios/Usuario" />
+			<view-id value="/pages/cadastros/cadastros/empresas/usuarios/usuario.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosEstoquePavimentos">
-			<pattern value="/Cadastros/Cadastros/Estoque/Pavimentos" />
-			<view-id value="/pages/cadastros/cadastros/estoque/pavimentos.jsf" />
+		<url-mapping id="cadastrosCadastrosEstoquePavimento">
+			<pattern value="/Cadastros/Cadastros/Estoque/Pavimento" />
+			<view-id value="/pages/cadastros/cadastros/estoque/pavimento.jsf" />
 		</url-mapping>
 	
-		<url-mapping id="cadastrosCadastrosEstoqueRuas">
-			<pattern value="/Cadastros/Cadastros/Estoque/Ruas" />
-			<view-id value="/pages/cadastros/cadastros/estoque/ruas.jsf" />
+		<url-mapping id="cadastrosCadastrosEstoqueRua">
+			<pattern value="/Cadastros/Cadastros/Estoque/Rua" />
+			<view-id value="/pages/cadastros/cadastros/estoque/rua.jsf" />
 		</url-mapping>
 		
-		<url-mapping id="cadastrosCadastrosEstoquePrateleiras">
-			<pattern value="/Cadastros/Cadastros/Estoque/Prateleiras" />
-			<view-id value="/pages/cadastros/cadastros/estoque/prateleiras.jsf" />
+		<url-mapping id="cadastrosCadastrosEstoquePrateleira">
+			<pattern value="/Cadastros/Cadastros/Estoque/Prateleira" />
+			<view-id value="/pages/cadastros/cadastros/estoque/prateleira.jsf" />
 		</url-mapping>
 	
 		
-		<url-mapping id="cadastrosCadastrosEstoqueReservaDeEndereco">
-			<pattern value="/Cadastros/Cadastros/Estoque/ReservaDeEndereco" />
-			<view-id value="/pages/cadastros/cadastros/estoque/reservaDeEndereco.jsf" />
+		<url-mapping id="cadastrosCadastrosEstoqueReservaEndereco">
+			<pattern value="/Cadastros/Cadastros/Estoque/ReservaEndereco" />
+			<view-id value="/pages/cadastros/cadastros/estoque/reservaEndereco.jsf" />
 		</url-mapping>
 	
 		<url-mapping id="cadastrosCadastrosFinanceiroCondicoesPagamento">
@@ -352,7 +352,7 @@
 		
 		<url-mapping id="cadastrosCadastrosTipoTransportadora">
 			<pattern value="/Cadastros/Cadastros/Transportadora" />
-			<view-id value="/pages/cadastros/cadastros/transportadoras.jsf" />
+			<view-id value="/pages/cadastros/cadastros/transportadora.jsf" />
 		</url-mapping>
 
 
