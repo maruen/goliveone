@@ -4,8 +4,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
-	<!--  CLASSIFICAÇÃO  -->
 	<p:panel id="especificidades"
 			 header="#{managerBean.get('label.cadastroPadroesLargura.especificidades')}"
 			 toggleable="true" 
@@ -34,13 +32,13 @@
 					 border="0">
 
 			<h:outputText id="colecoesIdOutputText" value="#{managerBean.get('label.cadastroPadroesLargura.id')}" />
-			<p:inputText id="colecoesIdInputText" 
+			<h:inputText id="colecoesIdInputText" 
 						 value="0000000001"
 						 style="width: 125px;"
 						 disabled="true" />
 
 			<h:outputText id="colecoesOutputText" value="#{managerBean.get('label.cadastroPadroesLargura.colecoes')}" />
-			<p:inputText id="colecoesInputText" 
+			<h:inputText id="colecoesInputText" 
 						 style="width: 95%"
 						 value="Mountain Viber Glass Colors" 
 						 disabled="true" />
@@ -50,7 +48,7 @@
 			</p:commandLink>
 
 			<h:outputText id="corIdOutputText" value="#{managerBean.get('label.cadastroPadroesLargura.id')}" />
-			<p:inputText id="corIdInputText" 
+			<h:inputText id="corIdInputText" 
 						 value="0000000001"
 						 style="width: 125px;" 
 						 disabled="true" />
@@ -58,7 +56,7 @@
 			<h:outputText id="corNomeOutputText" 
 						  value="#{managerBean.get('label.cadastroPadroesLargura.cor')}"
 						  style="white-space: nowrap" />
-			<p:inputText id="corNomeInputText" 
+			<h:inputText id="corNomeInputText" 
 						 style="width: 95%"
 						 value="Vermelho" 
 						 disabled="true" />
@@ -81,7 +79,7 @@
 
 		<p:dataTable id="colecoesDatatableId" 
 					 var="colecoesDatatableVar" 
-					 value="#{padroesLarguraBean.conteudo}">
+					 value="#{bean.conteudo}">
 
 			<p:column headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}" styleClass="percentual-10 singleLine">
 				<h:outputText value="0000000001" />
@@ -135,7 +133,7 @@
 
 		<p:dataTable id="corDatatableId" 
 					 var="corDatatableVar"
-					 value="#{padroesLarguraBean.conteudo}">
+					 value="#{bean.conteudo}">
 
 			<p:column headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}" styleClass="percentual-10 singleLine">
 				<h:outputText value="0000000001" />

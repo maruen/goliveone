@@ -4,7 +4,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
 		 header="#{managerBean.get('label.cadastroColecoes.dadosGerais')}"
 		 toggleable="true"
@@ -41,7 +40,7 @@
       		<h:outputText id="descricaoNomeOutputText" 
       					  value="#{managerBean.get('label.cadastroColecoes.departamento')}" 
       					  styleClass="floatLeft" />
-      		<p:inputText id="descricao"
+      		<p:inputText id="descricaoInputText"
       					 required="true"
       					 disabled="false"
       					 style="width: 90%"

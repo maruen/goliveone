@@ -4,8 +4,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
-<!--  CLASSIFICAÇÃO  -->
 <p:panel id="classificacaoColecoes"
 		 header="#{managerBean.get('label.cadastroColecoes.classificacao')}"
 		 toggleable="true"
@@ -34,14 +32,14 @@
 				
 				<h:outputText id="departamentoIdOutputText"
 							  value="#{managerBean.get('label.cadastroColecoes.id')}"   />
-            	<p:inputText id="departamentoIdInputText"
+            	<h:inputText id="departamentoIdInputText"
             				 value="00000000001" 
             				 style="width: 125px;"
             				 disabled="true"/>
             	
         		<h:outputText id="departamentoNomeOutputText"
         					   		value="#{managerBean.get('label.cadastroColecoes.departamento')}" />
-            	<p:inputText id="departamentoNomeInputText"
+            	<h:inputText id="departamentoNomeInputText"
             				 style="width: 95%"
             				 value="Acessórios, Partes e Peças para Persianas Horizontais em alumínio"
             				 disabled="true"/>
@@ -53,7 +51,7 @@
 			
 				<h:outputText id="grupoProdutosIdOutputText" 
 							  value="#{managerBean.get('label.cadastroColecoes.id')}" />
-            	<p:inputText id="grupoProdutosIdInputText"
+            	<h:inputText id="grupoProdutosIdInputText"
             				 value="00000000001" 
             				 style="width: 125px;"
             				 disabled="true"/>
@@ -61,7 +59,7 @@
         		<h:outputText  id="grupoProdutosNomeOutputText"
         		 			   value="#{managerBean.get('label.cadastroColecoes.grupoProdutos')}"
         		 			   style="white-space: nowrap"/>
-            	<p:inputText id="grupoProdutosNomeInputText"
+            	<h:inputText id="grupoProdutosNomeInputText"
             				 style="width: 95%"
             				 value="Lâminas em Alumínio 25mm X 0.18mm"
             				 disabled="true"/>
@@ -72,14 +70,15 @@
 			
 				<h:outputText id="subGrupoProdutosIdOutputText"
 							   value="#{managerBean.get('label.cadastroColecoes.id')}"   />
-            	<p:inputText id="subGrupoProdutosIdInputText"
+            	<h:inputText id="subGrupoProdutosIdInputText"
             				 value="00000000001"
             				 style="width: 125px;"
             				 disabled="true"/>
             	
         		<h:outputText id="subGrupoProdutosNomeOutputText"
-        					   value="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}"/>
-            	<p:inputText id="subGrupoProdutosNomeInputText"
+        					   value="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}"
+        					   styleClass="singleLine"/>
+            	<h:inputText id="subGrupoProdutosNomeInputText"
             				 style="width: 95%"
             				 value="Lâminas em Alumínio 25mm"
             				 disabled="true"/>
@@ -102,7 +101,7 @@
       			
      			<p:dataTable id="departamentoDatatableId"
         	  	 	     var="departamentoDatatableVar"
-        			 	 value="#{colecoesBean.conteudo}" >
+        			 	 value="#{bean.conteudo}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroColecoes.id')}"
 				    		  styleClass="percentual-5 singleLine">
@@ -127,7 +126,7 @@
       			
      			<p:dataTable id="grupoProdutosDatatableId"
         	  	 	     var="grupoProdutosDatatableVar"
-        			 	 value="#{colecoesBean.conteudo}" >
+        			 	 value="#{bean.conteudo}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroColecoes.id')}"
 				    		  styleClass="percentual-10 singleLine">
@@ -163,7 +162,7 @@
       			
      			<p:dataTable id="subGrupoProdutosDatatableId"
         	  	 	     var="subGrupoProdutosDatatableVar"
-        			 	 value="#{colecoesBean.conteudo}" >
+        			 	 value="#{bean.conteudo}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroColecoes.id')}"
 				    		  styleClass="percentual-10 singleLine">

@@ -19,14 +19,14 @@
 
 		<p:dataTable id="conteudoTable"
 			 		 var="row"
-					 selection="#{finalidadeCodigoDeBarrasBean.registro}" 
-					 value="#{finalidadeCodigoDeBarrasBean.conteudo}"
+					 selection="#{bean.registro}" 
+					 value="#{bean.conteudo}"
 					 selectionMode="single"
 					 rows="15"
 					 rowKey="#{row.id}"
 					 paginator="true"
-					 filteredValue="#{finalidadeCodigoDeBarrasBean.filtrados}"
-					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+					 filteredValue="#{bean.filtrados}"
+					 emptyMessage="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.msnNaoHaRegistros')}"
 					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect" 	update="conteudoTable" />
@@ -34,7 +34,7 @@
 
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
-			<p:column headerText="Data Inclusão"
+			<p:column headerText="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.dataInclusao')}"
 					  filterBy="${row.id}"
 					  filterMatchMode="contains"
 					  filterStyleClass="width-size-70;"
@@ -44,7 +44,7 @@
 			
 			</p:column>
 
-			<p:column headerText="Data Alteração"
+			<p:column headerText="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.dataAlteracao')}"
 					  filterBy="${row.id}"
 					  filterMatchMode="contains"
 					  styleClass="percentual-10 singleLine">
@@ -53,7 +53,7 @@
 				
 			</p:column>
 
-			<p:column headerText="Id"
+			<p:column headerText="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.id')}"
 					  filterBy="${row.id}"
 					  filterMatchMode="contains"
 					  styleClass="percentual-10">
@@ -62,7 +62,7 @@
 																																																																																																																																																																		
 			</p:column>
 
-			<p:column headerText="Finalidade Cód.Barras" 
+			<p:column headerText="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.finalidadeCodigoBarrasProduto')}" 
 					  filterMatchMode="contains"
 					  filterBy="${row.id}"
 					  styleClass="percentual-12 singleLine">
@@ -71,7 +71,7 @@
 			
 			</p:column>
 			
-			<p:column headerText="Id" 
+			<p:column headerText="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.id')}" 
 					  filterBy="${row.id}"
 					  filterMatchMode="contains"
 					  styleClass="percentual-10 ">
@@ -80,7 +80,7 @@
 																																																																																																																																																																		
 			</p:column>
 			
-			<p:column headerText="Abreviação"
+			<p:column headerText="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.abreviacaoUn')}"
 					  filterMatchMode="contains"
 					  filterBy="${row.id}"
 					  styleClass="percentual-10 singleLine ">
@@ -89,7 +89,7 @@
 			
 			</p:column>
 			
-			<p:column headerText="Unidade"
+			<p:column headerText="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.unidade')}"
 					  filterBy="${row.id}"
 					  filterMatchMode="contains"
 					  styleClass="percentual-10 ">
@@ -108,7 +108,7 @@
 		
 		<!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
-		 header="#{managerBean.get('label.cadastroProdutos.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -131,16 +131,16 @@
 	           	<!-- 1ST ROW -->
 	           	<p:row>
 	           		<p:column styleClass="percentual-15">
-	           			<h:outputText id="idOutputText" value="Id"   />
+	           			<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.id')}"   />
 	           		</p:column>
 	           		
 	           		<p:column styleClass="percentual-25">
-	           			<p:inputText id="idInputText" style="width: 20%" />
+	           			<h:inputText id="idInputText" style="width: 20%" />
 	           		</p:column>
 	           		
 	           		<p:column styleClass="percentual-10">
 	           			<h:outputText id="dataInclusaoOutputText" 
-	      					  		  value="#{managerBean.get('label.cadastroProdutos.dataInclusao')}" />
+	      					  		  value="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.inclusao')}" />
 	      		
 	           		</p:column>
 	           		
@@ -148,7 +148,7 @@
 	           			
 	           			<p:calendar  id="dataInclusaoInputText"
 	      					 		 disabled="true" 
-	      					 		 value="#{finalidadeCodigoBean.registro.dataInclusao}"
+	      					 		 value="#{bean.registro.dataInclusao}"
 	      					 		 size="16"
 	      					 		 maxlength="16"
 	      					 		 pattern="MM/dd/yyyy HH:mm:ss"/>
@@ -161,7 +161,7 @@
 	      		<p:row>
 	      			<p:column styleClass="percentual-15">
 	      				<h:outputText id="finalidadeCodigoProdutoOutputText"
-	      					 		  value="Finalidade Cód Barras Produto"
+	      					 		  value="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.finalidadeCodBarrasProduto')}"
 	      					 		  styleClass="singleLine"  />
 	      			</p:column>
 	      			
@@ -174,7 +174,7 @@
 	      			
 	      			<p:column styleClass="percentual-10">
 	      				<h:outputText id="ultimaAlteracaoOutputText"
-	        					  	  value="#{managerBean.get('label.cadastroProdutos.ultimaAlteracao')}"
+	        					  	  value="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.ultimaAlteracao')}"
 	        					  	  styleClass="singleLine"/>
 	      			</p:column>
 	      			
@@ -183,7 +183,7 @@
 		        			      		  disabled="true"
 	        					  		  size="16"
 	        					  		  maxlength="16"
-	        					  		  value="#{finalidadeCodigoBean.registro.dataAlteracao}"
+	        					  		  value="#{bean.registro.dataAlteracao}"
 	        					  		  pattern="MM/dd/yyyy HH:mm:ss"/>
 	      			</p:column>
 	      		</p:row>
@@ -194,27 +194,27 @@
 	      		<p:row>
 	      			<p:column styleClass="percentual-15">
 	      				<h:outputText id="numeroMinimoCaracteresOutputText"
-	      					 		  value="Unidade Permitida"
+	      					 		  value="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.unidadePermitida')}"
 	      					 		  styleClass="singleLine"  />
 	      			</p:column>
 	      			
 	      			<p:column styleClass="percentual-60">
-	      				<p:inputText id="firstInputText"
-	      				     		 disabled="disabled"
+	      				<h:inputText id="firstInputText"
+	      				     		 disabled="true"
 	      				     		 style="width: 20%"
 	      				     		 />
 	      				     		 
 						
-						<p:inputText id="secondInputText"
+						<h:inputText id="secondInputText"
 	      				     		 value="CTN"
-	      				     		 disabled="disabled"
+	      				     		 disabled="true"
 	      				     		 style="width: 10%"
 	      				     		 />
 	      				     		 
 	      				     		 
-						<p:inputText id="thirdInputText"
+						<h:inputText id="thirdInputText"
 	      				     		 value="Container"
-	      				     		 disabled="disabled"
+	      				     		 disabled="true"
 	      				     		 style="width: 27%"
 	      				     		 />	      				     		 
 						
@@ -229,15 +229,15 @@
 		
 	
 	<ui:include src="/resources/includes/cadastros/cadastros/finalidades/apresentacaoPanel.xhtml" >
-		<ui:param name="pojo" value="#{finalidadeCodigoBean.registro}" />
+		<ui:param name="pojo" value="#{bean.registro}" />
 	</ui:include>
 	
 	<ui:include src="/resources/includes/cadastros/cadastros/finalidades/aplicacaoPanel.xhtml" >
-		<ui:param name="pojo" value="#{finalidadeCodigoBean.registro}" />
+		<ui:param name="pojo" value="#{bean.registro}" />
 	</ui:include>
 	
-		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-		<ui:param name="pojo" value="#{produtoBean.registro}" />
+	<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+		<ui:param name="pojo" value="#{bean.registro}" />
 	</ui:include>
 	
 		

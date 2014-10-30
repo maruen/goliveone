@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="documentos"
+		header="#{managerBean.get('label.cadastroFuncionario.documentos')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="documentos" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-1,percentual-15,percentual-4,percentual-15,percentual-5,percentual-10"
+			width="100%" border="0">
+
+			<p:column>
+				<h:outputText id="cpfOutputText"
+					value="#{managerBean.get('label.cadastroFuncionario.cpf')}" />
+			</p:column>
+
+			<p:column>
+				<p:inputText id="cpfInputText" style="width: 160px;"
+					disabled="false" value="235.666.754-30" />
+			</p:column>
+
+			<p:column>
+				<h:outputText id="nisPisPasepOutputText"
+					value="#{managerBean.get('label.cadastroFuncionario.nisPisPasep')}"
+					styleClass="singleLine" />
+			</p:column>
+
+			<p:column>
+				<p:inputText id="nisPisPasepInputText" style="width: 125px;"
+					disabled="false" value="1.111.111-1" />
+			</p:column>
+
+			<p:column />
+			<p:column />
+
+			<p:column>
+				<h:outputText id="rgOutputText"
+					value="#{managerBean.get('label.cadastroFuncionario.rg')}" />
+			</p:column>
+
+			<p:column>
+				<p:inputText value="33.484.951-0" id="rgInputText" disabled="false"
+					style="width: 160px;" />
+
+				<p:spacer width="10" />
+
+				<p:selectBooleanCheckbox value="checked" id="isentoCheckbox" />
+
+				<p:spacer width="5" />
+
+				<h:outputText id="isentoOutputText"
+					value="#{managerBean.get('label.cadastroFuncionario.isento')}" />
+			</p:column>
+
+			<p:column />
+			<p:column />
+			<p:column />
+			<p:column />
+
+			<p:column>
+				<h:outputText id="carteiraTrabalhoOutputText"
+					value="#{managerBean.get('label.cadastroFuncionario.carteiraTrabalho')}"
+					styleClass="singleLine" />
+			</p:column>
+
+			<p:column>
+				<p:inputText value="1.111.111-16" id="carteiraTrabalhoInputText"
+					disabled="false" style="width: 160px;" />
+			</p:column>
+		</h:panelGrid>
+	</p:panel>
+</ui:composition>
