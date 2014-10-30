@@ -18,10 +18,10 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{unidadeBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{unidadeBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
@@ -71,13 +71,13 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisUnidade.xhtml">
-			<ui:param name="pojo" value="#{unidadeBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/utilizacaoUnidade.xhtml" >
-			<ui:param name="pojo" value="#{unidadeBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{unidadeBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>

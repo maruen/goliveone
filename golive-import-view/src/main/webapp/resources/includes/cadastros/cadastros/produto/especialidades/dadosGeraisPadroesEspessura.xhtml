@@ -4,7 +4,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!--  DADOS GERAIS PANEL -->
 <p:panel id="dadosGerais"
 		 header="#{managerBean.get('label.cadastroPadroesEspessura.dadosGerais')}"
 		 toggleable="true"
@@ -52,7 +51,7 @@
       					 style="width: 90%"
       					 value="0,18" />	
       		
-      		<p:inputText id="unidadeNomeInputText"
+      		<h:inputText id="unidadeNomeInputText"
       					 required="true"
       					 disabled="true"
       					 style="width: 80%"
@@ -89,7 +88,7 @@
       			
      			<p:dataTable id="unidadeDatatableId"
         	  	 	     var="unidadeDatatableVar"
-        			 	 value="#{padroesEspessuraBean.conteudo}" >
+        			 	 value="#{bean.conteudo}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
 				    		  styleClass="percentual-5 singleLine">

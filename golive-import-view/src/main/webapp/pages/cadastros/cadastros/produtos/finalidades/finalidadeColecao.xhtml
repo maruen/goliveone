@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{finalidadeColecaoBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{finalidadeColecaoBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroFinalidadeColecao.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,38 +34,38 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column 
-				headerText="Data Inclusão"
+				headerText="#{managerBean.get('label.cadastroFinalidadeColecao.dataInclusao')}"
 				styleClass="percentual-10 singleLine">				
 				<h:outputText value="25/08/2014 20:24" />
 			</p:column>
 
 			<p:column
-				headerText="Data Alteração"
+				headerText="#{managerBean.get('label.cadastroFinalidadeColecao.dataAlteracao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="25/08/2014 20:47">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroFinalidadeColecao.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Finalidade Coleção do Produto"
+				headerText="#{managerBean.get('label.cadastroFinalidadeColecao.finalidadeColecaoProduto')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Uso Interno" />
 			</p:column>
 
 			<p:column 
-				headerText="Nº Mín.Caract."
+				headerText="#{managerBean.get('label.cadastroFinalidadeColecao.nMinCaract')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="00010" />
 			</p:column>
 			
 			<p:column 
-				headerText="Nº Máx.Caract."
+				headerText="#{managerBean.get('label.cadastroFinalidadeColecao.nMaxCaract')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="00120" />
 			</p:column>
@@ -77,16 +77,16 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/produto/finalidades/dadosGeraisFinalidadeColecao.xhtml">
-			<ui:param name="pojo" value="#{finalidadeColecaoBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/produto/finalidades/apresentacaoFinalidadeColecao.xhtml" >
-			<ui:param name="pojo" value="#{finalidadeColecaoBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/produto/finalidades/aplicacaoFinalidadeColecao.xhtml" >
-			<ui:param name="pojo" value="#{finalidadeColecaoBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{finalidadeColecaoBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>
