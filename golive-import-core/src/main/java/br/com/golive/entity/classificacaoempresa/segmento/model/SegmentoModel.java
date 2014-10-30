@@ -1,4 +1,4 @@
-package br.com.golive.entity.classificacaoempresa.segmentos.model;
+package br.com.golive.entity.classificacaoempresa.segmento.model;
 
 import java.util.Calendar;
 
@@ -8,18 +8,18 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "Segmentos", 
 		nomeDoArquivoGerado = "Segmentos", 
 		nomeArquivoJasper = "Segmentos")
-public class SegmentosModel extends Model {
+public class SegmentoModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 
 	private String segmentos;
 
-	public SegmentosModel() {
+	public SegmentoModel() {
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public SegmentosModel(Long id, 
+	public SegmentoModel(Long id, 
 						  Calendar dataInclusao,
 						  Calendar dataAlteracao, 
 						  String segmentos) {

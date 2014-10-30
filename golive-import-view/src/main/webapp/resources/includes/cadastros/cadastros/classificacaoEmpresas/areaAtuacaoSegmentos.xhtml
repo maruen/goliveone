@@ -4,88 +4,75 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:panel id="areaAtuacao"
-		 header="#{managerBean.get('label.cadastroSegmentos.areaAtuacao')}"
-		 toggleable="true"
-		 collapsed="false"
-		 closable="false"
-		 toggleSpeed="500"
-		 closeSpeed="500"
-		 widgetVar="areaAtuacao"
-		 styleClass="little-font" >
-		 
-	     	<f:facet name="actions">
-          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
-          			<h:outputText styleClass="ui-icon ui-icon-help" />
-          		</h:commandLink>
-      		</f:facet>
-   		       	
-          	<h:panelGrid columns="4"
-          				 cellpadding="3"  
-          				 cellspacing="3"
-          				 columnClasses="percentual-5,
-          				 				percentual-80,
-          				 				percentual-5
-          				 				percentual-5"
-           				 width="100%"
-          				 border="0">
-     			
-     			<h:column>
-					<h:outputText id="idAreaAtuacaoOutputText"
-								  value="#{managerBean.get('label.cadastroSegmentos.id')}"/>
-				</h:column>
-				
-				<h:column>
-		           	<h:inputText id="idAreaAtuacaoInputText"
-		           				 style="width: 125px;"
-		           				 disabled="true"/>
-		           				 
-		           	<p:spacer width="5" height="1"/>
-		           	
-		           	<p:commandLink onclick="PF('dlgAreaAtuacao').show();" immediate="true">
-						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
-					</p:commandLink>
-		        </h:column>
-		        
-		        <h:column/>
-		        <h:column/>
-		        
-    			<h:column>
-					<h:outputText id="areaAtuacaoOutputText"
-								  value="#{managerBean.get('label.cadastroSegmentos.areaAtuacao')}"
-								  styleClass="singleLine"/>
-				</h:column>
-				
-				<h:column>
-		           	<h:inputText id="areaAtuacaoInputText"
-		           				 style="width: 66%;"
-		           				 disabled="true"
-		           				 value="Importação"/>
-		        </h:column>		        
-	        </h:panelGrid>
+	<p:panel id="areaAtuacao"
+		header="#{managerBean.get('label.cadastroSegmentos.areaAtuacao')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="areaAtuacao" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-5,percentual-80,percentual-5,percentual-5"
+			width="100%" border="0">
+
+			<h:column>
+				<h:outputText id="idAreaAtuacaoOutputText"
+					value="#{managerBean.get('label.cadastroSegmentos.id')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="idAreaAtuacaoInputText" style="width: 125px;"
+					disabled="true" />
+
+				<p:spacer width="5" height="1" />
+
+				<p:commandLink onclick="PF('dlgAreaAtuacao').show();"
+					immediate="true">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:column>
+
+			<h:column />
+			<h:column />
+
+			<h:column>
+				<h:outputText id="areaAtuacaoOutputText"
+					value="#{managerBean.get('label.cadastroSegmentos.areaAtuacao')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="areaAtuacaoInputText" style="width: 66%;"
+					disabled="true" value="Importação" />
+			</h:column>
+		</h:panelGrid>
 	</p:panel>
-	
-	<p:dialog header="#{managerBean.get('label.cadastroSegmentos.pesquisaAreaAtuacao')}"
-			  widgetVar="dlgAreaAtuacao"
-			  modal="false"
-			  resizable="false"
-			  appendToBody="true"
-			  height="100%"
-			  width="50%">
-      			
-     			<p:dataTable id="areaAtuacaoDatatableId"
-        	  	 	     var="areaAtuacaoDatatableVar"
-        			 	 value="#{segmentosBean.conteudo}" >
-		    
-				    <p:column headerText="#{managerBean.get('label.cadastroSegmentos.id')}"
-				    		  styleClass="percentual-15 singleLine">
-				     		<h:outputText value="0000000001" />
-				    </p:column>
-				    
-				    <p:column headerText="#{managerBean.get('label.cadastroSegmentos.areaAtuacao')}"
-				    		  styleClass="percentual-20 singleLine">
-				     		<h:outputText value="Importação" />
-				    </p:column>
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroSegmentos.pesquisaAreaAtuacao')}"
+		widgetVar="dlgAreaAtuacao" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="50%">
+
+		<p:dataTable id="areaAtuacaoDatatableId" var="areaAtuacaoDatatableVar"
+			value="#{bean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroSegmentos.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroSegmentos.areaAtuacao')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Importação" />
+			</p:column>
 		</p:dataTable>
 	</p:dialog>
 </ui:composition>

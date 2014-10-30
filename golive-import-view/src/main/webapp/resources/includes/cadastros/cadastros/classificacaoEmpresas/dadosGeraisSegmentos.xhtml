@@ -4,79 +4,63 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:panel id="dadosGerais"
-		 header="#{managerBean.get('label.cadastroSegmentos.dadosGerais')}"
-		 toggleable="true"
-		 collapsed="false"
-		 closable="false"
-		 toggleSpeed="500"
-		 closeSpeed="500"
-		 widgetVar="dadosGerais"
-		 styleClass="little-font" >
-		 
-	     	<f:facet name="actions">
-          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
-          			<h:outputText styleClass="ui-icon ui-icon-help" />
-          		</h:commandLink>
-      		</f:facet>
-   		       	
-          	<h:panelGrid columns="4"
-          				 cellpadding="3"  
-          				 cellspacing="3"
-          				 columnClasses="percentual-10,
-          				 				percentual-80,
-          				 				percentual-5
-          				 				percentual-10"
-           				 width="100%"
-          				 border="0">
-     			
-     			<h:column>
-					<h:outputText id="idOutputText"
-								  value="#{managerBean.get('label.cadastroSegmentos.id')}"/>
-				</h:column>
-				
-				<h:column>
-		           	<h:inputText id="idRuaInputText"
-		           				 style="width: 125px;"
-		           				 disabled="true"/>
-		        </h:column>
-		        
-		      	<h:column>
-		      		<h:outputText id="dataInclusaoOutputText" 
-		      					  value="#{managerBean.get('label.cadastroSegmentos.inclusao')}" />
-		      	</h:column>
-		      	
-		      	<h:column>
-			 		<h:inputText value="25/08/2014 20:24" 
-			 					 id="dataInclusaoInputText" 
-			 					 disabled="true" /> 
-			 	</h:column>
-			 	
-			 	<h:column>
-		      		<h:outputText id="segmentoOutputText" 
-		      					  value="#{managerBean.get('label.cadastroSegmentos.segmento')}" 
-		      					  styleClass="singleLine" />
-		      	</h:column>
-		      	
-		      	<h:column>
-		      		<p:inputText id="segmentoInputText"
-		      					 required="true"
-		      					 disabled="false"
-		      					 style="width: 80%"
-		      					 value="Persianas" />	
-		      	</h:column>
-		      	
-		      	<h:column>
-		       		<h:outputText id="ultimaAlteracaoOutputText"
-		       					  value="#{managerBean.get('label.cadastroRuas.ultimaAlteracao')}"
-		       					  styleClass="singleLine"/>
-		       	</h:column>
-		       	
-		       	<h:column>
-			 		<h:inputText value="25/08/2014 20:47" 
-			 					 id="ultimaAlteracaoInputText" 
-			 					 disabled="true" />   
-			 	</h:column>
-        </h:panelGrid>
+	<p:panel id="dadosGerais"
+		header="#{managerBean.get('label.cadastroSegmentos.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-10,percentual-80,percentual-5percentual-10"
+			width="100%" border="0">
+
+			<h:column>
+				<h:outputText id="idOutputText"
+					value="#{managerBean.get('label.cadastroSegmentos.id')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="idRuaInputText" style="width: 125px;"
+					disabled="true" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="dataInclusaoOutputText"
+					value="#{managerBean.get('label.cadastroSegmentos.inclusao')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText"
+					disabled="true" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="segmentoOutputText"
+					value="#{managerBean.get('label.cadastroSegmentos.segmento')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<p:inputText id="segmentoInputText" required="true" disabled="false"
+					style="width: 80%" value="Persianas" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="ultimaAlteracaoOutputText"
+					value="#{managerBean.get('label.cadastroRuas.ultimaAlteracao')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText"
+					disabled="true" />
+			</h:column>
+		</h:panelGrid>
 	</p:panel>
 </ui:composition>

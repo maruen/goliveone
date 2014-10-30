@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresas;
+package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresa;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.classificacaoempresa.segmentos.model.SegmentosModel;
+import br.com.golive.entity.classificacaoempresa.segmento.model.SegmentoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroSegmentos")
 @ManagedBean
 @ViewScoped
-public class SegmentosBean extends CadastroBeanRules<SegmentosModel> {
+public class SegmentoBean extends CadastroBeanRules<SegmentoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class SegmentosBean extends CadastroBeanRules<SegmentosModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<SegmentosModel> criarLista() {
-		final List<SegmentosModel> lista = new ArrayList<SegmentosModel>();
+	private List<SegmentoModel> criarLista() {
+		final List<SegmentoModel> lista = new ArrayList<SegmentoModel>();
 		
 		for (Integer i = 0; i < 10; i ++){
-			lista.add(new SegmentosModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Persianas"));
+			lista.add(new SegmentoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Persianas"));
 		}
 		
 		return lista;

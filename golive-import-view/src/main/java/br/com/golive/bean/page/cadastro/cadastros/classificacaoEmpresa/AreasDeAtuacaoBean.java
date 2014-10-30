@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresas;
+package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresa;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

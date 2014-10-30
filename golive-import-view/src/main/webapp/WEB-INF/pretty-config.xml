@@ -27,9 +27,9 @@
 		</url-mapping>
 	
 	
-		<url-mapping id="cadastrosCadastrosClassificacaoEmpresasSegmentos">
-			<pattern value="/Cadastros/Cadastros/ClassificacaoEmpresas/Segmentos" />
-			<view-id value="/pages/cadastros/cadastros/classificacaoEmpresas/segmentos.jsf" />
+		<url-mapping id="cadastrosCadastrosClassificacaoEmpresasSegmento">
+			<pattern value="/Cadastros/Cadastros/ClassificacaoEmpresas/Segmento" />
+			<view-id value="/pages/cadastros/cadastros/classificacaoEmpresas/segmento.jsf" />
 		</url-mapping>
 	
 		<url-mapping id="cadastrosCadastrosClientes">
