@@ -36,13 +36,12 @@ public class GrupoProdutosModel extends Model {
 	@Column(name = "GrupoProduto")
 	private String grupoDeProduto;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@OneToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbGrupoProduto_tbDepartamentoProduto", joinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
 	private DepartamentoModel departamentoModel;
 
 	@LogList
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "tbAuditoria_tbGrupoproduto", joinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbAuditoria_Id", referencedColumnName = "Id"))
+	@Transient
 	private List<AuditoriaModel> auditoriaLogs;
 
 	@Override

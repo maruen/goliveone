@@ -72,12 +72,12 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	}
 
 	@Override
-	@CrudOperation(type = Operation.UPDATE)
+	@CrudOperation(type = Operation.DELETE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void delete(final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Excluindo grupo produto = {}", grupoProdutosModel.getId());
-		grupoProdutoJPA.delete(grupoProdutosModel);
+		grupoProdutoJPA.removeModel(grupoProdutosModel);
 	}
 
 }

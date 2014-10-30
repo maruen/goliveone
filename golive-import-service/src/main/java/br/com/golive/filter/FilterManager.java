@@ -19,6 +19,7 @@ import br.com.golive.annotation.Fake;
 import br.com.golive.annotation.Filter;
 import br.com.golive.constants.TipoFiltro;
 import br.com.golive.exception.GoLiveException;
+import br.com.golive.utils.Utils;
 
 public class FilterManager<T> {
 
@@ -126,6 +127,9 @@ public class FilterManager<T> {
 		boolean inseriu = false;
 
 		for (final Field campo : getInstance().getClass().getDeclaredFields()) {
+			if (inseriu) {
+				continue;
+			}
 			if (campo.isAnnotationPresent(Filter.class)) {
 				if (campo.getAnnotation(Filter.class).name().equals(field)) {
 
@@ -157,7 +161,7 @@ public class FilterManager<T> {
 		for (final T index : lista) {
 			switch (filtro.getTipo()) {
 			case IGUAL:
-				if (filtro.getInicio().getTime() != ( (Calendar)getAtributoPorFieldEntity(index, field)).getTime()) {
+				if (filtro.getInicio().getTime() != ((Calendar) getAtributoPorFieldEntity(index, field)).getTime()) {
 					temp.remove(index);
 				}
 				break;
@@ -175,8 +179,7 @@ public class FilterManager<T> {
 				break;
 
 			case PERIODO:
-				if (!(filtro.getInicio().before(getAtributoPorFieldEntity(index, field))) ||
-				   !( (Calendar) getAtributoPorFieldEntity(index, field)).before(filtro.getFim())) {
+				if (!(filtro.getInicio().before(getAtributoPorFieldEntity(index, field))) || !((Calendar) getAtributoPorFieldEntity(index, field)).before(filtro.getFim())) {
 					temp.remove(index);
 				}
 				break;
@@ -250,11 +253,24 @@ public class FilterManager<T> {
 		}
 	}
 
-	private Object getAtributoPorFieldEntity(final T index, final String field) throws NoSuchFieldException, SecurityException, NoSuchMethodException {
+	private Object getAtributoPorFieldEntity(final T index, final String nameField) throws NoSuchFieldException, SecurityException, NoSuchMethodException {
 		try {
+			final Filter filter = Utils.getFilter(nameField, getInstance().getClass()).getAnnotation(Filter.class);
+			Object retorno = index;
+			Method getter = null;
+			if (!filter.path().isEmpty()) {
+				for (final String string : filter.path().replace(".", "_").split("_")) {
+					getter = index.getClass().getDeclaredMethod("get" + WordUtils.capitalize(string));
+					retorno = getter.invoke(retorno);
+				}
+			}
 
-			if (index.getClass().getDeclaredField(field) != null) {
-				final Object retorno = index.getClass().getDeclaredMethod("get" + WordUtils.capitalize(field)).invoke(index);
+			final Field field = Utils.getFieldByNameColumn(nameField, retorno.getClass());
+
+			if (field != null) {
+				getter = retorno.getClass().getDeclaredMethod("get" + WordUtils.capitalize(field.getName()));
+				retorno = getter.invoke(retorno);
+
 				switch (retorno.getClass().getSimpleName()) {
 				case "Long":
 					return Long.parseLong(retorno.toString());
@@ -266,7 +282,8 @@ public class FilterManager<T> {
 					break;
 				}
 			}
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
 			logger.error("Erro ao obterCampo da entidade no indice da lista");
 			e.printStackTrace();
 		}

@@ -46,42 +46,42 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "id", label = "label.id", path = "id.grupoProduto.id")
+	@Filter(name = "id", label = "label.id")
 	private NumberFilter filtroIdGrupoProduto;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "id", label = "label.id", path = "id.departamento.id")
+	@Filter(name = "id", label = "label.id", path = "departamentoModel")
 	private NumberFilter filtroIdDepartamento;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "DepartamentoProduto", label = "label.departamentos", path = "id.departamento.departamento")
-	private StringFilter filtroDepartamento;
-
-	@Inject
-	@FilterInjected
-	@Filter(name = "GrupoProduto", label = "label.gruposDeProdutos", path = "id.grupoProduto.grupoDeProduto")
+	@Filter(name = "GrupoProduto", label = "label.gruposDeProdutos")
 	private StringFilter filtroGrupoProduto;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "id.grupoProduto.dataInclusao")
+	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
 	private DateFilter filtroDataInclusaoGrupoProduto;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "id.grupoProduto.dataAlteracao")
+	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
 	private DateFilter filtroDataAletracaoGrupoProduto;
+	
+	@Inject
+	@FilterInjected
+	@Filter(name = "DepartamentoProduto", label = "label.departamentos", path = "departamentoModel")
+	private StringFilter filtroDepartamento;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "id.departamento.dataInclusao")
+	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "departamentoModel")
 	private DateFilter filtroDataInclusaoDepartamento;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "id.departamento.dataAlteracao")
+	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "departamentoModel")
 	private DateFilter filtroDataAletracaoDepartamento;
 
 	@EJB
@@ -89,6 +89,9 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 
 	@EJB
 	private GrupoProdutoService grupoProdutoService;
+	
+	@EJB
+	private AuditoriaService auditoriaService;
 
 	private List<DepartamentoModel> departamentos;
 
@@ -107,7 +110,7 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	public void editarRegistro() {
 		super.editarRegistro();
 		if (registro != null) {
-			registro = grupoProdutoService.obterGrupoProdutoAtual(registro);
+			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
 			departamentos = departamentoService.listarTodos();
 		}
 	}
@@ -161,6 +164,7 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 						JSFUtils.warnMessage(usuario.getLabels().getField("title.msg.erro.ao.inserir"), usuario.getLabels().getField("msg.preencher.registro"));
 					}
 				} else {
+					registro.setAuditoriaLogs(null);
 					grupoProdutoService.update(registro);
 					JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.atualizado.sucesso"));
 					success = true;

@@ -25,54 +25,55 @@
 	<h:outputLabel styleClass="#{cc.attrs.styleClassTitulo}"
 		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
+	<h:panelGroup rendered="false">
+		<p:calendar
+			id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_inicio_periodo"
+			pattern="dd/MM/yyyy" styleClass="#{cc.attrs.styleClassFiltroUm}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			mask="true" effect="fold">
+			<p:ajax event="dateSelect" onstart="filtrar();" />
+		</p:calendar>
 
-	<p:calendar
-		id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_inicio_periodo"
-		pattern="dd/MM/yyyy" styleClass="#{cc.attrs.styleClassFiltroUm}"
-		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-		rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-		mask="true" effect="fold">
-		<p:ajax event="dateSelect" onstart="filtrar();" />
-	</p:calendar>
+		<p:calendar
+			id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_inicio_periodo_disable"
+			style="background-color:#DDD" pattern="dd/MM/yyyy"
+			styleClass="#{cc.attrs.styleClassFiltroUm}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			mask="true" disabled="true" />
 
-	<p:calendar
-		id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_inicio_periodo_disable"
-		style="background-color:#DDD" pattern="dd/MM/yyyy"
-		styleClass="#{cc.attrs.styleClassFiltroUm}"
-		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-		rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-		mask="true" disabled="true" />
+		<p:commandLink update="#{cc.attrs.update}"
+			action="#{cc.attrs.bean.limparFiltro(cc.attrs.widgetAnotado)}"
+			image="/resources/images/stylistica-icons-set/24x24/bin.png"
+			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
+			<h:graphicImage
+				value="/resources/images/stylistica-icons-set/24x24/bin.png" />
+		</p:commandLink>
 
-	<p:commandLink update="#{cc.attrs.update}"
-		action="#{cc.attrs.bean.limparFiltro(cc.attrs.widgetAnotado)}"
-		image="/resources/images/stylistica-icons-set/24x24/bin.png"
-		styleClass="#{cc.attrs.styleClassBotaoLimpar}">
-		<h:graphicImage
-			value="/resources/images/stylistica-icons-set/24x24/bin.png" />
-	</p:commandLink>
+		<br />
 
-	<br />
+		<p:calendar
+			id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_fim"
+			pattern="dd/MM/yyyy" styleClass="#{cc.attrs.styleClassFiltroDois}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			rendered="#{(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).periodo) and (empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim)}"
+			mask="true" effect="fold">
+			<p:ajax event="dateSelect" onstart="filtrar();" />
+		</p:calendar>
 
-	<p:calendar id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_fim"
-		pattern="dd/MM/yyyy" styleClass="#{cc.attrs.styleClassFiltroDois}"
-		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
-		rendered="#{(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).periodo) and (empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim)}"
-		mask="true" effect="fold">
-		<p:ajax event="dateSelect" onstart="filtrar();" />
-	</p:calendar>
+		<p:calendar
+			id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_fim_disabled"
+			pattern="dd/MM/yyyy" style="background-color:rgba(160, 160, 190, 1);"
+			styleClass="#{cc.attrs.styleClassFiltroDois}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			rendered="#{(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).periodo) and (!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim)}"
+			mask="true" disabled="true" />
 
-	<p:calendar
-		id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_fim_disabled"
-		pattern="dd/MM/yyyy" style="background-color:rgba(160, 160, 190, 1);"
-		styleClass="#{cc.attrs.styleClassFiltroDois}"
-		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
-		rendered="#{(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).periodo) and (!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim)}"
-		mask="true" disabled="true" />
-
+	</h:panelGroup>
 	<p:remoteCommand name="filtrar"
 		actionListener="#{cc.attrs.bean.filtrar(cc.attrs.widgetAnotado)}"
 		update="#{cc.attrs.update}" />
-
 
 </composite:implementation>
 

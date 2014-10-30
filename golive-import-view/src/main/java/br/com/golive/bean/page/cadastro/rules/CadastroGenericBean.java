@@ -105,6 +105,11 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 
 	public abstract void init();
 
+	@Deprecated
+	public String getUsuarioLog() {
+		return "USUARIO";
+	}
+	
 	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
 		showMenuBar(500, 600);
 		if (getLogger() == null) {
@@ -128,6 +133,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 				colunasPagina.add(colunaPerfil);
 			}
 		}
+		fluxo = getFluxoListagem();
 	}
 
 	public void mudarWidthColumns() {
@@ -137,18 +143,20 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 		}
 	}
 
-	private void esvaziarLista(final List<T> lista) {
+	protected void esvaziarLista(final List<?> lista) {
 		if (lista != null) {
 			lista.removeAll(lista);
 		}
 	}
 
 	public void filtrar(final ColunaPerfil widgetFiltro) {
-		filterManager.filtrar(conteudo, filtrados, getFilter(widgetFiltro), widgetFiltro.getId().getColuna());
+		JSFUtils.warnMessage("Funcionalidade nao implementada", "Funcionanlidade será implementada posteriormente");
+//		filterManager.filtrar(conteudo, filtrados, getFilter(widgetFiltro), widgetFiltro.getId().getColuna());
 	}
 
 	public void limparFiltro(final String widgetFiltro) {
-		filterManager.filtrar(conteudo, filtrados, null, widgetFiltro);
+		JSFUtils.warnMessage("Funcionalidade nao implementada", "Funcionanlidade será implementada posteriormente");
+//		filterManager.filtrar(conteudo, filtrados, null, widgetFiltro);
 	}
 
 	public Map<String, Object> obterParametrosRelatório() {

@@ -28,6 +28,7 @@
 		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
 
+<h:panelGroup rendered="false">
 
 	<p:inputText id="headerfiltro_string#{cc.attrs.widgetAnotado.id.coluna}_inicio"
 		style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
@@ -45,7 +46,7 @@
 		<h:graphicImage
 			value="/resources/images/stylistica-icons-set/24x24/bin.png" />
 	</p:commandLink>
-
+</h:panelGroup>
 
 
 </composite:implementation>

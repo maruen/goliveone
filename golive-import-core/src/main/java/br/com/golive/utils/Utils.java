@@ -256,6 +256,15 @@ public class Utils {
 		return field;
 	}
 
+	public static Field getFieldByNameColumn(final String nameColumn, final Class<?> clazz) {
+		for (final Field field : clazz.getDeclaredFields()) {
+			if ((field.isAnnotationPresent(Column.class)) && (field.getAnnotation(Column.class).name().equals(nameColumn))) {
+				return field;
+			}
+		}
+		return null;
+	}
+
 	public static boolean possuePropriedade(final List<String> list, final String string) {
 		return list.contains(string);
 	}

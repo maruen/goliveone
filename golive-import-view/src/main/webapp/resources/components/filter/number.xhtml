@@ -25,38 +25,39 @@
 	<h:outputLabel styleClass="#{cc.attrs.styleClassTitulo}"
 		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
 	<br />
+	<h:panelGroup rendered="false">
 
-	<p:inputText
-		id="headerfiltro_number#{cc.attrs.widgetAnotado.id.coluna}_inicio_intervalo"
-		style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
-		styleClass="#{cc.attrs.styleClassFiltroUm}"
-		disabled="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-		onchange="filtrar();">
-	</p:inputText>
+		<p:inputText
+			id="headerfiltro_number#{cc.attrs.widgetAnotado.id.coluna}_inicio_intervalo"
+			style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
+			styleClass="#{cc.attrs.styleClassFiltroUm}"
+			disabled="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
+			onchange="filtrar();">
+		</p:inputText>
 
-	<p:commandLink update="#{cc.attrs.update}"
-		action="#{cc.attrs.bean.limparFiltro(cc.attrs.widgetAnotado)}"
-		image="/resources/images/stylistica-icons-set/24x24/bin.png"
-		styleClass="#{cc.attrs.styleClassBotaoLimpar}">
-		<h:graphicImage
-			value="/resources/images/stylistica-icons-set/24x24/bin.png" />
-	</p:commandLink>
-	<br />
+		<p:commandLink update="#{cc.attrs.update}"
+			action="#{cc.attrs.bean.limparFiltro(cc.attrs.widgetAnotado)}"
+			image="/resources/images/stylistica-icons-set/24x24/bin.png"
+			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
+			<h:graphicImage
+				value="/resources/images/stylistica-icons-set/24x24/bin.png" />
+		</p:commandLink>
+		<br />
 
-	<p:inputText id="headerfiltro_number#{cc.attrs.widgetAnotado.id.coluna}_fim"
-		style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
-		styleClass="#{cc.attrs.styleClassFiltroDois}"
-		disabled="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
-		rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.getFilterManager().intervalo}"
-		value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
-		onchange="filtrar();">
-	</p:inputText>
-
+		<p:inputText
+			id="headerfiltro_number#{cc.attrs.widgetAnotado.id.coluna}_fim"
+			style="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim ? 'background-color:rgba(160, 160, 190, 1);':'background-color:rgba(255, 255, 255, 1);'}"
+			styleClass="#{cc.attrs.styleClassFiltroDois}"
+			disabled="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			rendered="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.getFilterManager().intervalo}"
+			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
+			onchange="filtrar();">
+		</p:inputText>
+	</h:panelGroup>
 	<p:remoteCommand name="filtrar"
 		actionListener="#{cc.attrs.bean.filtrar(cc.attrs.widgetAnotado)}"
 		update="#{cc.attrs.update}" />
-
 
 </composite:implementation>
 
