@@ -13,6 +13,8 @@ import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
+import lombok.Data;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
@@ -27,12 +29,14 @@ import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.service.AuditoriaService;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
+import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
 
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroGrupoProdutos")
+@Data
 public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 
 	private static final long serialVersionUID = 7638327964310698925L;
@@ -86,12 +90,7 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	@EJB
 	private GrupoProdutoService grupoProdutoService;
 
-	@EJB
-	private AuditoriaService auditoriaService;
-
 	private List<DepartamentoModel> departamentos;
-
-	private Long widthColunasDinamicas;
 
 	@Override
 	@PostConstruct
@@ -104,26 +103,29 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		}
 	}
 
-	public void mudarWidthColumns() {
-		final String value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("width");
-		if (value != null) {
-			widthColunasDinamicas = Long.valueOf(value) - 4L;
-		}
-	}
-
 	@Override
 	public void editarRegistro() {
 		super.editarRegistro();
 		if (registro != null) {
-			// registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
 			registro = grupoProdutoService.obterGrupoProdutoAtual(registro);
+			departamentos = departamentoService.listarTodos();
 		}
 	}
 
 	@Override
+	public void confirmarExclusao() {
+		if ((fluxo.equals(Fluxo.EXCLUSAO)) && (registro != null)) {
+			grupoProdutoService.delete(registro);
+			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
+			super.init(grupoProdutoService.obterGrupoProdutos(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, DepartamentoModel.class, GrupoProdutosModel.class));
+		}
+	}
+	
+	@Override
 	public void incluir() {
 		super.incluir();
 		registro = new GrupoProdutosModel();
+		departamentos = departamentoService.listarTodos();
 	}
 
 	@Override
@@ -148,25 +150,39 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		boolean success = false;
 
 		if (registro != null) {
-			if (registro.getId() == null) {
-				if (validarInclusao()) {
-					grupoProdutoService.salvar(registro);
-					JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
-					success = true;
+			
+			if(registro.getDepartamentoModel() != null){
+				if (registro.getId() == null) {
+					if (validarInclusao()) {
+						grupoProdutoService.salvar(registro);
+						JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
+						success = true;
+					} else {
+						JSFUtils.warnMessage(usuario.getLabels().getField("title.msg.erro.ao.inserir"), usuario.getLabels().getField("msg.preencher.registro"));
+					}
 				} else {
-					JSFUtils.warnMessage(usuario.getLabels().getField("title.msg.erro.ao.inserir"), usuario.getLabels().getField("msg.preencher.registro"));
+					grupoProdutoService.update(registro);
+					JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.atualizado.sucesso"));
+					success = true;
 				}
 			} else {
-				grupoProdutoService.update(registro);
-				JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
-				success = true;
+				if((departamentos == null) || (departamentos.isEmpty())){
+					departamentoInexistente();
+				} else {
+					JSFUtils.errorMessage(usuario.getLabels().getField("title.msg.aviso"), usuario.getLabels().getField("msg.preencher.registro"));
+				}
+				showMenuBar();
 			}
 		}
-		super.salvar();
 		if (success) {
+			super.salvar();
 			super.init(grupoProdutoService.obterGrupoProdutos(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, DepartamentoModel.class, GrupoProdutosModel.class));
 		}
 
+	}
+
+	private void departamentoInexistente() {
+		JSFUtils.errorMessage(usuario.getLabels().getField("title.msg.aviso"), usuario.getLabels().getField("msg.departamento.nao.existe"));
 	}
 
 	private boolean validarInclusao() {
@@ -179,93 +195,5 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		return false;
 	}
 
-	@Override
-	protected Logger getLogger() {
-		return logger;
-	}
-
-	public NumberFilter getFiltroIdGrupoProduto() {
-		return filtroIdGrupoProduto;
-	}
-
-	public void setFiltroIdGrupoProduto(final NumberFilter filtroIdGrupoProduto) {
-		this.filtroIdGrupoProduto = filtroIdGrupoProduto;
-	}
-
-	public NumberFilter getFiltroIdDepartamento() {
-		return filtroIdDepartamento;
-	}
-
-	public void setFiltroIdDepartamento(final NumberFilter filtroIdDepartamento) {
-		this.filtroIdDepartamento = filtroIdDepartamento;
-	}
-
-	public StringFilter getFiltroDepartamento() {
-		return filtroDepartamento;
-	}
-
-	public void setFiltroDepartamento(final StringFilter filtroDepartamento) {
-		this.filtroDepartamento = filtroDepartamento;
-	}
-
-	public StringFilter getFiltroGrupoProduto() {
-		return filtroGrupoProduto;
-	}
-
-	public void setFiltroGrupoProduto(final StringFilter filtroGrupoProduto) {
-		this.filtroGrupoProduto = filtroGrupoProduto;
-	}
-
-	public DateFilter getFiltroDataInclusaoGrupoProduto() {
-		return filtroDataInclusaoGrupoProduto;
-	}
-
-	public void setFiltroDataInclusaoGrupoProduto(final DateFilter filtroDataInclusaoGrupoProduto) {
-		this.filtroDataInclusaoGrupoProduto = filtroDataInclusaoGrupoProduto;
-	}
-
-	public DateFilter getFiltroDataAletracaoGrupoProduto() {
-		return filtroDataAletracaoGrupoProduto;
-	}
-
-	public void setFiltroDataAletracaoGrupoProduto(final DateFilter filtroDataAletracaoGrupoProduto) {
-		this.filtroDataAletracaoGrupoProduto = filtroDataAletracaoGrupoProduto;
-	}
-
-	public DateFilter getFiltroDataInclusaoDepartamento() {
-		return filtroDataInclusaoDepartamento;
-	}
-
-	public void setFiltroDataInclusaoDepartamento(final DateFilter filtroDataInclusaoDepartamento) {
-		this.filtroDataInclusaoDepartamento = filtroDataInclusaoDepartamento;
-	}
-
-	public DateFilter getFiltroDataAletracaoDepartamento() {
-		return filtroDataAletracaoDepartamento;
-	}
-
-	public void setFiltroDataAletracaoDepartamento(final DateFilter filtroDataAletracaoDepartamento) {
-		this.filtroDataAletracaoDepartamento = filtroDataAletracaoDepartamento;
-	}
-
-	public List<DepartamentoModel> getDepartamentos() {
-		if (departamentos == null) {
-			departamentos = departamentoService.listarTodos();
-		}
-
-		return departamentos;
-	}
-
-	public void setDepartamentos(final List<DepartamentoModel> departamentos) {
-		this.departamentos = departamentos;
-	}
-
-	public Long getWidthColunasDinamicas() {
-		return widthColunasDinamicas;
-	}
-
-	public void setWidthColunasDinamicas(final Long widthColunasDinamicas) {
-		this.widthColunasDinamicas = widthColunasDinamicas;
-	}
 
 }

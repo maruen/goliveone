@@ -17,4 +17,8 @@ public class GrupoProdutoJPA extends JpaGoLive<GrupoProdutosModel, Long> {
 		return extractListByCriteria(criteria);
 	}
 
+	public void removeModel(final GrupoProdutosModel model) {
+		entityManager.remove(entityManager.contains(model) ? model : entityManager.merge(model));
+	}
+
 }

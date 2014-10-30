@@ -16,10 +16,11 @@ public interface GrupoProdutoService {
 
 	public List<GrupoProdutoDepartamento> obterGrupoProdutoDepartamentos();
 
-	public void salvar(GrupoProdutosModel grupoProdutosModel);
+	public void salvar(final GrupoProdutosModel grupoProdutosModel);
 
-	public void update(GrupoProdutosModel grupoProdutosModel);
+	public void update(final GrupoProdutosModel grupoProdutosModel);
 
-	public GrupoProdutosModel obterGrupoProdutoAtual(Model model);
+	public GrupoProdutosModel obterGrupoProdutoAtual(final Model model);
 
+	public void delete(final GrupoProdutosModel grupoProdutosModel);
 }
