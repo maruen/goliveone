@@ -352,7 +352,7 @@
 		
 		<url-mapping id="cadastrosCadastrosTipoTransportadora">
 			<pattern value="/Cadastros/Cadastros/Transportadora" />
-			<view-id value="/pages/cadastros/cadastros/transportadoras.jsf" />
+			<view-id value="/pages/cadastros/cadastros/transportadora.jsf" />
 		</url-mapping>
 
 

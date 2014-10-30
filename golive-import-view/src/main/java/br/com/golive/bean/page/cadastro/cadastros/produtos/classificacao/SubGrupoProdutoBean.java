@@ -93,6 +93,12 @@ public class SubGrupoProdutoBean extends CadastroBeanRules<SubGrupoProdutoModel>
 	public List<GrupoProdutosModel> getGrupoProdutoList() {
 		return new ArrayList<GrupoProdutosModel>();
 	}
+
+	@Override
+	protected Logger getLogger() {
+		// TODO Auto-generated method stub
+		return logger;
+	}
 	
 	
 	
