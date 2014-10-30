@@ -42,7 +42,7 @@ public class GrupoProdutosModel extends Model {
 
 	@LogList
 	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
-	@JoinTable(name = "tbauditoria_tbgrupoproduto", joinColumns = @JoinColumn(name = "tbGrupoProduto", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbAuditoria_Id", referencedColumnName = "Id"))
+	@JoinTable(name = "tbAuditoria_tbGrupoproduto", joinColumns = @JoinColumn(name = "tbGrupoProduto", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbAuditoria_Id", referencedColumnName = "Id"))
 	private List<AuditoriaModel> auditoriaLogs;
 
 	@Override
