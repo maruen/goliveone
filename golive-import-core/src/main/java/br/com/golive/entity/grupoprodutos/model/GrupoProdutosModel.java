@@ -37,12 +37,16 @@ public class GrupoProdutosModel extends Model {
 	private String grupoDeProduto;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY)
-	@JoinTable(name = "tbGrupoProduto_tbDepartamentoProduto", joinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
+	@JoinTable(name = "tbGrupoProduto_tbDepartamentoProduto",
+			joinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"),
+						 inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
 	private DepartamentoModel departamentoModel;
 
 	@LogList
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "tbAuditoria_tbGrupoproduto", joinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbAuditoria_Id", referencedColumnName = "Id"))
+	@JoinTable(name = "tbAuditoria_tbGrupoProduto", 
+		joinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"), 
+			inverseJoinColumns = @JoinColumn(name = "tbAuditoria_Id", referencedColumnName = "Id"))
 	private List<AuditoriaModel> auditoriaLogs;
 
 	@Override

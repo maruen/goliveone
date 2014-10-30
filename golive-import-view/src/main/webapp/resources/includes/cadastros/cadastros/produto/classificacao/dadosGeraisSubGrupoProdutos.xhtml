@@ -58,7 +58,7 @@
            	
            	<h:inputText  id="idDepartamentoInputText"
            				  style="width: 125px;"
-           				  value="#{bean.departamentoSelected.id}"
+           				  value="#{pojo.departamentoSelected.id}"
            				  disabled="true"/>
            				 
 
@@ -67,7 +67,7 @@
       					 required="true"
       					 disabled="true"
       					 style="width: 98%"
-      					 value="#{bean.departamentoSelected.departamento}" />	
+      					 value="#{pojo.departamentoSelected.departamento}" />	
       		
       		<p:commandLink onclick="PF('dlgDepartamento').show();" immediate="true">
   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
@@ -86,14 +86,14 @@
            	<h:inputText id="idGrupoProdutosInputText"
            				 style="width: 125px;"
            				 disabled="true"
-           				 value="#{bean.grupoProdutoSelected.id}" />	
+           				 value="#{pojo.grupoProdutoSelected.id}" />	
 
       		<h:outputText id="grupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroSubGrupoProduto.grupoProdutos')}" styleClass="singleLine"/>
       		<h:inputText id="grupoProdutosNomeInputText"
       					 required="true"
       					 disabled="true"
       					 style="width: 98%"
-      					 value="#{bean.grupoProdutoSelected.grupoDeProduto}" />	
+      					 value="#{pojo.grupoProdutoSelected.grupoDeProduto}" />	
       		
       		<p:commandLink onclick="PF('dlgGrupoProdutos').show();" immediate="true">
   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
@@ -113,7 +113,7 @@
       			
      			<p:dataTable id="departamentoDatatableId"
      						 selectionMode="single"
-     						 selection="#{bean.departamentoSelected}"
+     						 selection="#{pojo.departamentoSelected}"
      						 rowKey="#{departamento.id}"
         	  	 	     	 var="departamento"
         			 	 	 value="#{bean.departamentos}" >
@@ -141,7 +141,7 @@
       			
      			<p:dataTable id="grupoProdutosDatatableId"
      						 selectionMode="single"
-     						 selection="#{bean.grupoProdutoSelected}" 
+     						 selection="#{pojo.grupoProdutoSelected}" 
         	  	 	     	 var="grupoProduto"
         			 	 	 rowKey="#{grupoProduto.id}"
         			 	 	 value="#{bean.grupoProdutoList}" >
@@ -150,11 +150,11 @@
 				    <p:ajax event="rowSelect" update=":conteudoForm:dadosGerais" oncomplete="PF('dlgGrupoProdutos').hide();" />
 				    
 				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}" styleClass="percentual-10 singleLine">
-			     		 <h:outputText value="#{bean.departamentoSelected.id}" styleClass="floatRight" />
+			     		 <h:outputText value="#{pojo.departamentoSelected.id}" styleClass="floatRight" />
 				    </p:column>
 				    
 				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.departamento')}" styleClass="percentual-20 singleLine">
-				     		<h:outputText value="#{bean.departamentoSelected.departamento}" />
+				     		<h:outputText value="#{pojo.departamentoSelected.departamento}" />
 				    </p:column>
 				    
 				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}" styleClass="percentual-10 singleLine">

@@ -105,6 +105,11 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 
 	public abstract void init();
 
+	@Deprecated
+	public String getUsuarioLog() {
+		return "USUARIO";
+	}
+	
 	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
 		showMenuBar(500, 600);
 		if (getLogger() == null) {
