@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.estoque.prateleiras.model.PrateleirasModel;
+import br.com.golive.entity.estoque.prateleira.model.PrateleiraModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroPrateleiras")
 @ManagedBean
 @ViewScoped
-public class PrateleirasBean extends CadastroBeanRules<PrateleirasModel> {
+public class PrateleiraBean extends CadastroBeanRules<PrateleiraModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class PrateleirasBean extends CadastroBeanRules<PrateleirasModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<PrateleirasModel> criarLista() {
-		final List<PrateleirasModel> lista = new ArrayList<PrateleirasModel>();
+	private List<PrateleiraModel> criarLista() {
+		final List<PrateleiraModel> lista = new ArrayList<PrateleiraModel>();
 		
 		for (Integer i = 0; i < 10; i ++){
-			lista.add(new PrateleirasModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "000001", "00000000001", "Rua A", "0000000001", "Térreo"));
+			lista.add(new PrateleiraModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "000001", "00000000001", "Rua A", "0000000001", "Térreo"));
 		}
 		
 		return lista;

@@ -132,9 +132,9 @@
 			<view-id value="/pages/cadastros/cadastros/estoque/ruas.jsf" />
 		</url-mapping>
 		
-		<url-mapping id="cadastrosCadastrosEstoquePrateleiras">
-			<pattern value="/Cadastros/Cadastros/Estoque/Prateleiras" />
-			<view-id value="/pages/cadastros/cadastros/estoque/prateleiras.jsf" />
+		<url-mapping id="cadastrosCadastrosEstoquePrateleira">
+			<pattern value="/Cadastros/Cadastros/Estoque/Prateleira" />
+			<view-id value="/pages/cadastros/cadastros/estoque/prateleira.jsf" />
 		</url-mapping>
 	
 		

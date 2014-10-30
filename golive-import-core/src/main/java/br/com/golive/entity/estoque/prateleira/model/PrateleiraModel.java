@@ -1,4 +1,4 @@
-package br.com.golive.entity.estoque.prateleiras.model;
+package br.com.golive.entity.estoque.prateleira.model;
 
 import java.util.Calendar;
 
@@ -8,7 +8,7 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "Prateleiras", 
 		nomeDoArquivoGerado = "Prateleiras", 
 		nomeArquivoJasper = "Prateleiras")
-public class PrateleirasModel extends Model {
+public class PrateleiraModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 
@@ -18,12 +18,12 @@ public class PrateleirasModel extends Model {
 	private String idPavimento;
 	private String pavimento;
 
-	public PrateleirasModel() {
+	public PrateleiraModel() {
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public PrateleirasModel(Long id,
+	public PrateleiraModel(Long id,
 							Calendar dataInclusao,
 							Calendar dataAlteracao,
 							String prateleira, 
