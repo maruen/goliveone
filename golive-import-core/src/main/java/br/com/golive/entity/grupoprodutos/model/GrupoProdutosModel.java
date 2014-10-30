@@ -2,15 +2,23 @@ package br.com.golive.entity.grupoprodutos.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
+import br.com.golive.annotation.LogList;
 import br.com.golive.entity.Model;
-import br.com.golive.entity.auditoria.model.AuditoriaItemModel;
+import br.com.golive.entity.auditoria.model.AuditoriaModel;
+import br.com.golive.entity.departamento.model.DepartamentoModel;
 
 @Entity
 @Table(name = "tbgrupoproduto")
@@ -24,17 +32,17 @@ public class GrupoProdutosModel extends Model {
 	@Column(name = "GrupoProduto")
 	private String grupoDeProduto;
 
-	@Transient
-	private List<AuditoriaItemModel> auditoriaLogs;
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@JoinTable(name = "tbgrupoproduto_tbdepartamentoproduto", joinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
+	private DepartamentoModel departamentoModel;
+
+	@LogList
+	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	@JoinTable(name = "tbauditoria_tbgrupoproduto", joinColumns = @JoinColumn(name = "tbGrupoProduto", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbAuditoria_Id", referencedColumnName = "Id"))
+	private List<AuditoriaModel> auditoriaLogs;
 
 	public GrupoProdutosModel() {
 		super();
-	}
-
-	public GrupoProdutosModel(final String grupoDeProduto, final List<AuditoriaItemModel> auditoriaLogs) {
-		super();
-		this.grupoDeProduto = grupoDeProduto;
-		this.auditoriaLogs = auditoriaLogs;
 	}
 
 	public String getGrupoDeProduto() {
@@ -45,11 +53,19 @@ public class GrupoProdutosModel extends Model {
 		this.grupoDeProduto = grupoDeProduto;
 	}
 
-	public List<AuditoriaItemModel> getAuditoriaLogs() {
+	public DepartamentoModel getDepartamentoModel() {
+		return departamentoModel;
+	}
+
+	public void setDepartamentoModel(final DepartamentoModel departamentoModel) {
+		this.departamentoModel = departamentoModel;
+	}
+
+	public List<AuditoriaModel> getAuditoriaLogs() {
 		return auditoriaLogs;
 	}
 
-	public void setAuditoriaLogs(final List<AuditoriaItemModel> auditoriaLogs) {
+	public void setAuditoriaLogs(final List<AuditoriaModel> auditoriaLogs) {
 		this.auditoriaLogs = auditoriaLogs;
 	}
 
@@ -58,6 +74,7 @@ public class GrupoProdutosModel extends Model {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = (prime * result) + ((auditoriaLogs == null) ? 0 : auditoriaLogs.hashCode());
+		result = (prime * result) + ((departamentoModel == null) ? 0 : departamentoModel.hashCode());
 		result = (prime * result) + ((grupoDeProduto == null) ? 0 : grupoDeProduto.hashCode());
 		return result;
 	}
@@ -81,6 +98,13 @@ public class GrupoProdutosModel extends Model {
 		} else if (!auditoriaLogs.equals(other.auditoriaLogs)) {
 			return false;
 		}
+		if (departamentoModel == null) {
+			if (other.departamentoModel != null) {
+				return false;
+			}
+		} else if (!departamentoModel.equals(other.departamentoModel)) {
+			return false;
+		}
 		if (grupoDeProduto == null) {
 			if (other.grupoDeProduto != null) {
 				return false;
@@ -93,7 +117,7 @@ public class GrupoProdutosModel extends Model {
 
 	@Override
 	public String toString() {
-		return "GrupoProdutosModel [grupoDeProduto=" + grupoDeProduto + ", auditoriaLogs=" + auditoriaLogs + "]";
+		return "GrupoProdutosModel [grupoDeProduto=" + grupoDeProduto + ", departamentoModel=" + departamentoModel + ", auditoriaLogs=" + auditoriaLogs + "]";
 	}
 
 }

@@ -11,7 +11,7 @@ import br.com.golive.impl.PerfilServiceImpl;
 @Local(PerfilServiceImpl.class)
 public interface PerfilService {
 
-	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final String... tabela);
+	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final Class<?>... classes);
 
 	public void salvarLista(final List<ColunaPerfil> colunaPerfil);
 

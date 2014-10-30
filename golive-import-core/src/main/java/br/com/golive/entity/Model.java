@@ -20,7 +20,7 @@ import br.com.golive.annotation.StandardColumn;
 public class Model implements Serializable {
 
 	@Transient
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 7292963894354973008L;
 
 	@Id
 	@StandardColumn

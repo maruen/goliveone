@@ -1,11 +1,12 @@
 package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresa;
 
+import java.util.ArrayList;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import javax.persistence.Table;
 
 import org.slf4j.Logger;
 
@@ -13,6 +14,7 @@ import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.entity.areaDeAtuacao.model.AreaDeAtuacaoModel;
+import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
@@ -55,7 +57,7 @@ public class AreasDeAtuacaoBean extends CadastroGenericBean<AreaDeAtuacaoModel> 
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(areaDeAtuacaoService.obterLista(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, genericClazzInstance.getAnnotation(Table.class).name()));
+		super.init(areaDeAtuacaoService.obterLista(), new ArrayList<ColunaPerfil>());
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
@@ -73,7 +75,7 @@ public class AreasDeAtuacaoBean extends CadastroGenericBean<AreaDeAtuacaoModel> 
 				// areaDeAtuacaoService.salvar(registro);
 			}
 		}
-		super.init(areaDeAtuacaoService.obterLista(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, genericClazzInstance.getAnnotation(Table.class).name()));
+		super.init(areaDeAtuacaoService.obterLista(), new ArrayList<ColunaPerfil>());
 		super.salvar();
 	}
 

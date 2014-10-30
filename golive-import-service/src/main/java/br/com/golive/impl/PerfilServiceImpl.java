@@ -13,6 +13,7 @@ import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.entity.perfilconfiguracao.repositorio.ColunaPerfilJpa;
 import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.service.PerfilService;
+import br.com.golive.utils.Utils;
 
 @Stateless
 public class PerfilServiceImpl implements PerfilService {
@@ -24,9 +25,15 @@ public class PerfilServiceImpl implements PerfilService {
 	private Logger logger;
 
 	@Override
-	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final String... tabela) {
-		logger.info("Obtendo configurações para a tabela = {}", tabela);
-		return colunaPerfilJpa.obterColunaPerfil(usuario.getId(), tabela);
+	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final Class<?>... classes) {
+		logger.info("Obtendo configurações para a tabela = {}", classes);
+
+		List<ColunaPerfil> conf = colunaPerfilJpa.obterColunaPerfil(usuario.getId(), Utils.getNameTablesByClasses(classes));
+		if (conf.isEmpty()) {
+			conf = Utils.obterColunasPagina(usuario, classes);
+			salvarLista(conf);
+		}
+		return conf;
 	}
 
 	@Override
