@@ -182,9 +182,9 @@
 		</url-mapping>
 	
 		
-		<url-mapping id="cadastrosCadastrosProdutosClassificacaoSubGruposProdutos">
-			<pattern value="/Cadastros/Cadastros/Produtos/Classificacao/SubGrupoProdutos" />
-			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/subGrupoDeProduto.jsf" />
+		<url-mapping id="cadastrosCadastrosProdutosClassificacaoSubGruposProduto">
+			<pattern value="/Cadastros/Cadastros/Produtos/Classificacao/SubGrupoProduto" />
+			<view-id value="/pages/cadastros/cadastros/produtos/classificacao/subGrupoProduto.jsf" />
 		</url-mapping>
 	
 		

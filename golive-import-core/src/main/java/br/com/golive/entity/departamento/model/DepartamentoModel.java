@@ -5,30 +5,28 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 import br.com.golive.entity.Model;
 
+
+@Jasper(titulo 				= "Departamento",
+		nomeDoArquivoGerado = "file.name.model",
+		nomeArquivoJasper 	= "Departamento")
+
 @Entity
 @Table(name = "tbDepartamentoProduto")
 @Label(name = "label.cadastroDepartamento")
-@Jasper(titulo = "Departamento", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Departamento")
+@Data
+@EqualsAndHashCode(callSuper=false)
 public class DepartamentoModel extends Model {
-
+	
 	@Transient
-	private static final long serialVersionUID = -7554696042401221262L;
-
+	private static final long serialVersionUID = 1L;
+	
 	@Column(name = "DepartamentoProduto")
 	private String departamento;
-
-	public DepartamentoModel() {
-	}
-
-	public String getDepartamento() {
-		return departamento;
-	}
-
-	public void setDepartamento(final String departamento) {
-		this.departamento = departamento;
-	}
+	
 }

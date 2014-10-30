@@ -149,7 +149,7 @@ public class Utils {
 					if (field.isAnnotationPresent(Column.class)) {
 						colunasPagina.add(new ColunaPerfil(new ColunaPerfilId(usuario.getId(), nameTable, field.getAnnotation(Column.class).name()), TipoFiltro.IGUAL.getDescricao(), count++, field.isAnnotationPresent(StandardColumn.class)));
 					} else {
-						throw new GoLiveException("Campo nao possui anotação de Label = " + clazz.getAnnotation(Table.class).name() + "." + field.getName());
+						throw new GoLiveException("Campo nao possui anotaÃ§Ã£o de Label = " + clazz.getAnnotation(Table.class).name() + "." + field.getName());
 					}
 				}
 			}

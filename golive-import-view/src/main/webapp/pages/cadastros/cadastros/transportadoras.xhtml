@@ -14,21 +14,15 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-		
-		<p:dataTable 
-			id="conteudoTable"
-			var="row" 
-			value="#{transportadorasBean.conteudo}"
-			selectionMode="single"
-			rowKey="#{row.id}"
-			selection="#{transportadorasBean.registro}" 
-			styleClass="tableCadastros"
-			rows="15"
+
+		<p:dataTable id="conteudoTable" var="row" value="#{bean.conteudo}"
+			selectionMode="single" rowKey="#{row.id}"
+			selection="#{bean.registro}" styleClass="tableCadastros" rows="15"
 			paginator="true"
 			emptyMessage="#{managerBean.get('label.cadastroTransportadoras.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowSelect" update="conteudoTable" />
 			<p:ajax event="rowUnselect" update="conteudoTable" />
 
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
@@ -39,9 +33,9 @@
 				<h:outputText value="0000000001" />
 			</p:column>
 
-			<p:column 
+			<p:column
 				headerText="#{managerBean.get('label.cadastroTransportadoras.cnpj')}"
-				styleClass="percentual-10 singleLine">				
+				styleClass="percentual-10 singleLine">
 				<h:outputText value="09.363.143/0001-00" />
 			</p:column>
 
@@ -52,7 +46,7 @@
 				</h:outputText>
 			</p:column>
 
-			<p:column 
+			<p:column
 				headerText="#{managerBean.get('label.cadastroTransportadoras.nomeFantasia')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Ligeirinho" />
@@ -61,16 +55,17 @@
 			<p:column
 				headerText="#{managerBean.get('label.cadastroTransportadoras.razaoSocial')}"
 				styleClass="percentual-30 singleLine">
-				<h:outputText value="Transportadoras de Entregas Rápidas Ligeirinho Ltda." />
+				<h:outputText
+					value="Transportadoras de Entregas Rápidas Ligeirinho Ltda." />
 			</p:column>
-			
-			<p:column 
+
+			<p:column
 				headerText="#{managerBean.get('label.cadastroTransportadoras.tel1')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="55 (11) 2235-9966" />
 			</p:column>
-			
-			<p:column 
+
+			<p:column
 				headerText="#{managerBean.get('label.cadastroTransportadoras.tel2')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="55 (11) 2235-7676" />
@@ -81,11 +76,48 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/dadosGeraisTransportadoras.xhtml">
-			<ui:param name="pojo" value="#{transportadorasBean.registro}" />
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/dadosGeraisTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/documentosTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/nomesTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/cnaesTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/naturezaJuridicaTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/regimeApuracaoTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/enderecosTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/contatosTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/condicoesComerciaisTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/observacoesTransportadoras.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<!-- <ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{transportadorasBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>-->
 
 	</ui:define>
