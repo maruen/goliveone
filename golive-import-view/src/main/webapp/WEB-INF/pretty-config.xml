@@ -138,9 +138,9 @@
 		</url-mapping>
 	
 		
-		<url-mapping id="cadastrosCadastrosEstoqueReservaDeEndereco">
-			<pattern value="/Cadastros/Cadastros/Estoque/ReservaDeEndereco" />
-			<view-id value="/pages/cadastros/cadastros/estoque/reservaDeEndereco.jsf" />
+		<url-mapping id="cadastrosCadastrosEstoqueReservaEndereco">
+			<pattern value="/Cadastros/Cadastros/Estoque/ReservaEndereco" />
+			<view-id value="/pages/cadastros/cadastros/estoque/reservaEndereco.jsf" />
 		</url-mapping>
 	
 		<url-mapping id="cadastrosCadastrosFinanceiroCondicoesPagamento">
