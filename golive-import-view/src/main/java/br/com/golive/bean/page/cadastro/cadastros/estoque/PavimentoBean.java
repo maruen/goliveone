@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.estoque.pavimentos.model.PavimentosModel;
+import br.com.golive.entity.estoque.pavimento.model.PavimentoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroPavimentos")
 @ManagedBean
 @ViewScoped
-public class PavimentosBean extends CadastroBeanRules<PavimentosModel> {
+public class PavimentoBean extends CadastroBeanRules<PavimentoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class PavimentosBean extends CadastroBeanRules<PavimentosModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<PavimentosModel> criarLista() {
-		final List<PavimentosModel> lista = new ArrayList<PavimentosModel>();
+	private List<PavimentoModel> criarLista() {
+		final List<PavimentoModel> lista = new ArrayList<PavimentoModel>();
 		
 		for (Integer i = 0; i < 10; i ++){
-			lista.add(new PavimentosModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Térreo"));
+			lista.add(new PavimentoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Térreo"));
 		}
 		return lista;
 	}

@@ -122,9 +122,9 @@
 			<view-id value="/pages/cadastros/cadastros/empresas/usuarios/usuario.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosEstoquePavimentos">
-			<pattern value="/Cadastros/Cadastros/Estoque/Pavimentos" />
-			<view-id value="/pages/cadastros/cadastros/estoque/pavimentos.jsf" />
+		<url-mapping id="cadastrosCadastrosEstoquePavimento">
+			<pattern value="/Cadastros/Cadastros/Estoque/Pavimento" />
+			<view-id value="/pages/cadastros/cadastros/estoque/pavimento.jsf" />
 		</url-mapping>
 	
 		<url-mapping id="cadastrosCadastrosEstoqueRuas">

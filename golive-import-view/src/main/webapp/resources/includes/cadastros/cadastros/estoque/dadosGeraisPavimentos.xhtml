@@ -4,59 +4,45 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:panel id="dadosGerais"
-		 header="#{managerBean.get('label.cadastroPavimentos.dadosGerais')}"
-		 toggleable="true"
-		 collapsed="false"
-		 closable="false"
-		 toggleSpeed="500"
-		 closeSpeed="500"
-		 widgetVar="dadosGerais"
-		 styleClass="little-font" >
-		 
-	     	<f:facet name="actions">
-          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
-          			<h:outputText styleClass="ui-icon ui-icon-help" />
-          		</h:commandLink>
-      		</f:facet>
-   		       	
-          	<h:panelGrid columns="4"
-          				 cellpadding="3"  
-          				 cellspacing="3"
-          				 columnClasses="percentual-5,
+	<p:panel id="dadosGerais"
+		header="#{managerBean.get('label.cadastroPavimentos.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-5,
           				 				percentual-50,
           				 				percentual-5,
           				 				percentual-5"
-           				 width="100%"
-          				 border="0">
-     
+			width="100%" border="0">
+
 			<h:outputText id="idOutputText"
-						  value="#{managerBean.get('label.cadastroPavimentos.id')}"   />
-           	<h:inputText id="idInputText"
-           				 style="width: 125px;"
-           				 disabled="true"/>
-      		
-      		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{managerBean.get('label.cadastroPavimentos.inclusao')}" />
-	 		<h:inputText value="25/08/2014 20:24" 
-	 					 id="dataInclusaoInputText" 
-	 					 disabled="true" />      					  
-      		
-      		<h:outputText id="descricaoOutputText" 
-      					  value="#{managerBean.get('label.cadastroPavimentos.descricao')}" 
-      					  styleClass="singleLine" />
-      		<p:inputText id="descricaoInputText"
-      					 required="true"
-      					 disabled="false"
-      					 style="width: 70%"
-      					 value="Piso Térreo" />		
-        		
-       		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{managerBean.get('label.cadastroPavimentos.ultimaAlteracao')}"
-       					  styleClass="singleLine"/>
-	 		<h:inputText value="25/08/2014 20:47" 
-	 					 id="ultimaAlteracaoInputText" 
-	 					 disabled="true" />   
-        </h:panelGrid>
+				value="#{managerBean.get('label.cadastroPavimentos.id')}" />
+			<h:inputText id="idInputText" style="width: 125px;" disabled="true" />
+
+			<h:outputText id="dataInclusaoOutputText"
+				value="#{managerBean.get('label.cadastroPavimentos.inclusao')}" />
+			<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText"
+				disabled="true" />
+
+			<h:outputText id="descricaoOutputText"
+				value="#{managerBean.get('label.cadastroPavimentos.descricao')}"
+				styleClass="singleLine" />
+			<p:inputText id="descricaoInputText" required="true" disabled="false"
+				style="width: 70%" value="Piso Térreo" />
+
+			<h:outputText id="ultimaAlteracaoOutputText"
+				value="#{managerBean.get('label.cadastroPavimentos.ultimaAlteracao')}"
+				styleClass="singleLine" />
+			<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText"
+				disabled="true" />
+		</h:panelGrid>
 	</p:panel>
 </ui:composition>

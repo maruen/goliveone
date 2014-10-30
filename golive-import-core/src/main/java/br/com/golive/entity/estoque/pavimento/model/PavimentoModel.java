@@ -1,4 +1,4 @@
-package br.com.golive.entity.estoque.pavimentos.model;
+package br.com.golive.entity.estoque.pavimento.model;
 
 import java.util.Calendar;
 
@@ -8,18 +8,18 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "Pavimentos", 
 		nomeDoArquivoGerado = "Pavimentos", 
 		nomeArquivoJasper = "Pavimentos")
-public class PavimentosModel extends Model {
+public class PavimentoModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 
 	private String pavimento;
 
-	public PavimentosModel() {
+	public PavimentoModel() {
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public PavimentosModel(Long id, 
+	public PavimentoModel(Long id, 
 						   Calendar dataInclusao,
 						   Calendar dataAlteracao, 
 						   String pavimento) {
