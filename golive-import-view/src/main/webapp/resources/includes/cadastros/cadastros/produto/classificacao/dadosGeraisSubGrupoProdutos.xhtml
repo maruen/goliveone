@@ -85,14 +85,15 @@
 						  value="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"   />
            	<h:inputText id="idGrupoProdutosInputText"
            				 style="width: 125px;"
-           				 value="0000000000001" disabled="true"/>
+           				 disabled="true"
+           				 value="#{bean.grupoProdutoSelected.id}" />	
 
       		<h:outputText id="grupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroSubGrupoProduto.grupoProdutos')}" styleClass="singleLine"/>
       		<h:inputText id="grupoProdutosNomeInputText"
       					 required="true"
       					 disabled="true"
       					 style="width: 98%"
-      					 value=""  />	
+      					 value="#{bean.grupoProdutoSelected.grupoDeProduto}" />	
       		
       		<p:commandLink onclick="PF('dlgGrupoProdutos').show();" immediate="true">
   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
@@ -141,10 +142,13 @@
      			<p:dataTable id="grupoProdutosDatatableId"
      						 selectionMode="single"
      						 selection="#{bean.grupoProdutoSelected}" 
-     						 rowKey="#{grupoProdutoSelected.id}"
         	  	 	     	 var="grupoProduto"
+        			 	 	 rowKey="#{grupoProduto.id}"
         			 	 	 value="#{bean.grupoProdutoList}" >
 		    
+				    
+				    <p:ajax event="rowSelect" update=":conteudoForm:dadosGerais" oncomplete="PF('dlgGrupoProdutos').hide();" />
+				    
 				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}" styleClass="percentual-10 singleLine">
 			     		 <h:outputText value="#{bean.departamentoSelected.id}" styleClass="floatRight" />
 				    </p:column>

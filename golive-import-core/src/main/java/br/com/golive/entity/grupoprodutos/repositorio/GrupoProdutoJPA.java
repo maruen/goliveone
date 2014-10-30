@@ -10,6 +10,7 @@ import br.com.golive.jpa.JpaGoLive;
 
 public class GrupoProdutoJPA extends JpaGoLive<GrupoProdutosModel, Long> {
 
+	@SuppressWarnings("deprecation")
 	public List<GrupoProdutosModel> obterLista() {
 		final Criteria criteria = createNativeCriteria();
 		criteria.setFetchMode("departamentoModel", FetchMode.EAGER);

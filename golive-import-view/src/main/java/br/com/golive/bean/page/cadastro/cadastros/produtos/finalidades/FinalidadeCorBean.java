@@ -14,10 +14,13 @@ import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
+import lombok.Getter;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
+import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.especialidades.model.CoresModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.FilterInjected;
@@ -31,8 +34,7 @@ public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject
-	private Logger logger;
+	@Inject @Getter private Logger logger;
 
 	@Inject
 	@FilterInjected
@@ -102,53 +104,15 @@ public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
 												   	"asbca14",
 												   	"Mountain Vibe Glass Colors"
 												   );
-			
 			lista.add(coresModel);
 		}
 		return lista;
-
 	}
-
-	@Override
-	public Logger getLogger() {
-		return logger;
-	}
-
-	@Override
-	public GoliveOneProperties getLabels() {
-		return labels;
-	}
-
-	public void setLabels(final GoliveOneProperties labels) {
-		this.labels = labels;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	@Override
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
-	}
-
-	@Override
-	public FilterManager<CoresModel> getFilterManager() {
-		return filterManager;
-	}
-
-	@Override
-	public void setFilterManager(final FilterManager<CoresModel> filterManager) {
-		this.filterManager = filterManager;
-	}
-
-	public List<Object> getAuditoriaLogs() {
-		ArrayList<Object> list = new ArrayList<Object>();
-		
-		list.add(new Object());
-		list.add(new Object());
-		list.add(new Object());
-
+	
+	public List<AuditoriaModel> getAuditoriaLogs() {
+		ArrayList<AuditoriaModel> list = new ArrayList<AuditoriaModel>();
 		return list;
 	}
+
+
 }
