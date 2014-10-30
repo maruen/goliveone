@@ -4,135 +4,116 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:panel id="dadosGerais"
-		 header="#{managerBean.get('label.cadastroRuas.dadosGerais')}"
-		 toggleable="true"
-		 collapsed="false"
-		 closable="false"
-		 toggleSpeed="500"
-		 closeSpeed="500"
-		 widgetVar="dadosGerais"
-		 styleClass="little-font" >
-		 
-	     	<f:facet name="actions">
-          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
-          			<h:outputText styleClass="ui-icon ui-icon-help" />
-          		</h:commandLink>
-      		</f:facet>
-   		       	
-          	<h:panelGrid columns="6"
-          				 cellpadding="3"  
-          				 cellspacing="3"
-          				 columnClasses="percentual-5,
+	<p:panel id="dadosGerais"
+		header="#{managerBean.get('label.cadastroRuas.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-5,
           				 				percentual-15,
           				 				percentual-5,
           				 				percentual-50,
           				 				percentual-5
           				 				percentual-10"
-           				 width="100%"
-          				 border="0">
-     			
-     			<h:column>
-					<h:outputText id="idOutputText"
-								  value="#{managerBean.get('label.cadastroRuas.id')}"/>
-				</h:column>
-				
-				<h:column>
-		           	<p:inputText id="idRuaInputText"
-		           				 style="width: 125px;"
-		           				 disabled="false"/>
-		        </h:column>
-		        
-    			<h:column>
-					<h:outputText id="ruaOutputText"
-								  value="#{managerBean.get('label.cadastroRuas.rua')}"/>
-				</h:column>
-				
-				<h:column>
-		           	<p:inputText id="ruaInputText"
-		           				 style="width: 80%;"
-		           				 disabled="false"
-		           				 value="Rua A"/>
-		        </h:column>		        
-		      		
-		      	<h:column>
-		      		<h:outputText id="dataInclusaoOutputText" 
-		      					  value="#{managerBean.get('label.cadastroRuas.inclusao')}" />
-		      	</h:column>
-		      	
-		      	<h:column>
-			 		<h:inputText value="25/08/2014 20:24" 
-			 					 id="dataInclusaoInputText" 
-			 					 disabled="true" /> 
-			 	</h:column>
-			 	
-			 	<h:column>
-		      		<h:outputText id="idPavimentoOutputText" 
-		      					  value="#{managerBean.get('label.cadastroRuas.id')}" 
-		      					  styleClass="singleLine" />
-		      	</h:column>
-		      	
-		      	<h:column>
-		      		<h:inputText id="idPavimentoInputText"
-		      					 required="true"
-		      					 disabled="true"
-		      					 style="width: 125px"
-		      					 value="0000000001" />	
-		      	</h:column>
-		      	
-		      	<h:column>
-					<h:outputText id="pavimentoOutputText"
-								  value="#{managerBean.get('label.cadastroRuas.pavimento')}"/>
-				</h:column>
-				
-				<h:column>
-		           	<h:inputText id="pavimentoInputText"
-		           				 style="width: 81%;"
-		           				 disabled="true"
-		           				 value="Térreo"/>
+			width="100%" border="0">
 
-		      		<p:spacer width="5" height="1"/>
-		      		
-		      		<p:commandLink onclick="PF('dlgPavimento').show();" immediate="true">
-						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
-					</p:commandLink>
-		      	</h:column>
-		      	
-		      	<h:column>
-		       		<h:outputText id="ultimaAlteracaoOutputText"
-		       					  value="#{managerBean.get('label.cadastroRuas.ultimaAlteracao')}"
-		       					  styleClass="singleLine"/>
-		       	</h:column>
-		       	
-		       	<h:column>
-			 		<h:inputText value="25/08/2014 20:47" 
-			 					 id="ultimaAlteracaoInputText" 
-			 					 disabled="true" />   
-			 	</h:column>
-        </h:panelGrid>
+			<h:column>
+				<h:outputText id="idOutputText"
+					value="#{managerBean.get('label.cadastroRuas.id')}" />
+			</h:column>
+
+			<h:column>
+				<p:inputText id="idRuaInputText" style="width: 125px;"
+					disabled="false" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="ruaOutputText"
+					value="#{managerBean.get('label.cadastroRuas.rua')}" />
+			</h:column>
+
+			<h:column>
+				<p:inputText id="ruaInputText" style="width: 80%;" disabled="false"
+					value="Rua A" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="dataInclusaoOutputText"
+					value="#{managerBean.get('label.cadastroRuas.inclusao')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText"
+					disabled="true" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="idPavimentoOutputText"
+					value="#{managerBean.get('label.cadastroRuas.id')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="idPavimentoInputText" required="true"
+					disabled="true" style="width: 125px" value="0000000001" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="pavimentoOutputText"
+					value="#{managerBean.get('label.cadastroRuas.pavimento')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="pavimentoInputText" style="width: 81%;"
+					disabled="true" value="Térreo" />
+
+				<p:spacer width="5" height="1" />
+
+				<p:commandLink onclick="PF('dlgPavimento').show();" immediate="true">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:column>
+
+			<h:column>
+				<h:outputText id="ultimaAlteracaoOutputText"
+					value="#{managerBean.get('label.cadastroRuas.ultimaAlteracao')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText"
+					disabled="true" />
+			</h:column>
+		</h:panelGrid>
 	</p:panel>
-	
-	<p:dialog header="#{managerBean.get('label.cadastroRuas.pesquisaPavimento')}"
-			  widgetVar="dlgPavimento"
-			  modal="false"
-			  resizable="false"
-			  appendToBody="true"
-			  height="100%"
-			  width="50%">
-      			
-     			<p:dataTable id="pavimentoDatatableId"
-        	  	 	     var="pavimentoDatatableVar"
-        			 	 value="#{bean.conteudo}" >
-		    
-				    <p:column headerText="#{managerBean.get('label.cadastroRuas.id')}"
-				    		  styleClass="percentual-15 singleLine">
-				     		<h:outputText value="0000000001" />
-				    </p:column>
-				    
-				    <p:column headerText="#{managerBean.get('label.cadastroRuas.pavimento')}"
-				    		  styleClass="percentual-20 singleLine">
-				     		<h:outputText value="Térreo" />
-				    </p:column>
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroRuas.pesquisaPavimento')}"
+		widgetVar="dlgPavimento" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="50%">
+
+		<p:dataTable id="pavimentoDatatableId" var="pavimentoDatatableVar"
+			value="#{bean.conteudo}">
+
+			<p:column headerText="#{managerBean.get('label.cadastroRuas.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroRuas.pavimento')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Térreo" />
+			</p:column>
 		</p:dataTable>
 	</p:dialog>
 </ui:composition>

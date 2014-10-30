@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.estoque.ruas.model.RuasModel;
+import br.com.golive.entity.estoque.rua.model.RuaModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroRuas")
 @ManagedBean
 @ViewScoped
-public class RuasBean extends CadastroBeanRules<RuasModel> {
+public class RuaBean extends CadastroBeanRules<RuaModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class RuasBean extends CadastroBeanRules<RuasModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<RuasModel> criarLista() {
-		final List<RuasModel> lista = new ArrayList<RuasModel>();
+	private List<RuaModel> criarLista() {
+		final List<RuaModel> lista = new ArrayList<RuaModel>();
 		
 		for (Integer i = 0; i < 10; i ++){
-			lista.add(new RuasModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Rua A", "0000000001", "Térreo"));
+			lista.add(new RuaModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Rua A", "0000000001", "Térreo"));
 		}
 		
 		return lista;

@@ -1,4 +1,4 @@
-package br.com.golive.entity.estoque.ruas.model;
+package br.com.golive.entity.estoque.rua.model;
 
 import java.util.Calendar;
 
@@ -8,7 +8,7 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "Ruas", 
 		nomeDoArquivoGerado = "Ruas", 
 		nomeArquivoJasper = "Ruas")
-public class RuasModel extends Model {
+public class RuaModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,12 +16,12 @@ public class RuasModel extends Model {
 	private String idPavimento;
 	private String pavimento;
 
-	public RuasModel() {
+	public RuaModel() {
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public RuasModel(Long id, 
+	public RuaModel(Long id, 
 					 Calendar dataInclusao, 
 					 Calendar dataAlteracao,
 					 String rua, 

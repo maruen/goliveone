@@ -127,9 +127,9 @@
 			<view-id value="/pages/cadastros/cadastros/estoque/pavimento.jsf" />
 		</url-mapping>
 	
-		<url-mapping id="cadastrosCadastrosEstoqueRuas">
-			<pattern value="/Cadastros/Cadastros/Estoque/Ruas" />
-			<view-id value="/pages/cadastros/cadastros/estoque/ruas.jsf" />
+		<url-mapping id="cadastrosCadastrosEstoqueRua">
+			<pattern value="/Cadastros/Cadastros/Estoque/Rua" />
+			<view-id value="/pages/cadastros/cadastros/estoque/rua.jsf" />
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosEstoquePrateleira">
