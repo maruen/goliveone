@@ -16,11 +16,13 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
+import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
@@ -60,7 +62,7 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
  * 
  * @param <T>
  */
-
+@Data
 @ManagedBean
 @ViewScoped
 @PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable", component = "modelTable")
@@ -88,6 +90,8 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	protected PerfilService colunaPerfilService;
 
 	private boolean selecionarTodos;
+
+	protected Long widthColunasDinamicas;
 
 	protected Fluxo fluxo = Fluxo.LISTAGEM;
 	protected List<T> conteudo;
@@ -123,6 +127,13 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 			if (colunaPerfil.isVisivel()) {
 				colunasPagina.add(colunaPerfil);
 			}
+		}
+	}
+
+	public void mudarWidthColumns() {
+		final String value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("width");
+		if (value != null) {
+			widthColunasDinamicas = Long.valueOf(value) - 4L;
 		}
 	}
 
@@ -199,7 +210,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 
 	public void cancelarExclusao() {
 		fluxo = getFluxoListagem();
-		showMenuBar(0, 0);
+		showMenuBar();
 	}
 
 	public void exportarPdf() {
@@ -239,7 +250,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	}
 
 	public void imprimir() {
-		showMenuBar(0, 0);
+		showMenuBar();
 		gerarRelatorio(TipoRelatorio.IMPRESSAO, getLabels());
 		JSFUtils.chamarJs(new FuncaoJavaScript("abrirPdf", new String(Base64.encodeBase64(ServiceUtils.obterValorPorChave(byte[].class, ChaveSessao.LISTA_IMPRESSAO)))));
 	}
@@ -248,19 +259,23 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 		JSFUtils.chamarJs(new FuncaoJavaScript("showMenuBar", Long.toString(height), Long.toString(top)));
 	}
 
+	protected void showMenuBar() {
+		showMenuBar(0, 0);
+	}
+
 	public String nomePagina() {
 		return JSFUtils.getLabelPageName(this.getClass());
 	}
 
 	public void incluir() {
 		fluxo = getFluxoInclusao();
-		showMenuBar(0, 0);
+		showMenuBar();
 	}
 
 	public void editarRegistro() {
 		if (isSelecionado()) {
 			fluxo = getFluxoEdicao();
-			showMenuBar(0, 0);
+			showMenuBar();
 			getLogger().info("Edicao de registro = {} ", registro);
 		}
 	}
@@ -268,17 +283,17 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	public void excluir() {
 		if (isSelecionado()) {
 			fluxo = getFluxoExclusao();
-			showMenuBar(0, 0);
+			showMenuBar();
 		}
 	}
 
 	public void salvar() {
 		fluxo = getFluxoListagem();
-		showMenuBar(0, 0);
+		showMenuBar();
 	}
 
 	public void cancelar() {
-		showMenuBar(0, 0);
+		showMenuBar();
 		fluxo = getFluxoListagem();
 		if (registro == null) {
 			getLogger().info("Cancelando inclusao de registro");
@@ -311,7 +326,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 			registro = null;
 			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
 			fluxo = Fluxo.LISTAGEM;
-			showMenuBar(0, 0);
+			showMenuBar();
 		}
 	}
 
@@ -422,7 +437,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	}
 
 	public void salvarPerfilPagina() {
-		showMenuBar(0, 0);
+		showMenuBar();
 		reordenarLinha();
 
 		for (final ColunaPerfil coluna : configuracaoPerfil) {

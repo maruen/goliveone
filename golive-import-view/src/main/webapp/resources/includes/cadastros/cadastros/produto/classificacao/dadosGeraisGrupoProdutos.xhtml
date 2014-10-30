@@ -51,7 +51,7 @@
 				disabled="true" style="width: 99%"
 				value="#{pojo.departamentoModel.departamento}" />
 
-			<p:commandLink onclick="PF('dlgDepartamento').show();"
+			<p:commandLink oncomplete="PF('dlgDepartamento').show();"
 				immediate="true">
 				<h:graphicImage
 					value="/resources/images/stylistica-icons-set/24x24/search.png" />
@@ -66,9 +66,7 @@
 			</h:inputText>
 
 		</h:panelGrid>
-
 	</p:panel>
-
 	<p:dialog
 		header="#{managerBean.get('label.cadastroGrupoProdutos.pesquisaDepartamento')}"
 		widgetVar="dlgDepartamento" modal="false" resizable="false"

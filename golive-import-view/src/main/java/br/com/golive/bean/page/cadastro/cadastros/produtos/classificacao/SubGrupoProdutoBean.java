@@ -2,7 +2,6 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
 
 import static br.com.golive.utils.Fluxo.LISTAGEM;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -24,6 +23,7 @@ import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.service.DepartamentoService;
+import br.com.golive.service.GrupoProdutoService;
 import br.com.golive.service.SubGrupoProdutoService;
 import br.com.golive.utils.GoliveOneProperties;
 
@@ -40,6 +40,7 @@ public class SubGrupoProdutoBean extends CadastroBeanRules<SubGrupoProdutoModel>
 	
 	@EJB private SubGrupoProdutoService subGrupoProdutoService;
 	@EJB private DepartamentoService 	departamentoService;
+	@EJB private GrupoProdutoService 	grupoProdutoService;
 	
 	@Getter @Setter private DepartamentoModel  departamentoSelected = new DepartamentoModel();
 	@Getter @Setter private GrupoProdutosModel grupoProdutoSelected = new GrupoProdutosModel();
@@ -91,15 +92,8 @@ public class SubGrupoProdutoBean extends CadastroBeanRules<SubGrupoProdutoModel>
 	
 	
 	public List<GrupoProdutosModel> getGrupoProdutoList() {
-		return new ArrayList<GrupoProdutosModel>();
+		return grupoProdutoService.obterGrupoProdutos();
 	}
-
-	@Override
-	protected Logger getLogger() {
-		// TODO Auto-generated method stub
-		return logger;
-	}
-	
 	
 	
 }

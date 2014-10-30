@@ -172,7 +172,6 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 	@Override
 	public List<AuditoriaModel> getAuditoriaLogs(final Model model) {
 		logger.info("Buscando logs de auditoria = {}", model);
-		return auditoriaJPA.getListModel(model);
+		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
 	}
-
 }

@@ -1343,15 +1343,15 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbAuditoria_tbGrupoProduto` (
   `tbAuditoria_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbAuditoriaItem_Id` INT UNSIGNED ZEROFILL NOT NULL,
   `tbUsuario_Id` INT UNSIGNED ZEROFILL NOT NULL,
-  `tbGrupoProduto` INT UNSIGNED ZEROFILL NOT NULL,
-  PRIMARY KEY (`tbAuditoria_Id`, `tbAuditoriaItem_Id`, `tbUsuario_Id`, `tbGrupoProduto`),
+  `tbGrupoProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
+  PRIMARY KEY (`tbAuditoria_Id`, `tbAuditoriaItem_Id`, `tbUsuario_Id`, `tbGrupoProduto_Id`),
   CONSTRAINT `FK_tbAuditoria0012`
     FOREIGN KEY (`tbAuditoria_Id`)
     REFERENCES `goliveacao`.`tbAuditoria` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbGrupoProduto0008`
-    FOREIGN KEY (`tbGrupoProduto`)
+    FOREIGN KEY (`tbGrupoProduto_Id`)
     REFERENCES `goliveacao`.`tbGrupoProduto` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
