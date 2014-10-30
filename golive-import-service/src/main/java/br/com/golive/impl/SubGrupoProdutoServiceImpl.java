@@ -59,7 +59,7 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 
 	@Override
 	public List<SubGrupoProdutoModel> listarPorFiltro(String... args) {
-		return subGrupoProdutoJPA.findByFilter(args);
+		return subGrupoProdutoJPA.obterLista();
 	}
 
 	@Override

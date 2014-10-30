@@ -164,9 +164,9 @@
 		</url-mapping>
 	
 		
-		<url-mapping id="cadastrosCadastrosFuncionarios">
-			<pattern value="/Cadastros/Cadastros/Funcionarios" />
-			<view-id value="/pages/cadastros/cadastros/funcionarios.jsf" />
+		<url-mapping id="cadastrosCadastrosFuncionario">
+			<pattern value="/Cadastros/Cadastros/Funcionario" />
+			<view-id value="/pages/cadastros/cadastros/funcionario.jsf" />
 		</url-mapping>
 	
 		

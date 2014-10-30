@@ -68,7 +68,7 @@
 		<p:menuitem
 			value="#{managerBean.get('label.funcionarios')}"
 			styleClass="itemPanelMenu little-font"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.funcionarios')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.funcionario')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.categoriasNaturezasJuridicas')}"
 			styleClass="itemPanelMenu little-font"
@@ -156,7 +156,7 @@
 	<p:menuitem
 		value="#{managerBean.get('label.funcionarios')}"
 		styleClass="itemPanelMenu little-font"
-		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.funcionarios')}');" />
+		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.funcionario')}');" />
 
 	<p:submenu label="#{managerBean.get('label.produtos')}">
 		<p:submenu styleClass="little-medium"
@@ -188,7 +188,7 @@
 				styleClass="itemPanelMenu little-font"
 				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.padroesdelargura')}');" />
 			<p:menuitem
-				value="#{managerBean.get('label.padroesDeExpessura')}"
+				value="#{managerBean.get('label.padroesDeEspessura')}"
 				styleClass="itemPanelMenu little-font"
 				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.padroesdeespessura')}');" />
 			<p:menuitem value="#{managerBean.get('label.unidades')}"

@@ -40,6 +40,7 @@ public class GrupoProdutosModel extends Model {
 	@JoinTable(name = "tbGrupoProduto_tbDepartamentoProduto", joinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
 	private DepartamentoModel departamentoModel;
 
+
 	@LogList
 	@Transient
 	private List<AuditoriaModel> auditoriaLogs;

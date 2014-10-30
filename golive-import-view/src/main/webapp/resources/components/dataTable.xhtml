@@ -46,7 +46,8 @@
 				<h:outputLabel styleClass="textoTableColunaConfiguracaoLabel"
 					value="#{managerBean.get(cc.attrs.bean.getLabelFilter(coluna))}" />
 			</p:column>
-			<p:column headerText="#{managerBean.get('label.parametros.filtro')}"
+			
+			<p:column headerText="#{managerBean.get('label.parametros.filtro')}" rendered="false"
 				styleClass="colunaDataTableSelectOneMenu">
 				<filter:selectTipoFiltro filtro="#{cc.attrs.bean.getFilter(coluna)}" />
 			</p:column>

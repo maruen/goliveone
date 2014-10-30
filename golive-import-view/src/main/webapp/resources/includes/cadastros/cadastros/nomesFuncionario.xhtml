@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="nomes"
+		header="#{managerBean.get('label.cadastroFuncionario.nomes')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="nomes"
+		styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-4,percentual-50"
+			width="100%" border="0">
+
+			<h:outputText id="conhecidoComoOutputText" styleClass="singleLine"
+				value="#{managerBean.get('label.cadastroFuncionario.conhecidoComo')}" />
+			<p:inputText id="nomeFantasiaInputText" style="width: 60%;"
+				disabled="false" value="Tina" />
+				
+			<p:spacer />
+			
+			<h:outputText id="comoGostariaDeSerChamadoOutputText"
+				value="#{managerBean.get('label.cadastroFuncionario.comoGostariaDeSerChamado')}" />
+
+			<h:outputText id="nomeOutputText"
+				value="#{managerBean.get('label.cadastroFuncionario.nome')}"
+				styleClass="singleLine" />
+			<p:inputText id="nomeInputText" style="width: 60%;"
+				disabled="false"
+				value="Maria Albertina da Silva" />
+
+		</h:panelGrid>
+	</p:panel>
+</ui:composition>

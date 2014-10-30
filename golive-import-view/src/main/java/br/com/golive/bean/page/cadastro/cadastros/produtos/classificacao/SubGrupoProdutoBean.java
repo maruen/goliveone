@@ -42,9 +42,6 @@ public class SubGrupoProdutoBean extends CadastroBeanRules<SubGrupoProdutoModel>
 	@EJB private DepartamentoService 	departamentoService;
 	@EJB private GrupoProdutoService 	grupoProdutoService;
 	
-	@Getter @Setter private DepartamentoModel  departamentoSelected = new DepartamentoModel();
-	@Getter @Setter private GrupoProdutosModel grupoProdutoSelected = new GrupoProdutosModel();
-	
 	@Override
 	@PostConstruct
 	public void init() {

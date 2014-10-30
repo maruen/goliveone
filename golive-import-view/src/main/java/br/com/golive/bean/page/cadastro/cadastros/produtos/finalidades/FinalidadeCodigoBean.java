@@ -20,7 +20,7 @@ import br.com.golive.utils.GoliveOneProperties;
 
 @ManagedBean
 @ViewScoped
-@Label(name = "label.cadastros.produtos.finalidades.finalidadeCodigo")
+@Label(name = "label.cadastroFinalidadeCodigo")
 public class FinalidadeCodigoBean extends CadastroBeanRules<ProdutoModel> {
 
 	private static final long serialVersionUID = 1L;

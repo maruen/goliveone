@@ -19,13 +19,13 @@
 
 		<p:dataTable id="conteudoTable"
 			 		 var="row"
-					 selection="#{coresBean.registro}"
-					 value="#{coresBean.conteudo}"
+					 selection="#{bean.registro}"
+					 value="#{bean.conteudo}"
 					 selectionMode="single"
 					 rows="15"
 					 rowKey="#{row.id}"
 					 paginator="true"
-					 filteredValue="#{coresBean.filtrados}"
+					 filteredValue="#{bean.filtrados}"
 					 emptyMessage="#{managerBean.get('label.cadastroCores.msnNaoHaRegistros')}"
 					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -165,7 +165,7 @@
 		           			
 		           			<p:calendar  id="dataInclusaoInputText"
 		      					 		 disabled="true" 
-		      					 		 value="#{coresBean.registro.dataInclusao}"
+		      					 		 value="#{bean.registro.dataInclusao}"
 		      					 		 size="20"
 		      					 		 maxlength="18"
 		      					 		 pattern="MM/dd/yyyy HH:mm:ss"/>
@@ -207,7 +207,7 @@
 			        			      		  disabled="true"
 		        					  		  size="20"
 		        					  		  maxlength="18"
-		        					  		  value="#{coresBean.registro.dataAlteracao}"
+		        					  		  value="#{bean.registro.dataAlteracao}"
 		        					  		  pattern="MM/dd/yyyy HH:mm:ss"/>
 		        					  		  
 		        					  		  
@@ -249,16 +249,18 @@
 				<h:outputText id="departamentoIdOutputText"
 							  value="#{managerBean.get('label.cadastroCores.id')}"   />
             	
-            	<p:inputText id="departamentoIdInputText"
+            	<h:inputText id="departamentoIdInputText"
             				 value="00000000001" 
-            				 style="width: 125px;"/>
+            				 style="width: 125px;"
+            				 disabled="true"/>
             	
         		<h:outputText id="departamentoNomeOutputText"
         			   		  value="#{managerBean.get('label.cadastroCores.departamento')}" />
             	
-            	<p:inputText id="departamentoNomeInputText"
+            	<h:inputText id="departamentoNomeInputText"
             				 style="width: 95%"
-            				 value="Acessorios, Partes e Pcas para Persianas Horizontais em aluminio"/>
+            				 value="Acessorios, Partes e Pcas para Persianas Horizontais em aluminio"
+            				 disabled="true"/>
         	
         	 	<p:commandLink onclick="PF('dlgDepartamento').show();" immediate="true">
   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
@@ -268,17 +270,19 @@
 				<h:outputText id="grupoProdutosIdOutputText" 
 							  value="#{managerBean.get('label.cadastroCores.id')}" />
             	
-            	<p:inputText id="grupoProdutosIdInputText"
+            	<h:inputText id="grupoProdutosIdInputText"
             				 value="00000000001" 
-            				 style="width: 125px;"/>
+            				 style="width: 125px;"
+            				 disabled="true"/>
             	
         		<h:outputText  id="grupoProdutosNomeOutputText"
         		 			   value="#{managerBean.get('label.cadastroCores.grupoProdutos')}"
         		 			   style="white-space: nowrap"/>
             	
-            	<p:inputText id="grupoProdutosNomeInputText"
+            	<h:inputText id="grupoProdutosNomeInputText"
             				 style="width: 95%"
-            				 value="Laminas em Aluminio 25mm x 018mm"/>
+            				 value="Laminas em Aluminio 25mm x 018mm"
+            				 disabled="true"/>
         	
         	 	<p:commandLink onclick="PF('dlgGrupoProdutos').show();" immediate="true">
   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
@@ -287,17 +291,19 @@
 				<h:outputText id="subGrupoProdutosIdOutputText"
 							   value="#{managerBean.get('label.cadastroCores.id')}"   />
             	
-            	<p:inputText id="subGrupoProdutosIdInputText"
+            	<h:inputText id="subGrupoProdutosIdInputText"
             				 value="00000000001"
-            				 style="width: 125px;"/>
+            				 style="width: 125px;"
+            				 disabled="true"/>
             	
         		<h:outputText id="subGrupoProdutosNomeOutputText"
         					  styleClass="singleLine"
         					  value="#{managerBean.get('label.cadastroCores.subGrupoProdutos')}"/>
             	
-            	<p:inputText id="subGrupoProdutosNomeInputText"
+            	<h:inputText id="subGrupoProdutosNomeInputText"
             				 style="width: 95%"
-            				 value="Laminas em Aluminio 25mm "/>
+            				 value="Laminas em Aluminio 25mm "
+            				 disabled="true"/>
         	
         	 	<p:commandLink onclick="PF('dlgSubGrupoProduto').show();" immediate="true">
   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
@@ -332,7 +338,7 @@
         			 		  cellspacing="3"
         			 		  columnClasses="percentual-5,
         			 						 percentual-10,
-        			 						 percentual-15,
+        			 						 percentual-13,
         			 						 percentual-77,
         			 						 percentual-5"
         			 			columns="5"
@@ -343,11 +349,11 @@
 			        	<h:outputText id="especificidadesIdOutputText"
 			        				  value="#{managerBean.get('label.cadastroCores.id')}"
 			        				  styleClass="singleLine" /> 
-				        <p:inputText id="especificidadesdInputText" value="00000000001"  style="width: 125px;"/>
+				        <h:inputText id="especificidadesdInputText" value="00000000001"  style="width: 125px;" disabled="true"/>
 			        	
 			        	<h:outputText id="colecoesOutputText"
 			        				  value="#{managerBean.get('label.cadastroCores.colecoes')}" />
-			        	<p:inputText id="colecoesInputText"  style="width: 95%;" value="Mountain Viber Glass Colors"/>
+			        	<h:inputText id="colecoesInputText"  style="width: 95%;" value="Mountain Viber Glass Colors" disabled="true"/>
 			        	
 			        	<p:commandLink onclick="PF('dlgEspecificidades').show();" immediate="true">
 			   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />

@@ -55,7 +55,7 @@ public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List getAuditoriaLogs(final Long id, final Class clazz) {
 		List<AuditoriaModel> results = new ArrayList<AuditoriaModel>();
-
+		
 		final String tableName = ((Table) clazz.getAnnotation(Table.class)).name();
 		String sql = "SELECT tbAuditoria_Id FROM tbAuditoria_" + tableName + " WHERE " + tableName + "_Id=" + id;
 
@@ -68,6 +68,9 @@ public class AuditoriaJPA extends JpaGoLive<AuditoriaModel, Long> {
 
 			results = query.getResultList();
 		}
+	
+		
+		
 		return results;
 	}
 
