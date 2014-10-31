@@ -176,6 +176,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 		if (validarCampos(registro)) {
 			if(registro.getId() == null){
+				
 				colecoesService.salvar(registro);
 				success = salvoMessagem();
 			} else {
