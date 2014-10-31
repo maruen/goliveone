@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{codigoTelefonicoMunicipiosBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{codigoTelefonicoMunicipiosBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroTelefonicoMunicipios.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,68 +34,68 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Tel.País"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.codTelPais')}"
 				styleClass="percentual-10">				
 				<h:outputText value="55" />
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column
-				headerText="Cód.Tel.Município"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.codTelMunicipio')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="19"/>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column
-				headerText="Abr.Estado"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.abrEstado')}"
 				styleClass="percentual-10">
 				<h:outputText value="SP" />
 			</p:column>
 
 			<p:column 
-				headerText="Estado"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.estado')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="São Paulo" />
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column
-				headerText="Região"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.regiao')}"
 				styleClass="percentual-10">
 				<h:outputText value="Região Sudeste"
 				styleClass="singleLine" />
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000010" />
 			</p:column>
 
 			<p:column
-				headerText="País"
+				headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.pais')}"
 				styleClass="percentual-10">
 				<h:outputText value="Brasil" />
 			</p:column>
@@ -107,22 +107,22 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/dadosGeraisMunicipios.xhtml">
-			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/municipio.xhtml">
-			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/estado.xhtml">
-			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/regiao.xhtml">
-			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/pais.xhtml">
-			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{codigoTelefonicoMunicipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>

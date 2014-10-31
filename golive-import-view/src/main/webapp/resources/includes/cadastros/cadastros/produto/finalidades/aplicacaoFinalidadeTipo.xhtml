@@ -4,7 +4,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<p:panel id="aplicacao" header="Aplicação" toggleable="true"
+	<p:panel id="aplicacao" header="#{managerBean.get('label.cadastroFinalidadeTipo.aplicacao')}" toggleable="true"
 		closable="false" collapsed="true" toggleSpeed="500" closeSpeed="500"
 		widgetVar="aplicacao" styleClass="little-font">
 
@@ -20,7 +20,7 @@
 
 			<p:row>
 				<p:column styleClass="percentual-30">
-					<p:fieldset legend="Sistema" toggleable="true"
+					<p:fieldset legend="#{managerBean.get('label.cadastroFinalidadeTipo.sistema')}" toggleable="true"
 						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
 
 						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
@@ -33,7 +33,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="lookupPesquisasAplicacaoOutputText"
-										value="LookUp de Pesquisas" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.lookUpPesquisas')}" styleClass="singleLine" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
@@ -42,7 +42,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="graficosCadastraisAplicacaoOutputText"
-										value="Gráficos Cadastrais" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.graficosCadastrais')}" styleClass="singleLine" />
 								</p:column>
 
 							</p:row>
@@ -54,7 +54,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="gridPesquisasAplicacaoOutputText"
-										value="Grid de Pesquisas" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.gridPesquisas')}" styleClass="singleLine" />
 								</p:column>
 							</p:row>
 
@@ -65,7 +65,7 @@
 								</p:column>
 								<p:column styleClass="percentual-98">
 									<h:outputText id="relatoriosCadastraisAplicacaoOutputText"
-										value="Relatórios Cadastrais" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.relatoriosCadastrais')}" styleClass="singleLine" />
 								</p:column>
 							</p:row>
 						</p:panelGrid>
@@ -73,7 +73,7 @@
 				</p:column>
 
 				<p:column styleClass="percentual-30">
-					<p:fieldset legend="Vendas" toggleable="true"
+					<p:fieldset legend="#{managerBean.get('label.cadastroFinalidadeTipo.vendas')}" toggleable="true"
 						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
 
 						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
@@ -85,7 +85,7 @@
 										id="graficosAplicacaoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="graficosAplicacaoOutputText" value="Gráficos" />
+									<h:outputText id="graficosAplicacaoOutputText" value="#{managerBean.get('label.cadastroFinalidadeTipo.graficos')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
@@ -94,7 +94,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="orcamentosAplicacaoOutputText"
-										value="Orçamentos" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.orcamentos')}" />
 								</p:column>
 							</p:row>
 
@@ -105,7 +105,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="pesquisasAplicacaoOutputText"
-										value="Pesquisas" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.pesquisas')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
@@ -114,7 +114,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="pedidosVendaAplicacaoOutputText"
-										value="Pedidos de Venda" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.pedidosVenda')}" styleClass="singleLine" />
 								</p:column>
 							</p:row>
 
@@ -125,7 +125,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="relatoriosAplicacaoOutputText"
-										value="Relatórios" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.relatorios')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
@@ -133,7 +133,7 @@
 										id="davAplicacaoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="davAplicacaoOutputText" value="DAV" />
+									<h:outputText id="davAplicacaoOutputText" value="#{managerBean.get('label.cadastroFinalidadeTipo.dav')}" />
 								</p:column>
 							</p:row>
 						</p:panelGrid>
@@ -141,7 +141,7 @@
 				</p:column>
 
 				<p:column styleClass="percentual-30">
-					<p:fieldset legend="Faturamento (Venda)" toggleable="true"
+					<p:fieldset legend="#{managerBean.get('label.cadastroFinalidadeTipo.faturamentoVenda')}" toggleable="true"
 						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
 
 						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
@@ -154,7 +154,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="cupomFiscalSatAplicacaoOutputText"
-										value="Cupom Fiscal / SAT" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.cupomFiscalSat')}" styleClass="singleLine" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
@@ -163,7 +163,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="nfeServicoAplicacaoOutputText"
-										value="NF-e Serviço" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeServico')}" styleClass="singleLine" />
 								</p:column>
 							</p:row>
 
@@ -173,7 +173,7 @@
 										id="nfceAplicacaoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="nfceAplicacaoOutputText" value="NFC-e" />
+									<h:outputText id="nfceAplicacaoOutputText" value="#{managerBean.get('label.cadastroFinalidadeTipo.nfce')}" />
 								</p:column>
 							</p:row>
 
@@ -184,7 +184,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="nfeVendaSaidaAplicacaoOutputText"
-										value="NF-e Venda (Saída)" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeVendaSaida')}" styleClass="singleLine" />
 								</p:column>
 							</p:row>
 						</p:panelGrid>
@@ -197,7 +197,7 @@
 				<p:column />
 
 				<p:column styleClass="percentual-30">
-					<p:fieldset legend="Compras" toggleable="true"
+					<p:fieldset legend="#{managerBean.get('label.cadastroFinalidadeTipo.compras')}" toggleable="true"
 						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
 
 						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
@@ -210,7 +210,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="graficosCompraAplicacaoOutputText"
-										value="Gráficos" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.graficos')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
@@ -219,7 +219,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="cotacoesCompraAplicacaoOutputText"
-										value="Cotações" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.cotacoes')}" />
 								</p:column>
 							</p:row>
 
@@ -230,7 +230,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="pesquisasCompraAplicacaoOutputText"
-										value="Pesquisas" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.pesquisas')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
@@ -239,7 +239,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="pedidosCompraAplicacaoOutputText"
-										value="Pedidos de Compra" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.pedidosCompra')}" styleClass="singleLine" />
 								</p:column>
 							</p:row>
 
@@ -250,7 +250,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="relatoriosCompraAplicacaoOutputText"
-										value="Relatórios" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.relatorios')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
@@ -259,7 +259,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="entradasNfeCompraAplicacaoOutputText"
-										value="Entradas de NF-e Compra" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.entradasNfeCompra')}" styleClass="singleLine" />
 								</p:column>
 							</p:row>
 						</p:panelGrid>
@@ -267,7 +267,7 @@
 				</p:column>
 
 				<p:column styleClass="percentual-30">
-					<p:fieldset legend="Faturamento (Compra)" toggleable="true"
+					<p:fieldset legend="#{managerBean.get('label.cadastroFinalidadeTipo.faturamentoCompra')}" toggleable="true"
 						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
 
 						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
@@ -280,7 +280,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="nfeCompraEntradaAplicacaoOutputText"
-										value="NF-e Compra (Entrada)" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeCompraEntrada')}" styleClass="singleLine" />
 								</p:column>
 							</p:row>
 
@@ -291,7 +291,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="nfeDevolucaoAplicacaoOutputText"
-										value="NF-e Devolução" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeDevolucao')}" styleClass="singleLine" />
 								</p:column>
 							</p:row>
 
@@ -302,7 +302,7 @@
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="nfeBeneficiamentoAplicacaoOutputText"
-										value="NF-e Beneficiamento" styleClass="singleLine" />
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeBeneficiamento')}" styleClass="singleLine" />
 								</p:column>
 							</p:row>
 						</p:panelGrid>

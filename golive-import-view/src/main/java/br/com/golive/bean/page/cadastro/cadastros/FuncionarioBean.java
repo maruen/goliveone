@@ -70,23 +70,15 @@ public class FuncionarioBean extends CadastroBeanRules<FuncionarioModel> {
 		return lista;
 	}
 	
-	public List<String> tipoPessoaComplete(final String query) {
+	public List<String> formaContratacaoComplete(final String query) {
         final List<String> results = new ArrayList<String>();
         
         for(int i = 0; i < 10; i++) {
-            results.add(query + i + " - Pessoa Jurídica");
+            results.add(query + i + " - CLT");
         }
          
         return results;
     }
-	
-	public void salvarCnae(){
-		logger.info("Salvar CNAE");
-	}
-	
-	public void excluirCnae(){
-		logger.info("Excluir CNAE");
-	}
 	
 	public List<String> tipoLogradouroComplete(final String query) {
         final List<String> results = new ArrayList<String>();
@@ -98,49 +90,21 @@ public class FuncionarioBean extends CadastroBeanRules<FuncionarioModel> {
         return results;
     }
 	
-	public void salvarPessoas(){
+	public void salvarContato(){
 		logger.info("Salvar contato");
 	}
 	
-	public void excluirPessoas(){
+	public void excluirContato(){
 		logger.info("Excluir contato");
 	}
 	
-	public List<Object> getCnaeDataTable(){
-		ArrayList<Object> lista = new ArrayList<Object>();
-		
-		lista.add(new Object());
-		lista.add(new Object());
-		lista.add(new Object());
-		
-		return lista;
-	}
-	
-	public List<Object> getPessoasDataTable(){
-		ArrayList<Object> lista = new ArrayList<Object>();
-		
-		lista.add(new Object());
-		lista.add(new Object());
-		lista.add(new Object());
-		
-		return lista;
-	}
-	
-	public void limparEntrega(){
-		logger.info("Limpar dados entrega");
-	}
-	
-	public List<Object> getCondicaoPagamentoDataTable(){
-		ArrayList<Object> lista = new ArrayList<Object>();
-		
-		lista.add(new Object());
-		lista.add(new Object());
-		lista.add(new Object());
-		
-		return lista;
-	}
-	
-	public void limparCobranca(){
-		logger.info("Limpar dados cobrança");
-	}
+	public List<String> bancoComplete(final String query) {
+        final List<String> results = new ArrayList<String>();
+        
+        for(int i = 0; i < 10; i++) {
+            results.add(query + i + " - Banco do Brasil S/A.");
+        }
+         
+        return results;
+    }
 }

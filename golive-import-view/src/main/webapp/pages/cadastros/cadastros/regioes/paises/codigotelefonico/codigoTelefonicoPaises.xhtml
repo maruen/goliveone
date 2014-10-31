@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{codigoTelefonicoPaisesBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{codigoTelefonicoPaisesBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroTelefonicoPaises.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,31 +34,31 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroTelefonicoPaises.id')}"
 				styleClass="percentual-10 text-align-center">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Tel.Países"
+				headerText="#{managerBean.get('label.cadastroTelefonicoPaises.codTelPaises')}"
 				styleClass="percentual-10 text-align-center">				
 				<h:outputText value="93" />
 			</p:column>
 
 			<p:column
-				headerText="País (em Português)"
+				headerText="#{managerBean.get('label.cadastroTelefonicoPaises.paisPortugues')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Afeganistão" />
 			</p:column>
 
 			<p:column
-				headerText="País (em Inglês)"
+				headerText="#{managerBean.get('label.cadastroTelefonicoPaises.paisIngles')}"
 				styleClass="percentual-10">
 				<h:outputText value="Afghnistan" />
 			</p:column>
 
 			<p:column 
-				headerText="País (em Nativo)"
+				headerText="#{managerBean.get('label.cadastroTelefonicoPaises.paisNativo')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="ښبثلشدهسفګشخ" />
 			</p:column>
@@ -70,10 +70,10 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigotelefonico/dadosGeraisPaises.xhtml">
-			<ui:param name="pojo" value="#{codigoTelefonicoPaisesBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{codigoTelefonicoPaisesBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>

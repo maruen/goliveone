@@ -24,7 +24,7 @@ import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastros.produtos.finalidades.finalidadeDescricao")
+@Label(name = "label.cadastroFinalidadeDescricao")
 @ManagedBean
 @ViewScoped
 public class FinalidadeDescricaoBean extends CadastroBeanRules<CoresModel> {

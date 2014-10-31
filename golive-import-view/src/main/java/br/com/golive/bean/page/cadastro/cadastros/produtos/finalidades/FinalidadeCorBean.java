@@ -27,7 +27,7 @@ import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastros.produtos.finalidades.finalidadeCor")
+@Label(name = "label.cadastroFinalidadeCor")
 @ManagedBean
 @ViewScoped
 public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
@@ -112,6 +112,12 @@ public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
 	public List<AuditoriaModel> getAuditoriaLogs() {
 		ArrayList<AuditoriaModel> list = new ArrayList<AuditoriaModel>();
 		return list;
+	}
+
+	@Override
+	protected Logger getLogger() {
+		// TODO Auto-generated method stub
+		return logger;
 	}
 
 

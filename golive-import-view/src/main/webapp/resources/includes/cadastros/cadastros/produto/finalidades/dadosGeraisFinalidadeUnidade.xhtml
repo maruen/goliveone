@@ -4,9 +4,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<!--  DADOS GERAIS PANEL -->
 	<p:panel id="dadosGerais"
-		header="#{userBean.properties.getField('label.cadastroFinalidadeUnidade.dadosGerais')}"
+		header="#{managerBean.get('label.cadastroFinalidadeUnidade.dadosGerais')}"
 		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
 		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
 
@@ -26,19 +25,19 @@
 						   percentual-5"
 			width="100%" border="0">
 
-			<h:outputText id="idOutputText" value="Id" />
+			<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroFinalidadeUnidade.id')}" />
 			<h:inputText id="idInputText" style="width: 125px;" disabled="true" />
 			
 			<p:spacer />
 			<p:spacer />
 
 			<h:outputText id="dataInclusaoOutputText"
-						value="#{userBean.properties.getField('label.cadastroFinalidadeUnidade.inclusao')}" />
+						value="#{managerBean.get('label.cadastroFinalidadeUnidade.inclusao')}" />
 			<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText"
 						disabled="true" />
 						
 			<h:outputText id="descricaoNomeOutputText"
-						value="Descrição" />
+						value="#{managerBean.get('label.cadastroFinalidadeUnidade.descricao')}" />
 			<p:inputText id="descricaoNomeInputText" required="true"
 						disabled="false" styleClass="singleLine"
 						value="Unidades Legais - Emissões da NFe"
@@ -48,7 +47,7 @@
 			<p:spacer />
 
 			<h:outputText id="ultimaAlteracaoOutputText"
-						value="#{userBean.properties.getField('label.cadastroFinalidadeUnidade.ultimaAlteracao')}"
+						value="#{managerBean.get('label.cadastroFinalidadeUnidade.ultimaAlteracao')}"
 						styleClass="singleLine" />
 			<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText"
 						disabled="true" />
@@ -64,7 +63,7 @@
 						   			percentual-5"
 					width="100%" border="0">
 
-			<h:outputText value="Nº Mínimo de Caracteres"
+			<h:outputText value="#{managerBean.get('label.cadastroFinalidadeUnidade.nMinimoCaracteres')}"
 						styleClass="singleLine"
 						id="numMinCaracteresOutputText" />
 			<p:inputText id="numMinCaracteresInputText" required="true"
@@ -76,7 +75,7 @@
 			<p:spacer/>
 			<p:spacer/>
 			
-			<h:outputText value="Nº Máximo de Caracteres"
+			<h:outputText value="#{managerBean.get('label.cadastroFinalidadeUnidade.nMaximoCaracteres')}"
 						styleClass="singleLine"
 						id="numMaxCaracteresOutputText" />
 			<p:inputText id="numMaxCaracteresInputText" required="true"

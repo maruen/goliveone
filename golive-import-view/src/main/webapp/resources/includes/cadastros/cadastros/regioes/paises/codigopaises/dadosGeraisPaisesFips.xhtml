@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroPaisesFips.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroPaisesFips.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroPaisesFips.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroPaisesFips.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroPaisesFips.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="codigoFipsOutputText" 
-      					  value="Código FIPS" 
+      					  value="#{managerBean.get('label.cadastroPaisesFips.codigoFips')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="codigoFipsInputText"
       					 required="true"
@@ -52,14 +52,14 @@
       					 value="AF" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroPaisesFips.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroPaisesFips.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 	 					 
 			<h:outputText id="paisPortuguesOutputText"
-						  value="País em Português"
+						  value="#{managerBean.get('label.cadastroPaisesFips.paisEmPortugues')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="paisPortuguesInputText"
            				 style="width: 60%"
@@ -70,7 +70,7 @@
            	<p:spacer/>
 
 			<h:outputText id="paisInglesOutputText"
-						  value="País em Inglês"
+						  value="#{managerBean.get('label.cadastroPaisesFips.paisEmIngles')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="paisInglesInputText"
            				 style="width: 60%"
@@ -81,7 +81,7 @@
            	<p:spacer/>
 
 			<h:outputText id="paisNativoOutputText"
-						  value="País em Nativo"
+						  value="#{managerBean.get('label.cadastroPaisesFips.paisEmNativo')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="paisNativoInputText"
            				 style="width: 60%"

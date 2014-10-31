@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{paisesFipsBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{paisesFipsBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroPaisesFips.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,32 +34,32 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroPaisesFips.id')}"
 				styleClass="percentual-10 text-align-center">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="FIPS"
+				headerText="#{managerBean.get('label.cadastroPaisesFips.fips')}"
 				styleClass="percentual-10 text-align-center">				
 				<h:outputText value="AF" />
 			</p:column>
 
 			<p:column
-				headerText="País (em Português)"
+				headerText="#{managerBean.get('label.cadastroPaisesFips.paisPortugues')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Afeganistão">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="País (em Inglês)"
+				headerText="#{managerBean.get('label.cadastroPaisesFips.paisIngles')}"
 				styleClass="percentual-10">
 				<h:outputText value="Afghnistan" />
 			</p:column>
 
 			<p:column 
-				headerText="País (em Nativo)"
+				headerText="#{managerBean.get('label.cadastroPaisesFips.paisNativo')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="ښبثلشدهسفګشخ" />
 			</p:column>
@@ -71,10 +71,10 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/codigopaises/dadosGeraisPaisesFips.xhtml">
-			<ui:param name="pojo" value="#{paisesFipsBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{paisesFipsBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>

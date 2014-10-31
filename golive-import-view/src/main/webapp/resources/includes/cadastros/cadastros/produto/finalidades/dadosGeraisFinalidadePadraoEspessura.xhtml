@@ -4,9 +4,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<!--  DADOS GERAIS PANEL -->
 	<p:panel id="dadosGerais"
-		header="#{userBean.properties.getField('label.cadastroFinalidadePadraoEspessura.dadosGerais')}"
+		header="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.dadosGerais')}"
 		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
 		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
 
@@ -21,7 +20,7 @@
 
 			<p:row>
 				<p:column styleClass="percentual-10">
-					<h:outputText id="idOutputText" value="Id" />
+					<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.id')}" />
 				</p:column>
 
 				<p:column styleClass="percentual-25">
@@ -30,7 +29,7 @@
 
 				<p:column styleClass="percentual-10">
 					<h:outputText id="dataInclusaoOutputText"
-						value="#{userBean.properties.getField('label.cadastroFinalidadePadraoEspessura.inclusao')}" />
+						value="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.inclusao')}" />
 				</p:column>
 
 				<p:column styleClass="percentual-5">
@@ -42,7 +41,7 @@
 			<p:row>
 				<p:column styleClass="percentual-10">
 					<h:outputText id="finalidadeCorProdutoNomeOutputText"
-						value="Finalidade Cor Produto" styleClass="singleLine" />
+						value="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.finalidadeCorProduto')}" styleClass="singleLine" />
 				</p:column>
 
 				<p:column styleClass="percentual-50">
@@ -53,7 +52,7 @@
 
 				<p:column styleClass="percentual-10">
 					<h:outputText id="ultimaAlteracaoOutputText"
-						value="#{userBean.properties.getField('label.cadastroFinalidadePadraoEspessura.ultimaAlteracao')}"
+						value="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.ultimaAlteracao')}"
 						styleClass="singleLine" />
 				</p:column>
 
@@ -65,7 +64,7 @@
 
 			<p:row>
 				<p:column styleClass="percentual-10">
-					<h:outputText value="Unidade Permitida"
+					<h:outputText value="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.unidadePermitida')}"
 						id="unidadePermitidaOutputText" />
 				</p:column>
 
@@ -89,23 +88,23 @@
 		</p:panelGrid>
 	</p:panel>
 
-	<p:dialog header="Pesquisa de Unidade" widgetVar="dlgUnidade"
+	<p:dialog header="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.pesquisaUnidade')}" widgetVar="dlgUnidade"
 		modal="false" resizable="false" appendToBody="true" height="100%"
 		width="40%">
 
 		<p:dataTable id="unidadeDatatableId" var="unidadeDatatableVar"
 			value="#{finalidadePadraoEspessuraBean.conteudo}">
 
-			<p:column headerText="Id" styleClass="percentual-10 singleLine">
+			<p:column headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.id')}" styleClass="percentual-10 singleLine">
 				<h:outputText value="00000000000001" />
 			</p:column>
 
-			<p:column headerText="Cód.Unid."
+			<p:column headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.codUnid')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="ML" />
 			</p:column>
 
-			<p:column headerText="Descrição"
+			<p:column headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.descricao')}"
 				styleClass="percentual-15 singleLine">
 				<h:outputText value="Metro Linear" />
 			</p:column>

@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroTelefonicoMunicipios.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroTelefonicoMunicipios.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idDadosGeraisOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"   />
            	<h:inputText id="idDadosGeraisInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroTelefonicoMunicipios.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroTelefonicoMunicipios.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="codigoTelMunicipioOutputText" 
-      					  value="Código Tel. Município" 
+      					  value="#{managerBean.get('label.cadastroTelefonicoMunicipios.codigoTelMunicipio')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="codigoTelMunicipioInputText"
       					 required="true"
@@ -52,7 +52,7 @@
       					 value="19" />		
       					 
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroTelefonicoPaises.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroTelefonicoMunicipios.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
