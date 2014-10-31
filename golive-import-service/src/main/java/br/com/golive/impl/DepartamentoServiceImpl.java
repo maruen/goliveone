@@ -27,14 +27,13 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 	@Inject
 	private DepartamentoJPA departamentoJPA;
-	
-	 @Inject
-	 private Logger logger;
-	
-	
+
+	@Inject
+	private Logger logger;
+
 	@Inject
 	private AuditoriaJPA auditoriaJPA;
-	
+
 	@Override
 	@CrudOperation(type = Operation.INSERT)
 	@Interceptors(LogAuditoriaInterceptor.class)
@@ -58,7 +57,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	}
 
 	@Override
-	public List<DepartamentoModel> listarPorFiltro(String... args) {
+	public List<DepartamentoModel> listarPorFiltro(final String... args) {
 		return departamentoJPA.findByFilter(args);
 	}
 
@@ -66,18 +65,18 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	@CrudOperation(type = Operation.DELETE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void excluir(DepartamentoModel departamentoModel) {
+	public void excluir(final DepartamentoModel departamentoModel) {
 		departamentoJPA.delete(departamentoModel);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AuditoriaModel> getAuditoriaLogs(DepartamentoModel model) {
+	public List<AuditoriaModel> getAuditoriaLogs(final DepartamentoModel model) {
 		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
 	}
 
 	@Override
-	public String getUsuarioLog(DepartamentoModel model) {
+	public String getUsuarioLog(final DepartamentoModel model) {
 		return auditoriaJPA.getUsuarioLog(model.getId(), model.getClass());
 	}
 

@@ -11,65 +11,12 @@
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_departamento.css" />
+		<h:outputStylesheet name="css/component/golive_table_model.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
 		
-		<p:dataTable 
-			id="conteudoTable"
-			var="row" 
-			value="#{bean.conteudo}"
-			selectionMode="single"
-			rowKey="#{row.id}"
-			selection="#{bean.registro}" 
-			styleClass="tableCadastros"
-			rows="15"
-			paginator="true"
-			emptyMessage="#{managerBean.get('label.cadastroDepartamento.msnNaoHaRegistros')}"
-			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-
-			<p:ajax event="rowSelect"  update="conteudoTable" />
-			<p:ajax event="rowUnselect" update="conteudoTable" />
-
-			<p:column selectionMode="single" style="width:16px;text-align:center" />
-
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroDepartamento.dataInclusao')}"
-				styleClass="percentual-10 singleLine">				
-			
-				<h:outputText value="#{row.dataInclusao.time}" styleClass="floatRight">
-  					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-				</h:outputText>
-				
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroDepartamento.dataAlteracao')}"
-				styleClass="percentual-10 singleLine">
-			
-				<h:outputText value="#{row.dataAlteracao.time}" styleClass="floatRight">
-  					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-				</h:outputText>
-			
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroDepartamento.id')}"
-				styleClass="percentual-5">
-				
-				<h:outputText value="#{row.id}" styleClass="floatRight"/>
-			
-			</p:column>
-
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroDepartamento.descricao')}"
-				styleClass="percentual-15 singleLine">
-				
-				<h:outputText value="#{row.departamento}" styleClass="floatLeft"/>
-			
-			</p:column>
-
-		</p:dataTable>
+		<golive:dataTable id="modelTable" bean="#{departamentoBean}" />
 
 	</ui:define>
 
