@@ -29,4 +29,14 @@ public class DepartamentoModel extends Model {
 	@Column(name = "DepartamentoProduto")
 	private String departamento;
 	
+	@Override
+	public String toString() {
+		return departamento;
+	}
+	
+	
+	
+	
+	
+	
 }
