@@ -25,12 +25,12 @@ public class PerfilServiceImpl implements PerfilService {
 	private Logger logger;
 
 	@Override
-	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final Class<?>... classes) {
+	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final String managedBeanName, final Class<?>... classes) {
 		logger.info("Obtendo configurações para a tabela = {}", classes);
 
-		List<ColunaPerfil> conf = colunaPerfilJpa.obterColunaPerfil(usuario.getId(), Utils.getNameTablesByClasses(classes));
+		List<ColunaPerfil> conf = colunaPerfilJpa.obterColunaPerfil(usuario.getId(), managedBeanName, Utils.getNameTablesByClasses(classes));
 		if (conf.isEmpty()) {
-			conf = Utils.obterColunasPagina(usuario, classes);
+			conf = Utils.obterColunasPagina(usuario, managedBeanName, classes);
 			salvarLista(conf);
 		}
 		return conf;

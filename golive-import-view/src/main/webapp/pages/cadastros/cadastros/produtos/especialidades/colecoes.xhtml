@@ -14,105 +14,22 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-		
-		<p:dataTable 
-			id="conteudoTable"
-			var="row" 
-			value="#{bean.conteudo}"
-			selectionMode="single"
-			rowKey="#{row.id}"
-			selection="#{bean.registro}" 
-			styleClass="tableCadastros"
-			rows="15"
-			paginator="true"
-			emptyMessage="#{managerBean.get('label.cadastroColecoes.msnNaoHaRegistros')}"
-			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-
-			<p:ajax event="rowSelect"  update="conteudoTable" />
-			<p:ajax event="rowUnselect" update="conteudoTable" />
-
-			<p:column selectionMode="single"  style="width:16px;text-align:center" />
-
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroColecoes.dataInclusao')}"
-				styleClass="percentual-10 singleLine">				
-				<h:outputText value="25/08/2014 20:24" />
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.dataAlteracao')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="25/08/2014 20:47">
-				</h:outputText>
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
-				styleClass="percentual-10">
-				<h:outputText value="000000000000000000001" />
-			</p:column>
-
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroColecoes.departamento')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="Acessórios Portas e Peças para Persianas Horizontal" />
-			</p:column>
-			
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
-				styleClass="percentual-10">
-				<h:outputText value="000000000000000000001" />
-			</p:column>
-			
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroColecoes.grupoProdutos')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="Lâminas em Alumínio 25mm" />
-			</p:column>
-			
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
-				styleClass="percentual-10">
-				<h:outputText value="000000000000000000001" />
-			</p:column>
-			
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="Lâminas em Alumínio 25mm X 0.18mm" />
-			</p:column>
-			
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
-				styleClass="percentual-10">
-				<h:outputText value="000000000000000000001" />
-			</p:column>
-			
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroColecoes.codigoColecao')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="1234567Bae" />
-			</p:column>
-			
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroColecoes.colecao')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="Mountain Viber Glass Colors" />
-			</p:column>			
-
-		</p:dataTable>
+		<golive:dataTable id="modelTable" bean="#{bean}" />
 	</ui:define>
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisColecoes.xhtml">
+		<ui:include 
+			src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisColecoes.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/classificacaoColecoes.xhtml" >
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/produto/especialidades/classificacaoColecoes.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{bean.registro}" />
+		<ui:include
+			src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
+			<ui:param name="pojo" value="#{bean.registro.auditoriaLogs}" />
 		</ui:include>
 
 	</ui:define>

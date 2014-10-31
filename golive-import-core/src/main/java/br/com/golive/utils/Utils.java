@@ -69,10 +69,10 @@ public class Utils {
 		return (Class<?>) ((ParameterizedType) type).getActualTypeArguments()[0];
 	}
 
-	public static List<ColunaPerfil> obterColunasPagina(final Usuario usuario, final Class<?>... classes) {
+	public static List<ColunaPerfil> obterColunasPagina(final Usuario usuario, final String managedBeanName, final Class<?>... classes) {
 		final List<ColunaPerfil> colunasPagina = new ArrayList<ColunaPerfil>();
 		for (final Class<?> clazz : classes) {
-			obterColunasEntity(colunasPagina, clazz.getAnnotation(Table.class).name(), usuario, clazz, clazz.getSuperclass());
+			obterColunasEntity(colunasPagina, clazz.getAnnotation(Table.class).name(), usuario, managedBeanName, clazz, clazz.getSuperclass());
 		}
 		return colunasPagina;
 	}
@@ -125,29 +125,29 @@ public class Utils {
 		}
 	}
 
-	private static void obterColunasEntity(final List<ColunaPerfil> colunasPagina, final String nameTable, final Usuario usuario, final Class<?>... classes) {
+	private static void obterColunasEntity(final List<ColunaPerfil> colunasPagina, final String nameTable, final Usuario usuario, final String managedBeanName, final Class<?>... classes) {
 		Long count = 1L;
 		for (final Class<?> clazz : classes) {
-			count = obterColunas(colunasPagina, usuario, count, clazz, nameTable);
+			count = obterColunas(colunasPagina, usuario, managedBeanName, count, clazz, nameTable);
 		}
 	}
 
-	private static void obterColunasEntity(final List<ColunaPerfil> colunasPagina, final Usuario usuario, final List<Class<?>> classes) {
+	private static void obterColunasEntity(final List<ColunaPerfil> colunasPagina, final Usuario usuario, final String managedBeanName, final List<Class<?>> classes) {
 		Long count = 1L;
 		for (final Class<?> clazz : classes) {
-			count = obterColunas(colunasPagina, usuario, count, clazz, clazz.getAnnotation(Table.class).name());
+			count = obterColunas(colunasPagina, usuario, managedBeanName, count, clazz, clazz.getAnnotation(Table.class).name());
 			if ((clazz.getSuperclass() != null) && (clazz.getSuperclass().equals(Model.class))) {
-				count = obterColunas(colunasPagina, usuario, count, clazz.getSuperclass(), clazz.getAnnotation(Table.class).name());
+				count = obterColunas(colunasPagina, usuario, managedBeanName, count, clazz.getSuperclass(), clazz.getAnnotation(Table.class).name());
 			}
 		}
 	}
 
-	private static Long obterColunas(final List<ColunaPerfil> colunasPagina, final Usuario usuario, Long count, final Class<?> clazz, final String nameTable) {
+	private static Long obterColunas(final List<ColunaPerfil> colunasPagina, final Usuario usuario, final String managedBeanName, Long count, final Class<?> clazz, final String nameTable) {
 		for (final Field field : clazz.getDeclaredFields()) {
 			if (isNotRelationShip(field)) {
 				if (field.isAnnotationPresent(Column.class)) {
 					if (field.isAnnotationPresent(Column.class)) {
-						colunasPagina.add(new ColunaPerfil(new ColunaPerfilId(usuario.getId(), nameTable, field.getAnnotation(Column.class).name()), TipoFiltro.IGUAL.getDescricao(), count++, field.isAnnotationPresent(StandardColumn.class)));
+						colunasPagina.add(new ColunaPerfil(new ColunaPerfilId(usuario.getId(), nameTable, field.getAnnotation(Column.class).name(), managedBeanName), TipoFiltro.IGUAL.getDescricao(), count++, field.isAnnotationPresent(StandardColumn.class), 300L));
 					} else {
 						throw new GoLiveException("Campo nao possui anotaÃ§Ã£o de Label = " + clazz.getAnnotation(Table.class).name() + "." + field.getName());
 					}

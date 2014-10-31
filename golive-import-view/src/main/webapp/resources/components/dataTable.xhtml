@@ -16,7 +16,7 @@
 
 <composite:implementation>
 
-	<p:dialog id="configuracoesTabela" widgetVar="confTableConteudo"
+	<p:dialog id="configuracoesTabela" widgetVar="confTableConteudo" resizable="false"
 		styleClass="dialogConfiguracoes" modal="true">
 
 		<p:dataTable id="configuracaoTable" draggableRows="true"
@@ -46,10 +46,16 @@
 				<h:outputLabel styleClass="textoTableColunaConfiguracaoLabel"
 					value="#{managerBean.get(cc.attrs.bean.getLabelFilter(coluna))}" />
 			</p:column>
-			
-			<p:column headerText="#{managerBean.get('label.parametros.filtro')}" rendered="false"
-				styleClass="colunaDataTableSelectOneMenu">
+
+			<p:column headerText="#{managerBean.get('label.parametros.filtro')}"
+				rendered="false" styleClass="colunaDataTableSelectOneMenu">
 				<filter:selectTipoFiltro filtro="#{cc.attrs.bean.getFilter(coluna)}" />
+			</p:column>
+
+			<p:column 
+				headerText="#{managerBean.get('label.tamanho.minimo.coluna')}"
+				styleClass="widthColunas">
+				<p:spinner id="widthColunasTable" value="#{coluna.width}" min="20" max="2000" />
 			</p:column>
 
 			<f:facet name="footer">
@@ -63,14 +69,18 @@
 		</p:dataTable>
 	</p:dialog>
 
-	<p:remoteCommand name="resizeTable" actionListener="#{cc.attrs.bean.mudarWidthColumns}" update=":conteudoForm:modelTable:conteudoTable"/>
+	<p:remoteCommand name="resizeTable"
+		actionListener="#{cc.attrs.bean.mudarWidthColumns}"
+		update=":conteudoForm:modelTable:conteudoTable" />
 
-	<p:dataTable id="conteudoTable" var="list" style="width: 100%; position: relative;"
+	<p:dataTable id="conteudoTable" var="list"
+		style="width: 100%; position: relative;"
 		selection="#{cc.attrs.bean.registro}" scrollable="true"
 		value="#{cc.attrs.bean.conteudo}" selectionMode="single"
 		rowKey="#{list.id}" styleClass="tableCadastros" rows="15"
-		paginator="true" widgetVar="table" scrollWidth="#{cc.attrs.bean.widthColunasDinamicas}"
-		filteredValue="#{cc.attrs.bean.filtrados}" 
+		paginator="true" widgetVar="table"
+		scrollWidth="#{cc.attrs.bean.widthColunasDinamicas}"
+		filteredValue="#{cc.attrs.bean.filtrados}"
 		emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -87,7 +97,8 @@
 
 		<c:forEach items="#{cc.attrs.bean.colunasPagina}" var="coluna">
 
-			<p:column style="width: 300px;">
+			<p:column style="width: #{managerBean.widthColuna(coluna.width)}">
+	
 				<f:facet name="header">
 					<filter:number id="componentFilterNumberId"
 						update=":conteudoForm:modelTable:conteudoTable"
