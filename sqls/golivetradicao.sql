@@ -1576,9 +1576,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `golivetradicao`.`tbColecoesProduto` ;
 
-
 CREATE TABLE IF NOT EXISTS `golivetradicao`.`tbColecoesProduto` (
-  `Id` INT UNSIGNED ZEROFILL NOT NULL,
+  `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Colecao` VARCHAR(120) NOT NULL,
   `SystemIncludeDateTime` DATETIME NOT NULL,
   `SystemChangeDateTime` DATETIME NULL,
@@ -4649,7 +4648,7 @@ CREATE TABLE IF NOT EXISTS `golivetradicao`.`tbAuditoria_tbPais` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `goliveacao`.`tbConfiguracaoColunaPagina` (
+CREATE TABLE IF NOT EXISTS `golivetradicao`.`tbConfiguracaoColunaPagina` (
   `tbUsuario_Id` INT UNSIGNED NOT NULL,
   `Ordernation` INT UNSIGNED NOT NULL,
   `PageBeanName` VARCHAR(45),

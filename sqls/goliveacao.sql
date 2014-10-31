@@ -1577,7 +1577,7 @@ DROP TABLE IF EXISTS `goliveacao`.`tbColecoesProduto` ;
 
 
 CREATE TABLE IF NOT EXISTS `goliveacao`.`tbColecoesProduto` (
-  `Id` INT UNSIGNED ZEROFILL NOT NULL,
+  `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Colecao` VARCHAR(120) NOT NULL,
   `SystemIncludeDateTime` DATETIME NOT NULL,
   `SystemChangeDateTime` DATETIME NULL,
