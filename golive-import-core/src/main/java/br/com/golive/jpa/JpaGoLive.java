@@ -17,6 +17,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.engine.transaction.jta.platform.spi.JtaPlatformException;
+import org.slf4j.Logger;
 
 import br.com.golive.constants.Constantes;
 import br.com.golive.exception.GoLiveException;
@@ -37,6 +38,8 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	@Inject
 	protected EntityManager entityManager;
 
+	@Inject
+	private Logger logger;
 	/**
 	 * Classe de entidade extendida
 	 */
@@ -103,6 +106,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 			final Criteria criteria = hibernateSession.createCriteria(persistentClass);
 			return criteria;
 		} catch (final JtaPlatformException e) {
+			logger.error("Erro ao obter criteria");
 			e.printStackTrace();
 			throw new GoLiveException("Erro ao Obter Criteria");
 		}
@@ -179,9 +183,9 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 			entityManager.merge(entity);
 			entityManager.remove(entity);
 		} catch (final Exception e) {
+			logger.error("Erro ao deletar");
 			e.printStackTrace();
 		}
-
 	}
 
 	/**

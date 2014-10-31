@@ -136,6 +136,11 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 		fluxo = getFluxoListagem();
 	}
 
+
+	protected List<ColunaPerfil> getConfiguracaoesByClasses(final Class<?> ...classes) {
+		return colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, classes);
+	}
+	
 	public void mudarWidthColumns() {
 		final String value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("width");
 		if (value != null) {
@@ -367,6 +372,9 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	public String getLabelFilter(final ColunaPerfil coluna) {
 		try {
 			final Field field = Utils.getFilterField(genericClazzInstance, coluna, this.getClass(), this.getClass().getSuperclass());
+			if(field == null){
+				throw new GoLiveException("Não foi possível encontrar o filtro para esta coluna = " + coluna.getId().getColuna());
+			}
 			return field.getAnnotation(Filter.class).label();
 		} catch (final GoLiveException e) {
 			getLogger().info("Erro ao obter filtro = {}", coluna);
