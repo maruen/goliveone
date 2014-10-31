@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
-import br.com.golive.entity.especialidades.model.CoresModel;
+import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
@@ -30,7 +30,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @Label(name = "label.cadastros.produtos.finalidades.finalidadeCor")
 @ManagedBean
 @ViewScoped
-public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
+public class FinalidadeCorBean extends CadastroBeanRules<CorProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +38,7 @@ public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
 
 	@Inject
 	@FilterInjected
-	private FilterManager<CoresModel> filterManager;
+	private FilterManager<CorProdutoModel> filterManager;
 
 	@Inject
 	@LabelSystemInjected
@@ -52,7 +52,7 @@ public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
 		} catch (final ParseException e) {
 			e.printStackTrace();
 		}
-		this.registro = new CoresModel();
+		this.registro = new CorProdutoModel();
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
@@ -92,20 +92,8 @@ public class FinalidadeCorBean extends CadastroBeanRules<CoresModel> {
 	}
 
 	@Deprecated
-	public List<CoresModel> criarList() throws ParseException {
-		final List<CoresModel> lista = new ArrayList<CoresModel>();
-		for (Integer i = 0; i < 10; i++) {
-			final CoresModel coresModel = new CoresModel(Long.valueOf(i.longValue()),
-												   Calendar.getInstance(),
-												   Calendar.getInstance(),
-												   "0000000025",
-												   "Vermelho",
-												   "0000000001",
-												   	"asbca14",
-												   	"Mountain Vibe Glass Colors"
-												   );
-			lista.add(coresModel);
-		}
+	public List<CorProdutoModel> criarList() throws ParseException {
+		final List<CorProdutoModel> lista = new ArrayList<CorProdutoModel>();
 		return lista;
 	}
 	

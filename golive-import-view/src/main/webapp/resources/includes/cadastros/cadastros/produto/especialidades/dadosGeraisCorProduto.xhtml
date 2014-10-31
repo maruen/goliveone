@@ -1,0 +1,105 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<!--  DADOS GERAIS PANEL -->
+<p:panel id="dadosGeraisCorProduto"
+	 	 header="#{managerBean.get('label.cadastroCores.dadosGerais')}"
+	 	 toggleable="true"
+	 	 collapsed="false"
+	 	 closable="false"
+	 	 toggleSpeed="500"
+	 	 closeSpeed="500"
+	 	 widgetVar="dadosGeraisCorProdutoPanel"
+	 	 styleClass="little-font" >
+	 
+     	<f:facet name="actions">
+         		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+         			<h:outputText styleClass="ui-icon ui-icon-help" />
+         		</h:commandLink>
+     		</f:facet>
+  		       	
+         	<p:panelGrid cellpadding="2"  
+         				 cellspacing="2"
+         				 width="100%"
+         				 border="0">
+           	
+           	<!--  1st ROW -->
+           	<p:row>
+           		<p:column styleClass="percentual-5">
+           			<h:outputText id="idCorOutputText" value="#{managerBean.get('label.cadastroCores.id')}"   />
+           		</p:column>
+           	
+           		
+           		<p:column styleClass="percentual-10">
+           			<h:inputText id="idCorInputText"  style="width: 125px;" disabled="true" />
+           		</p:column>
+           		
+           		<p:column styleClass="percentual-12">
+      				<p:spacer/>
+      			</p:column>
+      			
+      			<p:column styleClass="percentual-68">
+      				<p:spacer/>
+      			</p:column>
+           		
+           		
+           		<p:column styleClass="percentual-10">
+      				<h:outputText id="corProdutoInclusaoOutputText"
+        					  	  value="#{managerBean.get('label.cadastroCores.inclusao')}"
+        					  	  styleClass="singleLine"/>
+      			</p:column>
+           		
+           		<p:column >
+           			
+           			<h:inputText value="#{pojo.dataInclusao.time}" id="corProdutoInclusaoInputText" disabled="true" >
+ 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+ 					</h:inputText>  
+           		
+           		</p:column>
+           		
+           	</p:row>
+
+      		<!--2st ROW -->
+      		<p:row>
+      			
+      			<p:column styleClass="percentual-5 singleLine">
+           			<h:outputText id="codCorOutputText" value="#{managerBean.get('label.cadastroCores.codCor')}"   />
+           		</p:column>
+           		
+           		<p:column styleClass="percentual-10">
+           			<p:inputText id="codCorInputText"  style="width: 125px;" />
+           		</p:column>
+           		
+           		<p:column styleClass="percentual-12">
+      				<h:outputText id="ColecaoDescricaoOutputText"  value="#{managerBean.get('label.cadastroCores.descricao')}" />
+      			</p:column>
+      			
+      			<p:column styleClass="percentual-68">
+      				<p:inputText id="colecaoDescricaoInputText"
+      				     		 style="width: 90%"
+      				     		 />
+      			</p:column>
+      			
+      			
+      			<p:column styleClass="percentual-10">
+      				<h:outputText id="ultimaAlteracaoOutputText"
+        					  	  value="#{managerBean.get('label.cadastroCores.ultimaAlteracao')}"
+        					  	  styleClass="singleLine"/>
+      			</p:column>
+      			
+      			<p:column>
+     				<h:inputText value="#{pojo.dataAlteracao.time}" id="corProdutoUltimaAlteracaoInputText" disabled="true" >
+ 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+ 					</h:inputText>     
+      			</p:column>
+      			
+      		</p:row>
+    </p:panelGrid>
+
+</p:panel>
+
+</ui:composition>

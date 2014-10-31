@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import org.slf4j.Logger;
 
@@ -17,8 +18,6 @@ import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
-import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
-import br.com.golive.exception.GolivePersistenceException;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
@@ -27,6 +26,7 @@ import br.com.golive.service.DepartamentoService;
 import br.com.golive.utils.JSFUtils;
 
 @Data
+@EqualsAndHashCode(callSuper=false)
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroDepartamento")
