@@ -6,11 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
+import lombok.Data;
+
+@Data
 @Embeddable
 public class ColunaPerfilId implements Serializable {
 
 	@Transient
-	private static final long serialVersionUID = 449981520273393506L;
+	private static final long serialVersionUID = -4850543578021656523L;
 
 	@Column(name = "tbUsuario_Id")
 	private Long idUsuario;
@@ -21,39 +24,19 @@ public class ColunaPerfilId implements Serializable {
 	@Column(name = "ColumnName")
 	private String coluna;
 
+	@Column(name = "PageBeanName")
+	private String managedBeanName;
+
 	public ColunaPerfilId() {
 		super();
 	}
 
-	public ColunaPerfilId(final Long idUsuario, final String tabela, final String coluna) {
+	public ColunaPerfilId(final Long idUsuario, final String tabela, final String coluna, final String managedBeanName) {
 		super();
 		this.idUsuario = idUsuario;
 		this.tabela = tabela;
 		this.coluna = coluna;
-	}
-
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(final Long idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-
-	public String getTabela() {
-		return tabela;
-	}
-
-	public void setTabela(final String tabela) {
-		this.tabela = tabela;
-	}
-
-	public String getColuna() {
-		return coluna;
-	}
-
-	public void setColuna(final String coluna) {
-		this.coluna = coluna;
+		this.managedBeanName = managedBeanName;
 	}
 
 	@Override
@@ -62,6 +45,7 @@ public class ColunaPerfilId implements Serializable {
 		int result = 1;
 		result = (prime * result) + ((coluna == null) ? 0 : coluna.hashCode());
 		result = (prime * result) + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = (prime * result) + ((managedBeanName == null) ? 0 : managedBeanName.hashCode());
 		result = (prime * result) + ((tabela == null) ? 0 : tabela.hashCode());
 		return result;
 	}
@@ -92,6 +76,13 @@ public class ColunaPerfilId implements Serializable {
 		} else if (!idUsuario.equals(other.idUsuario)) {
 			return false;
 		}
+		if (managedBeanName == null) {
+			if (other.managedBeanName != null) {
+				return false;
+			}
+		} else if (!managedBeanName.equals(other.managedBeanName)) {
+			return false;
+		}
 		if (tabela == null) {
 			if (other.tabela != null) {
 				return false;
@@ -100,11 +91,6 @@ public class ColunaPerfilId implements Serializable {
 			return false;
 		}
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "ColunaPerfilId [idUsuario=" + idUsuario + ", tabela=" + tabela + ", coluna=" + coluna + "]";
 	}
 
 }

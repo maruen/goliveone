@@ -8,12 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "tbConfiguracaoColunaPagina")
 public class ColunaPerfil implements Serializable {
 
 	@Transient
-	private static final long serialVersionUID = 5470458904844465252L;
+	private static final long serialVersionUID = -2992148672417370061L;
 
 	@EmbeddedId
 	private ColunaPerfilId id;
@@ -27,48 +30,20 @@ public class ColunaPerfil implements Serializable {
 	@Column(name = "Visible")
 	private boolean visivel;
 
+	@Column(name = "WidthColumn")
+	private Long width;
+
 	public ColunaPerfil() {
 		super();
 	}
 
-	public ColunaPerfil(final ColunaPerfilId id, final String padraoFiltro, final Long ordem, final boolean visivel) {
+	public ColunaPerfil(final ColunaPerfilId id, final String padraoFiltro, final Long ordem, final boolean visivel, final Long width) {
 		super();
 		this.id = id;
 		this.padraoFiltro = padraoFiltro;
 		this.ordem = ordem;
 		this.visivel = visivel;
-	}
-
-	public ColunaPerfilId getId() {
-		return id;
-	}
-
-	public void setId(final ColunaPerfilId id) {
-		this.id = id;
-	}
-
-	public String getPadraoFiltro() {
-		return padraoFiltro;
-	}
-
-	public void setPadraoFiltro(final String padraoFiltro) {
-		this.padraoFiltro = padraoFiltro;
-	}
-
-	public Long getOrdem() {
-		return ordem;
-	}
-
-	public void setOrdem(final Long ordem) {
-		this.ordem = ordem;
-	}
-
-	public boolean isVisivel() {
-		return visivel;
-	}
-
-	public void setVisivel(final boolean visivel) {
-		this.visivel = visivel;
+		this.width = width;
 	}
 
 	@Override
@@ -79,6 +54,7 @@ public class ColunaPerfil implements Serializable {
 		result = (prime * result) + ((ordem == null) ? 0 : ordem.hashCode());
 		result = (prime * result) + ((padraoFiltro == null) ? 0 : padraoFiltro.hashCode());
 		result = (prime * result) + (visivel ? 1231 : 1237);
+		result = (prime * result) + ((width == null) ? 0 : width.hashCode());
 		return result;
 	}
 
@@ -118,12 +94,14 @@ public class ColunaPerfil implements Serializable {
 		if (visivel != other.visivel) {
 			return false;
 		}
+		if (width == null) {
+			if (other.width != null) {
+				return false;
+			}
+		} else if (!width.equals(other.width)) {
+			return false;
+		}
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "ColunaPerfil [id=" + id + ", padraoFiltro=" + padraoFiltro + ", ordem=" + ordem + ", visivel=" + visivel + "]";
 	}
 
 }

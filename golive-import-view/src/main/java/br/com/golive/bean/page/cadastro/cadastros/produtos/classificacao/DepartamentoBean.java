@@ -63,7 +63,6 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	@Override
 	@PostConstruct
 	public void init() {
-		logger.info("Inicializando = {}", this.getClass().getName());
 		super.init(departamentoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class));
 	}
 
@@ -74,10 +73,10 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	}
 
 	public void confirmarExclusao() {
-		try{
+		try {
 			departamentoService.excluir(registro);
 			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		super.init(departamentoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class));

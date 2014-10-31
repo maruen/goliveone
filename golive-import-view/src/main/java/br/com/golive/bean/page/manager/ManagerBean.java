@@ -111,6 +111,13 @@ public class ManagerBean extends GenericBean {
 		return get(JSFUtils.getLabelFieldName(field));
 	}
 
+	public String widthColuna(final Long tamanho) {
+		if (tamanho != null) {
+			return Long.toString(tamanho).concat("px;");
+		}
+		return "300px;";
+	}
+
 	@Deprecated
 	public void newTab(final String url) {
 

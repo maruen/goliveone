@@ -1576,9 +1576,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `golivetradicao`.`tbColecoesProduto` ;
 
-
 CREATE TABLE IF NOT EXISTS `golivetradicao`.`tbColecoesProduto` (
-  `Id` INT UNSIGNED ZEROFILL NOT NULL,
+  `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Colecao` VARCHAR(120) NOT NULL,
   `SystemIncludeDateTime` DATETIME NOT NULL,
   `SystemChangeDateTime` DATETIME NULL,
@@ -4649,15 +4648,16 @@ CREATE TABLE IF NOT EXISTS `golivetradicao`.`tbAuditoria_tbPais` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `goliveacao`.`tbConfiguracaoColunaPagina` (
+CREATE TABLE IF NOT EXISTS `golivetradicao`.`tbConfiguracaoColunaPagina` (
   `tbUsuario_Id` INT UNSIGNED NOT NULL,
   `Ordernation` INT UNSIGNED NOT NULL,
+  `PageBeanName` VARCHAR(45),
   `TableName` VARCHAR(45),
   `ColumnName` VARCHAR(45),
   `PatternFilter` VARCHAR(45),
+  `WidthColumn` INT UNSIGNED,
   `Visible` BIT(1))
 ENGINE = InnoDB;
-
 
 CREATE UNIQUE INDEX `tbAuditoriaItem_Id_UNIQUE` ON `golivetradicao`.`tbAuditoria_tbPais` (`tbAuditoriaItem_Id` ASC);
 
