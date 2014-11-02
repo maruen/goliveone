@@ -62,4 +62,9 @@ public class ColecoesServiceImpl implements ColecoesService {
 		colecoesJPA.delete(colecoesModel);
 	}
 
+	@Override
+	public List<ColecoesModel> listarTodos() {
+		return colecoesJPA.listarTodos();
+	}
+
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -26,7 +27,7 @@ import br.com.golive.service.DepartamentoService;
 import br.com.golive.utils.JSFUtils;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroDepartamento")
@@ -75,9 +76,10 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	public void confirmarExclusao() {
 		try {
 			departamentoService.excluir(registro);
-			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
+			removidoComSucesso();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Erro ao excluir registro ={} ", registro.getId());
+			erroAoRemover();
 		}
 		super.init(departamentoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class));
 	}
@@ -92,6 +94,7 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 
 		conteudo = departamentoService.listarPorFiltro();
 		super.salvar();
+		super.init(departamentoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class));
 	}
 
 	@Override

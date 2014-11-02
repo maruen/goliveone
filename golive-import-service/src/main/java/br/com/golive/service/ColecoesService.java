@@ -17,4 +17,6 @@ public interface ColecoesService {
 	public void remover(final ColecoesModel colecoesModel);
 
 	public List<ColecoesModel> obterLista(final String... lazyFields);
+
+	public List<ColecoesModel> listarTodos();
 }

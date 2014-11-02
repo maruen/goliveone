@@ -41,7 +41,7 @@
 				    <p:column headerText="Formulário"
 				    		  styleClass="percentual-15">
 				    		  
-				        	   <h:outputText value="#{row.formularioNome}" styleClass="singleLine"/>
+				        	   <h:outputText value="#{managerBean.get(row.formularioNome)}" styleClass="singleLine"/>
 
 				    </p:column>
 				   
@@ -49,9 +49,6 @@
 				    	<h:outputText value="#{row.acaoUsuario}" styleClass="singleLine"/>
 				    </p:column>
 				 
-				 	<p:column headerText="Usuário" styleClass="percentual-10">
-				    	<h:outputText value="#{bean.usuarioLog}" />
-				    </p:column>
 				    
 				    <p:column headerText="Observação" styleClass="percentual-10">
 				    	<h:outputText value="${row.observacao}" /> 

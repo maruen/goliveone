@@ -18,11 +18,13 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
+import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
+import br.com.golive.service.ColecoesService;
 import br.com.golive.service.CorProdutoService;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
@@ -44,6 +46,7 @@ public class CorProdutoBean extends CadastroBeanRules<CorProdutoModel> {
 	@EJB private GrupoProdutoService 		grupoProdutoService;
 	@EJB private SubGrupoProdutoService 	subGrupoProdutoService;
 	@EJB private CorProdutoService 			corProdutoService;
+	@EJB private ColecoesService			colecaoService;
 	
 	@Override
 	@PostConstruct
@@ -78,6 +81,9 @@ public class CorProdutoBean extends CadastroBeanRules<CorProdutoModel> {
 		super.salvar();
 	}
 	
+	
+	
+	
 	public List<AuditoriaModel> getAuditoriaLogs() {
 		return corProdutoService.getAuditoriaLogs(registro); 
 	}
@@ -97,6 +103,10 @@ public class CorProdutoBean extends CadastroBeanRules<CorProdutoModel> {
 	
 	public List<SubGrupoProdutoModel> getSubGrupoProdutoList() {
 		return subGrupoProdutoService.listarTodos();
+	}
+	
+	public List<ColecoesModel> getColecoesList() {
+		return colecaoService.listarTodos();
 	}
 	
 	

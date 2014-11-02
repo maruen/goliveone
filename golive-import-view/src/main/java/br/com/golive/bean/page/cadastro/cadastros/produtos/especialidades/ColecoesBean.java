@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
@@ -132,16 +133,16 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 	@EJB
 	private DepartamentoService departamentoService;
-	
+
 	@EJB
 	private GrupoProdutoService grupoProdutoService;
-	
+
 	@EJB
 	private SubGrupoProdutoService subGrupoProdutoService;
-	
+
 	@EJB
 	private ColecoesService colecoesService;
-	
+
 	@EJB
 	private AuditoriaService auditoriaService;
 
@@ -186,18 +187,19 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
 
 	}
-	
+
 	@Override
 	public void confirmarExclusao() {
 		try {
 			colecoesService.remover(registro);
-			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
+			removidoComSucesso();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Erro ao excluir registro ={} ", registro.getId());
+			erroAoRemover();
 		}
 		super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class, ColecoesModel.class));
 	}
-	
+
 	@Override
 	public void salvar() {
 		logger.info("Salvando = {} ", registro);

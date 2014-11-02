@@ -29,19 +29,27 @@ import br.com.golive.utils.GoliveOneProperties;
 
 @ManagedBean
 @ViewScoped
-@Label(name= "label.cadastroSubGrupoProduto")
+@Label(name = "label.cadastroSubGrupoProduto")
 public class SubGrupoProdutoBean extends CadastroBeanRules<SubGrupoProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject @Getter @Setter	private Logger logger;
-	
-	@Inject	@LabelSystemInjected private GoliveOneProperties labels;
-	
-	@EJB private SubGrupoProdutoService subGrupoProdutoService;
-	@EJB private DepartamentoService 	departamentoService;
-	@EJB private GrupoProdutoService 	grupoProdutoService;
-	
+	@Inject
+	@Getter
+	@Setter
+	private Logger logger;
+
+	@Inject
+	@LabelSystemInjected
+	private GoliveOneProperties labels;
+
+	@EJB
+	private SubGrupoProdutoService subGrupoProdutoService;
+	@EJB
+	private DepartamentoService departamentoService;
+	@EJB
+	private GrupoProdutoService grupoProdutoService;
+
 	@Override
 	@PostConstruct
 	public void init() {
@@ -49,11 +57,11 @@ public class SubGrupoProdutoBean extends CadastroBeanRules<SubGrupoProdutoModel>
 		super.init(subGrupoProdutoService.listarPorFiltro());
 		fluxo = LISTAGEM;
 	}
-	
+
 	@Override
 	public void incluir() {
 		super.incluir();
-		this.registro = new SubGrupoProdutoModel();
+		registro = new SubGrupoProdutoModel();
 	}
 
 	@Override
@@ -64,33 +72,31 @@ public class SubGrupoProdutoBean extends CadastroBeanRules<SubGrupoProdutoModel>
 
 	@Override
 	public void salvar() {
-		
+
 		if (registro.hasId()) {
 			subGrupoProdutoService.alterar(registro);
 		} else {
 			subGrupoProdutoService.salvar(registro);
 		}
-		
+
 		conteudo = subGrupoProdutoService.listarPorFiltro();
 		super.salvar();
 	}
-	
+
 	public List<AuditoriaModel> getAuditoriaLogs() {
-		return subGrupoProdutoService.getAuditoriaLogs(registro); 
+		return subGrupoProdutoService.getAuditoriaLogs(registro);
 	}
-	
+
 	public String getUsuarioLog() {
 		return subGrupoProdutoService.getUsuarioLog(registro);
 	}
-	
+
 	public List<DepartamentoModel> getDepartamentos() {
 		return departamentoService.listarTodos();
 	}
-	
-	
+
 	public List<GrupoProdutosModel> getGrupoProdutoList() {
 		return grupoProdutoService.obterGrupoProdutos();
 	}
-	
-	
+
 }
