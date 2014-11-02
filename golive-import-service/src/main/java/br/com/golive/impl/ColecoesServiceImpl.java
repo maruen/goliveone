@@ -1,5 +1,7 @@
 package br.com.golive.impl;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -34,6 +36,12 @@ public class ColecoesServiceImpl implements ColecoesService {
 	public void salvar(final ColecoesModel colecoesModel) {
 		logger.info("Salvando ColecoesModel ={}", colecoesModel);
 		colecoesJPA.save(colecoesModel);
+	}
+
+	
+	@Override
+	public List<ColecoesModel> listarTodos() {
+		return colecoesJPA.listarTodos();
 	}
 
 }
