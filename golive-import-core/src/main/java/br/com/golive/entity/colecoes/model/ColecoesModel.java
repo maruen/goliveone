@@ -14,6 +14,7 @@ import javax.persistence.Transient;
 
 import lombok.Data;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.annotation.Label;
 import br.com.golive.annotation.LogList;
 import br.com.golive.entity.Model;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
@@ -25,6 +26,7 @@ import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 @Entity
 @Table(name = "tbColecoesProduto")
 @Jasper(titulo = "Colecoes", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Colecoes")
+@Label(name = "label.colecoes")
 public class ColecoesModel extends Model {
 
 	@Transient
@@ -42,7 +44,7 @@ public class ColecoesModel extends Model {
 	private DepartamentoModel departamentoSelected;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY)
-	@JoinTable(name = "tbColecoesProduto_tbDepartamentoProduto", joinColumns = @JoinColumn(name = "tbColecoesProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbSubGrupoProduto_Id", referencedColumnName = "Id"))
+	@JoinTable(name = "tbColecoesProduto_tbSubGrupoProduto", joinColumns = @JoinColumn(name = "tbColecoesProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbSubGrupoProduto_Id", referencedColumnName = "Id"))
 	private SubGrupoProdutoModel subGrupoProdutoSelected;
 
 	@LogList
