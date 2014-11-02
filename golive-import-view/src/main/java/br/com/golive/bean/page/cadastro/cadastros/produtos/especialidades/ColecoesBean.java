@@ -184,8 +184,9 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void editarRegistro() {
 		super.editarRegistro();
 		carregarDependencias();
-		registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
-
+		if(isSelecionado()){
+			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
+		}
 	}
 
 	@Override

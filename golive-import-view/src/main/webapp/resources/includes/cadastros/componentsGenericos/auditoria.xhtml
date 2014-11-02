@@ -5,55 +5,51 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<p:panel id="auditoriaLog" rendered="#{!empty pojo}"
-			 styleClass="mainPanel"
-			 header="Auditoria / Log"
-			 toggleable="true" toggleSpeed="500">
-		
-			<p:dataTable id="auditoriaLogTable"
-					 	 var="row"
-					 	 value="#{pojo}"
-                         rowKey="#{list.id}"
-					 	 styleClass="tableCadastros" 
-					 	 rows="15"
-					 	 paginator="true"
-					 	 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
-						 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+		styleClass="mainPanel" header="Auditoria / Log" toggleable="true"
+		toggleSpeed="500">
 
-		 			<p:column headerText="Id"
-				    		  styleClass="percentual-5">
-				        <h:outputText value="#{row.id}" styleClass="singleLine floatRight"/>
-				    </p:column>
-				    
-				    <p:column headerText="Data e Hora Inclusão"
-				    		  styleClass="percentual-10">
-				        <h:outputText value="#{row.dataInclusao.time}"  styleClass="singleLine floatRight">
-				        	<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
-				        </h:outputText>
-				    </p:column>
-				    
-				    <p:column headerText="Data e Hora Alteração"
-				    		  styleClass="percentual-10">
-				        <h:outputText value="#{row.dataAlteracao.time}"  styleClass="singleLine floatRight">
-				        	<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
-				        </h:outputText>
-				    </p:column>
-				    
-				    <p:column headerText="Formulário"
-				    		  styleClass="percentual-15">
-				    		  
-				        	   <h:outputText value="#{managerBean.get(row.formularioNome)}" styleClass="singleLine"/>
+		<p:dataTable id="auditoriaLogTable" var="row" value="#{pojo}"
+			rowKey="#{list.id}" styleClass="tableCadastros" rows="15"
+			paginator="true"
+			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-				    </p:column>
-				   
-			 	   <p:column headerText="Ação" styleClass="percentual-10">
-				    	<h:outputText value="#{row.acaoUsuario}" styleClass="singleLine"/>
-				    </p:column>
-				 
-				    
-				    <p:column headerText="Observação" styleClass="percentual-10">
-				    	<h:outputText value="${row.observacao}" /> 
-				    </p:column>
-		
+			<p:column headerText="Id" styleClass="percentual-5">
+				<h:outputText value="#{row.id}" styleClass="singleLine floatRight" />
+			</p:column>
+
+			<p:column headerText="Data e Hora Inclusão"
+				styleClass="percentual-10">
+				<h:outputText value="#{row.dataInclusao.time}"
+					styleClass="singleLine floatRight">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Data e Hora Alteração"
+				styleClass="percentual-10">
+				<h:outputText value="#{row.dataAlteracao.time}"
+					styleClass="singleLine floatRight">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Formulário" styleClass="percentual-15">
+
+				<h:outputText value="#{managerBean.get(row.formularioNome)}"
+					styleClass="singleLine" />
+
+			</p:column>
+
+			<p:column headerText="Ação" styleClass="percentual-10">
+				<h:outputText value="#{row.acaoUsuario}" styleClass="singleLine" />
+			</p:column>
+
+
+			<p:column headerText="Observação" styleClass="percentual-10">
+				<h:outputText value="${row.observacao}" />
+			</p:column>
+
 		</p:dataTable>
 	</p:panel>
 
