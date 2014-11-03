@@ -86,9 +86,25 @@
 			src="/resources/includes/cadastros/cadastros/enderecoFuncionario.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<!-- <ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/contatosFuncionario.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
-		</ui:include>-->
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/condicoesContratacaoFuncionario.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/dadosBancariosFuncionario.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/observacoesFuncionario.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
 
 	</ui:define>
 </ui:composition>

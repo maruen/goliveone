@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="dadosBancarios"
+		header="#{managerBean.get('label.cadastroFuncionario.dadosBancarios')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosBancarios" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-4,percentual-50" width="100%" border="0">
+
+			<h:column>
+				<h:outputText id="tipoContaOutputText" styleClass="singleLine"
+					value="#{managerBean.get('label.cadastroFuncionario.tipoConta')}" />
+			</h:column>
+
+			<h:column>
+				<p:selectOneRadio id="tipoContaRadio" value="XXX">
+					<f:selectItem
+						itemLabel="#{managerBean.get('label.cadastroFuncionario.contaCorrente')}"
+						itemValue="X" id="contaCorrenteItemlabel" />
+					<f:selectItem
+						itemLabel="#{managerBean.get('label.cadastroFuncionario.poupanca')}"
+						itemValue="X" id="poupancaItemLabel" />
+					<f:selectItem
+						itemLabel="#{managerBean.get('label.cadastroFuncionario.contaSalario')}"
+						itemValue="X" id="contaSalarioItemLabel" />
+				</p:selectOneRadio>
+			</h:column>
+
+			<h:column>
+				<h:outputText id="bancoOutputText" styleClass="singleLine"
+					value="#{managerBean.get('label.cadastroFuncionario.banco')}" />
+			</h:column>
+
+			<h:column>
+				<p:autoComplete id="bancoDropDown" dropdown="true"
+					completeMethod="#{bean.bancoComplete}" size="46" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="agenciaOutputText" styleClass="singleLine"
+					value="#{managerBean.get('label.cadastroFuncionario.agencia')}" />
+			</h:column>
+
+			<h:column>
+				<p:inputText id="agenciaInputText" style="width: 125px;"
+					disabled="false" value="0088" />
+
+				<p:spacer width="25" height="1" />
+
+				<h:outputText id="digitoOutputText" styleClass="singleLine"
+					value="#{managerBean.get('label.cadastroFuncionario.digito')}" />
+
+				<p:spacer width="10" height="1" />
+
+				<p:inputText id="digitoInputText" style="width: 125px;"
+					disabled="false" value="99" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="contaOutputText" styleClass="singleLine"
+					value="#{managerBean.get('label.cadastroFuncionario.conta')}" />
+			</h:column>
+
+			<h:column>
+				<p:inputText id="contaInputText" style="width: 125px;"
+					disabled="false" value="0023547" />
+
+				<p:spacer width="25" height="1" />
+
+				<h:outputText id="digitoContaOutputText" styleClass="singleLine"
+					value="#{managerBean.get('label.cadastroFuncionario.digito')}" />
+
+				<p:spacer width="10" height="1" />
+
+				<p:inputText id="digitoContaInputText" style="width: 125px;"
+					disabled="false" value="9" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="correntistaOutputText" styleClass="singleLine"
+					value="#{managerBean.get('label.cadastroFuncionario.correntista')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="correntistaInputText" style="width: 50%;"
+					disabled="true" value="Maria Albertina dos Santos" />
+
+				<p:spacer width="5" height="1" />
+
+				<p:selectBooleanCheckbox value="checked"
+					id="contaProprioFuncionarioCheckbox" />
+
+				<p:spacer width="5" height="1" />
+
+				<h:outputText id="contaProprioFuncionarioOutputText"
+					styleClass="singleLine"
+					value="#{managerBean.get('label.cadastroFuncionario.contaProprioFuncionario')}" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="cpfDadosBancariosOutputText"
+					styleClass="singleLine"
+					value="#{managerBean.get('label.cadastroFuncionario.cpf')}" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="cpfDadosBancariosInputText" style="width: 50%;"
+					disabled="true" value="111.658.647-40" />
+			</h:column>
+		</h:panelGrid>
+	</p:panel>
+</ui:composition>

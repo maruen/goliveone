@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="pais"
-		 header="País"
+		 header="#{managerBean.get('label.cadastroTelefonicoMunicipios.pais')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -31,7 +31,7 @@
           				 border="0">
      
 			<h:outputText id="idPaisOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"   />
            	<h:inputText id="idPaisInputText"
            				 style="width: 125px;"
            				 disabled="true"
@@ -41,7 +41,7 @@
            	<p:spacer/>
            	
       		<h:outputText id="codPaisOutputText" 
-      					  value="Cód.Tel.País" 
+      					  value="#{managerBean.get('label.cadastroTelefonicoMunicipios.codTelPais')}" 
       					  styleClass="singleLine" />
       		<h:inputText id="codPaisInputText"
       					 required="true"
@@ -53,7 +53,7 @@
             <p:spacer/>
             
       		<h:outputText id="paisOutputText" 
-      					  value="País" 
+      					  value="#{managerBean.get('label.cadastroTelefonicoMunicipios.pais')}" 
       					  styleClass="singleLine" />
       		<h:inputText id="paisInputText"
       					 required="true"

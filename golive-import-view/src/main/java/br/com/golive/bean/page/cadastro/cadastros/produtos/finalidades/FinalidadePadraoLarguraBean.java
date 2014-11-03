@@ -23,7 +23,7 @@ import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastros.produtos.finalidades.finalidadePadraoLargura")
+@Label(name = "label.cadastroFinalidadePadraoLargura")
 @ManagedBean
 @ViewScoped
 public class FinalidadePadraoLarguraBean extends CadastroBeanRules<CorProdutoModel> {

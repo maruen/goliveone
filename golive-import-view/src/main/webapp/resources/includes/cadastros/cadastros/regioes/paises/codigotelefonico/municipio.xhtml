@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="municipio"
-		 header="Município"
+		 header="#{managerBean.get('label.cadastroTelefonicoMunicipios.municipio')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -32,7 +32,7 @@
      
 				<h:column>		
 					<h:outputText id="idMunicipioOutputText"
-								  value="Id"   />
+								  value="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"   />
 				</h:column>
 				
 				<h:column>
@@ -51,7 +51,7 @@
 		      	
 				<h:column>		      		
 		      		<h:outputText id="municipioOutputText" 
-		      					  value="Município" 
+		      					  value="#{managerBean.get('label.cadastroTelefonicoMunicipios.municipio')}" 
 		      					  styleClass="singleLine" />
 		      	</h:column>
 		      	
@@ -66,7 +66,7 @@
          </h:panelGrid>
 	</p:panel>
 
-<p:dialog header="Pesquisa de Municípios"
+<p:dialog header="#{managerBean.get('label.cadastroTelefonicoMunicipios.pesquisaMunicipios')}"
 			  widgetVar="dlgMunicipio"
 			  modal="false"
 			  resizable="false"
@@ -76,49 +76,49 @@
       			
      			<p:dataTable id="municipioDatatableId"
         	  	 	     var="municipioDatatableVar"
-        			 	 value="#{codigoTelefonicoMunicipiosBean.conteudo}" >
+        			 	 value="#{bean.conteudo}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Município"
+				    <p:column headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.municipio')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Campinas" />
 				    </p:column>
 				    
-				    <p:column headerText="id"
+				    <p:column headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 
-				    <p:column headerText="Estado"
+				    <p:column headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.estado')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="São Paulo" />
 				    </p:column>
 
-				    <p:column headerText="Abrev.Estado"
+				    <p:column headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.abrevEstado')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="SP" />
 				    </p:column>
 
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				  
-				    <p:column headerText="Região"
+				    <p:column headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.regiao')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Região Sudeste" />
 				    </p:column>
 				  
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				  
-				    <p:column headerText="País"
+				    <p:column headerText="#{managerBean.get('label.cadastroTelefonicoMunicipios.pais')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="Brasil" />
 				    </p:column>

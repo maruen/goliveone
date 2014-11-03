@@ -1,0 +1,333 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="condicoesContratacao"
+		header="#{managerBean.get('label.cadastroFuncionario.condicoesContratacao')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="condicoesContratacao"
+		styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="1" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-100" width="100%" border="0">
+
+			<p:fieldset
+				legend="#{managerBean.get('label.cadastroFuncionario.funcao')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+
+				<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-3,percentual-40,percentual-1,percentual-10,percentual-1,percentual-10"
+					width="100%" border="0">
+
+					<h:column>
+						<h:outputText id="cargoOutputText"
+							value="#{managerBean.get('label.cadastroFuncionario.cargo')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idCargoInputText" style="width: 125px;"
+							disabled="true" value="0000000001" />
+
+						<p:spacer width="5" height="1" />
+
+						<h:inputText id="cargoDescricaoInputText" style="width: 40%;"
+							disabled="true" value="Diretor" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgCargo').show();" immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+
+					<h:column />
+					<h:column />
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="departamentoOutputText"
+							value="#{managerBean.get('label.cadastroFuncionario.departamento')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idDepartamentoInputText" style="width: 125px;"
+							disabled="true" value="0000000001" />
+
+						<p:spacer width="5" height="1" />
+
+						<h:inputText id="departamentoDescricaoInputText"
+							style="width: 40%;" disabled="true" value="Diretoria" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgDepartamento').show();"
+							immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+				</h:panelGrid>
+			</p:fieldset>
+
+			<p:fieldset
+				legend="#{managerBean.get('label.cadastroFuncionario.formaContratacao')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+				<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-1,percentual-30,percentual-15,percentual-15"
+					width="100%" border="0">
+
+					<h:column>
+						<h:outputText id="formaContratacaoOutputText"
+							value="#{managerBean.get('label.cadastroFuncionario.formaContratacao')}"
+							styleClass="singleLine" />
+					</h:column>
+					
+					<h:column>
+						<p:autoComplete id="formaContratacaoDropDown" dropdown="true"
+							completeMethod="#{bean.formaContratacaoComplete}" size="46" />
+					</h:column>
+				</h:panelGrid>
+			</p:fieldset>
+
+			<p:fieldset
+				legend="#{managerBean.get('label.cadastroFuncionario.moeda')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+				<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-1,percentual-30,percentual-15,percentual-15"
+					width="100%" border="0">
+
+					<h:column>
+						<h:outputText id="idMoedaOutputText"
+							value="#{managerBean.get('label.cadastroFuncionario.id')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idMoedaInputText" style="width: 125px;"
+							disabled="true" styleClass="text-align-right" value="0000000001" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgMoeda').show();" immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="numeroMoedaOutputText"
+							value="#{managerBean.get('label.cadastroFuncionario.numero')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="numeroMoedaInputText" style="width: 125px;"
+							disabled="true" styleClass="text-align-right" value="971" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="casasDecimaisOutputText"
+							value="#{managerBean.get('label.cadastroFuncionario.casasDecimais')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:inputText id="casasDecimaisInputText" style="width: 125px;"
+							styleClass="text-align-right" disabled="true" value="02" />
+					</h:column>
+
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="codigoMoedaOutputText"
+							value="#{managerBean.get('label.cadastroFuncionario.codigoMoeda')}"
+							styleClass="singleLine" />
+
+					</h:column>
+
+					<h:column>
+						<h:inputText id="codigoMoedaInputText" style="width: 125px;"
+							styleClass="text-align-right" disabled="true" value="AFN" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="simboloMonetarioOutputText"
+							value="#{managerBean.get('label.cadastroFuncionario.simboloMonetario')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="5" height="1" />
+
+						<h:inputText id="simboloMonetarioInputText" style="width: 125px;"
+							disabled="true" styleClass="text-align-right" value="؋" />
+
+						<p:spacer width="10" height="1" />
+
+						<h:graphicImage value="/resources/images/simbolo.png"
+							styleClass="image" />
+					</h:column>
+
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="moedaOutputText"
+							value="#{managerBean.get('label.cadastroFuncionario.moeda')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="moedaInputText" style="width: 83%;"
+							disabled="true" value="Afghanistan" />
+
+					</h:column>
+				</h:panelGrid>
+			</p:fieldset>
+			
+			<p:fieldset
+				legend="#{managerBean.get('label.cadastroFuncionario.salario')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+				<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-2,percentual-30,percentual-15,percentual-15"
+					width="100%" border="0">
+
+					<h:column>
+						<h:outputText id="salarioOutputText"
+							value="#{managerBean.get('label.cadastroFuncionario.salario')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="salarioInputText" style="width: 3%;"
+							disabled="true" value="؋" />
+							
+						<p:spacer width="5" height="1" />
+						
+						<h:inputText id="salarioValorInputText" style="width: 10%;"
+							disabled="true" value="3.950,00" />
+					</h:column>
+				</h:panelGrid>
+			</p:fieldset>
+		</h:panelGrid>
+	</p:panel>
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroFuncionario.pesquisaCargo')}"
+		widgetVar="dlgCargo" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="60%">
+
+		<p:dataTable id="cargoPesquisaDatatableId"
+			var="cargoPesquisaDatatableVar" value="#{bean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.cargo')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Diretor" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+	
+	<p:dialog
+		header="#{managerBean.get('label.cadastroFuncionario.pesquisaDepartamento')}"
+		widgetVar="dlgDepartamento" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="60%">
+
+		<p:dataTable id="cargoDatatableId"
+			var="cargoDatatableVar" value="#{bean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.departamento')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Diretoria" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroFuncionario.pesquisaMoeda')}"
+		widgetVar="dlgMoeda" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="80%">
+
+		<p:dataTable id="moedaDatatableId" var="moedaDatatableVar"
+			value="#{bean.conteudo}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.id')}"
+				styleClass="percentual-15 singleLine text-align-right">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.numero')}"
+				styleClass="percentual-10 singleLine text-align-right">
+				<h:outputText value="971" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.codigo')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="AFN" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.casasDecimais')}"
+				styleClass="percentual-15 singleLine text-align-right">
+				<h:outputText value="02" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.simboloMonetario')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="؋" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.simboloMonetarioImagem')}"
+				styleClass="percentual-25 singleLine">
+				<h:graphicImage value="/resources/images/simbolo.png"
+					styleClass="image" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFuncionario.moeda')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Afegane" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+</ui:composition>
