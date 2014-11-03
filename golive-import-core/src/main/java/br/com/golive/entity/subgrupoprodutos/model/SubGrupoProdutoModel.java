@@ -52,8 +52,4 @@ public class SubGrupoProdutoModel extends Model {
 	private DepartamentoModel departamentoSelected;
 	
 
-	@LogList
-	@Transient
-	private List<AuditoriaModel> auditoriaLogs;
-	
 }

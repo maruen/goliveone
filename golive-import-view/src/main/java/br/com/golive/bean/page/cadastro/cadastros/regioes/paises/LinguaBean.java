@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.paises.linguas.model.LinguasModel;
+import br.com.golive.entity.empresas.regioes.paises.lingua.model.LinguaModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastroLinguas")
+@Label(name = "label.cadastroLingua")
 @ManagedBean
 @ViewScoped
-public class LinguasBean extends CadastroBeanRules<LinguasModel> {
+public class LinguaBean extends CadastroBeanRules<LinguaModel> {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class LinguasBean extends CadastroBeanRules<LinguasModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<LinguasModel> criarLista() {
-		final List<LinguasModel> lista = new ArrayList<LinguasModel>();
+	private List<LinguaModel> criarLista() {
+		final List<LinguaModel> lista = new ArrayList<LinguaModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new LinguasModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "ps", "Pachto", "Pashto", "څشزافخ"));
+			lista.add(new LinguaModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "ps", "Pachto", "Pashto", "څشزافخ"));
 		}
 
 		return lista;

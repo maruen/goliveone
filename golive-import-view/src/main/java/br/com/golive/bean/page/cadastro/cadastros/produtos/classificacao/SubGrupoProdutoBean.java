@@ -111,18 +111,14 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
-	
 	@EJB
 	private SubGrupoProdutoService subGrupoProdutoService;
 	@EJB
 	private DepartamentoService departamentoService;
 	@EJB
 	private GrupoProdutoService grupoProdutoService;
-	@EJB
-	private AuditoriaService auditoriaService;
 
 	private List<DepartamentoModel> departamentos;
-
 	private List<GrupoProdutosModel> grupoProdutoList;
 
 	@Override
@@ -135,58 +131,45 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	public void incluir() {
 		super.incluir();
 		registro = new SubGrupoProdutoModel();
-		preencherDependencias();
-	}
-
-	@Override
-	public void editarRegistro() {
-		super.editarRegistro();
-		preencherDependencias();
-		registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
-	}
-
-	private void preencherDependencias() {
 		departamentos = departamentoService.listarTodos();
-		grupoProdutoList = grupoProdutoService.obterGrupoProdutos();
+
 	}
 
 	@Override
-	public void confirmarExclusao() {
-		try {
-			subGrupoProdutoService.excluir(registro);
-			removidoComSucesso();
-		} catch (Exception e) {
-			logger.error("Erro ao excluir registro ={} ", registro.getId());
-			erroAoRemover();
+	public boolean validarCampos() {
+		boolean ret = true;
+		if (registro == null) {
+			ret = false;
 		}
-		super.init(subGrupoProdutoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class));
+		if ((registro.getSubGrupoProduto() == null) || (registro.getSubGrupoProduto().isEmpty())) {
+			ret = false;
+		}
+		if (registro.getDepartamentoSelected() == null) {
+			ret = false;
+		}
+		if (registro.getGrupoProdutoSelected() == null) {
+			ret = false;
+		}
+		
+		if(!ret ){
+			preencherTodosCamposMessage();
+		}
+		return ret;
 	}
 
 	@Override
-	public void salvar() {
-		logger.info("Salvando = {} ", registro);
-		boolean success = false;
+	public void serviceSave(SubGrupoProdutoModel registro) {
+		subGrupoProdutoService.salvar(registro);
+	}
 
-		if (registro != null) {
-			if (registro.getId() == null) {
-				subGrupoProdutoService.salvar(registro);
-				JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
-				success = true;
-			} else {
-				registro.setAuditoriaLogs(null);
-				subGrupoProdutoService.alterar(registro);
-				JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.atualizado.sucesso"));
-				success = true;
-			}
-		} else {
-			JSFUtils.errorMessage(usuario.getLabels().getField("title.msg.aviso"), usuario.getLabels().getField("msg.preencher.registro"));
-			showMenuBar();
-		}
-		if (success) {
-			super.salvar();
-			super.init(subGrupoProdutoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class));
-		}
+	@Override
+	public void serviceUpdate(SubGrupoProdutoModel registro) {
+		subGrupoProdutoService.alterar(registro);
+	}
 
+	@Override
+	public void serviceRemove(SubGrupoProdutoModel registro) {
+		subGrupoProdutoService.excluir(registro);
 	}
 
 }

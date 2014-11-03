@@ -1,7 +1,5 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -16,7 +14,6 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
-import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
@@ -31,7 +28,6 @@ import br.com.golive.service.DepartamentoService;
 @Label(name = "label.cadastroDepartamento")
 public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 
-	
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -72,47 +68,36 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 		registro = new DepartamentoModel();
 	}
 
-	public void confirmarExclusao() {
-		try {
-			departamentoService.excluir(registro);
-			removidoComSucesso();
-		} catch (Exception e) {
-			logger.error("Erro ao excluir registro ={} ", registro.getId());
-			erroAoRemover();
+	@Override
+	public boolean validarCampos() {
+		boolean ret = true;
+		
+		if (registro == null) {
+			ret =  false;
 		}
-		super.init(departamentoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class));
-	}
-
-	@Override
-	public void salvar() {
-		if (registro.hasId()) {
-			departamentoService.alterar(registro);
-		} else {
-			departamentoService.salvar(registro);
+		if ((registro.getDepartamento() == null) || (registro.getDepartamento().isEmpty())) {
+			ret =  false;
 		}
-
-		conteudo = departamentoService.listarPorFiltro();
-		super.salvar();
-		super.init(departamentoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class));
+		
+		if(!ret){
+			preencherTodosCamposMessage();
+		}
+		return true;
 	}
 
 	@Override
-	protected Logger getLogger() {
-		return logger;
-	}
-
-	public List<AuditoriaModel> getAuditoriaLogs() {
-		return departamentoService.getAuditoriaLogs(registro);
+	public void serviceSave(DepartamentoModel registro) {
+		departamentoService.salvar(registro);
 	}
 
 	@Override
-	public String getUsuarioLog() {
-		return departamentoService.getUsuarioLog(registro);
+	public void serviceUpdate(DepartamentoModel registro) {
+		departamentoService.alterar(registro);
 	}
 
 	@Override
-	public void editarRegistro() {
-		super.editarRegistro();
+	public void serviceRemove(DepartamentoModel registro) {
+		departamentoService.excluir(registro);
 	}
 
 }

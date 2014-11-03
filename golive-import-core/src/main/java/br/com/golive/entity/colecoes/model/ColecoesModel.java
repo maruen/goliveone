@@ -59,13 +59,5 @@ public class ColecoesModel extends Model {
 	)
 	private SubGrupoProdutoModel subGrupoProdutoSelected;
 
-	@LogList
-	@Transient
-	private List<AuditoriaModel> auditoriaLogs;
-
-	
-	
-
-	
 
 }

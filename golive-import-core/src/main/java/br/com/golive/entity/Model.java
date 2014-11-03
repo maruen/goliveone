@@ -4,6 +4,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,13 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
 
+import lombok.Data;
 import br.com.golive.annotation.Label;
+import br.com.golive.annotation.LogList;
 import br.com.golive.annotation.StandardColumn;
+import br.com.golive.entity.auditoria.model.AuditoriaModel;
 
+@Data
 @MappedSuperclass
 public abstract class Model implements Serializable {
 
@@ -40,6 +45,10 @@ public abstract class Model implements Serializable {
 	@Temporal(TIMESTAMP)
 	protected Calendar dataAlteracao;
 
+	@LogList
+	@Transient
+	protected List<AuditoriaModel> auditoriaLogs;
+
 	public Model() {
 		super();
 	}
@@ -48,30 +57,6 @@ public abstract class Model implements Serializable {
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;
-		this.dataAlteracao = dataAlteracao;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	public Calendar getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(final Calendar dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public Calendar getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(final Calendar dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
 

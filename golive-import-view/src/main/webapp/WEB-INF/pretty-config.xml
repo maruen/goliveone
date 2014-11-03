@@ -37,6 +37,11 @@
 			<view-id value="/pages/cadastros/cadastros/clientes.jsf" />
 		</url-mapping>
 		
+		<url-mapping id="cadastrosCadastrosEmpresa">
+			<pattern value="/Cadastros/Cadastros/Empresa" />
+			<view-id value="/pages/cadastros/cadastros/empresa.jsf" />
+		</url-mapping>
+		
 		<url-mapping id="cadastrosCadastrosDepartamentos">
 			<pattern value="/Cadastros/Cadastros/Departamentos" />
 			<view-id value="/pages/cadastros/cadastros/departamentos.jsf" />
@@ -318,9 +323,9 @@
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigotelefonico/codigoTelefonicoPaises.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesLinguas">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/Linguas" />
-			<view-id value="/pages/cadastros/cadastros/regioes/paises/linguas.jsf" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesLingua">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/Lingua" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/lingua.jsf" />
 		</url-mapping>
 
 		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisesMoedas">

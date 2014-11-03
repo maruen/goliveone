@@ -1,17 +1,11 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.EJBTransactionRolledbackException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import lombok.Data;
@@ -23,17 +17,12 @@ import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
-import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
-import br.com.golive.service.AuditoriaService;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
-import br.com.golive.utils.Fluxo;
-import br.com.golive.utils.JSFUtils;
-import br.com.golive.utils.javascript.FuncaoJavaScript;
 
 @ManagedBean
 @ViewScoped
@@ -92,9 +81,6 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	@EJB
 	private GrupoProdutoService grupoProdutoService;
 
-	@EJB
-	private AuditoriaService auditoriaService;
-
 	private List<DepartamentoModel> departamentos;
 
 	@Override
@@ -107,98 +93,53 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	public void editarRegistro() {
 		super.editarRegistro();
 		if (registro != null) {
-			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
-			departamentos = departamentoService.listarTodos();
+			obterDependencias();
 		}
 	}
-
-	@Override
-	public void confirmarExclusao() {
-		try {
-			grupoProdutoService.delete(registro);
-			removidoComSucesso();
-		} catch (Exception e) {
-			logger.error("Erro ao excluir registro ={} ", registro.getId());
-			erroAoRemover();
-		}
-		super.init(grupoProdutoService.obterGrupoProdutos(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class));
-	}
-
-
 
 	@Override
 	public void incluir() {
 		super.incluir();
 		registro = new GrupoProdutosModel();
+		obterDependencias();
+	}
+
+	private void obterDependencias() {
 		departamentos = departamentoService.listarTodos();
 	}
 
 	@Override
-	public Map<String, Object> obterParametrosRelatório() {
-		logger.info("Obtendo parametros para carregar relatório");
-		final Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("usuarioLogado", usuario.getLogin());
-		parametros.put("label.usuario", getUsuario().getLabels().getField("label.usuario"));
-		try {
-			logger.info("Carregando logo da empresa");
-			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream(empresaSelecionada.getId() + ".png")));
-		} catch (final IOException e) {
-			logger.error("Erro ao carregar logo da empresa");
+	public boolean validarCampos() {
+		boolean ret = true;
+		if (registro == null) {
+			ret= false;
 		}
-		return parametros;
+		if ((registro.getGrupoDeProduto() == null) || (registro.getGrupoDeProduto().isEmpty())) {
+			ret= false;
+		}
+		if (registro.getDepartamentoModel() == null){
+			ret= false;
+		}
+		if(!ret){
+			preencherTodosCamposMessage();
+		}
+		
+		return ret;
 	}
 
 	@Override
-	public void salvar() {
-		logger.info("Salvando = {} ", registro);
-
-		boolean success = false;
-
-		if (registro != null) {
-
-			if (registro.getDepartamentoModel() != null) {
-				if (registro.getId() == null) {
-					if (validarInclusao()) {
-						grupoProdutoService.salvar(registro);
-						JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
-						success = true;
-					} else {
-						JSFUtils.warnMessage(usuario.getLabels().getField("title.msg.erro.ao.inserir"), usuario.getLabels().getField("msg.preencher.registro"));
-					}
-				} else {
-					registro.setAuditoriaLogs(null);
-					grupoProdutoService.update(registro);
-					JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.atualizado.sucesso"));
-					success = true;
-				}
-			} else {
-				if ((departamentos == null) || (departamentos.isEmpty())) {
-					departamentoInexistente();
-				} else {
-					JSFUtils.errorMessage(usuario.getLabels().getField("title.msg.aviso"), usuario.getLabels().getField("msg.preencher.registro"));
-				}
-				showMenuBar();
-			}
-		}
-		if (success) {
-			super.salvar();
-			super.init(grupoProdutoService.obterGrupoProdutos(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class));
-		}
-
+	public void serviceSave(GrupoProdutosModel registro) {
+		grupoProdutoService.salvar(registro);
 	}
 
-	private void departamentoInexistente() {
-		JSFUtils.errorMessage(usuario.getLabels().getField("title.msg.aviso"), usuario.getLabels().getField("msg.departamento.nao.existe"));
+	@Override
+	public void serviceUpdate(GrupoProdutosModel registro) {
+		grupoProdutoService.update(registro);
 	}
 
-	private boolean validarInclusao() {
-		final String desc = registro.getGrupoDeProduto();
-		if ((desc != null) && (!desc.isEmpty())) {
-			if (registro.getDepartamentoModel().getId() != null) {
-				return true;
-			}
-		}
-		return false;
+	@Override
+	public void serviceRemove(GrupoProdutosModel registro) {
+		grupoProdutoService.delete(registro);
 	}
 
 }

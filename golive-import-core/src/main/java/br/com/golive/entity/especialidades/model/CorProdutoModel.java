@@ -1,5 +1,7 @@
 package br.com.golive.entity.especialidades.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,11 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.annotation.Label;
+import br.com.golive.annotation.LogList;
 import br.com.golive.entity.Model;
+import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
@@ -27,6 +33,7 @@ import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 @Entity
 @Data
 @Table(name="tbCorProduto")
+@Label(name= "label.cadastroCores")
 @EqualsAndHashCode(callSuper=false)
 public class CorProdutoModel extends Model{
 	
@@ -37,8 +44,6 @@ public class CorProdutoModel extends Model{
 	
 	@Column(name="CorDescricao")
 	private String corDescricao;
-	
-	
 	
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbCorProduto_tbSubGrupoProduto",

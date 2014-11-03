@@ -125,9 +125,12 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
-	@Getter private List<DepartamentoModel> departamentos;
-	@Getter private List<GrupoProdutosModel> grupos;
-	@Getter private List<SubGrupoProdutoModel> subGrupos;
+	@Getter
+	private List<DepartamentoModel> departamentos;
+	@Getter
+	private List<GrupoProdutosModel> grupos;
+	@Getter
+	private List<SubGrupoProdutoModel> subGrupos;
 
 	@EJB
 	private DepartamentoService departamentoService;
@@ -141,9 +144,6 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@EJB
 	private ColecoesService colecoesService;
 
-	@EJB
-	private AuditoriaService auditoriaService;
-
 	@Override
 	@PostConstruct
 	public void init() {
@@ -154,97 +154,28 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void incluir() {
 		super.incluir();
 		registro = new ColecoesModel();
-		carregarDependencias();
-	}
-
-	private void carregarDependencias() {
-		departamentos = departamentoService.listarTodos();
-		grupos = grupoProdutoService.obterGrupoProdutos();
-		subGrupos = subGrupoProdutoService.listarTodos();
 	}
 
 	@Override
-	public Map<String, Object> obterParametrosRelatório() {
-		logger.info("Obtendo parametros para carregar relatório");
-		final Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("usuarioLogado", usuario.getLogin());
-		parametros.put("label.usuario", usuario.getLabels().getField("label.usuario"));
-		try {
-			logger.info("Carregando logo da empresa");
-			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream(empresaSelecionada.getId() + ".png")));
-		} catch (final IOException e) {
-			logger.error("Erro ao carregar logo da empresa");
-		}
-		return parametros;
-	}
-
-	@Override
-	public void editarRegistro() {
-		super.editarRegistro();
-		carregarDependencias();
-		if(isSelecionado()){
-			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
-		}
-	}
-
-	@Override
-	public void confirmarExclusao() {
-		try {
-			colecoesService.remover(registro);
-			removidoComSucesso();
-		} catch (Exception e) {
-			logger.error("Erro ao excluir registro ={} ", registro.getId());
-			erroAoRemover();
-		}
-		super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class, ColecoesModel.class));
-	}
-
-	@Override
-	public void salvar() {
-		logger.info("Salvando = {} ", registro);
-
-		boolean success = false;
-
-		if (validarCampos(registro)) {
-			if (registro.getId() == null) {
-				try {
-					colecoesService.salvar(registro);
-					success = salvoMessagem();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else {
-				try {
-					colecoesService.update(registro);
-					success = salvoMessagem();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-		if (success) {
-			super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class, ColecoesModel.class));
-		}
-	}
-
-	private boolean validarCampos(final ColecoesModel colecoesModel) {
+	public boolean validarCampos() {
 		boolean ret = true;
-		if (colecoesModel == null) {
+		if (registro == null) {
 			ret = false;
 		}
-		if (colecoesModel.getDepartamentoSelected() == null) {
+		
+		if ((registro.getColecao() == null) || (registro.getColecao().isEmpty())) {
+			ret =  false;
+		}
+		
+		if (registro.getDepartamentoSelected() == null) {
 			ret = false;
 		}
 
-		if (colecoesModel.getGrupoProdutoSelected() == null) {
+		if (registro.getGrupoProdutoSelected() == null) {
 			ret = false;
 		}
 
-		if (colecoesModel.getSubGrupoProdutoSelected() == null) {
-			ret = false;
-		}
-		if (colecoesModel.getColecao() == null) {
+		if (registro.getSubGrupoProdutoSelected() == null) {
 			ret = false;
 		}
 		if (!ret) {
@@ -255,18 +186,18 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	}
 
 	@Override
-	public void cancelar() {
-		super.cancelar();
-		if (registro == null) {
-			logger.info("Cancelando inclusao de registro");
-		} else {
-			logger.info("Cancelando edicao do registro = {} ", registro);
-		}
+	public void serviceSave(ColecoesModel registro) {
+		colecoesService.salvar(registro);
 	}
 
 	@Override
-	protected Logger getLogger() {
-		return logger;
+	public void serviceUpdate(ColecoesModel registro) {
+		colecoesService.update(registro);
+	}
+
+	@Override
+	public void serviceRemove(ColecoesModel registro) {
+		colecoesService.remover(registro);
 	}
 
 }

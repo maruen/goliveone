@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import org.slf4j.Logger;
@@ -25,17 +27,18 @@ import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
-import br.com.golive.qualifier.LabelSystemInjected;
+import br.com.golive.service.AuditoriaService;
 import br.com.golive.service.ColecoesService;
 import br.com.golive.service.CorProdutoService;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
 import br.com.golive.service.SubGrupoProdutoService;
-import br.com.golive.utils.GoliveOneProperties;
 
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroCores")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
@@ -164,10 +167,6 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
-	@Inject
-	@LabelSystemInjected
-	private GoliveOneProperties labels;
-
 	@EJB
 	private DepartamentoService departamentoService;
 	@EJB
@@ -179,10 +178,18 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@EJB
 	private ColecoesService colecaoService;
 
+	private List<DepartamentoModel> departamentos;
+
+	private List<GrupoProdutosModel> grupoProdutoList;
+
+	private List<SubGrupoProdutoModel> subGrupoProdutoList;
+
+	private List<ColecoesModel> colecoesList;
+
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(corProdutoService.listarPorFiltro(), getConfiguracaoesByClasses(CorProdutoModel.class));
+		super.init(corProdutoService.listarPorFiltro(), getConfiguracaoesByClasses(CorProdutoModel.class, DepartamentoModel.class, SubGrupoProdutoModel.class, GrupoProdutosModel.class, ColecoesModel.class));
 	}
 
 	@Override
@@ -192,48 +199,53 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	}
 
 	@Override
-	public void excluir() {
-		corProdutoService.excluir(registro);
-		super.excluir();
-	}
-
-	@Override
-	public void salvar() {
-
-		if (registro.hasId()) {
-			corProdutoService.alterar(registro);
-		} else {
-			corProdutoService.salvar(registro);
+	public boolean validarCampos() {
+		boolean ret = true;
+		if (registro == null) {
+			ret = false;
+		}
+		if (registro.getDepartamentoSelected() == null) {
+			ret = false;
 		}
 
-		conteudo = corProdutoService.listarPorFiltro();
-		super.salvar();
-		super.init(corProdutoService.listarPorFiltro(), getConfiguracaoesByClasses(CorProdutoModel.class));
-	}
+		if (registro.getGrupoProdutoSelected() == null) {
+			ret = false;
+		}
 
-	public List<AuditoriaModel> getAuditoriaLogs() {
-		return corProdutoService.getAuditoriaLogs(registro);
+		if (registro.getSubGrupoProdutoSelected() == null) {
+			ret = false;
+		}
+		if (registro.getColecaoSelected() == null) {
+			ret = false;
+		}
+		
+		if ((registro.getCorDescricao() == null) || (registro.getCorDescricao().isEmpty())) {
+			ret =  false;
+		}
+		
+		if ((registro.getCorCodigo() == null) || (registro.getCorCodigo().isEmpty())) {
+			ret =  false;
+		}
+		if (!ret) {
+			preencherTodosCamposMessage();
+		}
+
+		return ret;
 	}
 
 	@Override
-	public String getUsuarioLog() {
-		return corProdutoService.getUsuarioLog(registro);
+	public void serviceSave(CorProdutoModel registro) {
+		corProdutoService.salvar(registro);
 	}
 
-	public List<DepartamentoModel> getDepartamentos() {
-		return departamentoService.listarTodos();
+	@Override
+	public void serviceUpdate(CorProdutoModel registro) {
+		corProdutoService.alterar(registro);
 	}
 
-	public List<GrupoProdutosModel> getGrupoProdutoList() {
-		return grupoProdutoService.obterGrupoProdutos();
-	}
-
-	public List<SubGrupoProdutoModel> getSubGrupoProdutoList() {
-		return subGrupoProdutoService.listarTodos();
-	}
-
-	public List<ColecoesModel> getColecoesList() {
-		return colecaoService.listarTodos();
+	@Override
+	public void serviceRemove(CorProdutoModel registro) {
+		corProdutoService.excluir(registro);
 	}
 
 }
