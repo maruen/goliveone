@@ -26,7 +26,7 @@ public class LogAuditoriaInterceptor {
 
 	@EJB
 	private AuditoriaService auditoriaService;
-	
+
 	@Inject
 	@UsuarioLogadoInjected
 	private Usuario usuario;
@@ -34,38 +34,32 @@ public class LogAuditoriaInterceptor {
 	@AroundInvoke
 	public Object interceptarCrud(final InvocationContext ctx) throws Exception {
 		logger.info("Verificando método interceptado, iniciando verificação da operação");
-		
-		Object[] parameters 	= ctx.getParameters();
-		Model model 			= (Model) parameters[0];
-		Object ret 				= null;
+		Object ret = null;
+
+		final Object[] parameters = ctx.getParameters();
+		final Model model = (Model) parameters[0];
 
 		model.setDataAlteracao(Calendar.getInstance());
 		if (!model.hasId()) {
 			model.setDataInclusao(Calendar.getInstance());
 		}
 
-
 		if (ctx.getMethod().isAnnotationPresent(CrudOperation.class)) {
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(DELETE)) {
-				 auditoriaService.registrarDelete(model,usuario);
+				auditoriaService.registrarDelete(model, usuario);
 			}
 
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(UPDATE)) {
-				auditoriaService.registrarUpdate(model,usuario);
+				auditoriaService.registrarUpdate(model, usuario);
 			}
-			
+
 			ret = ctx.proceed();
 
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(INSERT)) {
-				auditoriaService.registrarInsert(model,usuario);
+				auditoriaService.registrarInsert(model, usuario);
 			}
 		}
-
 		return ret;
 	}
-
-		
-	
-
 
 }

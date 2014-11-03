@@ -1,7 +1,6 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,7 @@ import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
-import lombok.Data;
+import lombok.Getter;
 
 import org.slf4j.Logger;
 
@@ -28,12 +27,12 @@ import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
+import br.com.golive.service.AuditoriaService;
 import br.com.golive.service.ColecoesService;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
 import br.com.golive.service.SubGrupoProdutoService;
 
-@Data
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroColecoes")
@@ -124,35 +123,44 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
-	private List<DepartamentoModel> departamentos;
-	private List<GrupoProdutosModel> grupos;
-	private List<SubGrupoProdutoModel> subGrupos;
+	@Getter private List<DepartamentoModel> departamentos;
+	@Getter private List<GrupoProdutosModel> grupos;
+	@Getter private List<SubGrupoProdutoModel> subGrupos;
 
 	@EJB
 	private DepartamentoService departamentoService;
+
 	@EJB
 	private GrupoProdutoService grupoProdutoService;
+
 	@EJB
 	private SubGrupoProdutoService subGrupoProdutoService;
+
 	@EJB
 	private ColecoesService colecoesService;
-	
+
+	@EJB
+	private AuditoriaService auditoriaService;
+
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(new ArrayList<ColecoesModel>(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class));
+		super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class, ColecoesModel.class));
 	}
 
-	
 	@Override
 	public void incluir() {
 		super.incluir();
 		registro = new ColecoesModel();
+		carregarDependencias();
+	}
+
+	private void carregarDependencias() {
 		departamentos = departamentoService.listarTodos();
 		grupos = grupoProdutoService.obterGrupoProdutos();
 		subGrupos = subGrupoProdutoService.listarTodos();
 	}
-	
+
 	@Override
 	public Map<String, Object> obterParametrosRelatório() {
 		logger.info("Obtendo parametros para carregar relatório");
@@ -169,49 +177,81 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	}
 
 	@Override
+	public void editarRegistro() {
+		super.editarRegistro();
+		carregarDependencias();
+		if(isSelecionado()){
+			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
+		}
+	}
+
+	@Override
+	public void confirmarExclusao() {
+		try {
+			colecoesService.remover(registro);
+			removidoComSucesso();
+		} catch (Exception e) {
+			logger.error("Erro ao excluir registro ={} ", registro.getId());
+			erroAoRemover();
+		}
+		super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class, ColecoesModel.class));
+	}
+
+	@Override
 	public void salvar() {
 		logger.info("Salvando = {} ", registro);
 
 		boolean success = false;
 
 		if (validarCampos(registro)) {
-			if(registro.getId() == null){
-				colecoesService.salvar(registro);
-				success = salvoMessagem();
+			if (registro.getId() == null) {
+				try {
+					colecoesService.salvar(registro);
+					success = salvoMessagem();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			} else {
-				
+				try {
+					colecoesService.update(registro);
+					success = salvoMessagem();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+		}
+
+		if (success) {
+			super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class, ColecoesModel.class));
 		}
 	}
 
-	
-	private boolean validarCampos(final ColecoesModel colecoesModel){
+	private boolean validarCampos(final ColecoesModel colecoesModel) {
 		boolean ret = true;
-		if(colecoesModel == null){
+		if (colecoesModel == null) {
 			ret = false;
 		}
-		if(colecoesModel.getDepartamentoSelected() == null){
+		if (colecoesModel.getDepartamentoSelected() == null) {
 			ret = false;
 		}
-		
-		if(colecoesModel.getGrupoProdutoSelected()== null){
+
+		if (colecoesModel.getGrupoProdutoSelected() == null) {
 			ret = false;
 		}
-		
-		if(colecoesModel.getSubGrupoProdutoSelected()== null){
-			ret = false;
-		} 
-		if(colecoesModel.getColecao() == null){
+
+		if (colecoesModel.getSubGrupoProdutoSelected() == null) {
 			ret = false;
 		}
-		if(!ret){
+		if (colecoesModel.getColecao() == null) {
+			ret = false;
+		}
+		if (!ret) {
 			preencherTodosCamposMessage();
 		}
-		
+
 		return ret;
 	}
-	
-	
+
 	@Override
 	public void cancelar() {
 		super.cancelar();

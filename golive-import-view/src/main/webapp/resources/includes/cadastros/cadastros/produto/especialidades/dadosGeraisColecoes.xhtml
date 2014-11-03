@@ -20,37 +20,23 @@
 			columnClasses="percentual-5, percentual-10, percentual-11, percentual-50, percentual-5, percentual-5"
 			width="100%" border="0">
 
-			<h:outputText id="idOutputText"
-				value="#{managerBean.get('label.cadastroColecoes.id')}" />
-			<h:inputText id="idInputText" style="width: 125px;"
-				value="#{pojo.id}" disabled="true"/>
+			<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroColecoes.id')}" />
+			<h:inputText id="idInputText" style="width: 125px;" value="#{pojo.id}" disabled="true" />
 
-			<h:outputText id="descricaoNomeOutputText"
-				value="#{managerBean.get('label.cadastroGrupoProdutos.descricao')}"
-				styleClass="floatLeft" />
-			<p:inputText id="descricaoInputText" required="true" disabled="false"
-				style="width: 90%" value="#{pojo.colecao}" />
+			<h:outputText id="descricaoNomeOutputText" value="#{managerBean.get('label.cadastroGrupoProdutos.descricao')}" styleClass="floatLeft" />
+			<p:inputText id="descricaoInputText" required="true" disabled="false" style="width: 90%" value="#{pojo.colecao}" />
 
-			<h:outputText id="dataInclusaoOutputText"
-				value="#{managerBean.get('label.cadastroColecoes.inclusao')}" />
-			<h:inputText value="#{pojo.dataInclusao}" id="dataInclusaoInputText"
-				disabled="true">
+			<h:outputText id="dataInclusaoOutputText" value="#{managerBean.get('label.cadastroColecoes.inclusao')}" />
+			<h:inputText value="#{pojo.dataInclusao.time}" id="dataInclusaoInputText" disabled="true"> 
 				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 			</h:inputText>
 
-			<p:spacer />
-			<p:spacer />
-			<p:spacer />
-			<p:spacer />
+			<p:spacer /><p:spacer /><p:spacer /><p:spacer />
 
-			<h:outputText id="ultimaAlteracaoOutputText"
-				value="#{managerBean.get('label.cadastroColecoes.ultimaAlteracao')}"
-				styleClass="singleLine" />
-			<h:inputText value="#{pojo.dataAlteracao}"
-				id="ultimaAlteracaoInputText" disabled="true">
+			<h:outputText id="ultimaAlteracaoOutputText" value="#{managerBean.get('label.cadastroColecoes.ultimaAlteracao')}" styleClass="singleLine" /> 
+			<h:inputText value="#{pojo.dataAlteracao.time}" id="ultimaAlteracaoInputText" disabled="true">
 				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 			</h:inputText>
-
 		</h:panelGrid>
 
 	</p:panel>

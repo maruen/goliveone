@@ -1,5 +1,7 @@
 package br.com.golive.impl;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -34,6 +36,35 @@ public class ColecoesServiceImpl implements ColecoesService {
 	public void salvar(final ColecoesModel colecoesModel) {
 		logger.info("Salvando ColecoesModel ={}", colecoesModel);
 		colecoesJPA.save(colecoesModel);
+	}
+
+	@Override
+	public List<ColecoesModel> obterLista(final String... lazyFields) {
+		logger.info("Obtendo lista de ColecoesModel");
+		return colecoesJPA.findAllWithoutLazy(lazyFields);
+	}
+
+	@Override
+	@CrudOperation(type = Operation.UPDATE)
+	@Interceptors(LogAuditoriaInterceptor.class)
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void update(final ColecoesModel colecoesModel) {
+		logger.info("Atualizando ColecoesModel ={}", colecoesModel.getId());
+		colecoesJPA.update(colecoesModel);
+	}
+
+	@Override
+	@CrudOperation(type = Operation.DELETE)
+	@Interceptors(LogAuditoriaInterceptor.class)
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void remover(final ColecoesModel colecoesModel) {
+		logger.info("Removendo colecoesModel ={}", colecoesModel.getId());
+		colecoesJPA.delete(colecoesModel);
+	}
+
+	@Override
+	public List<ColecoesModel> listarTodos() {
+		return colecoesJPA.listarTodos();
 	}
 
 }

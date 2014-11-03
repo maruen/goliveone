@@ -161,6 +161,25 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		return criteria.list();
 	}
 
+	/**
+	 * @author guilherme.duarte
+	 * 
+	 *         <p>
+	 *         Método responsavel por buscar lista da entidade injetada.
+	 *         </p>
+	 * 
+	 * @return Entidade
+	 */
+	@SuppressWarnings("unchecked")
+	public List<T> findAllWithoutLazy(final String... lazyFields) {
+		final Criteria criteria = createCriteria(persistentClass);
+		for (final String field : lazyFields) {
+			criteria.setFetchMode(field, FetchMode.EAGER);
+		}
+
+		return criteria.list();
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<T> findByFilter(final String... args) {
 		final Criteria criteria = createCriteria(persistentClass).setMaxResults(Constantes.MAX_RESULTS);

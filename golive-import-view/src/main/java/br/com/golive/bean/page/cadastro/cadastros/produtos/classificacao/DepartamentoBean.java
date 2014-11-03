@@ -23,16 +23,16 @@ import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.service.DepartamentoService;
-import br.com.golive.utils.JSFUtils;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroDepartamento")
 public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 
-	private static final long serialVersionUID = 8520424471796591515L;
+	
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;
@@ -75,9 +75,10 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	public void confirmarExclusao() {
 		try {
 			departamentoService.excluir(registro);
-			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
+			removidoComSucesso();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Erro ao excluir registro ={} ", registro.getId());
+			erroAoRemover();
 		}
 		super.init(departamentoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class));
 	}
@@ -92,6 +93,7 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 
 		conteudo = departamentoService.listarPorFiltro();
 		super.salvar();
+		super.init(departamentoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class));
 	}
 
 	@Override

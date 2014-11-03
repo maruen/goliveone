@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -113,12 +114,17 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 
 	@Override
 	public void confirmarExclusao() {
-		if ((fluxo.equals(Fluxo.EXCLUSAO)) && (registro != null)) {
+		try {
 			grupoProdutoService.delete(registro);
-			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
-			super.init(grupoProdutoService.obterGrupoProdutos(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class));
+			removidoComSucesso();
+		} catch (Exception e) {
+			logger.error("Erro ao excluir registro ={} ", registro.getId());
+			erroAoRemover();
 		}
+		super.init(grupoProdutoService.obterGrupoProdutos(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class));
 	}
+
+
 
 	@Override
 	public void incluir() {
