@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.paises.paises.model.PaisesModel;
+import br.com.golive.entity.empresas.regioes.paises.pais.model.PaisModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroPaises")
 @ManagedBean
 @ViewScoped
-public class PaisesBean extends CadastroBeanRules<PaisesModel> {
+public class PaisBean extends CadastroBeanRules<PaisModel> {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -39,11 +39,11 @@ public class PaisesBean extends CadastroBeanRules<PaisesModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<PaisesModel> criarLista() {
-		final List<PaisesModel> lista = new ArrayList<PaisesModel>();
+	private List<PaisModel> criarLista() {
+		final List<PaisModel> lista = new ArrayList<PaisModel>();
 		
 		for (Integer i = 0; i <= 10; i ++){
-			lista.add(new PaisesModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "bandeira", "Afghanistan", "Afeganistão", "ښبثلشدهسفشخ"));
+			lista.add(new PaisModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "bandeira", "Afghanistan", "Afeganistão", "ښبثلشدهسفشخ"));
 		}
 		
 		return lista;

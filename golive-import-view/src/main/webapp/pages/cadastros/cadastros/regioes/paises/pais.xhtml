@@ -7,7 +7,7 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{paisesBean}" />
+	<ui:param name="bean" value="#{paisBean}" />
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_paises.css" />
@@ -25,7 +25,7 @@
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroPaises.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,32 +34,32 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroPaises.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Bandeira"
+				headerText="#{managerBean.get('label.cadastroPaises.bandeira')}"
 				styleClass="percentual-10 singleLine">
 					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/afeganistao.png" />
 			</p:column>
 
 			<p:column
-				headerText="País Inglês"
+				headerText="#{managerBean.get('label.cadastroPaises.paisIngles')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Afghanistan">
 				</h:outputText>
 			</p:column>
 
 			<p:column 
-				headerText="País Português"
+				headerText="#{managerBean.get('label.cadastroPaises.paisPortugues')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Afeganistão" />
 			</p:column>
 
 			<p:column
-				headerText="País Nativo"
+				headerText="#{managerBean.get('label.cadastroPaises.paisNativo')}"
 				styleClass="percentual-10">
 				<h:outputText value="ښبثلشدهسفګشخ" />
 			</p:column>

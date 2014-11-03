@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<p:panel id="nacionalizacao" 
-			 header="Nacionalização" 
+			 header="#{managerBean.get('label.cadastroPaises.nacionalizacao')}" 
 			 toggleable="true"
 			 collapsed="true" 
 			 closable="false" 
@@ -30,7 +30,7 @@
 					 border="0">
 
 			<h:column>
-				<p:fieldset legend="ISO 3161-1 Alfa-3"
+				<p:fieldset legend="#{managerBean.get('label.cadastroPaises.iso')}"
 							toggleable="true"
 							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
 
@@ -44,7 +44,7 @@
 
 						<h:column>
 							<h:outputText id="idIsoOutputText"
-								  		  value="Id" />
+								  		  value="#{managerBean.get('label.cadastroPaises.id')}" />
 						</h:column>
 
 						<h:column>
@@ -60,7 +60,7 @@
 
 						<h:column>
 							<h:outputText id="codigoIsoOutputText"
-								  		  value="Código" />
+								  		  value="#{managerBean.get('label.cadastroPaises.codigo')}" />
 						</h:column>
 
 						<h:column>
@@ -72,7 +72,7 @@
 
 						<h:column>
 							<h:outputText id="paisIsoOutputText"
-								  		  value="País" />
+								  		  value="#{managerBean.get('label.cadastroPaises.pais')}" />
 						</h:column>
 
 						<h:column>
@@ -86,7 +86,7 @@
 			</h:column>
 
 			<h:column>
-				<p:fieldset legend="FIPS"
+				<p:fieldset legend="#{managerBean.get('label.cadastroPaises.fips')}"
 							toggleable="true"
 							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
 
@@ -100,7 +100,7 @@
 
 						<h:column>
 							<h:outputText id="idFipsOutputText"
-								  		  value="Id" />
+								  		  value="#{managerBean.get('label.cadastroPaises.id')}" />
 						</h:column>
 
 						<h:column>
@@ -116,7 +116,7 @@
 
 						<h:column>
 							<h:outputText id="codigoFipsOutputText"
-								  		  value="Código" />
+								  		  value="#{managerBean.get('label.cadastroPaises.codigo')}" />
 						</h:column>
 
 						<h:column>
@@ -128,7 +128,7 @@
 
 						<h:column>
 							<h:outputText id="paisFipsOutputText"
-								  		  value="País" />
+								  		  value="#{managerBean.get('label.cadastroPaises.pais')}" />
 						</h:column>
 
 						<h:column>
@@ -142,7 +142,7 @@
 			</h:column>
 
 			<h:column>
-				<p:fieldset legend="Moeda - ISO 4217"
+				<p:fieldset legend="#{managerBean.get('label.cadastroPaises.moedaIso')}"
 							toggleable="true"
 							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
 
@@ -158,7 +158,7 @@
 
 						<h:column>
 							<h:outputText id="idMoedaOutputText"
-								  		  value="Id" />
+								  		  value="#{managerBean.get('label.cadastroPaises.id')}" />
 						</h:column>
 
 						<h:column>
@@ -177,7 +177,7 @@
 						
 						<h:column>
 							<h:outputText id="numeroMoedaOutputText"
-								  		  value="Número" />
+								  		  value="#{managerBean.get('label.cadastroPaises.numero')}" />
 						</h:column>
 
 						<h:column>
@@ -189,7 +189,7 @@
 
 						<h:column>
 							<h:outputText id="casasDecimaisOutputText"
-								  		  value="Casas Decimais"
+								  		  value="#{managerBean.get('label.cadastroPaises.casasDecimais')}"
 								  		  styleClass="singleLine" />
 						</h:column>
 
@@ -202,7 +202,7 @@
 
 						<h:column>
 							<h:outputText id="codigoMoedaOutputText"
-								  		  value="Código Moeda"
+								  		  value="#{managerBean.get('label.cadastroPaises.codigoMoeda')}"
 								  		  styleClass="singleLine" />
 						</h:column>
 
@@ -215,7 +215,7 @@
 
 						<h:column>
 							<h:outputText id="simboloMonetarioOutputText"
-								  		  value="Símbolo Monetário"
+								  		  value="#{managerBean.get('label.cadastroPaises.simboloMonetario')}"
 								  		  styleClass="singleLine" />
 						</h:column>
 
@@ -242,7 +242,7 @@
 
 						<h:column>
 							<h:outputText id="moedaOutputText"
-								  		  value="Moeda" />
+								  		  value="#{managerBean.get('label.cadastroPaises.moeda')}" />
 						</h:column>
 
 						<h:column>
@@ -257,7 +257,7 @@
 			</h:column>
 
 			<h:column>
-				<p:fieldset legend="Fuso Horário"
+				<p:fieldset legend="#{managerBean.get('label.cadastroPaises.fusoHorario')}"
 							toggleable="true"
 							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
 
@@ -271,7 +271,7 @@
 
 						<h:column>
 							<h:outputText id="utcOutputText"
-								  		  value="UTC" />
+								  		  value="#{managerBean.get('label.cadastroPaises.utc')}" />
 						</h:column>
 
 						<h:column>
@@ -293,7 +293,7 @@
 
 						<h:column>
 							<h:outputText id="horaAtualOutputText"
-								  		  value="Hora Atual"
+								  		  value="#{managerBean.get('label.cadastroPaises.horaAtual')}"
 								  		  styleClass="singleLine" />
 						</h:column>
 
@@ -320,7 +320,7 @@
 					 border="0">
 
 			<h:column>
-				<p:fieldset legend="Língua"
+				<p:fieldset legend="#{managerBean.get('label.cadastroPaises.lingua')}"
 							toggleable="true"
 							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
 
@@ -334,7 +334,7 @@
 
 						<h:column>
 							<h:outputText id="idLInguaOutputText"
-								  		  value="Id" />
+								  		  value="#{managerBean.get('label.cadastroPaises.id')}" />
 						</h:column>
 
 						<h:column>
@@ -350,7 +350,7 @@
 
 						<h:column>
 							<h:outputText id="isoOutputText"
-								  		  value="ISO 639-1" />
+								  		  value="#{managerBean.get('label.cadastroPaises.iso6391')}" />
 						</h:column>
 
 						<h:column>
@@ -362,7 +362,7 @@
 
 						<h:column>
 							<h:outputText id="nomeInglesOutputText"
-								  		  value="Nome Inglês" />
+								  		  value="#{managerBean.get('label.cadastroPaises.nomeIngles')}" />
 						</h:column>
 
 						<h:column>
@@ -374,7 +374,7 @@
 
 						<h:column>
 							<h:outputText id="nomePortuguesOutputText"
-								  		  value="Nome Português" />
+								  		  value="#{managerBean.get('label.cadastroPaises.nomePortugues')}" />
 						</h:column>
 
 						<h:column>
@@ -386,7 +386,7 @@
 
 						<h:column>
 							<h:outputText id="nomeNativoOutputText"
-								  		  value="Nome Nativo" />
+								  		  value="#{managerBean.get('label.cadastroPaises.nomeNativo')}" />
 						</h:column>
 
 						<h:column>
@@ -402,7 +402,7 @@
 							<p:selectBooleanCheckbox value="checked"
 													 id="principalCheckbox" />
 							<h:outputText id="principalOutputText"
-										  value="Principal"
+										  value="#{managerBean.get('label.cadastroPaises.principal')}"
 										  styleClass="percentual-50"/>
 							
 							<p:spacer width="10" height="5"/>				 
@@ -410,18 +410,18 @@
 							<p:selectBooleanCheckbox value="checked" 
 													 id="secundariaCheckbox" />
 							<h:outputText id="secundariaOutputText"
-										  value="Secundária"/>
+										  value="#{managerBean.get('label.cadastroPaises.secundaria')}"/>
 							
 							<p:spacer width="400" height="5"/>
 							
-							<h:commandLink actionListener="#{paisesBean.salvarLingua()}" id="salvarLingua"
+							<h:commandLink actionListener="#{bean.salvarLingua()}" id="salvarLingua"
 								styleClass="linkButton">
 								<h:graphicImage
 									value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
 									styleClass="image" />
 							</h:commandLink>
 		
-							<h:commandLink actionListener="#{paisesBean.excluirLingua()}" id="excluirLingua"
+							<h:commandLink actionListener="#{bean.excluirLingua()}" id="excluirLingua"
 								styleClass="linkButton">
 								<h:graphicImage
 									value="/resources/images/stylistica-icons-set/24x24/delete.png"
@@ -429,13 +429,13 @@
 							</h:commandLink>
 						</h:column>
 					</h:panelGrid>
-					<p:dataTable id="LinguaDataTable"
+					<p:dataTable id="linguaDataTable"
 										 var="row"
-										 value="#{paisesBean.linguaDataTable}"
+										 value="#{bean.linguaDataTable}"
 										 rowKey="#{list.id}"
 										 styleClass="tableCadastros" rows="15"
 										 paginator="true"
-										 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+										 emptyMessage="#{managerBean.get('label.cadastroPaises.msnNaoHaRegistros')}"
 				      					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 								<p:column styleClass="percentual-7">
@@ -445,43 +445,43 @@
 								</p:column>
 								
 						
-								<p:column headerText="Id"
+								<p:column headerText="#{managerBean.get('label.cadastroPaises.id')}"
 									      styleClass="percentual-10">
 									<h:outputText value="0000000000001" 
 												  styleClass="singleLine"/>
 								</p:column>
 									    
-								<p:column headerText="Cód.ISO 639-1"
+								<p:column headerText="#{managerBean.get('label.cadastroPaises.codIso')}"
 									      styleClass="percentual-10">
 									<h:outputText value="ps"  
 												  styleClass="singleLine"/>
 								</p:column>
 									 
-								<p:column headerText="Nome Inglês"
+								<p:column headerText="#{managerBean.get('label.cadastroPaises.nomeIngles')}"
 									    		  styleClass="percentual-10">
 									<h:outputText value="Pushto"  
 												  styleClass="singleLine"/>
 								</p:column>
 									 
-								<p:column headerText="Nome Português" 
+								<p:column headerText="#{managerBean.get('label.cadastroPaises.nomePortugues')}" 
 										  styleClass="percentual-10">
 									<h:outputText value="Pashto"  
 												  styleClass="singleLine"/>
 								</p:column>
 
-								<p:column headerText="Nome Nativo" 
+								<p:column headerText="#{managerBean.get('label.cadastroPaises.nomeNativo')}" 
 										  styleClass="percentual-10">
 									<h:outputText value="څشسافخ"  
 												  styleClass="singleLine"/>
 								</p:column>
 
-								<p:column headerText="Principal" 
+								<p:column headerText="#{managerBean.get('label.cadastroPaises.principal')}" 
 										  styleClass="percentual-10">
 									<p:selectBooleanCheckbox value="checked"
 															 id="principalDtCheckbox" />
 								</p:column>
 									 
-								<p:column headerText="Secundária" 
+								<p:column headerText="#{managerBean.get('label.cadastroPaises.secundario')}" 
 										  styleClass="percentual-10">
 									<p:selectBooleanCheckbox value="checked"
 															 id="secundariaDtCheckbox" />
@@ -500,7 +500,7 @@
 					 border="0">
 
 			<h:column>
-				<p:fieldset legend="Código Telefônico"
+				<p:fieldset legend="#{managerBean.get('label.cadastroPaises.codigoTelefonico')}"
 							toggleable="true"
 							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
 
@@ -514,7 +514,7 @@
 
 						<h:column>
 							<h:outputText id="idCodigoTelefonicoOutputText"
-								  		  value="Id" />
+								  		  value="#{managerBean.get('label.cadastroPaises.id')}" />
 						</h:column>
 
 						<h:column>
@@ -529,8 +529,8 @@
 						</h:column>
 
 						<h:column>
-							<h:outputText id="codigoTelefonicoOutputText"
-								  		  value="Cód.Tel" />
+							<h:outputText id="codigoTelefonicoOutputText" styleClass="singleLine"
+								  		  value="#{managerBean.get('label.cadastroPaises.codTel')}" />
 						</h:column>
 
 						<h:column>
@@ -542,7 +542,7 @@
 
 						<h:column>
 							<h:outputText id="paisCodigoTelefonicoOutputText"
-								  		  value="País" />
+								  		  value="#{managerBean.get('label.cadastroPaises.pais')}" />
 						</h:column>
 
 						<h:column>
@@ -556,7 +556,7 @@
 			</h:column>
 
 			<h:column>
-				<p:fieldset legend="TLD"
+				<p:fieldset legend="#{managerBean.get('label.cadastroPaises.tld')}"
 							toggleable="true"
 							style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 170px;">
 
@@ -570,7 +570,7 @@
 
 						<h:column>
 							<h:outputText id="idTldOutputText"
-								  		  value="Id" />
+								  		  value="#{managerBean.get('label.cadastroPaises.id')}" />
 						</h:column>
 
 						<h:column>
@@ -585,8 +585,8 @@
 						</h:column>
 
 						<h:column>
-							<h:outputText id="codigoTldOutputText"
-								  		  value="Cód.TLD" />
+							<h:outputText id="codigoTldOutputText" styleClass="singleLine"
+								  		  value="#{managerBean.get('label.cadastroPaises.codTld')}" />
 						</h:column>
 
 						<h:column>
@@ -598,7 +598,7 @@
 
 						<h:column>
 							<h:outputText id="paisTldOutputText"
-								  		  value="País" />
+								  		  value="#{managerBean.get('label.cadastroPaises.pais')}" />
 						</h:column>
 
 						<h:column>
@@ -613,7 +613,7 @@
 		</h:panelGrid>
 	</p:panel>
 
-	<p:dialog header="Pesquisa de País ISO 3161-1 Alfa-3" 
+	<p:dialog header="#{managerBean.get('label.cadastroPaises.pesquisaPaisIso')}" 
 			  widgetVar="dlgIso"
 			  modal="false" 
 			  resizable="false" 
@@ -623,26 +623,27 @@
 
 		<p:dataTable id="isoDatatableId" 
 					 var="isoDatatableVar"
-					 value="#{paisesBean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroPaises.msnNaoHaRegistros')}">
 
-			<p:column headerText="Id" 
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.id')}" 
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 
-			<p:column headerText="Código"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.codigo')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="AFG" />
 			</p:column>
 
-			<p:column headerText="País"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.pais')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="Afghanistan" />
 			</p:column>
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog header="Pesquisa de País FIPS" 
+	<p:dialog header="#{managerBean.get('label.cadastroPaises.pesquisaPaisFips')}" 
 			  widgetVar="dlgFips"
 			  modal="false" 
 			  resizable="false" 
@@ -652,26 +653,27 @@
 
 		<p:dataTable id="fipsDatatableId" 
 					 var="fipsDatatableVar"
-					 value="#{paisesBean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroPaises.msnNaoHaRegistros')}">
 
-			<p:column headerText="Id" 
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.id')}" 
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 
-			<p:column headerText="Código"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.codigo')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="AF" />
 			</p:column>
 
-			<p:column headerText="País"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.pais')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="Afghanistan" />
 			</p:column>
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog header="Pesquisa de Moeda - ISO 4217" 
+	<p:dialog header="#{managerBean.get('label.cadastroPaises.pesquisaMoedaIso')}" 
 			  widgetVar="dlgMoeda"
 			  modal="false" 
 			  resizable="false" 
@@ -681,40 +683,41 @@
 
 		<p:dataTable id="moedaDatatableId" 
 					 var="moedaDatatableVar"
-					 value="#{paisesBean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroPaises.msnNaoHaRegistros')}">
 
-			<p:column headerText="Id" 
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.id')}" 
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 
-			<p:column headerText="Número"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.numero')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="971" />
 			</p:column>
 
-			<p:column headerText="Código"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.codigo')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="AFN" />
 			</p:column>
 
-			<p:column headerText="Casas Decimais"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.casasDecimais')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="02" />
 			</p:column>
 
-			<p:column headerText="Símbolo Monetário"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.simboloMonetario')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="؋" />
 			</p:column>
 
-			<p:column headerText="Símbolo Monetário Imagem"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.simboloMonetarioImagem')}"
 					  styleClass="percentual-30 singleLine">
 				<h:graphicImage value="/resources/images/simbolo.png"
 								styleClass="image" />
 			</p:column>
 
-			<p:column headerText="Moeda"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.moeda')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="Afegane" />
 			</p:column>
@@ -722,7 +725,7 @@
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog header="Pesquisa de País - Código Telefônico" 
+	<p:dialog header="#{managerBean.get('label.cadastroPaises.pesquisaPaisCodigoTelefonico')}" 
 			  widgetVar="dlgCodTelefonico"
 			  modal="false" 
 			  resizable="false" 
@@ -732,26 +735,27 @@
 
 		<p:dataTable id="codigoTelefonicoDatatableId" 
 					 var="codigoTelefonicoDatatableVar"
-					 value="#{paisesBean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroPaises.msnNaoHaRegistros')}">
 
-			<p:column headerText="Id" 
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.id')}" 
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 
-			<p:column headerText="Código Telefônico"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.codigoTelefonico')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="93" />
 			</p:column>
 
-			<p:column headerText="País"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.pais')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="Afeganistão" />
 			</p:column>
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog header="Pesquisa de País TLD" 
+	<p:dialog header="#{managerBean.get('label.cadastroPaises.pesquisaPaisTld')}" 
 			  widgetVar="dlgTld"
 			  modal="false" 
 			  resizable="false" 
@@ -761,19 +765,20 @@
 
 		<p:dataTable id="tldDatatableId" 
 					 var="tldDatatableVar"
-					 value="#{paisesBean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroPaises.msnNaoHaRegistros')}">
 
-			<p:column headerText="Id" 
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.id')}" 
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 
-			<p:column headerText="Código TLD"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.codigoTld')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value=".af" />
 			</p:column>
 
-			<p:column headerText="País"
+			<p:column headerText="#{managerBean.get('label.cadastroPaises.pais')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="Afeganistão" />
 			</p:column>
