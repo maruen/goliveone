@@ -7,7 +7,7 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{estadosBean}" />
+	<ui:param name="bean" value="#{estadoBean}" />
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_estados.css" />
@@ -25,7 +25,7 @@
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroEstados.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,51 +34,51 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroEstados.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.IBGE"
+				headerText="#{managerBean.get('label.cadastroEstados.codIbge')}"
 				styleClass="percentual-10 singleLine">				
 				<h:outputText value="35" />
 			</p:column>
 
 			<p:column
-				headerText="Abreviação"
+				headerText="#{managerBean.get('label.cadastroEstados.abreviacao')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="SP">
 				</h:outputText>
 			</p:column>
 
 			<p:column 
-				headerText="Estado"
-				styleClass="percentual-10 singleLine">
+				headerText="#{managerBean.get('label.cadastroEstados.estado')}"
+				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="São Paulo" />
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroEstados.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column
-				headerText="País"
-				styleClass="percentual-10">
+				headerText="#{managerBean.get('label.cadastroEstados.pais')}"
+				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Brasil" />
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroEstados.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column
-				headerText="Região"
-				styleClass="percentual-10">
+				headerText="#{managerBean.get('label.cadastroEstados.regiao')}"
+				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Região Sudeste" />
 			</p:column>
 

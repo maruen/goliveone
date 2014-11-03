@@ -290,7 +290,7 @@
 		
 		<url-mapping id="cadastrosCadastrosRegioesEstado">
 			<pattern value="/Cadastros/Cadastros/Regioes/Estado" />
-			<view-id value="/pages/cadastros/cadastros/regioes/estados.jsf" />
+			<view-id value="/pages/cadastros/cadastros/regioes/estado.jsf" />
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosRegioesMunicipio">

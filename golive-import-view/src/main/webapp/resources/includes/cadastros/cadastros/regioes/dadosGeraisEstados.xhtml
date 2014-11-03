@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroEstados.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroEstados.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroEstados.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroEstados.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroEstados.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="codigoIbgeOutputText" 
-      					  value="Cód.IBGE" 
+      					  value="#{managerBean.get('label.cadastroEstados.codIbge')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="codigoIbgeInputText"
       					 required="true"
@@ -52,14 +52,14 @@
       					 value="35" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroEstados.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroEstados.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 	 					 
 			<h:outputText id="abreviacaoOutputText"
-						  value="Abreviação"
+						  value="#{managerBean.get('label.cadastroEstados.abreviacao')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="abreviacaoInputText"
            				 style="width: 125px"
@@ -70,7 +70,7 @@
            	<p:spacer/>
 
 			<h:outputText id="estadoOutputText"
-						  value="Estado"
+						  value="#{managerBean.get('label.cadastroEstados.estado')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="estadoInputText"
            				 style="width: 60%"
