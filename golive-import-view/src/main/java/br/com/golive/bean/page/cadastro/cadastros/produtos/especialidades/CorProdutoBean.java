@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import org.slf4j.Logger;
@@ -25,17 +27,17 @@ import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
-import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.service.ColecoesService;
 import br.com.golive.service.CorProdutoService;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
 import br.com.golive.service.SubGrupoProdutoService;
-import br.com.golive.utils.GoliveOneProperties;
 
 @ManagedBean
 @ViewScoped
 @Label(name= "label.cadastroCores")
+@Data
+@EqualsAndHashCode(callSuper=false)
 public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
@@ -174,9 +176,6 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 	
-	
-	
-	@Inject	@LabelSystemInjected private GoliveOneProperties labels;
 	
 	@EJB private DepartamentoService 		departamentoService;
 	@EJB private GrupoProdutoService 		grupoProdutoService;
