@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.EJBTransactionRolledbackException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -24,7 +23,6 @@ import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.service.DepartamentoService;
-import br.com.golive.utils.JSFUtils;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -33,7 +31,8 @@ import br.com.golive.utils.JSFUtils;
 @Label(name = "label.cadastroDepartamento")
 public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 
-	private static final long serialVersionUID = 8520424471796591515L;
+	
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;

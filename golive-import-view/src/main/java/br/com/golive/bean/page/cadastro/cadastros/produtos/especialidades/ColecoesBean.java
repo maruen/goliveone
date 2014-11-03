@@ -1,20 +1,18 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.EJBTransactionRolledbackException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
-import lombok.Data;
+import lombok.Getter;
 
 import org.slf4j.Logger;
 
@@ -34,9 +32,7 @@ import br.com.golive.service.ColecoesService;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
 import br.com.golive.service.SubGrupoProdutoService;
-import br.com.golive.utils.JSFUtils;
 
-@Data
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroColecoes")
@@ -127,9 +123,9 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
-	private List<DepartamentoModel> departamentos;
-	private List<GrupoProdutosModel> grupos;
-	private List<SubGrupoProdutoModel> subGrupos;
+	@Getter private List<DepartamentoModel> departamentos;
+	@Getter private List<GrupoProdutosModel> grupos;
+	@Getter private List<SubGrupoProdutoModel> subGrupos;
 
 	@EJB
 	private DepartamentoService departamentoService;

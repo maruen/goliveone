@@ -16,98 +16,7 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-
-		<p:dataTable id="conteudoTable"
-			 		 var="row"
-					 selection="#{bean.registro}"
-					 value="#{bean.conteudo}"
-					 selectionMode="single"
-					 rows="15"
-					 rowKey="#{row.id}"
-					 paginator="true"
-					 filteredValue="#{bean.filtrados}"
-					 emptyMessage="#{managerBean.get('label.cadastroCores.msnNaoHaRegistros')}"
-					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-
-			<p:ajax event="rowSelect" 	update="conteudoTable" />
-			<p:ajax event="rowUnselect" update="conteudoTable" />
-
-			<p:column selectionMode="single" style="width:16px;text-align:center" />
-
-			<p:column headerText="#{managerBean.get('label.cadastroCores.dataInclusao')}"
-					  filterBy="${row.id}"
-					  filterMatchMode="contains"
-					  filterStyleClass="width-size-70;"
-					  styleClass="percentual-10 singleLine">
-				
-				<h:outputText value="25/08/2014 20:24" />
-			
-			</p:column>
-
-			<p:column headerText="#{managerBean.get('label.cadastroCores.dataAlteracao')}"
-					  filterBy="${row.id}"
-					  filterMatchMode="contains"
-					  styleClass="percentual-10 singleLine">
-
-				<h:outputText value="25/08/2014 20:47" />
-				
-			</p:column>
-
-			<p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
-					  filterBy="${row.id}"
-					  filterMatchMode="contains"
-					  styleClass="percentual-10">
-				
-				<h:outputText value="000000000001" />
-																																																																																																																																																																		
-			</p:column>
-
-			<p:column headerText="#{managerBean.get('label.cadastroCores.codCor')}" 
-					  filterMatchMode="contains"
-					  filterBy="${row.id}"
-					  styleClass="percentual-10 singleLine">
-				
-				<h:outputText value="Acessórios Portas e Peças para Persianas Horizontal" />
-			
-			</p:column>
-			
-			<p:column headerText="#{managerBean.get('label.cadastroCores.cor')}" 
-					  filterBy="${row.id}"
-					  filterMatchMode="contains"
-					  styleClass="percentual-10">
-				
-				<h:outputText value="Vermelho" />
-																																																																																																																																																																		
-			</p:column>
-			
-			<p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
-					  filterMatchMode="contains"
-					  filterBy="${row.id}"
-					  styleClass="percentual-10 singleLine">
-				
-				<h:outputText value="000000000001" />
-			
-			</p:column>
-			
-			<p:column headerText="#{managerBean.get('label.cadastroCores.codColecao')}"
-					  filterBy="${row.id}"
-					  filterMatchMode="contains"
-					  styleClass="percentual-10">
-				
-				<h:outputText value="1234567Boec" />
-																																																																																																																																																																		
-			</p:column>
-			
-			<p:column headerText="#{managerBean.get('label.cadastroCores.colecao')}"		
-					  filterMatchMode="contains"
-					  filterBy="${row.id}"
-					  styleClass="percentual-10 singleLine">
-				
-				<h:outputText value="" />
-			
-			</p:column>
-		</p:dataTable>
-
+		<golive:dataTable id="modelTable" bean="#{corProdutoBean}" />
 	</ui:define>
 
 	<ui:define name="edicao">
@@ -124,15 +33,6 @@
 		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/especificidades.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		
-		
-		
-		
-	
-		
-		
-		
-		
 		
 	</ui:define>
 

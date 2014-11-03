@@ -16,6 +16,8 @@ public class CorProdutoJPA extends JpaGoLive<CorProdutoModel, Long> {
 		Criteria criteria = createNativeCriteria();
 		criteria.setFetchMode("departamentoSelected", EAGER);
 		criteria.setFetchMode("grupoProdutoSelected", EAGER);
+		criteria.setFetchMode("subGrupoProdutoSelected", EAGER);
+		criteria.setFetchMode("colecaoSelected", EAGER);
 		return extractListByCriteria(criteria);
 	}
 	
