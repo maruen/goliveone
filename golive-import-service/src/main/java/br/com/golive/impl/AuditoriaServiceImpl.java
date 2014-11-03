@@ -16,6 +16,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.persistence.Column;
+import javax.persistence.JoinTable;
 import javax.persistence.Transient;
 
 import org.hibernate.Criteria;
@@ -45,6 +46,9 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 	private AuditoriaItemJPA auditoriaItemJPA;
 
 	private static String EMPTY_STRING = "";
+	
+	private static String SERIAL_VERSION = "serialVersion";
+	
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -57,11 +61,10 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		AuditoriaModel auditoriaModel;
 
 		auditoriaItemList = new ArrayList<AuditoriaItemModel>();
-		auditoriaItem = new AuditoriaItemModel();
 
 		fields = model.getClass().getDeclaredFields();
 		for (int i = 0; i < fields.length; i++) {
-			if (verificarCampo(fields[i])) {
+			if (skipField(fields[i])) {
 				continue;
 			}
 
@@ -73,6 +76,7 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 				continue;
 			}
 
+			auditoriaItem = new AuditoriaItemModel();
 			auditoriaItem.setCampo(fields[i].getName());
 			auditoriaItem.setInformacaoAnterior(EMPTY_STRING);
 			auditoriaItem.setInformacaoAtual(fieldValue);
@@ -92,11 +96,6 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		auditoriaItemJPA.saveJoins(auditoriaModel, auditoriaItemList, usuario);
 	}
 
-	private boolean verificarCampo(final Field field) {
-
-		return ((field.getName().contains("serialVersion")) || (field.isAnnotationPresent(Transient.class)) || (!field.isAnnotationPresent(Column.class)));
-	}
-
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void registrarUpdate(final Model model, final Usuario usuario) {
@@ -107,7 +106,7 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		AuditoriaModel auditoriaModel;
 
 		auditoriaItemList = new ArrayList<AuditoriaItemModel>();
-		auditoriaItem = new AuditoriaItemModel();
+		
 
 		auditoriaJPA.getEntityManager().detach(model);
 		final Criteria crit = auditoriaJPA.createCriteria(model.getClass());
@@ -117,7 +116,7 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		fields = model.getClass().getDeclaredFields();
 		for (int i = 0; i < fields.length; i++) {
 
-			if (verificarCampo(fields[i])) {
+			if (skipField(fields[i])) {
 				continue;
 			}
 
@@ -134,6 +133,7 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 				continue;
 			}
 
+			auditoriaItem = new AuditoriaItemModel();
 			auditoriaItem.setCampo(fields[i].getName());
 			auditoriaItem.setInformacaoAnterior(previousValue);
 			auditoriaItem.setInformacaoAtual(fieldValue);
@@ -169,9 +169,29 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AuditoriaModel> getAuditoriaLogs(final Model model) {
 		logger.info("Buscando logs de auditoria = {}", model);
 		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
 	}
+	
+	private boolean skipField(final Field field) {
+		
+		if ( field.getName().contains(SERIAL_VERSION)  ) {
+			return true;
+		}
+		
+		if ( field.isAnnotationPresent(Transient.class)) {
+			 return true;
+	    }
+		 
+		if ( (!field.isAnnotationPresent(Column.class) && !field.isAnnotationPresent(JoinTable.class)) ) { 
+			 return true;
+		
+		} 
+		return false;
+	
+	}
+	
 }

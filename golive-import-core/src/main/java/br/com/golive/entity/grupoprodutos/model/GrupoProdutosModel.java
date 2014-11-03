@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -47,7 +46,7 @@ public class GrupoProdutosModel extends Model {
 
 	@Override
 	public String toString() {
-		return "GrupoProdutosModel [grupoDeProduto=" + grupoDeProduto + ", departamentoModel=" + departamentoModel + ", auditoriaLogs=" + auditoriaLogs + "]";
+		return grupoDeProduto;
 	}
 
 }

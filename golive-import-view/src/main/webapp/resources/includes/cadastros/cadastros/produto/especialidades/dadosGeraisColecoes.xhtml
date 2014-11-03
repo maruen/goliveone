@@ -4,64 +4,55 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:panel id="dadosGerais"
-		 header="#{managerBean.get('label.cadastroColecoes.dadosGerais')}"
-		 toggleable="true"
-		 collapsed="false"
-		 closable="false"
-		 toggleSpeed="500"
-		 closeSpeed="500"
-		 widgetVar="dadosGerais"
-		 styleClass="little-font" >
-		 
-	     	<f:facet name="actions">
-          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
-          			<h:outputText styleClass="ui-icon ui-icon-help" />
-          		</h:commandLink>
-      		</f:facet>
-   		       	
-          	<h:panelGrid columns="6"
-          				 cellpadding="3"  
-          				 cellspacing="3"
-          				 columnClasses="percentual-5,
-          				 				percentual-10,
-          				 				percentual-11,
-          				 				percentual-50,
-          				 				percentual-5,
-          				 				percentual-5" 
-          				 width="100%"
-          				 border="0">
-     
-			<h:outputText id="idOutputText"
-						  value="#{managerBean.get('label.cadastroColecoes.id')}"   />
-           	<p:inputText id="idInputText"
-           				 style="width: 125px;"/>
-      		
-      		<h:outputText id="descricaoNomeOutputText" 
-      					  value="#{managerBean.get('label.cadastroColecoes.departamento')}" 
-      					  styleClass="floatLeft" />
-      		<p:inputText id="descricaoInputText"
-      					 required="true"
-      					 disabled="false"
-      					 style="width: 90%"
-      					 value="Mountain Viber Blass Colors" />		
+	<p:panel id="dadosGerais"
+		header="#{managerBean.get('label.cadastroColecoes.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
 
-      		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{managerBean.get('label.cadastroColecoes.inclusao')}" />
-	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      					  
-      		
-      		<p:spacer/>
-      		<p:spacer/>
-      		<p:spacer/>
-      		<p:spacer/>
-        		
-       		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{managerBean.get('label.cadastroColecoes.ultimaAlteracao')}"
-       					  styleClass="singleLine"/>
-	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      					  
-	
-        </h:panelGrid>
+		<f:facet name="actions">
+			<h:commandLink disabled="true"
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-5, percentual-10, percentual-11, percentual-50, percentual-5, percentual-5"
+			width="100%" border="0">
+
+			<h:outputText id="idOutputText"
+				value="#{managerBean.get('label.cadastroColecoes.id')}" />
+			<h:inputText id="idInputText" style="width: 125px;"
+				value="#{pojo.id}" disabled="true"/>
+
+			<h:outputText id="descricaoNomeOutputText"
+				value="#{managerBean.get('label.cadastroGrupoProdutos.descricao')}"
+				styleClass="floatLeft" />
+			<p:inputText id="descricaoInputText" required="true" disabled="false"
+				style="width: 90%" value="#{pojo.colecao}" />
+
+			<h:outputText id="dataInclusaoOutputText"
+				value="#{managerBean.get('label.cadastroColecoes.inclusao')}" />
+			<h:inputText value="#{pojo.dataInclusao}" id="dataInclusaoInputText"
+				disabled="true">
+				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:inputText>
+
+			<p:spacer />
+			<p:spacer />
+			<p:spacer />
+			<p:spacer />
+
+			<h:outputText id="ultimaAlteracaoOutputText"
+				value="#{managerBean.get('label.cadastroColecoes.ultimaAlteracao')}"
+				styleClass="singleLine" />
+			<h:inputText value="#{pojo.dataAlteracao}"
+				id="ultimaAlteracaoInputText" disabled="true">
+				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:inputText>
+
+		</h:panelGrid>
 
 	</p:panel>
-	
+
 </ui:composition>

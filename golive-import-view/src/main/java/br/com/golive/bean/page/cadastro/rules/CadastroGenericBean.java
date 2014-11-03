@@ -112,30 +112,54 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	
 	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
 		showMenuBar(500, 600);
-		if (getLogger() == null) {
-			throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o getLogger() para que a página possa ser renderizada");
-		}
-
-		esvaziarLista(conteudo);
-		esvaziarLista(filtrados);
-
-		this.conteudo = listaConteudo;
-		filtrados.addAll(conteudo);
-		inicializarClasse();
-		configuracaoPerfil = configuracoes;
-
-		if (verificarNecessidadeDeConfiguracao()) {
-
-		}
-		colunasPagina = new ArrayList<ColunaPerfil>();
-		for (final ColunaPerfil colunaPerfil : configuracaoPerfil) {
-			if (colunaPerfil.isVisivel()) {
-				colunasPagina.add(colunaPerfil);
+		if(usuario != null){
+			if (getLogger() == null) {
+				throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o getLogger() para que a página possa ser renderizada");
 			}
+			getLogger().info("Inicializando = {}", this.getClass().getSimpleName());
+
+			esvaziarLista(conteudo);
+			esvaziarLista(filtrados);
+
+			this.conteudo = listaConteudo;
+			filtrados.addAll(conteudo);
+			inicializarClasse();
+			configuracaoPerfil = configuracoes;
+
+			if (verificarNecessidadeDeConfiguracao()) {
+
+			}
+			colunasPagina = new ArrayList<ColunaPerfil>();
+			for (final ColunaPerfil colunaPerfil : configuracaoPerfil) {
+				if (colunaPerfil.isVisivel()) {
+					colunasPagina.add(colunaPerfil);
+				}
+			}
+			fluxo = getFluxoListagem();	
 		}
-		fluxo = getFluxoListagem();
 	}
 
+	private void resizeColumns() {
+		JSFUtils.chamarJs(new FuncaoJavaScript("getWidthTable"));
+	}
+
+
+	protected List<ColunaPerfil> getConfiguracaoesByClasses(final Class<?> ...classes) {
+		if(usuario != null){
+			return colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, this.getClass().getSimpleName(), classes);
+		}
+		return null;
+	}
+	
+	protected void preencherTodosCamposMessage(){
+		JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
+	}
+	
+	protected boolean salvoMessagem(){
+		JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
+		return true;
+	}
+	
 	public void mudarWidthColumns() {
 		final String value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("width");
 		if (value != null) {
@@ -265,6 +289,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 
 	private void showMenuBar(final long height, final long top) {
 		JSFUtils.chamarJs(new FuncaoJavaScript("showMenuBar", Long.toString(height), Long.toString(top)));
+		resizeColumns();
 	}
 
 	protected void showMenuBar() {
@@ -367,6 +392,9 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	public String getLabelFilter(final ColunaPerfil coluna) {
 		try {
 			final Field field = Utils.getFilterField(genericClazzInstance, coluna, this.getClass(), this.getClass().getSuperclass());
+			if(field == null){
+				throw new GoLiveException("Não foi possível encontrar o filtro para esta coluna = " + coluna.getId().getColuna());
+			}
 			return field.getAnnotation(Filter.class).label();
 		} catch (final GoLiveException e) {
 			getLogger().info("Erro ao obter filtro = {}", coluna);

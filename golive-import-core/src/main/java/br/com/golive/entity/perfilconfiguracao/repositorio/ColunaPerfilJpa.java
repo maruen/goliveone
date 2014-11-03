@@ -12,10 +12,11 @@ import br.com.golive.jpa.JpaGoLive;
 
 public class ColunaPerfilJpa extends JpaGoLive<ColunaPerfil, ColunaPerfilId> {
 
-	public List<ColunaPerfil> obterColunaPerfil(final Long idUsuario, final String... tabela) {
+	public List<ColunaPerfil> obterColunaPerfil(final Long idUsuario, final String beanPageName, final String... tabela) {
 		final Criteria criteria = createNativeCriteria();
 		criteria.add(Restrictions.eq("id.idUsuario", idUsuario));
 		criteria.add(Restrictions.in("id.tabela", tabela));
+		criteria.add(Restrictions.eq("id.managedBeanName", beanPageName));
 		criteria.addOrder(Order.asc("ordem"));
 		return extractListByCriteria(criteria);
 	}

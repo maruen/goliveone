@@ -16,67 +16,68 @@ import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
-import br.com.golive.entity.departamento.model.DepartamentoModel;
-import br.com.golive.entity.departamento.repositorio.DepartamentoJPA;
+import br.com.golive.entity.especialidades.model.CorProdutoModel;
+import br.com.golive.entity.especialidades.repository.CorProdutoJPA;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
-import br.com.golive.service.DepartamentoService;
+import br.com.golive.service.CorProdutoService;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class DepartamentoServiceImpl implements DepartamentoService {
+public class CorProdutoServiceImpl implements CorProdutoService {
 
 	@Inject
-	private DepartamentoJPA departamentoJPA;
-
-	@Inject
-	private Logger logger;
-
+	private CorProdutoJPA corProdutoJPA;
+	
+	 @Inject
+	 private Logger logger;
+	
+	
 	@Inject
 	private AuditoriaJPA auditoriaJPA;
-
+	
 	@Override
 	@CrudOperation(type = Operation.INSERT)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void salvar(final DepartamentoModel departamentoModel) {
-		logger.info("Salvando departamento model");
-		departamentoJPA.save(departamentoModel);
+	public void salvar(CorProdutoModel model) {
+		logger.info("Salvando corProdutoModel");
+		corProdutoJPA.save(model);
 	}
 
 	@Override
 	@CrudOperation(type = Operation.UPDATE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void alterar(final DepartamentoModel departamentoModel) {
-		departamentoJPA.update(departamentoModel);
+	public void alterar(CorProdutoModel model) {
+		corProdutoJPA.update(model);
 	}
 
 	@Override
-	public List<DepartamentoModel> listarTodos() {
-		return departamentoJPA.findAll();
+	public List<CorProdutoModel> listarTodos() {
+		return corProdutoJPA.findAll();
 	}
 
 	@Override
-	public List<DepartamentoModel> listarPorFiltro(final String... args) {
-		return departamentoJPA.findByFilter(args);
+	public List<CorProdutoModel> listarPorFiltro(String... args) {
+		return corProdutoJPA.obterLista();
 	}
 
 	@Override
 	@CrudOperation(type = Operation.DELETE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void excluir(final DepartamentoModel departamentoModel) {
-		departamentoJPA.delete(departamentoModel);
+	public void excluir(CorProdutoModel departamentoModel) {
+		corProdutoJPA.delete(departamentoModel);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AuditoriaModel> getAuditoriaLogs(final DepartamentoModel model) {
+	public List<AuditoriaModel> getAuditoriaLogs(CorProdutoModel model) {
 		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
 	}
 
 	@Override
-	public String getUsuarioLog(final DepartamentoModel model) {
+	public String getUsuarioLog(CorProdutoModel model) {
 		return auditoriaJPA.getUsuarioLog(model.getId(), model.getClass());
 	}
 

@@ -22,6 +22,7 @@ import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
+import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
@@ -51,11 +52,6 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "id", label = "label.id", path = "departamentoModel")
-	private NumberFilter filtroIdDepartamento;
-
-	@Inject
-	@FilterInjected
 	@Filter(name = "GrupoProduto", label = "label.gruposDeProdutos")
 	private StringFilter filtroGrupoProduto;
 
@@ -68,7 +64,12 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
 	private DateFilter filtroDataAletracaoGrupoProduto;
-	
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "id", label = "label.id", path = "departamentoModel")
+	private NumberFilter filtroIdDepartamento;
+
 	@Inject
 	@FilterInjected
 	@Filter(name = "DepartamentoProduto", label = "label.departamentos", path = "departamentoModel")
@@ -89,7 +90,7 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 
 	@EJB
 	private GrupoProdutoService grupoProdutoService;
-	
+
 	@EJB
 	private AuditoriaService auditoriaService;
 
@@ -98,12 +99,7 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	@Override
 	@PostConstruct
 	public void init() {
-		if (usuario != null) {
-			logger.info("Inicializando = {}", this.getClass().getName());
-			super.init(grupoProdutoService.obterGrupoProdutos(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, DepartamentoModel.class, GrupoProdutosModel.class));
-			fluxo = getFluxoListagem();
-			JSFUtils.chamarJs(new FuncaoJavaScript("getWidthTable"));
-		}
+		super.init(grupoProdutoService.obterGrupoProdutos(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class));
 	}
 
 	@Override
@@ -120,10 +116,10 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		if ((fluxo.equals(Fluxo.EXCLUSAO)) && (registro != null)) {
 			grupoProdutoService.delete(registro);
 			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
-			super.init(grupoProdutoService.obterGrupoProdutos(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, DepartamentoModel.class, GrupoProdutosModel.class));
+			super.init(grupoProdutoService.obterGrupoProdutos(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class));
 		}
 	}
-	
+
 	@Override
 	public void incluir() {
 		super.incluir();
@@ -153,8 +149,8 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		boolean success = false;
 
 		if (registro != null) {
-			
-			if(registro.getDepartamentoModel() != null){
+
+			if (registro.getDepartamentoModel() != null) {
 				if (registro.getId() == null) {
 					if (validarInclusao()) {
 						grupoProdutoService.salvar(registro);
@@ -170,7 +166,7 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 					success = true;
 				}
 			} else {
-				if((departamentos == null) || (departamentos.isEmpty())){
+				if ((departamentos == null) || (departamentos.isEmpty())) {
 					departamentoInexistente();
 				} else {
 					JSFUtils.errorMessage(usuario.getLabels().getField("title.msg.aviso"), usuario.getLabels().getField("msg.preencher.registro"));
@@ -180,7 +176,7 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		}
 		if (success) {
 			super.salvar();
-			super.init(grupoProdutoService.obterGrupoProdutos(), colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, DepartamentoModel.class, GrupoProdutosModel.class));
+			super.init(grupoProdutoService.obterGrupoProdutos(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class));
 		}
 
 	}
@@ -198,6 +194,5 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		}
 		return false;
 	}
-
 
 }

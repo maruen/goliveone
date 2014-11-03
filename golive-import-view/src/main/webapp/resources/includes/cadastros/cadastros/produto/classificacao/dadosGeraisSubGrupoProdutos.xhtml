@@ -4,14 +4,14 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:panel id="dadosGerais"
+<p:panel id="dadosGeraisSubGrupoProdutos"
 		 header="#{managerBean.get('label.cadastroSubGrupoProduto.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
 		 toggleSpeed="500"
 		 closeSpeed="500"
-		 widgetVar="dadosGerais"
+		 widgetVar="dadosGeraisSubGrupoProdutos"
 		 styleClass="little-font" >
 		 
 	     	<f:facet name="actions">
@@ -48,8 +48,8 @@
       					 
       		<p:spacer/>
       		
-      		<h:outputText id="dataInclusaoOutputText"  value="#{managerBean.get('label.cadastroSubGrupoProduto.inclusao')}" />
-	 		<h:inputText value="#{pojo.dataInclusao.time}" id="dataInclusaoInputText" disabled="true" >
+      		<h:outputText id="dadosGeraisSubGrupoProdutoDataInclusaoOutputText"  value="#{managerBean.get('label.cadastroSubGrupoProduto.inclusao')}" />
+	 		<h:inputText value="#{pojo.dataInclusao.time}" id="dadosGeraisSubGrupoProdutoDataInclusaoInputText" disabled="true" >
 	 			<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
 	 		</h:inputText>      	
 	 		
@@ -73,11 +73,11 @@
   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 			</p:commandLink>
       			
-       		<h:outputText id="ultimaAlteracaoOutputText"
+       		<h:outputText id="dadosGeraisSubGrupoProdutoUltimaAlteracaoOutputText"
        					  value="#{managerBean.get('label.cadastroSubGrupoProduto.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		
-	 		<h:inputText value="#{pojo.dataAlteracao.time}" id="ultimaAlteracaoInputText" disabled="true" >
+	 		<h:inputText value="#{pojo.dataAlteracao.time}" id="dadosGeraisSubGrupoProdutoUltimaAlteracaoInputText" disabled="true" >
 	 			<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
 	 		</h:inputText>      	
 	 		
@@ -119,7 +119,7 @@
         			 	 	 value="#{bean.departamentos}" >
 		    
 		    
-		    		<p:ajax event="rowSelect" update=":conteudoForm:dadosGerais" oncomplete="PF('dlgDepartamento').hide();" />
+		    		<p:ajax event="rowSelect" update=":conteudoForm:dadosGeraisSubGrupoProdutos" oncomplete="PF('dlgDepartamento').hide();" />
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"  styleClass="percentual-5 singleLine">
 				     		<h:outputText value="#{departamento.id}" styleClass="floatRight" />
@@ -147,7 +147,7 @@
         			 	 	 value="#{bean.grupoProdutoList}" >
 		    
 				    
-				    <p:ajax event="rowSelect" update=":conteudoForm:dadosGerais" oncomplete="PF('dlgGrupoProdutos').hide();" />
+				    <p:ajax event="rowSelect" update=":conteudoForm:dadosGeraisSubGrupoProdutos" oncomplete="PF('dlgGrupoProdutos').hide();" />
 				    
 				    <p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}" styleClass="percentual-10 singleLine">
 			     		 <h:outputText value="#{pojo.departamentoSelected.id}" styleClass="floatRight" />

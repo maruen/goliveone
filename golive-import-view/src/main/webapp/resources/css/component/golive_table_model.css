@@ -4,7 +4,9 @@
 
 .selectOneMenuTiposFiltro{}
 
-.dataTableConfiguracaoTabela{}
+.dataTableConfiguracaoTabela{
+	width: 500px;
+}
 
 .colunaDataTableColunas{}
 
@@ -12,10 +14,15 @@
 
 .colunaDataTableSelectOneMenu{}
 
-.btnSalvarConf{}
+.btnSalvarConf{
+	width: 100%;
+	
+}
 
 .tableCadastros{
 	width: 100%;
 }
 
 .colunasStyle{}
+
+.widthColunas{}
