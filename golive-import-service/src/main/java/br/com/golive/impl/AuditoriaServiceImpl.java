@@ -150,7 +150,11 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		auditoriaModel = new AuditoriaModel();
 		auditoriaModel.setDataInclusao(Calendar.getInstance());
 		auditoriaModel.setDataAlteracao(Calendar.getInstance());
-		auditoriaModel.setFormularioNome(model.getClass().getAnnotation(Label.class).name());
+		try {
+			auditoriaModel.setFormularioNome(model.getClass().getAnnotation(Label.class).name());
+		} catch(Exception e) {
+			auditoriaModel.setFormularioNome("Formulário não especificado");
+		}
 		auditoriaModel.setAcaoUsuario(UPDATE.getDescricao());
 		auditoriaJPA.save(auditoriaModel);
 		auditoriaJPA.saveJoins(auditoriaModel, auditoriaItemList, usuario, model);
@@ -167,7 +171,11 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		auditoriaModel = new AuditoriaModel();
 		auditoriaModel.setDataInclusao(Calendar.getInstance());
 		auditoriaModel.setDataAlteracao(Calendar.getInstance());
-		auditoriaModel.setFormularioNome(model.getClass().getAnnotation(Label.class).name());
+		try {
+			auditoriaModel.setFormularioNome(model.getClass().getAnnotation(Label.class).name());
+		} catch(Exception e) {
+			auditoriaModel.setFormularioNome("Formulário não especificado");
+		}
 		auditoriaModel.setAcaoUsuario(DELETE.getDescricao());
 		auditoriaJPA.save(auditoriaModel);
 

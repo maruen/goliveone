@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.annotation.Label;
 import br.com.golive.entity.Model;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
@@ -27,6 +28,7 @@ import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 @Entity
 @Data
 @Table(name="tbCorProduto")
+@Label(name= "label.cadastroCores")
 @EqualsAndHashCode(callSuper=false)
 public class CorProdutoModel extends Model{
 	
