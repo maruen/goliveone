@@ -21,56 +21,32 @@
 			columnClasses="percentual-5, percentual-10, percentual-5, percentual-68"
 			width="100%" border="0">
 
-			<h:outputText id="departamentoIdOutputText"
-				value="#{managerBean.get('label.cadastroColecoes.id')}" />
-			<h:inputText id="departamentoIdInputText"
-				value="#{pojo.departamentoSelected.id}" style="width: 125px;"
-				disabled="true" />
-			<h:outputText id="departamentoNomeOutputText"
-				value="#{managerBean.get('label.cadastroColecoes.departamento')}" />
-			<h:inputText id="departamentoNomeInputText" style="width: 95%"
-				value="#{pojo.departamentoSelected.departamento}" disabled="true" />
+			<h:outputText id="departamentoIdOutputText" value="#{managerBean.get('label.cadastroColecoes.id')}" />
+			<h:inputText id="departamentoIdInputText" value="#{pojo.departamentoSelected.id}" style="width: 125px;" disabled="true" />
+			<h:outputText id="departamentoNomeOutputText" value="#{managerBean.get('label.cadastroColecoes.departamento')}" />
+			<h:inputText id="departamentoNomeInputText" style="width: 95%" value="#{pojo.departamentoSelected.departamento}" disabled="true" />
 
-			<p:commandLink onclick="PF('dlgDepartamento').show();"
-				immediate="true">
-				<h:graphicImage
-					value="/resources/images/stylistica-icons-set/24x24/search.png" />
+			<p:commandLink onclick="PF('dlgDepartamento').show();" 	immediate="true">
+				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 			</p:commandLink>
 
 
-			<h:outputText id="grupoProdutosIdOutputText"
-				value="#{managerBean.get('label.cadastroColecoes.id')}" />
-			<h:inputText id="grupoProdutosIdInputText"
-				value="#{pojo.grupoProdutoSelected.id}" style="width: 125px;"
-				disabled="true" />
-			<h:outputText id="grupoProdutosNomeOutputText"
-				value="#{managerBean.get('label.cadastroColecoes.grupoProdutos')}"
-				style="white-space: nowrap" />
-			<h:inputText id="grupoProdutosNomeInputText" style="width: 95%"
-				value="#{pojo.grupoProdutoSelected.grupoDeProduto}" disabled="true" />
+			<h:outputText id="grupoProdutosIdOutputText" value="#{managerBean.get('label.cadastroColecoes.id')}" />
+			<h:inputText id="grupoProdutosIdInputText" value="#{pojo.grupoProdutoSelected.id}" style="width: 125px;" disabled="true" />
+			<h:outputText id="grupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroColecoes.grupoProdutos')}" style="white-space: nowrap" />
+			<h:inputText id="grupoProdutosNomeInputText" style="width: 95%" value="#{pojo.grupoProdutoSelected.grupoDeProduto}" disabled="true" />
 
-			<p:commandLink onclick="PF('dlgGrupoProdutos').show();"
-				immediate="true">
-				<h:graphicImage
-					value="/resources/images/stylistica-icons-set/24x24/search.png" />
-			</p:commandLink>
+			<p:commandLink onclick="PF('dlgGrupoProdutos').show();" immediate="true">
+				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+			</p:commandLink> 
 
-			<h:outputText id="subGrupoProdutosIdOutputText"
-				value="#{managerBean.get('label.cadastroColecoes.id')}" />
-			<h:inputText id="subGrupoProdutosIdInputText"
-				value="#{pojo.subGrupoProdutoSelected.id}" style="width: 125px;"
-				disabled="true" />
-			<h:outputText id="subGrupoProdutosNomeOutputText"
-				value="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}"
-				styleClass="singleLine" />
-			<h:inputText id="subGrupoProdutosNomeInputText" style="width: 95%"
-				value="#{pojo.subGrupoProdutoSelected.subGrupoProduto}"
-				disabled="true" />
+			<h:outputText id="subGrupoProdutosIdOutputText" value="#{managerBean.get('label.cadastroColecoes.id')}" />
+			<h:inputText id="subGrupoProdutosIdInputText" value="#{pojo.subGrupoProdutoSelected.id}" style="width: 125px;" disabled="true" />
+			<h:outputText id="subGrupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}" styleClass="singleLine" />
+			<h:inputText id="subGrupoProdutosNomeInputText" style="width: 95%" value="#{pojo.subGrupoProdutoSelected.subGrupoProduto}" disabled="true" />
 
-			<p:commandLink onclick="PF('dlgSubGrupProdutos').show();"
-				immediate="true">
-				<h:graphicImage
-					value="/resources/images/stylistica-icons-set/24x24/search.png" />
+			<p:commandLink onclick="PF('dlgSubGrupProdutos').show();" immediate="true">
+				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 			</p:commandLink>
 
 		</h:panelGrid>

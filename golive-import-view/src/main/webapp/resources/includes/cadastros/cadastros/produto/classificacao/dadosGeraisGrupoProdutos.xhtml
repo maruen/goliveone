@@ -9,6 +9,8 @@
 		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
 		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
 
+		<p:focus context="dadosGerais" />
+
 		<f:facet name="actions">
 			<h:commandLink
 				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
@@ -28,8 +30,7 @@
 			<h:outputText id="descricaoNomeOutputText"
 				value="#{managerBean.get('label.cadastroGrupoProdutos.descricao')}" />
 			<p:inputText id="descricaoNomeInputText" required="true"
-				disabled="false" style="width: 98%"
-				value="#{pojo.grupoDeProduto}" />
+				disabled="false" style="width: 98%" value="#{pojo.grupoDeProduto}" />
 
 			<p:spacer />
 
@@ -60,8 +61,8 @@
 			<h:outputText id="ultimaAlteracaoOutputText"
 				value="#{managerBean.get('label.cadastroGrupoProdutos.ultimaAlteracao')}"
 				styleClass="singleLine" />
-			<h:inputText value="#{pojo.dataAlteracao.time}" id="ultimaAlteracaoInputText"
-				disabled="true">
+			<h:inputText value="#{pojo.dataAlteracao.time}"
+				id="ultimaAlteracaoInputText" disabled="true">
 				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
 			</h:inputText>
 
@@ -76,16 +77,17 @@
 			selection="#{pojo.departamentoModel}" var="departamento"
 			rowKey="#{departamento.id}" value="#{bean.departamentos}">
 
-			<p:ajax event="rowSelect" update=":conteudoForm:departamentoNomeInputText"
+			<p:ajax event="rowSelect"
+				update=":conteudoForm:departamentoNomeInputText"
 				oncomplete="PF('dlgDepartamento').hide();" />
 
-			<p:column
+			<p:column filterBy="#{departamento.id}" filterMatchMode="exact"
 				headerText="#{managerBean.get('label.cadastroGrupoProdutos.id')}"
 				styleClass="percentual-5 singleLine">
 				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
 			</p:column>
 
-			<p:column
+			<p:column filterBy="#{departamento.departamento}" filterMatchMode="contains"
 				headerText="#{managerBean.get('label.cadastroGrupoProdutos.departamento')}"
 				styleClass="percentual-20 singleLine">
 				<h:outputText value="#{departamento.departamento}" />

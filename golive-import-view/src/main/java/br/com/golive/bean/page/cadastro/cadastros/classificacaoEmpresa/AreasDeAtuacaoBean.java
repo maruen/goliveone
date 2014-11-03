@@ -1,7 +1,5 @@
 package br.com.golive.bean.page.cadastro.cadastros.classificacaoEmpresa;
 
-import java.util.ArrayList;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -12,9 +10,8 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
+import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.entity.areaDeAtuacao.model.AreaDeAtuacaoModel;
-import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
@@ -24,7 +21,7 @@ import br.com.golive.service.AreaDeAtuacaoService;
 @Label(name = "label.cadastroDeAreaDeAtuacao")
 @ManagedBean
 @ViewScoped
-public class AreasDeAtuacaoBean extends CadastroGenericBean<AreaDeAtuacaoModel> {
+public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoModel> {
 
 	private static final long serialVersionUID = 6286581844381749904L;
 
@@ -57,7 +54,6 @@ public class AreasDeAtuacaoBean extends CadastroGenericBean<AreaDeAtuacaoModel> 
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(areaDeAtuacaoService.obterLista(), new ArrayList<ColunaPerfil>());
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
@@ -75,7 +71,6 @@ public class AreasDeAtuacaoBean extends CadastroGenericBean<AreaDeAtuacaoModel> 
 				// areaDeAtuacaoService.salvar(registro);
 			}
 		}
-		super.init(areaDeAtuacaoService.obterLista(), new ArrayList<ColunaPerfil>());
 		super.salvar();
 	}
 
@@ -84,6 +79,7 @@ public class AreasDeAtuacaoBean extends CadastroGenericBean<AreaDeAtuacaoModel> 
 		return logger;
 	}
 
+	@Override
 	public void setLogger(final Logger logger) {
 		this.logger = logger;
 	}
