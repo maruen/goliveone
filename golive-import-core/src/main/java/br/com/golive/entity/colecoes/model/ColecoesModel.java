@@ -15,6 +15,7 @@ import javax.persistence.Transient;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import br.com.golive.annotation.Jasper;
+import br.com.golive.annotation.Label;
 import br.com.golive.annotation.LogList;
 import br.com.golive.entity.Model;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
@@ -27,6 +28,7 @@ import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 @Entity
 @Table(name = "tbColecoesProduto")
 @Jasper(titulo = "Colecoes", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Colecoes")
+@Label(name = "label.colecoes")
 public class ColecoesModel extends Model {
 	
 	@Transient

@@ -143,6 +143,13 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 		JSFUtils.chamarJs(new FuncaoJavaScript("getWidthTable"));
 	}
 
+	protected void removidoComSucesso() {
+		JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
+	}
+
+	protected void erroAoRemover() {
+		JSFUtils.errorMessage(getLabels().getField("title.msg.erro.ao.excluir"), getLabels().getField("msg.erro.registro.vinculado"));
+	}
 
 	protected List<ColunaPerfil> getConfiguracaoesByClasses(final Class<?> ...classes) {
 		if(usuario != null){

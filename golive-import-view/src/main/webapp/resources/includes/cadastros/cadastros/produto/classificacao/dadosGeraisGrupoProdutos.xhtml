@@ -76,7 +76,7 @@
 			selection="#{pojo.departamentoModel}" var="departamento"
 			rowKey="#{departamento.id}" value="#{bean.departamentos}">
 
-			<p:ajax event="rowSelect" update=":conteudoForm:dadosGerais"
+			<p:ajax event="rowSelect" update=":conteudoForm:departamentoNomeInputText"
 				oncomplete="PF('dlgDepartamento').hide();" />
 
 			<p:column

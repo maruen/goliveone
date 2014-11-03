@@ -11,5 +11,12 @@ import br.com.golive.impl.ColecoesServiceImpl;
 public interface ColecoesService {
 
 	public void salvar(final ColecoesModel colecoesModel);
+
+	public void update(final ColecoesModel colecoesModel);
+
+	public void remover(final ColecoesModel colecoesModel);
+
+	public List<ColecoesModel> obterLista(final String... lazyFields);
+
 	public List<ColecoesModel> listarTodos();
 }

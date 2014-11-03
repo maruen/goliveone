@@ -66,6 +66,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void excluir(final DepartamentoModel departamentoModel) {
+		logger.info("Excluindo departamento model ={}", departamentoModel.getId());
 		departamentoJPA.delete(departamentoModel);
 	}
 
