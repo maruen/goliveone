@@ -1,4 +1,4 @@
-package br.com.golive.entity.empresas.regioes.paises.paisesmoedas.model;
+package br.com.golive.entity.empresas.regioes.paises.paismoeda.model;
 
 import java.util.Calendar;
 
@@ -8,7 +8,7 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "PaisesMoedas",
 		nomeDoArquivoGerado = "PaisesMoedas",
 		nomeArquivoJasper = "PaisesMoedas")
-public class PaisesMoedasModel extends Model {
+public class PaisMoedaModel extends Model {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -19,12 +19,12 @@ public class PaisesMoedasModel extends Model {
 	private String paisIngles;
 	private String paisNativo;
 	
-	public PaisesMoedasModel(){
+	public PaisMoedaModel(){
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public PaisesMoedasModel(Long id, 
+	public PaisMoedaModel(Long id, 
 							 Calendar dataInclusao, 
 							 Calendar dataAlteracao,
 							 String iso, 

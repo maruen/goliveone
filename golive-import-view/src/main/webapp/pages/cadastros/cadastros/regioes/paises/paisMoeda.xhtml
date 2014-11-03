@@ -7,7 +7,7 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{paisesMoedasBean}" />
+	<ui:param name="bean" value="#{paisMoedaBean}" />
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_paisesmoedas.css" />
@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{paisesMoedasBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{paisesMoedasBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroPaisesMoedas.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,44 +34,44 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroPaisesMoedas.id')}"
 				styleClass="percentual-10 text-align-center">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="ISO 4217"
+				headerText="#{managerBean.get('label.cadastroPaisesMoedas.iso')}"
 				styleClass="percentual-10 text-align-center">				
 				<h:outputText value="AFN" />
 			</p:column>
 
 			<p:column
-				headerText="Moeda"
+				headerText="#{managerBean.get('label.cadastroPaisesMoedas.moeda')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Afegane Afegão">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroPaisesMoedas.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000010" />
 			</p:column>
 
 			<p:column 
-				headerText="País (em Português)"
+				headerText="#{managerBean.get('label.cadastroPaisesMoedas.paisemPortugues')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Afeganistão" />
 			</p:column>
 
 			<p:column 
-				headerText="País (em Inglês)"
+				headerText="#{managerBean.get('label.cadastroPaisesMoedas.paisemIngles')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="Afghnistan" />
 			</p:column>
 
 			<p:column 
-				headerText="País (em Nativo)"
+				headerText="#{managerBean.get('label.cadastroPaisesMoedas.paisemNativo')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="ښبثلشدهسفګشخ" />
 			</p:column>
@@ -83,13 +83,13 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/dadosGeraisPaisesMoedas.xhtml">
-			<ui:param name="pojo" value="#{paisesMoedasBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/pais.xhtml">
-			<ui:param name="pojo" value="#{paisesMoedasBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{paisesMoedasBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>

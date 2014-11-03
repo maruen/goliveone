@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.paises.paisesmoedas.model.PaisesMoedasModel;
+import br.com.golive.entity.empresas.regioes.paises.paismoeda.model.PaisMoedaModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroPaisesMoedas")
 @ManagedBean
 @ViewScoped
-public class PaisesMoedasBean extends CadastroBeanRules<PaisesMoedasModel> {
+public class PaisMoedaBean extends CadastroBeanRules<PaisMoedaModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class PaisesMoedasBean extends CadastroBeanRules<PaisesMoedasModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<PaisesMoedasModel> criarLista() {
-		final List<PaisesMoedasModel> lista = new ArrayList<PaisesMoedasModel>();
+	private List<PaisMoedaModel> criarLista() {
+		final List<PaisMoedaModel> lista = new ArrayList<PaisMoedaModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new PaisesMoedasModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "AFN", "Afegane Afegão", "0000000010", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
+			lista.add(new PaisMoedaModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "AFN", "Afegane Afegão", "0000000010", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
 		}
 		
 		return lista;
