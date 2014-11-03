@@ -2,7 +2,9 @@ package br.com.golive.constants;
 
 public enum PersistenceContextEmpresa {
 
-	ACAO_PERSIANA(1L), TRADICAO_DISTRIB(2L);
+	ACAO_PERSIANA(1L),
+	TRADICAO_DISTRIB(2L),
+	TEST(3L);
 
 	private Long id;
 
