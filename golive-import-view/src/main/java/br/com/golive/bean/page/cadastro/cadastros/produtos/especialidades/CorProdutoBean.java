@@ -52,7 +52,7 @@ public class CorProdutoBean extends CadastroBeanRules<CorProdutoModel> {
 	@PostConstruct
 	public void init() {
 		logger.info("Inicializando = {}", this.getClass().getName());
-		super.init(corProdutoService.listarPorFiltro());
+		super.init(corProdutoService.listarTodos());
 		fluxo = LISTAGEM;
 	}
 	
