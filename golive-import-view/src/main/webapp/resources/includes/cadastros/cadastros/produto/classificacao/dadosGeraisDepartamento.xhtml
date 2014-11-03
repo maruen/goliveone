@@ -4,59 +4,59 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:panel id="dadosGerais"
-		 header="#{managerBean.get('label.cadastroDepartamento.dadosGerais')}"
-		 toggleable="true"
-		 collapsed="false"
-		 closable="false"
-		 toggleSpeed="500"
-		 closeSpeed="500"
-		 widgetVar="dadosGerais"
-		 styleClass="little-font" >
-		 
-	     	<f:facet name="actions">
-          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
-          			<h:outputText styleClass="ui-icon ui-icon-help" />
-          		</h:commandLink>
-      		</f:facet>
-   		       	
-          	<h:panelGrid columns="4"
-          				 cellpadding="3"  
-          				 cellspacing="3"
-          				 columnClasses="percentual-5,
+	<p:panel id="dadosGerais"
+		header="#{managerBean.get('label.cadastroDepartamento.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
+
+		<p:focus context="dadosGerais" />
+
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-5,
           				 				percentual-50,
           				 				percentual-5,
           				 				percentual-5"
-           				 width="100%"
-          				 border="0">
-     
-			<h:outputText id="idOutputText"  value="#{managerBean.get('label.cadastroDepartamento.id')}"   />
-           	<h:inputText id="idInputText" style="width: 125px;" disabled="true" value="#{pojo.id}"/>
-      		
-      		<h:outputText id="dataInclusaoOutputText"  value="#{managerBean.get('label.cadastroDepartamento.inclusao')}" />
-	 		
-	 		<h:inputText value="#{pojo.dataInclusao.time}" id="dataInclusaoInputText" disabled="true" >
-	 			<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-	 		</h:inputText>
-	 		
-      		<h:outputText id="departamentoNomeOutputText" value="#{managerBean.get('label.cadastroDepartamento.departamentoProduto')}" styleClass="singleLine" />
-      		<p:inputText id="departamentoNomeInputText"
-      					 required="true"
-      					 disabled="false"
-      					 style="width: 90%"
-      					 value="#{pojo.departamento}" />		
-        		
-       		
-       		
-       		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{managerBean.get('label.cadastroDepartamento.ultimaAlteracao')}"
-       					  styleClass="singleLine"/>
-	 		<h:inputText value="#{pojo.dataAlteracao.time}" id="ultimaAlteracaoInputText" disabled="true" >
-	 			<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-	 		</h:inputText>      					  
-	
-        </h:panelGrid>
+			width="100%" border="0">
+
+			<h:outputText id="idOutputText"
+				value="#{managerBean.get('label.cadastroDepartamento.id')}" />
+			<h:inputText id="idInputText" style="width: 125px;" disabled="true"
+				value="#{pojo.id}" />
+
+			<h:outputText id="dataInclusaoOutputText"
+				value="#{managerBean.get('label.cadastroDepartamento.inclusao')}" />
+
+			<h:inputText value="#{pojo.dataInclusao.time}"
+				id="dataInclusaoInputText" disabled="true">
+				<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+			</h:inputText>
+
+			<h:outputText id="departamentoNomeOutputText"
+				value="#{managerBean.get('label.cadastroDepartamento.departamentoProduto')}"
+				styleClass="singleLine" />
+			<p:inputText id="departamentoNomeInputText" required="true"
+				disabled="false" style="width: 90%" value="#{pojo.departamento}" />
+
+
+
+			<h:outputText id="ultimaAlteracaoOutputText"
+				value="#{managerBean.get('label.cadastroDepartamento.ultimaAlteracao')}"
+				styleClass="singleLine" />
+			<h:inputText value="#{pojo.dataAlteracao.time}"
+				id="ultimaAlteracaoInputText" disabled="true">
+				<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+			</h:inputText>
+
+		</h:panelGrid>
 
 	</p:panel>
-	
+
 </ui:composition>

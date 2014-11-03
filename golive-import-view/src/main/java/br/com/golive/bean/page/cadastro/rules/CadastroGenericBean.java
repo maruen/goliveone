@@ -34,6 +34,9 @@ import br.com.golive.annotation.PropriedadesTemplate;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
+import br.com.golive.entity.Model;
+import br.com.golive.entity.departamento.model.DepartamentoModel;
+import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
@@ -42,6 +45,7 @@ import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.qualifier.ListGenericaInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
+import br.com.golive.service.AuditoriaService;
 import br.com.golive.service.PerfilService;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
@@ -66,7 +70,7 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
 @ManagedBean
 @ViewScoped
 @PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable", component = "modelTable")
-public abstract class CadastroGenericBean<T> extends GenericBean implements Serializable {
+public abstract class CadastroGenericBean<T extends Model> extends GenericBean implements Serializable {
 
 	private static final long serialVersionUID = 2907332241303108246L;
 
@@ -89,6 +93,9 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	@EJB
 	protected PerfilService colunaPerfilService;
 
+	@EJB
+	protected AuditoriaService auditoriaService;
+	
 	private boolean selecionarTodos;
 
 	protected Long widthColunasDinamicas;
@@ -104,15 +111,20 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	private List<ColunaPerfil> colunasPagina;
 
 	public abstract void init();
-
+	protected abstract Logger getLogger();
+	public abstract boolean validarCampos();
+	public abstract  void serviceSave(final T registro);
+	public abstract  void serviceUpdate(final T registro);
+	public abstract void serviceRemove(final T registro);
+	
 	@Deprecated
 	public String getUsuarioLog() {
 		return "USUARIO";
 	}
-	
+
 	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
 		showMenuBar(500, 600);
-		if(usuario != null){
+		if (usuario != null) {
 			if (getLogger() == null) {
 				throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o getLogger() para que a página possa ser renderizada");
 			}
@@ -135,7 +147,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 					colunasPagina.add(colunaPerfil);
 				}
 			}
-			fluxo = getFluxoListagem();	
+			fluxo = getFluxoListagem();
 		}
 	}
 
@@ -151,19 +163,29 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 		JSFUtils.errorMessage(getLabels().getField("title.msg.erro.ao.excluir"), getLabels().getField("msg.erro.registro.vinculado"));
 	}
 
-	protected List<ColunaPerfil> getConfiguracaoesByClasses(final Class<?> ...classes) {
-		if(usuario != null){
+	protected List<ColunaPerfil> getConfiguracaoesByClasses(final Class<?>... classes) {
+		if (usuario != null) {
 			return colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, this.getClass().getSimpleName(), classes);
 		}
 		return null;
 	}
-	
-	protected void preencherTodosCamposMessage(){
+
+	protected void preencherTodosCamposMessage() {
 		JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
 	}
+
+	protected boolean fatalError() {
+		JSFUtils.fatalMessage(usuario.getLabels().getField("title.msg.erro.sistema"), usuario.getLabels().getField("msg.erro.ao.salvar"));
+		return true;
+	}
 	
-	protected boolean salvoMessagem(){
+	protected boolean salvoMessagem() {
 		JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
+		return true;
+	}
+
+	protected boolean updateMessagem() {
+		JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.atualizado.sucesso"));
 		return true;
 	}
 	
@@ -182,12 +204,13 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 
 	public void filtrar(final ColunaPerfil widgetFiltro) {
 		JSFUtils.warnMessage("Funcionalidade nao implementada", "Funcionanlidade será implementada posteriormente");
-//		filterManager.filtrar(conteudo, filtrados, getFilter(widgetFiltro), widgetFiltro.getId().getColuna());
+		// filterManager.filtrar(conteudo, filtrados, getFilter(widgetFiltro),
+		// widgetFiltro.getId().getColuna());
 	}
 
 	public void limparFiltro(final String widgetFiltro) {
 		JSFUtils.warnMessage("Funcionalidade nao implementada", "Funcionanlidade será implementada posteriormente");
-//		filterManager.filtrar(conteudo, filtrados, null, widgetFiltro);
+		// filterManager.filtrar(conteudo, filtrados, null, widgetFiltro);
 	}
 
 	public Map<String, Object> obterParametrosRelatório() {
@@ -203,8 +226,6 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 		}
 		return parametros;
 	}
-
-	protected abstract Logger getLogger();
 
 	public void formAction() {
 		showMenuBar(500, 600);
@@ -317,6 +338,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 			fluxo = getFluxoEdicao();
 			showMenuBar();
 			getLogger().info("Edicao de registro = {} ", registro);
+			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
 		}
 	}
 
@@ -327,9 +349,35 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 		}
 	}
 
+	
 	public void salvar() {
-		fluxo = getFluxoListagem();
-		showMenuBar();
+		getLogger().info("Salvando = {} ", registro);
+
+		boolean success = false;
+
+		try{
+			if (registro != null) {
+				if (validarCampos()) {
+					if (registro.getId() == null) {
+						serviceSave(registro);
+						success = salvoMessagem();
+					} else {
+						serviceUpdate(registro);
+						success = updateMessagem();
+					}
+				}
+			}	
+		}catch (Exception e){
+			fatalError();
+			getLogger().error("Erro ao salvar ou atualizar registro");
+			e.printStackTrace();
+		}
+		
+		if(success){
+			showMenuBar();
+			fluxo = getFluxoListagem();
+			init();
+		}
 	}
 
 	public void cancelar() {
@@ -360,14 +408,14 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	}
 
 	public void confirmarExclusao() {
-		if ((fluxo.equals(Fluxo.EXCLUSAO)) && (registro != null)) {
-			conteudo.remove(registro);
-			filtrados.remove(registro);
-			registro = null;
-			JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
-			fluxo = Fluxo.LISTAGEM;
-			showMenuBar();
+		try {
+			serviceRemove(registro);
+			removidoComSucesso();
+		} catch (Exception e) {
+			getLogger().error("Erro ao excluir registro ={} ", registro.getId());
+			erroAoRemover();
 		}
+		init();		
 	}
 
 	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final GoliveOneProperties labels) {
@@ -399,7 +447,7 @@ public abstract class CadastroGenericBean<T> extends GenericBean implements Seri
 	public String getLabelFilter(final ColunaPerfil coluna) {
 		try {
 			final Field field = Utils.getFilterField(genericClazzInstance, coluna, this.getClass(), this.getClass().getSuperclass());
-			if(field == null){
+			if (field == null) {
 				throw new GoLiveException("Não foi possível encontrar o filtro para esta coluna = " + coluna.getId().getColuna());
 			}
 			return field.getAnnotation(Filter.class).label();

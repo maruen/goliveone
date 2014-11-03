@@ -7,14 +7,16 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{departamentoBean}" />
-
+	<ui:param name="bean"  value="#{departamentoBean}" />
+	<ui:param name="title"  value="#{managerBean.get(bean.nomePagina())}" />
+	
+	
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_departamento.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<golive:dataTable id="modelTable" bean="#{departamentoBean}" />
+		<golive:dataTable id="modelTable" bean="#{bean}" />
 	</ui:define>
 
 	<ui:define name="edicao">
@@ -24,7 +26,7 @@
 		</ui:include>
 
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{departamentoBean.auditoriaLogs}" />
+			<ui:param name="pojo" value="#{bean.registro.auditoriaLogs}" />
 		</ui:include>
 
 

@@ -68,12 +68,6 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void update(final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Atualizando grupo produto = {}", grupoProdutosModel.getId());
-		// final Map<String, Object> parametros = new HashMap<String, Object>();
-		// parametros.put("id", grupoProdutosModel.getId());
-		// final GrupoProdutosModel update = (GrupoProdutosModel)
-		// grupoProdutoDepartamentoJPA.findByAtributtes(parametros);
-		// update.setGrupoDeProduto(grupoProdutosModel.getGrupoDeProduto());
-		// update.setDataAlteracao(Calendar.getInstance());
 		grupoProdutoJPA.update(grupoProdutosModel);
 	}
 
