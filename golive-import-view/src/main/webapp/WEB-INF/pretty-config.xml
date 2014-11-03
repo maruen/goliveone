@@ -338,9 +338,9 @@
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/pais.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisesBacen">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/PaisesBacen" />
-			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisesBacen.jsf" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisBacen">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/PaisBacen" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisBacen.jsf" />
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosRegioesRegioes">

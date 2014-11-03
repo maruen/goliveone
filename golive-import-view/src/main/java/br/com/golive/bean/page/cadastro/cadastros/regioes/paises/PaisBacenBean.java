@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.paises.paisesbacen.model.PaisesBacenModel;
+import br.com.golive.entity.empresas.regioes.paises.paisbacen.model.PaisBacenModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroPaisesBacen")
 @ManagedBean
 @ViewScoped
-public class PaisesBacenBean extends CadastroBeanRules<PaisesBacenModel> {
+public class PaisBacenBean extends CadastroBeanRules<PaisBacenModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class PaisesBacenBean extends CadastroBeanRules<PaisesBacenModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<PaisesBacenModel> criarLista() {
-		final List<PaisesBacenModel> lista = new ArrayList<PaisesBacenModel>();
+	private List<PaisBacenModel> criarLista() {
+		final List<PaisBacenModel> lista = new ArrayList<PaisBacenModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new PaisesBacenModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "00132", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
+			lista.add(new PaisBacenModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "00132", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
 		}
 		
 		return lista;

@@ -7,7 +7,7 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{paisesBacenBean}" />
+	<ui:param name="bean" value="#{paisBacenBean}" />
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_paisesbacen.css" />
@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{paisesBacenBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{paisesBacenBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroPaisesBacen.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,33 +34,33 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroPaisesBacen.id')}"
 				styleClass="percentual-10 text-align-center">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Bacen"
+				headerText="#{managerBean.get('label.cadastroPaisesBacen.codBacen')}"
 				styleClass="percentual-10 text-align-center">				
 				<h:outputText value="00132" />
 			</p:column>
 
 			<p:column
-				headerText="País (em Português)"
-				styleClass="percentual-10 singleLine">
+				headerText="#{managerBean.get('label.cadastroPaisesBacen.paisPortugues')}"
+				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Afeganistão">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="País (em Inglês)"
-				styleClass="percentual-10">
+				headerText="#{managerBean.get('label.cadastroPaisesBacen.paisIngles')}"
+				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Afghnistan" />
 			</p:column>
 
 			<p:column 
-				headerText="País (em Nativo)"
-				styleClass="percentual-10 singleLine">
+				headerText="#{managerBean.get('label.cadastroPaisesBacen.paisNativo')}"
+				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="ښبثلشدهسفګشخ" />
 			</p:column>
 
@@ -71,10 +71,10 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/dadosGeraisPaisesBacen.xhtml">
-			<ui:param name="pojo" value="#{paisesBacenBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{paisesBacenBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>
