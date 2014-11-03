@@ -123,7 +123,7 @@ public class EntityManagerProdutor {
 	@SessionScoped
 	@DataBaseTest
 	public EntityManager getEntityManagerTest() {
-		return tradicao.createEntityManager();
+		return test.createEntityManager();
 	}
 
 	@Produces
