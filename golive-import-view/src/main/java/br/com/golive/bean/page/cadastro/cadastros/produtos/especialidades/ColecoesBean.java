@@ -12,6 +12,7 @@ import javax.faces.bean.ViewScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
+import lombok.Data;
 import lombok.Getter;
 
 import org.slf4j.Logger;
@@ -33,6 +34,7 @@ import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
 import br.com.golive.service.SubGrupoProdutoService;
 
+@Data
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroColecoes")

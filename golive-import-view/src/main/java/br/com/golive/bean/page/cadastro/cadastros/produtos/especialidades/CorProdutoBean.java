@@ -35,30 +35,29 @@ import br.com.golive.utils.GoliveOneProperties;
 
 @ManagedBean
 @ViewScoped
-@Label(name= "label.cadastroCores")
+@Label(name = "label.cadastroCores")
 public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
 
-	
-	@Inject @Getter private Logger logger;
-
+	@Inject
+	@Getter
+	private Logger logger;
 
 	/**
 	 * FILTROS COR
 	 */
-	
-	
+
 	@Inject
 	@FilterInjected
 	@Filter(name = "CorDescricao", label = "label.cadastroCores.cor")
 	private StringFilter filtroCorDescricao;
-	
+
 	@Inject
 	@FilterInjected
 	@Filter(name = "CorCodigo", label = "label.cadastroCores.codCor")
 	private NumberFilter filtroCorCod;
-	
+
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
@@ -68,11 +67,11 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
 	private DateFilter filtroDataAlteracaoCorProduto;
-	
+
 	/**
 	 * FILTROS DEPARTAMENTO
 	 */
-	
+
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
@@ -82,7 +81,7 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@FilterInjected
 	@Filter(name = "DepartamentoProduto", label = "label.departamentos", path = "departamentoSelected")
 	private StringFilter filtroDepartamento;
-	
+
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "departamentoSelected")
@@ -93,13 +92,10 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "departamentoSelected")
 	private DateFilter filtroDataAletracaoDepartamento;
 
-	
-	
 	/**
 	 * FILTROS COLECOES
 	 */
-	
-	
+
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
@@ -119,14 +115,11 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@FilterInjected
 	@Filter(name = "Colecao", label = "label.cadastroProdutos.colecao")
 	private StringFilter filtroColecao;
-	
-	
+
 	/**
 	 * FILTROS GRUPO PRODUTO
 	 */
-	
-	
-	
+
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "grupoProdutoSelected")
@@ -147,13 +140,10 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "grupoProdutoSelected")
 	private DateFilter filtroDataAletracaoGrupoProduto;
 
-	
 	/**
 	 * FILTROS SUBGRUPO PRODUTO
 	 */
-	
-	
-	
+
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "subGrupoProdutoSelected")
@@ -173,27 +163,32 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
-	
-	
-	
-	@Inject	@LabelSystemInjected private GoliveOneProperties labels;
-	
-	@EJB private DepartamentoService 		departamentoService;
-	@EJB private GrupoProdutoService 		grupoProdutoService;
-	@EJB private SubGrupoProdutoService 	subGrupoProdutoService;
-	@EJB private CorProdutoService 			corProdutoService;
-	@EJB private ColecoesService			colecaoService;
-	
+
+	@Inject
+	@LabelSystemInjected
+	private GoliveOneProperties labels;
+
+	@EJB
+	private DepartamentoService departamentoService;
+	@EJB
+	private GrupoProdutoService grupoProdutoService;
+	@EJB
+	private SubGrupoProdutoService subGrupoProdutoService;
+	@EJB
+	private CorProdutoService corProdutoService;
+	@EJB
+	private ColecoesService colecaoService;
+
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(corProdutoService.listarPorFiltro(), getConfiguracaoesByClasses(CorProdutoModel.class));
 	}
-	
+
 	@Override
 	public void incluir() {
 		super.incluir();
-		this.registro = new CorProdutoModel();
+		registro = new CorProdutoModel();
 	}
 
 	@Override
@@ -204,43 +199,41 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 
 	@Override
 	public void salvar() {
-		
+
 		if (registro.hasId()) {
 			corProdutoService.alterar(registro);
 		} else {
 			corProdutoService.salvar(registro);
 		}
-		
+
 		conteudo = corProdutoService.listarPorFiltro();
 		super.salvar();
 		super.init(corProdutoService.listarPorFiltro(), getConfiguracaoesByClasses(CorProdutoModel.class));
 	}
-	
-	
+
 	public List<AuditoriaModel> getAuditoriaLogs() {
-		return corProdutoService.getAuditoriaLogs(registro); 
+		return corProdutoService.getAuditoriaLogs(registro);
 	}
-	
+
+	@Override
 	public String getUsuarioLog() {
 		return corProdutoService.getUsuarioLog(registro);
 	}
-	
+
 	public List<DepartamentoModel> getDepartamentos() {
 		return departamentoService.listarTodos();
 	}
-	
-	
+
 	public List<GrupoProdutosModel> getGrupoProdutoList() {
 		return grupoProdutoService.obterGrupoProdutos();
 	}
-	
+
 	public List<SubGrupoProdutoModel> getSubGrupoProdutoList() {
 		return subGrupoProdutoService.listarTodos();
 	}
-	
+
 	public List<ColecoesModel> getColecoesList() {
 		return colecaoService.listarTodos();
 	}
-	
-	
+
 }
