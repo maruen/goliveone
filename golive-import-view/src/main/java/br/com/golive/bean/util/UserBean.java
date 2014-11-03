@@ -62,12 +62,12 @@ public class UserBean implements Serializable {
 	}
 
 	private void verificarSessao() {
-		if (usuarioLogado == null) {
-			try {
+		try {
+			if (usuarioLogado == null) {
 				JSFUtils.redirect("/login");
-			} catch (final IOException e) {
-				e.printStackTrace();
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

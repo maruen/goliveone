@@ -53,11 +53,22 @@ public class LoginBean implements Serializable {
 	private boolean errouLogin;
 
 	private String url;
+	
 
 	@PostConstruct
 	public void init() {
+		
+		try {
+			if (usuario != null) {
+				JSFUtils.redirect("/");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		login = "";
 		senha = "";
+		
 	}
 
 	public GoliveOneProperties getLabels() {
