@@ -7,7 +7,7 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{linguasBean}" />
+	<ui:param name="bean" value="#{linguaBean}" />
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_linguas.css" />
@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{linguasBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{linguasBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroLingua.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,33 +34,33 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroLingua.id')}"
 				styleClass="percentual-10 text-align-center">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="ISO 639-1"
+				headerText="#{managerBean.get('label.cadastroLingua.iso')}"
 				styleClass="percentual-10 text-align-center">				
 				<h:outputText value="ps" />
 			</p:column>
 
 			<p:column
-				headerText="Língua (em Português)"
-				styleClass="percentual-10 singleLine">
+				headerText="#{managerBean.get('label.cadastroLingua.linguaPortugues')}"
+				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Pachto">
 				</h:outputText>
 			</p:column>
 
 			<p:column
-				headerText="Língua (em Inglês)"
-				styleClass="percentual-10">
+				headerText="#{managerBean.get('label.cadastroLingua.linguaIngles')}"
+				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="Pashto" />
 			</p:column>
 
 			<p:column 
-				headerText="Língua (em Nativo)"
-				styleClass="percentual-10 singleLine">
+				headerText="#{managerBean.get('label.cadastroLingua.linguaNativo')}"
+				styleClass="percentual-10 singleLine text-align-left">
 				<h:outputText value="څشزافخ" />
 			</p:column>
 
@@ -71,10 +71,10 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paises/dadosGeraisLinguas.xhtml">
-			<ui:param name="pojo" value="#{linguasBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{linguasBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>

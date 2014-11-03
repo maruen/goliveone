@@ -1,4 +1,4 @@
-package br.com.golive.entity.empresas.regioes.paises.linguas.model;
+package br.com.golive.entity.empresas.regioes.paises.lingua.model;
 
 import java.util.Calendar;
 
@@ -8,7 +8,7 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "Linguas",
 		nomeDoArquivoGerado = "Linguas",
 		nomeArquivoJasper = "Linguas")
-public class LinguasModel extends Model {
+public class LinguaModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 
@@ -17,12 +17,12 @@ public class LinguasModel extends Model {
 	private String linguaIngles;
 	private String linguaNativo;
 	
-	public LinguasModel(){
+	public LinguaModel(){
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public LinguasModel(Long id, 
+	public LinguaModel(Long id, 
 						Calendar dataInclusao, 
 						Calendar dataAlteracao,
 						String iso, 

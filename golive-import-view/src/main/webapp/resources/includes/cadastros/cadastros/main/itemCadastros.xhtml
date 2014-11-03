@@ -21,6 +21,10 @@
 		styleClass="itemPanelMenu little-font"
 		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.clientes')}');" />
 
+	<p:menuitem value="#{managerBean.get('label.empresas')}"
+		styleClass="itemPanelMenu little-font"
+		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresa')}');" />
+	
 	<p:menuitem value="#{managerBean.get('label.departamentos')}"
 		styleClass="itemPanelMenu little-font"
 		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.departamentos')}');" />
@@ -281,7 +285,7 @@
 			<p:menuitem
 				value="#{managerBean.get('label.linguas')}"
 				styleClass="itemPanelMenu little-font"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.linguas')}');" />
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.lingua')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.moedas')}"
 				styleClass="itemPanelMenu little-font"
