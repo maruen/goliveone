@@ -13,17 +13,17 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.paises.paisesmoedas.model.PaisesMoedasModel;
+import br.com.golive.entity.empresas.regioes.paises.pais.model.PaisModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastroPaisesMoedas")
+@Label(name = "label.cadastroPaises")
 @ManagedBean
 @ViewScoped
-public class PaisesMoedasBean extends CadastroBeanRules<PaisesMoedasModel> {
+public class PaisBean extends CadastroBeanRules<PaisModel> {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Inject
 	private Logger logger;
 	
@@ -39,11 +39,11 @@ public class PaisesMoedasBean extends CadastroBeanRules<PaisesMoedasModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<PaisesMoedasModel> criarLista() {
-		final List<PaisesMoedasModel> lista = new ArrayList<PaisesMoedasModel>();
+	private List<PaisModel> criarLista() {
+		final List<PaisModel> lista = new ArrayList<PaisModel>();
 		
-		for (Integer i = 0; i <= 10; i++){
-			lista.add(new PaisesMoedasModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "AFN", "Afegane Afegão", "0000000010", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
+		for (Integer i = 0; i <= 10; i ++){
+			lista.add(new PaisModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "bandeira", "Afghanistan", "Afeganistão", "ښبثلشدهسفشخ"));
 		}
 		
 		return lista;
@@ -70,4 +70,28 @@ public class PaisesMoedasBean extends CadastroBeanRules<PaisesMoedasModel> {
 		
 		return lista;
 	}
+	
+	public void salvarBandeira(){
+		
+	}
+	
+	public void salvarLingua(){
+		
+	}
+
+	public void excluirLingua(){
+		
+	}
+
+	
+	public List<Object> getLinguaDataTable(){
+		ArrayList<Object> lista = new ArrayList<Object>();
+		
+		lista.add(new Object());
+		lista.add(new Object());
+		lista.add(new Object());
+		
+		return lista;
+	}
+
 }

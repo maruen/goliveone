@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroPaisesMoedas.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroPaisesMoedas.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroPaisesMoedas.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroPaisesMoedas.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroPaisesMoedas.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="codigoIsoOutputText" 
-      					  value="Cód.ISO 4217" 
+      					  value="#{managerBean.get('label.cadastroPaisesMoedas.codIso')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="codigoIsoInputText"
       					 required="true"
@@ -52,14 +52,14 @@
       					 value="AFN" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroPaisesMoedas.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroPaisesMoedas.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 
       		<h:outputText id="simboloMonetarioOutputText" 
-      					  value="Símbolo Monetário" 
+      					  value="#{managerBean.get('label.cadastroPaisesMoedas.simboloMonetario')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="simboloMonetarioInputText"
       					 required="true"
@@ -71,7 +71,7 @@
 			<p:spacer/>
 				 					 
 			<h:outputText id="moedaPortuguesOutputText"
-						  value="Moeda (Português)"
+						  value="#{managerBean.get('label.cadastroPaisesMoedas.moedaPortugues')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="moedaPortuguesInputText"
            				 style="width: 60%"
@@ -82,7 +82,7 @@
            	<p:spacer/>
 
 			<h:outputText id="moedaInglesOutputText"
-						  value="Moeda (Inglês)"
+						  value="#{managerBean.get('label.cadastroPaisesMoedas.moedaIngles')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="moedaInglesInputText"
            				 style="width: 60%"
@@ -93,7 +93,7 @@
            	<p:spacer/>
 
 			<h:outputText id="moedaNativoOutputText"
-						  value="Moeda (Nativo)"
+						  value="#{managerBean.get('label.cadastroPaisesMoedas.moedaNativo')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="moedaNativoInputText"
            				 style="width: 60%"
@@ -104,7 +104,7 @@
 			<p:spacer/>
       		
 			<h:outputText id="unidadeFracionadaPortuguesOutputText"
-						  value="Unidade Fracionada (Português)"
+						  value="#{managerBean.get('label.cadastroPaisesMoedas.unidadeFracionadaPortugues')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="unidadeFracionadaPortuguesInputText"
            				 style="width: 60%"
@@ -115,7 +115,7 @@
            	<p:spacer/>
 
 			<h:outputText id="unidadeFracionadaInglesOutputText"
-						  value="Unidade Fracionada (Inglês)"
+						  value="#{managerBean.get('label.cadastroPaisesMoedas.unidadeFracionadaIngles')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="unidadeFracionadaInglesInputText"
            				 style="width: 60%"
@@ -126,7 +126,7 @@
            	<p:spacer/>
 
 			<h:outputText id="unidadeFracionadaNativoOutputText"
-						  value="Unidade Fracionada (Nativo)"
+						  value="#{managerBean.get('label.cadastroPaisesMoedas.unidadeFracionadaNativo')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="unidadeFracionadaNativoInputText"
            				 style="width: 60%"
@@ -137,7 +137,7 @@
            	<p:spacer/>
 
 			<h:outputText id="divisaoOutputText"
-						  value="Divisão"
+						  value="#{managerBean.get('label.cadastroPaisesMoedas.divisao')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="divisaoInputText"
            				 style="width: 125px"
@@ -148,7 +148,7 @@
            	<p:spacer/>
 
 			<h:outputText id="casasDecimaisOutputText"
-						  value="Casas Decimais"
+						  value="#{managerBean.get('label.cadastroPaisesMoedas.casasDecimais')}"
 						  styleClass="singleLine"/>
            	<p:inputText id="casasDecimaisInputText"
            				 style="width: 125px"

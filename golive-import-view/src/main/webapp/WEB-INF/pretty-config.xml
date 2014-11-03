@@ -290,7 +290,7 @@
 		
 		<url-mapping id="cadastrosCadastrosRegioesEstado">
 			<pattern value="/Cadastros/Cadastros/Regioes/Estado" />
-			<view-id value="/pages/cadastros/cadastros/regioes/estados.jsf" />
+			<view-id value="/pages/cadastros/cadastros/regioes/estado.jsf" />
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosRegioesMunicipio">
@@ -328,19 +328,19 @@
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/lingua.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisesMoedas">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/PaisesMoedas" />
-			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisesMoedas.jsf" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisMoeda">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/PaisMoeda" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisMoeda.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesPaises">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/Paises" />
-			<view-id value="/pages/cadastros/cadastros/regioes/paises/paises.jsf" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesPais">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/Pais" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/pais.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisesBacen">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/PaisesBacen" />
-			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisesBacen.jsf" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisBacen">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/PaisBacen" />
+			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisBacen.jsf" />
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosRegioesRegioes">

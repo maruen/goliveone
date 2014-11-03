@@ -1,72 +1,52 @@
-package br.com.golive.entity.empresas.regioes.paises.paisesmoedas.model;
+package br.com.golive.entity.empresas.regioes.paises.paisbacen.model;
 
 import java.util.Calendar;
 
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
 
-@Jasper(titulo = "PaisesMoedas",
-		nomeDoArquivoGerado = "PaisesMoedas",
-		nomeArquivoJasper = "PaisesMoedas")
-public class PaisesMoedasModel extends Model {
+
+@Jasper(titulo = "PaisesBacen",
+		nomeDoArquivoGerado = "PaisesBacen",
+		nomeArquivoJasper = "PaisesBacen")
+public class PaisBacenModel extends Model {
 	
 	private static final long serialVersionUID = 1L;
-
-	private String iso;
-	private String moeda;
-	private String idPais;
+	
+	private String codBacen;
 	private String paisPortugues;
 	private String paisIngles;
 	private String paisNativo;
 	
-	public PaisesMoedasModel(){
+	public PaisBacenModel(){
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
-
-	public PaisesMoedasModel(Long id, 
-							 Calendar dataInclusao, 
-							 Calendar dataAlteracao,
-							 String iso, 
-							 String moeda, 
-							 String idPais, 
-							 String paisPortugues,
-							 String paisIngles, 
-							 String paisNativo) {
+	
+	public PaisBacenModel(Long id,
+							Calendar dataInclusao,
+							Calendar dataAlteracao,
+							String codBacen,
+							String paisPortugues,
+							String paisIngles,
+							String paisNativo){
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;
 		this.dataAlteracao = dataAlteracao;
-		this.iso = iso;
-		this.moeda = moeda;
-		this.idPais = idPais;
+		this.codBacen = codBacen;
 		this.paisPortugues = paisPortugues;
 		this.paisIngles = paisIngles;
 		this.paisNativo = paisNativo;
 	}
 
-	public String getIso() {
-		return iso;
+
+	public String getCodBacen() {
+		return codBacen;
 	}
 
-	public void setIso(String iso) {
-		this.iso = iso;
-	}
-
-	public String getMoeda() {
-		return moeda;
-	}
-
-	public void setMoeda(String moeda) {
-		this.moeda = moeda;
-	}
-
-	public String getIdPais() {
-		return idPais;
-	}
-
-	public void setIdPais(String idPais) {
-		this.idPais = idPais;
+	public void setCodBacen(String codBacen) {
+		this.codBacen = codBacen;
 	}
 
 	public String getPaisPortugues() {
