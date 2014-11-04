@@ -62,7 +62,7 @@
 				<h:outputText value="#{colecao.id}" styleClass="floatRight" />
 			</p:column>
 
-			<p:column filterBy="#{colecao.colecao}" filterMatchMode="contains"
+			<p:column filterBy="#{colecao.colecao.toLowerCase()}" filterMatchMode="contains"
 				headerText="#{managerBean.get('label.cadastroCores.colecoes')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="#{colecao.colecao}" styleClass="floatLeft" />

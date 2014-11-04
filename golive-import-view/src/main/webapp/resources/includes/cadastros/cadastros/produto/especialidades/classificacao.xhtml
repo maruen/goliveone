@@ -105,13 +105,13 @@
 				update=":conteudoForm:mensagens, :conteudoForm:dadosGeraisSubGrupoProdutos, :conteudoForm:grupoProdutosDatatableId, :conteudoForm:subGrupoProdutosDatatableId, :conteudoForm:grupoProduto, :conteudoForm:colecoesInputText, :conteudoForm:especificidadesdInputText, :conteudoForm:especificidadesDatatableId"
 				oncomplete="PF('dlgDepartamento').hide();" />
 
-			<p:column filterMatchMode="contains" filterBy="#{departamento.id}"
+			<p:column filterMatchMode="exact" filterBy="#{departamento.id}"
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
 				styleClass="percentual-5 singleLine">
 				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
 			</p:column>
 
-			<p:column filterBy="#{departamento.departamento}"
+			<p:column filterBy="#{departamento.departamento.toLowerCase()}"
 				filterMatchMode="contains"
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.departamento')}"
 				styleClass="percentual-20 singleLine">
@@ -140,14 +140,14 @@
 				update=":conteudoForm:mensagens, :conteudoForm:dadosGeraisSubGrupoProdutos, :conteudoForm:subGrupoProdutosDatatableId, :conteudoForm:subGrupoProduto, :conteudoForm:colecoesInputText, :conteudoForm:especificidadesdInputText, :conteudoForm:especificidadesDatatableId"
 				oncomplete="PF('dlgGrupoProdutos').hide();" />
 
-			<p:column filterMatchMode="contains" filterBy="#{grupoProduto.id}"
+			<p:column filterMatchMode="exact" filterBy="#{grupoProduto.id}"
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="#{grupoProduto.id}" styleClass="floatRight" />
 			</p:column>
 
 			<p:column filterMatchMode="contains"
-				filterBy="#{grupoProduto.grupoDeProduto}"
+				filterBy="#{grupoProduto.grupoDeProduto.toLowerCase()}"
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.grupoProdutos')}"
 				styleClass="percentual-20 singleLine">
 				<h:outputText value="#{grupoProduto.grupoDeProduto}" />
@@ -174,13 +174,13 @@
 
 
 			<p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
-				filterMatchMode="contains" filterBy="#{subGrupoProduto.id}"
+				filterMatchMode="exact" filterBy="#{subGrupoProduto.id}"
 				styleClass="percentual-5 singleLine">
 				<h:outputText value="#{subGrupoProduto.id}" styleClass="floatRight" />
 			</p:column>
 
 			<p:column filterMatchMode="contains"
-				filterBy="#{subGrupoProduto.subGrupoProduto}"
+				filterBy="#{subGrupoProduto.subGrupoProduto.toLowerCase()}"
 				headerText="#{managerBean.get('label.cadastroCores.subGrupoProdutos')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="#{subGrupoProduto.subGrupoProduto}"
