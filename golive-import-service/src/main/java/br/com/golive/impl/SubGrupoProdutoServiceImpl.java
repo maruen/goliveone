@@ -28,19 +28,18 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 
 	@Inject
 	private SubGrupoProdutoJPA subGrupoProdutoJPA;
-	
-	 @Inject
-	 private Logger logger;
-	
-	
+
+	@Inject
+	private Logger logger;
+
 	@Inject
 	private AuditoriaJPA auditoriaJPA;
-	
+
 	@Override
 	@CrudOperation(type = Operation.INSERT)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void salvar(SubGrupoProdutoModel model) {
+	public void salvar(final SubGrupoProdutoModel model) {
 		logger.info("Salvando subGrupoProdutoModel");
 		subGrupoProdutoJPA.save(model);
 	}
@@ -49,7 +48,8 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 	@CrudOperation(type = Operation.UPDATE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void alterar(SubGrupoProdutoModel model) {
+	public void alterar(final SubGrupoProdutoModel model) {
+		logger.info("Atualizando SubgrupoProduto = {} ", model.getId());
 		subGrupoProdutoJPA.update(model);
 	}
 
@@ -59,7 +59,7 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 	}
 
 	@Override
-	public List<SubGrupoProdutoModel> listarPorFiltro(String... args) {
+	public List<SubGrupoProdutoModel> listarPorFiltro(final String... args) {
 		return subGrupoProdutoJPA.obterLista();
 	}
 
@@ -67,18 +67,19 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 	@CrudOperation(type = Operation.DELETE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void excluir(SubGrupoProdutoModel departamentoModel) {
-		subGrupoProdutoJPA.delete(departamentoModel);
+	public void excluir(final SubGrupoProdutoModel model) {
+		logger.info("Removendo SubGrupoProduto = {} ", model.getId());
+		subGrupoProdutoJPA.delete(model);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AuditoriaModel> getAuditoriaLogs(SubGrupoProdutoModel model) {
+	public List<AuditoriaModel> getAuditoriaLogs(final SubGrupoProdutoModel model) {
 		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
 	}
 
 	@Override
-	public String getUsuarioLog(SubGrupoProdutoModel model) {
+	public String getUsuarioLog(final SubGrupoProdutoModel model) {
 		return auditoriaJPA.getUsuarioLog(model.getId(), model.getClass());
 	}
 

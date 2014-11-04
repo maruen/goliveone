@@ -177,12 +177,12 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		for (final String field : lazyFields) {
 			criteria.setFetchMode(field, FetchMode.EAGER);
 		}
-		
-		List<T> results = criteria.list();
-		for (T entity : results) {
+
+		final List<T> results = criteria.list();
+		for (final T entity : results) {
 			refresh(entity);
 		}
-		
+
 		return results;
 	}
 
@@ -233,12 +233,10 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		}
 	}
 
-	
 	public void refresh(final T entity) {
 		entityManager.refresh(entity);
 	}
-	
-	
+
 	/**
 	 * @author Maruen Mehana
 	 * 
@@ -280,8 +278,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	public void detach(final T entity) {
 		entityManager.detach(entity);
 	}
-	
-	
+
 	/**
 	 * @author guilherme.duarte
 	 * 
@@ -327,7 +324,6 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		}
 		return result;
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	protected <T> T extractSingleResultByCriteria(final Criteria criteria) {
