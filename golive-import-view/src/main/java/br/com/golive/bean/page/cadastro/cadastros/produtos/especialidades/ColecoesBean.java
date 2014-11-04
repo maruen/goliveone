@@ -8,9 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import lombok.Data;
-import lombok.Getter;
-
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
@@ -28,8 +25,8 @@ import br.com.golive.service.ColecoesService;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
 import br.com.golive.service.SubGrupoProdutoService;
+import br.com.golive.utils.JSFUtils;
 
-@Data
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroColecoes")
@@ -120,11 +117,11 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
-	@Getter
+	
 	private List<DepartamentoModel> departamentos;
-	@Getter
+	
 	private List<GrupoProdutosModel> grupos;
-	@Getter
+	
 	private List<SubGrupoProdutoModel> subGrupos;
 
 	@EJB
@@ -138,11 +135,12 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 	@EJB
 	private ColecoesService colecoesService;
-
+	
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class, ColecoesModel.class));
+		departamentos = departamentoService.listarTodos();
 	}
 
 	@Override
@@ -150,6 +148,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		super.incluir();
 		registro = new ColecoesModel();
 	}
+	
 
 	@Override
 	public boolean validarCampos() {
@@ -180,6 +179,30 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		return ret;
 	}
 
+	public void carregarGrupoProdutoPorDepartamento() {
+		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
+		if (grupos.isEmpty()) {
+			JSFUtils.warnMessage(usuario.getLabels().getField("title.msg.list.vazia"), usuario.getLabels().getField("msg.grupoProdutoDepartamento.vazio"));
+		} else {
+			boolean contem = false;
+			for (final GrupoProdutosModel grupo : grupos) {
+				if (!contem) {
+					if (grupo.getDepartamentoModel().getId().equals(registro.getDepartamentoSelected().getId())) {
+						contem = true;
+					}
+				}
+			}
+			if (!contem) {
+				registro.setGrupoProdutoSelected(new GrupoProdutosModel());
+			}
+		}
+	}
+	
+	public void carregarSubGrupoProdutoPorGrupo() {
+		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected()); 
+	}
+	
+	
 	@Override
 	public void serviceSave(final ColecoesModel registro) {
 		colecoesService.salvar(registro);
@@ -194,7 +217,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void serviceRemove(final ColecoesModel registro) {
 		colecoesService.remover(registro);
 	}
-
+	
 	@Override
 	public Logger getLogger() {
 		return logger;
@@ -387,5 +410,12 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void setColecoesService(final ColecoesService colecoesService) {
 		this.colecoesService = colecoesService;
 	}
+	
+	@Override
+	public void cancelar() {
+		colecoesService.discardChanges(this.registro);
+		super.cancelar();
+	}
+	
 
 }
