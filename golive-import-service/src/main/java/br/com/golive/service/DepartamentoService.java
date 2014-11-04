@@ -24,5 +24,7 @@ public interface DepartamentoService {
 	public List<AuditoriaModel> getAuditoriaLogs(final DepartamentoModel departamentoModel);
 
 	public String getUsuarioLog(final DepartamentoModel departamentoModel);
+	
+	public void refresh(DepartamentoModel model);
 
 }

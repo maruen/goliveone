@@ -20,5 +20,5 @@ public interface ColecoesService {
 
 	public List<ColecoesModel> listarTodos();
 	
-	public void discardChanges(ColecoesModel model);
+	public void refresh(ColecoesModel model);
 }

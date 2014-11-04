@@ -88,5 +88,11 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 		logger.info("obterSubGrupoProdutoPorGrupo: [GrupoProdutosModel Id:" + model.getId());
 		return subGrupoProdutoJPA.obterListaPorGrupo(model);
 	}
+
+	@Override
+	public void refresh(SubGrupoProdutoModel model) {
+		subGrupoProdutoJPA.refresh(model);
+		
+	}
 	
 }

@@ -144,4 +144,10 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 		this.departamentoService = departamentoService;
 	}
 
+	@Override
+	public void serviceRefresh(DepartamentoModel model) {
+		departamentoService.refresh(model);
+		
+	}
+
 }

@@ -22,7 +22,6 @@ import javax.inject.Inject;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
-import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
@@ -64,7 +63,6 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
  * 
  * @param <T>
  */
-@Data
 @ManagedBean
 @ViewScoped
 @PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable", component = "modelTable")
@@ -119,6 +117,8 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	public abstract void serviceUpdate(final T registro);
 
 	public abstract void serviceRemove(final T registro);
+	
+	public abstract void serviceRefresh(final T registro);
 
 	private Map<String, List<ColunaPerfil>> tablesMap;
 
@@ -148,6 +148,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void resizeColumns() {
 		JSFUtils.chamarJs(new FuncaoJavaScript("getWidthTable"));
 	}
@@ -361,6 +362,11 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 			init();
 		}
 	}
+	
+	
+	
+	
+	
 
 	public void cancelar() {
 		
@@ -368,7 +374,10 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		if (registro == null) {
 			getLogger().info("Cancelando inclusao de registro");
 		} else {
-			getLogger().info("Cancelando edicao do registro = {} ", registro);
+			getLogger().info("Cancelando edicao do registro e desconsiderando os dados editados  {} ", registro);
+			if (registro.getId() != null) {
+				serviceRefresh(registro);
+			}
 		}
 		init();
 		registro = null;
@@ -455,6 +464,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Object obterLabelColuna(final ColunaPerfil coluna, final T indice) {
 		if (coluna == null) {
 			return "";
@@ -510,6 +520,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		return null;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void salvarPerfilPagina() {
 		reordenarLinha();
 
@@ -639,6 +650,14 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void setTablesMap(final Map<String, List<ColunaPerfil>> tablesMap) {
 		this.tablesMap = tablesMap;
+	}
+
+	public Long getWidthColunasDinamicas() {
+		return widthColunasDinamicas;
+	}
+
+	public void setWidthColunasDinamicas(Long widthColunasDinamicas) {
+		this.widthColunasDinamicas = widthColunasDinamicas;
 	}
 
 }

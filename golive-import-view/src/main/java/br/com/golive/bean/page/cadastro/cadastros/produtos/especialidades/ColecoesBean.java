@@ -403,9 +403,9 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	}
 	
 	@Override
-	public void cancelar() {
-		colecoesService.discardChanges(this.registro);
-		super.cancelar();
+	public void serviceRefresh(ColecoesModel model) {
+		colecoesService.refresh(model);
+		
 	}
 	
 
