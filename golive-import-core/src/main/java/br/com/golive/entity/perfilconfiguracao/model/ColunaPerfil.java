@@ -8,9 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import lombok.Data;
-
-@Data
 @Entity
 @Table(name = "tbConfiguracaoColunaPagina")
 public class ColunaPerfil implements Serializable {
@@ -102,6 +99,46 @@ public class ColunaPerfil implements Serializable {
 			return false;
 		}
 		return true;
+	}
+
+	public ColunaPerfilId getId() {
+		return id;
+	}
+
+	public void setId(final ColunaPerfilId id) {
+		this.id = id;
+	}
+
+	public String getPadraoFiltro() {
+		return padraoFiltro;
+	}
+
+	public void setPadraoFiltro(final String padraoFiltro) {
+		this.padraoFiltro = padraoFiltro;
+	}
+
+	public Long getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(final Long ordem) {
+		this.ordem = ordem;
+	}
+
+	public boolean isVisivel() {
+		return visivel;
+	}
+
+	public void setVisivel(final boolean visivel) {
+		this.visivel = visivel;
+	}
+
+	public Long getWidth() {
+		return width;
+	}
+
+	public void setWidth(final Long width) {
+		this.width = width;
 	}
 
 }

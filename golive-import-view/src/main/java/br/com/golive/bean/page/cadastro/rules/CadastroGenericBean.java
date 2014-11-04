@@ -35,8 +35,6 @@ import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
 import br.com.golive.entity.Model;
-import br.com.golive.entity.departamento.model.DepartamentoModel;
-import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
@@ -95,7 +93,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	@EJB
 	protected AuditoriaService auditoriaService;
-	
+
 	private boolean selecionarTodos;
 
 	protected Long widthColunasDinamicas;
@@ -111,19 +109,23 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	private List<ColunaPerfil> colunasPagina;
 
 	public abstract void init();
+
 	protected abstract Logger getLogger();
+
 	public abstract boolean validarCampos();
-	public abstract  void serviceSave(final T registro);
-	public abstract  void serviceUpdate(final T registro);
+
+	public abstract void serviceSave(final T registro);
+
+	public abstract void serviceUpdate(final T registro);
+
 	public abstract void serviceRemove(final T registro);
-	
+
 	@Deprecated
 	public String getUsuarioLog() {
 		return "USUARIO";
 	}
 
 	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
-		showMenuBar(500, 600);
 		if (usuario != null) {
 			if (getLogger() == null) {
 				throw new GoLiveException("ManagedBean não possui log para acompanhamento dos processos, implemente o getLogger() para que a página possa ser renderizada");
@@ -171,14 +173,14 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	protected void preencherTodosCamposMessage() {
-		JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
+		JSFUtils.warnMessage(usuario.getLabels().getField("label.preencherTodosCampos"), usuario.getLabels().getField("label.preencherTodosCampos"));
 	}
 
 	protected boolean fatalError() {
 		JSFUtils.fatalMessage(usuario.getLabels().getField("title.msg.erro.sistema"), usuario.getLabels().getField("msg.erro.ao.salvar"));
 		return true;
 	}
-	
+
 	protected boolean salvoMessagem() {
 		JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.inserido.sucesso"));
 		return true;
@@ -188,7 +190,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		JSFUtils.infoMessage(usuario.getLabels().getField("title.msg.inserido.sucesso"), usuario.getLabels().getField("msg.atualizado.sucesso"));
 		return true;
 	}
-	
+
 	public void mudarWidthColumns() {
 		final String value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("width");
 		if (value != null) {
@@ -228,7 +230,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	public void formAction() {
-		showMenuBar(500, 600);
 	}
 
 	public void selecionarTodos() {
@@ -270,7 +271,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void cancelarExclusao() {
 		fluxo = getFluxoListagem();
-		showMenuBar();
 	}
 
 	public void exportarPdf() {
@@ -310,18 +310,8 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	public void imprimir() {
-		showMenuBar();
 		gerarRelatorio(TipoRelatorio.IMPRESSAO, getLabels());
 		JSFUtils.chamarJs(new FuncaoJavaScript("abrirPdf", new String(Base64.encodeBase64(ServiceUtils.obterValorPorChave(byte[].class, ChaveSessao.LISTA_IMPRESSAO)))));
-	}
-
-	private void showMenuBar(final long height, final long top) {
-		JSFUtils.chamarJs(new FuncaoJavaScript("showMenuBar", Long.toString(height), Long.toString(top)));
-		resizeColumns();
-	}
-
-	protected void showMenuBar() {
-		showMenuBar(0, 0);
 	}
 
 	public String nomePagina() {
@@ -330,13 +320,11 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void incluir() {
 		fluxo = getFluxoInclusao();
-		showMenuBar();
 	}
 
 	public void editarRegistro() {
 		if (isSelecionado()) {
 			fluxo = getFluxoEdicao();
-			showMenuBar();
 			getLogger().info("Edicao de registro = {} ", registro);
 			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
 		}
@@ -345,17 +333,15 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	public void excluir() {
 		if (isSelecionado()) {
 			fluxo = getFluxoExclusao();
-			showMenuBar();
 		}
 	}
 
-	
 	public void salvar() {
 		getLogger().info("Salvando = {} ", registro);
 
 		boolean success = false;
 
-		try{
+		try {
 			if (registro != null) {
 				if (validarCampos()) {
 					if (registro.getId() == null) {
@@ -366,29 +352,28 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 						success = updateMessagem();
 					}
 				}
-			}	
-		}catch (Exception e){
+			}
+		} catch (final Exception e) {
 			fatalError();
 			getLogger().error("Erro ao salvar ou atualizar registro");
 			e.printStackTrace();
 		}
-		
-		if(success){
-			showMenuBar();
+
+		if (success) {
 			fluxo = getFluxoListagem();
 			init();
 		}
 	}
 
 	public void cancelar() {
-		showMenuBar();
 		fluxo = getFluxoListagem();
 		if (registro == null) {
 			getLogger().info("Cancelando inclusao de registro");
 		} else {
 			getLogger().info("Cancelando edicao do registro = {} ", registro);
 		}
-
+		init();
+		registro = null;
 	}
 
 	public Fluxo getFluxoExclusao() {
@@ -411,11 +396,11 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		try {
 			serviceRemove(registro);
 			removidoComSucesso();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			getLogger().error("Erro ao excluir registro ={} ", registro.getId());
 			erroAoRemover();
 		}
-		init();		
+		init();
 	}
 
 	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final GoliveOneProperties labels) {
@@ -528,7 +513,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	public void salvarPerfilPagina() {
-		showMenuBar();
 		reordenarLinha();
 
 		for (final ColunaPerfil coluna : configuracaoPerfil) {
