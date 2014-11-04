@@ -234,7 +234,13 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	}
 
 	public void refresh(final T entity) {
-		entityManager.refresh(entity);
+		try {
+			entityManager.refresh(entity);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+			
 	}
 
 	/**

@@ -181,15 +181,15 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void carregarGrupoProdutoPorDepartamento() {
 		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
 		if ( registro.getGrupoProdutoSelected() != null && !grupos.contains(registro.getGrupoProdutoSelected() ) ) {
-			registro.setGrupoProdutoSelected(new GrupoProdutosModel());
-			registro.setSubGrupoProdutoSelected(new SubGrupoProdutoModel());
+			registro.setGrupoProdutoSelected(null);
+			registro.setSubGrupoProdutoSelected(null);
 		}
 	}
 	
 	public void carregarSubGrupoProdutoPorGrupo() {
 		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
 		if ( registro.getSubGrupoProdutoSelected() != null &&  !subGrupos.contains(registro.getSubGrupoProdutoSelected() ))
-		registro.setSubGrupoProdutoSelected(new SubGrupoProdutoModel());
+		registro.setSubGrupoProdutoSelected(null);
 		
 	}
 	
