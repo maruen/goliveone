@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.regioes.model.RegioesModel;
+import br.com.golive.entity.empresas.regioes.regiao.model.RegiaoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroRegioes")
 @ManagedBean
 @ViewScoped
-public class RegioesBean extends CadastroBeanRules<RegioesModel> {
+public class RegiaoBean extends CadastroBeanRules<RegiaoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class RegioesBean extends CadastroBeanRules<RegioesModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<RegioesModel> criarLista() {
-		final List<RegioesModel> lista = new ArrayList<RegioesModel>();
+	private List<RegiaoModel> criarLista() {
+		final List<RegiaoModel> lista = new ArrayList<RegiaoModel>();
 		
 		for (Integer i = 0; i <= 10; i ++){
-			lista.add(new RegioesModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Região Sudeste"));
+			lista.add(new RegiaoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Região Sudeste"));
 		}
 		
 		return lista;
