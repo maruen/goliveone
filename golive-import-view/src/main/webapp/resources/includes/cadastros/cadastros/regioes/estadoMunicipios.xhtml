@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="estado"
-		 header="Estado"
+		 header="#{managerBean.get('label.cadastroMunicipios.estado')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -32,7 +32,7 @@
           				 
           		<h:column>
 					<h:outputText id="idEstadoOutputText"
-								  value="Id"   />
+								  value="#{managerBean.get('label.cadastroMunicipios.id')}"   />
 				</h:column>
 				
 				<h:column>
@@ -40,6 +40,7 @@
 		           				 style="width: 125px;"
 		           				 disabled="true"
 		           				 value="0000000020"/>
+		           				 
 		           	<p:commandLink onclick="PF('dlgEstado').show();" immediate="true">
 		           		<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 					</p:commandLink>
@@ -50,7 +51,7 @@
 				
 				<h:column>
 		      		<h:outputText id="codigIbgeEstadoOutputText" 
-		      					  value="Cód.IBGE" 
+		      					  value="#{managerBean.get('label.cadastroMunicipios.codIbge')}" 
 		      					  styleClass="singleLine" />
 		      	</h:column>
 		      	
@@ -67,7 +68,7 @@
 		      	
 				<h:column>
 		      		<h:outputText id="abreviacaoOutputText" 
-		      					  value="Abreviação" 
+		      					  value="#{managerBean.get('label.cadastroMunicipios.abreviacao')}" 
 		      					  styleClass="singleLine" />
 		      	</h:column>
 		      	
@@ -84,7 +85,7 @@
 		      	
 		      	<h:column>	
 		      		<h:outputText id="estadoOutputText" 
-		      					  value="Estado" 
+		      					  value="#{managerBean.get('label.cadastroMunicipios.estado')}" 
 		      					  styleClass="singleLine" />
 		      	</h:column>
 		      	
@@ -99,7 +100,7 @@
          </h:panelGrid>
 	</p:panel>
 	
-<p:dialog header="Pesquisa de Estado"
+<p:dialog header="#{managerBean.get('label.cadastroMunicipios.pesquisaEstado')}"
 			  widgetVar="dlgEstado"
 			  modal="false"
 			  resizable="false"
@@ -109,44 +110,45 @@
       			
      			<p:dataTable id="estadoDatatableId"
         	  	 	     var="estadoDatatableVar"
-        			 	 value="#{municipiosBean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroMunicipios.msnNaoHaRegistros')}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000010" />
 				    </p:column>
 				    
-				    <p:column headerText="País"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.pais')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="Brasil" />
 				    </p:column>
 				    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.id')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Cód.IBGE"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.codIbge')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="11" />
 				    </p:column>
 				    
-				    <p:column headerText="Estado"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.estado')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Rondônia" />
 				    </p:column>
 				    
-				    <p:column headerText="Abreviação"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.abreviacao')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="RO" />
 				    </p:column>
 				    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.id')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Região"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.regiao')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Região Norte" />
 				    </p:column>

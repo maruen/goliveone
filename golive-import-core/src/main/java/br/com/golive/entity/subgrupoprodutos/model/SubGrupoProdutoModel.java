@@ -26,11 +26,11 @@ public class SubGrupoProdutoModel extends Model {
 	@Column(name = "SubGrupoProduto")
 	private String subGrupoProduto;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbSubGrupoProduto_tbGrupoProduto", joinColumns = @JoinColumn(name = "tbSubGrupoProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"))
 	private GrupoProdutosModel grupoProdutoSelected;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbSubGrupoProduto_tbDepartamentoProduto", joinColumns = @JoinColumn(name = "tbSubGrupoProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
 	private DepartamentoModel departamentoSelected;
 

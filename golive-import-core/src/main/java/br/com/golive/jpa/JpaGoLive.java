@@ -137,6 +137,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		return entityManager.find(persistentClass, id);
 	}
 
+	@SuppressWarnings("deprecation")
 	public T findByIdWithLazys(final Long id, final String... lazyFieldName) {
 		final Criteria criteria = createNativeCriteria();
 		criteria.add(Restrictions.eq("id", id));
@@ -170,14 +171,19 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	 * 
 	 * @return Entidade
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public List<T> findAllWithoutLazy(final String... lazyFields) {
 		final Criteria criteria = createCriteria(persistentClass);
 		for (final String field : lazyFields) {
 			criteria.setFetchMode(field, FetchMode.EAGER);
 		}
 
-		return criteria.list();
+		final List<T> results = criteria.list();
+		for (final T entity : results) {
+			refresh(entity);
+		}
+
+		return results;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -225,6 +231,10 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void refresh(final T entity) {
+		entityManager.refresh(entity);
 	}
 
 	/**
@@ -310,7 +320,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	protected List<T> extractListByCriteria(final Criteria criteria) {
 		final List<T> result = criteria.list();
 		for (final T entity : result) {
-			entityManager.detach(entity);
+			entityManager.refresh(entity);
 		}
 		return result;
 	}

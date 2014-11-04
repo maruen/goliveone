@@ -20,7 +20,6 @@ import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "tbColecoesProduto")
 @Jasper(titulo = "Colecoes", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Colecoes")
@@ -33,15 +32,15 @@ public class ColecoesModel extends Model {
 	@Column(name = "Colecao")
 	private String colecao;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbColecoesProduto_tbGrupoProduto", joinColumns = @JoinColumn(name = "tbColecoesProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"))
 	private GrupoProdutosModel grupoProdutoSelected;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbColecoesProduto_tbDepartamentoProduto", joinColumns = @JoinColumn(name = "tbColecoesProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
 	private DepartamentoModel departamentoSelected;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbColecoesProduto_tbSubGrupoProduto", joinColumns = @JoinColumn(name = "tbColecoesProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbSubGrupoProduto_Id", referencedColumnName = "Id"))
 	private SubGrupoProdutoModel subGrupoProdutoSelected;
 

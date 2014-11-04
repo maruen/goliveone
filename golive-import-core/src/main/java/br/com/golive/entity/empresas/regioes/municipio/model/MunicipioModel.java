@@ -1,4 +1,4 @@
-package br.com.golive.entity.empresas.regioes.municipios.model;
+package br.com.golive.entity.empresas.regioes.municipio.model;
 
 import java.util.Calendar;
 
@@ -8,7 +8,7 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "Municipios",
 		nomeDoArquivoGerado = "Municipios",
 		nomeArquivoJasper = "Municipios")
-public class MunicipiosModel extends Model{
+public class MunicipioModel extends Model{
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,12 +21,12 @@ public class MunicipiosModel extends Model{
 	private String estado;
 	private String regiao;
 	
-	public MunicipiosModel(){
+	public MunicipioModel(){
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public MunicipiosModel(Long id, 
+	public MunicipioModel(Long id, 
 						   Calendar dataInclusao, 
 						   Calendar dataAlteracao,
 						   String codMunicipioIbge, 

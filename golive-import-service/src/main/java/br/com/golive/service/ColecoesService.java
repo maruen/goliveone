@@ -19,4 +19,6 @@ public interface ColecoesService {
 	public List<ColecoesModel> obterLista(final String... lazyFields);
 
 	public List<ColecoesModel> listarTodos();
+	
+	public void refresh(ColecoesModel model);
 }

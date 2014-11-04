@@ -23,4 +23,6 @@ public interface GrupoProdutoService {
 	public GrupoProdutosModel obterGrupoProdutoAtual(final Model model);
 
 	public void delete(final GrupoProdutosModel grupoProdutosModel);
+	
+	public void refresh(GrupoProdutosModel model);
 }

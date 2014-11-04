@@ -294,8 +294,8 @@
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosRegioesMunicipio">
-			<pattern value="/Cadastros/Cadastros/Regioes/Municipios" />
-			<view-id value="/pages/cadastros/cadastros/regioes/municipios.jsf" />
+			<pattern value="/Cadastros/Cadastros/Regioes/Municipio" />
+			<view-id value="/pages/cadastros/cadastros/regioes/municipio.jsf" />
 		</url-mapping>
 	
 		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoInternet">

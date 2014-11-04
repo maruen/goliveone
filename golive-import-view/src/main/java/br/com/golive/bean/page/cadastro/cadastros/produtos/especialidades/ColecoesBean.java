@@ -8,9 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import lombok.Data;
-import lombok.Getter;
-
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
@@ -29,7 +26,6 @@ import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
 import br.com.golive.service.SubGrupoProdutoService;
 
-@Data
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroColecoes")
@@ -120,11 +116,11 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
-	@Getter
+	
 	private List<DepartamentoModel> departamentos;
-	@Getter
+	
 	private List<GrupoProdutosModel> grupos;
-	@Getter
+	
 	private List<SubGrupoProdutoModel> subGrupos;
 
 	@EJB
@@ -138,11 +134,12 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 	@EJB
 	private ColecoesService colecoesService;
-
+	
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class, ColecoesModel.class));
+		departamentos = departamentoService.listarTodos();
 	}
 
 	@Override
@@ -150,6 +147,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		super.incluir();
 		registro = new ColecoesModel();
 	}
+	
 
 	@Override
 	public boolean validarCampos() {
@@ -180,6 +178,22 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		return ret;
 	}
 
+	public void carregarGrupoProdutoPorDepartamento() {
+		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
+		if ( registro.getGrupoProdutoSelected() != null && !grupos.contains(registro.getGrupoProdutoSelected() ) ) {
+			registro.setGrupoProdutoSelected(new GrupoProdutosModel());
+			registro.setSubGrupoProdutoSelected(new SubGrupoProdutoModel());
+		}
+	}
+	
+	public void carregarSubGrupoProdutoPorGrupo() {
+		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
+		if ( registro.getSubGrupoProdutoSelected() != null &&  !subGrupos.contains(registro.getSubGrupoProdutoSelected() ))
+		registro.setSubGrupoProdutoSelected(new SubGrupoProdutoModel());
+		
+	}
+	
+	
 	@Override
 	public void serviceSave(final ColecoesModel registro) {
 		colecoesService.salvar(registro);
@@ -194,7 +208,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void serviceRemove(final ColecoesModel registro) {
 		colecoesService.remover(registro);
 	}
-
+	
 	@Override
 	public Logger getLogger() {
 		return logger;
@@ -387,5 +401,12 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void setColecoesService(final ColecoesService colecoesService) {
 		this.colecoesService = colecoesService;
 	}
+	
+	@Override
+	public void serviceRefresh(ColecoesModel model) {
+		colecoesService.refresh(model);
+		
+	}
+	
 
 }

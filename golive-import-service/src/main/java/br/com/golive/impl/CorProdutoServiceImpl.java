@@ -80,5 +80,11 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 	public String getUsuarioLog(CorProdutoModel model) {
 		return auditoriaJPA.getUsuarioLog(model.getId(), model.getClass());
 	}
+	
+	@Override
+	public void refresh(CorProdutoModel model) {
+		corProdutoJPA.refresh(model);
+		
+	}
 
 }

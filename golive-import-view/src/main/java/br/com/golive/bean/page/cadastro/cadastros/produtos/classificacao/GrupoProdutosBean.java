@@ -236,4 +236,10 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		this.departamentos = departamentos;
 	}
 
+	@Override
+	public void serviceRefresh(GrupoProdutosModel model) {
+		grupoProdutoService.refresh(model);
+		
+	}
+
 }

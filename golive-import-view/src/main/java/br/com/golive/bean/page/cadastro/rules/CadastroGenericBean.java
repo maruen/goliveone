@@ -22,7 +22,6 @@ import javax.inject.Inject;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
-import lombok.Data;
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
@@ -64,7 +63,6 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
  * 
  * @param <T>
  */
-@Data
 @ManagedBean
 @ViewScoped
 @PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable", component = "modelTable")
@@ -119,11 +117,10 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	public abstract void serviceUpdate(final T registro);
 
 	public abstract void serviceRemove(final T registro);
+	
+	public abstract void serviceRefresh(final T registro);
 
-	@Deprecated
-	public String getUsuarioLog() {
-		return "USUARIO";
-	}
+	private Map<String, List<ColunaPerfil>> tablesMap;
 
 	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
 		if (usuario != null) {
@@ -140,9 +137,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 			inicializarClasse();
 			configuracaoPerfil = configuracoes;
 
-			if (verificarNecessidadeDeConfiguracao()) {
-
-			}
+			verificarNecessidadeDeConfiguracao();
 			colunasPagina = new ArrayList<ColunaPerfil>();
 			for (final ColunaPerfil colunaPerfil : configuracaoPerfil) {
 				if (colunaPerfil.isVisivel()) {
@@ -153,6 +148,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void resizeColumns() {
 		JSFUtils.chamarJs(new FuncaoJavaScript("getWidthTable"));
 	}
@@ -247,13 +243,15 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 	}
 
-	private boolean verificarNecessidadeDeConfiguracao() {
-		if (configuracaoPerfil.isEmpty()) {
-			configuracaoPerfil = Utils.obterListaColunaTabela(genericClazzInstance, usuario, empresaSelecionada);
-			colunaPerfilService.salvarLista(configuracaoPerfil);
-			return false;
+	private void verificarNecessidadeDeConfiguracao() {
+		tablesMap = new HashMap<String, List<ColunaPerfil>>();
+
+		for (final ColunaPerfil conf : configuracaoPerfil) {
+			if (!tablesMap.containsKey(conf.getId().getTabela())) {
+				tablesMap.put(conf.getId().getTabela(), new ArrayList<ColunaPerfil>());
+			}
+			tablesMap.get(conf.getId().getTabela()).add(conf);
 		}
-		return true;
 	}
 
 	public String getFilterLabel(final String filter) {
@@ -364,13 +362,22 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 			init();
 		}
 	}
+	
+	
+	
+	
+	
 
 	public void cancelar() {
+		
 		fluxo = getFluxoListagem();
 		if (registro == null) {
 			getLogger().info("Cancelando inclusao de registro");
 		} else {
-			getLogger().info("Cancelando edicao do registro = {} ", registro);
+			getLogger().info("Cancelando edicao do registro e desconsiderando os dados editados  {} ", registro);
+			if (registro.getId() != null) {
+				serviceRefresh(registro);
+			}
 		}
 		init();
 		registro = null;
@@ -457,6 +464,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Object obterLabelColuna(final ColunaPerfil coluna, final T indice) {
 		if (coluna == null) {
 			return "";
@@ -512,6 +520,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		return null;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void salvarPerfilPagina() {
 		reordenarLinha();
 
@@ -633,6 +642,22 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void setColunasPagina(final List<ColunaPerfil> colunasPagina) {
 		this.colunasPagina = colunasPagina;
+	}
+
+	public Map<String, List<ColunaPerfil>> getTablesMap() {
+		return tablesMap;
+	}
+
+	public void setTablesMap(final Map<String, List<ColunaPerfil>> tablesMap) {
+		this.tablesMap = tablesMap;
+	}
+
+	public Long getWidthColunasDinamicas() {
+		return widthColunasDinamicas;
+	}
+
+	public void setWidthColunasDinamicas(Long widthColunasDinamicas) {
+		this.widthColunasDinamicas = widthColunasDinamicas;
 	}
 
 }

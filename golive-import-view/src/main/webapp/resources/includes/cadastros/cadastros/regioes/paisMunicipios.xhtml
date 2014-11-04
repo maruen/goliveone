@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="pais"
-		 header="País"
+		 header="#{managerBean.get('label.cadastroMunicipios.pais')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -31,7 +31,7 @@
           				 border="0">
 	     		<h:column>
 					<h:outputText id="idPaisOutputText"
-								  value="Id"   />
+								  value="#{managerBean.get('label.cadastroMunicipios.id')}"   />
 				</h:column>
 				
 				<h:column>
@@ -50,7 +50,7 @@
 	
 				<h:column>	            
 		      		<h:outputText id="paisOutputText" 
-		      					  value="País" 
+		      					  value="#{managerBean.get('label.cadastroMunicipios.pais')}" 
 		      					  styleClass="singleLine" />
 		      	</h:column>
 		      	
@@ -65,7 +65,7 @@
          </h:panelGrid>
 	</p:panel>
 	
-<p:dialog header="Pesquisa de Países"
+<p:dialog header="#{managerBean.get('label.cadastroMunicipios.pesquisaPaises')}"
 			  widgetVar="dlgPais"
 			  modal="false"
 			  resizable="false"
@@ -75,29 +75,30 @@
       			
      			<p:dataTable id="paisDatatableId"
         	  	 	     var="paisDatatableVar"
-        			 	 value="#{municipiosBean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroMunicipios.msnNaoHaRegistros')}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Bandeira"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.bandeira')}"
 				    		  styleClass="percentual-10 singleLine">
 			           		<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/afeganistao.png" />
 				    </p:column>
 				    
-				    <p:column headerText="País Inglês"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.paisIngles')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Afghnistan" />
 				    </p:column>
 				    
-				    <p:column headerText="País Português"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.paisPortugues')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Afeganistão" />
 				    </p:column>
 				    
-				    <p:column headerText="País Nativo"
+				    <p:column headerText="#{managerBean.get('label.cadastroMunicipios.paisNativo')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="ښبثلشدهسفګشخ" />
 				    </p:column>

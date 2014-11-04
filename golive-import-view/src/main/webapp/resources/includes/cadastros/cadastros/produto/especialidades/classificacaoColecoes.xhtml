@@ -16,10 +16,13 @@
 			</h:commandLink>
 		</f:facet>
 
-		<h:panelGrid columns="5" cellpadding="3" cellspacing="3"
-			id="panelGrid"
-			columnClasses="percentual-5, percentual-10, percentual-5, percentual-68"
-			width="100%" border="0">
+		<h:panelGrid columns="5"
+					 cellpadding="3"
+					 cellspacing="3"
+					 id="panelGrid"
+					 columnClasses="percentual-5, percentual-10, percentual-5, percentual-68"
+					 width="100%"
+					 border="0">
 
 			<h:outputText id="departamentoIdOutputText" value="#{managerBean.get('label.cadastroColecoes.id')}" />
 			<h:inputText id="departamentoIdInputText" value="#{pojo.departamentoSelected.id}" style="width: 125px;" disabled="true" />
@@ -36,7 +39,7 @@
 			<h:outputText id="grupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroColecoes.grupoProdutos')}" style="white-space: nowrap" />
 			<h:inputText id="grupoProdutosNomeInputText" style="width: 95%" value="#{pojo.grupoProdutoSelected.grupoDeProduto}" disabled="true" />
 
-			<p:commandLink onclick="PF('dlgGrupoProdutos').show();" immediate="true">
+			<p:commandLink id="linkGrupoProdutos" onclick="PF('dlgGrupoProdutos').show();" immediate="true" disable="#{pojo.departamentoSelected == null}" onsuccess="PF('dlgGrupoProdutos').show();" >
 				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 			</p:commandLink> 
 
@@ -45,7 +48,7 @@
 			<h:outputText id="subGrupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}" styleClass="singleLine" />
 			<h:inputText id="subGrupoProdutosNomeInputText" style="width: 95%" value="#{pojo.subGrupoProdutoSelected.subGrupoProduto}" disabled="true" />
 
-			<p:commandLink onclick="PF('dlgSubGrupProdutos').show();" immediate="true">
+			<p:commandLink id="linkSubGrupoProdutos" onclick="PF('dlgSubGrupProdutos').show();" disable="#{pojo.grupoProdutoSelected == null}"  immediate="true">
 				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 			</p:commandLink>
 
@@ -53,74 +56,116 @@
 
 	</p:panel>
 
+
+
+
+
+
+
 	<p:dialog
-		header="#{managerBean.get('label.cadastroColecoes.pesquisaDepartamento')}"
+		header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaDepartamento')}"
 		widgetVar="dlgDepartamento" modal="false" resizable="false"
 		appendToBody="true" height="100%" width="55%">
 
-		<p:dataTable id="departamentoDatatableId" 
-			var="departamentoDatatableVar" value="#{bean.departamentos}" selectionMode="single"
-			selection="#{pojo.departamentoSelected}"  rowKey="#{departamentoDatatableVar.id}">
+		<p:dataTable id="departamentoDatatableId"
+					 selectionMode="single"
+					 selection="#{pojo.departamentoSelected}"
+					 rowKey="#{departamento.id}"
+					 var="departamento"
+					 value="#{bean.departamentos}">
+		
+			<p:ajax event="rowSelect"
+					oncomplete="PF('dlgDepartamento').hide();"
+					listener="#{bean.carregarGrupoProdutoPorDepartamento()}"  
+					update=":conteudoForm:departamentoNomeInputText,
+							:conteudoForm:departamentoIdInputText,
+							:conteudoForm:grupoProdutosIdInputText,
+							:conteudoForm:grupoProdutosNomeInputText,
+							:conteudoForm:subGrupoProdutosIdInputText,
+							:conteudoForm:subGrupoProdutosNomeInputText,
+							:conteudoForm:linkGrupoProdutos,
+							:conteudoForm:subGrupoProdutosDatatableId,  
+							:conteudoForm:grupoProdutosDatatableId"  />
 
-			<p:ajax event="rowSelect" update=":conteudoForm:departamentoIdInputText, :conteudoForm:departamentoNomeInputText" oncomplete="PF('dlgDepartamento').hide();" />
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
-				styleClass="percentual-5 singleLine">
-				<h:outputText value="#{departamentoDatatableVar.id}"
-					styleClass="floatRight" />
+			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
+					  styleClass="percentual-5 singleLine"
+					  filterBy="#{departamento.id}"
+					  filterMatchMode="exact">
+				
+				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
+			
 			</p:column>
 
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.departamento')}"
-				styleClass="percentual-20 singleLine">
-
-				<h:outputText value="#{departamentoDatatableVar.departamento}" />
-			</p:column>
-		</p:dataTable>
-	</p:dialog>
-
-	<p:dialog
-		header="#{managerBean.get('label.cadastroColecoes.pesquisaGrupoProdutos')}"
-		widgetVar="dlgGrupoProdutos" modal="false" resizable="false"
-		appendToBody="true" height="100%" width="75%">
-
-		<p:dataTable id="grupoProdutosDatatableId" var="grupoProdutosDatatableVar" value="#{bean.grupos}" selectionMode="single"
-			selection="#{pojo.grupoProdutoSelected}"  rowKey="#{grupoProdutosDatatableVar.id}">
-
-			<p:ajax event="rowSelect" update=":conteudoForm:grupoProdutosIdInputText, :conteudoForm:grupoProdutosNomeInputText" oncomplete="PF('dlgGrupoProdutos').hide();" />
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText
-					value="#{grupoProdutosDatatableVar.departamentoModel.id}"
-					styleClass="floatRight" />
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.departamento')}"
-				styleClass="percentual-30 singleLine">
-
-				<h:outputText
-					value="#{grupoProdutosDatatableVar.departamentoModel.departamento}" />
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="#{grupoProdutosDatatableVar.id}"
-					styleClass="floatRight" />
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.grupoProdutos')}"
-				styleClass="percentual-25 singleLine">
-
-				<h:outputText value="#{grupoProdutosDatatableVar.grupoDeProduto}" />
+			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.departamento')}"
+					  styleClass="percentual-20 singleLine"
+					  filterBy="#{departamento.departamento}"
+					  filterMatchMode="contains">
+				
+				<h:outputText value="#{departamento.departamento}" />
+			
 			</p:column>
 		</p:dataTable>
 	</p:dialog>
+
+
+
+
+
+
+
+
+
+
+ 	<p:dialog
+		header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaGrupoProdutos')}"
+		widgetVar="dlgGrupoProdutos"
+		modal="false"
+		resizable="false"
+		appendToBody="true"
+		height="100%"
+		width="55%">
+
+		<p:dataTable id="grupoProdutosDatatableId"
+				     selectionMode="single"
+				     selection="#{pojo.grupoProdutoSelected}"
+				     rowKey="#{grupoProduto.id}"
+				     var="grupoProduto"
+				     value="#{bean.grupos}"> 
+			
+			<p:ajax event="rowSelect" 
+					listener="#{bean.carregarSubGrupoProdutoPorGrupo()}"
+					oncomplete="PF('dlgGrupoProdutos').hide();"
+					update=":conteudoForm:grupoProdutosNomeInputText,
+							:conteudoForm:grupoProdutosIdInputText,
+							:conteudoForm:subGrupoProdutosIdInputText,
+							:conteudoForm:subGrupoProdutosNomeInputText,
+							:conteudoForm:linkSubGrupoProdutos,
+							:conteudoForm:subGrupoProdutosDatatableId"  />
+			
+			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
+					  styleClass="percentual-10 singleLine"
+					  filterBy="#{grupoProduto.id}"
+					  filterMatchMode="exact">
+				
+				<h:outputText value="#{grupoProduto.id}" styleClass="floatRight" />
+			</p:column>
+
+			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.grupoProdutos')}"
+					  styleClass="percentual-20 singleLine"
+					  filterBy="#{grupoProduto.grupoDeProduto}"
+					  filterMatchMode="contains">
+				
+				<h:outputText value="#{grupoProduto.grupoDeProduto}" />
+			</p:column>
+
+		</p:dataTable>
+	</p:dialog>
+	
+	
+	
+	
+	
+	
 
 	<p:dialog
 		header="#{managerBean.get('label.cadastroColecoes.pesquisaSubGrupoProdutos')}"
@@ -128,11 +173,17 @@
 		appendToBody="true" height="100%" width="85%">
 
 		<p:dataTable id="subGrupoProdutosDatatableId" 
-			var="subGrupoProdutosDatatableVar" value="#{bean.subGrupos}" selectionMode="single"
-			selection="#{pojo.subGrupoProdutoSelected}"  rowKey="#{subGrupoProdutosDatatableVar.id}">
+					 var="subGrupoProdutosDatatableVar"
+					 value="#{bean.subGrupos}"
+					 selectionMode="single"
+					 selection="#{pojo.subGrupoProdutoSelected}"
+					 rowKey="#{subGrupoProdutosDatatableVar.id}">
 
-			<p:ajax event="rowSelect" update=":conteudoForm:subGrupoProdutosIdInputText, :conteudoForm:subGrupoProdutosNomeInputText"
-				oncomplete="PF('dlgSubGrupProdutos').hide();" />
+			<p:ajax event="rowSelect"
+					oncomplete="PF('dlgSubGrupProdutos').hide();" 
+					update=":conteudoForm:subGrupoProdutosIdInputText,
+						    :conteudoForm:subGrupoProdutosNomeInputText" />
+					
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroColecoes.id')}"

@@ -16,8 +16,13 @@
 
 <composite:implementation>
 
-	<p:dialog id="configuracoesTabela" widgetVar="confTableConteudo" resizable="false"
-		styleClass="dialogConfiguracoes" modal="true">
+	<p:dialog id="configuracoesTabela" widgetVar="confTableConteudo"
+		resizable="false" styleClass="dialogConfiguracoes" modal="true">
+
+		<c:forEach items="#{cc.attrs.bean.tablesMap.keySet()}" var="key">
+			
+		</c:forEach>
+
 
 		<p:dataTable id="configuracaoTable" draggableRows="true"
 			value="#{cc.attrs.bean.configuracaoPerfil}" var="coluna"
@@ -52,10 +57,11 @@
 				<filter:selectTipoFiltro filtro="#{cc.attrs.bean.getFilter(coluna)}" />
 			</p:column>
 
-			<p:column 
+			<p:column
 				headerText="#{managerBean.get('label.tamanho.minimo.coluna')}"
 				styleClass="widthColunas">
-				<p:spinner id="widthColunasTable" value="#{coluna.width}" min="20" max="2000" />
+				<p:spinner id="widthColunasTable" value="#{coluna.width}" min="20"
+					max="2000" />
 			</p:column>
 
 			<f:facet name="footer">
@@ -98,7 +104,7 @@
 		<c:forEach items="#{cc.attrs.bean.colunasPagina}" var="coluna">
 
 			<p:column style="width: #{managerBean.widthColuna(coluna.width)}">
-	
+
 				<f:facet name="header">
 					<filter:number id="componentFilterNumberId"
 						update=":conteudoForm:modelTable:conteudoTable"
