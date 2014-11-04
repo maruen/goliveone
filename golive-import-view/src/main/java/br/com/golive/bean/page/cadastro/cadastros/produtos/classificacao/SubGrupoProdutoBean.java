@@ -120,28 +120,30 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	public void incluir() {
 		super.incluir();
 		registro = new SubGrupoProdutoModel();
-		departamentos = departamentoService.listarTodos();
+		carregarDepartamentos();
 	}
 
 	@Override
 	public void editarRegistro() {
 		super.editarRegistro();
 		if (registro != null) {
-			final SubGrupoProdutoModel editar = new SubGrupoProdutoModel();
-			if (registro.getId() != null) {
-				editar.setId(registro.getId());
-			}
-			editar.setAuditoriaLogs(registro.getAuditoriaLogs());
-			editar.setGrupoProdutoSelected(registro.getGrupoProdutoSelected());
-			editar.setDepartamentoSelected(registro.getDepartamentoSelected());
-			editar.setSubGrupoProduto(registro.getSubGrupoProduto());
-			editar.setDataInclusao(registro.getDataInclusao());
-			editar.setDataAlteracao(registro.getDataAlteracao());
-			registro = editar;
-			if (registro.getDepartamentoSelected() != null) {
-				departamentos = departamentoService.listarTodos();
-				carregarGrupoProdutoPorDepartamento();
-			}
+			carregarDepartamentos();
+			carregarGruposProduto();
+		}
+	}
+
+	private void carregarGruposProduto() {
+		grupoProdutoList = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
+		if (grupoProdutoList.isEmpty()) {
+			listaVaziaMessage("msg.lista.grupoproduto.vazia");
+			registro.setGrupoProdutoSelected(null);
+		}
+	}
+
+	private void carregarDepartamentos() {
+		departamentos = departamentoService.listarTodos();
+		if (departamentos.isEmpty()) {
+			listaVaziaMessage("msg.lista.departamento.vazia");
 		}
 	}
 
@@ -168,23 +170,19 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	}
 
 	public void carregarGrupoProdutoPorDepartamento() {
-		grupoProdutoList = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
-		if (grupoProdutoList.isEmpty()) {
-			registro.setGrupoProdutoSelected(null);
-		} else {
-			boolean contem = false;
-			for (final GrupoProdutosModel grupo : grupoProdutoList) {
-				if (!contem) {
-					if (registro.getGrupoProdutoSelected() != null) {
-						if (grupo.getId().equals(registro.getGrupoProdutoSelected().getId())) {
-							contem = true;
-						}
+		carregarGruposProduto();
+		boolean contem = false;
+		for (final GrupoProdutosModel grupo : grupoProdutoList) {
+			if (!contem) {
+				if (registro.getGrupoProdutoSelected() != null) {
+					if (grupo.getId().equals(registro.getGrupoProdutoSelected().getId())) {
+						contem = true;
 					}
 				}
 			}
-			if (!contem) {
-				registro.setGrupoProdutoSelected(null);
-			}
+		}
+		if (!contem) {
+			registro.setGrupoProdutoSelected(null);
 		}
 	}
 
@@ -358,9 +356,9 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	}
 
 	@Override
-	public void serviceRefresh(SubGrupoProdutoModel model) {
+	public void serviceRefresh(final SubGrupoProdutoModel model) {
 		subGrupoProdutoService.refresh(model);
-		
+
 	}
 
 }

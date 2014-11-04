@@ -68,16 +68,19 @@
 		appendToBody="true" height="100%" width="55%">
 
 		<p:dataTable id="departamentoDatatableId"
-					 selectionMode="single"
+					 selectionMode="single" 
 					 selection="#{pojo.departamentoSelected}"
 					 rowKey="#{departamento.id}"
 					 var="departamento"
-					 value="#{bean.departamentos}">
+					 value="#{bean.departamentos}"
+					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+					 >
 		
 			<p:ajax event="rowSelect"
 					oncomplete="PF('dlgDepartamento').hide();"
 					listener="#{bean.carregarGrupoProdutoPorDepartamento()}"  
-					update=":conteudoForm:departamentoNomeInputText,
+					update=":conteudoForm:mensagens, 
+							:conteudoForm:departamentoNomeInputText,
 							:conteudoForm:departamentoIdInputText,
 							:conteudoForm:grupoProdutosIdInputText,
 							:conteudoForm:grupoProdutosNomeInputText,
@@ -130,12 +133,14 @@
 				     selection="#{pojo.grupoProdutoSelected}"
 				     rowKey="#{grupoProduto.id}"
 				     var="grupoProduto"
+					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 				     value="#{bean.grupos}"> 
 			
 			<p:ajax event="rowSelect" 
 					listener="#{bean.carregarSubGrupoProdutoPorGrupo()}"
 					oncomplete="PF('dlgGrupoProdutos').hide();"
-					update=":conteudoForm:grupoProdutosNomeInputText,
+					update=":conteudoForm:mensagens, 
+							:conteudoForm:grupoProdutosNomeInputText,
 							:conteudoForm:grupoProdutosIdInputText,
 							:conteudoForm:subGrupoProdutosIdInputText,
 							:conteudoForm:subGrupoProdutosNomeInputText,
@@ -164,67 +169,34 @@
 	
 	
 	
-	
-	
 
 	<p:dialog
 		header="#{managerBean.get('label.cadastroColecoes.pesquisaSubGrupoProdutos')}"
 		widgetVar="dlgSubGrupProdutos" modal="false" resizable="false"
-		appendToBody="true" height="100%" width="85%">
+		appendToBody="true" height="100%" width="55%">
 
 		<p:dataTable id="subGrupoProdutosDatatableId" 
 					 var="subGrupoProdutosDatatableVar"
 					 value="#{bean.subGrupos}"
 					 selectionMode="single"
 					 selection="#{pojo.subGrupoProdutoSelected}"
+					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 					 rowKey="#{subGrupoProdutosDatatableVar.id}">
 
 			<p:ajax event="rowSelect"
 					oncomplete="PF('dlgSubGrupProdutos').hide();" 
-					update=":conteudoForm:subGrupoProdutosIdInputText,
+					update=":conteudoForm:mensagens, 
+							:conteudoForm:subGrupoProdutosIdInputText,
 						    :conteudoForm:subGrupoProdutosNomeInputText" />
-					
 
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText
-					value="#{subGrupoProdutosDatatableVar.departamentoSelected.id}"
-					styleClass="floatRight" />
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.departamento')}"
-				styleClass="percentual-20 singleLine">
-
-				<h:outputText
-					value="#{subGrupoProdutosDatatableVar.departamentoSelected.departamento}" />
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText
-					value="#{subGrupoProdutosDatatableVar.grupoProdutoSelected.id}"
-					styleClass="floatRight" />
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroColecoes.grupoProdutos')}"
-				styleClass="percentual-20 singleLine">
-
-				<h:outputText
-					value="#{subGrupoProdutosDatatableVar.grupoProdutoSelected.grupoDeProduto}" />
-			</p:column>
-
-			<p:column
+			<p:column filterMatchMode="exact" filterBy="#{subGrupoProdutosDatatableVar.id}"
 				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="#{subGrupoProdutosDatatableVar.id}"
 					styleClass="floatRight" />
 			</p:column>
 
-			<p:column
+			<p:column filterBy="#{subGrupoProdutosDatatableVar.subGrupoProduto}" filterMatchMode="contains"
 				headerText="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}"
 				styleClass="percentual-20 singleLine">
 

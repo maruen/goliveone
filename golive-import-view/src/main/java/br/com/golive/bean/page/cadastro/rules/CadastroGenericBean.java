@@ -117,7 +117,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	public abstract void serviceUpdate(final T registro);
 
 	public abstract void serviceRemove(final T registro);
-	
+
 	public abstract void serviceRefresh(final T registro);
 
 	private Map<String, List<ColunaPerfil>> tablesMap;
@@ -148,13 +148,12 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 	}
 
-	@SuppressWarnings("unused")
-	private void resizeColumns() {
-		JSFUtils.chamarJs(new FuncaoJavaScript("getWidthTable"));
-	}
-
 	protected void removidoComSucesso() {
 		JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
+	}
+
+	protected void listaVaziaMessage(final String label) {
+		JSFUtils.warnMessage(getLabels().getField("label.cadastroSegmentos.msnNaoHaRegistros"), getLabels().getField(label));
 	}
 
 	protected void erroAoRemover() {
@@ -362,14 +361,9 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 			init();
 		}
 	}
-	
-	
-	
-	
-	
 
 	public void cancelar() {
-		
+
 		fluxo = getFluxoListagem();
 		if (registro == null) {
 			getLogger().info("Cancelando inclusao de registro");
@@ -656,7 +650,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		return widthColunasDinamicas;
 	}
 
-	public void setWidthColunasDinamicas(Long widthColunasDinamicas) {
+	public void setWidthColunasDinamicas(final Long widthColunasDinamicas) {
 		this.widthColunasDinamicas = widthColunasDinamicas;
 	}
 

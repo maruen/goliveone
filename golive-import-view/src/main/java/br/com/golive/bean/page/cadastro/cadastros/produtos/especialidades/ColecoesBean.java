@@ -116,11 +116,10 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
-	
 	private List<DepartamentoModel> departamentos;
-	
+
 	private List<GrupoProdutosModel> grupos;
-	
+
 	private List<SubGrupoProdutoModel> subGrupos;
 
 	@EJB
@@ -134,20 +133,51 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 	@EJB
 	private ColecoesService colecoesService;
-	
+
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class, ColecoesModel.class));
+	}
+
+	@Override
+	public void editarRegistro() {
+		super.editarRegistro();
+		if (registro != null) {
+			obterDepartamentos();
+			obterGruposProduto();
+			obterSubGrupos();
+		}
+	}
+
+	private void obterGruposProduto() {
+		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
+		if (grupos.isEmpty()) {
+			listaVaziaMessage("msg.lista.grupoproduto.vazia");
+			registro.setGrupoProdutoSelected(null);
+		}
+	}
+
+	private void obterDepartamentos() {
 		departamentos = departamentoService.listarTodos();
+		if (departamentos.isEmpty()) {
+			listaVaziaMessage("msg.lista.departamento.vazia");
+		}
+	}
+
+	private void obterSubGrupos() {
+		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
+		if (subGrupos.isEmpty()) {
+			listaVaziaMessage("msg.lista.subgrupo.vazia");
+		}
 	}
 
 	@Override
 	public void incluir() {
 		super.incluir();
 		registro = new ColecoesModel();
+		obterDepartamentos();
 	}
-	
 
 	@Override
 	public boolean validarCampos() {
@@ -179,21 +209,22 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	}
 
 	public void carregarGrupoProdutoPorDepartamento() {
-		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
-		if ( registro.getGrupoProdutoSelected() != null && !grupos.contains(registro.getGrupoProdutoSelected() ) ) {
-			registro.setGrupoProdutoSelected(new GrupoProdutosModel());
-			registro.setSubGrupoProdutoSelected(new SubGrupoProdutoModel());
+		obterGruposProduto();
+		if ((registro.getGrupoProdutoSelected() != null) && !grupos.contains(registro.getGrupoProdutoSelected())) {
+			registro.setGrupoProdutoSelected(null);
+			registro.setSubGrupoProdutoSelected(null);
+			subGrupos = null;
 		}
 	}
-	
+
 	public void carregarSubGrupoProdutoPorGrupo() {
-		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
-		if ( registro.getSubGrupoProdutoSelected() != null &&  !subGrupos.contains(registro.getSubGrupoProdutoSelected() ))
-		registro.setSubGrupoProdutoSelected(new SubGrupoProdutoModel());
-		
+		obterSubGrupos();
+		if ((registro.getSubGrupoProdutoSelected() != null) && !subGrupos.contains(registro.getSubGrupoProdutoSelected())) {
+			registro.setSubGrupoProdutoSelected(null);
+		}
+
 	}
-	
-	
+
 	@Override
 	public void serviceSave(final ColecoesModel registro) {
 		colecoesService.salvar(registro);
@@ -208,7 +239,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void serviceRemove(final ColecoesModel registro) {
 		colecoesService.remover(registro);
 	}
-	
+
 	@Override
 	public Logger getLogger() {
 		return logger;
@@ -401,12 +432,11 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void setColecoesService(final ColecoesService colecoesService) {
 		this.colecoesService = colecoesService;
 	}
-	
+
 	@Override
-	public void serviceRefresh(ColecoesModel model) {
+	public void serviceRefresh(final ColecoesModel model) {
 		colecoesService.refresh(model);
-		
+
 	}
-	
 
 }

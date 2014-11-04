@@ -31,11 +31,6 @@ public class GrupoProdutosModel extends Model {
 	@JoinTable(name = "tbGrupoProduto_tbDepartamentoProduto", joinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
 	private DepartamentoModel departamentoModel;
 
-	@Override
-	public String toString() {
-		return grupoDeProduto;
-	}
-
 	public GrupoProdutosModel() {
 		super();
 	}
