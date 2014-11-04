@@ -75,6 +75,7 @@
 
 		<p:dataTable id="departamentoDatatableId" selectionMode="single"
 			selection="#{pojo.departamentoModel}" var="departamento"
+			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			rowKey="#{departamento.id}" value="#{bean.departamentos}">
 
 			<p:ajax event="rowSelect"
@@ -87,7 +88,8 @@
 				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
 			</p:column>
 
-			<p:column filterBy="#{departamento.departamento}" filterMatchMode="contains"
+			<p:column filterBy="#{departamento.departamento}"
+				filterMatchMode="contains"
 				headerText="#{managerBean.get('label.cadastroGrupoProdutos.departamento')}"
 				styleClass="percentual-20 singleLine">
 				<h:outputText value="#{departamento.departamento}" />

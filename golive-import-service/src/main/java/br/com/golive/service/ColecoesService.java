@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import br.com.golive.entity.colecoes.model.ColecoesModel;
+import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.impl.ColecoesServiceImpl;
 
 @Local(value = ColecoesServiceImpl.class)
@@ -19,6 +20,8 @@ public interface ColecoesService {
 	public List<ColecoesModel> obterLista(final String... lazyFields);
 
 	public List<ColecoesModel> listarTodos();
-	
+
+	public List<ColecoesModel> obterListaPorSubGrupo(SubGrupoProdutoModel model);
+
 	public void refresh(ColecoesModel model);
 }

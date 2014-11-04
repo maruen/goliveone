@@ -124,28 +124,6 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	}
 
 	@Override
-	public void editarRegistro() {
-		super.editarRegistro();
-		if (registro != null) {
-			final SubGrupoProdutoModel editar = new SubGrupoProdutoModel();
-			if (registro.getId() != null) {
-				editar.setId(registro.getId());
-			}
-			editar.setAuditoriaLogs(registro.getAuditoriaLogs());
-			editar.setGrupoProdutoSelected(registro.getGrupoProdutoSelected());
-			editar.setDepartamentoSelected(registro.getDepartamentoSelected());
-			editar.setSubGrupoProduto(registro.getSubGrupoProduto());
-			editar.setDataInclusao(registro.getDataInclusao());
-			editar.setDataAlteracao(registro.getDataAlteracao());
-			registro = editar;
-			if (registro.getDepartamentoSelected() != null) {
-				departamentos = departamentoService.listarTodos();
-				carregarGrupoProdutoPorDepartamento();
-			}
-		}
-	}
-
-	@Override
 	public boolean validarCampos() {
 		boolean ret = true;
 		if (registro == null) {
