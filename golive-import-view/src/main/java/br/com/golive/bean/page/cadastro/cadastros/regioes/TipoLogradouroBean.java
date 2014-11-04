@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.tiposlogradouro.model.TiposLogradouroModel;
+import br.com.golive.entity.empresas.regioes.tipologradouro.model.TipoLogradouroModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroTiposLogradouro")
 @ManagedBean
 @ViewScoped
-public class TiposLogradouroBean extends CadastroBeanRules<TiposLogradouroModel> {
+public class TipoLogradouroBean extends CadastroBeanRules<TipoLogradouroModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class TiposLogradouroBean extends CadastroBeanRules<TiposLogradouroModel>
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<TiposLogradouroModel> criarLista() {
-		final List<TiposLogradouroModel> lista = new ArrayList<TiposLogradouroModel>();
+	private List<TipoLogradouroModel> criarLista() {
+		final List<TipoLogradouroModel> lista = new ArrayList<TipoLogradouroModel>();
 		
 		for (Integer i = 0; i <= 10; i ++){
-			lista.add(new TiposLogradouroModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "ALM", "Alameda"));
+			lista.add(new TipoLogradouroModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "ALM", "Alameda"));
 		}
 		
 		return lista;

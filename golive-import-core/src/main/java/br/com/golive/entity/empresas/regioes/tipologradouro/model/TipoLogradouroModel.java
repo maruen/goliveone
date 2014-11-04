@@ -1,4 +1,4 @@
-package br.com.golive.entity.empresas.regioes.tiposlogradouro.model;
+package br.com.golive.entity.empresas.regioes.tipologradouro.model;
 
 import java.util.Calendar;
 
@@ -8,19 +8,19 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "TiposLogradouro",
 		nomeDoArquivoGerado = "TiposLogradouro",
 		nomeArquivoJasper = "TiposLogradouro")
-public class TiposLogradouroModel extends Model {
+public class TipoLogradouroModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 
 	private String abreviacao;
 	private String tipoLogradouro;
 	
-	public TiposLogradouroModel(){
+	public TipoLogradouroModel(){
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public TiposLogradouroModel(Long id, 
+	public TipoLogradouroModel(Long id, 
 								Calendar dataInclusao, 
 								Calendar dataAlteracao,
 								String abreviacao, 

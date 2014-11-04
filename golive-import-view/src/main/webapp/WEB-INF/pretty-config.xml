@@ -349,9 +349,9 @@
 		</url-mapping>
 	
 		
-		<url-mapping id="cadastrosCadastrosRegioesTiposLogradouro">
-			<pattern value="/Cadastros/Cadastros/Regioes/TiposLogradouro" />
-			<view-id value="/pages/cadastros/cadastros/regioes/tiposLogradouro.jsf" />
+		<url-mapping id="cadastrosCadastrosRegioesTipoLogradouro">
+			<pattern value="/Cadastros/Cadastros/Regioes/TipoLogradouro" />
+			<view-id value="/pages/cadastros/cadastros/regioes/tipoLogradouro.jsf" />
 		</url-mapping>
 	
 		
