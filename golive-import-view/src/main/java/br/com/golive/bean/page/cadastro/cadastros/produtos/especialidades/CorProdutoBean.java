@@ -194,6 +194,38 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	public void incluir() {
 		super.incluir();
 		registro = new CorProdutoModel();
+		departamentos = departamentoService.listarTodos();
+		subGrupoProdutoList = subGrupoProdutoService.listarPorFiltro();
+		colecoesList = colecaoService.listarTodos();
+	}
+
+	public void carregarGrupoProdutoPorDepartamento() {
+		grupoProdutoList = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
+		if (grupoProdutoList.isEmpty()) {
+			registro.setGrupoProdutoSelected(null);
+		} else {
+			boolean contem = false;
+			for (final GrupoProdutosModel grupo : grupoProdutoList) {
+				if (!contem) {
+					if (registro.getGrupoProdutoSelected() != null) {
+						if (grupo.getId().equals(registro.getGrupoProdutoSelected().getId())) {
+							contem = true;
+						}
+					}
+				}
+			}
+			if (!contem) {
+				registro.setGrupoProdutoSelected(null);
+			}
+		}
+	}
+
+	public void carregarSubGrupoPorGrupo() {
+
+	}
+
+	public void carregarColecoesPorGrupo() {
+
 	}
 
 	@Override

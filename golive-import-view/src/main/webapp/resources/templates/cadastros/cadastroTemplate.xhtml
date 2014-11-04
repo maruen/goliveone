@@ -20,6 +20,15 @@
 				   resizeTable([{name:'width', value:table.clientWidth}]);
 			    }
 			}
+			
+			$(document).ready(function(){
+				var toolBar = document.getElementById("opcoesDiv");
+				if(toolBar.clientHeight == 0){
+					showMenuBar(500, 500)
+				}
+			});
+
+			
 	</script>
 
 	</ui:define>
@@ -47,10 +56,7 @@
 
 				<h:panelGroup id="conteudoGroup"
 					rendered="#{((bean.fluxo == bean.fluxoListagem) or (bean.fluxo == bean.fluxoExclusao))}">
-
 					<ui:insert name="conteudo" />
-
-
 				</h:panelGroup>
 
 				<h:panelGroup id="edicaoGroup"

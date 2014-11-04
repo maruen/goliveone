@@ -25,7 +25,6 @@ import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
 import br.com.golive.service.SubGrupoProdutoService;
 import br.com.golive.utils.GoliveOneProperties;
-import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
@@ -160,18 +159,20 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	public void carregarGrupoProdutoPorDepartamento() {
 		grupoProdutoList = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
 		if (grupoProdutoList.isEmpty()) {
-			JSFUtils.warnMessage(usuario.getLabels().getField("title.msg.list.vazia"), usuario.getLabels().getField("msg.grupoProdutoDepartamento.vazio"));
+			registro.setGrupoProdutoSelected(null);
 		} else {
 			boolean contem = false;
 			for (final GrupoProdutosModel grupo : grupoProdutoList) {
 				if (!contem) {
-					if (grupo.getDepartamentoModel().getId().equals(registro.getDepartamentoSelected().getId())) {
-						contem = true;
+					if (registro.getGrupoProdutoSelected() != null) {
+						if (grupo.getId().equals(registro.getGrupoProdutoSelected().getId())) {
+							contem = true;
+						}
 					}
 				}
 			}
 			if (!contem) {
-				registro.setGrupoProdutoSelected(new GrupoProdutosModel());
+				registro.setGrupoProdutoSelected(null);
 			}
 		}
 	}

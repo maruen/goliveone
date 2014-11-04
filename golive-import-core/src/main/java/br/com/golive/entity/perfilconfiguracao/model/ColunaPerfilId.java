@@ -6,9 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
-import lombok.Data;
-
-@Data
 @Embeddable
 public class ColunaPerfilId implements Serializable {
 
@@ -91,6 +88,38 @@ public class ColunaPerfilId implements Serializable {
 			return false;
 		}
 		return true;
+	}
+
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(final Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public String getTabela() {
+		return tabela;
+	}
+
+	public void setTabela(final String tabela) {
+		this.tabela = tabela;
+	}
+
+	public String getColuna() {
+		return coluna;
+	}
+
+	public void setColuna(final String coluna) {
+		this.coluna = coluna;
+	}
+
+	public String getManagedBeanName() {
+		return managedBeanName;
+	}
+
+	public void setManagedBeanName(final String managedBeanName) {
+		this.managedBeanName = managedBeanName;
 	}
 
 }
