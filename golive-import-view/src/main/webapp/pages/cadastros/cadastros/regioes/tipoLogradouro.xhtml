@@ -7,10 +7,10 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{regioesBean}" />
+	<ui:param name="bean" value="#{tipoLogradouroBean}" />
 
 	<ui:define name="css">
-		<h:outputStylesheet name="css/cadastros/style_regioes.css" />
+		<h:outputStylesheet name="css/cadastros/style_tiposlogradouro.css" />
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{regioesBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{regioesBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroTiposLogradouro.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,27 +34,33 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column 
-				headerText="Data Inclusão"
-				styleClass="percentual-10 singleLine">				
+				headerText="#{managerBean.get('label.cadastroTiposLogradouro.dataInclusao')}"
+				styleClass="percentual-10 singleLine text-align-right">				
 				<h:outputText value="25/08/2014 20:24" />
 			</p:column>
 
 			<p:column
-				headerText="Data Alteração"
-				styleClass="percentual-10 singleLine">
+				headerText="#{managerBean.get('label.cadastroTiposLogradouro.dataAlteracao')}"
+				styleClass="percentual-10 singleLine text-align-right">
 				<h:outputText value="25/08/2014 20:47" />
 			</p:column>
 
 			<p:column
-				headerText="Id"
-				styleClass="percentual-10">
+				headerText="#{managerBean.get('label.cadastroTiposLogradouro.id')}"
+				styleClass="percentual-10 text-align-center">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Região"
-				styleClass="percentual-10 singleLine">				
-				<h:outputText value="Região Sudeste" />
+				headerText="#{managerBean.get('label.cadastroTiposLogradouro.abreviacao')}"
+				styleClass="percentual-10 singleLine text-align-left">				
+				<h:outputText value="ALM" />
+			</p:column>
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroTiposLogradouro.tipoLogradouro')}"
+				styleClass="percentual-10 singleLine text-align-left">				
+				<h:outputText value="Alameda" />
 			</p:column>
 
 		</p:dataTable>
@@ -63,11 +69,11 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/regioes/dadosGeraisRegioes.xhtml">
-			<ui:param name="pojo" value="#{regioesBean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/regioes/dadosGeraisTiposLogradouro.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{regioesBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>

@@ -167,7 +167,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 	private void obterSubGrupos() {
 		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
-		if (departamentos.isEmpty()) {
+		if (subGrupos.isEmpty()) {
 			listaVaziaMessage("msg.lista.subgrupo.vazia");
 		}
 	}

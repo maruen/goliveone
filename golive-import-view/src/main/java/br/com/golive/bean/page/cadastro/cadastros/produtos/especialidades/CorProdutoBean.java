@@ -253,6 +253,8 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 			registro.setGrupoProdutoSelected(null);
 			registro.setSubGrupoProdutoSelected(null);
 			registro.setColecaoSelected(null);
+			subGrupoProdutoList = null;
+			colecoesList = null;
 		}
 	}
 
@@ -271,6 +273,7 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 		if (!contem) {
 			registro.setSubGrupoProdutoSelected(null);
 			registro.setColecaoSelected(null);
+			colecoesList = null;
 		}
 	}
 

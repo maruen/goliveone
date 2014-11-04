@@ -1,4 +1,4 @@
-package br.com.golive.entity.empresa.model;
+package br.com.golive.entity.empresa.empresa.model;
 
 import java.util.Calendar;
 

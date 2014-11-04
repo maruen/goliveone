@@ -7,7 +7,7 @@
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{municipiosBean}" />
+	<ui:param name="bean" value="#{municipioBean}" />
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_municipios.css" />
@@ -18,14 +18,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{municipiosBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{municipiosBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="Não há Registros"
+			emptyMessage="#{managerBean.get('label.cadastroMunicipios.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"  update="conteudoTable" />
@@ -34,56 +34,56 @@
 			<p:column selectionMode="single" style="width:16px;text-align:center" />
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroMunicipios.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column 
-				headerText="Cód.Município IBGE"
+				headerText="#{managerBean.get('label.cadastroMunicipios.codMunicipioIbge')}"
 				styleClass="percentual-10 singleLine">				
 				<h:outputText value="3550308" />
 			</p:column>
 
 			<p:column
-				headerText="Município"
+				headerText="#{managerBean.get('label.cadastroMunicipios.municipio')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="São Paulo">
 				</h:outputText>
 			</p:column>
 
 			<p:column 
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroMunicipios.id')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="0000000010" />
 			</p:column>
 
 			<p:column
-				headerText="País"
+				headerText="#{managerBean.get('label.cadastroMunicipios.pais')}"
 				styleClass="percentual-10">
 				<h:outputText value="Brasil" />
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroMunicipios.id')}"
 				styleClass="percentual-10">
 				<h:outputText value="0000000001" />
 			</p:column>
 
 			<p:column
-				headerText="Cód.Estado IBGE"
+				headerText="#{managerBean.get('label.cadastroMunicipios.codEstadoIbge')}"
 				styleClass="percentual-10">
 				<h:outputText value="35" />
 			</p:column>
 
 			<p:column
-				headerText="Estado"
+				headerText="#{managerBean.get('label.cadastroMunicipios.estado')}"
 				styleClass="percentual-10">
 				<h:outputText value="SP" />
 			</p:column>
 
 			<p:column
-				headerText="Região"
+				headerText="#{managerBean.get('label.cadastroMunicipios.regiao')}"
 				styleClass="percentual-10">
 				<h:outputText value="Região Sudeste" />
 			</p:column>
@@ -95,19 +95,19 @@
 	<ui:define name="edicao">
 
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/dadosGeraisMunicipios.xhtml">
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/paisMunicipios.xhtml">
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/estadoMunicipios.xhtml">
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/cadastros/regioes/regiaoMunicipios.xhtml">
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{municipiosBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
 	</ui:define>

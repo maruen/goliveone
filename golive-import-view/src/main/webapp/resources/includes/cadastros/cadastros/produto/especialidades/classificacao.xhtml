@@ -102,7 +102,7 @@
 
 			<p:ajax event="rowSelect"
 				listener="#{corProdutoBean.carregarGrupoProdutoPorDepartamento()}"
-				update=":conteudoForm:mensagens, :conteudoForm:dadosGeraisSubGrupoProdutos, :conteudoForm:grupoProdutosDatatableId, :conteudoForm:subGrupoProdutosDatatableId, :conteudoForm:grupoProduto"
+				update=":conteudoForm:mensagens, :conteudoForm:dadosGeraisSubGrupoProdutos, :conteudoForm:grupoProdutosDatatableId, :conteudoForm:subGrupoProdutosDatatableId, :conteudoForm:grupoProduto, :conteudoForm:colecoesInputText, :conteudoForm:especificidadesdInputText, :conteudoForm:especificidadesDatatableId"
 				oncomplete="PF('dlgDepartamento').hide();" />
 
 			<p:column filterMatchMode="contains" filterBy="#{departamento.id}"
@@ -137,7 +137,7 @@
 
 			<p:ajax event="rowSelect"
 				listener="#{corProdutoBean.carregarSubGrupoPorGrupo()}"
-				update=":conteudoForm:mensagens, :conteudoForm:dadosGeraisSubGrupoProdutos, :conteudoForm:subGrupoProdutosDatatableId, :conteudoForm:subGrupoProduto"
+				update=":conteudoForm:mensagens, :conteudoForm:dadosGeraisSubGrupoProdutos, :conteudoForm:subGrupoProdutosDatatableId, :conteudoForm:subGrupoProduto, :conteudoForm:colecoesInputText, :conteudoForm:especificidadesdInputText, :conteudoForm:especificidadesDatatableId"
 				oncomplete="PF('dlgGrupoProdutos').hide();" />
 
 			<p:column filterMatchMode="contains" filterBy="#{grupoProduto.id}"
@@ -169,7 +169,7 @@
 
 			<p:ajax event="rowSelect"
 				listener="#{corProdutoBean.carregarColecoesPorSubGrupo()}"
-				update=":conteudoForm:mensagens, :conteudoForm:dadosGeraisSubGrupoProdutos, :conteudoForm:especificidadesDatatableId"
+				update=":conteudoForm:mensagens, :conteudoForm:dadosGeraisSubGrupoProdutos, :conteudoForm:especificidadesDatatableId, :conteudoForm:colecoesInputText, :conteudoForm:especificidadesdInputText, :conteudoForm:especificidadesDatatableId"
 				oncomplete="PF('dlgSubGrupoProduto').hide();" />
 
 

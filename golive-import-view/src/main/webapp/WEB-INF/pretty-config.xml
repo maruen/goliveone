@@ -37,11 +37,6 @@
 			<view-id value="/pages/cadastros/cadastros/clientes.jsf" />
 		</url-mapping>
 		
-		<url-mapping id="cadastrosCadastrosEmpresa">
-			<pattern value="/Cadastros/Cadastros/Empresa" />
-			<view-id value="/pages/cadastros/cadastros/empresa.jsf" />
-		</url-mapping>
-		
 		<url-mapping id="cadastrosCadastrosDepartamentos">
 			<pattern value="/Cadastros/Cadastros/Departamentos" />
 			<view-id value="/pages/cadastros/cadastros/departamentos.jsf" />
@@ -80,6 +75,11 @@
 		<url-mapping id="cadastrosCadastrosEmpresasCargos">
 			<pattern value="/Cadastros/Cadastros/Empresas/Cargos" />
 			<view-id value="/pages/cadastros/cadastros/empresas/cargos.jsf" />
+		</url-mapping>
+		
+		<url-mapping id="cadastrosCadastrosEmpresasEmpresa">
+			<pattern value="/Cadastros/Cadastros/Empresas/Empresa" />
+			<view-id value="/pages/cadastros/cadastros/empresas/empresa.jsf" />
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosEmpresasCategoriasNaturezasJuridicas">
@@ -294,8 +294,8 @@
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosRegioesMunicipio">
-			<pattern value="/Cadastros/Cadastros/Regioes/Municipios" />
-			<view-id value="/pages/cadastros/cadastros/regioes/municipios.jsf" />
+			<pattern value="/Cadastros/Cadastros/Regioes/Municipio" />
+			<view-id value="/pages/cadastros/cadastros/regioes/municipio.jsf" />
 		</url-mapping>
 	
 		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoInternet">
@@ -343,15 +343,15 @@
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisBacen.jsf" />
 		</url-mapping>
 		
-		<url-mapping id="cadastrosCadastrosRegioesRegioes">
-			<pattern value="/Cadastros/Cadastros/Regioes/Regioes" />
-			<view-id value="/pages/cadastros/cadastros/regioes/regioes.jsf" />
+		<url-mapping id="cadastrosCadastrosRegioesRegiao">
+			<pattern value="/Cadastros/Cadastros/Regioes/Regiao" />
+			<view-id value="/pages/cadastros/cadastros/regioes/regiao.jsf" />
 		</url-mapping>
 	
 		
-		<url-mapping id="cadastrosCadastrosRegioesTiposLogradouro">
-			<pattern value="/Cadastros/Cadastros/Regioes/TiposLogradouro" />
-			<view-id value="/pages/cadastros/cadastros/regioes/tiposLogradouro.jsf" />
+		<url-mapping id="cadastrosCadastrosRegioesTipoLogradouro">
+			<pattern value="/Cadastros/Cadastros/Regioes/TipoLogradouro" />
+			<view-id value="/pages/cadastros/cadastros/regioes/tipoLogradouro.jsf" />
 		</url-mapping>
 	
 		

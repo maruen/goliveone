@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroTiposLogradouro.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroTiposLogradouro.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -31,19 +31,19 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroTiposLogradouro.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroTiposLogradouro.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroTiposLogradouro.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="abrevicaoOutputText" 
-      					  value="Abreviação" 
+      					  value="#{managerBean.get('label.cadastroTiposLogradouro.abreviacao')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="abreviacaoInputText"
       					 required="true"
@@ -52,14 +52,14 @@
       					 value="ALM" />		
         		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroTiposLogradouro.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroTiposLogradouro.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 
 	 					 disabled="true" />  
 
       		<h:outputText id="tipoLogradouroOutputText" 
-      					  value="Tipo do Logradouro" 
+      					  value="#{managerBean.get('label.cadastroTiposLogradouro.tipoDoLogradouro')}" 
       					  styleClass="singleLine" />
       		<p:inputText id="tipoLogradouroInputText"
       					 required="true"
