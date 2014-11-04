@@ -67,4 +67,10 @@ public class ColecoesServiceImpl implements ColecoesService {
 		return colecoesJPA.listarTodos();
 	}
 
+	@Override
+	public void discardChanges(ColecoesModel model) {
+		colecoesJPA.refresh(model);
+		
+	}
+
 }

@@ -5,7 +5,9 @@ import static org.hibernate.FetchMode.EAGER;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
+import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.jpa.JpaGoLive;
 
@@ -19,6 +21,12 @@ public class SubGrupoProdutoJPA extends JpaGoLive<SubGrupoProdutoModel, Long> {
 		return extractListByCriteria(criteria);
 	}
 	
-	
+	@SuppressWarnings("deprecation")
+	public List<SubGrupoProdutoModel> obterListaPorGrupo(GrupoProdutosModel grupo) {
+		final Criteria criteria = createNativeCriteria();
+		criteria.add(Restrictions.eq("grupoProdutoSelected", grupo));
+		criteria.setFetchMode("grupoProdutoSelected", EAGER);
+		return extractListByCriteria(criteria);
+	}
 	
 }

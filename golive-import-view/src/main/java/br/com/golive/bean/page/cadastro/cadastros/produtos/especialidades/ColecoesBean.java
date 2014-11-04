@@ -196,11 +196,10 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 				registro.setGrupoProdutoSelected(new GrupoProdutosModel());
 			}
 		}
-		carregarSubGrupoProdutoPorGrupo();
 	}
 	
 	public void carregarSubGrupoProdutoPorGrupo() {
-		subGrupos = subGrupoProdutoService.listarTodos(); 
+		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected()); 
 	}
 	
 	
@@ -411,5 +410,12 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void setColecoesService(final ColecoesService colecoesService) {
 		this.colecoesService = colecoesService;
 	}
+	
+	@Override
+	public void cancelar() {
+		colecoesService.discardChanges(this.registro);
+		super.cancelar();
+	}
+	
 
 }

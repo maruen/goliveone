@@ -20,7 +20,6 @@ import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "tbColecoesProduto")
 @Jasper(titulo = "Colecoes", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Colecoes")

@@ -366,6 +366,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	public void cancelar() {
+		
 		fluxo = getFluxoListagem();
 		if (registro == null) {
 			getLogger().info("Cancelando inclusao de registro");

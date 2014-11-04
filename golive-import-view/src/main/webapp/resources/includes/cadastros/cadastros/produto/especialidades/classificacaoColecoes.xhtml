@@ -16,10 +16,13 @@
 			</h:commandLink>
 		</f:facet>
 
-		<h:panelGrid columns="5" cellpadding="3" cellspacing="3"
-			id="panelGrid"
-			columnClasses="percentual-5, percentual-10, percentual-5, percentual-68"
-			width="100%" border="0">
+		<h:panelGrid columns="5"
+					 cellpadding="3"
+					 cellspacing="3"
+					 id="panelGrid"
+					 columnClasses="percentual-5, percentual-10, percentual-5, percentual-68"
+					 width="100%"
+					 border="0">
 
 			<h:outputText id="departamentoIdOutputText" value="#{managerBean.get('label.cadastroColecoes.id')}" />
 			<h:inputText id="departamentoIdInputText" value="#{pojo.departamentoSelected.id}" style="width: 125px;" disabled="true" />
@@ -45,13 +48,19 @@
 			<h:outputText id="subGrupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}" styleClass="singleLine" />
 			<h:inputText id="subGrupoProdutosNomeInputText" style="width: 95%" value="#{pojo.subGrupoProdutoSelected.subGrupoProduto}" disabled="true" />
 
-			<p:commandLink onclick="PF('dlgSubGrupProdutos').show();" immediate="true">
+			<p:commandLink id="linkSubGrupoProdutos" onclick="PF('dlgSubGrupProdutos').show();" disable="#{pojo.grupoProdutoSelected == null}"  immediate="true">
 				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 			</p:commandLink>
 
 		</h:panelGrid>
 
 	</p:panel>
+
+
+
+
+
+
 
 	<p:dialog
 		header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaDepartamento')}"
@@ -95,6 +104,15 @@
 		</p:dataTable>
 	</p:dialog>
 
+
+
+
+
+
+
+
+
+
  	<p:dialog
 		header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaGrupoProdutos')}"
 		widgetVar="dlgGrupoProdutos"
@@ -112,9 +130,14 @@
 				     value="#{bean.grupos}"> 
 			
 			<p:ajax event="rowSelect" 
+					listener="#{bean.carregarSubGrupoProdutoPorGrupo()}"
 					oncomplete="PF('dlgGrupoProdutos').hide();"
-					update=":conteudoForm:grupoProdutosIdInputText,
-						    :conteudoForm:grupoProdutosNomeInputText"  />
+					update=":conteudoForm:grupoProdutosNomeInputText,
+							:conteudoForm:grupoProdutosIdInputText,
+							:conteudoForm:subGrupoProdutosIdInputText,
+							:conteudoForm:subGrupoProdutosNomeInputText,
+							:conteudoForm:linkSubGrupoProdutos,
+							:conteudoForm:subGrupoProdutosDatatableId"  />
 			
 			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
 					  styleClass="percentual-10 singleLine"
@@ -134,6 +157,10 @@
 
 		</p:dataTable>
 	</p:dialog>
+	
+	
+	
+	
 	
 	
 

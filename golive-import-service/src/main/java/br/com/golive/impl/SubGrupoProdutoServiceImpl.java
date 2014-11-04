@@ -16,6 +16,7 @@ import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
+import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.entity.subgrupoprodutos.repository.SubGrupoProdutoJPA;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
@@ -81,4 +82,10 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 		return auditoriaJPA.getUsuarioLog(model.getId(), model.getClass());
 	}
 
+	@Override
+	public List<SubGrupoProdutoModel> obterSubGrupoProdutoPorGrupo(	GrupoProdutosModel model) {
+		logger.info("obterSubGrupoProdutoPorGrupo: [GrupoProdutosModel Id:" + model.getId());
+		return subGrupoProdutoJPA.obterListaPorGrupo(model);
+	}
+	
 }
