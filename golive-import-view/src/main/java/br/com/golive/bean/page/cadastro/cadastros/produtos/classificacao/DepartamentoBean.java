@@ -6,9 +6,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
@@ -21,8 +18,6 @@ import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.service.DepartamentoService;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroDepartamento")
@@ -71,33 +66,82 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	@Override
 	public boolean validarCampos() {
 		boolean ret = true;
-		
+
 		if (registro == null) {
-			ret =  false;
+			ret = false;
 		}
 		if ((registro.getDepartamento() == null) || (registro.getDepartamento().isEmpty())) {
-			ret =  false;
+			ret = false;
 		}
-		
-		if(!ret){
+
+		if (!ret) {
 			preencherTodosCamposMessage();
 		}
 		return true;
 	}
 
 	@Override
-	public void serviceSave(DepartamentoModel registro) {
+	public void serviceSave(final DepartamentoModel registro) {
 		departamentoService.salvar(registro);
 	}
 
 	@Override
-	public void serviceUpdate(DepartamentoModel registro) {
+	public void serviceUpdate(final DepartamentoModel registro) {
 		departamentoService.alterar(registro);
 	}
 
 	@Override
-	public void serviceRemove(DepartamentoModel registro) {
+	public void serviceRemove(final DepartamentoModel registro) {
 		departamentoService.excluir(registro);
+	}
+
+	@Override
+	public Logger getLogger() {
+		return logger;
+	}
+
+	public void setLogger(final Logger logger) {
+		this.logger = logger;
+	}
+
+	public NumberFilter getFiltroIdDepartamento() {
+		return filtroIdDepartamento;
+	}
+
+	public void setFiltroIdDepartamento(final NumberFilter filtroIdDepartamento) {
+		this.filtroIdDepartamento = filtroIdDepartamento;
+	}
+
+	public StringFilter getFiltroDepartamento() {
+		return filtroDepartamento;
+	}
+
+	public void setFiltroDepartamento(final StringFilter filtroDepartamento) {
+		this.filtroDepartamento = filtroDepartamento;
+	}
+
+	public DateFilter getFiltroDataInclusaoDepartamento() {
+		return filtroDataInclusaoDepartamento;
+	}
+
+	public void setFiltroDataInclusaoDepartamento(final DateFilter filtroDataInclusaoDepartamento) {
+		this.filtroDataInclusaoDepartamento = filtroDataInclusaoDepartamento;
+	}
+
+	public DateFilter getFiltroDataAletracaoDepartamento() {
+		return filtroDataAletracaoDepartamento;
+	}
+
+	public void setFiltroDataAletracaoDepartamento(final DateFilter filtroDataAletracaoDepartamento) {
+		this.filtroDataAletracaoDepartamento = filtroDataAletracaoDepartamento;
+	}
+
+	public DepartamentoService getDepartamentoService() {
+		return departamentoService;
+	}
+
+	public void setDepartamentoService(final DepartamentoService departamentoService) {
+		this.departamentoService = departamentoService;
 	}
 
 }

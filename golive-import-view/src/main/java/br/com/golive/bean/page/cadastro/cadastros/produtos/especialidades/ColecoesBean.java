@@ -1,15 +1,11 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import lombok.Data;
@@ -28,7 +24,6 @@ import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
-import br.com.golive.service.AuditoriaService;
 import br.com.golive.service.ColecoesService;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
@@ -162,11 +157,11 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		if (registro == null) {
 			ret = false;
 		}
-		
+
 		if ((registro.getColecao() == null) || (registro.getColecao().isEmpty())) {
-			ret =  false;
+			ret = false;
 		}
-		
+
 		if (registro.getDepartamentoSelected() == null) {
 			ret = false;
 		}
@@ -186,18 +181,211 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	}
 
 	@Override
-	public void serviceSave(ColecoesModel registro) {
+	public void serviceSave(final ColecoesModel registro) {
 		colecoesService.salvar(registro);
 	}
 
 	@Override
-	public void serviceUpdate(ColecoesModel registro) {
+	public void serviceUpdate(final ColecoesModel registro) {
 		colecoesService.update(registro);
 	}
 
 	@Override
-	public void serviceRemove(ColecoesModel registro) {
+	public void serviceRemove(final ColecoesModel registro) {
 		colecoesService.remover(registro);
+	}
+
+	@Override
+	public Logger getLogger() {
+		return logger;
+	}
+
+	public void setLogger(final Logger logger) {
+		this.logger = logger;
+	}
+
+	public NumberFilter getFiltroIdColecoes() {
+		return filtroIdColecoes;
+	}
+
+	public void setFiltroIdColecoes(final NumberFilter filtroIdColecoes) {
+		this.filtroIdColecoes = filtroIdColecoes;
+	}
+
+	public DateFilter getFiltroDataInclusaoColecao() {
+		return filtroDataInclusaoColecao;
+	}
+
+	public void setFiltroDataInclusaoColecao(final DateFilter filtroDataInclusaoColecao) {
+		this.filtroDataInclusaoColecao = filtroDataInclusaoColecao;
+	}
+
+	public DateFilter getFiltroDataAlteracaoColecao() {
+		return filtroDataAlteracaoColecao;
+	}
+
+	public void setFiltroDataAlteracaoColecao(final DateFilter filtroDataAlteracaoColecao) {
+		this.filtroDataAlteracaoColecao = filtroDataAlteracaoColecao;
+	}
+
+	public StringFilter getFiltroColecao() {
+		return filtroColecao;
+	}
+
+	public void setFiltroColecao(final StringFilter filtroColecao) {
+		this.filtroColecao = filtroColecao;
+	}
+
+	public NumberFilter getFiltroIdDepartamento() {
+		return filtroIdDepartamento;
+	}
+
+	public void setFiltroIdDepartamento(final NumberFilter filtroIdDepartamento) {
+		this.filtroIdDepartamento = filtroIdDepartamento;
+	}
+
+	public StringFilter getFiltroDepartamento() {
+		return filtroDepartamento;
+	}
+
+	public void setFiltroDepartamento(final StringFilter filtroDepartamento) {
+		this.filtroDepartamento = filtroDepartamento;
+	}
+
+	public DateFilter getFiltroDataInclusaoDepartamento() {
+		return filtroDataInclusaoDepartamento;
+	}
+
+	public void setFiltroDataInclusaoDepartamento(final DateFilter filtroDataInclusaoDepartamento) {
+		this.filtroDataInclusaoDepartamento = filtroDataInclusaoDepartamento;
+	}
+
+	public DateFilter getFiltroDataAletracaoDepartamento() {
+		return filtroDataAletracaoDepartamento;
+	}
+
+	public void setFiltroDataAletracaoDepartamento(final DateFilter filtroDataAletracaoDepartamento) {
+		this.filtroDataAletracaoDepartamento = filtroDataAletracaoDepartamento;
+	}
+
+	public NumberFilter getFiltroIdGrupoProduto() {
+		return filtroIdGrupoProduto;
+	}
+
+	public void setFiltroIdGrupoProduto(final NumberFilter filtroIdGrupoProduto) {
+		this.filtroIdGrupoProduto = filtroIdGrupoProduto;
+	}
+
+	public StringFilter getFiltroGrupoProduto() {
+		return filtroGrupoProduto;
+	}
+
+	public void setFiltroGrupoProduto(final StringFilter filtroGrupoProduto) {
+		this.filtroGrupoProduto = filtroGrupoProduto;
+	}
+
+	public DateFilter getFiltroDataInclusaoGrupoProduto() {
+		return filtroDataInclusaoGrupoProduto;
+	}
+
+	public void setFiltroDataInclusaoGrupoProduto(final DateFilter filtroDataInclusaoGrupoProduto) {
+		this.filtroDataInclusaoGrupoProduto = filtroDataInclusaoGrupoProduto;
+	}
+
+	public DateFilter getFiltroDataAletracaoGrupoProduto() {
+		return filtroDataAletracaoGrupoProduto;
+	}
+
+	public void setFiltroDataAletracaoGrupoProduto(final DateFilter filtroDataAletracaoGrupoProduto) {
+		this.filtroDataAletracaoGrupoProduto = filtroDataAletracaoGrupoProduto;
+	}
+
+	public NumberFilter getFiltroIdSubGrupoProduto() {
+		return filtroIdSubGrupoProduto;
+	}
+
+	public void setFiltroIdSubGrupoProduto(final NumberFilter filtroIdSubGrupoProduto) {
+		this.filtroIdSubGrupoProduto = filtroIdSubGrupoProduto;
+	}
+
+	public StringFilter getFiltroSubGrupoProduto() {
+		return filtroSubGrupoProduto;
+	}
+
+	public void setFiltroSubGrupoProduto(final StringFilter filtroSubGrupoProduto) {
+		this.filtroSubGrupoProduto = filtroSubGrupoProduto;
+	}
+
+	public DateFilter getFiltroDataInclusaoSubGrupoProduto() {
+		return filtroDataInclusaoSubGrupoProduto;
+	}
+
+	public void setFiltroDataInclusaoSubGrupoProduto(final DateFilter filtroDataInclusaoSubGrupoProduto) {
+		this.filtroDataInclusaoSubGrupoProduto = filtroDataInclusaoSubGrupoProduto;
+	}
+
+	public DateFilter getFiltroDataAletracaoSubGrupoProduto() {
+		return filtroDataAletracaoSubGrupoProduto;
+	}
+
+	public void setFiltroDataAletracaoSubGrupoProduto(final DateFilter filtroDataAletracaoSubGrupoProduto) {
+		this.filtroDataAletracaoSubGrupoProduto = filtroDataAletracaoSubGrupoProduto;
+	}
+
+	public List<DepartamentoModel> getDepartamentos() {
+		return departamentos;
+	}
+
+	public void setDepartamentos(final List<DepartamentoModel> departamentos) {
+		this.departamentos = departamentos;
+	}
+
+	public List<GrupoProdutosModel> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(final List<GrupoProdutosModel> grupos) {
+		this.grupos = grupos;
+	}
+
+	public List<SubGrupoProdutoModel> getSubGrupos() {
+		return subGrupos;
+	}
+
+	public void setSubGrupos(final List<SubGrupoProdutoModel> subGrupos) {
+		this.subGrupos = subGrupos;
+	}
+
+	public DepartamentoService getDepartamentoService() {
+		return departamentoService;
+	}
+
+	public void setDepartamentoService(final DepartamentoService departamentoService) {
+		this.departamentoService = departamentoService;
+	}
+
+	public GrupoProdutoService getGrupoProdutoService() {
+		return grupoProdutoService;
+	}
+
+	public void setGrupoProdutoService(final GrupoProdutoService grupoProdutoService) {
+		this.grupoProdutoService = grupoProdutoService;
+	}
+
+	public SubGrupoProdutoService getSubGrupoProdutoService() {
+		return subGrupoProdutoService;
+	}
+
+	public void setSubGrupoProdutoService(final SubGrupoProdutoService subGrupoProdutoService) {
+		this.subGrupoProdutoService = subGrupoProdutoService;
+	}
+
+	public ColecoesService getColecoesService() {
+		return colecoesService;
+	}
+
+	public void setColecoesService(final ColecoesService colecoesService) {
+		this.colecoesService = colecoesService;
 	}
 
 }

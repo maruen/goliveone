@@ -15,8 +15,7 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.Model;
-import br.com.golive.entity.grupoprodutodepartamento.model.GrupoProdutoDepartamento;
-import br.com.golive.entity.grupoprodutodepartamento.repositorio.GrupoProdutoDepartamentoJPA;
+import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.grupoprodutos.repositorio.GrupoProdutoJPA;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
@@ -32,9 +31,6 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	@Inject
 	private GrupoProdutoJPA grupoProdutoJPA;
 
-	@Inject
-	private GrupoProdutoDepartamentoJPA grupoProdutoDepartamentoJPA;
-
 	@Override
 	public List<GrupoProdutosModel> obterGrupoProdutos() {
 		logger.info("Obtendo lista de grupos de produto");
@@ -45,12 +41,6 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	public GrupoProdutosModel obterGrupoProdutoAtual(final Model model) {
 		logger.info("Obtendo objeto atual de grupos de produto");
 		return grupoProdutoJPA.findByIdWithLazys(model.getId(), "auditoriaLogs", "departamentoModel");
-	}
-
-	@Override
-	public List<GrupoProdutoDepartamento> obterGrupoProdutoDepartamentos() {
-		logger.info("Obtendo lista de grupos departamento");
-		return grupoProdutoDepartamentoJPA.obterLista();
 	}
 
 	@Override
@@ -78,6 +68,12 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	public void delete(final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Excluindo grupo produto = {}", grupoProdutosModel.getId());
 		grupoProdutoJPA.removeModel(grupoProdutosModel);
+	}
+
+	@Override
+	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamento(final DepartamentoModel departamentoModel) {
+		logger.info("Obtendo Grupo de produtos por departamento = {}", departamentoModel.getId());
+		return grupoProdutoJPA.obterListaPorDepartamento(departamentoModel);
 	}
 
 }
