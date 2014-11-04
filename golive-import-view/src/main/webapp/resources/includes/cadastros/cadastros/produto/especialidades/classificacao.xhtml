@@ -105,7 +105,7 @@
 				update=":conteudoForm:mensagens, :conteudoForm:dadosGeraisSubGrupoProdutos, :conteudoForm:grupoProdutosDatatableId, :conteudoForm:subGrupoProdutosDatatableId, :conteudoForm:grupoProduto"
 				oncomplete="PF('dlgDepartamento').hide();" />
 
-			<p:column filterMatchMode="exact" filterBy="#{departamento.id}"
+			<p:column filterMatchMode="contains" filterBy="#{departamento.id}"
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
 				styleClass="percentual-5 singleLine">
 				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
@@ -140,7 +140,7 @@
 				update=":conteudoForm:mensagens, :conteudoForm:dadosGeraisSubGrupoProdutos, :conteudoForm:subGrupoProdutosDatatableId, :conteudoForm:subGrupoProduto"
 				oncomplete="PF('dlgGrupoProdutos').hide();" />
 
-			<p:column filterMatchMode="exact" filterBy="#{grupoProduto.id}"
+			<p:column filterMatchMode="contains" filterBy="#{grupoProduto.id}"
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="#{grupoProduto.id}" styleClass="floatRight" />
@@ -174,7 +174,7 @@
 
 
 			<p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
-				filterMatchMode="exact" filterBy="#{subGrupoProduto.id}"
+				filterMatchMode="contains" filterBy="#{subGrupoProduto.id}"
 				styleClass="percentual-5 singleLine">
 				<h:outputText value="#{subGrupoProduto.id}" styleClass="floatRight" />
 			</p:column>

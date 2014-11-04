@@ -92,7 +92,7 @@
 			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
 					  styleClass="percentual-5 singleLine"
 					  filterBy="#{departamento.id}"
-					  filterMatchMode="exact">
+					  filterMatchMode="contains">
 				
 				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
 			
@@ -148,7 +148,7 @@
 			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
 					  styleClass="percentual-10 singleLine"
 					  filterBy="#{grupoProduto.id}"
-					  filterMatchMode="exact">
+					  filterMatchMode="contains">
 				
 				<h:outputText value="#{grupoProduto.id}" styleClass="floatRight" />
 			</p:column>
@@ -186,7 +186,7 @@
 					update=":conteudoForm:mensagens, :conteudoForm:subGrupoProdutosIdInputText,
 						    :conteudoForm:subGrupoProdutosNomeInputText" />
 
-			<p:column filterMatchMode="exact" filterBy="#{subGrupoProdutosDatatableVar.id}"
+			<p:column filterMatchMode="contains" filterBy="#{subGrupoProdutosDatatableVar.id}"
 				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="#{subGrupoProdutosDatatableVar.id}"
