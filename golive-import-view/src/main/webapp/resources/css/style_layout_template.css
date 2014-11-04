@@ -244,3 +244,10 @@ html,body {
 	width: 0px;
 	height: 0px;
 }
+
+.ui-growl-item-container {
+	position: relative !IMPORTANT;
+	margin: 0 0 10px 0 !IMPORTANT;
+	opacity: 1 !IMPORTANT;
+}
+

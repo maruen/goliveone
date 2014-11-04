@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroPaises.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroPaises.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -34,7 +34,7 @@
           				 
           		<h:column>     
 					<h:outputText id="idOutputText"
-								  value="Id"   />
+								  value="#{managerBean.get('label.cadastroPaises.id')}"   />
 				</h:column>
 				
 				<h:column>
@@ -45,7 +45,7 @@
 		        
 		        <h:column>
 					<h:outputText id="paisPortuguesOutputText"
-								  value="País em Português" 
+								  value="#{managerBean.get('label.cadastroPaises.paisEmPortugues')}" 
 								  styleClass="singleLine"  />
 				</h:column>	
 				
@@ -58,7 +58,7 @@
 
 				<h:column>
 		      		<h:outputText id="dataInclusaoOutputText" 
-		      					  value="#{userBean.properties.getField('label.cadastroPaises.inclusao')}" />
+		      					  value="#{managerBean.get('label.cadastroPaises.inclusao')}" />
 		      	</h:column>
 		      	
 		      	<h:column>
@@ -69,7 +69,7 @@
 			 	
 			 	<h:column>			  
 		      		<h:outputText id="bandeiraOutputText" 
-		      					  value="Bandeira" 
+		      					  value="#{managerBean.get('label.cadastroPaises.bandeira')}" 
 		      					  styleClass="singleLine" />
 		      	</h:column>
 		      	
@@ -78,7 +78,7 @@
 	  					value="/resources/images/stylistica-icons-set/24x24/afeganistao.png"
 	  					styleClass="image floatLeft" />
 	  				
-					<h:commandLink actionListener="#{paisesBean.salvarBandeira()}" id="salvarBandeira"
+					<h:commandLink actionListener="#{bean.salvarBandeira()}" id="salvarBandeira"
 						styleClass="linkButton">
 						<h:graphicImage
 							value="/resources/images/stylistica-icons-set/24x24/plus.png"
@@ -88,7 +88,7 @@
 		      	
 		      	<h:column>
 					<h:outputText id="paisInglesOutputText"
-								  value="País em Inglês"  
+								  value="#{managerBean.get('label.cadastroPaises.paisEmIngles')}"  
 								  styleClass="singleLine" />
 		      	</h:column>
 		      	
@@ -101,7 +101,7 @@
 		      	
 		      	<h:column>		        		
 		       		<h:outputText id="ultimaAlteracaoOutputText"
-		       					  value="#{userBean.properties.getField('label.cadastroPaises.ultimaAlteracao')}"
+		       					  value="#{managerBean.get('label.cadastroPaises.ultimaAlteracao')}"
 		       					  styleClass="singleLine"/>
 		       	</h:column>
 		       	
@@ -116,7 +116,7 @@
 			 	
 			 	<h:column>			 					 
 					<h:outputText id="paisNativoOutputText"
-								  value="País em Nativo"
+								  value="#{managerBean.get('label.cadastroPaises.paisEmNativo')}"
 								  styleClass="singleLine"/>
 				</h:column>
 				

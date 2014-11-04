@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.regioes.paises;
+package br.com.golive.bean.page.cadastro.cadastros.regioes;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.paises.paisesbacen.model.PaisesBacenModel;
+import br.com.golive.entity.empresas.regioes.estado.model.EstadoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastroPaisesBacen")
+@Label(name = "label.cadastroEstados")
 @ManagedBean
 @ViewScoped
-public class PaisesBacenBean extends CadastroBeanRules<PaisesBacenModel> {
+public class EstadoBean extends CadastroBeanRules<EstadoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,13 +39,13 @@ public class PaisesBacenBean extends CadastroBeanRules<PaisesBacenModel> {
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<PaisesBacenModel> criarLista() {
-		final List<PaisesBacenModel> lista = new ArrayList<PaisesBacenModel>();
+	private List<EstadoModel> criarLista() {
+		final List<EstadoModel> lista = new ArrayList<EstadoModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new PaisesBacenModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "00132", "Afeganistão", "Afghnistan", "ښبثلشدهسفګشخ"));
+			lista.add(new EstadoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), new Long(35), "SP", "São Paulo", "0000000010", "Brasil", "0000000001", "Região Sudeste"));
 		}
-		
+
 		return lista;
 	}
 
@@ -61,13 +61,13 @@ public class PaisesBacenBean extends CadastroBeanRules<PaisesBacenModel> {
 		logger.info("Salvando = {}");
 	}
 	
-	public List<Object> getAuditoriaLogs() {
-		ArrayList<Object> list = new ArrayList<Object>();
+	public List<Object> getAuditoriaLogs(){
+		ArrayList<Object> lista = new ArrayList<Object>();
 		
-		list.add(new Object());
-		list.add(new Object());
-		list.add(new Object());
-
-		return list;
+		lista.add(new Object());
+		lista.add(new Object());
+		lista.add(new Object());
+		
+		return lista;
 	}
 }

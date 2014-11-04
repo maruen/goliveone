@@ -13,12 +13,16 @@ import br.com.golive.constants.PersistenceContextEmpresa;
 import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.qualifier.DataBaseAcao;
 import br.com.golive.qualifier.DataBaseCentral;
+import br.com.golive.qualifier.DataBaseTest;
 import br.com.golive.qualifier.DataBaseTradicao;
 import br.com.golive.utils.ServiceUtils;
 
 public class EntityManagerProdutor {
 
-	private static final String UNIDADE_PERSISTENCIA_CENTRAL = "golive-one-central-PU";
+	private static final String UNIDADE_PERSISTENCIA_CENTRAL 	= "golive-one-central-PU";
+	private static final String UNIDADE_PERSISTENCIA_ACAO 		= "golive-one-acao-PU";
+	private static final String UNIDADE_PERSISTENCIA_TRADICAO	= "golive-one-tradicao-PU";
+	private static final String UNIDADE_PERSISTENCIA_TEST		= "golive-one-test-PU";
 
 	@Inject
 	@DataBaseAcao
@@ -32,6 +36,11 @@ public class EntityManagerProdutor {
 	@DataBaseCentral
 	private EntityManagerFactory central;
 
+	
+	@Inject
+	@DataBaseTest
+	private EntityManagerFactory test;
+	
 	@Inject
 	@DataBaseCentral
 	private EntityManager entityCentral;
@@ -43,6 +52,11 @@ public class EntityManagerProdutor {
 	@Inject
 	@DataBaseTradicao
 	private EntityManager entityTradicao;
+	
+	@Inject
+	@DataBaseTest
+	private EntityManager entityTest;
+	
 
 	@Produces
 	public EntityManager getEntityManager() {
@@ -53,6 +67,8 @@ public class EntityManagerProdutor {
 				return entityAcao;
 			case TRADICAO_DISTRIB:
 				return entityTradicao;
+			case TEST:
+				return entityTest;
 			default:
 				break;
 			}
@@ -85,7 +101,7 @@ public class EntityManagerProdutor {
 	@ApplicationScoped
 	@DataBaseAcao
 	public EntityManagerFactory getEntityManagerFactoryAcao() {
-		return Persistence.createEntityManagerFactory("golive-one-acao-PU");
+		return Persistence.createEntityManagerFactory(UNIDADE_PERSISTENCIA_ACAO);
 	}
 
 	@Produces
@@ -99,7 +115,22 @@ public class EntityManagerProdutor {
 	@ApplicationScoped
 	@DataBaseTradicao
 	public EntityManagerFactory getEntityManagerFactoryTradicao() {
-		return Persistence.createEntityManagerFactory("golive-one-tradicao-PU");
+		return Persistence.createEntityManagerFactory(UNIDADE_PERSISTENCIA_TRADICAO);
+	}
+	
+	
+	@Produces
+	@SessionScoped
+	@DataBaseTest
+	public EntityManager getEntityManagerTest() {
+		return tradicao.createEntityManager();
+	}
+
+	@Produces
+	@ApplicationScoped
+	@DataBaseTest
+	public EntityManagerFactory getEntityManagerFactoryTest() {
+		return Persistence.createEntityManagerFactory(UNIDADE_PERSISTENCIA_TEST);
 	}
 
 }

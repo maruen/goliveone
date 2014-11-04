@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.5.40, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.19, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: golivecentral
 -- ------------------------------------------------------
@@ -29,7 +29,7 @@ CREATE TABLE `tbDatabase` (
   `SystemChangeDateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `tbDatabase` (
 
 LOCK TABLES `tbDatabase` WRITE;
 /*!40000 ALTER TABLE `tbDatabase` DISABLE KEYS */;
-INSERT INTO `tbDatabase` VALUES (0000000001,'goliveacao','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000002,'golivetradicao','2014-10-20 00:00:00','2014-10-20 00:00:00');
+INSERT INTO `tbDatabase` VALUES (0000000001,'goliveacao','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000002,'golivetradicao','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000003,'golivetest','2014-11-03 00:00:00','2014-11-03 00:00:00');
 /*!40000 ALTER TABLE `tbDatabase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ CREATE TABLE `tbDatabaseUser` (
   `SystemChangeDateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `tbDatabaseUser` (
 
 LOCK TABLES `tbDatabaseUser` WRITE;
 /*!40000 ALTER TABLE `tbDatabaseUser` DISABLE KEYS */;
-INSERT INTO `tbDatabaseUser` VALUES (0000000001,'goliveacao','goliveacao','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000002,'golivetradicao','golivetradicao','2014-10-20 00:00:00','2014-10-20 00:00:00');
+INSERT INTO `tbDatabaseUser` VALUES (0000000001,'goliveacao','goliveacao','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000002,'golivetradicao','golivetradicao','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000003,'golivetest','golivetest','2014-11-03 00:00:00','2014-11-03 00:00:00');
 /*!40000 ALTER TABLE `tbDatabaseUser` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `tbEmpresa` (
   `SystemChangeDateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +126,7 @@ CREATE TABLE `tbEmpresa` (
 
 LOCK TABLES `tbEmpresa` WRITE;
 /*!40000 ALTER TABLE `tbEmpresa` DISABLE KEYS */;
-INSERT INTO `tbEmpresa` VALUES (0000000001,11111111111111,'Ação Persianas e Distribuidora LTDA','razaoSocialAcao','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000002,11111111111111,'Tradição Distribuidora de Persianas Ltda','razaoSocialTradicao','2014-10-20 00:00:00','2014-10-20 00:00:00');
+INSERT INTO `tbEmpresa` VALUES (0000000001,11111111111111,'Ação Persianas e Distribuidora LTDA','razaoSocialAcao','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000002,11111111111111,'Tradição Distribuidora de Persianas Ltda','razaoSocialTradicao','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000003,11111111111111,'test','test','2014-11-03 00:00:00','2014-11-03 00:00:00');
 /*!40000 ALTER TABLE `tbEmpresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +145,7 @@ CREATE TABLE `tbUsuario` (
   `SystemChangeDateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +154,7 @@ CREATE TABLE `tbUsuario` (
 
 LOCK TABLES `tbUsuario` WRITE;
 /*!40000 ALTER TABLE `tbUsuario` DISABLE KEYS */;
-INSERT INTO `tbUsuario` VALUES (0000000001,'maruen','123','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000002,'guilherme','123','2014-10-20 00:00:00','2014-10-20 00:00:00');
+INSERT INTO `tbUsuario` VALUES (0000000001,'maruen','123','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000002,'guilherme','123','2014-10-20 00:00:00','2014-10-20 00:00:00'),(0000000003,'test','test','2014-11-03 00:00:00','2014-11-03 00:00:00');
 /*!40000 ALTER TABLE `tbUsuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,11 +176,11 @@ CREATE TABLE `tbUsuario_Dependencies` (
   KEY `FK_tbDatabase_idx` (`tbDatabase_Id`),
   KEY `FK_tbDatabaseUser_idx` (`tbDatabaseUser_Id`),
   KEY `FK_tbDatabaseAddress_idx` (`tbDatabaseAddress_Id`),
-  CONSTRAINT `FK_tbUsuario` FOREIGN KEY (`tbUsuario_Id`) REFERENCES `tbUsuario` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tbEmpresa` FOREIGN KEY (`tbEmpresa_Id`) REFERENCES `tbEmpresa` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbDatabase` FOREIGN KEY (`tbDatabase_Id`) REFERENCES `tbDatabase` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_tbDatabaseAddress` FOREIGN KEY (`tbDatabaseAddress_Id`) REFERENCES `tbDatabaseAddress` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_tbDatabaseUser` FOREIGN KEY (`tbDatabaseUser_Id`) REFERENCES `tbDatabaseUser` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tbDatabaseAddress` FOREIGN KEY (`tbDatabaseAddress_Id`) REFERENCES `tbDatabaseAddress` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_tbEmpresa` FOREIGN KEY (`tbEmpresa_Id`) REFERENCES `tbEmpresa` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_tbUsuario` FOREIGN KEY (`tbUsuario_Id`) REFERENCES `tbUsuario` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -190,7 +190,7 @@ CREATE TABLE `tbUsuario_Dependencies` (
 
 LOCK TABLES `tbUsuario_Dependencies` WRITE;
 /*!40000 ALTER TABLE `tbUsuario_Dependencies` DISABLE KEYS */;
-INSERT INTO `tbUsuario_Dependencies` VALUES (0000000001,0000000001,0000000001,0000000001,0000000001),(0000000002,0000000001,0000000001,0000000001,0000000001),(0000000001,0000000002,0000000002,0000000002,0000000001),(0000000002,0000000002,0000000002,0000000002,0000000001);
+INSERT INTO `tbUsuario_Dependencies` VALUES (0000000001,0000000001,0000000001,0000000001,0000000001),(0000000002,0000000001,0000000001,0000000001,0000000001),(0000000001,0000000002,0000000002,0000000002,0000000001),(0000000002,0000000002,0000000002,0000000002,0000000001),(0000000003,0000000003,0000000001,0000000003,0000000001);
 /*!40000 ALTER TABLE `tbUsuario_Dependencies` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -203,4 +203,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-20 16:49:01
+-- Dump completed on 2014-11-03 18:03:24
