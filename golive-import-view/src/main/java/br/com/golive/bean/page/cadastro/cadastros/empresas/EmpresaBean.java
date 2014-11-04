@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros;
+package br.com.golive.bean.page.cadastro.cadastros.empresas;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresa.model.EmpresaModel;
+import br.com.golive.entity.empresa.empresa.model.EmpresaModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
@@ -78,6 +78,60 @@ public class EmpresaBean extends CadastroBeanRules<EmpresaModel> {
 
 		for (int i = 0; i < 10; i++) {
 			results.add(query + i + " - Pessoa Jurídica");
+		}
+
+		return results;
+	}
+	
+	public void excluirCnae(){
+		logger.info("Excluir CNAE");
+	}
+	
+	public void salvarCnae(){
+		logger.info("Salvar CNAE");
+	}
+	
+	public List<String> tipoLogradouroComplete(final String query) {
+		final List<String> results = new ArrayList<String>();
+
+		for (int i = 0; i < 10; i++) {
+			results.add(query + i + " - Rua");
+		}
+
+		return results;
+	}
+	
+	public void limparEntrega(){
+		logger.info("Limpar Entrega");
+	}
+	
+	public void limparCobranca(){
+		logger.info("Limpar Cobrança");
+	}
+	
+	public void excluirPessoas(){
+		logger.info("Excluir Pessoas");
+	}
+	
+	public void salvarPessoas(){
+		logger.info("Salvar Pessoas");
+	}
+	
+	public List<String> regimeApuracaoComplete(final String query) {
+		final List<String> results = new ArrayList<String>();
+
+		for (int i = 0; i < 10; i++) {
+			results.add(query + i + " - Simples Nacional");
+		}
+
+		return results;
+	}
+	
+	public List<String> partilhaSimplesNacionalComplete(final String query) {
+		final List<String> results = new ArrayList<String>();
+
+		for (int i = 0; i < 10; i++) {
+			results.add(query + i + " - Anexo I - Partilha do Simples Nacional - Comércio");
 		}
 
 		return results;

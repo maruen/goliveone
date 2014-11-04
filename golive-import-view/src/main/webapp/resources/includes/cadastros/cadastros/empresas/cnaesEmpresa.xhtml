@@ -1,0 +1,154 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="cnaes"
+		header="#{managerBean.get('label.cadastroEmpresa.cnaes')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="cnaes"
+		styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-2,percentual-5,percentual-40,percentual-10"
+			width="100%" border="0">
+
+			<h:column>
+				<h:outputText id="cnaeOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.cnae')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="cnaeInputText" style="width: 98%;" disabled="true"
+					value="47.51-2-01" />
+			</h:column>
+
+			<h:column>
+				<h:inputText id="cnaeDescricaoInputText" style="width: 99%;"
+					disabled="true"
+					value="Comércio varejista especializado de equipamentos e suprimentos de informática" />
+			</h:column>
+
+			<h:column>
+				<p:commandLink onclick="PF('dlgCnaes').show();" immediate="true">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+
+				<h:commandLink actionListener="#{bean.excluirCnae()}"
+					id="excluirLingua" styleClass="linkButton">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/delete.png"
+						styleClass="image floatRight" />
+				</h:commandLink>
+
+				<h:commandLink actionListener="#{bean.salvarCnae()}"
+					id="salvarLingua" styleClass="linkButton">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
+						styleClass="image floatRight" />
+				</h:commandLink>
+			</h:column>
+
+			<h:column />
+			<h:column />
+
+			<h:column>
+				<p:selectOneRadio id="cnaeRadio" value="XXX" styleClass="floatRight">
+					<f:selectItem
+						itemLabel="#{managerBean.get('label.cadastroEmpresa.cnaePrincipal')}"
+						itemValue="X" id="cnaePrincipalItemlabel" />
+					<f:selectItem
+						itemLabel="#{managerBean.get('label.cadastroEmpresa.cnaeSecundario')}"
+						itemValue="X" id="cnaeSecundarioItemLabel" />
+				</p:selectOneRadio>
+			</h:column>
+		</h:panelGrid>
+
+		<p:dataTable id="cnaeDataTable" var="row" value="#{bean.conteudo}"
+			rowKey="#{list.id}" styleClass="tableCadastros" rows="15"
+			paginator="true"
+			emptyMessage="#{managerBean.get('label.cadastroEmpresa.msnNaoHaRegistros')}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.id')}"
+				styleClass="percentual-10">
+				<h:outputText value="0000000000001" styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.cnae')}"
+				styleClass="percentual-10">
+				<h:outputText value="47.51-2-01" styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.descricao')}"
+				styleClass="percentual-30">
+				<h:outputText
+					value="Transporte de Cargas"
+					styleClass="singleLine" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.principal')}"
+				styleClass="percentual-10">
+				<p:selectOneRadio id="principalDtRadio" value="XXX"
+					styleClass="floatRight" disabled="true">
+					<f:selectItem itemValue="X" id="principalItemlabel" />
+				</p:selectOneRadio>
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.secundario')}"
+				styleClass="percentual-10">
+				<p:selectOneRadio id="secundarioDtRadio" value="XXX"
+					styleClass="floatRight" disabled="true">
+					<f:selectItem itemValue="X" id="secundarioItemlabel" />
+				</p:selectOneRadio>
+			</p:column>
+		</p:dataTable>
+
+	</p:panel>
+
+	<p:dialog header="#{managerBean.get('label.cadastroEmpresa.pesquisaCnaes')}"
+		widgetVar="dlgCnaes" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="60%">
+
+		<p:dataTable id="cnaeDatatableId" var="cnaeDatatableVar"
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroEmpresa.msnNaoHaRegistros')}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.cnae')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="47.51-2-01" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.descricao')}"
+				styleClass="percentual-30 singleLine">
+				<h:outputText
+					value="Comércio varejista especializado de equipamentos e suprimentos de informática" />
+			</p:column>
+
+		</p:dataTable>
+	</p:dialog>
+
+</ui:composition>

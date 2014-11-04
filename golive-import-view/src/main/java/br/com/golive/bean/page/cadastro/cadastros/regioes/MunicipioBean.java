@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.regioes.municipios.model.MunicipiosModel;
+import br.com.golive.entity.empresas.regioes.municipio.model.MunicipioModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroMunicipios")
 @ManagedBean
 @ViewScoped
-public class MunicipiosBean extends CadastroBeanRules<MunicipiosModel>{
+public class MunicipioBean extends CadastroBeanRules<MunicipioModel>{
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class MunicipiosBean extends CadastroBeanRules<MunicipiosModel>{
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<MunicipiosModel> criarLista() {
-		final List<MunicipiosModel> lista = new ArrayList<MunicipiosModel>();
+	private List<MunicipioModel> criarLista() {
+		final List<MunicipioModel> lista = new ArrayList<MunicipioModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new MunicipiosModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "3550308", "São Paulo", "0000000010", "Brasil", "0000000001", "35", "SP", "Região Sudeste"));
+			lista.add(new MunicipioModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "3550308", "São Paulo", "0000000010", "Brasil", "0000000001", "35", "SP", "Região Sudeste"));
 		}
 		
 		return lista;
