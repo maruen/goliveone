@@ -480,9 +480,11 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 				}
 			}
 
-			final Field field = obterNomeFieldPorNomeDeColuna(coluna, ret.getClass(), ret.getClass().getSuperclass());
-			getter = ret.getClass().getMethod("get" + WordUtils.capitalize(field.getName()));
-			ret = getter.invoke(ret);
+			if ( ret != null) {
+				final Field field = obterNomeFieldPorNomeDeColuna(coluna, ret.getClass(), ret.getClass().getSuperclass());
+				getter = ret.getClass().getMethod("get" + WordUtils.capitalize(field.getName()));
+				ret = getter.invoke(ret);
+			}
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			getLogger().error("Erro ao obter label da coluna generica");
 			e.printStackTrace();
@@ -496,7 +498,8 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 				return ret;
 			}
 		} else {
-			throw new GoLiveException("Não foi possivel obter label da coluna dinamica");
+			return "";
+			//throw new GoLiveException("Não foi possivel obter label da coluna dinamica");
 		}
 
 	}

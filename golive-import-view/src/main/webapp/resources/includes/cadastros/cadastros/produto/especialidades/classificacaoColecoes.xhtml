@@ -93,7 +93,7 @@
 			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
 					  styleClass="percentual-5 singleLine"
 					  filterBy="#{departamento.id}"
-					  filterMatchMode="contains">
+					  filterMatchMode="exact">
 				
 				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
 			
@@ -101,7 +101,7 @@
 
 			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.departamento')}"
 					  styleClass="percentual-20 singleLine"
-					  filterBy="#{departamento.departamento}"
+					  filterBy="#{departamento.departamento.toLowerCase()}"
 					  filterMatchMode="contains">
 				
 				<h:outputText value="#{departamento.departamento}" />
