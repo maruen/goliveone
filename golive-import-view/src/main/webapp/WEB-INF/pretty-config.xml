@@ -37,11 +37,6 @@
 			<view-id value="/pages/cadastros/cadastros/clientes.jsf" />
 		</url-mapping>
 		
-		<url-mapping id="cadastrosCadastrosEmpresa">
-			<pattern value="/Cadastros/Cadastros/Empresa" />
-			<view-id value="/pages/cadastros/cadastros/empresa.jsf" />
-		</url-mapping>
-		
 		<url-mapping id="cadastrosCadastrosDepartamentos">
 			<pattern value="/Cadastros/Cadastros/Departamentos" />
 			<view-id value="/pages/cadastros/cadastros/departamentos.jsf" />
@@ -80,6 +75,11 @@
 		<url-mapping id="cadastrosCadastrosEmpresasCargos">
 			<pattern value="/Cadastros/Cadastros/Empresas/Cargos" />
 			<view-id value="/pages/cadastros/cadastros/empresas/cargos.jsf" />
+		</url-mapping>
+		
+		<url-mapping id="cadastrosCadastrosEmpresasEmpresa">
+			<pattern value="/Cadastros/Cadastros/Empresas/Empresa" />
+			<view-id value="/pages/cadastros/cadastros/empresas/empresa.jsf" />
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosEmpresasCategoriasNaturezasJuridicas">
