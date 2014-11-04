@@ -15,7 +15,10 @@
 		<script type="text/javascript">
 			function getWidthTable(){
 				var table=document.getElementById("conteudoForm:modelTable:conteudoTable");
-				  resizeTable([{name:'width', value:table.clientWidth}]);
+
+				if(table != null){
+				   resizeTable([{name:'width', value:table.clientWidth}]);
+			    }
 			}
 	</script>
 
