@@ -25,7 +25,6 @@ import br.com.golive.service.ColecoesService;
 import br.com.golive.service.DepartamentoService;
 import br.com.golive.service.GrupoProdutoService;
 import br.com.golive.service.SubGrupoProdutoService;
-import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
@@ -181,25 +180,17 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 	public void carregarGrupoProdutoPorDepartamento() {
 		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
-		if (grupos.isEmpty()) {
-			JSFUtils.warnMessage(usuario.getLabels().getField("title.msg.list.vazia"), usuario.getLabels().getField("msg.grupoProdutoDepartamento.vazio"));
-		} else {
-			boolean contem = false;
-			for (final GrupoProdutosModel grupo : grupos) {
-				if (!contem) {
-					if (grupo.getDepartamentoModel().getId().equals(registro.getDepartamentoSelected().getId())) {
-						contem = true;
-					}
-				}
-			}
-			if (!contem) {
-				registro.setGrupoProdutoSelected(new GrupoProdutosModel());
-			}
+		if ( registro.getGrupoProdutoSelected() != null && !grupos.contains(registro.getGrupoProdutoSelected() ) ) {
+			registro.setGrupoProdutoSelected(new GrupoProdutosModel());
+			registro.setSubGrupoProdutoSelected(new SubGrupoProdutoModel());
 		}
 	}
 	
 	public void carregarSubGrupoProdutoPorGrupo() {
-		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected()); 
+		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
+		if ( registro.getSubGrupoProdutoSelected() != null &&  !subGrupos.contains(registro.getSubGrupoProdutoSelected() ))
+		registro.setSubGrupoProdutoSelected(new SubGrupoProdutoModel());
+		
 	}
 	
 	
