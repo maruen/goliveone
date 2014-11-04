@@ -309,9 +309,9 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	@SuppressWarnings("unchecked")
 	protected List<T> extractListByCriteria(final Criteria criteria) {
 		final List<T> result = criteria.list();
-		for (final T entity : result) {
-			entityManager.detach(entity);
-		}
+		// for (final T entity : result) {
+		// entityManager.detach(entity);
+		// }
 		return result;
 	}
 

@@ -120,10 +120,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public abstract void serviceRemove(final T registro);
 
-	@Deprecated
-	public String getUsuarioLog() {
-		return "USUARIO";
-	}
+	private Map<String, List<ColunaPerfil>> tablesMap;
 
 	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
 		if (usuario != null) {
@@ -140,9 +137,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 			inicializarClasse();
 			configuracaoPerfil = configuracoes;
 
-			if (verificarNecessidadeDeConfiguracao()) {
-
-			}
+			verificarNecessidadeDeConfiguracao();
 			colunasPagina = new ArrayList<ColunaPerfil>();
 			for (final ColunaPerfil colunaPerfil : configuracaoPerfil) {
 				if (colunaPerfil.isVisivel()) {
@@ -247,13 +242,15 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 	}
 
-	private boolean verificarNecessidadeDeConfiguracao() {
-		if (configuracaoPerfil.isEmpty()) {
-			configuracaoPerfil = Utils.obterListaColunaTabela(genericClazzInstance, usuario, empresaSelecionada);
-			colunaPerfilService.salvarLista(configuracaoPerfil);
-			return false;
+	private void verificarNecessidadeDeConfiguracao() {
+		tablesMap = new HashMap<String, List<ColunaPerfil>>();
+
+		for (final ColunaPerfil conf : configuracaoPerfil) {
+			if (!tablesMap.containsKey(conf.getId().getTabela())) {
+				tablesMap.put(conf.getId().getTabela(), new ArrayList<ColunaPerfil>());
+			}
+			tablesMap.get(conf.getId().getTabela()).add(conf);
 		}
-		return true;
 	}
 
 	public String getFilterLabel(final String filter) {
@@ -633,6 +630,14 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void setColunasPagina(final List<ColunaPerfil> colunasPagina) {
 		this.colunasPagina = colunasPagina;
+	}
+
+	public Map<String, List<ColunaPerfil>> getTablesMap() {
+		return tablesMap;
+	}
+
+	public void setTablesMap(final Map<String, List<ColunaPerfil>> tablesMap) {
+		this.tablesMap = tablesMap;
 	}
 
 }
