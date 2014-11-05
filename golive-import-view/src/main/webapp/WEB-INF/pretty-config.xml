@@ -153,9 +153,9 @@
 			<view-id value="/pages/cadastros/cadastros/financeiro/condicoesPagamento.jsf" />
 		</url-mapping>
 	
-		<url-mapping id="cadastrosCadastrosFinanceiroFormasPagamento">
-			<pattern value="/Cadastros/Cadastros/Financeiro/FormasPagamento" />
-			<view-id value="/pages/cadastros/cadastros/financeiro/formasPagamento.jsf" />
+		<url-mapping id="cadastrosCadastrosFinanceiroFormaPagamento">
+			<pattern value="/Cadastros/Cadastros/Financeiro/FormaPagamento" />
+			<view-id value="/pages/cadastros/cadastros/financeiro/formaPagamento.jsf" />
 		</url-mapping>
 
 		<url-mapping id="cadastrosCadastrosFinanceiroMoedas">

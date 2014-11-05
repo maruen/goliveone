@@ -1,4 +1,4 @@
-package br.com.golive.entity.financeiro.formaspagamento.model;
+package br.com.golive.entity.financeiro.formapagamento.model;
 
 import java.util.Calendar;
 
@@ -9,17 +9,17 @@ import br.com.golive.entity.Model;
 		nomeDoArquivoGerado = "FormasPagamento",
 		nomeArquivoJasper = "FormasPagamento")
 
-public class FormasPagamentoModel extends Model {
+public class FormaPagamentoModel extends Model {
 	
 	private static final long serialVersionUID = 1L;
 	private String formaPagamento;
 	
-	public FormasPagamentoModel(){
+	public FormaPagamentoModel(){
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao = Calendar.getInstance();
 	}
 
-	public FormasPagamentoModel(Long id, 
+	public FormaPagamentoModel(Long id, 
 								Calendar dataInclusao, 
 								Calendar dataAlteracao,
 								String formaPagamento) {

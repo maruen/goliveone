@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.financeiro.formaspagamento.model.FormasPagamentoModel;
+import br.com.golive.entity.financeiro.formapagamento.model.FormaPagamentoModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroFormasPagamento")
 @ManagedBean
 @ViewScoped
-public class FormasPagamentoBean extends CadastroBeanRules<FormasPagamentoModel>{
+public class FormaPagamentoBean extends CadastroBeanRules<FormaPagamentoModel>{
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,11 +39,11 @@ public class FormasPagamentoBean extends CadastroBeanRules<FormasPagamentoModel>
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<FormasPagamentoModel> criarLista() {
-		final List<FormasPagamentoModel> lista = new ArrayList<FormasPagamentoModel>();
+	private List<FormaPagamentoModel> criarLista() {
+		final List<FormaPagamentoModel> lista = new ArrayList<FormaPagamentoModel>();
 		
 		for (Integer i = 0; i <= 10; i++){
-			lista.add(new FormasPagamentoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Boleto Bancário"));
+			lista.add(new FormaPagamentoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "Boleto Bancário"));
 		}
 
 		return lista;

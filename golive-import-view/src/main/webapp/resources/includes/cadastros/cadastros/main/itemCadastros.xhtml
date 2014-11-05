@@ -142,7 +142,7 @@
 			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.condicoesDePagamento')}');" />
 		<p:menuitem value="#{managerBean.get('label.formasdepagamento')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.formasDePagamento')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.formaPagamento')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.moedas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
@@ -306,7 +306,7 @@
 
 	</p:submenu>
 	<p:menuitem value="#{managerBean.get('label.transportadoras')}"
-		styleClass="itemPanelMenu little-font" disabled="false" 
+		styleClass="itemPanelMenu little-font" disabled="true" 
 		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.tipotransportadora')}');" />
 
 
