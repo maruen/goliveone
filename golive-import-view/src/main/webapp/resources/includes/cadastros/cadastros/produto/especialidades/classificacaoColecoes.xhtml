@@ -196,7 +196,7 @@
 					styleClass="floatRight" />
 			</p:column>
 
-			<p:column filterBy="#{subGrupoProdutosDatatableVar.subGrupoProduto}" filterMatchMode="contains"
+			<p:column filterBy="#{subGrupoProdutosDatatableVar.subGrupoProduto.toLowerCase()}" filterMatchMode="contains"
 				headerText="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}"
 				styleClass="percentual-20 singleLine">
 
