@@ -19,14 +19,14 @@
 		<p:dataTable 
 			id="conteudoTable"
 			var="row" 
-			value="#{tipoProdutoBean.conteudo}"
+			value="#{bean.conteudo}"
 			selectionMode="single"
 			rowKey="#{row.id}"
-			selection="#{tipoProdutoBean.registro}" 
+			selection="#{bean.registro}" 
 			styleClass="tableCadastros"
 			rows="15"
 			paginator="true"
-			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+			emptyMessage="#{managerBean.get('label.cadastroTipoProduto.msnNaoHaRegistros')}"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:ajax event="rowSelect"   update="conteudoTable" />
@@ -35,7 +35,7 @@
 			<p:column selectionMode="single"  style="width:16px;text-align:center" />
 
 			<p:column 
-				headerText="Data Inclusão"
+				headerText="#{managerBean.get('label.cadastroTipoProduto.dataInclusao')}"
 				styleClass="percentual-10"
 				filterStyleClass="width-size-70;"
 				filterMatchMode="contains"
@@ -45,7 +45,7 @@
 			</p:column>
 
 			<p:column
-				headerText="Data Alteração"
+				headerText="#{managerBean.get('label.cadastroTipoProduto.dataAlteracao')}"
 				filterBy="${row.id}"
 				filterMatchMode="contains"
 				styleClass="percentual-10 singleLine">
@@ -56,7 +56,7 @@
 			</p:column>
 
 			<p:column
-				headerText="Id"
+				headerText="#{managerBean.get('label.cadastroTipoProduto.id')}"
 				filterBy="${row.id}"
 				filterMatchMode="contains"
 				styleClass="percentual-10">
@@ -66,7 +66,7 @@
 			</p:column>
 
 			<p:column 
-				headerText="Descrição"
+				headerText="#{managerBean.get('label.cadastroTipoProduto.descricao')}"
 				filterMatchMode="contains"
 				filterBy="${row.id}"
 				styleClass="percentual-10 singleLine">
@@ -81,10 +81,10 @@
 
 	<ui:define name="edicao">
 		<ui:include src="/resources/includes/cadastros/cadastros/tipoProduto/dadosGeraisPanel.xhtml" >
-			<ui:param name="pojo" value="#{tipoProdutoBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{tipoProdutoBean.registro}" />
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 	</ui:define>
 	
