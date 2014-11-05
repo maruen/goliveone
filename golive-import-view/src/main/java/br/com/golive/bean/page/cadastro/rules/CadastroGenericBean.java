@@ -148,10 +148,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 	}
 
-	private void resizeColumns() {
-		JSFUtils.chamarJs(new FuncaoJavaScript("getWidthTable"));
-	}
-
 	protected void removidoComSucesso() {
 		JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
 	}
@@ -363,7 +359,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	public void cancelar() {
-		
+
 		fluxo = getFluxoListagem();
 		if (registro == null) {
 			getLogger().info("Cancelando inclusao de registro");

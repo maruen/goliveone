@@ -195,8 +195,6 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 		super.incluir();
 		registro = new CorProdutoModel();
 		departamentos = departamentoService.listarTodos();
-		subGrupoProdutoList = subGrupoProdutoService.listarPorFiltro();
-		colecoesList = colecaoService.listarTodos();
 	}
 
 	public void carregarGrupoProdutoPorDepartamento() {
@@ -216,16 +214,53 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 			}
 			if (!contem) {
 				registro.setGrupoProdutoSelected(null);
+				registro.setSubGrupoProdutoSelected(null);
+				registro.setColecaoSelected(null);
 			}
 		}
 	}
 
 	public void carregarSubGrupoPorGrupo() {
-
+		subGrupoProdutoList = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
+		if (subGrupoProdutoList.isEmpty()) {
+			registro.setSubGrupoProdutoSelected(null);
+		} else {
+			boolean contem = false;
+			for (final SubGrupoProdutoModel sub : subGrupoProdutoList) {
+				if (!contem) {
+					if (registro.getSubGrupoProdutoSelected() != null) {
+						if (sub.getId().equals(registro.getSubGrupoProdutoSelected().getId())) {
+							contem = true;
+						}
+					}
+				}
+			}
+			if (!contem) {
+				registro.setSubGrupoProdutoSelected(null);
+				registro.setColecaoSelected(null);
+			}
+		}
 	}
 
-	public void carregarColecoesPorGrupo() {
-
+	public void carregarColecoesPorSubGrupo() {
+		colecoesList = colecaoService.obterListaPorSubGrupo(registro.getSubGrupoProdutoSelected());
+		if (subGrupoProdutoList.isEmpty()) {
+			registro.setSubGrupoProdutoSelected(null);
+		} else {
+			boolean contem = false;
+			for (final ColecoesModel colecoes : colecoesList) {
+				if (!contem) {
+					if (registro.getColecaoSelected() != null) {
+						if (colecoes.getId().equals(registro.getColecaoSelected().getId())) {
+							contem = true;
+						}
+					}
+				}
+			}
+			if (!contem) {
+				registro.setColecaoSelected(null);
+			}
+		}
 	}
 
 	@Override

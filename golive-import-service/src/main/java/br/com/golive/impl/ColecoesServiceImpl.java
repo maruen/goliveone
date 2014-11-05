@@ -16,6 +16,7 @@ import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.entity.colecoes.repositorio.ColecoesJPA;
+import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
 import br.com.golive.service.ColecoesService;
 
@@ -68,9 +69,15 @@ public class ColecoesServiceImpl implements ColecoesService {
 	}
 
 	@Override
-	public void discardChanges(ColecoesModel model) {
+	public void discardChanges(final ColecoesModel model) {
 		colecoesJPA.refresh(model);
-		
+
+	}
+
+	@Override
+	public List<ColecoesModel> obterListaPorSubGrupo(final SubGrupoProdutoModel model) {
+		logger.info("Obtendo lista de ColecoesModel por subgrupo = {} ", model.getId());
+		return colecoesJPA.obterListaPorSubGrupo(model);
 	}
 
 }
