@@ -4,10 +4,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
 <!-- CODIGO DE BARRAS  -->
 <p:panel id="codigoBarrasPanel"
-		 header="Código de Barras"
+		 header="#{managerBean.get('label.cadastroProdutos.codigoDeBarras')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -16,13 +15,11 @@
 		 widgetVar="codigoBarrasWidgetBar"
 		 styleClass="little-font" >
 		 
-		 
 		 <f:facet name="actions">
           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
           			<h:outputText styleClass="ui-icon ui-icon-help" />
           		</h:commandLink>
       		  </f:facet>
-		 
 		       	
           <h:panelGrid columns="12"
 					cellpadding="3"
@@ -43,23 +40,21 @@
 					 width="100%"
 					 border="0">
 		
-		
 				<p:selectOneMenu id="codigoBarrasOneMenu" style="width: 90%; background-color: #FFFFFF ">
-        	        <f:selectItems value="#{produtoBean.codigoBarras}" />
+        	        <f:selectItems value="#{bean.codigoBarras}" />
    		        </p:selectOneMenu>
   		    
-  		    		<h:outputText id="codigoBarrasIdOutputText" value="Id"  styleClass="singleLine"/>
+  		    	<h:outputText id="codigoBarrasIdOutputText" value="#{managerBean.get('label.cadastroProdutos.id')}"  styleClass="singleLine"/>
         		<p:inputText id="codigoBarrasIdInputText"    style="width: 97%;"/>
         	
-        		<h:outputText id="codigoBarrasCodigoOutputText" value="Código Barras"  styleClass="singleLine"/>
+        		<h:outputText id="codigoBarrasCodigoOutputText" value="#{managerBean.get('label.cadastroProdutos.codigoBarras')}"  styleClass="singleLine"/>
         		<p:inputText id="codigoBarrasCodigoInputText"  style="width: 97%;"/>
         	
-        		<h:outputText id="codigoBarrasFatorMultiplicacaoOutputText" value="Fator de Multiplicação"  styleClass="singleLine"/>
+        		<h:outputText id="codigoBarrasFatorMultiplicacaoOutputText" value="#{managerBean.get('label.cadastroProdutos.fatorMultiplicacao')}"  styleClass="singleLine"/>
         		<p:inputText id="codigoBarrasFatorMultiplicacaoInputText"  style="width: 97%;"/>
         		
         		<p:inputText id="codigoBarrasFatorCxInputText"     value="CX" style="width: 97%;"/>
         		<p:inputText id="codigoBarrasFatorCxDescInputText" value="Caixas" style="width: 97%;"/>
-        	
         	
             	<p:commandLink action="#">
   						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
@@ -82,69 +77,62 @@
         
 	        <p:dataTable id="codigoBarrasDatatable"
 	        			 var="codigoBarras"
-	        			 value="#{produtoBean.codigoBarrasDatatable}" >
+	        			 value="#{bean.codigoBarrasDatatable}"
+	        			 emptyMessage="#{managerBean.get('label.cadastroProdutos.msnNaoHaRegistros')}" >
 			    
 			    <p:column headerText=""
 			    		  styleClass="percentual-5 singleLine">
 			     	<p:selectBooleanCheckbox value="xx" />   
 			    </p:column>
 			    
-			    <p:column headerText="Id"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 			    		 styleClass="percentual-20 singleLine "
 			    		 sortBy="#{codigoBarras[0]}">
 			        <h:outputText value="#{codigoBarras[0]}"  styleClass="floatRight"/>
 			    </p:column>
 			 
-			    <p:column headerText="Código Barras"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.codigoBarras')}"
 			    		  styleClass="percentual-25 singleLine"
 			    		  sortBy="#{codigoBarras[1]}">
 			        <h:outputText value="#{codigoBarras[1]} "  styleClass="floatRight"/>
 			    </p:column>
 			 
-			    <p:column headerText="Fator Multiplicação"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.fatorMultiplicacao')}"
 			    		  styleClass="percentual-15 singleLine"
 			    		  sortBy="#{codigoBarras[2]}">
 			        <h:outputText value="#{codigoBarras[2]}"  styleClass="floatRight"/>
 			    </p:column>
 			    
-			    <p:column headerText="Id"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 			    		  styleClass="percentual-15 singleLine"
 			    		  sortBy="#{codigoBarras[3]}">
 			        <h:outputText value="#{codigoBarras[3]}"  styleClass="floatRight"/>
 			    </p:column>
 			    
-			    
-			    <p:column headerText="Abrv. custosCompra"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.abrvCustosCompra')}"
 			    		  styleClass="percentual-15 singleLine"
 			    		  sortBy="#{codigoBarras[4]}">
 			        <h:outputText value="#{codigoBarras[4]}"  styleClass="floatRight"/>
 			    </p:column>
 			    
-			    
-			    <p:column headerText="custosCompra"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.custosCompra')}"
 			    		  styleClass="percentual-15 singleLine"
 			    		  sortBy="#{codigoBarras[5]}">
 			        <h:outputText value="#{codigoBarras[5]}"  styleClass="floatRight"/>
 			    </p:column>
 			    
-			    <p:column headerText="Id"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 			    		  styleClass="percentual-15 "
 			    		  sortBy="#{codigoBarras[6]}">
 			        <h:outputText value="#{codigoBarras[6]}"  styleClass="floatRight"/>
 			    </p:column>
 			 
-			    <p:column headerText="Finalidade custosCompra"
+			    <p:column headerText="#{managerBean.get('label.cadastroProdutos.finalidadeCustosCompra')}"
 			    		  styleClass="percentual-15 singleLine"
 			    		  sortBy="#{codigoBarras[7]}">
 			        <h:outputText value="#{codigoBarras[7]}" />
 			    </p:column>
-			
-			
-			
 			</p:dataTable>
 		</h:panelGrid>
-  	
 </p:panel>
-
 </ui:composition>
-

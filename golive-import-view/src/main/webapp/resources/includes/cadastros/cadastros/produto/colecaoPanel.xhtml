@@ -40,7 +40,7 @@
 	
 	
 			<p:selectOneMenu id="colecaoOneMenu" style="width: 90%; background-color: #FFFFFF ">
-       	        <f:selectItems value="#{produtoBean.colecoes}" />
+       	        <f:selectItems value="#{bean.colecoes}" />
   		        </p:selectOneMenu>
  		    	<h:outputText id="colecaoIdOutputText"
  		    				  value="#{managerBean.get('label.cadastroProdutos.id')}"
@@ -78,7 +78,8 @@
        
         <p:dataTable id="colecaoDatatable"
         			 var="colecao"
-        			 value="#{produtoBean.colecaoDatatable}" >
+        			 value="#{bean.colecaoDatatable}"
+        			 emptyMessage="#{managerBean.get('label.cadastroProdutos.msnNaoHaRegistros')}" >
 		    
 		    <p:column headerText=""
 		    		  styleClass="percentual-5 singleLine">
@@ -110,8 +111,5 @@
 		    </p:column>
 		</p:dataTable>
 	</h:panelGrid>
-      	
 </p:panel>
-
 </ui:composition>
-

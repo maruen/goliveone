@@ -4,9 +4,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
 <p:panel id="observacoesPanedId"
-				 header="Observações"
+				 header="#{managerBean.get('label.cadastroProdutos.observacoes')}"
 				 toggleable="true"
 				 collapsed="true"
 				 closable="false"
@@ -14,7 +13,6 @@
 				 closeSpeed="500"
 				 widgetVar="observacoesWidgetVar"
 				 styleClass="little-font" >
-				 
 				 
 				 <f:facet name="actions">
 	           		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
@@ -29,5 +27,4 @@
 				 				  minQueryLength="4" />
  				 
 </p:panel>
-
 </ui:composition>

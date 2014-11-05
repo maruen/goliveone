@@ -4,10 +4,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
 <!--  CUSTOS -->
 <p:panel id="custosPanel"
-	 header="Custos"
+	 header="#{managerBean.get('label.cadastroProdutos.custos')}"
 	 toggleable="true"
 	 closable="false"
 	 collapsed="true"
@@ -21,10 +20,8 @@
 	        			<h:outputText styleClass="ui-icon ui-icon-help" />
 	        		</h:commandLink>
 	    		  </f:facet>
-    		  
-    		  
  
-	 <p:fieldset legend="Custo Compra" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important" >
+	 <p:fieldset legend="#{managerBean.get('label.cadastroProdutos.custoCompra')}" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important" >
     		
       		<h:panelGrid cellpadding="2"
         			 cellspacing="2"
@@ -34,7 +31,7 @@
 		        
 			        <p:dataTable
 			        	 id="custosCompraDatatable"
-			        	 value="#{produtoBean.custosCompraDatatable}"
+			        	 value="#{bean.custosCompraDatatable}"
 			        	 paginatorPosition="top" 
 			        	 scrollable="true"
 			        	 scrollWidth="95%"
@@ -45,100 +42,90 @@
 			        	 lazy="true" 
 			        	 var="custosCompra">
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 					    		  styleClass="percentual-10">
 					        <h:outputText value="#{custosCompra[1]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Un."
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.un')}"
 					    		  styleClass="percentual-10">
 					        <h:outputText value="#{custosCompra[2]}" />
 					    </p:column>
 					 
-					    <p:column headerText="Descrição" 
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.descricao')}" 
 					    		  styleClass="percentual-10">
 					        <h:outputText value="#{custosCompra[2]}" />
 					    </p:column>
 					 
-					    <p:column headerText="Un. Princ."
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unPrinc')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosCompra[3]}" />
 					    </p:column>
 					 
-				 	   <p:column headerText="Un. Sec."
+				 	   <p:column headerText="#{managerBean.get('label.cadastroProdutos.unSec')}"
 				 	   			 styleClass="percentual-10">
 					    	<h:outputText value="#{custosCompra[4]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Fator Mult."
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.fatorMult')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosCompra[5]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Peso Liq."
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.pesoLiq')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosCompra[6]}" />
 					    </p:column>
 					 
-					 	<p:column headerText="Peso Bruto."
+					 	<p:column headerText="#{managerBean.get('label.cadastroProdutos.pesoBruto')}"
 					 			  styleClass="percentual-10">
 					    	<h:outputText value="#{custosCompra[7]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Un. Perm. Compra?"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unPermCompra')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosCompra[8]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Qtd Min. Ped. Compra"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.qtdMinPedCompra')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosCompra[9]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Qtd Máx. Ped. Compra" >
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.qtdMaxPedCompra')}" >
 					    	<h:outputText value="#{custosCompra[10]}" />
 					    
 					    </p:column>
 					    					    
-					    <p:column headerText="Peso Máx. Ped. Compra">
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.pesoMaxPedCompra')}">
 					    	<h:outputText value="#{custosCompra[11]}" />
 					    </p:column>
 					    
-					    
-					    <p:column headerText="Un Util An. Comp Pedido Compra?">
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unUtilAnCompPedidoCompra')}">
 					    	<h:outputText value="#{custosCompra[12]}" />
 					    </p:column>
 					    
-					    
-					    <p:column headerText="Un Util An. Comp Estoque?">
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unUtilAnCompEstoque')}">
 					    	<h:outputText value="#{custosCompra[13]}" />
 					    </p:column>
 					    					    
-					    <p:column headerText="Un. Permite Venda">
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unPermiteVenda')}">
 					    	<h:outputText value="#{custosCompra[14]}" />
 					    </p:column>
 					    
-					    
-					    <p:column headerText="Qtd Máx. Ped. Venda">
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.qtdMaxPedVenda')}">
 					    	<h:outputText value="#{custosCompra[15]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Peso Máx. Ped. Venda">
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.pesoMaxPedVenda')}">
 					    	<h:outputText value="#{custosCompra[1]}" />
 					    </p:column>
-					    
 					</p:dataTable>
-			
 			</p:row>
-			
 		</h:panelGrid>	
-    			
-    			
-    			
-			</p:fieldset>
+	</p:fieldset>
 			
-			<p:fieldset legend="Custo Venda" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important">
-			
+			<p:fieldset legend="#{managerBean.get('label.cadastroProdutos.custoVenda')}" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important">
 			
 			<h:panelGrid cellpadding="2"
         			 cellspacing="2"
@@ -148,7 +135,7 @@
 		        
 			        <p:dataTable
 			        	 id="custosVendaDatatable"
-			        	 value="#{produtoBean.custosVendaDatatable}"
+			        	 value="#{bean.custosVendaDatatable}"
 			        	 paginatorPosition="top" 
 			        	 scrollable="true"
 			        	 scrollWidth="95%"
@@ -157,106 +144,96 @@
 			        	 resizableColumns="false"
 			        	 styleClass="scrolls"
 			        	 lazy="true" 
-			        	 var="custosVenda">
+			        	 var="custosVenda"
+			        	 emptyMessage="#{managerBean.get('label.cadastroProdutos.msnNaoHaRegistros')}">
 					    
-					    <p:column headerText="Id"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 					    		  styleClass="percentual-10">
 					        <h:outputText value="#{custosVenda[1]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Un."
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.un')}"
 					    		  styleClass="percentual-10">
 					        <h:outputText value="#{custosVenda[2]}" />
 					    </p:column>
 					 
-					    <p:column headerText="Descrição" 
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.descricao')}" 
 					    		  styleClass="percentual-10">
 					        <h:outputText value="#{custosVenda[2]}" />
 					    </p:column>
 					 
-					    <p:column headerText="Un. Princ."
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unPrinc')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[3]}" />
 					    </p:column>
 					 
-				 	   <p:column headerText="Un. Sec."
+				 	   <p:column headerText="#{managerBean.get('label.cadastroProdutos.unSec')}"
 				 	   			 styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[4]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Fator Mult."
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.fatorMult')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[5]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Peso Liq."
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.pesoLiq')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[6]}" />
 					    </p:column>
 					 
-					 	<p:column headerText="Peso Bruto."
+					 	<p:column headerText="#{managerBean.get('label.cadastroProdutos.pesoBruto')}"
 					 			  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[7]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Un. Perm. Compra?"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unPermCompra')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[8]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Qtd Min. Ped. Compra"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.qtdMinPedCompra')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[9]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Qtd Máx. Ped. Compra"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.qtdMaxPedCompra')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[10]}" />
-					    
 					    </p:column>
 					    					    
-					    <p:column headerText="Peso Máx. Ped. Compra"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.pesoMaxPedCompra')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[11]}" />
 					    </p:column>
 					    
-					    
-					    <p:column headerText="Un Util An. Comp Pedido Compra?"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unUtilAnCompPedidoCompra')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[12]}" />
 					    </p:column>
 					    
-					    
-					    <p:column headerText="Un Util An. Comp Estoque?"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unUtilAnCompEstoque')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[13]}" />
 					    </p:column>
 					    					    
-					    <p:column headerText="Un. Permite Venda"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.unPermiteVenda')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[14]}" />
 					    </p:column>
 					    
-					    
-					    <p:column headerText="Qtd Máx. Ped. Venda"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.qtdMaxPedVenda')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[15]}" />
 					    </p:column>
 					    
-					    <p:column headerText="Peso Máx. Ped. Venda"
+					    <p:column headerText="#{managerBean.get('label.cadastroProdutos.pesoMaxPedVenda')}"
 					    		  styleClass="percentual-10">
 					    	<h:outputText value="#{custosVenda[1]}" />
 					    </p:column>
-					    
 					</p:dataTable>
-			
 			</p:row>
-			
 		</h:panelGrid>	
-    		
-
 	</p:fieldset>
- 
 </p:panel>
-	
 </ui:composition>	

@@ -37,7 +37,7 @@
 			<p:selectOneMenu id="descricaoOneMenu"
 							 style="width: 90%">
        	        
-       	        <f:selectItems value="#{produtoBean.descricoes}" />
+       	        <f:selectItems value="#{bean.descricoes}" />
   		        </p:selectOneMenu>
             
         	<h:outputText id="descricaoOutputText" 
@@ -51,17 +51,15 @@
        	 	 <p:commandLink action="#">
  						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png" />
 			 </p:commandLink>
-        	
-       	
        	</h:panelGrid>
-        
         
         <h:panelGrid cellpadding="2"
         			 cellspacing="2"
         			 width="100%"
         			 border="0" >
         
-	        <p:dataTable id="descricoesDatatable" var="item" value="#{produtoBean.descricoesDatatable}" >
+	        <p:dataTable id="descricoesDatatable" var="item" value="#{bean.descricoesDatatable}"
+	        emptyMessage="#{managerBean.get('label.cadastroProdutos.msnNaoHaRegistros')}" >
 			    
 			    <p:column headerText=""
 			    		  styleClass="percentual-5 singleLine">
@@ -90,5 +88,4 @@
 			</p:dataTable>
 		</h:panelGrid>
   </p:panel>
-
 </ui:composition>

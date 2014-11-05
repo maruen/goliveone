@@ -37,9 +37,8 @@
 					 width="100%"
 					 border="0">
 		
-		
 				<p:selectOneMenu id="padraoLarguraOneMenu" style="width: 90%; background-color: #FFFFFF ">
-        	        <f:selectItems value="#{produtoBean.padraoLargura}" />
+        	        <f:selectItems value="#{bean.padraoLargura}" />
    		        </p:selectOneMenu>
   		    
   		    	<h:outputText id="padraoLarguraIdOutputText" 
@@ -78,7 +77,8 @@
         
 	        <p:dataTable id="padraoLarguraDatatable"
 	        			 var="padraoLargura"
-	        			 value="#{produtoBean.padraoLarguraDatatable}" >
+	        			 value="#{bean.padraoLarguraDatatable}"
+	        			 emptyMessage="#{managerBean.get('label.cadastroProdutos.msnNaoHaRegistros')}" >
 			    
 			    <p:column headerText=""
 			    		  styleClass="percentual-5 singleLine">
@@ -113,5 +113,4 @@
 			</p:dataTable>
 		</h:panelGrid>
 </p:panel>
-
 </ui:composition>

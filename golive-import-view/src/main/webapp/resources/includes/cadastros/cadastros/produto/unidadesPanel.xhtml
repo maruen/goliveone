@@ -36,10 +36,9 @@
 	        			 				 percentual-2"
 	        			 columns="10"
 	        			 border="0" >
-	        		 
  			    		 
 			    		 <p:selectOneMenu id="unidadesSelecioneOneMenu" style="width: 90%; background-color: #FFFFFF ">
-	        	        <f:selectItems value="#{produtoBean.unidades}" />
+	        	        <f:selectItems value="#{bean.unidades}" />
     		         </p:selectOneMenu>
    		    	                     
                         <h:outputText id="unidadessIdOutputText"
@@ -72,7 +71,6 @@
 		    			
 		     </h:panelGrid>		 
 	        
-		    			
    			 <p:panelGrid cellpadding="3"
      			 	 		  cellspacing="3"
      			 			  width="100%"
@@ -80,8 +78,7 @@
 	 
 	 					<p:row>			    
 	 			    	<p:column styleClass="percentual-33">
-		 			    	<p:fieldset legend="Comportamento" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;" >
-		        				    
+		 			    	<p:fieldset legend="#{managerBean.get('label.cadastroProdutos.comportamento')}" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;" >
 		        				    
 		        				    <p:panelGrid cellpadding="3"
       			 	 		  					 cellspacing="3"
@@ -158,7 +155,7 @@
 
 		        			</p:fieldset>
 		        			
-		        			<p:fieldset legend="Peso" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;" >
+		        			<p:fieldset legend="#{managerBean.get('label.cadastroProdutos.peso')}" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;" >
 	        				    
 	        				    <p:panelGrid cellpadding="0"
      			 	 		  					 cellspacing="0"
@@ -175,7 +172,7 @@
 	                                        		<p:inputText  id="PesoLiquidoInputText" style="width: 90%; margin-left: 25%"/>
 	                                       	   	</p:column>
 	                                       	   	<p:column styleClass="percentual-10">
-	                                        		<p:inputText  id="kgInputText1" value="KG" size="2" maxchars="2" disabled="true" style="margin-left: 40%"/> 
+	                                        		<p:inputText  id="kgInputText1" value="#{managerBean.get('label.cadastroProdutos.kg')}" size="2" maxchars="2" disabled="true" style="margin-left: 40%"/> 
 	                                       	   	</p:column>
                                            	   	<p:column styleClass="percentual-2">
                                            	   		<p:commandLink action="#">
@@ -194,7 +191,7 @@
 	                                           		<p:inputText  id="PesoBrutoInputText" style="width: 90% ; margin-left: 25%"/>
 	                                       	   	</p:column>
 	                                       	   	<p:column styleClass="percentual-10">
-	                                           		<p:inputText  id="kgInputText2" value="KG" size="2" maxchars="2" disabled="true" style="margin-left: 40%"/>
+	                                           		<p:inputText  id="kgInputText2" value="#{managerBean.get('label.cadastroProdutos.kg')}" size="2" maxchars="2" disabled="true" style="margin-left: 40%"/>
 	                                       	   	</p:column>
                                            	   	<p:column styleClass="percentual-2">
                                            	   		<p:spacer style="height:0px;"></p:spacer>
@@ -205,12 +202,10 @@
 	        			</p:fieldset>
 		 			    	
 	 			    	</p:column>
-	 			    
-	 			    
  			    	    
 	        			<p:column>
 	    		
- 			    	    <p:fieldset legend="compra" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 100%" >
+ 			    	    <p:fieldset legend="#{managerBean.get('label.cadastroProdutos.compra')}" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; height: 100%" >
 	        				   
 	        				      <p:panelGrid cellpadding="0"
      			 	 		  					   cellspacing="0"
@@ -349,7 +344,7 @@
 	        			</p:column>
 	        			
 						<p:column styleClass="percentual-33">    	
-		    				<p:fieldset legend="Venda" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;" >
+		    				<p:fieldset legend="#{managerBean.get('label.cadastroProdutos.venda')}" style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;" >
 		    				
 		    				  <p:panelGrid cellpadding="3"
      			 	 		  					   cellspacing="3"
@@ -446,7 +441,7 @@
 	                                   		
 	                                   		<p:column styleClass="percentual-20" colspan="2">
 	                                   			<p:inputText id="unidadesPesoMaximoPedidoVendaInputText"  style="width: 70%"/>
-	                                   			<p:inputText value="KG" disabled="true" size="2" maxlength="2"/>
+	                                   			<p:inputText value="#{managerBean.get('label.cadastroProdutos.kg')}" disabled="true" size="2" maxlength="2"/>
 	                                   		</p:column>
 	                                   		<p:column>
 	                                   			<p:commandLink action="#">
@@ -481,11 +476,7 @@
 		        			</p:fieldset>
 		        		</p:column>
 	 			</p:row>
-	 		
-
-
 	 		</p:panelGrid>
-	        	
 	        		
 	        <p:commandLink action="#" style="float:right;">
   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png"  style="margin-left: -50% ; margin-top: -50%"   />
@@ -495,16 +486,14 @@
   					<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png"  style="margin-left: -50% ; margin-top: -50%" />
 			</p:commandLink>
 			
-			
 			<h:panelGrid cellpadding="2"
 	        			 cellspacing="2"
 	        			 width="100%"
 	        			 border="0" >
 		        <p:row>
-			        
 				        <p:dataTable
 				        	 id="unidadesId"
-				        	 value="#{produtoBean.unidadesDatatable}"
+				        	 value="#{bean.unidadesDatatable}"
 				        	 paginatorPosition="top" 
 				        	 scrollable="true"
 				        	 scrollWidth="95%"
@@ -513,7 +502,8 @@
 				        	 resizableColumns="false"
 				        	 styleClass="scrolls"
 				        	 lazy="true" 
-				        	 var="unidades">
+				        	 var="unidades"
+				        	 emptyMessage="#{managerBean.get('label.cadastroProdutos.msnNaoHaRegistros')}">
 						    
 						    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 						    		  styleClass="percentual-10">
@@ -536,13 +526,8 @@
 						    		  styleClass="percentual-10">
 						    	<h:outputText value="#{unidades[4]}" />
 						    </p:column>
-						    
 						</p:dataTable>
-				
 				</p:row>
-				
 			</h:panelGrid>
-	     
 </p:panel>
-
 </ui:composition>
