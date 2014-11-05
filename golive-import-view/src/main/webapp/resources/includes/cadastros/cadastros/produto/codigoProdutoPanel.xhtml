@@ -39,7 +39,7 @@
 								 value="0000001" 
 								 style="width: 90%; background-color: #FFFFFF ">
         	        
-        	        			<f:selectItems value="#{produtoBean.codigos}" />
+        	        			<f:selectItems value="#{bean.codigos}" />
    		        
    		        </p:selectOneMenu>
   		    
@@ -68,7 +68,8 @@
         
 	        <p:dataTable id="codigoProdutoDatatable"
 	        			 var="codigoProduto"
-	        			 value="#{produtoBean.codigoDatatable}" >
+	        			 value="#{bean.codigoDatatable}"
+	        			 emptyMessage="#{managerBean.get('label.cadastroProdutos.msnNaoHaRegistros')}" >
 			    
 			    <p:column headerText=""
 			    		  styleClass="percentual-5 singleLine">
@@ -100,7 +101,5 @@
 			    </p:column>
 			</p:dataTable>
 		</h:panelGrid>
-  	
 </p:panel>
-
 </ui:composition>

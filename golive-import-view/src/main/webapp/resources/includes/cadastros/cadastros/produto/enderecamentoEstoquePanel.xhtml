@@ -4,10 +4,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
 <!--  ENDEREÇAMENTO DE ESTOQUE -->
 <p:panel id="enderecamentoEstoquePanel"
-		 header="Endereçamento de Estoque"
+		 header="#{managerBean.get('label.cadastroProdutos.enderecamentoEstoque')}"
 		 toggleable="true"
 		 closable="false"
 		 collapsed="true"
@@ -37,21 +36,19 @@
         			 columns="9"
         			 width="100%"
         			 border="0" >
-        	
-        	
-        	
-        	<h:outputText id="enderecamentoProdutoIdOutputText" value="Id"   styleClass="singleLine" /> 
+       	
+        	<h:outputText id="enderecamentoProdutoIdOutputText" value="#{managerBean.get('label.cadastroProdutos.id')}"   styleClass="singleLine" /> 
 	        <p:inputText  id="enderecamentoProdutoIdInputText" />
         	
-        	<h:outputText id="enderecamentoEstoquePavimentoOutputText" value="Pavimento" />
+        	<h:outputText id="enderecamentoEstoquePavimentoOutputText" value="#{managerBean.get('label.cadastroProdutos.pavimento')}" />
         	<p:inputText  id="enderecamentoEstoquePavimentoInputText" style="width: 98%;"/>
 
 
-     		<h:outputText id="enderecamentoEstoqueRuaOutputText" value="Rua" />
+     		<h:outputText id="enderecamentoEstoqueRuaOutputText" value="#{managerBean.get('label.cadastroProdutos.rua')}" />
         	<p:inputText  id="enderecamentoEstoqueRuaInputText"  style="width: 97%;"/>
  		    
  	    
-           	<h:outputText id="enderecamentoEstoquePrateleiraOutputText" value="Prateleira" />
+           	<h:outputText id="enderecamentoEstoquePrateleiraOutputText" value="#{managerBean.get('label.cadastroProdutos.prateleira')}" />
         	<p:inputText  id="enderecamentoEstoquePrateleiraInputText"  style="width: 97%;"/>
      		
         	
@@ -63,59 +60,46 @@
      
 </p:panel>
 
-
-<p:dialog header="Endereçamento Estoque"
+<p:dialog header="#{managerBean.get('label.cadastroProdutos.pesquisaEnderecamentoEstoque')}"
 			  widgetVar="dlgEnderecamentoEstoque"
 			  modal="false"
 			  resizable="false"
 			  appendToBody="true"
 			  height="100%"
 			  width="75%">
-    			
       			
      			<p:dataTable id="enderecamentoEstoqueDatatableId"
         	  	 	     var="enderecamentoEstoqueDatatableVar"
-        			 	 value="#{produtoBean.codigoBarrasDatatable}" >
+        			 	 value="#{bean.codigoBarrasDatatable}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroProdutos.msnNaoHaRegistros')}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroProdutos.id')}"
 				    		  styleClass="percentual-5 singleLine">
 				     	
 				     		<h:outputText value="00000000000001"  styleClass="floatRight"/>
 				     	   
 				    </p:column>
-				    
-				    
-				    <p:column headerText="Pavimento"
+				    				    
+				    <p:column headerText="#{managerBean.get('label.cadastroProdutos.pavimento')}"
 				    		  styleClass="percentual-5 singleLine">
 				     	
 				     		<h:outputText value="Pavimento A"  styleClass="floatRight"/>
 				     	   
 				    </p:column>
 				    
-				    <p:column headerText="Rua"
+				    <p:column headerText="#{managerBean.get('label.cadastroProdutos.rua')}"
 				    		  styleClass="percentual-5 singleLine">
 				     	
 				     		<h:outputText value="Rua 123"  styleClass="floatRight"/>
 				     	   
 				    </p:column>
 				    
-				    <p:column headerText="Prateleira"
+				    <p:column headerText="#{managerBean.get('label.cadastroProdutos.prateleira')}"
 				    		  styleClass="percentual-5 singleLine">
 				     	
 				     		<h:outputText value="Prateileira ABC"  styleClass="floatRight"/>
 				     	   
 				    </p:column>
-				    
-				    
 		</p:dataTable>
-     			
 </p:dialog>
-
-
-
-
-
-
-
-  	
 </ui:composition>    	
