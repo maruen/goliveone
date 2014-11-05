@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="documentos"
-		 header="Documentos"
+		 header="#{managerBean.get('label.cadastroFornecedores.documentos')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -34,7 +34,7 @@
           	
           		<p:column>     
 					<h:outputText id="cnpjOutputText"
-								  value="CNPJ"   />
+								  value="#{managerBean.get('label.cadastroFornecedores.cnpj')}"   />
 				</p:column>
 				
 				<p:column>
@@ -46,7 +46,7 @@
 		        
 		        <p:column>		           				 
 		      		<h:outputText id="inscricaoSuframaOutputText" 
-		      					  value="Inscrição Suframa"
+		      					  value="#{managerBean.get('label.cadastroFornecedores.inscricaoSuframa')}"
 		      					  styleClass="singleLine" />
 		      	</p:column>
 		      	
@@ -62,7 +62,7 @@
 		        
 		        <p:column>			 				  
 		      		<h:outputText id="inscricaoEstadualOutputText" 
-		      					  value="Inscrição Estadual" />
+		      					  value="#{managerBean.get('label.cadastroFornecedores.inscricaoEstadual')}" />
 		      	</p:column>
 		      	
 		      	<p:column>
@@ -79,7 +79,7 @@
 					<p:spacer width="5"/>
 					
 					<h:outputText id="isentoOutputText"
-								  value="Isento"/>
+								  value="#{managerBean.get('label.cadastroFornecedores.isento')}"/>
 				</p:column>
 				
 				<p:column/>
@@ -89,7 +89,7 @@
 				
 				<p:column>
 		      		<h:outputText id="inscricaoMunicipalOutputText" 
-		      					  value="Inscrição Municipal" 
+		      					  value="#{managerBean.get('label.cadastroFornecedores.inscricaoMunicipal')}" 
 		      					  styleClass="singleLine" />
 		      	</p:column>
 		      	

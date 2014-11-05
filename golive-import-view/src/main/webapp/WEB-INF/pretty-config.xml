@@ -163,9 +163,9 @@
 			<view-id value="/pages/cadastros/cadastros/financeiro/moedas.jsf" />
 		</url-mapping>
 		
-		<url-mapping id="cadastrosCadastrosFornecedores">
-			<pattern value="/Cadastros/Cadastros/Fornecedores" />
-			<view-id value="/pages/cadastros/cadastros/fornecedores.jsf" />
+		<url-mapping id="cadastrosCadastrosFornecedor">
+			<pattern value="/Cadastros/Cadastros/Fornecedor" />
+			<view-id value="/pages/cadastros/cadastros/fornecedor.jsf" />
 		</url-mapping>
 	
 		

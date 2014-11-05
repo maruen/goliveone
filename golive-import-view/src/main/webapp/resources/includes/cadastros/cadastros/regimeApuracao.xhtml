@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="regimeApuracao"
-		 header="Regime Apuração"
+		 header="#{managerBean.get('label.cadastroFornecedores.regimeApuracao')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -31,7 +31,7 @@
           				 border="0">
      
 			<h:outputText id="regimeApuracaoOutputText"
-						  value="Regime Apuração"
+						  value="#{managerBean.get('label.cadastroFornecedores.regimeApuracao')}"
 						  styleClass="singleLine"   />
            	<h:inputText id="regimeApuracaoInputText"
            				 style="width: 98%;"
@@ -51,7 +51,7 @@
         </h:panelGrid>
 	</p:panel>
 
-<p:dialog header="Pesquisa de Regime de Apuração"
+<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaRegimeApuracao')}"
 			  widgetVar="dlgRegimeApuracao"
 			  modal="false"
 			  resizable="false"
@@ -61,14 +61,15 @@
       			
      			<p:dataTable id="regimeApuracaoDatatableId"
         	  	 	     var="regimeApuracaoDatatableVar"
-        			 	 value="#{fornecedoresBean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Regime de Apuração"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.regimeApuracao')}"
 				    		  styleClass="percentual-25 singleLine">
 				     		<h:outputText value="Lucro Real" />
 				    </p:column>

@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="condicoesComerciais"
-		 header="Condições Comerciais Padrões para o Fornecedor"
+		 header="#{managerBean.get('label.cadastroFornecedores.condicoesComerciais')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -27,7 +27,7 @@
 				 width="100%"
 				 border="0">
 		
-		<p:fieldset legend="Condição Pagamento" collapsed="false"
+		<p:fieldset legend="#{managerBean.get('label.cadastroFornecedores.condicaoPagamento')}" collapsed="false"
 					toggleable="true"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
 		
@@ -45,7 +45,7 @@
 			
 				<h:column>	
 					<h:outputText id="idCondicaoPagamentoOutputText"
-									  value="Id"
+									  value="#{managerBean.get('label.cadastroFornecedores.id')}"
 									  styleClass="singleLine" />
 				</h:column>
 				
@@ -69,7 +69,7 @@
 				
 				<h:column>
 					<h:outputText id="condicaoPagamentoOutputText"
-									  value="Cond.Pagto"
+									  value="#{managerBean.get('label.cadastroFornecedores.condPagto')}"
 									  styleClass="singleLine" />
 				</h:column>
 				
@@ -82,7 +82,7 @@
 				
 				<h:column>
 					<h:outputText id="acrescimoCondicaoPagamentoOutputText"
-									  value="Acréscimo"
+									  value="#{managerBean.get('label.cadastroFornecedores.acrescimo')}"
 									  styleClass="singleLine" />
 					
 				</h:column>
@@ -95,7 +95,7 @@
 				
 				<h:column>
 					<h:outputText id="descontoCondicaoPagamentoOutputText"
-									  value="Desconto"
+									  value="#{managerBean.get('label.cadastroFornecedores.desconto')}"
 									  styleClass="singleLine" />
 					
 				</h:column>
@@ -111,27 +111,27 @@
 			
 			<p:dataTable id="condicaoPagamentoDataTable" 
 						 var="row"
-						 value="#{fornecedoresBean.condicaoPagamentoDataTable}" 
+						 value="#{bean.conteudo}" 
 						 rowKey="#{list.id}"
 						 styleClass="tableCadastros" 
 						 rows="15" 
 						 paginator="true"
-						 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+						 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}"
 						 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 		
-				<p:column headerText="Id" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="0000000001" 
 								  styleClass="singleLine" />
 				</p:column>
 		
-				<p:column headerText="Nº Dias" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.nDias')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="28" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Dias do Faturamento" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.diasFaturamento')}" 
   					      styleClass="percentual-10">
 					<p:selectOneRadio id="diasFaturamentoDtRadio" 
 									  value="XXX"
@@ -141,7 +141,7 @@
 					</p:selectOneRadio>
 				</p:column>
 									 
-				<p:column headerText="Dias do Pedido" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.diasPedido')}" 
 					  	  styleClass="percentual-10">
 					<p:selectOneRadio id="diasPedidoDtRadio" 
 									  value="XXX"
@@ -155,7 +155,7 @@
 		
 		</p:fieldset>
 		
-		<p:fieldset legend="Forma Pagamento" collapsed="false"
+		<p:fieldset legend="#{managerBean.get('label.cadastroFornecedores.formaPagamento')}" collapsed="false"
 					toggleable="true"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
 					
@@ -171,7 +171,7 @@
 			
 				<h:column>	
 					<h:outputText id="idFormaPagamentoOutputText"
-									  value="Id"
+									  value="#{managerBean.get('label.cadastroFornecedores.id')}"
 									  styleClass="singleLine" />
 				</h:column>
 				
@@ -193,7 +193,7 @@
 				
 				<h:column>
 					<h:outputText id="formaPagamentoOutputText"
-									  value="Forma Pagto"
+									  value="#{managerBean.get('label.cadastroFornecedores.formaPagto')}"
 									  styleClass="singleLine" />
 				</h:column>
 				
@@ -206,7 +206,7 @@
 				
 				<h:column>
 					<h:outputText id="acrescimoOutputText"
-									  value="Acréscimo"
+									  value="#{managerBean.get('label.cadastroFornecedores.acrescimo')}"
 									  styleClass="singleLine" />
 					
 					<p:spacer width="10" height="1"/>
@@ -224,7 +224,7 @@
 				
 				<h:column>
 					<h:outputText id="descontoOutputText"
-									  value="Desconto"
+									  value="#{managerBean.get('label.cadastroFornecedores.desconto')}"
 									  styleClass="singleLine" />
 					
 					<p:spacer width="10" height="1"/>
@@ -243,7 +243,7 @@
 		
 		</p:fieldset>
 		
-		<p:fieldset legend="Moeda" collapsed="false"
+		<p:fieldset legend="#{managerBean.get('label.cadastroFornecedores.moeda')}" collapsed="false"
 					toggleable="true"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
 		
@@ -259,7 +259,7 @@
 			
 				<h:column>	
 					<h:outputText id="idMoedaOutputText"
-									  value="Id"
+									  value="#{managerBean.get('label.cadastroFornecedores.id')}"
 									  styleClass="singleLine" />
 				</h:column>
 				
@@ -282,7 +282,7 @@
 				
 				<h:column>
 					<h:outputText id="numeroOutputText"
-									  value="Número"
+									  value="#{managerBean.get('label.cadastroFornecedores.numero')}"
 									  styleClass="singleLine" />
 				</h:column>
 				
@@ -296,7 +296,7 @@
 					<p:spacer width="20" height="1"/>
 					
 					<h:outputText id="casasDecimaisOutputText"
-									  value="Casas Decimais"
+									  value="#{managerBean.get('label.cadastroFornecedores.casasDecimais')}"
 									  styleClass="singleLine" />
 									  
 					<p:spacer width="20" height="1"/>
@@ -313,7 +313,7 @@
 				
 				<h:column>
 					<h:outputText id="codigoMoedaOutputText"
-									  value="Código Moeda"
+									  value="#{managerBean.get('label.cadastroFornecedores.codigoMoeda')}"
 									  styleClass="singleLine" />
 									  
 				</h:column>
@@ -328,7 +328,7 @@
 					<p:spacer width="20" height="1"/>
 					
 					<h:outputText id="simboloMonetarioOutputText"
-									  value="Símbolo Monetário"
+									  value="#{managerBean.get('label.cadastroFornecedores.simboloMonetario')}"
 									  styleClass="singleLine" />
 									  
 					<p:spacer width="5" height="1"/>
@@ -350,7 +350,7 @@
 				
 				<h:column>
 					<h:outputText id="moedaOutputText"
-									  value="Moeda"
+									  value="#{managerBean.get('label.cadastroFornecedores.moeda')}"
 									  styleClass="singleLine" />
 				</h:column>
 				
@@ -366,7 +366,7 @@
 	</h:panelGrid>
 </p:panel>
 
-	<p:dialog header="Pesquisa de Forma Pagamento"
+	<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaFormaPagamento')}"
 			  widgetVar="dlgFormaPagamento"
 			  modal="false"
 			  resizable="false"
@@ -376,41 +376,42 @@
       			
      			<p:dataTable id="formaPagamentoDatatableId"
         	  	 	     var="formaPagamentoDatatableVar"
-        			 	 value="#{fornecedoresBean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Forma de Pagamento"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.formaPagamento')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Boleto Bancário" />
 				    </p:column>
 				    
-				    <p:column headerText="Acréscimo %"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.acrescimo%')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="1.00%" />
 				    </p:column>
 				    
-				    <p:column headerText="Acréscimo R$"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.acrescimoR$')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="R$ 2,50" />
 				    </p:column>
 				    
-				    <p:column headerText="Desconto %"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.desconto%')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="1.00%" />
 				    </p:column>
 				    
-				    <p:column headerText="Desconto"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.descontoR$')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="R$ 2,50" />
 				    </p:column>
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog header="Pesquisa de Moeda - ISO 4217"
+	<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaMoeda')}"
 			  widgetVar="dlgMoeda"
 			  modal="false"
 			  resizable="false"
@@ -420,47 +421,48 @@
       			
      			<p:dataTable id="moedaDatatableId"
         	  	 	     var="moedaDatatableVar"
-        			 	 value="#{fornecedoresBean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 				    		  styleClass="percentual-15 singleLine text-align-right">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Número"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.numero')}"
 				    		  styleClass="percentual-10 singleLine text-align-right">
 				     		<h:outputText value="971" />
 				    </p:column>
 				    
-				    <p:column headerText="Código"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.codigo')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="AFN" />
 				    </p:column>
 				    
-				    <p:column headerText="Casas Decimais"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.casasDecimais')}"
 				    		  styleClass="percentual-15 singleLine text-align-right">
 				     		<h:outputText value="02" />
 				    </p:column>
 				    
-				    <p:column headerText="Símbolo Monetário"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.simboloMonetario')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="؋" />
 				    </p:column>
 				    
-				    <p:column headerText="Símbolo Monetário Imagem"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.simboloMonetarioImagem')}"
 				    		  styleClass="percentual-25 singleLine">
 				     		<h:graphicImage value="/resources/images/simbolo.png"
 											styleClass="image" />
 				    </p:column>
 				    
-				     <p:column headerText="Moeda"
+				     <p:column headerText="#{managerBean.get('label.cadastroFornecedores.moeda')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Afegane" />
 				    </p:column>
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog header="Pesquisa de Condição Pagamento"
+	<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaCondicaoPagamento')}"
 			  widgetVar="dlgCondicaoPagamento"
 			  modal="false"
 			  resizable="false"
@@ -470,24 +472,25 @@
       			
      			<p:dataTable id="condicaoPagamentoDatatableId"
         	  	 	     var="condicaoPagamentoDatatableVar"
-        			 	 value="#{fornecedoresBean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Condição de Pagamento"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.condicaoPagamento')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="28 / 56 dd" />
 				    </p:column>
 				    
-				    <p:column headerText="Acréscimo"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.acrescimo')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="1.00%" />
 				    </p:column>
 				    
-				    <p:column headerText="Desconto"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.desconto')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="1.00%" />
 				    </p:column>

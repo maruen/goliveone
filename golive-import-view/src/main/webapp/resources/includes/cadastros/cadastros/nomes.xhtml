@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="nomes"
-		 header="Nomes"
+		 header="#{managerBean.get('label.cadastroFornecedores.nomes')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -29,14 +29,14 @@
           				 border="0">
      
 			<h:outputText id="nomeFantasiaOutputText"
-						  value="Nome Fantasia"   />
+						  value="#{managerBean.get('label.cadastroFornecedores.nomeFantasia')}"   />
            	<p:inputText id="nomeFantasiaInputText"
            				 style="width: 60%;"
            				 disabled="false"
            				 value="Alpex Alumínio"/>
            				 
       		<h:outputText id="razaoSocialOutputText" 
-      					  value="Razão Social"
+      					  value="#{managerBean.get('label.cadastroFornecedores.razaoSocial')}"
       					  styleClass="singleLine" />
            	<p:inputText id="razaoSocialInputText"
            				 style="width: 60%;"
