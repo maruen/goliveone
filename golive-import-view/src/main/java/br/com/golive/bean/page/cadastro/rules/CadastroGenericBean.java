@@ -152,6 +152,10 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
 	}
 
+	protected void listaVaziaMessage(final String label) {
+		JSFUtils.warnMessage(getLabels().getField("label.cadastroSegmentos.msnNaoHaRegistros"), getLabels().getField(label));
+	}
+
 	protected void erroAoRemover() {
 		JSFUtils.errorMessage(getLabels().getField("title.msg.erro.ao.excluir"), getLabels().getField("msg.erro.registro.vinculado"));
 	}

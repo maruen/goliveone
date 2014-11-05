@@ -104,7 +104,7 @@
 
 			<p:ajax event="rowSelect" oncomplete="PF('dlgDepartamento').hide();"
 				listener="#{subGrupoProdutoBean.carregarGrupoProdutoPorDepartamento()}"
-				update=":conteudoForm:departamentoNomeInputText, :conteudoForm:idDepartamentoInputText, :conteudoForm:linkGrupoProdutos, :conteudoForm:grupoProdutosNomeInputText, :conteudoForm:grupoProdutosDatatableId, :conteudoForm:idGrupoProdutosInputText" />
+				update=":conteudoForm:mensagens, :conteudoForm:departamentoNomeInputText, :conteudoForm:idDepartamentoInputText, :conteudoForm:linkGrupoProdutos, :conteudoForm:grupoProdutosNomeInputText, :conteudoForm:grupoProdutosDatatableId, :conteudoForm:idGrupoProdutosInputText" />
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
@@ -133,7 +133,7 @@
 			var="grupoProduto" value="#{bean.grupoProdutoList}">
 
 			<p:ajax event="rowSelect" oncomplete="PF('dlgGrupoProdutos').hide();"
-				update=":conteudoForm:idGrupoProdutosInputText, :conteudoForm:grupoProdutosNomeInputText" />
+				update=":conteudoForm:mensagens, :conteudoForm:idGrupoProdutosInputText, :conteudoForm:grupoProdutosNomeInputText" />
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"

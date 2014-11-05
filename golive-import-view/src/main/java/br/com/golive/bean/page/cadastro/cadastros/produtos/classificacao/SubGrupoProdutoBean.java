@@ -120,7 +120,31 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	public void incluir() {
 		super.incluir();
 		registro = new SubGrupoProdutoModel();
+		carregarDepartamentos();
+	}
+
+	@Override
+	public void editarRegistro() {
+		super.editarRegistro();
+		if (registro != null) {
+			carregarDepartamentos();
+			carregarGruposProduto();
+		}
+	}
+
+	private void carregarGruposProduto() {
+		grupoProdutoList = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
+		if (grupoProdutoList.isEmpty()) {
+			listaVaziaMessage("msg.lista.grupoproduto.vazia");
+			registro.setGrupoProdutoSelected(null);
+		}
+	}
+
+	private void carregarDepartamentos() {
 		departamentos = departamentoService.listarTodos();
+		if (departamentos.isEmpty()) {
+			listaVaziaMessage("msg.lista.departamento.vazia");
+		}
 	}
 
 	@Override
@@ -146,23 +170,19 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	}
 
 	public void carregarGrupoProdutoPorDepartamento() {
-		grupoProdutoList = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
-		if (grupoProdutoList.isEmpty()) {
-			registro.setGrupoProdutoSelected(null);
-		} else {
-			boolean contem = false;
-			for (final GrupoProdutosModel grupo : grupoProdutoList) {
-				if (!contem) {
-					if (registro.getGrupoProdutoSelected() != null) {
-						if (grupo.getId().equals(registro.getGrupoProdutoSelected().getId())) {
-							contem = true;
-						}
+		carregarGruposProduto();
+		boolean contem = false;
+		for (final GrupoProdutosModel grupo : grupoProdutoList) {
+			if (!contem) {
+				if (registro.getGrupoProdutoSelected() != null) {
+					if (grupo.getId().equals(registro.getGrupoProdutoSelected().getId())) {
+						contem = true;
 					}
 				}
 			}
-			if (!contem) {
-				registro.setGrupoProdutoSelected(null);
-			}
+		}
+		if (!contem) {
+			registro.setGrupoProdutoSelected(null);
 		}
 	}
 
@@ -336,9 +356,9 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	}
 
 	@Override
-	public void serviceRefresh(SubGrupoProdutoModel model) {
+	public void serviceRefresh(final SubGrupoProdutoModel model) {
 		subGrupoProdutoService.refresh(model);
-		
+
 	}
 
 }

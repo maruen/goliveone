@@ -79,7 +79,7 @@
 			rowKey="#{departamento.id}" value="#{bean.departamentos}">
 
 			<p:ajax event="rowSelect"
-				update=":conteudoForm:departamentoNomeInputText"
+				update=":conteudoForm:departamentoNomeInputText, :conteudoForm:mensagens"
 				oncomplete="PF('dlgDepartamento').hide();" />
 
 			<p:column filterBy="#{departamento.id}" filterMatchMode="exact"

@@ -52,7 +52,7 @@
 			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			rowKey="#{colecao.id}" value="#{bean.colecoesList}">
 
-			<p:ajax event="rowSelect" update=":conteudoForm:especificidades"
+			<p:ajax event="rowSelect" update=":conteudoForm:mensagens, :conteudoForm:especificidades"
 				oncomplete="PF('dlgEspecificidades').hide();" />
 
 

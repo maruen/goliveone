@@ -103,6 +103,9 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 
 	private void obterDependencias() {
 		departamentos = departamentoService.listarTodos();
+		if (departamentos.isEmpty()) {
+			listaVaziaMessage("msg.lista.departamento.vazia");
+		}
 	}
 
 	@Override
@@ -237,9 +240,9 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	}
 
 	@Override
-	public void serviceRefresh(GrupoProdutosModel model) {
+	public void serviceRefresh(final GrupoProdutosModel model) {
 		grupoProdutoService.refresh(model);
-		
+
 	}
 
 }
