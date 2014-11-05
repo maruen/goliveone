@@ -13,14 +13,14 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresas.categoriasnaturezasjuridicas.model.CategoriasNaturezasJuridicasModel;
+import br.com.golive.entity.empresas.categorianaturezajuridica.model.CategoriaNaturezaJuridicaModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
 @Label(name = "label.cadastroCategoriasNaturezasJuridicas")
 @ManagedBean
 @ViewScoped
-public class CategoriasNaturezasJuridicasBean extends CadastroBeanRules<CategoriasNaturezasJuridicasModel> {
+public class CategoriaNaturezaJuridicaBean extends CadastroBeanRules<CategoriaNaturezaJuridicaModel> {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -39,11 +39,11 @@ public class CategoriasNaturezasJuridicasBean extends CadastroBeanRules<Categori
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<CategoriasNaturezasJuridicasModel> criarLista() {
-		final List<CategoriasNaturezasJuridicasModel> lista = new ArrayList<CategoriasNaturezasJuridicasModel>();
+	private List<CategoriaNaturezaJuridicaModel> criarLista() {
+		final List<CategoriaNaturezaJuridicaModel> lista = new ArrayList<CategoriaNaturezaJuridicaModel>();
 		
 		for (Integer i = 0; i < 10; i++){
-			lista.add(new CategoriasNaturezasJuridicasModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), 
+			lista.add(new CategoriaNaturezaJuridicaModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), 
 					new Long(i), "Administração Pública"));
 		}
 		return lista;

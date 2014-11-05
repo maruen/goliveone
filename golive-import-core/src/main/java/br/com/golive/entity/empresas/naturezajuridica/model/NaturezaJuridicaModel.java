@@ -1,4 +1,4 @@
-package br.com.golive.entity.empresas.naturezasjuridicas.model;
+package br.com.golive.entity.empresas.naturezajuridica.model;
 
 import java.util.Calendar;
 
@@ -8,7 +8,7 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "NaturezasJuridicas",
 		nomeDoArquivoGerado = "NaturezasJuridicas",
 		nomeArquivoJasper = "NaturezasJuridicas")
-public class NaturezasJuridicasModel extends Model {
+public class NaturezaJuridicaModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,12 +20,12 @@ public class NaturezasJuridicasModel extends Model {
 	private String codCatNatJur;
 	private String categoriaNaturezaJuridica;
 	
-	public NaturezasJuridicasModel(){
+	public NaturezaJuridicaModel(){
 		this.dataInclusao = Calendar.getInstance();
 		this.dataAlteracao =Calendar.getInstance();
 	}
 
-	public NaturezasJuridicasModel(Long id,
+	public NaturezaJuridicaModel(Long id,
 								   Calendar dataInclusao,
 								   Calendar dataAlteracao,
 								   String codNaturezasJuridicas,

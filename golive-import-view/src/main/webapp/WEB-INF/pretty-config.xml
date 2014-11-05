@@ -82,14 +82,14 @@
 			<view-id value="/pages/cadastros/cadastros/empresas/empresa.jsf" />
 		</url-mapping>
 		
-		<url-mapping id="cadastrosCadastrosEmpresasCategoriasNaturezasJuridicas">
-			<pattern value="/Cadastros/Cadastros/Empresas/CategoriasNaturezasJuridicas" />
-			<view-id value="/pages/cadastros/cadastros/empresas/categoriasNaturezasJuridicas.jsf" />
+		<url-mapping id="cadastrosCadastrosEmpresasCategoriaNaturezaJuridica">
+			<pattern value="/Cadastros/Cadastros/Empresas/CategoriaNaturezaJuridica" />
+			<view-id value="/pages/cadastros/cadastros/empresas/categoriaNaturezaJuridica.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosEmpresasNaturezasJuridicas">
-			<pattern value="/Cadastros/Cadastros/Empresas/NaturezasJuridicas" />
-			<view-id value="/pages/cadastros/cadastros/empresas/naturezasJuridicas.jsf" />
+		<url-mapping id="cadastrosCadastrosEmpresasNaturezaJuridica">
+			<pattern value="/Cadastros/Cadastros/Empresas/NaturezaJuridica" />
+			<view-id value="/pages/cadastros/cadastros/empresas/naturezaJuridica.jsf" />
 		</url-mapping>
 		
 		<url-mapping id="cadastrosCadastrosEmpresasNcmSecao">
