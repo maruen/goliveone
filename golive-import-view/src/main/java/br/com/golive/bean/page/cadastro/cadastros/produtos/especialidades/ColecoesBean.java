@@ -213,6 +213,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		if ((registro.getGrupoProdutoSelected() != null) && !grupos.contains(registro.getGrupoProdutoSelected())) {
 			registro.setGrupoProdutoSelected(null);
 			registro.setSubGrupoProdutoSelected(null);
+			subGrupos = null;
 		}
 	}
 
