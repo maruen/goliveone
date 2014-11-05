@@ -18,5 +18,6 @@ public interface CorProdutoService {
 	public void excluir(CorProdutoModel model);
 	public List<AuditoriaModel> getAuditoriaLogs(CorProdutoModel model);
 	public String getUsuarioLog(CorProdutoModel model);
+	public void refresh(CorProdutoModel model);
 
 }

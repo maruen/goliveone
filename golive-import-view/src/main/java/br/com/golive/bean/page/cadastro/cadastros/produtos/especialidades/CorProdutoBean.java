@@ -10,7 +10,6 @@ import javax.inject.Inject;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
 import org.slf4j.Logger;
 
@@ -42,7 +41,6 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	@Getter
 	private Logger logger;
 
 	/**
@@ -552,6 +550,12 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 
 	public void setColecoesList(final List<ColecoesModel> colecoesList) {
 		this.colecoesList = colecoesList;
+	}
+
+	@Override
+	public void serviceRefresh(CorProdutoModel model) {
+		corProdutoService.refresh(model);
+		
 	}
 
 }

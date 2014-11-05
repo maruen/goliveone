@@ -20,6 +20,7 @@ public interface SubGrupoProdutoService {
 	public void excluir(SubGrupoProdutoModel model);
 	public List<AuditoriaModel> getAuditoriaLogs(SubGrupoProdutoModel model);
 	public String getUsuarioLog(SubGrupoProdutoModel model);
+	public void refresh(SubGrupoProdutoModel model);
 	 
 
 }

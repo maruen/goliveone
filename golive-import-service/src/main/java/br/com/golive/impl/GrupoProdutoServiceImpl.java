@@ -76,4 +76,10 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 		return grupoProdutoJPA.obterListaPorDepartamento(departamentoModel);
 	}
 
+	@Override
+	public void refresh(GrupoProdutosModel model) {
+		grupoProdutoJPA.refresh(model);
+		
+	}
+
 }

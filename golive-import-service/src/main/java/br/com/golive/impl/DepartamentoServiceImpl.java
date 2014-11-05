@@ -81,4 +81,9 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 		return auditoriaJPA.getUsuarioLog(model.getId(), model.getClass());
 	}
 
+	@Override
+	public void refresh(DepartamentoModel model) {
+		departamentoJPA.refresh(model);
+	}
+
 }

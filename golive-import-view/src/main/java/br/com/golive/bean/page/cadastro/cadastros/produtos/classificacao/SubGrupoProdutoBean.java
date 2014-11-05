@@ -335,4 +335,10 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 		this.grupoProdutoList = grupoProdutoList;
 	}
 
+	@Override
+	public void serviceRefresh(SubGrupoProdutoModel model) {
+		subGrupoProdutoService.refresh(model);
+		
+	}
+
 }

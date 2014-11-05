@@ -69,9 +69,8 @@ public class ColecoesServiceImpl implements ColecoesService {
 	}
 
 	@Override
-	public void discardChanges(final ColecoesModel model) {
+	public void refresh(final ColecoesModel model) {
 		colecoesJPA.refresh(model);
-
 	}
 
 	@Override
