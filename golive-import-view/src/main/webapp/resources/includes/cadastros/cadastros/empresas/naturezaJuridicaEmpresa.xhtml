@@ -1,0 +1,92 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="naturezaJuridica"
+		header="#{managerBean.get('label.cadastroEmpresa.naturezaJuridica')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="naturezaJuridica"
+		styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-2,percentual-5,percentual-40,percentual-10"
+			width="100%" border="0">
+
+			<h:outputText id="naturezaJuridicaOutputText"
+				value="#{managerBean.get('label.cadastroEmpresa.naturezaJuridica')}"
+				styleClass="singleLine" />
+			<h:inputText id="naturezaJuridicaInputText" style="width: 98%;"
+				disabled="true" value="206-2" />
+
+			<h:inputText id="naturezaJuridicaDescricaoInputText"
+				style="width: 99%;" disabled="true"
+				value="Sociedade Empresarial Limitada" />
+
+			<p:commandLink onclick="PF('dlgNaturezaJuridica').show();"
+				immediate="true">
+				<h:graphicImage
+					value="/resources/images/stylistica-icons-set/24x24/search.png" />
+			</p:commandLink>
+
+
+		</h:panelGrid>
+	</p:panel>
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroEmpresa.pesquisaNaturezaJuridica')}"
+		widgetVar="dlgNaturezaJuridica" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="70%">
+
+		<p:dataTable id="naturezaJuridicaDatatableId"
+			var="naturezaJuridicaDatatableVar" value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroEmpresa.msnNaoHaRegistros')}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.codTipo')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="2" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.tipoNaturezaJuridica')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Entidades Empresariais" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.id')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.codigo')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="206-2" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.naturezaJuridica')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Sociedade Empresarial Limitada" />
+			</p:column>
+
+		</p:dataTable>
+	</p:dialog>
+
+</ui:composition>
