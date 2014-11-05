@@ -243,7 +243,7 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	public void carregarColecoesPorSubGrupo() {
 		colecoesList = colecaoService.obterListaPorSubGrupo(registro.getSubGrupoProdutoSelected());
 		if (subGrupoProdutoList.isEmpty()) {
-			registro.setSubGrupoProdutoSelected(null);
+			registro.setColecaoSelected(null);
 		} else {
 			boolean contem = false;
 			for (final ColecoesModel colecoes : colecoesList) {
@@ -553,9 +553,9 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	}
 
 	@Override
-	public void serviceRefresh(CorProdutoModel model) {
+	public void serviceRefresh(final CorProdutoModel model) {
 		corProdutoService.refresh(model);
-		
+
 	}
 
 }

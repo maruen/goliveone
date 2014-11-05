@@ -18,7 +18,8 @@
 
 
 		<h:panelGrid cellpadding="3" cellspacing="3"
-			columnClasses="percentual-5, percentual-10, percentual-11, percentual-50, percentual-24" columns="5" width="100%" border="0">
+			columnClasses="percentual-5, percentual-10, percentual-11, percentual-50, percentual-24"
+			columns="5" width="100%" border="0">
 
 
 			<h:outputText id="especificidadesIdOutputText"
@@ -48,6 +49,7 @@
 
 		<p:dataTable id="especificidadesDatatableId" selectionMode="single"
 			selection="#{pojo.colecaoSelected}" var="colecao"
+			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			rowKey="#{colecao.id}" value="#{bean.colecoesList}">
 
 			<p:ajax event="rowSelect" update=":conteudoForm:especificidades"
@@ -55,11 +57,12 @@
 
 
 			<p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
+				filterBy="#{colecao.id}" filterMatchMode="exact"
 				styleClass="percentual-5 singleLine">
 				<h:outputText value="#{colecao.id}" styleClass="floatRight" />
 			</p:column>
 
-			<p:column
+			<p:column filterBy="#{colecao.colecao}" filterMatchMode="contains"
 				headerText="#{managerBean.get('label.cadastroCores.colecoes')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="#{colecao.colecao}" styleClass="floatLeft" />
