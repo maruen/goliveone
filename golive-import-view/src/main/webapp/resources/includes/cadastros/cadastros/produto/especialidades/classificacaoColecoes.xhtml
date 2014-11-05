@@ -79,7 +79,8 @@
 			<p:ajax event="rowSelect"
 					oncomplete="PF('dlgDepartamento').hide();"
 					listener="#{bean.carregarGrupoProdutoPorDepartamento()}"  
-					update=":conteudoForm:mensagens, :conteudoForm:departamentoNomeInputText,
+					update=":conteudoForm:mensagens, 
+							:conteudoForm:departamentoNomeInputText,
 							:conteudoForm:departamentoIdInputText,
 							:conteudoForm:grupoProdutosIdInputText,
 							:conteudoForm:grupoProdutosNomeInputText,
@@ -138,7 +139,8 @@
 			<p:ajax event="rowSelect" 
 					listener="#{bean.carregarSubGrupoProdutoPorGrupo()}"
 					oncomplete="PF('dlgGrupoProdutos').hide();"
-					update=":conteudoForm:mensagens, :conteudoForm:grupoProdutosNomeInputText,
+					update=":conteudoForm:mensagens, 
+							:conteudoForm:grupoProdutosNomeInputText,
 							:conteudoForm:grupoProdutosIdInputText,
 							:conteudoForm:subGrupoProdutosIdInputText,
 							:conteudoForm:subGrupoProdutosNomeInputText,
@@ -183,7 +185,8 @@
 
 			<p:ajax event="rowSelect"
 					oncomplete="PF('dlgSubGrupProdutos').hide();" 
-					update=":conteudoForm:mensagens, :conteudoForm:subGrupoProdutosIdInputText,
+					update=":conteudoForm:mensagens, 
+							:conteudoForm:subGrupoProdutosIdInputText,
 						    :conteudoForm:subGrupoProdutosNomeInputText" />
 
 			<p:column filterMatchMode="exact" filterBy="#{subGrupoProdutosDatatableVar.id}"

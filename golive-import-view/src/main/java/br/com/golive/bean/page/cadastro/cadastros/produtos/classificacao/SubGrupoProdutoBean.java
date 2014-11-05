@@ -183,6 +183,7 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 		}
 		if (!contem) {
 			registro.setGrupoProdutoSelected(null);
+			grupoProdutoList = null;
 		}
 	}
 
