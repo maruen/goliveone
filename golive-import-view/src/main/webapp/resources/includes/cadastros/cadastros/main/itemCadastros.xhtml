@@ -21,10 +21,6 @@
 		styleClass="itemPanelMenu little-font" disabled="true"
 		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.clientes')}');" />
 
-	<p:menuitem value="#{managerBean.get('label.empresas')}"
-		styleClass="itemPanelMenu little-font" disabled="true"
-		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresa')}');" />
-	
 	<p:menuitem value="#{managerBean.get('label.departamentos')}"
 		styleClass="itemPanelMenu little-font" disabled="true"
 		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.departamentos')}');" />
@@ -68,7 +64,7 @@
 		<p:menuitem
 			value="#{managerBean.get('label.empresas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.empresas')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.empresa')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.funcionarios')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
@@ -167,25 +163,25 @@
 			label="#{managerBean.get('label.classificacao')}">
 			<p:menuitem
 				value="#{managerBean.get('label.departamentos')}"
-				styleClass="itemPanelMenu little-font"
+				styleClass="itemPanelMenu little-font" disabled="false"
 				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.departamento')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.gruposDeProdutos')}"
-				styleClass="itemPanelMenu little-font"
+				styleClass="itemPanelMenu little-font" disabled="false"
 				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.grupodeprodutos')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.subgrupoDeProdutos')}"
-				styleClass="itemPanelMenu little-font"
+				styleClass="itemPanelMenu little-font" disabled="false"
 				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.subgrupoproduto')}');" />
 		</p:submenu>
 
 		<p:submenu
 			label="#{managerBean.get('label.especialidades')}">
 			<p:menuitem value="#{managerBean.get('label.colecoes')}"
-				styleClass="itemPanelMenu little-font"
+				styleClass="itemPanelMenu little-font" disabled="false"
 				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.colecoes')}');" />
 			<p:menuitem value="#{managerBean.get('label.cores')}"
-				styleClass="itemPanelMenu little-font"
+				styleClass="itemPanelMenu little-font" disabled="false"
 				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.cores')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.padroesDeLargura')}"
@@ -256,7 +252,7 @@
 		<p:menuitem
 			value="#{managerBean.get('label.municipios')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.municipios')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.municipio')}');" />
 
 		<p:submenu styleClass="little-medium"
 			label="#{managerBean.get('label.paises')}">
@@ -302,11 +298,11 @@
 		
 		<p:menuitem value="#{managerBean.get('label.regioes')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.regioes')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.regiao')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.tiposLogradouro')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.tiposlogradouro')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.tipologradouro')}');" />
 
 	</p:submenu>
 	<p:menuitem value="#{managerBean.get('label.transportadoras')}"

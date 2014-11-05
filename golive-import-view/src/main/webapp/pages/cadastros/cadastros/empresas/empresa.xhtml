@@ -63,7 +63,39 @@
 	<ui:define name="edicao">
 
 		<ui:include
-			src="/resources/includes/cadastros/cadastros/dadosGeraisEmpresa.xhtml">
+			src="/resources/includes/cadastros/cadastros/empresas/dadosGeraisEmpresa.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/documentosEmpresa.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/nomesEmpresa.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/cnaesEmpresa.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/naturezaJuridicaEmpresa.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/regimeApuracaoEmpresa.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/enderecosEmpresa.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/contatosEmpresa.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/empresas/observacoesEmpresa.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		<ui:include

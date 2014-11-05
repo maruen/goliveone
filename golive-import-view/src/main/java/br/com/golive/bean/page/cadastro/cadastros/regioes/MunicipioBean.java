@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros;
+package br.com.golive.bean.page.cadastro.cadastros.regioes;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,20 +13,20 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.empresa.model.EmpresaModel;
+import br.com.golive.entity.empresas.regioes.municipio.model.MunicipioModel;
 import br.com.golive.qualifier.LabelSystemInjected;
 import br.com.golive.utils.GoliveOneProperties;
 
-@Label(name = "label.cadastroEmpresa")
+@Label(name = "label.cadastroMunicipios")
 @ManagedBean
 @ViewScoped
-public class EmpresaBean extends CadastroBeanRules<EmpresaModel> {
+public class MunicipioBean extends CadastroBeanRules<MunicipioModel>{
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;
-
+	
 	@Inject
 	@LabelSystemInjected
 	private GoliveOneProperties labels;
@@ -35,20 +35,17 @@ public class EmpresaBean extends CadastroBeanRules<EmpresaModel> {
 	@PostConstruct
 	public void init() {
 		super.init(criarLista());
-
+		
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
-	private List<EmpresaModel> criarLista() {
-		final List<EmpresaModel> lista = new ArrayList<EmpresaModel>();
-
-		for (Integer i = 0; i < 10; i++) {
-			lista.add(new EmpresaModel(new Long(i), Calendar.getInstance(),
-					Calendar.getInstance(), "09.363.143/0001-00",
-					"111.222.333-11", "Ação Importadora",
-					"Ação Persianas Importadora e Exportadora Ltda."));
+	private List<MunicipioModel> criarLista() {
+		final List<MunicipioModel> lista = new ArrayList<MunicipioModel>();
+		
+		for (Integer i = 0; i <= 10; i++){
+			lista.add(new MunicipioModel(new Long(i), Calendar.getInstance(), Calendar.getInstance(), "3550308", "São Paulo", "0000000010", "Brasil", "0000000001", "35", "SP", "Região Sudeste"));
 		}
-
+		
 		return lista;
 	}
 
@@ -56,30 +53,21 @@ public class EmpresaBean extends CadastroBeanRules<EmpresaModel> {
 	protected Logger getLogger() {
 		return logger;
 	}
-
+	
 	@Override
-	public void salvar() {
+	public void salvar(){
 		super.salvar();
+		
 		logger.info("Salvando = {}");
 	}
-
-	public List<Object> getAuditoriaLogs() {
-		final ArrayList<Object> lista = new ArrayList<Object>();
-
+	
+	public List<Object> getAuditoriaLogs(){
+		ArrayList<Object> lista = new ArrayList<Object>();
+		
 		lista.add(new Object());
 		lista.add(new Object());
 		lista.add(new Object());
-
+		
 		return lista;
-	}
-
-	public List<String> tipoPessoaComplete(final String query) {
-		final List<String> results = new ArrayList<String>();
-
-		for (int i = 0; i < 10; i++) {
-			results.add(query + i + " - Pessoa Jurídica");
-		}
-
-		return results;
 	}
 }
