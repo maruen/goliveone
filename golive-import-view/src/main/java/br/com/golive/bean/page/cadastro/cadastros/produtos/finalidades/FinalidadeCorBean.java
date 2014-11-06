@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
-import br.com.golive.entity.especialidades.model.CorProdutoModel;
+import br.com.golive.entity.produto.model.ProdutoModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
@@ -30,7 +30,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @Label(name = "label.cadastroFinalidadeCor")
 @ManagedBean
 @ViewScoped
-public class FinalidadeCorBean extends CadastroBeanRules<CorProdutoModel> {
+public class FinalidadeCorBean extends CadastroBeanRules<ProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +38,7 @@ public class FinalidadeCorBean extends CadastroBeanRules<CorProdutoModel> {
 
 	@Inject
 	@FilterInjected
-	private FilterManager<CorProdutoModel> filterManager;
+	private FilterManager<ProdutoModel> filterManager;
 
 	@Inject
 	@LabelSystemInjected
@@ -52,7 +52,7 @@ public class FinalidadeCorBean extends CadastroBeanRules<CorProdutoModel> {
 		} catch (final ParseException e) {
 			e.printStackTrace();
 		}
-		this.registro = new CorProdutoModel();
+		this.registro = new ProdutoModel();
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
@@ -91,10 +91,13 @@ public class FinalidadeCorBean extends CadastroBeanRules<CorProdutoModel> {
 		logger.info("Salvando = {}");
 	}
 
-	@Deprecated
-	public List<CorProdutoModel> criarList() throws ParseException {
-		final List<CorProdutoModel> lista = new ArrayList<CorProdutoModel>();
+	public List<ProdutoModel> criarList() throws ParseException {
+		final List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
+		for (Integer i = 0; i < 10; i++) {
+			lista.add(new ProdutoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance()));
+		}
 		return lista;
+
 	}
 	
 	public List<AuditoriaModel> getAuditoriaLogs() {

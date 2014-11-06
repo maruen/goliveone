@@ -82,6 +82,11 @@
 			<view-id value="/pages/cadastros/cadastros/empresas/empresa.jsf" />
 		</url-mapping>
 		
+		<url-mapping id="cadastrosCadastrosEmpresasFuncionario">
+			<pattern value="/Cadastros/Cadastros/Empresas/Funcionario" />
+			<view-id value="/pages/cadastros/cadastros/empresas/funcionario.jsf" />
+		</url-mapping>
+		
 		<url-mapping id="cadastrosCadastrosEmpresasCategoriaNaturezaJuridica">
 			<pattern value="/Cadastros/Cadastros/Empresas/CategoriaNaturezaJuridica" />
 			<view-id value="/pages/cadastros/cadastros/empresas/categoriaNaturezaJuridica.jsf" />
@@ -230,8 +235,8 @@
 	
 		
 		<url-mapping id="cadastrosCadastrosProdutosFinalidadesCodigoBarras">
-			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/CodigoDeBarras" />
-			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeCodigoDeBarras.jsf" />
+			<pattern value="/Cadastros/Cadastros/Produtos/Finalidades/CodigoBarras" />
+			<view-id value="/pages/cadastros/cadastros/produtos/finalidades/finalidadeCodigoBarras.jsf" />
 		</url-mapping>
 	
 		
@@ -303,23 +308,23 @@
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigoInternet.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoPaisFips">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoPaises/PaisFips" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoPaisesFips">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoPaises/Fips" />
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigopaises/paisFips.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoPaisIso">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoPaises/PaisIso" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoPaisesIso">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoPaises/Iso" />
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigopaises/paisIso.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoTelefonicoCodigoTelefonicoMunicipio">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoTelefonico/CodigoTelefonicoMunicipio" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoTelefonicoMunicipio">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoTelefonico/Municipio" />
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigotelefonico/codigoTelefonicoMunicipio.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoTelefonicoCodigoTelefonicoPais">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoTelefonico/CodigoTelefonicoPais" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesCodigoTelefonicoPais">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/CodigoTelefonico/Pais" />
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/codigotelefonico/codigoTelefonicoPais.jsf" />
 		</url-mapping>
 
@@ -328,8 +333,8 @@
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/lingua.jsf" />
 		</url-mapping>
 
-		<url-mapping id="cadastrosCadastrosRegioesPaisesPaisMoeda">
-			<pattern value="/Cadastros/Cadastros/Regioes/Paises/PaisMoeda" />
+		<url-mapping id="cadastrosCadastrosRegioesPaisesMoeda">
+			<pattern value="/Cadastros/Cadastros/Regioes/Paises/Moeda" />
 			<view-id value="/pages/cadastros/cadastros/regioes/paises/paisMoeda.jsf" />
 		</url-mapping>
 

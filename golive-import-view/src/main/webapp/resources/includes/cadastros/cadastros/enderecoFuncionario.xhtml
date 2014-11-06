@@ -163,7 +163,8 @@
 		appendToBody="true" height="100%" width="90%">
 
 		<p:dataTable id="correiosDatatableId" var="correiosDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroFuncionario.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroFuncionario.id')}"
@@ -234,7 +235,8 @@
 		appendToBody="true" height="100%" width="90%">
 
 		<p:dataTable id="municipioDatatableId" var="municipioDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroFuncionario.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroFuncionario.id')}"

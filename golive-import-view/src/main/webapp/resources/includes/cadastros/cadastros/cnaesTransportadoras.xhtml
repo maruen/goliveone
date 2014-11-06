@@ -126,7 +126,8 @@
 		appendToBody="true" height="100%" width="60%">
 
 		<p:dataTable id="cnaeDatatableId" var="cnaeDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroTransportadoras.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroTransportadoras.id')}"
