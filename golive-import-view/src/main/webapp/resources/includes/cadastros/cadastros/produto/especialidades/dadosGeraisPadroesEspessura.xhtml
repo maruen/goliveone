@@ -88,7 +88,8 @@
       			
      			<p:dataTable id="unidadeDatatableId"
         	  	 	     var="unidadeDatatableVar"
-        			 	 value="#{bean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroPadroesEspessura.msnNaoHaRegistros')}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
 				    		  styleClass="percentual-5 singleLine">

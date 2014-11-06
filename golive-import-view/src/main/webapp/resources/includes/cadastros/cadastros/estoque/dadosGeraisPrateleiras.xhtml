@@ -125,7 +125,8 @@
 		height="100%" width="50%">
 
 		<p:dataTable id="ruaDatatableId" var="ruaDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroPrateleiras.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroPrateleiras.id')}"

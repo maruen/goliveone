@@ -100,7 +100,8 @@
       			
      			<p:dataTable id="departamentoDatatableId"
         	  	 	     var="departamentoDatatableVar"
-        			 	 value="#{bean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroPadroesLargura.msnNaoHaRegistros')}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}"
 				    		  styleClass="percentual-5 singleLine">
@@ -124,7 +125,8 @@
       			
      			<p:dataTable id="grupoProdutosDatatableId"
         	  	 	     var="grupoProdutosDatatableVar"
-        			 	 value="#{bean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroPadroesLargura.msnNaoHaRegistros')}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}"
 				    		  styleClass="percentual-10 singleLine">
@@ -158,7 +160,8 @@
       			
      			<p:dataTable id="subGrupoProdutosDatatableId"
         	  	 	     var="subGrupoProdutosDatatableVar"
-        			 	 value="#{bean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroPadroesLargura.msnNaoHaRegistros')}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}"
 				    		  styleClass="percentual-10 singleLine">

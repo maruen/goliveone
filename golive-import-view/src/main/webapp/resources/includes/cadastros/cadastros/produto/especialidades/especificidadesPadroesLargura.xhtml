@@ -79,7 +79,8 @@
 
 		<p:dataTable id="colecoesDatatableId" 
 					 var="colecoesDatatableVar" 
-					 value="#{bean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroPadroesLargura.msnNaoHaRegistros')}">
 
 			<p:column headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}" styleClass="percentual-10 singleLine">
 				<h:outputText value="0000000001" />
@@ -133,7 +134,8 @@
 
 		<p:dataTable id="corDatatableId" 
 					 var="corDatatableVar"
-					 value="#{bean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroPadroesLargura.msnNaoHaRegistros')}">
 
 			<p:column headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}" styleClass="percentual-10 singleLine">
 				<h:outputText value="0000000001" />

@@ -150,7 +150,8 @@
 
 		<p:dataTable id="departamentoDatatableId"
 			var="departamentoDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroReservaEndereco.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
@@ -173,7 +174,8 @@
 
 		<p:dataTable id="grupoProdutosDatatableId"
 			var="grupoProdutosDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroReservaEndereco.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
@@ -208,7 +210,8 @@
 
 		<p:dataTable id="subGrupoProdutosDatatableId"
 			var="subGrupoProdutosDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroReservaEndereco.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
@@ -253,7 +256,8 @@
 		appendToBody="true" height="100%" width="90%">
 
 		<p:dataTable id="produtosDatatableId" var="produtosDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroReservaEndereco.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"
