@@ -26,12 +26,8 @@
 		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisCorProduto.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/classificacao.xhtml">
-			<ui:param name="pojo" value="#{bean.registro}" />
-		</ui:include>
-		
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/especificidades.xhtml">
+
+		<ui:include	src="/resources/includes/cadastros/componentsGenericos/classificacaoEspecificidades.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 		

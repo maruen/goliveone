@@ -75,7 +75,7 @@ public class ColecoesServiceImpl implements ColecoesService {
 
 	@Override
 	public List<ColecoesModel> obterListaPorSubGrupo(final SubGrupoProdutoModel model) {
-		logger.info("Obtendo lista de ColecoesModel por subgrupo = {} ", model.getId());
+		logger.info("Obtendo lista de ColecoesModel por subgrupo = {} ");
 		return colecoesJPA.obterListaPorSubGrupo(model);
 	}
 

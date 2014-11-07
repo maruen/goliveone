@@ -8,6 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
@@ -121,7 +124,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	private List<GrupoProdutosModel> grupos;
 
 	private List<SubGrupoProdutoModel> subGrupos;
-
+	
 	@EJB
 	private DepartamentoService departamentoService;
 
@@ -133,6 +136,9 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 	@EJB
 	private ColecoesService colecoesService;
+	
+	@Getter @Setter private boolean especificidades = false;
+	
 
 	@Override
 	@PostConstruct
@@ -141,42 +147,9 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	}
 
 	@Override
-	public void editarRegistro() {
-		super.editarRegistro();
-		if (registro != null) {
-			obterDepartamentos();
-			obterGruposProduto();
-			obterSubGrupos();
-		}
-	}
-
-	private void obterGruposProduto() {
-		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
-		if (grupos.isEmpty()) {
-			listaVaziaMessage("msg.lista.grupoproduto.vazia");
-			registro.setGrupoProdutoSelected(null);
-		}
-	}
-
-	private void obterDepartamentos() {
-		departamentos = departamentoService.listarTodos();
-		if (departamentos.isEmpty()) {
-			listaVaziaMessage("msg.lista.departamento.vazia");
-		}
-	}
-
-	private void obterSubGrupos() {
-		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
-		if (subGrupos.isEmpty()) {
-			listaVaziaMessage("msg.lista.subgrupo.vazia");
-		}
-	}
-
-	@Override
 	public void incluir() {
 		super.incluir();
 		registro = new ColecoesModel();
-		obterDepartamentos();
 	}
 
 	@Override
@@ -208,22 +181,6 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		return ret;
 	}
 
-	public void carregarGrupoProdutoPorDepartamento() {
-		obterGruposProduto();
-		if ((registro.getGrupoProdutoSelected() != null) && !grupos.contains(registro.getGrupoProdutoSelected())) {
-			registro.setGrupoProdutoSelected(null);
-			registro.setSubGrupoProdutoSelected(null);
-			subGrupos = null;
-		}
-	}
-
-	public void carregarSubGrupoProdutoPorGrupo() {
-		obterSubGrupos();
-		if ((registro.getSubGrupoProdutoSelected() != null) && !subGrupos.contains(registro.getSubGrupoProdutoSelected())) {
-			registro.setSubGrupoProdutoSelected(null);
-		}
-
-	}
 
 	@Override
 	public void serviceSave(final ColecoesModel registro) {

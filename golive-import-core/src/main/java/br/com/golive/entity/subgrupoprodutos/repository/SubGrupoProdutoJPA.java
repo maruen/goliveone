@@ -29,4 +29,12 @@ public class SubGrupoProdutoJPA extends JpaGoLive<SubGrupoProdutoModel, Long> {
 		return extractListByCriteria(criteria);
 	}
 	
+	@SuppressWarnings("deprecation")
+	public List<SubGrupoProdutoModel> obterListaPorGrupoId(Long grupoId) {
+		final Criteria criteria = createNativeCriteria();
+		criteria.add(Restrictions.eq("grupoProdutoSelected.Id", grupoId));
+		criteria.setFetchMode("grupoProdutoSelected", EAGER);
+		return extractListByCriteria(criteria);
+	}
+	
 }
