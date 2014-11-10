@@ -1,5 +1,7 @@
 package br.com.golive.bean.page.home;
 
+import static br.com.golive.constants.Constantes.EMPTY_STRING;
+
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -11,6 +13,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
+import br.com.golive.bean.util.Encryption;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.usuario.model.Usuario;
@@ -25,8 +28,8 @@ import br.com.golive.utils.ServiceUtils;
 @ManagedBean
 @ViewScoped
 public class LoginBean implements Serializable {
-
-	private static final long serialVersionUID = -3888666672821909890L;
+	
+	private static final long serialVersionUID = 1L;
 
 	@EJB
 	private UsuarioBeanService usuarioService;
@@ -66,8 +69,8 @@ public class LoginBean implements Serializable {
 			e.printStackTrace();
 		}
 		
-		login = "";
-		senha = "";
+		login = EMPTY_STRING;
+		senha = EMPTY_STRING;
 		
 	}
 
@@ -116,17 +119,22 @@ public class LoginBean implements Serializable {
 	}
 
 	public boolean obterUsuarioPorLoginSenha() {
-		if (carregadoOnBlur != null) {
-			if (carregadoOnBlur.getPassword().equals(getSenha())) {
-				return true;
-			}
-		} else {
+		
+		boolean loginOK = false;
+		try {
 			if (campoValido(getLogin())) {
 				carregadoOnBlur = usuarioService.logar(getLogin());
-				return ((campoValido(getSenha())) && (carregadoOnBlur != null) && (carregadoOnBlur.getPassword().equals(getSenha())));
+				if (campoValido(getSenha()) && carregadoOnBlur != null ) {
+					if ( Encryption.decrypt(carregadoOnBlur.getPassword()).equals(getSenha()) ) {
+						loginOK = true;
+					}
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return false;
+		
+		return loginOK;
 	}
 
 	public boolean campoValido(final String campo) {
@@ -134,8 +142,8 @@ public class LoginBean implements Serializable {
 	}
 
 	public void limpar() {
-		setLogin("");
-		setSenha("");
+		setLogin(EMPTY_STRING);
+		setSenha(EMPTY_STRING);
 	}
 
 	public void verificarUsuarioPorLogin() {
