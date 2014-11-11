@@ -43,7 +43,6 @@ public class ColecoesModel extends Model {
 
 	public ColecoesModel() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ColecoesModel(final String colecao, final GrupoProdutosModel grupoProdutoSelected, final DepartamentoModel departamentoSelected, final SubGrupoProdutoModel subGrupoProdutoSelected) {

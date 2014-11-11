@@ -20,16 +20,13 @@
 
 	<ui:define name="edicao">
 
-		<ui:include 
-			src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisColecoes.xhtml">
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisColecoes.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include
-			src="/resources/includes/cadastros/cadastros/produto/especialidades/classificacaoColecoes.xhtml">
+		<ui:include	src="/resources/includes/cadastros/componentsGenericos/classificacaoEspecificidades.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include
-			src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
+		<ui:include	src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
 			<ui:param name="pojo" value="#{bean.registro.auditoriaLogs}" />
 		</ui:include>
 

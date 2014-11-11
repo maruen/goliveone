@@ -19,7 +19,7 @@
 
 	<p:menuitem value="#{managerBean.get('label.clientes')}"
 		styleClass="itemPanelMenu little-font" disabled="true"
-		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.clientes')}');" />
+		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.cliente')}');" />
 
 	<p:menuitem value="#{managerBean.get('label.departamentos')}"
 		styleClass="itemPanelMenu little-font" disabled="true"
@@ -47,7 +47,7 @@
 			<p:menuitem
 				value="#{managerBean.get('label.cnaesImpeditivosSimplesNacional')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.cnaesimpeditivossimplesnacional')}');" />
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.cnaeimpeditivosimplesnacional')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.subclasse')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
@@ -56,11 +56,11 @@
 
 		<p:menuitem value="#{managerBean.get('label.cargos')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cargos')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cargo')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.departamentos')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.departamentos')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.departamento')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.empresas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
@@ -68,15 +68,15 @@
 		<p:menuitem
 			value="#{managerBean.get('label.funcionarios')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.funcionario')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.funcionario')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.categoriasNaturezasJuridicas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.categoriasnaturezasjuridicas')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.categorianaturezajuridica')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.naturezasJuridicas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.naturezasjuridicas')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.naturezajuridica')}');" />
 
 		<p:submenu styleClass="little-medium"
 			label="#{managerBean.get('label.ncmTipi')}">
@@ -139,20 +139,20 @@
 		<p:menuitem
 			value="#{managerBean.get('label.condicoesdepagamento')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.condicoesDePagamento')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.condicaoPagamento')}');" />
 		<p:menuitem value="#{managerBean.get('label.formasdepagamento')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.formasDePagamento')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.formaPagamento')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.moedas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.moedas')}');" />
+			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.moeda')}');" />
 	</p:submenu>
 
 	<p:menuitem
 		value="#{managerBean.get('label.fornecedores')}"
 		styleClass="itemPanelMenu little-font" disabled="true"
-		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.fornecedores')}');" />
+		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.fornecedor')}');" />
 	<p:menuitem
 		value="#{managerBean.get('label.funcionarios')}"
 		styleClass="itemPanelMenu little-font" disabled="true"
@@ -186,14 +186,14 @@
 			<p:menuitem
 				value="#{managerBean.get('label.padroesDeLargura')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.padroesdelargura')}');" />
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.padraolargura')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.padroesDeExpessura')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.padroesdeespessura')}');" />
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.padraoespessura')}');" />
 			<p:menuitem value="#{managerBean.get('label.unidades')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.unidades')}');" />
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.unidade')}');" />
 		</p:submenu>
 
 		<p:submenu
@@ -205,7 +205,7 @@
 			<p:menuitem
 				value="#{managerBean.get('label.finalidadeCodigoDeBarras')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadecodigodebarras')}');" />
+				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadecodigobarras')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.finalidadeColecao')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
@@ -264,19 +264,19 @@
 				label="#{managerBean.get('label.codigoPaises')}">
 				<p:menuitem value="#{managerBean.get('label.iso3161')}"
 					styleClass="itemPanelMenu little-font" disabled="true"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.paisesiso')}');" />
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.paisiso')}');" />
 				<p:menuitem value="#{managerBean.get('label.fips')}"
 					styleClass="itemPanelMenu little-font" disabled="true"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.paisesfips')}');" />
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.paisfips')}');" />
 			</p:submenu>
 			<p:submenu styleClass="little-medium"
 				label="#{managerBean.get('label.codigoTelefonico')}">
 				<p:menuitem value="#{managerBean.get('label.municipios')}"
 					styleClass="itemPanelMenu little-font" disabled="true"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.codigotelefonicomunicipios')}');" />
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.codigotelefonicomunicipio')}');" />
 				<p:menuitem value="#{managerBean.get('label.paises')}"
 					styleClass="itemPanelMenu little-font" disabled="true"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.codigotelefonicopaises')}');" />
+					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.codigotelefonicopais')}');" />
 			</p:submenu>
 			<p:menuitem
 				value="#{managerBean.get('label.linguas')}"

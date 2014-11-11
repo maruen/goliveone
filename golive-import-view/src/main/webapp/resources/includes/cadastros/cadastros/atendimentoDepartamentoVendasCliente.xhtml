@@ -1,0 +1,282 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="atendimento"
+		header="#{managerBean.get('label.cadastroCliente.atendimentoDepartamentoVendas')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="atendimento" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="1" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-100" width="100%" border="0">
+
+			<p:fieldset
+				legend="#{managerBean.get('label.cadastroCliente.vendedores')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+
+				<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-3,percentual-30,percentual-15,percentual-15"
+					width="100%" border="0">
+
+					<h:column>
+						<h:outputText id="idVendedorOutputText"
+							value="#{managerBean.get('label.cadastroCliente.id')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idVendedorInputText" style="width: 125px;"
+							disabled="true" value="0000000001" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgVendedores').show();"
+							immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="vendedorOutputText"
+							value="#{managerBean.get('label.cadastroCliente.vendedor')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="vendedorInputText" style="width: 90%;"
+							disabled="true" value="Daniela Cristina Simões" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="comissaoOutputText"
+							value="#{managerBean.get('label.cadastroCliente.comissao')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+						
+						<p:inputText id="comissaoInputText" style="width: 60px;"
+							value="1,00 %" />
+					</h:column>
+
+					<h:column>
+						<h:commandLink actionListener="#{bean.excluirVendedor()}"
+							id="excluirVendedor" styleClass="linkButton">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/delete.png"
+								styleClass="image floatRight" />
+						</h:commandLink>
+
+						<h:commandLink actionListener="#{bean.salvarVendedor()}"
+							id="salvarVendedor" styleClass="linkButton">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
+								styleClass="image floatRight" />
+						</h:commandLink>
+					</h:column>
+				</h:panelGrid>
+
+				<br />
+
+				<p:dataTable id="vendedorDataTable" var="row"
+					value="#{bean.conteudo}" rowKey="#{list.id}"
+					styleClass="tableCadastros" rows="15" paginator="true"
+					emptyMessage="#{managerBean.get('label.cadastroCliente.msnNaoHaRegistros')}"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.id')}"
+						styleClass="percentual-10">
+						<h:outputText value="0000000002" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.vendedor')}"
+						styleClass="percentual-10">
+						<h:outputText value="Silmara de Lima Alvarenga"
+							styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.comissao')}"
+						styleClass="percentual-10">
+						<h:outputText value="1,00%" styleClass="singleLine" />
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+
+			<p:fieldset
+				legend="#{managerBean.get('label.cadastroCliente.gerencia')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+				<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-3,percentual-30,percentual-15,percentual-15"
+					width="100%" border="0">
+
+					<h:column>
+						<h:outputText id="idGerenciaOutputText"
+							value="#{managerBean.get('label.cadastroCliente.id')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idGerenciaInputText" style="width: 125px;"
+							disabled="true" value="0000000002" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgGerente').show();" immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="gerenteOutputText"
+							value="#{managerBean.get('label.cadastroCliente.gerente')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="gerenteInputText" style="width: 90%;"
+							disabled="true" value="Daniela Cristina Simões" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="comissaoGerenteOutputText"
+							value="#{managerBean.get('label.cadastroCliente.comissao')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:inputText id="comissaoGerenteInputText" style="width: 50px;"
+							value="1,00 %" />
+					</h:column>
+
+					<h:column>
+						<h:commandLink actionListener="#{bean.excluirGerente()}"
+							id="excluirGerente" styleClass="linkButton">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/delete.png"
+								styleClass="image floatRight" />
+						</h:commandLink>
+
+						<h:commandLink actionListener="#{bean.salvarGerente()}"
+							id="salvarGerente" styleClass="linkButton">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
+								styleClass="image floatRight" />
+						</h:commandLink>
+					</h:column>
+				</h:panelGrid>
+			</p:fieldset>
+		</h:panelGrid>
+	</p:panel>
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroCliente.pesquisaVendedores')}"
+		widgetVar="dlgVendedores" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="60%">
+
+		<p:dataTable id="vendedoresDatatableId" var="vendedoresDatatableVar"
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroCliente.msnNaoHaRegistros')}">
+
+			<p:column headerText="#{managerBean.get('label.cadastroCliente.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroCliente.vendedor')}"
+				styleClass="percentual-30 singleLine">
+				<h:outputText value="Daniela Cristina Simões" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroCliente.vendedor?')}"
+				styleClass="percentual-10 singleLine">
+				<p:selectOneRadio id="vendedorDtRadio" value="XXX" disabled="true">
+					<f:selectItem itemValue="X" id="vendedorItemlabel" />
+				</p:selectOneRadio>
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroCliente.gerente?')}"
+				styleClass="percentual-10 singleLine">
+				<p:selectOneRadio id="gerenteDtRadio" value="XXX" disabled="true">
+					<f:selectItem itemValue="X" id="gerenteItemlabel" />
+				</p:selectOneRadio>
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroCliente.comissao')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="1.00%" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroCliente.pesquisaGerente')}"
+		widgetVar="dlgGerente" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="60%">
+
+		<p:dataTable id="gerenteDatatableId" var="gerenteDatatableVar"
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroCliente.msnNaoHaRegistros')}">
+
+			<p:column headerText="#{managerBean.get('label.cadastroCliente.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroCliente.vendedor')}"
+				styleClass="percentual-30 singleLine">
+				<h:outputText value="Daniela Cristina Simões" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroCliente.vendedor?')}"
+				styleClass="percentual-10 singleLine">
+				<p:selectOneRadio id="vendedorPesquisaGerenteDtRadio" value="XXX"
+					disabled="true">
+					<f:selectItem itemValue="X" id="vendedorPesquisaGerenteItemlabel" />
+				</p:selectOneRadio>
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroCliente.gerente?')}"
+				styleClass="percentual-10 singleLine">
+				<p:selectOneRadio id="gerentePesquisaGerenteDtRadio" value="XXX"
+					disabled="true">
+					<f:selectItem itemValue="X" id="gerentePesquisaGerenteItemlabel" />
+				</p:selectOneRadio>
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroCliente.comissao')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="1.00%" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+</ui:composition>

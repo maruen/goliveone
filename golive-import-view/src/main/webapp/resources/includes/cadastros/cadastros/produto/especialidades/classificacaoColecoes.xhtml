@@ -101,7 +101,7 @@
 
 			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.departamento')}"
 					  styleClass="percentual-20 singleLine"
-					  filterBy="#{departamento.departamento}"
+					  filterBy="#{departamento.departamento.toLowerCase()}"
 					  filterMatchMode="contains">
 				
 				<h:outputText value="#{departamento.departamento}" />
@@ -150,7 +150,7 @@
 			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"
 					  styleClass="percentual-10 singleLine"
 					  filterBy="#{grupoProduto.id}"
-					  filterMatchMode="exact">
+					  filterMatchMode="contains">
 				
 				<h:outputText value="#{grupoProduto.id}" styleClass="floatRight" />
 			</p:column>
@@ -189,14 +189,14 @@
 							:conteudoForm:subGrupoProdutosIdInputText,
 						    :conteudoForm:subGrupoProdutosNomeInputText" />
 
-			<p:column filterMatchMode="exact" filterBy="#{subGrupoProdutosDatatableVar.id}"
+			<p:column filterMatchMode="contains" filterBy="#{subGrupoProdutosDatatableVar.id}"
 				headerText="#{managerBean.get('label.cadastroColecoes.id')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="#{subGrupoProdutosDatatableVar.id}"
 					styleClass="floatRight" />
 			</p:column>
 
-			<p:column filterBy="#{subGrupoProdutosDatatableVar.subGrupoProduto}" filterMatchMode="contains"
+			<p:column filterBy="#{subGrupoProdutosDatatableVar.subGrupoProduto.toLowerCase()}" filterMatchMode="contains"
 				headerText="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}"
 				styleClass="percentual-20 singleLine">
 

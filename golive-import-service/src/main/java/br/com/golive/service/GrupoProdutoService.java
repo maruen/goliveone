@@ -15,6 +15,8 @@ public interface GrupoProdutoService {
 	public List<GrupoProdutosModel> obterGrupoProdutos();
 
 	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamento(final DepartamentoModel departamentoModel);
+	
+	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamentoId(Long departamentoId);
 
 	public void salvar(final GrupoProdutosModel grupoProdutosModel);
 

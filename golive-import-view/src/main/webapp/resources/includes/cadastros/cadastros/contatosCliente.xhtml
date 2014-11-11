@@ -1,0 +1,506 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="contatos"
+		header="#{managerBean.get('label.cadastroCliente.contatos')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="contatos" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="1" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-100" width="100%" border="0">
+
+			<p:fieldset
+				legend="#{managerBean.get('label.cadastroCliente.empresa')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+
+				<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-7,percentual-15,percentual-7,percentual-15,percentual-10,percentual-80"
+					width="100%" border="0">
+
+					<h:outputText id="fone1OutputText"
+						value="#{managerBean.get('label.cadastroCliente.fone1')}"
+						styleClass="singleLine" />
+					<p:inputText id="fone1InputText" style="width: 80%;"
+						value="+55 (11) 2091-3511" />
+
+					<h:outputText id="fone3OutputText"
+						value="#{managerBean.get('label.cadastroCliente.fone3')}"
+						styleClass="singleLine" />
+					<p:inputText id="fone3InputText" style="width: 80%;"
+						value="+55 (11) 2091-3511" />
+
+					<h:outputText id="websiteOutputText"
+						value="#{managerBean.get('label.cadastroCliente.website')}"
+						styleClass="singleLine" />
+					<p:inputText id="websiteInputText" style="width: 90%;"
+						value="www.acaopersianas.com.br" />
+
+					<h:outputText id="fone2OutputText"
+						value="#{managerBean.get('label.cadastroCliente.fone2')}"
+						styleClass="singleLine" />
+					<p:inputText id="fone2InputText" style="width: 80%;"
+						value="+55 (11) 2091-3511" />
+
+					<h:outputText id="faxOutputText"
+						value="#{managerBean.get('label.cadastroCliente.fax')}"
+						styleClass="singleLine" />
+					<p:inputText id="faxInputText" style="width: 80%;"
+						value="+55 (11) 2091-3511" />
+
+					<h:outputText id="emailEnvioNfeOutputText"
+						value="#{managerBean.get('label.cadastroCliente.emailEnvioNfe')}"
+						styleClass="singleLine" />
+					<p:inputText id="emailEnvioNfeInputText" style="width: 90%;"
+						value="nfe@acaopersianas.com.br" />
+
+					<p:spacer />
+					<p:spacer />
+
+					<p:spacer />
+					<p:spacer />
+
+					<h:outputText id="emailEnvioCobrancaOutputText"
+						value="#{managerBean.get('label.cadastroCliente.emailEnvioCobranca')}"
+						styleClass="singleLine" />
+					<p:inputText id="emailEnviioCobrancaInputText" style="width: 90%;"
+						value="financeiro@acaopersianas.com.br" />
+				</h:panelGrid>
+			</p:fieldset>
+
+			<p:fieldset
+				legend="#{managerBean.get('label.cadastroCliente.pessoas')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+				<h:panelGrid columns="4" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-5,percentual-50,percentual-5,percentual-50"
+					width="100%" border="0">
+
+					<h:column>
+						<h:outputText id="idPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.id')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idPessoasInputText" style="width: 125px;"
+							disabled="true" value="" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="departamentoPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.departamento')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="departamentoPessoasInputText"
+							style="width: 90px;" disabled="true" value="0000000001" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="departamentoDescricaoPessoasInputText"
+							style="width: 52%;" disabled="true" value="Diretoria" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgDepartamento').show();"
+							immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+
+					<h:column>
+						<h:outputText id="nomePessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.nome')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="nomePessoasInputText" style="width: 90%;"
+							disabled="false" value="Roberto de Andrade da Costa" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="cargoPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.cargo')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="cargoPessoasInputText" style="width: 90px;"
+							disabled="true" value="0000000001" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="cargoDescricaoPessoasInputText"
+							style="width: 52%;" disabled="true" value="Diretor" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgCargo').show();" immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+
+					<h:column>
+						<h:outputText id="foneTrabalho1PessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.foneTrabalho1')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="foneTrabalho1PessoasInputText"
+							style="width: 125px;" disabled="false" value="+55 (11) 2091-3511" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="ramalTrabalho1PessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.ramal')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:inputText id="ramalTrabalho1PessoasInputText"
+							style="width: 60px;" disabled="false" value="784545" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="emailPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.email')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="emailPessoasInputText" style="width: 74%;"
+							disabled="false" value="roberto@acaopersianas.com.br" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="foneTrabalho2PessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.foneTrabalho2')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="foneTrabalho2PessoasInputText"
+							style="width: 125px;" disabled="false" value="+55 (11) 2091-3511" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="ramalTrabalho2PessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.ramal')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:inputText id="ramalTrabalho2PessoasInputText"
+							style="width: 60px;" disabled="false" value="784545" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="skypePessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.skype')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="skypePessoasInputText" style="width: 74%;"
+							disabled="false" value="RobertoAcaoPersianas" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="faxTrabalhoPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.faxTrabalho')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="faxTrabalhoPessoasInputText"
+							style="width: 125px;" disabled="false" value="+55 (11) 2091-3511" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="ramalFaxPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.ramal')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:inputText id="ramalFaxPessoasInputText" style="width: 60px;"
+							disabled="false" value="784545" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="facebookPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.facebook')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="facebookPessoasInputText" style="width: 74%;"
+							disabled="false" value="Roberto Costa" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="celular1PessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.celular1')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="celular1PessoasInputText" style="width: 125px;"
+							disabled="false" value="+55 (11) 98456-0236" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="twitterPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.twitter')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="twitterPessoasInputText" style="width: 74%;"
+							disabled="false" value="@robertocosta" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="celular2PessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.celular2')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="celular2PessoasInputText" style="width: 125px;"
+							disabled="false" value="+55 (11) 98236-1574" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="observacaoPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.observacao')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputTextarea id="observacaoPessoasInputText" rows="1"
+							style="width: 74%;" />
+
+						<h:commandLink actionListener="#{bean.excluirPessoas()}"
+							id="excluirPessoas" styleClass="linkButton">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/delete.png"
+								styleClass="image floatRight" />
+						</h:commandLink>
+
+						<h:commandLink actionListener="#{bean.salvarPessoas()}"
+							id="salvaPessoas" styleClass="linkButton">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
+								styleClass="image floatRight" />
+						</h:commandLink>
+					</h:column>
+
+					<h:column>
+						<h:outputText id="radioPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.radio')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="radioPessoasInputText" style="width: 125px;"
+							disabled="false" value="55*11*4785" />
+					</h:column>
+
+					<h:column />
+					<h:column />
+
+					<h:column>
+						<h:outputText id="aniversarioPessoasOutputText"
+							value="#{managerBean.get('label.cadastroCliente.aniversario')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="aniversarioPessoasInputText"
+							style="width: 125px;" disabled="false" value="20/07" />
+					</h:column>
+				</h:panelGrid>
+
+				<br />
+
+				<p:dataTable id="pessoasDataTable" var="row"
+					value="#{bean.conteudo}" rowKey="#{list.id}"
+					styleClass="tableCadastros" rows="15" paginator="true"
+					emptyMessage="#{managerBean.get('label.cadastroCliente.msnNaoHaRegistros')}"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.id')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.nome')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.foneTrabalho1')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.foneTrabalho2')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.faxTrabalho')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.celular1')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.celular2')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.radio')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.aniversario')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.id')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.departamento')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.id')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.cargo')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.email')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.skype')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.facebook')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.twitter')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+					<p:column
+						headerText="#{managerBean.get('label.cadastroCliente.observacao')}"
+						styleClass="percentual-10">
+						<h:outputText value="" styleClass="singleLine" />
+					</p:column>
+
+				</p:dataTable>
+			</p:fieldset>
+		</h:panelGrid>
+	</p:panel>
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroCliente.pesquisaDepartamento')}"
+		widgetVar="dlgDepartamento" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="40%">
+
+		<p:dataTable id="departamentoDatatableId"
+			var="departamentoDatatableVar" value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroCliente.msnNaoHaRegistros')}">
+
+			<p:column headerText="#{managerBean.get('label.cadastroCliente.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroCliente.departamento')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Diretoria" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroCliente.pesquisaCargo')}"
+		widgetVar="dlgCargo" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="40%">
+
+		<p:dataTable id="cargoDatatableId" var="cargoDatatableVar"
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroCliente.msnNaoHaRegistros')}">
+
+			<p:column headerText="#{managerBean.get('label.cadastroCliente.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroCliente.cargo')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Diretor" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+</ui:composition>

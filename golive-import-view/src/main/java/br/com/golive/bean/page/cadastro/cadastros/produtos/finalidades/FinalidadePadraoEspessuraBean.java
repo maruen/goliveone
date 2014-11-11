@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
-import br.com.golive.entity.especialidades.model.CorProdutoModel;
+import br.com.golive.entity.produto.model.ProdutoModel;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.LabelSystemInjected;
@@ -27,7 +27,7 @@ import br.com.golive.utils.GoliveOneProperties;
 @Label(name = "label.cadastroFinalidadePadraoEspessura")
 @ManagedBean
 @ViewScoped
-public class FinalidadePadraoEspessuraBean extends	CadastroBeanRules<CorProdutoModel> {
+public class FinalidadePadraoEspessuraBean extends	CadastroBeanRules<ProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ public class FinalidadePadraoEspessuraBean extends	CadastroBeanRules<CorProdutoM
 
 	@Inject
 	@FilterInjected
-	private FilterManager<CorProdutoModel> filterManager;
+	private FilterManager<ProdutoModel> filterManager;
 
 	@Inject
 	@LabelSystemInjected
@@ -50,7 +50,7 @@ public class FinalidadePadraoEspessuraBean extends	CadastroBeanRules<CorProdutoM
 		} catch (final ParseException e) {
 			e.printStackTrace();
 		}
-		this.registro = new CorProdutoModel();
+		this.registro = new ProdutoModel();
 		logger.info("Inicializando = {}", this.getClass().getName());
 	}
 
@@ -92,10 +92,13 @@ public class FinalidadePadraoEspessuraBean extends	CadastroBeanRules<CorProdutoM
 		logger.info("Salvando = {}");
 	}
 
-	@Deprecated
-	public List<CorProdutoModel> criarList() throws ParseException {
-		final List<CorProdutoModel> lista = new ArrayList<CorProdutoModel>();
+	public List<ProdutoModel> criarList() throws ParseException {
+		final List<ProdutoModel> lista = new ArrayList<ProdutoModel>();
+		for (Integer i = 0; i < 10; i++) {
+			lista.add(new ProdutoModel(new Long(i), Calendar.getInstance(), Calendar.getInstance()));
+		}
 		return lista;
+
 	}
 
 	@Override
@@ -122,13 +125,13 @@ public class FinalidadePadraoEspessuraBean extends	CadastroBeanRules<CorProdutoM
 	}
 
 	@Override
-	public FilterManager<CorProdutoModel> getFilterManager() {
+	public FilterManager<ProdutoModel> getFilterManager() {
 		return filterManager;
 	}
 
 	@Override
 	public void setFilterManager(
-			final FilterManager<CorProdutoModel> filterManager) {
+			final FilterManager<ProdutoModel> filterManager) {
 		this.filterManager = filterManager;
 	}
 

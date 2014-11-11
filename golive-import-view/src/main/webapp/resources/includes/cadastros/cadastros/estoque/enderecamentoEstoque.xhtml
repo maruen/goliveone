@@ -98,7 +98,8 @@
 		appendToBody="true" height="100%" width="80%">
 
 		<p:dataTable id="prateleiraDatatableId" var="prateleiraDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroReservaEndereco.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroReservaEndereco.id')}"

@@ -17,6 +17,7 @@ public interface SubGrupoProdutoService {
 	public List<SubGrupoProdutoModel> listarTodos();
 	public List<SubGrupoProdutoModel> listarPorFiltro(String... args);
 	public List<SubGrupoProdutoModel> obterSubGrupoProdutoPorGrupo(GrupoProdutosModel model);
+	public List<SubGrupoProdutoModel> obterSubGrupoProdutoPorGrupoId(Long grupoId);
 	public void excluir(SubGrupoProdutoModel model);
 	public List<AuditoriaModel> getAuditoriaLogs(SubGrupoProdutoModel model);
 	public String getUsuarioLog(SubGrupoProdutoModel model);

@@ -313,7 +313,8 @@
 		appendToBody="true" height="100%" width="60%">
 
 		<p:dataTable id="formaPagamentoDatatableId"
-			var="formaPagamentoDatatableVar" value="#{bean.conteudo}">
+			var="formaPagamentoDatatableVar" value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroTransportadoras.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroTransportadoras.id')}"
@@ -358,7 +359,8 @@
 		appendToBody="true" height="100%" width="80%">
 
 		<p:dataTable id="moedaDatatableId" var="moedaDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroTransportadoras.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroTransportadoras.id')}"
@@ -410,7 +412,8 @@
 		appendToBody="true" height="100%" width="60%">
 
 		<p:dataTable id="condicaoPagamentoDatatableId"
-			var="condicaoPagamentoDatatableVar" value="#{bean.conteudo}">
+			var="condicaoPagamentoDatatableVar" value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroTransportadoras.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroTransportadoras.id')}"

@@ -1,5 +1,7 @@
 package br.com.golive.impl;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -27,12 +29,21 @@ public class PerfilServiceImpl implements PerfilService {
 	private Logger logger;
 
 	@Override
-	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final String managedBeanName, final Class<?>... classes) {
+	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final String managedBeanName, final List<Class<?>> classes) {
 		logger.info("Obtendo configurações para a tabela = {}", classes);
+
+		final Comparator<ColunaPerfil> comparator = new Comparator<ColunaPerfil>() {
+			@Override
+			public int compare(final ColunaPerfil o1, final ColunaPerfil o2) {
+				return o1.getId().getTabela().compareTo(o2.getId().getTabela());
+			}
+		};
 
 		List<ColunaPerfil> conf = colunaPerfilJpa.obterColunaPerfil(usuario.getId(), managedBeanName, Utils.getNameTablesByClasses(classes));
 		if (conf.isEmpty()) {
 			conf = Utils.obterColunasPagina(usuario, managedBeanName, classes);
+			Collections.sort(conf, comparator);
+			Utils.reordernar(conf);
 			salvarLista(conf);
 		}
 		return conf;

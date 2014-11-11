@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="cnaes"
-		 header="CNAEs"
+		 header="#{managerBean.get('label.cadastroFornecedores.cnaes')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -32,7 +32,7 @@
      
 				<h:column>
 					<h:outputText id="cnaeOutputText"
-								  value="CNAE"
+								  value="#{managerBean.get('label.cadastroFornecedores.cnae')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -55,15 +55,15 @@
 				   		<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
 				    </p:commandLink>
 
-					<h:commandLink actionListener="#{fornecedoresBean.excluirCnae()}" 
-								   id="excluirLingua"
+					<h:commandLink actionListener="#{bean.excluirCnae()}" 
+								   id="excluirCnae"
 								   styleClass="linkButton">
 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png"
 										styleClass="image floatRight" />
 					</h:commandLink>
 					
-					<h:commandLink actionListener="#{fornecedoresBean.salvarCnae()}" 
-								   id="salvarLingua"
+					<h:commandLink actionListener="#{bean.salvarCnae()}" 
+								   id="salvarCnae"
 								   styleClass="linkButton">
 				   		<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
 										styleClass="image floatRight" />
@@ -75,41 +75,41 @@
 				
 				<h:column>
 					<p:selectOneRadio id="cnaeRadio" value="XXX" styleClass="floatRight">
-						<f:selectItem itemLabel="CNAE Principal" itemValue="X" id="cnaePrincipalItemlabel"  />
-					    <f:selectItem itemLabel="CNAE Secundário" itemValue="X" id="cnaeSecundarioItemLabel" />
+						<f:selectItem itemLabel="#{managerBean.get('label.cadastroFornecedores.cnaePrincipal')}" itemValue="X" id="cnaePrincipalItemlabel"  />
+					    <f:selectItem itemLabel="#{managerBean.get('label.cadastroFornecedores.cnaeSecundario')}" itemValue="X" id="cnaeSecundarioItemLabel" />
 			        </p:selectOneRadio>
 				</h:column>
         </h:panelGrid>
         
 		<p:dataTable id="cnaeDataTable"
 					 var="row"
-					 value="#{fornecedoresBean.cnaeDataTable}"
+					 value="#{bean.conteudo}"
 					 rowKey="#{list.id}"
 					 styleClass="tableCadastros" 
 					 rows="15"
 					 paginator="true"
-					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+					 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}"
 					 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 					 
-			<p:column headerText="Id"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 					  styleClass="percentual-10">
 				<h:outputText value="0000000000001"
 							  styleClass="singleLine"/>
 			</p:column>
 									    
-			<p:column headerText="CNAE"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.cnae')}"
 					  styleClass="percentual-10">
 				<h:outputText value="47.51-2-01" 
 							  styleClass="singleLine"/>
 			</p:column>
 									 
-			<p:column headerText="Descrição"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.descricao')}"
 					  styleClass="percentual-30">
 				<h:outputText value="Comércio varejista especializado de equipamentos e suprimentos de informática"
 							  styleClass="singleLine"/>
 			</p:column>
 									 
-			<p:column headerText="Principal" 
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.principal')}" 
   					  styleClass="percentual-10">
 				<p:selectOneRadio id="principalDtRadio" 
 								  value="XXX" 
@@ -119,7 +119,7 @@
 				</p:selectOneRadio>
 			</p:column>
 									 
-			<p:column headerText="Secundário" 
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.secundario')}" 
 					  styleClass="percentual-10">
 				<p:selectOneRadio id="secundarioDtRadio" 
 								  value="XXX" 
@@ -132,7 +132,7 @@
         
 	</p:panel>
 
-<p:dialog header="Pesquisa de CNAEs"
+<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaCnaes')}"
 			  widgetVar="dlgCnaes"
 			  modal="false"
 			  resizable="false"
@@ -142,19 +142,20 @@
       			
      			<p:dataTable id="cnaeDatatableId"
         	  	 	     var="cnaeDatatableVar"
-        			 	 value="#{fornecedoresBean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="CNAE"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.cnae')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="47.51-2-01" />
 				    </p:column>
 				    
-				    <p:column headerText="Descrição"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.descricao')}"
 				    		  styleClass="percentual-30 singleLine">
 				     		<h:outputText value="Comércio varejista especializado de equipamentos e suprimentos de informática" />
 				    </p:column>

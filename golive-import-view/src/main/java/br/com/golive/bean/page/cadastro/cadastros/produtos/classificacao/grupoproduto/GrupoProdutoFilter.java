@@ -6,8 +6,10 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
+import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
+import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
@@ -26,41 +28,49 @@ public class GrupoProdutoFilter extends CadastroGenericFilterBean<GrupoProdutosM
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private NumberFilter filtroIdGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "GrupoProduto", label = "label.gruposDeProdutos")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private StringFilter filtroGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private DateFilter filtroDataInclusaoGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private DateFilter filtroDataAletracaoGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "departamentoModel")
+	@EntityClass(classe = DepartamentoModel.class)
 	private NumberFilter filtroIdDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "DepartamentoProduto", label = "label.departamentos", path = "departamentoModel")
+	@EntityClass(classe = DepartamentoModel.class)
 	private StringFilter filtroDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "departamentoModel")
+	@EntityClass(classe = DepartamentoModel.class)
 	private DateFilter filtroDataInclusaoDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "departamentoModel")
+	@EntityClass(classe = DepartamentoModel.class)
 	private DateFilter filtroDataAletracaoDepartamento;
 
 	@Override

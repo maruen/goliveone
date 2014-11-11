@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
+import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
@@ -26,21 +27,25 @@ public class DepartamentoFilter extends CadastroGenericFilterBean<DepartamentoMo
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
+	@EntityClass(classe = DepartamentoModel.class)
 	private NumberFilter filtroIdDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "DepartamentoProduto", label = "label.departamentos")
+	@EntityClass(classe = DepartamentoModel.class)
 	private StringFilter filtroDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
+	@EntityClass(classe = DepartamentoModel.class)
 	private DateFilter filtroDataInclusaoDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
+	@EntityClass(classe = DepartamentoModel.class)
 	private DateFilter filtroDataAletracaoDepartamento;
 
 	@Override

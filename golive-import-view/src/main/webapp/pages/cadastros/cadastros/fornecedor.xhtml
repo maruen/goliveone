@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
+
+	<ui:param name="bean" value="#{fornecedorBean}" />
+
+	<ui:define name="css">
+		<h:outputStylesheet name="css/cadastros/style_fornecedor.css" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		
+		<p:dataTable 
+			id="conteudoTable"
+			var="row" 
+			value="#{bean.conteudo}"
+			selectionMode="single"
+			rowKey="#{row.id}"
+			selection="#{bean.registro}" 
+			styleClass="tableCadastros"
+			rows="15"
+			paginator="true"
+			emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<p:ajax event="rowSelect"  update="conteudoTable" />
+			<p:ajax event="rowUnselect" update="conteudoTable" />
+
+			<p:column selectionMode="single" style="width:16px;text-align:center" />
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
+				styleClass="percentual-10 text-align-right">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroFornecedores.cnpj')}"
+				styleClass="percentual-10 singleLine text-align-right">				
+				<h:outputText value="09.363.143/0001-00" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFornecedores.inscEstadual')}"
+				styleClass="percentual-10 singleLine text-align-right">
+				<h:outputText value="111.222.333-11">
+				</h:outputText>
+			</p:column>
+
+			<p:column 
+				headerText="#{managerBean.get('label.cadastroFornecedores.nomeFantasia')}"
+				styleClass="percentual-10 singleLine text-align-left">
+				<h:outputText value="Alpex Alumínio" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroFornecedores.razaoSocial')}"
+				styleClass="percentual-30 singleLine text-align-left">
+				<h:outputText value="Ind.Com.de Alumínios Alpex Ltda." />
+			</p:column>
+		</p:dataTable>
+
+	</ui:define>
+
+	<ui:define name="edicao">
+
+		<ui:include src="/resources/includes/cadastros/cadastros/dadosGeraisFornecedores.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/documentos.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/nomes.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/cnaes.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/naturezaJuridica.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/regimeApuracao.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/enderecos.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/contatos.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/condicoesComerciais.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/cadastros/observacoes.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+			<ui:param name="pojo" value="#{bean.registro}" />
+		</ui:include>
+
+	</ui:define>
+</ui:composition>

@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="naturezaJuridica"
-		 header="Natureza Jurídica"
+		 header="#{managerBean.get('label.cadastroFornecedores.naturezaJuridica')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -31,7 +31,7 @@
           				 border="0">
      
 			<h:outputText id="naturezaJuridicaOutputText"
-						  value="Natureza Jurídica"
+						  value="#{managerBean.get('label.cadastroFornecedores.naturezaJuridica')}"
 						  styleClass="singleLine"   />
            	<h:inputText id="naturezaJuridicaInputText"
            				 style="width: 98%;"
@@ -51,7 +51,7 @@
         </h:panelGrid>
 	</p:panel>
 
-<p:dialog header="Pesquisa de Natureza Jurídica"
+<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaNaturezaJuridica')}"
 			  widgetVar="dlgNaturezaJuridica"
 			  modal="false"
 			  resizable="false"
@@ -61,34 +61,35 @@
       			
      			<p:dataTable id="naturezaJuridicaDatatableId"
         	  	 	     var="naturezaJuridicaDatatableVar"
-        			 	 value="#{fornecedoresBean.conteudo}" >
+        			 	 value="#{bean.conteudo}" 
+        			 	 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}">
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Cód.Tipo"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.codTipo')}"
 				    		  styleClass="percentual-10 singleLine">
 				     		<h:outputText value="2" />
 				    </p:column>
 				    
-				    <p:column headerText="Tipo Natureza Jurídica"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.tipoNaturezaJuridica')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Entidades Empresariais" />
 				    </p:column>
 				    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Código"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.codigo')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="206-2" />
 				    </p:column>
 
-				    <p:column headerText="Natureza Jurídica"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.naturezaJuridica')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Sociedade Empresarial Limitada" />
 				    </p:column>

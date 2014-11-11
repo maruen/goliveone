@@ -1,0 +1,176 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="regimeApuracao"
+		header="#{managerBean.get('label.cadastroEmpresa.regimeApuracao')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="regimeApuracao" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-10,percentual-80" width="100%" border="0">
+
+			<h:outputText id="regimeApuracaoOutputText"
+				value="#{managerBean.get('label.cadastroEmpresa.regimeApuracao')}" />
+			<p:autoComplete id="regimeApuracaoDropDown" dropdown="true"
+				completeMethod="#{bean.regimeApuracaoComplete}" size="60" />
+
+			<h:outputText id="partilhaSimplesNacionalOutputText"
+				value="#{managerBean.get('label.cadastroEmpresa.partilhaSimplesNacional')}" />
+			<p:autoComplete id="partilhaSimplesNacionalDropDown" dropdown="true"
+				completeMethod="#{bean.partilhaSimplesNacionalComplete}" size="60" />
+
+			<h:outputText id="receitaBrutaOutputText"
+				value="#{managerBean.get('label.cadastroEmpresa.receitaBrutaUltimos12Meses')}"
+				styleClass="singleLine" />
+			<p:inputText value="R$ 501.704,33" id="receitaBrutaInputText"
+				disabled="false" style="width: 20%" styleClass="text-align-right" />
+
+			<h:outputText id="faixaAtualOutputText"
+				value="#{managerBean.get('label.cadastroEmpresa.faixaAtualSimplesNacional')}"
+				styleClass="singleLine" />
+			<h:inputText value="0000000005 - De 480.000,01 a 600.000,00"
+				id="faixaAtualInputText" disabled="true" style="width: 35%" />
+
+			<h:outputText id="aliquotaSimplesOutputText"
+				value="#{managerBean.get('label.cadastroEmpresa.aliquotaSimplesNacional')}"
+				styleClass="singleLine" />
+			<h:inputText value="7,60%" id="aliquotaSimplesInputText"
+				disabled="true" style="width: 7%" styleClass="text-align-right" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-10,percentual-80" width="100%" border="0">
+
+			<h:column />
+
+			<h:column>
+				<h:outputText id="composicaoAliquotaOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.composicaoAliquotaSimplesNacional')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column />
+
+			<h:column>
+				<h:outputText id="irpjOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.irpj')}"
+					styleClass="singleLine" />
+
+				<p:spacer width="7" height="1" />
+
+				<h:inputText value="0,35%" id="irpjInputText" disabled="true"
+					style="width: 7%" styleClass="text-align-right" />
+					
+				<p:spacer width="15" height="1" />
+
+				<h:outputText id="csllOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.csll')}"
+					styleClass="singleLine" />
+
+				<p:spacer width="7" height="1" />
+				
+				<h:inputText value="0,35%" id="csllInputText" disabled="true"
+					style="width: 7%" styleClass="text-align-right" />
+					
+				<p:spacer width="15" height="1" />
+
+				<h:outputText id="cofinsOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.cofins')}"
+					styleClass="singleLine" />
+
+				<p:spacer width="7" height="1" />
+				
+				<h:inputText value="1,05%" id="cofinsInputText" disabled="true"
+					style="width: 7%" styleClass="text-align-right" />
+					
+				<p:spacer width="15" height="1" />
+
+				<h:outputText id="pisPasepOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.pisPasep')}"
+					styleClass="singleLine" />
+
+				<p:spacer width="7" height="1" />
+				
+				<h:inputText value="0,25%" id="pisPasepInputText" disabled="true"
+					style="width: 7%" styleClass="text-align-right" />
+					
+				<p:spacer width="15" height="1" />
+
+				<h:outputText id="cppOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.cpp')}"
+					styleClass="singleLine" />
+
+				<p:spacer width="7" height="1" />
+				
+				<h:inputText value="3,02%" id="cppInputText" disabled="true"
+					style="width: 7%" styleClass="text-align-right" />
+					
+				<p:spacer width="15" height="1" />
+
+				<h:outputText id="icmsOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.icms')}"
+					styleClass="singleLine" />
+
+				<p:spacer width="7" height="1" />
+				
+				<h:inputText value="2,58%" id="icmsInputText" disabled="true"
+					style="width: 7%" styleClass="text-align-right" />
+					
+				<p:spacer width="15" height="1" />
+
+				<h:outputText id="ipiOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.ipi')}"
+					styleClass="singleLine" />
+				
+				<p:spacer width="7" height="1" />
+				
+				<h:inputText value="0,00%" id="ipiInputText" disabled="true"
+					style="width: 7%" styleClass="text-align-right" />
+			</h:column>
+
+			<h:column>
+				<h:outputText id="folhaSalariosOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.folhaSalariosUltimos12Meses')}"
+					styleClass="singleLine" />
+			</h:column>
+
+			<h:column>
+				<p:inputText value="R$ 150.125,49" id="folhaSalariosInputText" disabled="false"
+					style="width: 16%" styleClass="text-align-right" />
+					
+				<p:spacer width="50" height="1" />
+				
+				<h:outputText id="resultadoVaOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.resultadoVa')}"
+					styleClass="singleLine" />
+
+				<p:spacer width="7" height="1" />
+				
+				<h:inputText value="0,25" id="resultadoVaInputText" disabled="true"
+					style="width: 7%" styleClass="text-align-right" />
+					
+				<p:spacer width="320" height="1" />
+
+				<h:outputText id="issOutputText"
+					value="#{managerBean.get('label.cadastroEmpresa.iss')}"
+					styleClass="singleLine" />
+				
+				<p:spacer width="7" height="1" />
+				
+				<h:inputText value="0,00%" id="issInputText" disabled="true"
+					style="width: 7%" styleClass="text-align-right" />
+			</h:column>
+		</h:panelGrid>
+
+	</p:panel>
+</ui:composition>

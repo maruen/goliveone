@@ -61,7 +61,7 @@ public class Utils {
 		return (Class<?>) ((ParameterizedType) type).getActualTypeArguments()[0];
 	}
 
-	public static List<ColunaPerfil> obterColunasPagina(final Usuario usuario, final String managedBeanName, final Class<?>... classes) {
+	public static List<ColunaPerfil> obterColunasPagina(final Usuario usuario, final String managedBeanName, final List<Class<?>> classes) {
 		final List<ColunaPerfil> colunasPagina = new ArrayList<ColunaPerfil>();
 		for (final Class<?> clazz : classes) {
 			obterColunasEntity(colunasPagina, clazz.getAnnotation(Table.class).name(), usuario, managedBeanName, clazz, clazz.getSuperclass());
@@ -69,11 +69,18 @@ public class Utils {
 		return colunasPagina;
 	}
 
-	public static String[] getNameTablesByClasses(final Class<?>... classes) {
-		final String[] tabelas = new String[classes.length];
+	public static void reordernar(final List<ColunaPerfil> configuracaoPerfil) {
+		Long count = 1L;
+		for (final ColunaPerfil perfil : configuracaoPerfil) {
+			perfil.setOrdem(count++);
+		}
+	}
+
+	public static String[] getNameTablesByClasses(final List<Class<?>> classes) {
+		final String[] tabelas = new String[classes.size()];
 
 		for (int i = 0; i < tabelas.length; i++) {
-			tabelas[i] = classes[i].getAnnotation(Table.class).name();
+			tabelas[i] = classes.get(i).getAnnotation(Table.class).name();
 		}
 		return tabelas;
 	}

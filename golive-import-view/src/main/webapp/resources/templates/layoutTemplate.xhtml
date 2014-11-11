@@ -15,34 +15,36 @@
 
 	<ui:insert name="linkRefs" />
 
+	<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+	
 	<script type="text/javascript">
 
-	function abrirPdf(pdfByteArray){
-		var janela = window.open("data:application/pdf;base64, " + pdfByteArray);	
-	}
+		function abrirPdf(pdfByteArray){
+			var janela = window.open("data:application/pdf;base64, " + pdfByteArray);	
+		}
+		
+		function abrirNovaAba(url) {
+			var win = window.open(url, '_blank');
+			win.focus();
+		}
 	
-	function abrirNovaAba(url) {
-		var win = window.open(url, '_blank');
-		win.focus();
-	}
-
-	function load() {
-		$("#loadingPage").animate({height: "15%"}, 1000);
-	}
-
-	function unLoad() {
-		$("#loadingPage").animate({height: "0px"}, 1000);
-	}
-
-	function showMenuBar(tempoAnimacaoTop, tempoAnimacaoHeight) {
-		$("#opcoesDiv").animate({height: "44px"}, parseInt(tempoAnimacaoHeight));
-		$("#opcoesDiv").animate({top: "0px"}, parseInt(tempoAnimacaoTop));
-	}
-
-	function fixarMenuBar() {
-		$("#opcoesDiv").height("44px");
-		$("#opcoesDiv").css({ top: '0px' });
-	}
+		function load() {
+			$("#loadingPage").animate({height: "15%"}, 1000);
+		}
+	
+		function unLoad() {
+			$("#loadingPage").animate({height: "0px"}, 1000);
+		}
+	
+		function showMenuBar(tempoAnimacaoTop, tempoAnimacaoHeight) {
+			$("#opcoesDiv").animate({height: "44px"}, parseInt(tempoAnimacaoHeight));
+			$("#opcoesDiv").animate({top: "0px"}, parseInt(tempoAnimacaoTop));
+		}
+	
+		function fixarMenuBar() {
+			$("#opcoesDiv").height("44px");
+			$("#opcoesDiv").css({ top: '0px' });
+		}
 
 	</script>
 

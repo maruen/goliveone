@@ -6,9 +6,13 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
+import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
+import br.com.golive.entity.departamento.model.DepartamentoModel;
+import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
+import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
@@ -26,81 +30,97 @@ public class ColecoesProdutoFilter extends CadastroGenericFilterBean<ColecoesMod
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
+	@EntityClass(classe = ColecoesModel.class)
 	private NumberFilter filtroIdColecoes;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
+	@EntityClass(classe = ColecoesModel.class)
 	private DateFilter filtroDataInclusaoColecao;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
+	@EntityClass(classe = ColecoesModel.class)
 	private DateFilter filtroDataAlteracaoColecao;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "Colecao", label = "label.cadastroProdutos.colecao")
+	@EntityClass(classe = ColecoesModel.class)
 	private StringFilter filtroColecao;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private NumberFilter filtroIdDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "DepartamentoProduto", label = "label.departamentos", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private StringFilter filtroDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private DateFilter filtroDataInclusaoDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private DateFilter filtroDataAletracaoDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private NumberFilter filtroIdGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "GrupoProduto", label = "label.gruposDeProdutos", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private StringFilter filtroGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private DateFilter filtroDataInclusaoGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private DateFilter filtroDataAletracaoGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "subGrupoProdutoSelected")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private NumberFilter filtroIdSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SubGrupoProduto", label = "label.gruposDeProdutos", path = "subGrupoProdutoSelected")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private StringFilter filtroSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "subGrupoProdutoSelected")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private DateFilter filtroDataInclusaoSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
 	@Override

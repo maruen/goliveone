@@ -111,7 +111,7 @@
 				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
 			</p:column>
 
-			<p:column filterBy="#{departamento.departamento}"
+			<p:column filterBy="#{departamento.departamento.toLowerCase()}"
 				filterMatchMode="contains"
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.departamento')}"
 				styleClass="percentual-20 singleLine">
@@ -147,7 +147,7 @@
 			</p:column>
 
 			<p:column filterMatchMode="contains"
-				filterBy="#{grupoProduto.grupoDeProduto}"
+				filterBy="#{grupoProduto.grupoDeProduto.toLowerCase()}"
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.grupoProdutos')}"
 				styleClass="percentual-20 singleLine">
 				<h:outputText value="#{grupoProduto.grupoDeProduto}" />
@@ -180,7 +180,7 @@
 			</p:column>
 
 			<p:column filterMatchMode="contains"
-				filterBy="#{subGrupoProduto.subGrupoProduto}"
+				filterBy="#{subGrupoProduto.subGrupoProduto.toLowerCase()}"
 				headerText="#{managerBean.get('label.cadastroCores.subGrupoProdutos')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="#{subGrupoProduto.subGrupoProduto}"

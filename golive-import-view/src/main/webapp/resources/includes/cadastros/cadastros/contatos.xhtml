@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="contatos"
-		 header="Contatos"
+		 header="#{managerBean.get('label.cadastroFornecedores.contatos')}"
 		 toggleable="true"
 		 collapsed="true"
 		 closable="false"
@@ -27,7 +27,7 @@
 				 width="100%"
 				 border="0">
 		
-		<p:fieldset legend="Empresa" collapsed="false"
+		<p:fieldset legend="#{managerBean.get('label.cadastroFornecedores.empresa')}" collapsed="false"
 					toggleable="true"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
 			
@@ -44,42 +44,42 @@
 						 border="0">
 				
 				<h:outputText id="fone1OutputText"
-								  value="Fone 1"
+								  value="#{managerBean.get('label.cadastroFornecedores.fone1')}"
 								  styleClass="singleLine" />
 				<p:inputText id="fone1InputText"
 								 style="width: 80%;"
 								 value="+55 (11) 2091-3511"/>	
 
 				<h:outputText id="fone3OutputText"
-								  value="Fone 3"
+								  value="#{managerBean.get('label.cadastroFornecedores.fone3')}"
 								  styleClass="singleLine" />
 				<p:inputText id="fone3InputText"
 								 style="width: 80%;"
 								 value="+55 (11) 2091-3511"/>	
 
 				<h:outputText id="websiteOutputText"
-								  value="WebSite"
+								  value="#{managerBean.get('label.cadastroFornecedores.website')}"
 								  styleClass="singleLine" />
 				<p:inputText id="websiteInputText"
 								 style="width: 90%;"
 								 value="www.acaopersianas.com.br"/>	
 
 				<h:outputText id="fone2OutputText"
-								  value="Fone 2"
+								  value="#{managerBean.get('label.cadastroFornecedores.fone2')}"
 								  styleClass="singleLine" />
 				<p:inputText id="fone2InputText"
 								 style="width: 80%;"
 								 value="+55 (11) 2091-3511"/>	
 
 				<h:outputText id="faxOutputText"
-								  value="Fax"
+								  value="#{managerBean.get('label.cadastroFornecedores.fax')}"
 								  styleClass="singleLine" />
 				<p:inputText id="faxInputText"
 								 style="width: 80%;"
 								 value="+55 (11) 2091-3511"/>	
 
 				<h:outputText id="emailEnvioNfeOutputText"
-								  value="E-Mail Envio NF-e"
+								  value="#{managerBean.get('label.cadastroFornecedores.emailEnvioNfe')}"
 								  styleClass="singleLine" />
 				<p:inputText id="emailEnvioNfeInputText"
 								 style="width: 90%;"
@@ -92,7 +92,7 @@
 				<p:spacer/>
 				
 				<h:outputText id="emailEnvioCobrancaOutputText"
-								  value="E-Mail Envio Cobrança"
+								  value="#{managerBean.get('label.cadastroFornecedores.emailEnvioCobranca')}"
 								  styleClass="singleLine" />
 				<p:inputText id="emailEnviioCobrancaInputText"
 								 style="width: 90%;"
@@ -101,7 +101,7 @@
 			</h:panelGrid>
 		</p:fieldset>
 		
-		<p:fieldset legend="Pessoas" collapsed="false"
+		<p:fieldset legend="#{managerBean.get('label.cadastroFornecedores.pessoas')}" collapsed="false"
 					toggleable="true"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
 		
@@ -117,7 +117,7 @@
 				
 				<h:column>
 					<h:outputText id="idPessoasOutputText"
-								  value="Id"
+								  value="#{managerBean.get('label.cadastroFornecedores.id')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -130,7 +130,7 @@
 				
 				<h:column>
 					<h:outputText id="departamentoPessoasOutputText"
-								  value="Departamento"
+								  value="#{managerBean.get('label.cadastroFornecedores.departamento')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -156,7 +156,7 @@
 							
 				<h:column>
 					<h:outputText id="nomePessoasOutputText"
-								  value="Nome"
+								  value="#{managerBean.get('label.cadastroFornecedores.nome')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -169,7 +169,7 @@
 								 
 				<h:column>
 					<h:outputText id="cargoPessoasOutputText"
-								  value="Cargo"
+								  value="#{managerBean.get('label.cadastroFornecedores.cargo')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -195,7 +195,7 @@
 				
 				<h:column>
 					<h:outputText id="foneTrabalho1PessoasOutputText"
-								  value="Fone Trabalho 1"
+								  value="#{managerBean.get('label.cadastroFornecedores.foneTrabalho1')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -208,7 +208,7 @@
 					<p:spacer width="20" height="1"/>
 								 
 					<h:outputText id="ramalTrabalho1PessoasOutputText"
-								  value="Ramal"
+								  value="#{managerBean.get('label.cadastroFornecedores.ramal')}"
 								  styleClass="singleLine" />
 								  
 					<p:spacer width="10" height="1"/>
@@ -221,7 +221,7 @@
 				
 				<h:column>
 					<h:outputText id="emailPessoasOutputText"
-								  value="E-mail"
+								  value="#{managerBean.get('label.cadastroFornecedores.email')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -234,7 +234,7 @@
 				
 				<h:column>
 					<h:outputText id="foneTrabalho2PessoasOutputText"
-								  value="Fone Trabalho 2"
+								  value="#{managerBean.get('label.cadastroFornecedores.foneTrabalho2')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -247,7 +247,7 @@
 					<p:spacer width="20" height="1"/>
 					
 					<h:outputText id="ramalTrabalho2PessoasOutputText"
-								  value="Ramal"
+								  value="#{managerBean.get('label.cadastroFornecedores.ramal')}"
 								  styleClass="singleLine" />
 								  
 					<p:spacer width="10" height="1"/>
@@ -260,7 +260,7 @@
 				
 				<h:column>
 					<h:outputText id="skypePessoasOutputText"
-								  value="Skype"
+								  value="#{managerBean.get('label.cadastroFornecedores.skype')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -273,7 +273,7 @@
 				
 				<h:column>
 					<h:outputText id="faxTrabalhoPessoasOutputText"
-								  value="Fax Trabalho"
+								  value="#{managerBean.get('label.cadastroFornecedores.faxTrabalho')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -286,7 +286,7 @@
 					<p:spacer width="20" height="1"/>
 					
 					<h:outputText id="ramalFaxPessoasOutputText"
-								  value="Ramal"
+								  value="#{managerBean.get('label.cadastroFornecedores.ramal')}"
 								  styleClass="singleLine" />
 					
 					<p:spacer width="10" height="1"/>
@@ -299,7 +299,7 @@
 				
 				<h:column>
 					<h:outputText id="facebookPessoasOutputText"
-								  value="Facebook"
+								  value="#{managerBean.get('label.cadastroFornecedores.facebook')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -312,7 +312,7 @@
 				
 				<h:column>
 					<h:outputText id="celular1PessoasOutputText"
-								  value="Celular 1"
+								  value="#{managerBean.get('label.cadastroFornecedores.celular1')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -325,7 +325,7 @@
 				
 				<h:column>
 					<h:outputText id="twitterPessoasOutputText"
-								  value="Twitter"
+								  value="#{managerBean.get('label.cadastroFornecedores.twitter')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -338,7 +338,7 @@
 				
 				<h:column>
 					<h:outputText id="celular2PessoasOutputText"
-								  value="Celular 2"
+								  value="#{managerBean.get('label.cadastroFornecedores.celular2')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -351,7 +351,7 @@
 				
 				<h:column>
 					<h:outputText id="observacaoPessoasOutputText"
-								  value="Observação"
+								  value="#{managerBean.get('label.cadastroFornecedores.observacao')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -360,14 +360,14 @@
 						 rows="1" 
 						 style="width: 74%;"/>
 								 
-					<h:commandLink actionListener="#{fornecedoresBean.excluirPessoas()}" 
+					<h:commandLink actionListener="#{bean.excluirPessoas()}" 
 								   id="excluirPessoas"
 								   styleClass="linkButton">
 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/delete.png"
 										styleClass="image floatRight" />
 					</h:commandLink>
 					
-					<h:commandLink actionListener="#{fornecedoresBean.salvarPessoas()}" 
+					<h:commandLink actionListener="#{bean.salvarPessoas()}" 
 								   id="salvaPessoas"
 								   styleClass="linkButton">
 				   		<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/checkmark.png"
@@ -377,7 +377,7 @@
 				
 				<h:column>
 					<h:outputText id="radioPessoasOutputText"
-								  value="Rádio"
+								  value="#{managerBean.get('label.cadastroFornecedores.radio')}"
 								  styleClass="singleLine" />
 				</h:column>
 
@@ -393,7 +393,7 @@
 								
 				<h:column>
 					<h:outputText id="aniversarioPessoasOutputText"
-								  value="Aniversário"
+								  value="#{managerBean.get('label.cadastroFornecedores.aniversario')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -409,117 +409,117 @@
 			
 			<p:dataTable id="pessoasDataTable" 
 						 var="row"
-						 value="#{fornecedoresBean.pessoasDataTable}" 
+						 value="#{bean.conteudo}" 
 						 rowKey="#{list.id}"
 						 styleClass="tableCadastros" 
 						 rows="15" 
 						 paginator="true"
-						 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+						 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}"
 						 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 		
-				<p:column headerText="Id" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 		
-				<p:column headerText="Nome" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.nome')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Fone Trabalho 1" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.foneTrabalho1')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Fone Trabalho 2" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.foneTrabalho2')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Fax Trabalho" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.faxTrabalho')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Celular 1" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.celular1')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Celular 2" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.celular2')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Rádio" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.radio')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Aniversário" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.aniversario')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Id" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Departamento" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.departamento')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Id" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Cargo" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.cargo')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="E-mail" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.email')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Skype" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.skype')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Facebook" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.facebook')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Twitter" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.twitter')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
 				</p:column>
 
-				<p:column headerText="Observação" 
+				<p:column headerText="#{managerBean.get('label.cadastroFornecedores.observacao')}" 
 						  styleClass="percentual-10">
 					<h:outputText value="" 
 								  styleClass="singleLine" />
@@ -530,7 +530,7 @@
 	</h:panelGrid>
 </p:panel>
 
-	<p:dialog header="Pesquisa de Departamento"
+	<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaDepartamento')}"
 			  widgetVar="dlgDepartamento"
 			  modal="false"
 			  resizable="false"
@@ -540,21 +540,22 @@
       			
      			<p:dataTable id="departamentoDatatableId"
         	  	 	     var="departamentoDatatableVar"
-        			 	 value="#{fornecedoresBean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Departamento"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.departamento')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Diretoria" />
 				    </p:column>
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog header="Pesquisa de Cargo"
+	<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaCargo')}"
 			  widgetVar="dlgCargo"
 			  modal="false"
 			  resizable="false"
@@ -564,14 +565,15 @@
       			
      			<p:dataTable id="cargoDatatableId"
         	  	 	     var="cargoDatatableVar"
-        			 	 value="#{fornecedoresBean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}" >
 		    
-				    <p:column headerText="Id"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 				    		  styleClass="percentual-15 singleLine">
 				     		<h:outputText value="0000000001" />
 				    </p:column>
 				    
-				    <p:column headerText="Cargo"
+				    <p:column headerText="#{managerBean.get('label.cadastroFornecedores.cargo')}"
 				    		  styleClass="percentual-20 singleLine">
 				     		<h:outputText value="Diretor" />
 				    </p:column>

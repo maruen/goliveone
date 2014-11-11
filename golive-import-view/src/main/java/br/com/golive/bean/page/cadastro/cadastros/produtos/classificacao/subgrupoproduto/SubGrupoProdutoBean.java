@@ -46,7 +46,7 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(subGrupoProdutoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class));
+		super.init(subGrupoProdutoService.listarPorFiltro());
 	}
 
 	@Override
@@ -140,11 +140,6 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 		subGrupoProdutoService.excluir(registro);
 	}
 
-	@Override
-	public Logger getLogger() {
-		return logger;
-	}
-
 	public void setLogger(final Logger logger) {
 		this.logger = logger;
 	}
@@ -172,6 +167,11 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 
 	public void setFiltros(final SubGrupoProdutoFilter filtros) {
 		this.filtros = filtros;
+	}
+
+	@Override
+	public Logger getLogger() {
+		return logger;
 	}
 
 }

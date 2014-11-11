@@ -1,0 +1,740 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="enderecos"
+		header="#{managerBean.get('label.cadastroEmpresa.enderecos')}"
+		toggleable="true" collapsed="true" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="enderecos"
+		styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="1" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-100" width="100%" border="0">
+
+			<p:fieldset legend="#{managerBean.get('label.cadastroEmpresa.principal')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
+
+				<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-3,percentual-80" width="100%"
+					border="0">
+
+					<h:column>
+						<h:outputText id="tipoLogradouroPrincipalOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.tipoLogradouro')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:autoComplete id="tipoLogradouroPrincipalDropDown"
+							dropdown="true" completeMethod="#{bean.tipoLogradouroComplete}"
+							size="9" />
+
+						<p:spacer width="500" height="1" />
+
+						<p:commandLink onclick="PF('dlgCorreios').show();"
+							immediate="true">
+							<h:graphicImage value="/resources/images/correios.png"
+								styleClass="image" />
+						</p:commandLink>
+
+						<h:outputText id="consultaCepEnderecoPrincipalOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.consultaCepEndereco')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="logradouroPrincipalOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.logradouro')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="logradouroPrincipalInputText" style="width: 72%;"
+							value="Forte do Rio Branco" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="numeroPrincipalOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.numero')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="numeroPrincipalInputText" style="width: 100px;"
+							value="623" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="complementoPrincipalOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.complemento')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:inputText id="complementoPrincipalInputText"
+							style="width: 51%;" value=" " />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="cepPrincipalOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.cep')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="cepPrincipalInputText" style="width: 100px;"
+							value="08340-140" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="bairroPrincipalOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.bairro')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="57" height="1" />
+
+						<p:inputText id="bairroPrincipalInputText" style="width: 20%;"
+							value="Itaquera" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="municipioPrincipalOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.municipio')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="municipioPrincipalInputText"
+							style="width: 105px;" disabled="true" value="3550308" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="municipioDescricaoPrincipalInputText"
+							style="width: 31%;" disabled="true" value="São Paulo" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgMunicipio').show();"
+							immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png" />
+						</p:commandLink>
+					</h:column>
+
+					<h:column>
+						<h:outputText id="estadoPrincipalOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.estado')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="estadoPrincipalInputText" style="width: 105px;"
+							disabled="true" value="35" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="estadoDescricaoPrincipalInputText"
+							style="width: 27%;" disabled="true" value="São Paulo" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="estadoAbreviacaoPrincipalInputText"
+							style="width: 38px;" disabled="true" value="SP" />
+					</h:column>
+				</h:panelGrid>
+			</p:fieldset>
+
+			<p:fieldset legend="#{managerBean.get('label.cadastroEmpresa.entrega')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+				<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-3,percentual-80" width="100%"
+					border="0">
+
+					<h:column>
+						<h:outputText id="idSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.id')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idSecundarioInputText" style="width: 125px;"
+							disabled="true" value="0000000001" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="cnpjSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.cnpj')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="cnpjSecundarioInputText" style="width: 125px;"
+							disabled="true" value="09.363.143/0001-00" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgTransportadora').show();"
+							immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png"
+								styleClass="image" />
+						</p:commandLink>
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink action="#{bean.limparEntrega()}">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/bin.png"
+								styleClass="image" />
+						</p:commandLink>
+
+						<p:spacer width="250" height="1" />
+
+						<h:outputText id="inscricaoEstadualSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.inscricaoEstadual')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<h:inputText id="inscricaoEstadualSecundarioInputText"
+							style="width: 125px;" disabled="true" value="111.111.111.111-11" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:selectBooleanCheckbox value="checked" disabled="true"
+							id="isentoSecundarioCheckbox" />
+
+						<p:spacer width="5" height="1" />
+
+						<h:outputText id="isentoSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.isento')}" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="nomeFantasiaSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.nomeFantasia')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="nomeFantasiaSecundarioInputText"
+							style="width: 72%;" disabled="true" value="Transporte Bem" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="razaoSocialSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.razaoSocial')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="razaoSocialSecundarioInputText"
+							style="width: 72%;" disabled="true"
+							value="Transportadora Transporte Bem Ltda." />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="tipoLogradouroSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.tipoLogradouro')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:autoComplete id="tipoLogradouroSecundarioDropDown"
+							dropdown="true" completeMethod="#{bean.tipoLogradouroComplete}"
+							size="12" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="logradouroSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.logradouro')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="logradouroSecundarioInputText"
+							style="width: 72%;" value="Conceição do Castelo" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="numeroSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.numero')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="numeroSecundarioInputText" style="width: 120px;"
+							value="615" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="complementoSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.complemento')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:inputText id="complementoSecundarioInputText"
+							style="width: 49%;" value=" " />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="cepSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.cep')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="cepSecundarioInputText" style="width: 120px;"
+							value="03681-020" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="bairroSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.bairro')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="57" height="1" />
+
+						<p:inputText id="bairroSecundarioInputText" style="width: 20%;"
+							value="Burgo Paulista" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="municipioSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.municipio')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="municipioSecundarioInputText"
+							style="width: 125px;" disabled="true" value="3550308" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="municipioDescricaoSecundarioInputText"
+							style="width: 31%;" disabled="true" value="São Paulo" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="estadoSecundarioOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.estado')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="estadoSecundarioInputText" style="width: 125px;"
+							disabled="true" value="35" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="estadoDescricaoSecundarioInputText"
+							style="width: 27%;" disabled="true" value="São Paulo" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="estadoAbreviacaoSecundarioInputText"
+							style="width: 38px;" disabled="true" value="SP" />
+					</h:column>
+				</h:panelGrid>
+			</p:fieldset>
+
+			<p:fieldset legend="#{managerBean.get('label.cadastroEmpresa.cobranca')}"
+				collapsed="false" toggleable="true"
+				style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+				<h:panelGrid columns="2" cellpadding="3" cellspacing="3"
+					columnClasses="percentual-3,percentual-80" width="100%"
+					border="0">
+
+					<h:column>
+						<h:outputText id="idCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.id')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="idCobrancaInputText" style="width: 125px;"
+							disabled="true" value="0000000001" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="cnpjCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.cnpj')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="cnpjCobrancaInputText" style="width: 125px;"
+							disabled="true" value="09.363.143/0001-00" />
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink onclick="PF('dlgTransportadora').show();"
+							immediate="true">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/search.png"
+								styleClass="image" />
+						</p:commandLink>
+
+						<p:spacer width="5" height="1" />
+
+						<p:commandLink action="#{bean.limparCobranca()}">
+							<h:graphicImage
+								value="/resources/images/stylistica-icons-set/24x24/bin.png"
+								styleClass="image" />
+						</p:commandLink>
+
+						<p:spacer width="250" height="1" />
+
+						<h:outputText id="inscricaoEstadualCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.inscricaoEstadual')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<h:inputText id="inscricaoEstadualCobrancaInputText"
+							style="width: 125px;" disabled="true" value="111.111.111.111-11" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:selectBooleanCheckbox value="checked" disabled="true"
+							id="isentoCobrancaCheckbox" />
+
+						<p:spacer width="5" height="1" />
+
+						<h:outputText id="isentoCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.isento')}" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="nomeFantasiaCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.nomeFantasia')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="nomeFantasiaCobrancaInputText"
+							style="width: 72%;" disabled="true" value="Transporte Bem" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="razaoSocialCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.razaoSocial')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="razaoSocialCobrancaInputText" style="width: 72%;"
+							disabled="true" value="Transportadora Transporte Bem Ltda." />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="tipoLogradouroCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.tipoLogradouro')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:autoComplete id="tipoLogradouroCobrancaDropDown"
+							dropdown="true" completeMethod="#{bean.tipoLogradouroComplete}"
+							size="12" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="logradouroCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.logradouro')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="logradouroCobrancaInputText" style="width: 72%;"
+							value="Conceição do Castelo" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="numeroCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.numero')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="numeroCobrancaInputText" style="width: 120px;"
+							value="615" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="complementoCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.complemento')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="10" height="1" />
+
+						<p:inputText id="complementoCobrancaInputText" style="width: 49%;"
+							value=" " />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="cepCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.cep')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<p:inputText id="cepCobrancaInputText" style="width: 120px;"
+							value="03681-020" />
+
+						<p:spacer width="20" height="1" />
+
+						<h:outputText id="bairroCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.bairro')}"
+							styleClass="singleLine" />
+
+						<p:spacer width="57" height="1" />
+
+						<p:inputText id="bairroCobrancaInputText" style="width: 20%;"
+							value="Burgo Paulista" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="municipioCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.municipio')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="municipioCobrancaInputText" style="width: 125px;"
+							disabled="true" value="3550308" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="municipioDescricaoCobrancaInputText"
+							style="width: 31%;" disabled="true" value="São Paulo" />
+					</h:column>
+
+					<h:column>
+						<h:outputText id="estadoCobrancaOutputText"
+							value="#{managerBean.get('label.cadastroEmpresa.estado')}"
+							styleClass="singleLine" />
+					</h:column>
+
+					<h:column>
+						<h:inputText id="estadoCobrancaInputText" style="width: 125px;"
+							disabled="true" value="35" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="estadoDescricaoCobrancaInputText"
+							style="width: 27%;" disabled="true" value="São Paulo" />
+
+						<p:spacer width="1" height="1" />
+
+						<h:inputText id="estadoAbreviacaoCobrancaInputText"
+							style="width: 38px;" disabled="true" value="SP" />
+					</h:column>
+				</h:panelGrid>
+			</p:fieldset>
+		</h:panelGrid>
+	</p:panel>
+
+	<p:dialog header="#{managerBean.get('label.cadastroEmpresa.pesquisaCorreios')}"
+		widgetVar="dlgCorreios" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="90%">
+
+		<p:dataTable id="correiosDatatableId" var="correiosDatatableVar"
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroEmpresa.msnNaoHaRegistros')}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.cep')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="08340-140" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.tipoLogradouro')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="Rua" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.logradouro')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="Forte do Rio Branco" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.bairro')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Itaquera" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.codMunIbge')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="3550308" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.municipio')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="São Paulo" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.codEstadoIbge')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="35" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.estado')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="São Paulo" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.abreviacaoEstado')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="SP" />
+			</p:column>
+
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="#{managerBean.get('label.cadastroEmpresa.pesquisaMunicipio')}"
+		widgetVar="dlgMunicipio" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="90%">
+
+		<p:dataTable id="municipioDatatableId" var="municipioDatatableVar"
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroEmpresa.msnNaoHaRegistros')}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.codIbge')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="3550308" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.municipio')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="São Paulo" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.codIbge')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="35" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.abreviacao')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="SP" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.estado')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="São Paulo" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.regiao')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="Região Sudeste" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.id')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="0000000010" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.pais')}"
+				styleClass="percentual-15 singleLine">
+				<h:outputText value="Brasil" />
+			</p:column>
+
+		</p:dataTable>
+	</p:dialog>
+
+	<p:dialog header="#{managerBean.get('label.cadastroEmpresa.pesquisaTransportadoras')}"
+		widgetVar="dlgTransportadora" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="90%">
+
+		<p:dataTable id="transportadoraDatatableId"
+			var="transportadoraDatatableVar" value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroEmpresa.msnNaoHaRegistros')}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.cnpj')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="09.363.143/0001-00" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.inscEstadual')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="131.242.313-11" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.nomeFantasia')}"
+				styleClass="percentual-25 singleLine">
+				<h:outputText value="Andorinha" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroEmpresa.razaoSocial')}"
+				styleClass="percentual-25 singleLine">
+				<h:outputText value="Andorinha Transporte de Cargas Ltda." />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+</ui:composition>

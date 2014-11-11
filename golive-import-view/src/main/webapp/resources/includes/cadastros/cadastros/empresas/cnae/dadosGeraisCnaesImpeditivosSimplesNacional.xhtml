@@ -125,7 +125,8 @@
       			
      			<p:dataTable id="subClasseDatatableId"
         	  	 	     var="subClasseDatatableVar"
-        			 	 value="#{bean.conteudo}" >
+        			 	 value="#{bean.conteudo}"
+        			 	 emptyMessage="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.msnNaoHaRegistros')}" >
 		    
 				    <p:column headerText="#{managerBean.get('label.cadastroCnaesImpeditivosSimplesNacional.id')}"
 				    		  styleClass="percentual-15 singleLine">

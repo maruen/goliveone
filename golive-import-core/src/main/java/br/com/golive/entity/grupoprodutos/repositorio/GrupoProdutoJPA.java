@@ -1,5 +1,7 @@
 package br.com.golive.entity.grupoprodutos.repositorio;
 
+import static org.hibernate.FetchMode.EAGER;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -23,11 +25,22 @@ public class GrupoProdutoJPA extends JpaGoLive<GrupoProdutosModel, Long> {
 		entityManager.remove(entityManager.contains(model) ? model : entityManager.merge(model));
 	}
 
+	@SuppressWarnings("deprecation")
 	public List<GrupoProdutosModel> obterListaPorDepartamento(final DepartamentoModel departamentoModel) {
 		final Criteria criteria = createNativeCriteria();
 		criteria.add(Restrictions.eq("departamentoModel", departamentoModel));
-		criteria.setFetchMode("departamentoModel", FetchMode.EAGER);
+		criteria.setFetchMode("departamentoModel", EAGER);
 		return extractListByCriteria(criteria);
 	}
 
+	@SuppressWarnings("deprecation")
+	public List<GrupoProdutosModel> obterListaPorDepartamentoId(Long departamentoId) {
+		final Criteria criteria = createNativeCriteria();
+		criteria.add(Restrictions.eq("departamentoModel.Id", departamentoId));
+		criteria.setFetchMode("departamentoModel", EAGER);
+		return extractListByCriteria(criteria);
+	}
+	
+	
+	
 }

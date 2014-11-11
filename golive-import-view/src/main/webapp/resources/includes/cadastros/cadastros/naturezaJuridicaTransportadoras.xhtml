@@ -47,7 +47,8 @@
 		appendToBody="true" height="100%" width="70%">
 
 		<p:dataTable id="naturezaJuridicaDatatableId"
-			var="naturezaJuridicaDatatableVar" value="#{bean.conteudo}">
+			var="naturezaJuridicaDatatableVar" value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroTransportadoras.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroTransportadoras.id')}"

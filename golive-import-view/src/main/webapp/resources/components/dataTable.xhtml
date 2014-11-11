@@ -24,7 +24,7 @@
 		<p:dataTable id="configuracaoTable" draggableRows="true"
 			value="#{cc.attrs.bean.configuracaoPerfil}" var="coluna"
 			rowKey="#{coluna}" styleClass="dataTableConfiguracaoTabela"
-			scrollable="true" scrollHeight="250">
+			scrollable="true" scrollHeight="260">
 
 			<f:facet name="header">
 				<h:outputLabel value="#{managerBean.get('label.configuracoes')}" />
@@ -68,8 +68,9 @@
 			<p:column
 				headerText="#{managerBean.get('label.tamanho.minimo.coluna')}"
 				styleClass="widthColunas">
-				<p:spinner id="widthColunasTable" value="#{coluna.width}" min="20"
-					max="2000" />
+				<p:slider for="widthHidden" display="label" style="width: 200px" minValue="250" maxValue="1000" displayTemplate="Tamanho: {value}" />
+				<h:inputHidden id="widthHidden" value="#{coluna.width}" />
+				<h:outputLabel id="label" value="Tamanho: #{coluna.width}" style="float: right;"/>
 			</p:column>
 
 			<f:facet name="footer">

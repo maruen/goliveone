@@ -19,6 +19,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
+import javax.persistence.Column;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 
 import net.sf.jasperreports.engine.JRException;
@@ -104,7 +106,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	protected Class<T> genericClazzInstance;
 	protected List<ColunaPerfil> configuracaoPerfil;
 
-	protected abstract Logger getLogger();
+	public abstract Logger getLogger();
 
 	public abstract void init();
 
@@ -120,7 +122,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public abstract CadastroGenericFilterBean<T> getFiltros();
 
-	protected void init(final List<T> listaConteudo, final List<ColunaPerfil> configuracoes) {
+	protected void init(final List<T> listaConteudo) {
 		if (usuario != null) {
 			if (getLogger() == null) {
 				throw new GoLiveException("ManagedBean nÃ£o possui log para acompanhamento dos processos, implemente o getLogger() para que a pÃ¡gina possa ser renderizada");
@@ -131,7 +133,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 			this.conteudo = listaConteudo;
 			filtrados.addAll(conteudo);
 			inicializarClasse();
-			configuracaoPerfil = configuracoes;
+			configuracaoPerfil = getConfiguracaoesByClasses();
 			adicionarColunasNaPagina();
 			fluxo = getFluxoListagem();
 			definirPadraoFiltragem();
@@ -271,8 +273,19 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	protected List<ColunaPerfil> getConfiguracaoesByClasses(final Class<?>... classes) {
+
+		final List<Class<?>> classesList = new ArrayList<Class<?>>();
+
+		classesList.add(genericClazzInstance);
+
+		for (final Field field : genericClazzInstance.getDeclaredFields()) {
+			if (field.isAnnotationPresent(JoinTable.class)) {
+				classesList.add(field.getType());
+			}
+		}
+
 		if (usuario != null) {
-			return colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, this.getClass().getSimpleName(), classes);
+			return colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, this.getClass().getSimpleName(), classesList);
 		}
 		return null;
 	}
@@ -515,16 +528,22 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 	}
 
-	public void reordenarLinha() {
-		Long count = 1L;
-		for (final ColunaPerfil perfil : configuracaoPerfil) {
-			perfil.setOrdem(count++);
+	public Field obterNomeFieldPorNomeDeColuna(final ColunaPerfil coluna, final Class<?>... classes) {
+		for (final Class<?> clazz : classes) {
+			for (final Field field : clazz.getDeclaredFields()) {
+				if (field.isAnnotationPresent(Column.class)) {
+					if (field.getAnnotation(Column.class).name().equals(coluna.getId().getColuna())) {
+						return field;
+					}
+				}
+			}
 		}
+		return null;
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void salvarPerfilPagina() {
-		reordenarLinha();
+		Utils.reordernar(configuracaoPerfil);
 
 		for (final ColunaPerfil coluna : configuracaoPerfil) {
 			final GoliveFilter filtro = getFiltros().getFilter(coluna);
@@ -540,6 +559,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 				colunasPagina.add(coluna);
 			}
 		}
+		filtrar();
 	}
 
 	public GeradorRelatorio<T> getRelatorios() {

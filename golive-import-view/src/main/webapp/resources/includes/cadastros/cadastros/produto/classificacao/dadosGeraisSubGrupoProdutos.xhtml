@@ -116,7 +116,7 @@
 			<p:column
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.departamento')}"
 				styleClass="percentual-20 singleLine"
-				filterBy="#{departamento.departamento}" filterMatchMode="contains">
+				filterBy="#{departamento.departamento.toLowerCase()}" filterMatchMode="contains">
 				<h:outputText value="#{departamento.departamento}" />
 			</p:column>
 		</p:dataTable>
@@ -145,7 +145,7 @@
 			<p:column
 				headerText="#{managerBean.get('label.cadastroSubGrupoProduto.grupoProdutos')}"
 				styleClass="percentual-20 singleLine"
-				filterBy="#{grupoProduto.grupoDeProduto}" filterMatchMode="contains">
+				filterBy="#{grupoProduto.grupoDeProduto.toLowerCase()}" filterMatchMode="contains">
 				<h:outputText value="#{grupoProduto.grupoDeProduto}" />
 			</p:column>
 

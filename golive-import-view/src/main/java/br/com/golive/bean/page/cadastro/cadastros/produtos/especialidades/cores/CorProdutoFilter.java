@@ -6,9 +6,14 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
+import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
+import br.com.golive.entity.colecoes.model.ColecoesModel;
+import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
+import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
+import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
@@ -25,102 +30,128 @@ public class CorProdutoFilter extends CadastroGenericFilterBean<CorProdutoModel>
 
 	@Inject
 	@FilterInjected
+	@Filter(name = "id", label = "label.id")
+	@EntityClass(classe = CorProdutoModel.class)
+	private NumberFilter filtroIdCor;
+
+	@Inject
+	@FilterInjected
 	@Filter(name = "CorDescricao", label = "label.cadastroCores.cor")
+	@EntityClass(classe = CorProdutoModel.class)
 	private StringFilter filtroCorDescricao;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "CorCodigo", label = "label.cadastroCores.codCor")
+	@EntityClass(classe = CorProdutoModel.class)
 	private NumberFilter filtroCorCod;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
+	@EntityClass(classe = CorProdutoModel.class)
 	private DateFilter filtroDataInclusaoCorProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
+	@EntityClass(classe = CorProdutoModel.class)
 	private DateFilter filtroDataAlteracaoCorProduto;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "id", label = "label.id")
+	@Filter(name = "id", label = "label.id", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private NumberFilter filtroIdDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "DepartamentoProduto", label = "label.departamentos", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private StringFilter filtroDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private DateFilter filtroDataInclusaoDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private DateFilter filtroDataAletracaoDepartamento;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "id", label = "label.id")
+	@Filter(name = "id", label = "label.id", path = "colecaoSelected")
+	@EntityClass(classe = ColecoesModel.class)
 	private NumberFilter filtroIdColecoes;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
+	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "colecaoSelected")
+	@EntityClass(classe = ColecoesModel.class)
 	private DateFilter filtroDataInclusaoColecao;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
+	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "colecaoSelected")
+	@EntityClass(classe = ColecoesModel.class)
 	private DateFilter filtroDataAlteracaoColecao;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "Colecao", label = "label.cadastroProdutos.colecao")
+	@Filter(name = "Colecao", label = "label.cadastroProdutos.colecao", path = "colecaoSelected")
+	@EntityClass(classe = ColecoesModel.class)
 	private StringFilter filtroColecao;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private NumberFilter filtroIdGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "GrupoProduto", label = "label.gruposDeProdutos", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private StringFilter filtroGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private DateFilter filtroDataInclusaoGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private DateFilter filtroDataAletracaoGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "subGrupoProdutoSelected")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private NumberFilter filtroIdSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SubGrupoProduto", label = "label.gruposDeProdutos", path = "subGrupoProdutoSelected")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private StringFilter filtroSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "subGrupoProdutoSelected")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private DateFilter filtroDataInclusaoSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "subGrupoProdutoSelected")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
 	@Override
@@ -128,8 +159,12 @@ public class CorProdutoFilter extends CadastroGenericFilterBean<CorProdutoModel>
 		return logger;
 	}
 
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
+	public NumberFilter getFiltroIdCor() {
+		return filtroIdCor;
+	}
+
+	public void setFiltroIdCor(final NumberFilter filtroIdCor) {
+		this.filtroIdCor = filtroIdCor;
 	}
 
 	public StringFilter getFiltroCorDescricao() {
@@ -290,6 +325,10 @@ public class CorProdutoFilter extends CadastroGenericFilterBean<CorProdutoModel>
 
 	public void setFiltroDataAletracaoSubGrupoProduto(final DateFilter filtroDataAletracaoSubGrupoProduto) {
 		this.filtroDataAletracaoSubGrupoProduto = filtroDataAletracaoSubGrupoProduto;
+	}
+
+	public void setLogger(final Logger logger) {
+		this.logger = logger;
 	}
 
 }

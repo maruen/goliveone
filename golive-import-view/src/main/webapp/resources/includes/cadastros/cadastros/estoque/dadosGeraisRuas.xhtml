@@ -102,7 +102,8 @@
 		appendToBody="true" height="100%" width="50%">
 
 		<p:dataTable id="pavimentoDatatableId" var="pavimentoDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroRuas.msnNaoHaRegistros')}">
 
 			<p:column headerText="#{managerBean.get('label.cadastroRuas.id')}"
 				styleClass="percentual-15 singleLine">

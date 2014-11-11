@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="dadosGerais"
-		 header="#{userBean.properties.getField('label.cadastroFornecedores.dadosGerais')}"
+		 header="#{managerBean.get('label.cadastroFornecedores.dadosGerais')}"
 		 toggleable="true"
 		 collapsed="false"
 		 closable="false"
@@ -33,13 +33,13 @@
           				 border="0">
      
 			<h:outputText id="idOutputText"
-						  value="Id"   />
+						  value="#{managerBean.get('label.cadastroFornecedores.id')}"   />
            	<h:inputText id="idInputText"
            				 style="width: 125px;"
            				 disabled="true"/>
            				 
       		<h:outputText id="clienteDesdeOutputText" 
-      					  value="Cliente Desde"
+      					  value="#{managerBean.get('label.cadastroFornecedores.clienteDesde')}"
       					  styleClass="singleLine" />
 			<p:calendar id="clienteDesdeCalendar" 
 						showOn="button"
@@ -47,23 +47,23 @@
 						pattern="dd/MM/yyyy" />
       		
       		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{userBean.properties.getField('label.cadastroFornecedores.inclusao')}" />
+      					  value="#{managerBean.get('label.cadastroFornecedores.inclusao')}" />
 	 		<h:inputText value="25/08/2014 20:24" 
 	 					 id="dataInclusaoInputText" 
 	 					 disabled="true" />      					  
       		
       		<h:outputText id="tipoPessoaOutputText" 
-      					  value="Tipo de Pessoa" 
+      					  value="#{managerBean.get('label.cadastroFornecedores.tipoPessoa')}" 
       					  styleClass="singleLine" />
 			<p:autoComplete id="tipoPessoaDropDown" 
 							dropdown="true" 
-							completeMethod="#{fornecedoresBean.tipoPessoaComplete}" size="15"/>
+							completeMethod="#{bean.tipoPessoaComplete}" size="15"/>
         		
 			<p:spacer/>
 			<p:spacer/>
 			        		
        		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{userBean.properties.getField('label.cadastroFornecedores.ultimaAlteracao')}"
+       					  value="#{managerBean.get('label.cadastroFornecedores.ultimaAlteracao')}"
        					  styleClass="singleLine"/>
 	 		<h:inputText value="25/08/2014 20:47" 
 	 					 id="ultimaAlteracaoInputText" 

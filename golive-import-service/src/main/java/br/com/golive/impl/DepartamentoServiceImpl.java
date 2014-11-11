@@ -57,8 +57,8 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	}
 
 	@Override
-	public List<DepartamentoModel> listarPorFiltro(final String... args) {
-		return departamentoJPA.findByFilter(args);
+	public List<DepartamentoModel> obterListaDepartamento() {
+		return departamentoJPA.obterDepartamentos();
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	}
 
 	@Override
-	public void refresh(DepartamentoModel model) {
+	public void refresh(final DepartamentoModel model) {
 		departamentoJPA.refresh(model);
 	}
 

@@ -21,7 +21,6 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject
 	private Logger logger;
 
 	@Inject
@@ -33,7 +32,7 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(departamentoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class));
+		super.init(departamentoService.obterListaDepartamento());
 	}
 
 	@Override
@@ -77,10 +76,6 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	@Override
 	public Logger getLogger() {
 		return logger;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
 	}
 
 	public DepartamentoService getDepartamentoService() {

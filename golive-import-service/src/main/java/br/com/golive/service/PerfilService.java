@@ -13,7 +13,7 @@ import br.com.golive.navigation.component.KeyMapDataTableTemplate;
 @Local(PerfilServiceImpl.class)
 public interface PerfilService {
 
-	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final String managedBeanName, final Class<?>... classes);
+	public List<ColunaPerfil> obterListaDeConfiguracoesPagina(final Usuario usuario, final String managedBeanName, final List<Class<?>> classes);
 
 	public void salvarLista(final List<ColunaPerfil> colunaPerfil);
 

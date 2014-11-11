@@ -5,9 +5,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:panel id="enderecos"
-		 header="Endereços"
+		 header="#{managerBean.get('label.cadastroFornecedores.enderecos')}"
 		 toggleable="true"
-		 collapsed="false"
+		 collapsed="true"
 		 closable="false"
 		 toggleSpeed="500"
 		 closeSpeed="500"
@@ -27,7 +27,7 @@
 				 width="100%"
 				 border="0">
 		
-		<p:fieldset legend="Principal" collapsed="false"
+		<p:fieldset legend="#{managerBean.get('label.cadastroFornecedores.principal')}" collapsed="false"
 					toggleable="true"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important;">
 			
@@ -41,14 +41,14 @@
 				
 				<h:column>			 
 					<h:outputText id="tipoLogradouroPrincipalOutputText"
-								  value="Tipo Logradouro"
+								  value="#{managerBean.get('label.cadastroFornecedores.tipoLogradouro')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
 				<h:column>
 					<p:autoComplete id="tipoLogradouroPrincipalDropDown" 
 									dropdown="true" 
-									completeMethod="#{fornecedoresBean.tipoLogradouroComplete}" 
+									completeMethod="#{bean.tipoLogradouroComplete}" 
 									size="9"/>
 									
 					<p:spacer width="500" height="1"/>
@@ -59,13 +59,13 @@
 					</p:commandLink>
 					
 					<h:outputText id="consultaCepEnderecoPrincipalOutputText"
-								  value="Consulta CEP/Endereço"
+								  value="#{managerBean.get('label.cadastroFornecedores.consultaCepEndereco')}"
 								  styleClass="singleLine" />
 				</h:column>	
 
 				<h:column>
 					<h:outputText id="logradouroPrincipalOutputText"
-								  value="Logradouro"
+								  value="#{managerBean.get('label.cadastroFornecedores.logradouro')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -77,7 +77,7 @@
 				
 				<h:column>
 					<h:outputText id="numeroPrincipalOutputText"
-								  value="Número"
+								  value="#{managerBean.get('label.cadastroFornecedores.numero')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -89,7 +89,7 @@
 					<p:spacer width="20" height="1"/>
 					
 					<h:outputText id="complementoPrincipalOutputText"
-								  value="Complemento"
+								  value="#{managerBean.get('label.cadastroFornecedores.complemento')}"
 								  styleClass="singleLine" />
 								  
 					<p:spacer width="10" height="1"/>
@@ -101,7 +101,7 @@
 
 				<h:column>
 					<h:outputText id="cepPrincipalOutputText"
-								  value="CEP"
+								  value="#{managerBean.get('label.cadastroFornecedores.cep')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -113,7 +113,7 @@
 					<p:spacer width="20" height="1"/>
 					
 					<h:outputText id="bairroPrincipalOutputText"
-								  value="Bairro"
+								  value="#{managerBean.get('label.cadastroFornecedores.bairro')}"
 								  styleClass="singleLine" />
 								  
 					<p:spacer width="57" height="1"/>
@@ -125,7 +125,7 @@
 
 				<h:column>
 					<h:outputText id="municipioPrincipalOutputText"
-								  value="Município"
+								  value="#{managerBean.get('label.cadastroFornecedores.municipio')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -151,7 +151,7 @@
 				
 				<h:column>
 					<h:outputText id="estadoPrincipalOutputText"
-								  value="Estado"
+								  value="#{managerBean.get('label.cadastroFornecedores.estado')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -178,7 +178,7 @@
 
 				<h:column>
 					<h:outputText id="paisPrincipalOutputText"
-								  value="País"
+								  value="#{managerBean.get('label.cadastroFornecedores.pais')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -199,7 +199,7 @@
 			</h:panelGrid>
 		</p:fieldset>
 		
-		<p:fieldset legend="Entrega" collapsed="false"
+		<p:fieldset legend="#{managerBean.get('label.cadastroFornecedores.entrega')}" collapsed="false"
 					toggleable="true"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
 		
@@ -213,7 +213,7 @@
 					
 				<h:column>
 					<h:outputText id="idSecundarioOutputText"
-								  value="Id"
+								  value="#{managerBean.get('label.cadastroFornecedores.id')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -226,7 +226,7 @@
 				
 				<h:column>
 					<h:outputText id="cnpjSecundarioOutputText"
-								  value="CNPJ"
+								  value="#{managerBean.get('label.cadastroFornecedores.cnpj')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -245,7 +245,7 @@
 
 					<p:spacer width="5" height="1"/>
 					
-					<p:commandLink action="#{fornecedoresBean.limparEntrega()}">
+					<p:commandLink action="#{bean.limparEntrega()}">
 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/bin.png"
 										styleClass="image" />
 					</p:commandLink>
@@ -253,7 +253,7 @@
 					<p:spacer width="250" height="1"/>
 					
 					<h:outputText id="inscricaoEstadualSecundarioOutputText"
-								  value="Inscrição Estadual"
+								  value="#{managerBean.get('label.cadastroFornecedores.inscricaoEstadual')}"
 								  styleClass="singleLine" />
 					
 					<p:spacer width="10" height="1"/>
@@ -272,12 +272,12 @@
 					<p:spacer width="5" height="1"/>
 					
 					<h:outputText id="isentoSecundarioOutputText"
-								  value="Isento"/>					
+								  value="#{managerBean.get('label.cadastroFornecedores.isento')}"/>					
 				</h:column>
 				
 				<h:column>
 					<h:outputText id="nomeFantasiaSecundarioOutputText"
-								  value="Nome Fantasia"
+								  value="#{managerBean.get('label.cadastroFornecedores.nomeFantasia')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -290,7 +290,7 @@
 				
 				<h:column>
 					<h:outputText id="razaoSocialSecundarioOutputText"
-								  value="Razão Social"
+								  value="#{managerBean.get('label.cadastroFornecedores.razaoSocial')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -303,20 +303,20 @@
 				
 				<h:column>			 
 					<h:outputText id="tipoLogradouroSecundarioOutputText"
-								  value="Tipo Logradouro"
+								  value="#{managerBean.get('label.cadastroFornecedores.tipoLogradouro')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
 				<h:column>
 					<p:autoComplete id="tipoLogradouroSecundarioDropDown" 
 									dropdown="true" 
-									completeMethod="#{fornecedoresBean.tipoLogradouroComplete}" 
+									completeMethod="#{bean.tipoLogradouroComplete}" 
 									size="12"/>
 				</h:column>	
 
 				<h:column>
 					<h:outputText id="logradouroSecundarioOutputText"
-								  value="Logradouro"
+								  value="#{managerBean.get('label.cadastroFornecedores.logradouro')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -328,7 +328,7 @@
 				
 				<h:column>
 					<h:outputText id="numeroSecundarioOutputText"
-								  value="Número"
+								  value="#{managerBean.get('label.cadastroFornecedores.numero')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -340,7 +340,7 @@
 					<p:spacer width="20" height="1"/>
 					
 					<h:outputText id="complementoSecundarioOutputText"
-								  value="Complemento"
+								  value="#{managerBean.get('label.cadastroFornecedores.complemento')}"
 								  styleClass="singleLine" />
 								  
 					<p:spacer width="10" height="1"/>
@@ -352,7 +352,7 @@
 
 				<h:column>
 					<h:outputText id="cepSecundarioOutputText"
-								  value="CEP"
+								  value="#{managerBean.get('label.cadastroFornecedores.cep')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -364,7 +364,7 @@
 					<p:spacer width="20" height="1"/>
 					
 					<h:outputText id="bairroSecundarioOutputText"
-								  value="Bairro"
+								  value="#{managerBean.get('label.cadastroFornecedores.bairro')}"
 								  styleClass="singleLine" />
 								  
 					<p:spacer width="57" height="1"/>
@@ -376,7 +376,7 @@
 
 				<h:column>
 					<h:outputText id="municipioSecundarioOutputText"
-								  value="Município"
+								  value="#{managerBean.get('label.cadastroFornecedores.municipio')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -396,7 +396,7 @@
 				
 				<h:column>
 					<h:outputText id="estadoSecundarioOutputText"
-								  value="Estado"
+								  value="#{managerBean.get('label.cadastroFornecedores.estado')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -423,7 +423,7 @@
 			</h:panelGrid>		
 		</p:fieldset>
 
-		<p:fieldset legend="Cobrança" collapsed="false"
+		<p:fieldset legend="#{managerBean.get('label.cadastroFornecedores.cobranca')}" collapsed="false"
 					toggleable="true"
 					style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
 		
@@ -437,7 +437,7 @@
 						
 				<h:column>
 					<h:outputText id="idCobrancaOutputText"
-								  value="Id"
+								  value="#{managerBean.get('label.cadastroFornecedores.id')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -450,7 +450,7 @@
 				
 				<h:column>
 					<h:outputText id="cnpjCobrancaOutputText"
-								  value="CNPJ"
+								  value="#{managerBean.get('label.cadastroFornecedores.cnpj')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -469,7 +469,7 @@
 
 					<p:spacer width="5" height="1"/>
 					
-					<p:commandLink action="#{fornecedoresBean.limparCobranca()}">
+					<p:commandLink action="#{bean.limparCobranca()}">
 						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/bin.png"
 										styleClass="image" />
 					</p:commandLink>
@@ -477,7 +477,7 @@
 					<p:spacer width="250" height="1"/>
 					
 					<h:outputText id="inscricaoEstadualCobrancaOutputText"
-								  value="Inscrição Estadual"
+								  value="#{managerBean.get('label.cadastroFornecedores.inscricaoEstadual')}"
 								  styleClass="singleLine" />
 					
 					<p:spacer width="10" height="1"/>
@@ -496,12 +496,12 @@
 					<p:spacer width="5" height="1"/>
 					
 					<h:outputText id="isentoCobrancaOutputText"
-								  value="Isento"/>					
+								  value="#{managerBean.get('label.cadastroFornecedores.isento')}"/>					
 				</h:column>
 				
 				<h:column>
 					<h:outputText id="nomeFantasiaCobrancaOutputText"
-								  value="Nome Fantasia"
+								  value="#{managerBean.get('label.cadastroFornecedores.nomeFantasia')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -514,7 +514,7 @@
 				
 				<h:column>
 					<h:outputText id="razaoSocialCobrancaOutputText"
-								  value="Razão Social"
+								  value="#{managerBean.get('label.cadastroFornecedores.razaoSocial')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -527,20 +527,20 @@
 				
 				<h:column>			 
 					<h:outputText id="tipoLogradouroCobrancaOutputText"
-								  value="Tipo Logradouro"
+								  value="#{managerBean.get('label.cadastroFornecedores.tipoLogradouro')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
 				<h:column>
 					<p:autoComplete id="tipoLogradouroCobrancaDropDown" 
 									dropdown="true" 
-									completeMethod="#{fornecedoresBean.tipoLogradouroComplete}" 
+									completeMethod="#{bean.tipoLogradouroComplete}" 
 									size="12"/>
 				</h:column>	
 
 				<h:column>
 					<h:outputText id="logradouroCobrancaOutputText"
-								  value="Logradouro"
+								  value="#{managerBean.get('label.cadastroFornecedores.logradouro')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -552,7 +552,7 @@
 				
 				<h:column>
 					<h:outputText id="numeroCobrancaOutputText"
-								  value="Número"
+								  value="#{managerBean.get('label.cadastroFornecedores.numero')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -564,7 +564,7 @@
 					<p:spacer width="20" height="1"/>
 					
 					<h:outputText id="complementoCobrancaOutputText"
-								  value="Complemento"
+								  value="#{managerBean.get('label.cadastroFornecedores.complemento')}"
 								  styleClass="singleLine" />
 								  
 					<p:spacer width="10" height="1"/>
@@ -576,7 +576,7 @@
 
 				<h:column>
 					<h:outputText id="cepCobrancaOutputText"
-								  value="CEP"
+								  value="#{managerBean.get('label.cadastroFornecedores.cep')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -588,7 +588,7 @@
 					<p:spacer width="20" height="1"/>
 					
 					<h:outputText id="bairroCobrancaOutputText"
-								  value="Bairro"
+								  value="#{managerBean.get('label.cadastroFornecedores.bairro')}"
 								  styleClass="singleLine" />
 								  
 					<p:spacer width="57" height="1"/>
@@ -600,7 +600,7 @@
 
 				<h:column>
 					<h:outputText id="municipioCobrancaOutputText"
-								  value="Município"
+								  value="#{managerBean.get('label.cadastroFornecedores.municipio')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -620,7 +620,7 @@
 				
 				<h:column>
 					<h:outputText id="estadoCobrancaOutputText"
-								  value="Estado"
+								  value="#{managerBean.get('label.cadastroFornecedores.estado')}"
 								  styleClass="singleLine" />
 				</h:column>
 				
@@ -649,7 +649,7 @@
 	</h:panelGrid>
 </p:panel>
 
-	<p:dialog header="Pesquisa Correios" 
+	<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaCorreios')}" 
 			  widgetVar="dlgCorreios"
 			  modal="false" 
 			  resizable="false" 
@@ -659,54 +659,55 @@
 
 		<p:dataTable id="correiosDatatableId" 
 					 var="correiosDatatableVar"
-					 value="#{fornecedoresBean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}">
 
-			<p:column headerText="Id" 
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}" 
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 
-			<p:column headerText="CEP"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.cep')}"
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="08340-140" />
 			</p:column>
 
-			<p:column headerText="Tipo Logradouro"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.tipoLogradouro')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="Rua" />
 			</p:column>
 
-			<p:column headerText="Logradouro"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.logradouro')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="Forte do Rio Branco" />
 			</p:column>
 			
-			<p:column headerText="Bairro"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.bairro')}"
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="Itaquera" />
 			</p:column>
 			
-			<p:column headerText="Cód.Mun.IBGE"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.codMunIbge')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="3550308" />
 			</p:column>
 			
-			<p:column headerText="Município"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.municipio')}"
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="São Paulo" />
 			</p:column>
 			
-			<p:column headerText="Cód.Estado IBGE"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.codEstadoIbge')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="35" />
 			</p:column>
 			
-			<p:column headerText="Estado"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.estado')}"
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="São Paulo" />
 			</p:column>
 			
-			<p:column headerText="Abreviação Estado"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.abreviacaoEstado')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="SP" />
 			</p:column>
@@ -714,7 +715,7 @@
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog header="Pesquisa de Município" 
+	<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaMunicipio')}" 
 			  widgetVar="dlgMunicipio"
 			  modal="false" 
 			  resizable="false" 
@@ -724,59 +725,60 @@
 
 		<p:dataTable id="municipioDatatableId" 
 					 var="municipioDatatableVar"
-					 value="#{fornecedoresBean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}">
 
-			<p:column headerText="Id" 
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}" 
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 
-			<p:column headerText="Cód.IBGE"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.codIbge')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="3550308" />
 			</p:column>
 
-			<p:column headerText="Município"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.municipio')}"
 					  styleClass="percentual-20 singleLine">
 				<h:outputText value="São Paulo" />
 			</p:column>
 
-			<p:column headerText="Id"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 			
-			<p:column headerText="Cód.IBGE"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.codIbge')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="35" />
 			</p:column>
 			
-			<p:column headerText="Abreviação"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.abreviacao')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="SP" />
 			</p:column>
 			
-			<p:column headerText="Estado"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.estado')}"
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="São Paulo" />
 			</p:column>
 			
-			<p:column headerText="Id"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 			
-			<p:column headerText="Região"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.regiao')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="Região Sudeste" />
 			</p:column>
 			
-			<p:column headerText="Id"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="0000000010" />
 			</p:column>
 			
-			<p:column headerText="País"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.pais')}"
 					  styleClass="percentual-15 singleLine">
 				<h:outputText value="Brasil" />
 			</p:column>
@@ -784,7 +786,7 @@
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog header="Local da Entrega" 
+	<p:dialog header="#{managerBean.get('label.cadastroFornecedores.localEntrega')}" 
 			  widgetVar="dlgLocalEntrega"
 			  modal="false" 
 			  resizable="false" 
@@ -794,7 +796,7 @@
 			  
 	<h:panelGrid columns="3">
 		<h:outputText id="localEntregaOutputText"
-								  value="A Entrega será realizada em:"
+								  value="#{managerBean.get('label.cadastroFornecedores.entregaSeraRealizada')}"
 								  styleClass="singleLine" />
 		
 		<p:spacer width="10" height="1"/>
@@ -803,10 +805,10 @@
 						  value="XXX" 
 						  layout="grid" 
 						  columns="1" onchange="PF('dlgTransportadora').show();">
-			<f:selectItem itemLabel="Outra Empresa (Fornecedor)" 
+			<f:selectItem itemLabel="#{managerBean.get('label.cadastroFornecedores.outraEmpresaFornecedor')}" 
 						  itemValue="X" 
 						  id="outraEmpresaItemlabel" />
-			<f:selectItem itemLabel="Uma Transportadora" 
+			<f:selectItem itemLabel="#{managerBean.get('label.cadastroFornecedores.umaTransportadora')}" 
 			   			  itemValue="X" 
 			   			  id="transportadoraItemLabel" />
 		</p:selectOneRadio>
@@ -815,7 +817,7 @@
 
 	</p:dialog>
 
-	<p:dialog header="Pesquisa Fornecedores" 
+	<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaFornecedores')}" 
 			  widgetVar="dlgFornecedores"
 			  modal="false" 
 			  resizable="false" 
@@ -825,36 +827,37 @@
 
 		<p:dataTable id="fornecedoresDatatableId" 
 					 var="fornecedoresDatatableVar"
-					 value="#{fornecedoresBean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}">
 
-			<p:column headerText="Id" 
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}" 
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 
-			<p:column headerText="CNPJ"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.cnpj')}"
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="09.363.143/0001-00" />
 			</p:column>
 
-			<p:column headerText="Inscrição Estadual"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.inscricaoEstadual')}"
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="111.222.333-11" />
 			</p:column>
 
-			<p:column headerText="Nome Fantasia"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.nomeFantasia')}"
 					  styleClass="percentual-25 singleLine">
 				<h:outputText value="Distribuidora de Alumínio Central" />
 			</p:column>
 			
-			<p:column headerText="Razão Social"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.razaoSocial')}"
 					  styleClass="percentual-25 singleLine">
 				<h:outputText value="Distribuidora de Alumínio Central Logística" />
 			</p:column>
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog header="Pesquisa Transportadora" 
+	<p:dialog header="#{managerBean.get('label.cadastroFornecedores.pesquisaTransportadoras')}" 
 			  widgetVar="dlgTransportadora"
 			  modal="false" 
 			  resizable="false" 
@@ -864,29 +867,30 @@
 
 		<p:dataTable id="transportadoraDatatableId" 
 					 var="transportadoraDatatableVar"
-					 value="#{fornecedoresBean.conteudo}">
+					 value="#{bean.conteudo}"
+					 emptyMessage="#{managerBean.get('label.cadastroFornecedores.msnNaoHaRegistros')}">
 
-			<p:column headerText="Id" 
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.id')}" 
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="0000000001" />
 			</p:column>
 
-			<p:column headerText="CNPJ"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.cnpj')}"
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="09.363.143/0001-00" />
 			</p:column>
 
-			<p:column headerText="Inscrição Estadual"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.inscricaoEstadual')}"
 					  styleClass="percentual-10 singleLine">
 				<h:outputText value="131.242.313-11" />
 			</p:column>
 
-			<p:column headerText="Nome Fantasia"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.nomeFantasia')}"
 					  styleClass="percentual-25 singleLine">
 				<h:outputText value="Andorinha" />
 			</p:column>
 			
-			<p:column headerText="Razão Social"
+			<p:column headerText="#{managerBean.get('label.cadastroFornecedores.razaoSocial')}"
 					  styleClass="percentual-25 singleLine">
 				<h:outputText value="Andorinha Transporte de Cargas Ltda." />
 			</p:column>

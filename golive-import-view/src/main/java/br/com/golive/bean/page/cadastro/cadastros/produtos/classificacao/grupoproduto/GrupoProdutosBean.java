@@ -42,7 +42,7 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(grupoProdutoService.obterGrupoProdutos(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class));
+		super.init(grupoProdutoService.obterGrupoProdutos());
 	}
 
 	@Override
@@ -101,15 +101,6 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		grupoProdutoService.delete(registro);
 	}
 
-	@Override
-	public Logger getLogger() {
-		return logger;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
-	}
-
 	public List<DepartamentoModel> getDepartamentos() {
 		return departamentos;
 	}
@@ -128,4 +119,8 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		return filtros;
 	}
 
+	@Override
+	public Logger getLogger() {
+		return logger;
+	}
 }

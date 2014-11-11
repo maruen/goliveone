@@ -17,14 +17,14 @@ public interface DepartamentoService {
 
 	public List<DepartamentoModel> listarTodos();
 
-	public List<DepartamentoModel> listarPorFiltro(final String... args);
+	public List<DepartamentoModel> obterListaDepartamento();
 
 	public void excluir(final DepartamentoModel departamentoModel);
 
 	public List<AuditoriaModel> getAuditoriaLogs(final DepartamentoModel departamentoModel);
 
 	public String getUsuarioLog(final DepartamentoModel departamentoModel);
-	
+
 	public void refresh(DepartamentoModel model);
 
 }

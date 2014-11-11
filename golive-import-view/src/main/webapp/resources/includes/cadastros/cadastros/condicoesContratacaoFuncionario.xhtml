@@ -240,7 +240,8 @@
 		appendToBody="true" height="100%" width="60%">
 
 		<p:dataTable id="cargoPesquisaDatatableId"
-			var="cargoPesquisaDatatableVar" value="#{bean.conteudo}">
+			var="cargoPesquisaDatatableVar" value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroFuncionario.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroFuncionario.id')}"
@@ -262,7 +263,8 @@
 		appendToBody="true" height="100%" width="60%">
 
 		<p:dataTable id="cargoDatatableId"
-			var="cargoDatatableVar" value="#{bean.conteudo}">
+			var="cargoDatatableVar" value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroFuncionario.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroFuncionario.id')}"
@@ -284,7 +286,8 @@
 		appendToBody="true" height="100%" width="80%">
 
 		<p:dataTable id="moedaDatatableId" var="moedaDatatableVar"
-			value="#{bean.conteudo}">
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroFuncionario.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroFuncionario.id')}"

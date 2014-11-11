@@ -248,7 +248,7 @@
 	   			<p:dataTable id="dadosGeraisDatatableId"
 	      	  	 	         var="dadosGeraisDatatableVar"
 	      	  	 	         value="#{bean.conteudo}"
-	      	  	 	         >
+	      	  	 	         emptyMessage="#{managerBean.get('label.cadastroFinalidadePadraoLargura.msnNaoHaRegistros')}">
 					    
 					    <p:column headerText="#{managerBean.get('label.cadastroFinalidadePadraoLargura.id')}"
 					    		  styleClass="percentual-5 singleLine">
