@@ -4,8 +4,8 @@ public class EncryptionTester {
 
 	public static void main(String[] args) {
 		
-		encrypt("tradicao1234");
-		decrypt("R+zS9c4D+nUWkNxp9tFxbg");
+		encrypt("acaopersianas");
+		decrypt("kSwGsLmgel451TXU9kGXXQ");
 
 	}
 
