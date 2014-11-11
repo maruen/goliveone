@@ -7,7 +7,6 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import org.slf4j.Logger;
 
@@ -34,7 +33,6 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	private ColecoesService colecoesService;
 
 	@Getter
-	@Setter
 	private final boolean especificidades = false;
 
 	@Override
