@@ -1,9 +1,5 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao.grupoproduto;
 
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -11,23 +7,18 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
-import br.com.golive.annotation.Label;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
-import br.com.golive.entity.departamento.model.DepartamentoModel;
+import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
-import br.com.golive.service.DepartamentoService;
-import br.com.golive.service.GrupoProdutoService;
 
 @ManagedBean
 @ViewScoped
-@Label(name = "label.cadastroGrupoProdutos")
-public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
+public class GrupoProdutoFilter extends CadastroGenericFilterBean<GrupoProdutosModel> {
 
-	private static final long serialVersionUID = 7638327964310698925L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger logger;
@@ -72,83 +63,9 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "departamentoModel")
 	private DateFilter filtroDataAletracaoDepartamento;
 
-	@EJB
-	private DepartamentoService departamentoService;
-
-	@EJB
-	private GrupoProdutoService grupoProdutoService;
-
-	private List<DepartamentoModel> departamentos;
-
-	@Override
-	@PostConstruct
-	public void init() {
-		super.init(grupoProdutoService.obterGrupoProdutos(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class));
-	}
-
-	@Override
-	public void editarRegistro() {
-		super.editarRegistro();
-		if (registro != null) {
-			obterDependencias();
-		}
-	}
-
-	@Override
-	public void incluir() {
-		super.incluir();
-		registro = new GrupoProdutosModel();
-		obterDependencias();
-	}
-
-	private void obterDependencias() {
-		departamentos = departamentoService.listarTodos();
-		if (departamentos.isEmpty()) {
-			listaVaziaMessage("msg.lista.departamento.vazia");
-		}
-	}
-
-	@Override
-	public boolean validarCampos() {
-		boolean ret = true;
-		if (registro == null) {
-			ret = false;
-		}
-		if ((registro.getGrupoDeProduto() == null) || (registro.getGrupoDeProduto().isEmpty())) {
-			ret = false;
-		}
-		if (registro.getDepartamentoModel() == null) {
-			ret = false;
-		}
-		if (!ret) {
-			preencherTodosCamposMessage();
-		}
-
-		return ret;
-	}
-
-	@Override
-	public void serviceSave(final GrupoProdutosModel registro) {
-		grupoProdutoService.salvar(registro);
-	}
-
-	@Override
-	public void serviceUpdate(final GrupoProdutosModel registro) {
-		grupoProdutoService.update(registro);
-	}
-
-	@Override
-	public void serviceRemove(final GrupoProdutosModel registro) {
-		grupoProdutoService.delete(registro);
-	}
-
 	@Override
 	public Logger getLogger() {
 		return logger;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
 	}
 
 	public NumberFilter getFiltroIdGrupoProduto() {
@@ -213,36 +130,6 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 
 	public void setFiltroDataAletracaoDepartamento(final DateFilter filtroDataAletracaoDepartamento) {
 		this.filtroDataAletracaoDepartamento = filtroDataAletracaoDepartamento;
-	}
-
-	public DepartamentoService getDepartamentoService() {
-		return departamentoService;
-	}
-
-	public void setDepartamentoService(final DepartamentoService departamentoService) {
-		this.departamentoService = departamentoService;
-	}
-
-	public GrupoProdutoService getGrupoProdutoService() {
-		return grupoProdutoService;
-	}
-
-	public void setGrupoProdutoService(final GrupoProdutoService grupoProdutoService) {
-		this.grupoProdutoService = grupoProdutoService;
-	}
-
-	public List<DepartamentoModel> getDepartamentos() {
-		return departamentos;
-	}
-
-	public void setDepartamentos(final List<DepartamentoModel> departamentos) {
-		this.departamentos = departamentos;
-	}
-
-	@Override
-	public void serviceRefresh(final GrupoProdutosModel model) {
-		grupoProdutoService.refresh(model);
-
 	}
 
 }

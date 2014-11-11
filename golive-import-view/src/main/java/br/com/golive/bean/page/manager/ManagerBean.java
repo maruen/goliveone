@@ -118,6 +118,13 @@ public class ManagerBean extends GenericBean {
 		return "300px;";
 	}
 
+	public String widthColunaImportant(final Long tamanho) {
+		if (tamanho != null) {
+			return Long.toString(tamanho).concat("px !IMPORTANT;");
+		}
+		return "300px;";
+	}
+
 	@Deprecated
 	public void newTab(final String url) {
 

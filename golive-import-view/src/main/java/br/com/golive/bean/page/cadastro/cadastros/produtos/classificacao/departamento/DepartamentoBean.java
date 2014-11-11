@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao.departamento;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -8,14 +8,10 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
+import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
-import br.com.golive.filter.DateFilter;
-import br.com.golive.filter.NumberFilter;
-import br.com.golive.filter.StringFilter;
-import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.service.DepartamentoService;
 
 @ManagedBean
@@ -29,24 +25,7 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	private Logger logger;
 
 	@Inject
-	@FilterInjected
-	@Filter(name = "id", label = "label.id")
-	private NumberFilter filtroIdDepartamento;
-
-	@Inject
-	@FilterInjected
-	@Filter(name = "DepartamentoProduto", label = "label.departamentos")
-	private StringFilter filtroDepartamento;
-
-	@Inject
-	@FilterInjected
-	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
-	private DateFilter filtroDataInclusaoDepartamento;
-
-	@Inject
-	@FilterInjected
-	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
-	private DateFilter filtroDataAletracaoDepartamento;
+	private DepartamentoFilter filtros;
 
 	@EJB
 	private DepartamentoService departamentoService;
@@ -104,38 +83,6 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 		this.logger = logger;
 	}
 
-	public NumberFilter getFiltroIdDepartamento() {
-		return filtroIdDepartamento;
-	}
-
-	public void setFiltroIdDepartamento(final NumberFilter filtroIdDepartamento) {
-		this.filtroIdDepartamento = filtroIdDepartamento;
-	}
-
-	public StringFilter getFiltroDepartamento() {
-		return filtroDepartamento;
-	}
-
-	public void setFiltroDepartamento(final StringFilter filtroDepartamento) {
-		this.filtroDepartamento = filtroDepartamento;
-	}
-
-	public DateFilter getFiltroDataInclusaoDepartamento() {
-		return filtroDataInclusaoDepartamento;
-	}
-
-	public void setFiltroDataInclusaoDepartamento(final DateFilter filtroDataInclusaoDepartamento) {
-		this.filtroDataInclusaoDepartamento = filtroDataInclusaoDepartamento;
-	}
-
-	public DateFilter getFiltroDataAletracaoDepartamento() {
-		return filtroDataAletracaoDepartamento;
-	}
-
-	public void setFiltroDataAletracaoDepartamento(final DateFilter filtroDataAletracaoDepartamento) {
-		this.filtroDataAletracaoDepartamento = filtroDataAletracaoDepartamento;
-	}
-
 	public DepartamentoService getDepartamentoService() {
 		return departamentoService;
 	}
@@ -145,9 +92,14 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	}
 
 	@Override
-	public void serviceRefresh(DepartamentoModel model) {
+	public void serviceRefresh(final DepartamentoModel model) {
 		departamentoService.refresh(model);
-		
+
+	}
+
+	@Override
+	public CadastroGenericFilterBean<DepartamentoModel> getFiltros() {
+		return filtros;
 	}
 
 }

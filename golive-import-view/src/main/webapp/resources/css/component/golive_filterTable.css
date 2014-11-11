@@ -1,42 +1,47 @@
 @CHARSET "UTF-8";
 
-.settings{
+
+.tituloColunaFiltro{
 	position: relative;
-	top: 7px;
-	left: 17px;
+	top: 5px;
 }
 
-.limpar{
+
+.filtroInicial{
 	position: relative;
-	top: 7px;
-	left: 17px;
+	width: 100%;
 }
 
-.filtroDataInicial{
+.filtroFinal{
 	position: relative;
-	left: 15px;
-}
+	width: 100%;
 
-.filtroDataFinal{
-	position: relative;
-	left: -11px;
 }
-
 .search{
 	position: relative;
-	top: 8px;
-	left: 3px;
-	width: 24px;
-	height: 24px;
-	background-color: rgba(255,255,255,0);	
-	color: rgba(255,255,255,0);
-	border: none;
+	top: 5px;
+}
+
+.settings{
+	position: relative;
+	top: 5px;
+}
+
+.gridClasseColumnUm{
+
+}
+
+.gridClasseColumnDois{
+
+}
+
+.grid{
+	position: relative;
+}
+
+.gridPaternColumnUm{
+	width: 80%;
+}
+.gridPaternColumnDois{
 	
 }
-
-.search:hover{
-	background-color: rgba(255,255,255,0) !IMPORTANT;
-	color: rgba(255,255,255,0);
-	border: none;
-}
-

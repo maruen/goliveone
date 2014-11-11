@@ -18,7 +18,7 @@ import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 @Jasper(titulo = "SubGrupoProdutos", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "SubGrupoProdutos")
 @Entity
 @Table(name = "tbSubGrupoProduto")
-@Label(name = "label.cadastroSubGrupoProduto")
+@Label(name = "label.subgrupoDeProdutos")
 public class SubGrupoProdutoModel extends Model {
 
 	private static final long serialVersionUID = 1L;

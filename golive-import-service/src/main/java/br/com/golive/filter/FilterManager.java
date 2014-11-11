@@ -1,24 +1,18 @@
 package br.com.golive.filter;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 
-import br.com.golive.annotation.Fake;
 import br.com.golive.annotation.Filter;
 import br.com.golive.constants.TipoFiltro;
-import br.com.golive.exception.GoLiveException;
 import br.com.golive.utils.Utils;
 
 public class FilterManager<T> {
@@ -36,150 +30,82 @@ public class FilterManager<T> {
 	}
 
 	@SuppressWarnings({ "rawtypes" })
-	public void filtrar(final List<T> conteudo, final List<T> filtrados, final GoliveFilter filtro, final String field) {
+	public void filtrarLista(final List<T> conteudo, final List<T> filtrados, final HashMap<String, Field> mapFilters) {
 		try {
+
+			Field field;
+			GoliveFilter filtro;
+			Filter anntotation;
 			temp.addAll(conteudo);
-			if (filtro != null) {
-				setFilterOnBean(filtro, field);
+			for (final String key : mapFilters.keySet()) {
 
-				if (verificarFiltro(filtro)) {
-					if (filtro.getGenericType().getSimpleName().equals("Long")) {
-						retirarNumerosForaDoParametro(conteudo, temp, filtro, field);
-					} else if (filtro.getGenericType().getSimpleName().equals("String")) {
-						retirarStringForaDoParametro(conteudo, temp, filtro, field);
-					} else if (filtro.getGenericType().getSimpleName().equals("Date")) {
-						retirarDatasForaDoParametro(conteudo, temp, filtro, field);
-					}
-				}
-			} else {
-				setFilterOnBean(null, field);
-			}
-			atualizarListaDeFiltrados(conteudo, temp, filtrados);
-			filtrarPorPelosCamposRestantes(field, temp, filtrados);
-			atualizarListaDeFiltrados(conteudo, temp, filtrados);
-			temp.removeAll(conteudo);
-		} catch (final Exception e) {
-			temp.removeAll(conteudo);
-			filtrados.removeAll(conteudo);
-			filtrados.addAll(conteudo);
-			logger.error("Houve um ao realizar o filtro");
-			e.printStackTrace();
-		}
-	}
+				field = mapFilters.get(key);
+				field.setAccessible(true);
+				filtro = (GoliveFilter) field.get(instance);
 
-	public void setTipoFiltroMB(final String field, final TipoFiltro filter) {
-
-		try {
-			for (final Field campo : getInstance().getClass().getDeclaredFields()) {
-				if (campo.isAnnotationPresent(Filter.class)) {
-					if (campo.getAnnotation(Filter.class).name().equals(field)) {
-						((DateFilter) getInstance().getClass().getDeclaredMethod("get" + WordUtils.capitalize(campo.getName())).invoke(getInstance())).setTipo(filter);
+				if (filtro != null) {
+					anntotation = field.getAnnotation(Filter.class);
+					if (verificarFiltro(filtro)) {
+						if (filtro.getGenericType().getSimpleName().equals("Long")) {
+							retirarNumerosForaDoParametro(conteudo, temp, filtro, anntotation);
+						} else if (filtro.getGenericType().getSimpleName().equals("String")) {
+							retirarStringForaDoParametro(conteudo, temp, filtro, anntotation);
+						} else if (filtro.getGenericType().getSimpleName().equals("Date")) {
+							retirarDatasForaDoParametro(conteudo, temp, filtro, anntotation);
+						}
 					}
 				}
 			}
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			logger.error("Erro ao acessar o setter do filtro no managedBean");
-			throw new GoLiveException("Não existe o campo anotado com " + Filter.class.getName() + " no managedBean");
-		}
-		logger.error("Erro ao acessar o setter do filtro no managedBean");
-		throw new GoLiveException("Não existe o campo anotado com " + Filter.class.getName() + " no managedBean");
-
-	}
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void selecionarTipoFiltro(final GoliveFilter filter) {
-		try {
-			if (filter.getTipo() != null) {
-				if ((filter != null) && (((filter.getTipo().equals(TipoFiltro.INTERVALO))) || ((filter.getTipo().equals(TipoFiltro.PERIODO))))) {
-					filter.setFim(null);
-				}
-			}
-		} catch (final Exception e) {
-			logger.error("Erro selecionar Tipo Filtro");
+			atualizarListaDeFiltrados(conteudo, temp, filtrados);
+			temp.removeAll(conteudo);
+		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
 			e.printStackTrace();
 		}
 
 	}
 
 	@SuppressWarnings("rawtypes")
-	public Map<String, GoliveFilter> getFiltrosRestantes(final String field) {
-
-		final Map<String, GoliveFilter> ret = new HashMap<String, GoliveFilter>();
-
-		try {
-			for (final Field campo : getInstance().getClass().getDeclaredFields()) {
-				if (campo.isAnnotationPresent(Filter.class)) {
-					if (!campo.getAnnotation(Filter.class).name().equals(field)) {
-						ret.put(campo.getAnnotation(Filter.class).name(), (GoliveFilter) getInstance().getClass().getDeclaredMethod("get" + WordUtils.capitalize(campo.getName())).invoke(getInstance()));
-					}
-				}
-			}
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			logger.error("Erro ao obterFiltro");
-			e.printStackTrace();
-		}
-		return ret;
-
-	}
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void setFilterOnBean(final GoliveFilter filter, final String field) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		boolean inseriu = false;
-
-		for (final Field campo : getInstance().getClass().getDeclaredFields()) {
-			if (inseriu) {
-				continue;
-			}
-			if (campo.isAnnotationPresent(Filter.class)) {
-				if (campo.getAnnotation(Filter.class).name().equals(field)) {
-
-					if (filter == null) {
-						final GoliveFilter instanceFilter = (GoliveFilter) getInstance().getClass().getDeclaredMethod("get" + WordUtils.capitalize(campo.getName())).invoke(getInstance());
-						instanceFilter.setInicio(null);
-						instanceFilter.setFim(null);
-					} else {
-						final Method setter = getInstance().getClass().getDeclaredMethod("set" + WordUtils.capitalize(campo.getName()), filter.getClass());
-						setter.invoke(getInstance(), new Object[] { filter });
-					}
-					inseriu = true;
-				}
-			}
-		}
-		if (!inseriu) {
-			/**
-			 * Utilizado para testes
-			 */
-			if (!getInstance().getClass().isAnnotationPresent(Fake.class)) {
-				throw new GoLiveException("Não existe o campo anotado com " + Filter.class.getName() + " no managedBean");
-			}
-		}
-	}
-
-	@SuppressWarnings("rawtypes")
-	private void retirarDatasForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final String field) throws NoSuchFieldException, SecurityException, NoSuchMethodException {
+	private void retirarDatasForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final Filter annotation) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
 		final DateFilter filtro = (DateFilter) filter;
+
+		Calendar dataEntity;
+		Calendar dataInicial = null;
+		Calendar dataFinal = null;
+
 		for (final T index : lista) {
+
+			dataEntity = (Calendar) getAtributoPorFieldEntity(index, annotation);
+			if (filter.getInicio() != null) {
+				dataInicial = Calendar.getInstance();
+				dataInicial.setTime((Date) filter.getInicio());
+			}
+
+			if (filter.getFim() != null) {
+				dataFinal = Calendar.getInstance();
+				dataFinal.setTime((Date) filter.getFim());
+			}
+
 			switch (filtro.getTipo()) {
 			case IGUAL:
-				if (filtro.getInicio().getTime() != ((Calendar) getAtributoPorFieldEntity(index, field)).getTime()) {
+				if (dataInicial.getTime().getTime() != dataEntity.getTime().getTime()) {
 					temp.remove(index);
 				}
 				break;
 
 			case MENOR:
-				if (filtro.getInicio().before(getAtributoPorFieldEntity(index, field))) {
+				if (dataInicial.before(dataEntity)) {
 					temp.remove(index);
 				}
 				break;
 
 			case MAIOR:
-				if (filtro.getInicio().after(getAtributoPorFieldEntity(index, field))) {
+				if (dataInicial.after(dataEntity)) {
 					temp.remove(index);
 				}
 				break;
 
 			case PERIODO:
-				if (!(filtro.getInicio().before(getAtributoPorFieldEntity(index, field))) || !((Calendar) getAtributoPorFieldEntity(index, field)).before(filtro.getFim())) {
+				if (!(dataInicial.before(dataEntity)) || !(dataEntity.before(dataFinal))) {
 					temp.remove(index);
 				}
 				break;
@@ -191,36 +117,38 @@ public class FilterManager<T> {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private void retirarNumerosForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final String field) throws NoSuchFieldException, SecurityException, NoSuchMethodException {
+	private void retirarNumerosForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final Filter annotation) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
 		final NumberFilter filtro = (NumberFilter) filter;
+		Long entityLong;
 		for (final T index : lista) {
+			entityLong = (Long) getAtributoPorFieldEntity(index, annotation);
 			switch (filtro.getTipo()) {
 			case IGUAL:
-				if (!filtro.getInicio().equals(getAtributoPorFieldEntity(index, field))) {
+				if (!filtro.getInicio().equals(entityLong)) {
 					temp.remove(index);
 				}
 				break;
 
 			case MENOR:
-				if (filtro.getInicio() <= ((Long) getAtributoPorFieldEntity(index, field))) {
+				if (filtro.getInicio() <= entityLong) {
 					temp.remove(index);
 				}
 				break;
 
 			case MAIOR:
-				if (filtro.getInicio() >= ((Long) getAtributoPorFieldEntity(index, field))) {
+				if (filtro.getInicio() >= entityLong) {
 					temp.remove(index);
 				}
 				break;
 
 			case INTERVALO:
-				if (!(filtro.getInicio() <= ((Long) getAtributoPorFieldEntity(index, field))) || !(((Long) getAtributoPorFieldEntity(index, field)) <= filtro.getFim())) {
+				if (!(filtro.getInicio() <= entityLong) || !(entityLong <= filtro.getFim())) {
 					temp.remove(index);
 				}
 				break;
 
 			case CONTEM:
-				if (!getAtributoPorFieldEntity(index, field).toString().contains(filtro.getInicio().toString())) {
+				if (!getAtributoPorFieldEntity(index, annotation).toString().contains(filtro.getInicio().toString())) {
 					temp.remove(index);
 				}
 				break;
@@ -232,17 +160,20 @@ public class FilterManager<T> {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private void retirarStringForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final String field) throws NoSuchFieldException, SecurityException, NoSuchMethodException {
+	private void retirarStringForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final Filter annotation) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+		final StringFilter filtro = (StringFilter) filter;
+		String entityString;
 		for (final T index : lista) {
+			entityString = (String) getAtributoPorFieldEntity(index, annotation);
 			switch (filter.getTipo()) {
 			case IGUAL:
-				if (!filter.getInicio().equals(getAtributoPorFieldEntity(index, field))) {
+				if (!filtro.getInicio().equals(entityString)) {
 					temp.remove(index);
 				}
 				break;
 
 			case CONTEM:
-				if (!getAtributoPorFieldEntity(index, field).toString().contains(filter.getInicio().toString())) {
+				if (!entityString.contains(filtro.getInicio())) {
 					temp.remove(index);
 				}
 				break;
@@ -253,45 +184,35 @@ public class FilterManager<T> {
 		}
 	}
 
-	private Object getAtributoPorFieldEntity(final T index, final String nameField) throws NoSuchFieldException, SecurityException, NoSuchMethodException {
-		try {
-			final Filter filter = Utils.getFilter(nameField, getInstance().getClass()).getAnnotation(Filter.class);
-			Object retorno = index;
-			Method getter = null;
-			if (!filter.path().isEmpty()) {
-				for (final String string : filter.path().replace(".", "_").split("_")) {
-					getter = index.getClass().getDeclaredMethod("get" + WordUtils.capitalize(string));
-					retorno = getter.invoke(retorno);
-				}
-			}
+	private Object getAtributoPorFieldEntity(final T index, final Filter filter) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 
-			final Field field = Utils.getFieldByNameColumn(nameField, retorno.getClass());
+		Object object = index;
 
-			if (field != null) {
-				getter = retorno.getClass().getDeclaredMethod("get" + WordUtils.capitalize(field.getName()));
-				retorno = getter.invoke(retorno);
-
-				switch (retorno.getClass().getSimpleName()) {
-				case "Long":
-					return Long.parseLong(retorno.toString());
-				case "GregorianCalendar":
-					return returnDate(retorno);
-				case "String":
-					return retorno.toString();
-				default:
-					break;
-				}
-			}
-
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NullPointerException e) {
-			logger.error("Erro ao obterCampo da entidade no indice da lista");
-			e.printStackTrace();
+		if (!filter.path().isEmpty()) {
+			final Field join = object.getClass().getDeclaredField(filter.path());
+			join.setAccessible(true);
+			object = join.get(object);
 		}
-		return null;
 
+		Field returnValue = null;
+		Class<?> clazz = object.getClass();
+		while (clazz != null) {
+			try {
+				returnValue = clazz.getDeclaredField(Utils.getFieldByNameColumn(filter.name(), object.getClass()).getName());
+				returnValue.setAccessible(true);
+				clazz = null;
+			} catch (NoSuchFieldException | SecurityException e) {
+				clazz = clazz.getSuperclass();
+			}
+		}
+		object = returnValue.get(object);
+		if (object.getClass().getSimpleName().equals("GregorianCalendar")) {
+			return returnCalendar(object);
+		}
+		return object;
 	}
 
-	private Date returnDate(final Object instances) {
+	private Calendar returnCalendar(final Object instances) {
 		final Calendar cal = Calendar.getInstance();
 
 		cal.set(Calendar.DAY_OF_MONTH, ((Calendar) instances).get(Calendar.DAY_OF_MONTH));
@@ -301,7 +222,7 @@ public class FilterManager<T> {
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.MILLISECOND, 0);
 		cal.set(Calendar.SECOND, 0);
-		return cal.getTime();
+		return cal;
 	}
 
 	/**
@@ -316,41 +237,6 @@ public class FilterManager<T> {
 	private void atualizarListaDeFiltrados(final List<T> conteudo, final List<T> temp, final List<T> filtrados) {
 		filtrados.removeAll(conteudo);
 		filtrados.addAll(temp);
-	}
-
-	/**
-	 * @author Guilherme
-	 * 
-	 *         <p>
-	 *         Método utilizado pelo método filtrarPorData
-	 *         </p>
-	 * @param <T>
-	 * 
-	 * @param field
-	 * @param sdf
-	 */
-
-	@SuppressWarnings("rawtypes")
-	private void filtrarPorPelosCamposRestantes(final String field, final List<T> temp, final List<T> filtrados) {
-
-		final Map<String, GoliveFilter> filtrosRestantes = getFiltrosRestantes(field);
-
-		for (final String key : filtrosRestantes.keySet()) {
-			try {
-				if (verificarFiltro(filtrosRestantes.get(key))) {
-					if (filtrosRestantes.get(key).getGenericType().getSimpleName().equals("Long")) {
-						retirarNumerosForaDoParametro(filtrados, temp, filtrosRestantes.get(key), key);
-					} else if (filtrosRestantes.get(key).getGenericType().getSimpleName().equals("String")) {
-						retirarStringForaDoParametro(filtrados, temp, filtrosRestantes.get(key), key);
-					} else if (filtrosRestantes.get(key).getGenericType().getSimpleName().equals("Date")) {
-						retirarDatasForaDoParametro(filtrados, temp, filtrosRestantes.get(key), key);
-					}
-				}
-			} catch (NoSuchFieldException | SecurityException | NoSuchMethodException e) {
-				logger.error("Erro ao filtrar por parametros restantes");
-				e.printStackTrace();
-			}
-		}
 	}
 
 	@SuppressWarnings("rawtypes")

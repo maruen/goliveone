@@ -32,6 +32,8 @@ public abstract class GenericBean implements Serializable {
 		}
 	}
 
+	public void formAction() {
+	}
 
 	public void setEmpresaSelecionada(final Empresa empresaSelecionada) {
 		ServiceUtils.guardarObjetoSessao(ChaveSessao.EMPRESA_SELECIONADA, empresaSelecionada);

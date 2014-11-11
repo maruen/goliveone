@@ -12,7 +12,7 @@ import br.com.golive.entity.Model;
 @Jasper(titulo = "Departamento", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Departamento")
 @Entity
 @Table(name = "tbDepartamentoProduto")
-@Label(name = "label.cadastroDepartamento")
+@Label(name = "label.departamento")
 public class DepartamentoModel extends Model {
 
 	@Transient

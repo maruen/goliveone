@@ -10,70 +10,80 @@
 	xmlns:composite="http://java.sun.com/jsf/composite">
 
 <composite:interface>
-	<composite:attribute name="update" required="true" />
-	<composite:attribute name="widgetAnotado" required="true" />
-	<composite:attribute name="bean" required="true" />
-	<composite:attribute name="styleClassTitulo" required="false" />
-	<composite:attribute name="styleClassFiltroUm" required="false" />
-	<composite:attribute name="styleClassFiltroDois" required="false" />
-	<composite:attribute name="styleClassBotaoLimpar" required="false" />
+	<composite:attribute name="bean" required="true"
+		type="br.com.golive.bean.page.cadastro.rules.CadastroGenericBean" />
+	<composite:attribute name="coluna" required="true"
+		type="br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil" />
+	<composite:attribute name="filterValue" required="true"
+		type="br.com.golive.filter.DateFilter" />
+	<composite:attribute name="widget" required="true" />
+
 </composite:interface>
 
 <composite:implementation>
 
+	<p:dialog
+		id="dialog_#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}_filter"
+		showHeader="true" showEffect="fold" modal="true" width="300px"
+		hideEffect="fold"
+		header="#{managerBean.get(cc.attrs.bean.getFieldFilter(cc.attrs.coluna).label())}"
+		widgetVar="#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}"
+		resizable="false">
 
-	<h:outputLabel styleClass="#{cc.attrs.styleClassTitulo}"
-		value="#{managerBean.get(cc.attrs.bean.getLabelFilter(cc.attrs.widgetAnotado))}" />
+		<p:fieldset
+			id="filedSet_#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}_filter"
+			legend="#{managerBean.get('label.parametros.filtro')}"
+			style="margin-bottom:20px">
+			<p:selectOneRadio
+				id="radio_#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}_filter"
+				styleClass="selectOneRadioInclusao"
+				value="#{cc.attrs.filterValue.tipo}" layout="grid" columns="1">
+				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.igual}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.igual.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.maior}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.maior.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.menor}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.menor.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.periodo}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.periodo.label)}" />
+			</p:selectOneRadio>
+		</p:fieldset>
+		<f:facet name="footer">
+			<p:commandButton
+				id="salveButton_#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}_filter"
+				value="#{managerBean.get('label.salvar')}"
+				action="#{cc.attrs.bean.saveConfig(cc.attrs.coluna)}"
+				style="width: 100%;" update=":conteudoForm:modelTable:conteudoTable"
+				onsuccess="PF('#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}').hide()" />
+		</f:facet>
+
+	</p:dialog>
+
+	<h:outputLabel styleClass="tituloColunaFiltro"
+		value="#{managerBean.get(cc.attrs.bean.getFieldFilter(cc.attrs.coluna).label())}" />
 	<br />
-	<h:panelGroup rendered="false">
+
+	<h:panelGrid columns="1"
+		styleClass="grid">
 		<p:calendar
-			id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_inicio_periodo"
-			pattern="dd/MM/yyyy" styleClass="#{cc.attrs.styleClassFiltroUm}"
-			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-			rendered="#{empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-			mask="true" effect="fold">
+			value="#{cc.attrs.filterValue.inicio}" mask="true" effect="fold"
+			pattern="dd/MM/yyyy">
 			<p:ajax event="dateSelect" onstart="filtrar();" />
 		</p:calendar>
-
 		<p:calendar
-			id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_inicio_periodo_disable"
-			style="background-color:#DDD" pattern="dd/MM/yyyy"
-			styleClass="#{cc.attrs.styleClassFiltroUm}"
-			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-			rendered="#{!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).inicio}"
-			mask="true" disabled="true" />
-
-		<p:commandLink update="#{cc.attrs.update}"
-			action="#{cc.attrs.bean.limparFiltro(cc.attrs.widgetAnotado)}"
-			image="/resources/images/stylistica-icons-set/24x24/bin.png"
-			styleClass="#{cc.attrs.styleClassBotaoLimpar}">
-			<h:graphicImage
-				value="/resources/images/stylistica-icons-set/24x24/bin.png" />
-		</p:commandLink>
-
-		<br />
-
-		<p:calendar
-			id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_fim"
-			pattern="dd/MM/yyyy" styleClass="#{cc.attrs.styleClassFiltroDois}"
-			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
-			rendered="#{(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).periodo) and (empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim)}"
-			mask="true" effect="fold">
+			id="input_#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}_finalInput"
+			mask="true" effect="fold"
+			pattern="dd/MM/yyyy"
+			rendered="#{cc.attrs.filterValue.tipo == cc.attrs.bean.filterManager.periodo}"
+			value="#{cc.attrs.filterValue.fim}">
 			<p:ajax event="dateSelect" onstart="filtrar();" />
 		</p:calendar>
+	</h:panelGrid>
+	<h:graphicImage
+		onclick="PF('#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}').show()"
+		value="/resources/images/stylistica-icons-set/24x24/settings.png"
+		/>
 
-		<p:calendar
-			id="headerfiltro_date#{cc.attrs.widgetAnotado.id.coluna}_fim_disabled"
-			pattern="dd/MM/yyyy" style="background-color:rgba(160, 160, 190, 1);"
-			styleClass="#{cc.attrs.styleClassFiltroDois}"
-			value="#{cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim}"
-			rendered="#{(cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).tipo == cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).periodo) and (!empty cc.attrs.bean.getFilter(cc.attrs.widgetAnotado).fim)}"
-			mask="true" disabled="true" />
-
-	</h:panelGroup>
-	<p:remoteCommand name="filtrar"
-		actionListener="#{cc.attrs.bean.filtrar(cc.attrs.widgetAnotado)}"
-		update="#{cc.attrs.update}" />
 
 </composite:implementation>
 

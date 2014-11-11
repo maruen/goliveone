@@ -1,18 +1,14 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao.subgrupoproduto;
 
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
+import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
-import br.com.golive.annotation.Label;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
+import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
@@ -20,204 +16,87 @@ import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
-import br.com.golive.qualifier.LabelSystemInjected;
-import br.com.golive.service.DepartamentoService;
-import br.com.golive.service.GrupoProdutoService;
-import br.com.golive.service.SubGrupoProdutoService;
-import br.com.golive.utils.GoliveOneProperties;
 
 @ManagedBean
 @ViewScoped
-@Label(name = "label.cadastroSubGrupoProduto")
-public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoModel> {
-
-	private static final long serialVersionUID = 1L;
+public class SubGrupoProdutoFilter extends CadastroGenericFilterBean<SubGrupoProdutoModel> {
 
 	@Inject
 	private Logger logger;
 
-	@Inject
-	@LabelSystemInjected
-	private GoliveOneProperties labels;
+	private static final long serialVersionUID = 7062924609066480911L;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private NumberFilter filtroIdDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "DepartamentoProduto", label = "label.departamentos", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private StringFilter filtroDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private DateFilter filtroDataInclusaoDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "departamentoSelected")
+	@EntityClass(classe = DepartamentoModel.class)
 	private DateFilter filtroDataAletracaoDepartamento;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private NumberFilter filtroIdGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "GrupoProduto", label = "label.gruposDeProdutos", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private StringFilter filtroGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private DateFilter filtroDataInclusaoGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "grupoProdutoSelected")
+	@EntityClass(classe = GrupoProdutosModel.class)
 	private DateFilter filtroDataAletracaoGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private NumberFilter filtroIdSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SubGrupoProduto", label = "label.subgrupoDeProdutos")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private StringFilter filtroSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private DateFilter filtroDataInclusaoSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
+	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
-
-	@EJB
-	private SubGrupoProdutoService subGrupoProdutoService;
-	@EJB
-	private DepartamentoService departamentoService;
-	@EJB
-	private GrupoProdutoService grupoProdutoService;
-
-	private List<DepartamentoModel> departamentos;
-	private List<GrupoProdutosModel> grupoProdutoList;
-
-	@Override
-	@PostConstruct
-	public void init() {
-		super.init(subGrupoProdutoService.listarPorFiltro(), getConfiguracaoesByClasses(DepartamentoModel.class, GrupoProdutosModel.class, SubGrupoProdutoModel.class));
-	}
-
-	@Override
-	public void incluir() {
-		super.incluir();
-		registro = new SubGrupoProdutoModel();
-		carregarDepartamentos();
-	}
-
-	@Override
-	public void editarRegistro() {
-		super.editarRegistro();
-		if (registro != null) {
-			carregarDepartamentos();
-			carregarGruposProduto();
-		}
-	}
-
-	private void carregarGruposProduto() {
-		grupoProdutoList = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
-		if (grupoProdutoList.isEmpty()) {
-			listaVaziaMessage("msg.lista.grupoproduto.vazia");
-			registro.setGrupoProdutoSelected(null);
-		}
-	}
-
-	private void carregarDepartamentos() {
-		departamentos = departamentoService.listarTodos();
-		if (departamentos.isEmpty()) {
-			listaVaziaMessage("msg.lista.departamento.vazia");
-		}
-	}
-
-	@Override
-	public boolean validarCampos() {
-		boolean ret = true;
-		if (registro == null) {
-			ret = false;
-		}
-		if ((registro.getSubGrupoProduto() == null) || (registro.getSubGrupoProduto().isEmpty())) {
-			ret = false;
-		}
-		if (registro.getDepartamentoSelected() == null) {
-			ret = false;
-		}
-		if (registro.getGrupoProdutoSelected() == null) {
-			ret = false;
-		}
-
-		if (!ret) {
-			preencherTodosCamposMessage();
-		}
-		return ret;
-	}
-
-	public void carregarGrupoProdutoPorDepartamento() {
-		carregarGruposProduto();
-		boolean contem = false;
-		for (final GrupoProdutosModel grupo : grupoProdutoList) {
-			if (!contem) {
-				if (registro.getGrupoProdutoSelected() != null) {
-					if (grupo.getId().equals(registro.getGrupoProdutoSelected().getId())) {
-						contem = true;
-					}
-				}
-			}
-		}
-		if (!contem) {
-			registro.setGrupoProdutoSelected(null);
-		}
-	}
-
-	@Override
-	public void serviceSave(final SubGrupoProdutoModel registro) {
-		subGrupoProdutoService.salvar(registro);
-	}
-
-	@Override
-	public void serviceUpdate(final SubGrupoProdutoModel registro) {
-		subGrupoProdutoService.alterar(registro);
-	}
-
-	@Override
-	public void serviceRemove(final SubGrupoProdutoModel registro) {
-		subGrupoProdutoService.excluir(registro);
-	}
-
-	@Override
-	public Logger getLogger() {
-		return logger;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
-	}
-
-	@Override
-	public GoliveOneProperties getLabels() {
-		return labels;
-	}
-
-	public void setLabels(final GoliveOneProperties labels) {
-		this.labels = labels;
-	}
 
 	public NumberFilter getFiltroIdDepartamento() {
 		return filtroIdDepartamento;
@@ -315,50 +194,8 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 		this.filtroDataAletracaoSubGrupoProduto = filtroDataAletracaoSubGrupoProduto;
 	}
 
-	public SubGrupoProdutoService getSubGrupoProdutoService() {
-		return subGrupoProdutoService;
-	}
-
-	public void setSubGrupoProdutoService(final SubGrupoProdutoService subGrupoProdutoService) {
-		this.subGrupoProdutoService = subGrupoProdutoService;
-	}
-
-	public DepartamentoService getDepartamentoService() {
-		return departamentoService;
-	}
-
-	public void setDepartamentoService(final DepartamentoService departamentoService) {
-		this.departamentoService = departamentoService;
-	}
-
-	public GrupoProdutoService getGrupoProdutoService() {
-		return grupoProdutoService;
-	}
-
-	public void setGrupoProdutoService(final GrupoProdutoService grupoProdutoService) {
-		this.grupoProdutoService = grupoProdutoService;
-	}
-
-	public List<DepartamentoModel> getDepartamentos() {
-		return departamentos;
-	}
-
-	public void setDepartamentos(final List<DepartamentoModel> departamentos) {
-		this.departamentos = departamentos;
-	}
-
-	public List<GrupoProdutosModel> getGrupoProdutoList() {
-		return grupoProdutoList;
-	}
-
-	public void setGrupoProdutoList(final List<GrupoProdutosModel> grupoProdutoList) {
-		this.grupoProdutoList = grupoProdutoList;
-	}
-
 	@Override
-	public void serviceRefresh(final SubGrupoProdutoModel model) {
-		subGrupoProdutoService.refresh(model);
-
+	protected Logger getLogger() {
+		return logger;
 	}
-
 }
