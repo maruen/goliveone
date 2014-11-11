@@ -21,6 +21,7 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 
 	private static final long serialVersionUID = 1L;
 
+	@Inject
 	private Logger logger;
 
 	@Inject
