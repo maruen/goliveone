@@ -167,13 +167,13 @@ public class FilterManager<T> {
 			entityString = (String) getAtributoPorFieldEntity(index, annotation);
 			switch (filter.getTipo()) {
 			case IGUAL:
-				if (!filtro.getInicio().equals(entityString)) {
+				if (!filtro.getInicio().toLowerCase().equals(entityString.toLowerCase())) {
 					temp.remove(index);
 				}
 				break;
 
 			case CONTEM:
-				if (!entityString.contains(filtro.getInicio())) {
+				if (!entityString.toLowerCase().contains(filtro.getInicio().toLowerCase())) {
 					temp.remove(index);
 				}
 				break;

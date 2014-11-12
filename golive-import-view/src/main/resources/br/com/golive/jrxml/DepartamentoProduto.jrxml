@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Produto" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="35" bottomMargin="0" uuid="fee31dc0-a156-4be9-bac4-1b14477884f6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cadastrosCadastrosClassificacaoEmpresasAreaDeAtuacaoCadastro" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="35" bottomMargin="0" uuid="fee31dc0-a156-4be9-bac4-1b14477884f6">
 	<property name="ireport.zoom" value="1.7715610000000155"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -22,15 +22,19 @@
 	</parameter>
 	<parameter name="label.id" class="java.lang.String"/>
 	<parameter name="label.inclusao" class="java.lang.String"/>
-	<parameter name="label.ultimaAlteracao" class="java.lang.String"/>
-	<parameter name="label.descricao" class="java.lang.String"/>
+	<parameter name="label.alteracao" class="java.lang.String"/>
+	<parameter name="label.departamento" class="java.lang.String"/>
 	<parameter name="label.pagina" class="java.lang.String"/>
 	<parameter name="label.de" class="java.lang.String"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="dataInclusao" class="java.util.Calendar"/>
+	<field name="dataAlteracao" class="java.util.Calendar"/>
+	<field name="departamento" class="java.lang.String"/>
 	<title>
 		<band height="92" splitType="Stretch">
 			<elementGroup/>
 			<textField>
-				<reportElement x="172" y="11" width="383" height="80" uuid="ba3a1fd6-124e-4188-a138-e60de12fdb88"/>
+				<reportElement x="172" y="1" width="383" height="80" uuid="ba3a1fd6-124e-4188-a138-e60de12fdb88"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="20"/>
 				</textElement>
@@ -52,7 +56,7 @@
 	<pageHeader>
 		<band height="19" splitType="Stretch">
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Opaque" x="1" y="0" width="73" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="c57ee159-7a13-435c-9d9e-23e9e333dc1b"/>
+				<reportElement key="IdHeader" mode="Opaque" x="1" y="0" width="73" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="c57ee159-7a13-435c-9d9e-23e9e333dc1b"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="2.0" lineStyle="Solid" lineColor="#010101"/>
 					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#010101"/>
@@ -69,7 +73,7 @@
 				<reportElement x="0" y="18" width="572" height="1" uuid="fd99b75b-487a-4a9a-9d0e-047ad150fe24"/>
 			</line>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Opaque" x="350" y="0" width="222" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="6abdb14c-8228-4db9-b50c-7a862eccef22"/>
+				<reportElement key="DepartamentoHeader" mode="Opaque" x="350" y="0" width="222" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="6abdb14c-8228-4db9-b50c-7a862eccef22"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="2.0" lineStyle="Solid" lineColor="#010101"/>
 					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#010101"/>
@@ -80,10 +84,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{label.descricao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{label.departamento}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Opaque" x="74" y="0" width="135" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="2e443099-0495-4bc4-a26c-27c31a938165"/>
+				<reportElement key="InclusaoHeader" mode="Opaque" x="74" y="0" width="135" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="2e443099-0495-4bc4-a26c-27c31a938165"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="2.0" lineStyle="Solid" lineColor="#010101"/>
 					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#010101"/>
@@ -97,7 +101,7 @@
 				<textFieldExpression><![CDATA[$P{label.inclusao}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Opaque" x="209" y="0" width="141" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="51ac273f-5eb9-4974-8256-5a4a2949064c"/>
+				<reportElement key="AlteracaoHeader" mode="Opaque" x="209" y="0" width="141" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="51ac273f-5eb9-4974-8256-5a4a2949064c"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="2.0" lineStyle="Solid" lineColor="#010101"/>
 					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#010101"/>
@@ -108,35 +112,39 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{label.ultimaAlteracao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{label.alteracao}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<detail>
 		<band height="15" splitType="Stretch">
 			<textField>
-				<reportElement style="Zebra" mode="Opaque" x="1" y="0" width="73" height="15" uuid="2a360e04-4846-40b2-a4e0-dcf5b3be311d"/>
+				<reportElement key="IdField" style="Zebra" mode="Opaque" x="1" y="0" width="73" height="15" uuid="2a360e04-4846-40b2-a4e0-dcf5b3be311d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Zebra" mode="Opaque" x="74" y="0" width="135" height="15" uuid="513ac816-3f49-45b5-900f-2b640658e022"/>
+				<reportElement key="InclusaoField" style="Zebra" mode="Opaque" x="74" y="0" width="135" height="15" uuid="513ac816-3f49-45b5-900f-2b640658e022"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{dataInclusao}.getTime()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Zebra" mode="Opaque" x="209" y="0" width="141" height="15" uuid="f5effce4-2aa9-4047-9cb6-440c51d4a9f0"/>
+				<reportElement key="AlteracaoField" style="Zebra" mode="Opaque" x="209" y="0" width="141" height="15" uuid="f5effce4-2aa9-4047-9cb6-440c51d4a9f0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{dataAlteracao}.getTime()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Zebra" mode="Opaque" x="350" y="0" width="222" height="15" uuid="97cc077b-a928-4b36-a594-46c960c33957"/>
+				<reportElement key="DepartamentoField" style="Zebra" mode="Opaque" x="350" y="0" width="222" height="15" uuid="97cc077b-a928-4b36-a594-46c960c33957"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$F{departamento}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -150,42 +158,42 @@
 				<imageExpression><![CDATA[$P{logoFooter}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="1" y="3" width="61" height="10" uuid="f300eafa-425f-4882-9af9-2a085e3e4031"/>
+				<reportElement x="1" y="2" width="105" height="14" uuid="f300eafa-425f-4882-9af9-2a085e3e4031"/>
 				<textElement textAlignment="Right">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{label.usuario} + ":"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="62" y="3" width="115" height="10" uuid="0228eee6-7aab-4fb4-ae77-d61c008d38bc"/>
+				<reportElement x="106" y="2" width="115" height="15" uuid="0228eee6-7aab-4fb4-ae77-d61c008d38bc"/>
 				<textElement textAlignment="Left">
 					<font size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{usuarioLogado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="278" y="3" width="12" height="10" uuid="1ceb82e3-9d64-4b6b-95ea-7919c679ccfe"/>
+				<reportElement x="278" y="3" width="12" height="14" uuid="1ceb82e3-9d64-4b6b-95ea-7919c679ccfe"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="306" y="3" width="19" height="10" uuid="d18508a7-07ff-4096-a695-2e625b6097c8"/>
+				<reportElement x="306" y="3" width="19" height="14" uuid="d18508a7-07ff-4096-a695-2e625b6097c8"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="221" y="3" width="56" height="10" uuid="d983d53d-622d-48ab-8f54-72faee97b520"/>
+				<reportElement x="221" y="3" width="56" height="14" uuid="d983d53d-622d-48ab-8f54-72faee97b520"/>
 				<textElement textAlignment="Right">
 					<font size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{label.pagina}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="294" y="3" width="12" height="10" uuid="4e31dfc5-7d79-4694-be20-e589fa341b42"/>
+				<reportElement x="294" y="3" width="12" height="14" uuid="4e31dfc5-7d79-4694-be20-e589fa341b42"/>
 				<textElement textAlignment="Left">
 					<font size="8" isBold="false"/>
 				</textElement>

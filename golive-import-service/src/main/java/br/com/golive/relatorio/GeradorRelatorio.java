@@ -42,19 +42,8 @@ public class GeradorRelatorio<T> {
 	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final List<?> conteudo, final Map<String, Object> parametros, final GoliveOneProperties properties) throws JRException, IOException, GoLiveException {
 		init();
 		verificarProperiedades(conteudo, parametros, properties);
-
 		prepararParametrosDeTemplate(clazz, parametros, properties);
-
-		for (final Field field : clazz.getDeclaredFields()) {
-			if (!inserirParametroAnotado(parametros, properties, field)) {
-				for (final Field fieldChild : field.getType().getDeclaredFields()) {
-					inserirParametroAnotado(parametros, properties, fieldChild);
-				}
-			}
-		}
-
 		prepararImpressao(tipoRelatorio, clazz, conteudo, parametros, properties);
-
 	}
 
 	private void prepararParametrosDeTemplate(final Class<?> clazz, final Map<String, Object> parametros, final GoliveOneProperties properties) throws IOException {

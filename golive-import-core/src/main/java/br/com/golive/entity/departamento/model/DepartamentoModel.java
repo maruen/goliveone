@@ -9,15 +9,16 @@ import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 import br.com.golive.entity.Model;
 
-@Jasper(titulo = "Departamento", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Departamento")
 @Entity
 @Table(name = "tbDepartamentoProduto")
 @Label(name = "label.departamento")
+@Jasper(titulo = "label.cadastroDepartamento.departamentoProduto", nomeDoArquivoGerado = "file.name.departamentoProduto", nomeArquivoJasper = "DepartamentoProduto")
 public class DepartamentoModel extends Model {
 
 	@Transient
 	private static final long serialVersionUID = 1L;
 
+	@Label(name = "label.departamento")
 	@Column(name = "DepartamentoProduto")
 	private String departamento;
 

@@ -1,14 +1,17 @@
 package br.com.golive.bean.page.cadastro.rules;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +25,7 @@ import javax.inject.Inject;
 import javax.persistence.Column;
 import javax.persistence.JoinTable;
 import javax.persistence.Table;
+import javax.servlet.http.HttpServletResponse;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -30,6 +34,7 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
+import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
@@ -107,8 +112,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	protected List<ColunaPerfil> configuracaoPerfil;
 
 	public abstract Logger getLogger();
-
-	public abstract void init();
 
 	public abstract boolean validarCampos();
 
@@ -248,6 +251,14 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		return getFieldByColuna(coluna).getAnnotation(Filter.class);
 	}
 
+	private String getPropertyValueByColumn(final ColunaPerfil coluna) {
+		final Filter filter = getFieldFilter(coluna);
+		if (filter != null) {
+			return usuario.getLabels().getField(filter.label());
+		}
+		throw new GoLiveException("Erro ao Obter o Filtro para a coluna");
+	}
+
 	private Field getFieldByColuna(final ColunaPerfil coluna) {
 		return ServiceUtils.getFieldByColumn(coluna, getFiltros().getMapFilters());
 	}
@@ -325,6 +336,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	public void saveConfig(final ColunaPerfil coluna) {
 		coluna.setPadraoFiltro(getFiltros().getFilter(coluna).getTipo().getDescricao());
 		colunaPerfilService.atualizar(coluna);
+		filtrar();
 	}
 
 	public void filtrar() {
@@ -337,13 +349,35 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		final Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("usuarioLogado", getUsuario().getLogin());
 		parametros.put("label.usuario", getUsuario().getLabels().getField("label.usuario"));
+		colocarLabelParametros(parametros, genericClazzInstance);
+
+		for (final Field field : genericClazzInstance.getDeclaredFields()) {
+			if (field.isAnnotationPresent(JoinTable.class)) {
+				colocarLabelParametros(parametros, field.getType());
+			}
+		}
+
 		try {
 			getLogger().info("Carregando logo da empresa");
-			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("01.png")));
+			parametros.put("logo", ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream(empresaSelecionada.getId() + ".png")));
 		} catch (final IOException e) {
 			getLogger().error("Erro ao carregar logo da empresa");
 		}
 		return parametros;
+	}
+
+	public void colocarLabelParametros(final Map<String, Object> parametros, final Class<?> clazz) {
+		Class<?> atual = clazz;
+		while (atual != null) {
+			for (final Field field : atual.getDeclaredFields()) {
+				if ((field.isAnnotationPresent(Label.class)) && (field.isAnnotationPresent(Column.class))) {
+					if (!parametros.containsKey(field.getAnnotation(Label.class).name())) {
+						parametros.put(field.getAnnotation(Label.class).name(), getUsuario().getLabels().getField(field.getAnnotation(Label.class).name()));
+					}
+				}
+			}
+			atual = atual.getSuperclass();
+		}
 	}
 
 	public void selecionarTodos() {
@@ -383,7 +417,59 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	public void exportarXls() {
-		gerarRelatorio(TipoRelatorio.EXCEL, getLabels());
+
+		try {
+			final String filename = usuario.getLabels().getField(genericClazzInstance.getAnnotation(Jasper.class).nomeDoArquivoGerado()).concat(".csv");
+
+			final FacesContext fc = FacesContext.getCurrentInstance();
+			final HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
+
+			response.reset();
+			response.setContentType("text/comma-separated-values");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+
+			final OutputStream output = response.getOutputStream();
+
+			final StringBuilder csv = new StringBuilder();
+
+			final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+			csv.append(usuario.getLabels().getField("label.usuario").concat(":;").concat(usuario.getLogin()).concat("\n"));
+			csv.append(usuario.getLabels().getField("label.data.geracao").concat(":;").concat(sdf.format(Calendar.getInstance().getTime()).concat("\n")));
+			csv.append("\n\n");
+
+			for (final ColunaPerfil conf : configuracaoPerfil) {
+				if (conf.isVisivel()) {
+					csv.append(usuario.getLabels().getField(getLabelEntity(conf).name()).concat(" - ").concat(getPropertyValueByColumn(conf)).concat(";"));
+				}
+			}
+
+			csv.append("\n");
+
+			for (final T indice : filtrados) {
+				for (final ColunaPerfil conf : configuracaoPerfil) {
+					if (conf.isVisivel()) {
+						final Object ret = obterLabelColuna(conf, indice);
+						if (ret.getClass().equals(GregorianCalendar.class)) {
+							csv.append(sdf.format(((Calendar) ret).getTime()).concat(";"));
+						} else {
+							csv.append(ret.toString().concat(";"));
+						}
+					}
+				}
+				csv.append("\n");
+			}
+
+			output.write(csv.toString().getBytes());
+
+			output.flush();
+			output.close();
+
+			fc.responseComplete();
+
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@SuppressWarnings("unchecked")

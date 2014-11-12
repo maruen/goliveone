@@ -18,13 +18,14 @@ import br.com.golive.entity.departamento.model.DepartamentoModel;
 @Entity
 @Table(name = "tbGrupoProduto")
 @Label(name = "label.gruposDeProdutos")
-@Jasper(titulo = "GrupoProdutos", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "GrupoProdutos")
+@Jasper(titulo = "label.gruposDeProdutos", nomeDoArquivoGerado = "file.name.grupoproduto", nomeArquivoJasper = "GrupoProduto")
 public class GrupoProdutosModel extends Model {
 
 	@Transient
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "GrupoProduto")
+	@Label(name = "label.gruposDeProdutos")
 	private String grupoDeProduto;
 
 	@OneToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)

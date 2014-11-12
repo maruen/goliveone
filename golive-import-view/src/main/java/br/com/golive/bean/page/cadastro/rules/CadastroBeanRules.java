@@ -54,7 +54,7 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
  * 
  * @param <T>
  */
-
+@Deprecated
 @ManagedBean
 @ViewScoped
 @PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable", component = "modelTable")

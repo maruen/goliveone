@@ -25,6 +25,8 @@ public abstract class GenericBean implements Serializable {
 
 	protected Empresa empresaSelecionada;
 
+	public abstract void init();
+
 	@PostConstruct
 	public void postConstruct() {
 		if (ServiceUtils.verificarNaSessaoPorChave(ChaveSessao.EMPRESA_SELECIONADA)) {
@@ -33,6 +35,7 @@ public abstract class GenericBean implements Serializable {
 	}
 
 	public void formAction() {
+		init();
 	}
 
 	public void setEmpresaSelecionada(final Empresa empresaSelecionada) {

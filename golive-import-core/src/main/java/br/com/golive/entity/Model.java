@@ -38,7 +38,7 @@ public abstract class Model implements Serializable {
 	@Temporal(TIMESTAMP)
 	protected Calendar dataInclusao;
 
-	@Label(name = "label.ultimaAlteracao")
+	@Label(name = "label.alteracao")
 	@Column(name = "SystemChangeDateTime")
 	@Temporal(TIMESTAMP)
 	protected Calendar dataAlteracao;
