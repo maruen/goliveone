@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 
 import org.slf4j.Logger;
 
@@ -38,8 +37,7 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	private CorProdutoService corProdutoService;
 
 	@Getter
-	@Setter
-	private final boolean especificidades = true;
+	private  boolean especificidades = true;
 
 	@Override
 	@PostConstruct

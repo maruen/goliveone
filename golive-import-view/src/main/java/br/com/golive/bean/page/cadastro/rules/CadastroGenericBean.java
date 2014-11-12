@@ -202,7 +202,10 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 					}
 				}
 			}
-			ret = Utils.invoke(Utils.getFieldByNameColumn(coluna, ret.getClass()), ret);
+			if (ret != null) {
+				ret = Utils.invoke(Utils.getFieldByNameColumn(coluna, ret.getClass()), ret);
+			}
+		
 		} catch (SecurityException | IllegalAccessException | IllegalArgumentException e) {
 			getLogger().error("Erro ao obter label da coluna generica");
 			e.printStackTrace();
