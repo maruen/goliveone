@@ -28,7 +28,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked" id="produtosCheckbox" />
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoProdutoProdutos}" id="produtosCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
 									<h:outputText id="produtosOutputText" value="#{managerBean.get('label.cadastroUnidade.produtos')}" />
@@ -37,7 +37,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoProdutoCodigoBarrasProdutos}"
 										id="codBarraProdutosCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -48,7 +48,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoProdutoPadraoLargura}"
 										id="padraoLarguraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-98">
@@ -59,7 +59,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoProdutoPadraoEspessura}"
 										id="padraoEspessuraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-98">
@@ -70,7 +70,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoProdutoPesoLiquido}"
 										id="pesoLiquidoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-98">
@@ -80,7 +80,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked" id="pesoBrutoCheckbox" />
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoProdutoPesoBruto}" id="pesoBrutoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-98">
 									<h:outputText id="pesoBrutoOutputText" value="#{managerBean.get('label.cadastroUnidade.pesoBruto')}" />
@@ -99,7 +99,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoVendasQuantMinPedidoVenda}"
 										id="quantMinPedidoVendaCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -110,7 +110,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoVendasQuantMaxPedidoVenda}"
 										id="quantMaxPedidoVendaCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -121,7 +121,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoVendasTabelaPrecos}"
 										id="tabelaPrecosCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -143,7 +143,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoComprasQuantMinPedidoCompra}"
 										id="quantMinPedidoCompraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -154,7 +154,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoComprasQuantMaxPedidoCompra}"
 										id="quantMaxPedidoCompraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -165,7 +165,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoComprasAnaliseComparativaPedidoCompra}"
 										id="analiseComparativaPedCompraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -176,7 +176,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoComprasAnaliseComparativaEstoque}"
 										id="analiseComparativaEstoqueCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -197,7 +197,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoFaturamentoCupomFiscal}"
 										id="cupomFiscalSatCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -209,7 +209,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoFaturamentoNFCe}"
 										id="nfceVendaConsumidorCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -220,7 +220,7 @@
 
 							<p:row>
 								<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoFaturamentoNFeVenda}"
 										id="nfeVendaCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -231,7 +231,7 @@
 
 							<p:row>
         				   		<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoFaturamentoNFeDevolucao}"
 										id="nfeDevolucaoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -242,7 +242,7 @@
 
 							<p:row>
         				   		<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoFaturamentoNFeBeneficiamento}"
 										id="nfeBeneficiamentoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
@@ -253,7 +253,7 @@
 
 							<p:row>
         				   		<p:column styleClass="percentual-2">
-									<p:selectBooleanCheckbox value="checked"
+									<p:selectBooleanCheckbox value="#{pojo.utilizacaoFaturamentoNFSe}"
 										id="nfeServicoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">

@@ -5,14 +5,11 @@ import java.util.Calendar;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.entity.Model;
 
-@Jasper(titulo="PadroesLargura",
-		nomeDoArquivoGerado="file.name.model",
-		nomeArquivoJasper="PadroesLargura")
+@Jasper(titulo = "PadroesLargura", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "PadroesLargura")
 public class PadraoLarguraModel extends Model {
-	
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private String largura;
 	private String unidade;
 	private String descricao;
@@ -22,24 +19,13 @@ public class PadraoLarguraModel extends Model {
 	private String idCor;
 	private String codCor;
 	private String cor;
-	
-	public PadraoLarguraModel(){
-		this.dataInclusao = Calendar.getInstance();
-		this.dataAlteracao = Calendar.getInstance();
+
+	public PadraoLarguraModel() {
+		dataInclusao = Calendar.getInstance();
+		dataAlteracao = Calendar.getInstance();
 	}
-	
-	public PadraoLarguraModel(Long id, 
-							   Calendar dataInclusao, 
-							   Calendar dataAlteracao, 
-							   String largura, 
-							   String unidade, 
-							   String descricao, 
-							   String idColecao, 
-							   String codColecao, 
-							   String colecao, 
-							   String idCor, 
-							   String codCor, 
-							   String cor){
+
+	public PadraoLarguraModel(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao, final String largura, final String unidade, final String descricao, final String idColecao, final String codColecao, final String colecao, final String idCor, final String codCor, final String cor) {
 		super();
 		this.id = id;
 		this.dataInclusao = dataInclusao;
@@ -54,12 +40,12 @@ public class PadraoLarguraModel extends Model {
 		this.codCor = codCor;
 		this.cor = cor;
 	}
-	
+
 	public String getLargura() {
 		return largura;
 	}
 
-	public void setLargura(String largura) {
+	public void setLargura(final String largura) {
 		this.largura = largura;
 	}
 
@@ -67,7 +53,7 @@ public class PadraoLarguraModel extends Model {
 		return unidade;
 	}
 
-	public void setUnidade(String unidade) {
+	public void setUnidade(final String unidade) {
 		this.unidade = unidade;
 	}
 
@@ -75,7 +61,7 @@ public class PadraoLarguraModel extends Model {
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
+	public void setDescricao(final String descricao) {
 		this.descricao = descricao;
 	}
 
@@ -83,7 +69,7 @@ public class PadraoLarguraModel extends Model {
 		return idColecao;
 	}
 
-	public void setIdColecao(String idColecao) {
+	public void setIdColecao(final String idColecao) {
 		this.idColecao = idColecao;
 	}
 
@@ -91,7 +77,7 @@ public class PadraoLarguraModel extends Model {
 		return codColecao;
 	}
 
-	public void setCodColecao(String codColecao) {
+	public void setCodColecao(final String codColecao) {
 		this.codColecao = codColecao;
 	}
 
@@ -99,7 +85,7 @@ public class PadraoLarguraModel extends Model {
 		return colecao;
 	}
 
-	public void setColecao(String colecao) {
+	public void setColecao(final String colecao) {
 		this.colecao = colecao;
 	}
 
@@ -107,7 +93,7 @@ public class PadraoLarguraModel extends Model {
 		return idCor;
 	}
 
-	public void setIdCor(String idCor) {
+	public void setIdCor(final String idCor) {
 		this.idCor = idCor;
 	}
 
@@ -115,7 +101,7 @@ public class PadraoLarguraModel extends Model {
 		return codCor;
 	}
 
-	public void setCodCor(String codCor) {
+	public void setCodCor(final String codCor) {
 		this.codCor = codCor;
 	}
 
@@ -123,7 +109,7 @@ public class PadraoLarguraModel extends Model {
 		return cor;
 	}
 
-	public void setCor(String cor) {
+	public void setCor(final String cor) {
 		this.cor = cor;
 	}
 }

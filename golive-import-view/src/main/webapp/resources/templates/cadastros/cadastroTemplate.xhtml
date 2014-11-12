@@ -58,7 +58,7 @@
 
 				<h:panelGroup id="conteudoGroup"
 					rendered="#{((bean.fluxo == bean.fluxoListagem) or (bean.fluxo == bean.fluxoExclusao))}">
-					<ui:insert name="conteudo" />
+					<golive:dataTable id="modelTable" bean="#{bean}" />
 				</h:panelGroup>
 
 				<h:panelGroup id="edicaoGroup"

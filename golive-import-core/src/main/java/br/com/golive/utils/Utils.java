@@ -20,6 +20,7 @@ import javax.persistence.Transient;
 
 import br.com.golive.annotation.LogList;
 import br.com.golive.annotation.StandardColumn;
+import br.com.golive.annotation.TransientColumn;
 import br.com.golive.constants.Criptografia;
 import br.com.golive.constants.TipoFiltro;
 import br.com.golive.entity.Model;
@@ -94,12 +95,14 @@ public class Utils {
 
 	private static Long obterColunas(final List<ColunaPerfil> colunasPagina, final Usuario usuario, final String managedBeanName, Long count, final Class<?> clazz, final String nameTable) {
 		for (final Field field : clazz.getDeclaredFields()) {
-			if (isNotRelationShip(field)) {
-				if (field.isAnnotationPresent(Column.class)) {
+			if (!field.isAnnotationPresent(TransientColumn.class)) {
+				if (isNotRelationShip(field)) {
 					if (field.isAnnotationPresent(Column.class)) {
-						colunasPagina.add(new ColunaPerfil(new ColunaPerfilId(usuario.getId(), nameTable, field.getAnnotation(Column.class).name(), managedBeanName), TipoFiltro.IGUAL.getDescricao(), count++, field.isAnnotationPresent(StandardColumn.class), 300L));
-					} else {
-						throw new GoLiveException("Campo nao possui anotaÃ§Ã£o de Label = " + clazz.getAnnotation(Table.class).name() + "." + field.getName());
+						if (field.isAnnotationPresent(Column.class)) {
+							colunasPagina.add(new ColunaPerfil(new ColunaPerfilId(usuario.getId(), nameTable, field.getAnnotation(Column.class).name(), managedBeanName), TipoFiltro.IGUAL.getDescricao(), count++, field.isAnnotationPresent(StandardColumn.class), 300L));
+						} else {
+							throw new GoLiveException("Campo nao possui anotaÃ§Ã£o de Label = " + clazz.getAnnotation(Table.class).name() + "." + field.getName());
+						}
 					}
 				}
 			}
