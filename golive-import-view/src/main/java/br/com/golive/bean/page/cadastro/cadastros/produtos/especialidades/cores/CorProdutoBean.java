@@ -56,19 +56,32 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	}
 
 	@Override
+	public void editarRegistro() {
+		super.editarRegistro();
+		if (registro != null) {
+			componentCadastroProdutoClassificacao.carregarGrupoProdutoPorDepartamento(registro.getDepartamentoSelected());
+			componentCadastroProdutoClassificacao.carregarSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
+			componentCadastroProdutoEspecificidade.carregarColecoesPorSubGrupo(registro.getSubGrupoProdutoSelected());
+			componentCadastroProdutoEspecificidade.carregarCoresPorColecoes(registro.getColecaoSelected());
+		}
+	}
+
+	@Override
 	public void validarComponent() {
-		validarLista(componentCadastroProdutoClassificacao.getGrupos(), componentCadastroProdutoClassificacao.getSubGrupos(), componentCadastroProdutoEspecificidade.getColecoes());
-		if (verificarLista(componentCadastroProdutoClassificacao.getGrupos(), registro.getGrupoProdutoSelected())) {
-			registro.setGrupoProdutoSelected(null);
-			registro.setSubGrupoProdutoSelected(null);
-			registro.setColecaoSelected(null);
-		}
-		if (verificarLista(componentCadastroProdutoClassificacao.getSubGrupos(), registro.getSubGrupoProdutoSelected())) {
-			registro.setSubGrupoProdutoSelected(null);
-			registro.setColecaoSelected(null);
-		}
-		if (verificarLista(componentCadastroProdutoEspecificidade.getColecoes(), registro.getColecaoSelected())) {
-			registro.setColecaoSelected(null);
+		if (!fluxo.equals(getFluxoEdicao())) {
+			validarLista(componentCadastroProdutoClassificacao.getGrupos(), componentCadastroProdutoClassificacao.getSubGrupos(), componentCadastroProdutoEspecificidade.getColecoes());
+			if (verificarLista(componentCadastroProdutoClassificacao.getGrupos(), registro.getGrupoProdutoSelected())) {
+				registro.setGrupoProdutoSelected(null);
+				registro.setSubGrupoProdutoSelected(null);
+				registro.setColecaoSelected(null);
+			}
+			if (verificarLista(componentCadastroProdutoClassificacao.getSubGrupos(), registro.getSubGrupoProdutoSelected())) {
+				registro.setSubGrupoProdutoSelected(null);
+				registro.setColecaoSelected(null);
+			}
+			if (verificarLista(componentCadastroProdutoEspecificidade.getColecoes(), registro.getColecaoSelected())) {
+				registro.setColecaoSelected(null);
+			}
 		}
 	}
 

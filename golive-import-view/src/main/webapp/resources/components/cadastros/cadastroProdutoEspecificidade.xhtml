@@ -33,7 +33,7 @@
 	<p:dialog
 		header="#{managerBean.get('label.cadastroCores.pesquisaColecoes')}"
 		widgetVar="colecoesdlg" modal="true" resizable="false" height="100%"
-		width="55%" showEffect="puff" hideEffect="fold"
+		width="55%" 
 		rendered="#{cc.attrs.colecao}">
 
 		<p:dataTable id="colecoesTable" selectionMode="single"
@@ -64,7 +64,7 @@
 	<!-- DIALOG PESQUISA CORES -->
 	<p:dialog header="#{managerBean.get('label.cadastroCores.cor')}"
 		widgetVar="coresdlg" modal="true" resizable="false" height="100%"
-		width="55%" showEffect="puff" hideEffect="fold" rendered="#{cc.attrs.cor}">
+		width="55%" rendered="#{cc.attrs.cor}">
 
 		<p:dataTable id="coresTable" selectionMode="single"
 			selection="#{cc.attrs.pojo.corProdutoSelected}" var="cor"

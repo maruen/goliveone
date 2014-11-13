@@ -31,7 +31,7 @@
 <composite:implementation>
 	
 	<!-- DIALOG PESQUISA DEPARTAMENTO -->
-	<p:dialog id="dlgDepartamento" header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaDepartamento')}" showEffect="puff" hideEffect="fold" widgetVar="dlgDepartamento" modal="true" resizable="false" height="100%" width="55%">
+	<p:dialog id="dlgDepartamento" header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaDepartamento')}"  widgetVar="dlgDepartamento" modal="true" resizable="false" height="100%" width="55%">
 		<p:dataTable id="departamentoDatatableId" selectionMode="single" selection="#{cc.attrs.pojo.departamentoSelected}" rowKey="#{departamento.id}" var="departamento" value="#{cc.attrs.component.departamentos}"
 					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}" >
 			
@@ -49,7 +49,7 @@
 	</p:dialog>
 
 	<!-- DIALOG PESQUISA SUBGRUPO PRODUTOS -->
- 	<p:dialog id="dlgGrupo" header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaGrupoProdutos')}" showEffect="puff" hideEffect="fold" widgetVar="dlgGrupoProdutos" modal="true" resizable="false" height="100%" width="55%">
+ 	<p:dialog id="dlgGrupo" header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaGrupoProdutos')}"  widgetVar="dlgGrupoProdutos" modal="true" resizable="false" height="100%" width="55%">
 		<p:dataTable id="grupoProdutosDatatableId" selectionMode="single" selection="#{cc.attrs.pojo.grupoProdutoSelected}" rowKey="#{grupoProduto.id}" var="grupoProduto" emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 				     value="#{cc.attrs.component.grupos}"> 
 			
@@ -66,7 +66,7 @@
 	</p:dialog>
 
 	<!-- DIALOG PESQUISA SUBGRUPO PRODUTOS -->
-	<p:dialog id="dlgSubGrup" header="#{managerBean.get('label.cadastroColecoes.pesquisaSubGrupoProdutos')}" showEffect="puff" hideEffect="fold" widgetVar="dlgSubGrupProdutos" modal="true" resizable="false" height="100%" width="55%">
+	<p:dialog id="dlgSubGrup" header="#{managerBean.get('label.cadastroColecoes.pesquisaSubGrupoProdutos')}"  widgetVar="dlgSubGrupProdutos" modal="true" resizable="false" height="100%" width="55%">
 
 		<p:dataTable id="subGrupoProdutosDatatableId" var="subGrupoProdutosDatatableVar" value="#{cc.attrs.component.subGrupos}" selectionMode="single" selection="#{cc.attrs.pojo.subGrupoProdutoSelected}" 
 					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"  rowKey="#{subGrupoProdutosDatatableVar.id}" >
