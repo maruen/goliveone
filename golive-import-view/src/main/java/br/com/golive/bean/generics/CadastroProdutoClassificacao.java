@@ -47,12 +47,18 @@ public class CadastroProdutoClassificacao extends GenericComponentBean implement
 		}
 	}
 
-	public void carregarGrupoProdutoPorDepartamento(final DepartamentoModel departamento) {
+	public void carregarGrupoProdutoPorDepartamento(final DepartamentoModel departamento, final boolean validar) {
 		obterGruposProduto(departamento);
+		if (validar) {
+			validar();
+		}
 	}
 
-	public void carregarSubGrupoProdutoPorGrupo(final GrupoProdutosModel grupoProduto) {
+	public void carregarSubGrupoProdutoPorGrupo(final GrupoProdutosModel grupoProduto, final boolean validar) {
 		obterSubGrupos(grupoProduto);
+		if (validar) {
+			validar();
+		}
 	}
 
 	private void obterDepartamentos() {
@@ -60,7 +66,6 @@ public class CadastroProdutoClassificacao extends GenericComponentBean implement
 		if (departamentos.isEmpty()) {
 			listaVaziaMessage("msg.lista.departamento.vazia");
 		}
-		validar();
 	}
 
 	private void obterGruposProduto(final DepartamentoModel departamento) {
@@ -68,7 +73,6 @@ public class CadastroProdutoClassificacao extends GenericComponentBean implement
 		if (grupos.isEmpty()) {
 			listaVaziaMessage("msg.lista.grupoproduto.vazia");
 		}
-		validar();
 	}
 
 	private void obterSubGrupos(final GrupoProdutosModel grupoProduto) {

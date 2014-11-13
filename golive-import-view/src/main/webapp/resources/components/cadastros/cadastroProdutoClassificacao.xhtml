@@ -37,7 +37,7 @@
 			
 			<p:ajax event="rowSelect"  oncomplete="PF('dlgDepartamento').hide();" 
 					update="#{cc.attrs.component.getUpdate(cc.attrs.departamentoUpdate)}"  
-					listener="#{cc.attrs.component.carregarGrupoProdutoPorDepartamento(cc.attrs.pojo.departamentoSelected)}" />
+					listener="#{cc.attrs.component.carregarGrupoProdutoPorDepartamento(cc.attrs.pojo.departamentoSelected, true)}" />
 			
 			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"  styleClass="percentual-5 singleLine" filterBy="#{departamento.id}" filterMatchMode="exact">
 				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
@@ -53,7 +53,7 @@
 		<p:dataTable id="grupoProdutosDatatableId" selectionMode="single" selection="#{cc.attrs.pojo.grupoProdutoSelected}" rowKey="#{grupoProduto.id}" var="grupoProduto" emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 				     value="#{cc.attrs.component.grupos}"> 
 			
-			<p:ajax event="rowSelect" listener="#{cc.attrs.component.carregarSubGrupoProdutoPorGrupo(cc.attrs.pojo.grupoProdutoSelected)}" 
+			<p:ajax event="rowSelect" listener="#{cc.attrs.component.carregarSubGrupoProdutoPorGrupo(cc.attrs.pojo.grupoProdutoSelected, true)}" 
 									update="#{cc.attrs.component.getUpdate(cc.attrs.grupoProdutoUpdate)}" oncomplete="PF('dlgGrupoProdutos').hide();"  />
 			
 			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}" styleClass="percentual-10 singleLine" filterBy="#{grupoProduto.id}" filterMatchMode="contains">

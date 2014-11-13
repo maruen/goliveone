@@ -59,29 +59,27 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	public void editarRegistro() {
 		super.editarRegistro();
 		if (registro != null) {
-			componentCadastroProdutoClassificacao.carregarGrupoProdutoPorDepartamento(registro.getDepartamentoSelected());
-			componentCadastroProdutoClassificacao.carregarSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
-			componentCadastroProdutoEspecificidade.carregarColecoesPorSubGrupo(registro.getSubGrupoProdutoSelected());
-			componentCadastroProdutoEspecificidade.carregarCoresPorColecoes(registro.getColecaoSelected());
+			componentCadastroProdutoClassificacao.carregarGrupoProdutoPorDepartamento(registro.getDepartamentoSelected(), false);
+			componentCadastroProdutoClassificacao.carregarSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected(), false);
+			componentCadastroProdutoEspecificidade.carregarColecoesPorSubGrupo(registro.getSubGrupoProdutoSelected(), false);
+			componentCadastroProdutoEspecificidade.carregarCoresPorColecoes(registro.getColecaoSelected(), false);
 		}
 	}
 
 	@Override
 	public void validarComponent() {
-		if (!fluxo.equals(getFluxoEdicao())) {
-			validarLista(componentCadastroProdutoClassificacao.getGrupos(), componentCadastroProdutoClassificacao.getSubGrupos(), componentCadastroProdutoEspecificidade.getColecoes());
-			if (verificarLista(componentCadastroProdutoClassificacao.getGrupos(), registro.getGrupoProdutoSelected())) {
-				registro.setGrupoProdutoSelected(null);
-				registro.setSubGrupoProdutoSelected(null);
-				registro.setColecaoSelected(null);
-			}
-			if (verificarLista(componentCadastroProdutoClassificacao.getSubGrupos(), registro.getSubGrupoProdutoSelected())) {
-				registro.setSubGrupoProdutoSelected(null);
-				registro.setColecaoSelected(null);
-			}
-			if (verificarLista(componentCadastroProdutoEspecificidade.getColecoes(), registro.getColecaoSelected())) {
-				registro.setColecaoSelected(null);
-			}
+		validarLista(componentCadastroProdutoClassificacao.getGrupos(), componentCadastroProdutoClassificacao.getSubGrupos(), componentCadastroProdutoEspecificidade.getColecoes());
+		if (verificarLista(componentCadastroProdutoClassificacao.getGrupos(), registro.getGrupoProdutoSelected())) {
+			registro.setGrupoProdutoSelected(null);
+			registro.setSubGrupoProdutoSelected(null);
+			registro.setColecaoSelected(null);
+		}
+		if (verificarLista(componentCadastroProdutoClassificacao.getSubGrupos(), registro.getSubGrupoProdutoSelected())) {
+			registro.setSubGrupoProdutoSelected(null);
+			registro.setColecaoSelected(null);
+		}
+		if (verificarLista(componentCadastroProdutoEspecificidade.getColecoes(), registro.getColecaoSelected())) {
+			registro.setColecaoSelected(null);
 		}
 	}
 

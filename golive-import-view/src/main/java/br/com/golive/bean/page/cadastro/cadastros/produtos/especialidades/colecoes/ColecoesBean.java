@@ -48,15 +48,17 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 	@Override
 	public void validarComponent() {
-		if (!fluxo.equals(getFluxoEdicao())) {
-			validarLista(componentCadastroProdutoClassificacao.getGrupos(), componentCadastroProdutoClassificacao.getSubGrupos());
-			if (verificarLista(componentCadastroProdutoClassificacao.getGrupos(), registro.getGrupoProdutoSelected())) {
-				registro.setGrupoProdutoSelected(null);
-				registro.setSubGrupoProdutoSelected(null);
-			}
-			if (verificarLista(componentCadastroProdutoClassificacao.getSubGrupos(), registro.getSubGrupoProdutoSelected())) {
-				registro.setSubGrupoProdutoSelected(null);
-			}
+		validando();
+	}
+
+	private void validando() {
+		validarLista(componentCadastroProdutoClassificacao.getGrupos(), componentCadastroProdutoClassificacao.getSubGrupos());
+		if (verificarLista(componentCadastroProdutoClassificacao.getGrupos(), registro.getGrupoProdutoSelected())) {
+			registro.setGrupoProdutoSelected(null);
+			registro.setSubGrupoProdutoSelected(null);
+		}
+		if (verificarLista(componentCadastroProdutoClassificacao.getSubGrupos(), registro.getSubGrupoProdutoSelected())) {
+			registro.setSubGrupoProdutoSelected(null);
 		}
 	}
 
@@ -64,8 +66,8 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	public void editarRegistro() {
 		super.editarRegistro();
 		if (registro != null) {
-			componentCadastroProdutoClassificacao.carregarGrupoProdutoPorDepartamento(registro.getDepartamentoSelected());
-			componentCadastroProdutoClassificacao.carregarSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected());
+			componentCadastroProdutoClassificacao.carregarGrupoProdutoPorDepartamento(registro.getDepartamentoSelected(), false);
+			componentCadastroProdutoClassificacao.carregarSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected(), false);
 		}
 	}
 

@@ -34,12 +34,18 @@ public class CadastroProdutoEspecificidade extends GenericComponentBean implemen
 	private List<ColecoesModel> colecoes;
 	private List<CorProdutoModel> cores;
 
-	public void carregarCoresPorColecoes(final ColecoesModel colecoesModel) {
+	public void carregarCoresPorColecoes(final ColecoesModel colecoesModel, final boolean validar) {
 		obterCores(colecoesModel);
+		if (validar) {
+			validar();
+		}
 	}
 
-	public void carregarColecoesPorSubGrupo(final SubGrupoProdutoModel subGrupoProduto) {
+	public void carregarColecoesPorSubGrupo(final SubGrupoProdutoModel subGrupoProduto, final boolean validar) {
 		obterColecoes(subGrupoProduto);
+		if (validar) {
+			validar();
+		}
 	}
 
 	public void obterColecoes(final SubGrupoProdutoModel subGrupoProduto) {
@@ -48,7 +54,6 @@ public class CadastroProdutoEspecificidade extends GenericComponentBean implemen
 			listaVaziaMessage("msg.lista.colecoes.vazia");
 
 		}
-		validar();
 	}
 
 	public void obterCores(final ColecoesModel colecoesModel) {
@@ -57,7 +62,6 @@ public class CadastroProdutoEspecificidade extends GenericComponentBean implemen
 			listaVaziaMessage("msg.lista.colecoes.vazia");
 
 		}
-		validar();
 	}
 
 	public List<ColecoesModel> getColecoes() {

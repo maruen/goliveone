@@ -42,7 +42,7 @@
 			rowKey="#{colecao.id}" value="#{cc.attrs.component.colecoes}">
 
 			<p:ajax event="rowSelect" oncomplete="PF('colecoesdlg').hide();"
-				listener="#{cc.attrs.component.carregarCoresPorColecoes(cc.attrs.pojo.colecaoSelected)}"
+				listener="#{cc.attrs.component.carregarCoresPorColecoes(cc.attrs.pojo.colecaoSelected, true)}"
 				update="#{cc.attrs.component.getUpdate(cc.attrs.colecaoUpdate)}" />
 
 			<p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
