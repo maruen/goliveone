@@ -19,7 +19,7 @@ import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 
 @Entity
 @Table(name = "tbColecoesProduto")
-@Jasper(titulo = "Colecoes", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Colecoes")
+@Jasper(titulo = "label.colecoes", nomeDoArquivoGerado = "file.name.colecoesproduto", nomeArquivoJasper = "ColecoesProduto")
 @Label(name = "label.colecoes")
 public class ColecoesModel extends Model {
 
@@ -27,6 +27,7 @@ public class ColecoesModel extends Model {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "Colecao")
+	@Label(name = "label.colecoes")
 	private String colecao;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)

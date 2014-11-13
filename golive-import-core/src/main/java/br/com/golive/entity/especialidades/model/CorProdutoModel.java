@@ -17,7 +17,7 @@ import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 
-@Jasper(titulo = "Cores", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "Cores")
+@Jasper(titulo = "label.cores", nomeDoArquivoGerado = "file.name.coresproduto", nomeArquivoJasper = "CoresProduto")
 @Entity
 @Table(name = "tbCorProduto")
 @Label(name = "label.cadastroCores")
@@ -26,9 +26,11 @@ public class CorProdutoModel extends Model {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "CorCodigo")
+	@Label(name = "label.codcor")
 	private String corCodigo;
 
 	@Column(name = "CorDescricao")
+	@Label(name = "label.cor")
 	private String corDescricao;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
