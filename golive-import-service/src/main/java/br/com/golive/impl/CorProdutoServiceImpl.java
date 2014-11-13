@@ -16,6 +16,7 @@ import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
+import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.entity.especialidades.repository.CorProdutoJPA;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
@@ -27,20 +28,23 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 
 	@Inject
 	private CorProdutoJPA corProdutoJPA;
-	
-	 @Inject
-	 private Logger logger;
-	
-	
+
+	@Inject
+	private Logger logger;
+
 	@Inject
 	private AuditoriaJPA auditoriaJPA;
-	
+
 	@Override
 	@CrudOperation(type = Operation.INSERT)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void salvar(CorProdutoModel model) {
+	public void salvar(final CorProdutoModel model) {
 		logger.info("Salvando corProdutoModel");
+		corProdutoJPA.refresh(model.getDepartamentoSelected());
+		corProdutoJPA.refresh(model.getGrupoProdutoSelected());
+		corProdutoJPA.refresh(model.getSubGrupoProdutoSelected());
+		corProdutoJPA.refresh(model.getColecaoSelected());
 		corProdutoJPA.save(model);
 	}
 
@@ -48,7 +52,7 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 	@CrudOperation(type = Operation.UPDATE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void alterar(CorProdutoModel model) {
+	public void alterar(final CorProdutoModel model) {
 		corProdutoJPA.update(model);
 	}
 
@@ -58,7 +62,7 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 	}
 
 	@Override
-	public List<CorProdutoModel> listarPorFiltro(String... args) {
+	public List<CorProdutoModel> listarPorFiltro(final String... args) {
 		return corProdutoJPA.obterLista();
 	}
 
@@ -66,25 +70,30 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 	@CrudOperation(type = Operation.DELETE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void excluir(CorProdutoModel departamentoModel) {
+	public void excluir(final CorProdutoModel departamentoModel) {
 		corProdutoJPA.delete(departamentoModel);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AuditoriaModel> getAuditoriaLogs(CorProdutoModel model) {
+	public List<AuditoriaModel> getAuditoriaLogs(final CorProdutoModel model) {
 		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
 	}
 
 	@Override
-	public String getUsuarioLog(CorProdutoModel model) {
+	public String getUsuarioLog(final CorProdutoModel model) {
 		return auditoriaJPA.getUsuarioLog(model.getId(), model.getClass());
 	}
-	
+
 	@Override
-	public void refresh(CorProdutoModel model) {
+	public void refresh(final CorProdutoModel model) {
 		corProdutoJPA.refresh(model);
-		
+	}
+
+	@Override
+	public List<CorProdutoModel> obterPorColecao(final ColecoesModel colecoesModel) {
+		logger.info("Obtendo Lista de cores por colecao");
+		return corProdutoJPA.obterListaPorColecao(colecoesModel);
 	}
 
 }

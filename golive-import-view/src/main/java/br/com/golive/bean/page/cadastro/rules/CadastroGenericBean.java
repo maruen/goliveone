@@ -125,6 +125,10 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public abstract CadastroGenericFilterBean<T> getFiltros();
 
+	public void validarComponent() {
+
+	}
+
 	protected void init(final List<T> listaConteudo) {
 		if (usuario != null) {
 			if (getLogger() == null) {
@@ -205,7 +209,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 			if (ret != null) {
 				ret = Utils.invoke(Utils.getFieldByNameColumn(coluna, ret.getClass()), ret);
 			}
-		
+
 		} catch (SecurityException | IllegalAccessException | IllegalArgumentException e) {
 			getLogger().error("Erro ao obter label da coluna generica");
 			e.printStackTrace();
@@ -417,6 +421,34 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void exportarPdf() {
 		gerarRelatorio(TipoRelatorio.PDF, getLabels());
+	}
+
+	protected void validarLista(final List<?>... lists) {
+		for (int i = 0; i < lists.length; i++) {
+			if ((lists[i] == null) || (lists[i].isEmpty())) {
+				if ((i + 1) < lists.length) {
+					lists[i + 1] = null;
+				}
+			}
+
+		}
+	}
+
+	protected boolean verificarLista(final List<?> list, final Model model) {
+
+		if (model == null) {
+			return true;
+		}
+		if (list == null) {
+			return true;
+		}
+		if (list.isEmpty()) {
+			return true;
+		}
+		if (!list.contains(model)) {
+			return true;
+		}
+		return false;
 	}
 
 	public void exportarXls() {

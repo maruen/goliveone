@@ -21,8 +21,8 @@
 		<properties>
 			<property name="hibernate.transaction.jta.platform"	value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
 		</properties>
 
 	</persistence-unit>
@@ -42,14 +42,13 @@
 		<class>br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel</class>
 		<class>br.com.golive.entity.grupoprodutodepartamento.GrupoProdutoDepartamento</class>
 		<class>br.com.golive.entity.especialidades.model.CorProdutoModel</class>
-		 
+		<class>br.com.golive.entity.unidade.model.UnidadeModel</class>
 		
-
 		<properties>
 			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
 		</properties>
 
 	</persistence-unit>
@@ -69,12 +68,13 @@
 		<class>br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel</class>
 		<class>br.com.golive.entity.grupoprodutodepartamento.model.GrupoProdutoDepartamento</class>
 		<class>br.com.golive.entity.especialidades.model.CorProdutoModel</class>
+		<class>br.com.golive.entity.unidade.model.UnidadeModel</class>
 
 		<properties>
 			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
 		</properties>
 
 	</persistence-unit>
@@ -98,8 +98,8 @@
 		<properties>
 			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
 		</properties>
 
 	</persistence-unit>

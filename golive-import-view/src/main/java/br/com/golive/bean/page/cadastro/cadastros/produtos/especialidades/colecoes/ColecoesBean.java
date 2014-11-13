@@ -11,6 +11,7 @@ import lombok.Getter;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
+import br.com.golive.bean.generics.CadastroProdutoClassificacao;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
@@ -22,6 +23,9 @@ import br.com.golive.service.ColecoesService;
 public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 	private static final long serialVersionUID = 1L;
+
+	@Inject
+	private CadastroProdutoClassificacao componentCadastroProdutoClassificacao;
 
 	@Inject
 	private ColecoesProdutoFilter filtros;
@@ -39,12 +43,30 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@PostConstruct
 	public void init() {
 		super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"));
+		componentCadastroProdutoClassificacao.setDelegate(this);
+	}
+
+	@Override
+	public void validarComponent() {
+		validarLista(componentCadastroProdutoClassificacao.getGrupos(), componentCadastroProdutoClassificacao.getSubGrupos());
+		if (verificarLista(componentCadastroProdutoClassificacao.getGrupos(), registro.getGrupoProdutoSelected())) {
+			registro.setGrupoProdutoSelected(null);
+			registro.setSubGrupoProdutoSelected(null);
+		}
+		if (verificarLista(componentCadastroProdutoClassificacao.getSubGrupos(), registro.getSubGrupoProdutoSelected())) {
+			registro.setSubGrupoProdutoSelected(null);
+		}
 	}
 
 	@Override
 	public void incluir() {
 		super.incluir();
 		registro = new ColecoesModel();
+	}
+
+	@Override
+	public ColecoesModel getRegistro() {
+		return registro;
 	}
 
 	@Override
@@ -109,6 +131,14 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@Override
 	public CadastroGenericFilterBean<ColecoesModel> getFiltros() {
 		return filtros;
+	}
+
+	public CadastroProdutoClassificacao getComponentCadastroProdutoClassificacao() {
+		return componentCadastroProdutoClassificacao;
+	}
+
+	public void setComponentCadastroProdutoClassificacao(final CadastroProdutoClassificacao componentCadastroProdutoClassificacao) {
+		this.componentCadastroProdutoClassificacao = componentCadastroProdutoClassificacao;
 	}
 
 }

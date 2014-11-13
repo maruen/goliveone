@@ -20,6 +20,7 @@ import org.hibernate.engine.transaction.jta.platform.spi.JtaPlatformException;
 import org.slf4j.Logger;
 
 import br.com.golive.constants.Constantes;
+import br.com.golive.entity.Model;
 import br.com.golive.exception.GoLiveException;
 
 /**
@@ -236,11 +237,17 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 	public void refresh(final T entity) {
 		try {
 			entityManager.refresh(entity);
-		} catch(Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
-		
-			
+	}
+
+	public void refresh(final Model entity) {
+		try {
+			entityManager.refresh(entity);
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -42,6 +42,12 @@ public class UnidadeBean extends CadastroGenericBean<UnidadeModel> {
 	}
 
 	@Override
+	public void incluir() {
+		super.incluir();
+		registro = new UnidadeModel();
+	}
+
+	@Override
 	public boolean validarCampos() {
 		boolean ret = true;
 		if (registro == null) {
@@ -61,22 +67,22 @@ public class UnidadeBean extends CadastroGenericBean<UnidadeModel> {
 
 	@Override
 	public void serviceSave(final UnidadeModel registro) {
-
+		unidadeService.salvar(registro);
 	}
 
 	@Override
 	public void serviceUpdate(final UnidadeModel registro) {
-
+		unidadeService.atualizar(registro);
 	}
 
 	@Override
 	public void serviceRemove(final UnidadeModel registro) {
-
+		unidadeService.remover(registro);
 	}
 
 	@Override
 	public void serviceRefresh(final UnidadeModel registro) {
-
+		unidadeService.refresh(registro);
 	}
 
 	@Override

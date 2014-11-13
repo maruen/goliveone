@@ -8,15 +8,7 @@
 	<!-- PANEL CLASSIFICAÇÃO -->
 	
 	
-	<p:panel id="classificacaoColecoes"
-		     header="#{managerBean.get('label.cadastroColecoes.classificacao')}"
-			 toggleable="true"
-			 closable="false"
-			 collapsed="false"
-			 toggleSpeed="500"
-			 closeSpeed="500"
-			 widgetVar="classificacao"
-			 styleClass="little-font">
+	<p:panel id="classificacaoColecoes" header="#{managerBean.get('label.cadastroColecoes.classificacao')}" toggleable="true" closable="false"  collapsed="false" toggleSpeed="500" closeSpeed="500" widgetVar="classificacao" styleClass="little-font">
 
 		<f:facet name="actions">
 			<h:commandLink disabled="true"
@@ -25,13 +17,7 @@
 			</h:commandLink>
 		</f:facet>
 
-		<h:panelGrid columns="5"
-					 cellpadding="3"
-					 cellspacing="3"
-					 id="panelGrid"
-					 columnClasses="percentual-5, percentual-10, percentual-5, percentual-68"
-					 width="100%"
-					 border="0">
+		<h:panelGrid columns="5" cellpadding="3"  cellspacing="3" id="panelGrid" columnClasses="percentual-5, percentual-10, percentual-5, percentual-68" width="100%" border="0">
 
 			<h:outputText  id="departamentoIdOutputText"    value="#{managerBean.get('label.cadastroColecoes.id')}" />
 			<h:inputText   id="departamentoIdInputText"     value="#{pojo.departamentoSelected.id}" 	style="width: 125px;" disabled="true" />
@@ -47,14 +33,8 @@
 			<h:outputText id="grupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroColecoes.grupoProdutos')}" style="white-space: nowrap" />
 			<h:inputText id="grupoProdutosNomeInputText"   value="#{pojo.grupoProdutoSelected.grupoDeProduto}" style="width: 95%"  disabled="true" />
 
-			<p:commandLink id="linkGrupoProdutos"
-						  onclick="PF('dlgGrupoProdutos').show();"
-						  immediate="true"
-						  disable="#{pojo.departamentoSelected == null}"
-						  onsuccess="PF('dlgGrupoProdutos').show();" >
-				
+			<p:commandLink id="linkGrupoProdutos"  onclick="PF('dlgGrupoProdutos').show();" immediate="true" disable="#{pojo.departamentoSelected == null}" onsuccess="PF('dlgGrupoProdutos').show();" >
 				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
-			
 			</p:commandLink> 
 
 			<h:outputText id="subGrupoProdutosIdOutputText"  value="#{managerBean.get('label.cadastroColecoes.id')}" />
@@ -241,8 +221,6 @@
 
 
 	<!-- DIALOG PESQUISA SUBGRUPO PRODUTOS -->
-
-
  	<p:dialog
 		header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaGrupoProdutos')}"
 		widgetVar="dlgGrupoProdutos"

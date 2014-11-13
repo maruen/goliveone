@@ -13,6 +13,8 @@ import lombok.Getter;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
+import br.com.golive.bean.generics.CadastroProdutoClassificacao;
+import br.com.golive.bean.generics.CadastroProdutoEspecificidade;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
@@ -33,16 +35,41 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@Inject
 	private CorProdutoFilter filtros;
 
+	@Inject
+	private CadastroProdutoClassificacao componentCadastroProdutoClassificacao;
+
+	@Inject
+	private CadastroProdutoEspecificidade componentCadastroProdutoEspecificidade;
+
 	@EJB
 	private CorProdutoService corProdutoService;
 
 	@Getter
-	private  boolean especificidades = true;
+	private final boolean especificidades = true;
 
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(corProdutoService.listarPorFiltro());
+		componentCadastroProdutoClassificacao.setDelegate(this);
+		componentCadastroProdutoEspecificidade.setDelegate(this);
+	}
+
+	@Override
+	public void validarComponent() {
+		validarLista(componentCadastroProdutoClassificacao.getGrupos(), componentCadastroProdutoClassificacao.getSubGrupos(), componentCadastroProdutoEspecificidade.getColecoes());
+		if (verificarLista(componentCadastroProdutoClassificacao.getGrupos(), registro.getGrupoProdutoSelected())) {
+			registro.setGrupoProdutoSelected(null);
+			registro.setSubGrupoProdutoSelected(null);
+			registro.setColecaoSelected(null);
+		}
+		if (verificarLista(componentCadastroProdutoClassificacao.getSubGrupos(), registro.getSubGrupoProdutoSelected())) {
+			registro.setSubGrupoProdutoSelected(null);
+			registro.setColecaoSelected(null);
+		}
+		if (verificarLista(componentCadastroProdutoEspecificidade.getColecoes(), registro.getColecaoSelected())) {
+			registro.setColecaoSelected(null);
+		}
 	}
 
 	@Override
@@ -119,5 +146,21 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@Override
 	public CadastroGenericFilterBean<CorProdutoModel> getFiltros() {
 		return filtros;
+	}
+
+	public CadastroProdutoClassificacao getComponentCadastroProdutoClassificacao() {
+		return componentCadastroProdutoClassificacao;
+	}
+
+	public void setComponentCadastroProdutoClassificacao(final CadastroProdutoClassificacao componentCadastroProdutoClassificacao) {
+		this.componentCadastroProdutoClassificacao = componentCadastroProdutoClassificacao;
+	}
+
+	public CadastroProdutoEspecificidade getComponentCadastroProdutoEspecificidade() {
+		return componentCadastroProdutoEspecificidade;
+	}
+
+	public void setComponentCadastroProdutoEspecificidade(final CadastroProdutoEspecificidade componentCadastroProdutoEspecificidade) {
+		this.componentCadastroProdutoEspecificidade = componentCadastroProdutoEspecificidade;
 	}
 }

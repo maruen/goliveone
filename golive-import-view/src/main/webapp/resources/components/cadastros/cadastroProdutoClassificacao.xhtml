@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="pojo" required="false" />
+	<composite:attribute name="component" required="false" type="br.com.golive.bean.generics.CadastroProdutoClassificacao" />
+
+	
+	<composite:attribute name="departamentoUpdate" required="false" />
+	<composite:attribute name="departamento" required="true" default="false" type="java.lang.Boolean"/>
+	  
+	<composite:attribute name="grupoProdutoUpdate" required="false" />
+	<composite:attribute name="grupo" required="true" default="false" type="java.lang.Boolean"/>
+	
+	<composite:attribute name="subGrupoProdUpdate" required="false" />
+	<composite:attribute name="subGrupo" required="true" default="false" type="java.lang.Boolean"/>
+	
+	<composite:attribute name="actionLink" required="false" method-signature="void action(br.com.golive.entity.Model)"/>
+	<composite:attribute name="link" required="true" default="false" type="java.lang.Boolean"/>
+	
+</composite:interface>
+
+<composite:implementation>
+	
+	<!-- DIALOG PESQUISA DEPARTAMENTO -->
+	<p:dialog id="dlgDepartamento" header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaDepartamento')}" showEffect="puff" hideEffect="fold" widgetVar="dlgDepartamento" modal="true" resizable="false" height="100%" width="55%">
+		<p:dataTable id="departamentoDatatableId" selectionMode="single" selection="#{cc.attrs.pojo.departamentoSelected}" rowKey="#{departamento.id}" var="departamento" value="#{cc.attrs.component.departamentos}"
+					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}" >
+			
+			<p:ajax event="rowSelect"  oncomplete="PF('dlgDepartamento').hide();" 
+					update="#{cc.attrs.component.getUpdate(cc.attrs.departamentoUpdate)}"  
+					listener="#{cc.attrs.component.carregarGrupoProdutoPorDepartamento(cc.attrs.pojo.departamentoSelected)}" />
+			
+			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"  styleClass="percentual-5 singleLine" filterBy="#{departamento.id}" filterMatchMode="exact">
+				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
+			</p:column>
+			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.departamento')}" styleClass="percentual-20 singleLine" filterBy="#{departamento.departamento.toLowerCase()}" filterMatchMode="contains">
+				<h:outputText value="#{departamento.departamento}" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<!-- DIALOG PESQUISA SUBGRUPO PRODUTOS -->
+ 	<p:dialog id="dlgGrupo" header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaGrupoProdutos')}" showEffect="puff" hideEffect="fold" widgetVar="dlgGrupoProdutos" modal="true" resizable="false" height="100%" width="55%">
+		<p:dataTable id="grupoProdutosDatatableId" selectionMode="single" selection="#{cc.attrs.pojo.grupoProdutoSelected}" rowKey="#{grupoProduto.id}" var="grupoProduto" emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+				     value="#{cc.attrs.component.grupos}"> 
+			
+			<p:ajax event="rowSelect" listener="#{cc.attrs.component.carregarSubGrupoProdutoPorGrupo(cc.attrs.pojo.grupoProdutoSelected)}" 
+									update="#{cc.attrs.component.getUpdate(cc.attrs.grupoProdutoUpdate)}" oncomplete="PF('dlgGrupoProdutos').hide();"  />
+			
+			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}" styleClass="percentual-10 singleLine" filterBy="#{grupoProduto.id}" filterMatchMode="contains">
+				<h:outputText value="#{grupoProduto.id}" styleClass="floatRight" />
+			</p:column>
+			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.grupoProdutos')}" styleClass="percentual-20 singleLine" filterBy="#{grupoProduto.grupoDeProduto}" filterMatchMode="contains">
+				<h:outputText value="#{grupoProduto.grupoDeProduto}" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<!-- DIALOG PESQUISA SUBGRUPO PRODUTOS -->
+	<p:dialog id="dlgSubGrup" header="#{managerBean.get('label.cadastroColecoes.pesquisaSubGrupoProdutos')}" showEffect="puff" hideEffect="fold" widgetVar="dlgSubGrupProdutos" modal="true" resizable="false" height="100%" width="55%">
+
+		<p:dataTable id="subGrupoProdutosDatatableId" var="subGrupoProdutosDatatableVar" value="#{cc.attrs.component.subGrupos}" selectionMode="single" selection="#{cc.attrs.pojo.subGrupoProdutoSelected}" 
+					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"  rowKey="#{subGrupoProdutosDatatableVar.id}" >
+			 
+			 <c:choose>
+			 	<c:when test="#{cc.attrs.link}">
+			 		<p:ajax event="rowSelect"  listener="#{cc.attrs.actionLink}" oncomplete="PF('dlgSubGrupProdutos').hide();" update="#{cc.attrs.component.getUpdate(cc.attrs.subGrupoProdUpdate)}" />
+			 	</c:when>
+			 	<c:otherwise>
+			 		<p:ajax event="rowSelect"  oncomplete="PF('dlgSubGrupProdutos').hide();" update="#{cc.attrs.component.getUpdate(cc.attrs.subGrupoProdUpdate)}" />
+			 	</c:otherwise>
+			 </c:choose>
+			 
+			 
+			<p:column filterMatchMode="contains" filterBy="#{subGrupoProdutosDatatableVar.id}" headerText="#{managerBean.get('label.cadastroColecoes.id')}" styleClass="percentual-10 singleLine">
+				<h:outputText value="#{subGrupoProdutosDatatableVar.id}" styleClass="floatRight" />
+			</p:column>
+			<p:column filterBy="#{subGrupoProdutosDatatableVar.subGrupoProduto.toLowerCase()}" filterMatchMode="contains" headerText="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}" styleClass="percentual-20 singleLine">
+				<h:outputText value="#{subGrupoProdutosDatatableVar.subGrupoProduto}" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+
+
+	<!-- PANEL CLASSIFICAÇÃO -->
+	<p:panel id="classificacaoColecoes" header="#{managerBean.get('label.cadastroColecoes.classificacao')}" toggleable="true" closable="false"  collapsed="false" toggleSpeed="500" closeSpeed="500" widgetVar="classificacao" styleClass="little-font">
+		<f:facet name="actions">
+			<h:commandLink disabled="true"
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="1" id="grid" width="100%" border="0">
+
+			<h:panelGroup id="departamentoGroup" rendered="#{cc.attrs.departamento}">
+				<h:panelGrid columns="5" cellpadding="3"  cellspacing="3" columnClasses="percentual-5, percentual-10, percentual-15, percentual-68" width="100%" border="0">
+					<h:outputText  id="departamentoIdOutputText"    value="#{managerBean.get('label.cadastroColecoes.id')}" />
+					<h:inputText   id="departamentoIdInputText"     value="#{cc.attrs.pojo.departamentoSelected.id}" 	style="width: 125px;" disabled="true" />
+					<h:outputText  id="departamentoNomeOutputText"  value="#{managerBean.get('label.cadastroColecoes.departamento')}" />
+					<h:inputText   id="departamentoNomeInputText"   value="#{cc.attrs.pojo.departamentoSelected.departamento}" style="width: 95%"  disabled="true" />
+		
+					<p:commandLink onclick="PF('dlgDepartamento').show();" 	>
+						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+				</h:panelGrid>
+			</h:panelGroup>
+
+			<h:panelGroup id="grupoProdutoGroup" rendered="#{cc.attrs.grupo}">
+				<h:panelGrid columns="5" cellpadding="3"  cellspacing="3" columnClasses="percentual-5, percentual-10, percentual-15, percentual-68" width="100%" border="0">
+					<h:outputText id="grupoProdutosIdOutputText"   value="#{managerBean.get('label.cadastroColecoes.id')}" />
+					<h:inputText id="grupoProdutosIdInputText"     value="#{cc.attrs.pojo.grupoProdutoSelected.id}" style="width: 125px;" disabled="true" />
+					<h:outputText id="grupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroColecoes.grupoProdutos')}" style="white-space: nowrap" />
+					<h:inputText id="grupoProdutosNomeInputText"   value="#{cc.attrs.pojo.grupoProdutoSelected.grupoDeProduto}" style="width: 95%"  disabled="true" />
+		
+					<p:commandLink id="linkGrupoProdutos"  onclick="PF('dlgGrupoProdutos').show();" disable="#{cc.attrs.pojo.departamentoSelected == null}" onsuccess="PF('dlgGrupoProdutos').show();" >
+						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink> 
+				</h:panelGrid>
+			</h:panelGroup>
+
+			<h:panelGroup id="subGrupoGroup" rendered="#{cc.attrs.subGrupo}">
+				<h:panelGrid columns="5" cellpadding="3"  cellspacing="3" id="panelGrid" columnClasses="percentual-5, percentual-10, percentual-15, percentual-68" width="100%" border="0">
+					<h:outputText id="subGrupoProdutosIdOutputText"  value="#{managerBean.get('label.cadastroColecoes.id')}" />
+					<h:inputText  id="subGrupoProdutosIdInputText"   value="#{cc.attrs.pojo.subGrupoProdutoSelected.id}" style="width: 125px;" disabled="true" />
+					<h:outputText id="subGrupoProdutosNomeOutputText" value="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}" styleClass="singleLine" />
+					<h:inputText  id="subGrupoProdutosNomeInputText"  value="#{cc.attrs.pojo.subGrupoProdutoSelected.subGrupoProduto}" style="width: 95%"  disabled="true" />
+		
+					<p:commandLink id="linkSubGrupoProdutos" onclick="PF('dlgSubGrupProdutos').show();" disable="#{cc.attrs.pojo.grupoProdutoSelected == null}">
+						<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+				</h:panelGrid>
+			</h:panelGroup>
+		</h:panelGrid>
+
+	</p:panel>
+
+</composite:implementation>
+
+</html>
