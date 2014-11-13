@@ -463,27 +463,7 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUnidade` (
   `UtilizacaoFaturamentoNFSe` BIT NOT NULL,
   `SystemIncludeDateTime` DATETIME NOT NULL,
   `SystemChangeDateTime` DATETIME NOT NULL,
-  PRIMARY KEY (`Id`),
-  CONSTRAINT `FK_tbUnidade_tbFinalidadeCodigoBarrasProduto_tbUnidade`
-    FOREIGN KEY (`Id`)
-    REFERENCES `goliveacao`.`tbFinalidadeCodigoBarrasProduto_tbUnidade` (`tbUnidade_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tbUnidade_tbAuditoria_tbUnidade`
-    FOREIGN KEY (`Id`)
-    REFERENCES `goliveacao`.`tbAuditoria_tbUnidade` (`tbUnidade_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tbUnidade_tbFinalidadePadraoEspessuraProduto_tbUnidade`
-    FOREIGN KEY (`Id`)
-    REFERENCES `goliveacao`.`tbFinalidadePadraoEspessuraProduto_tbUnidade` (`tbUnidade_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tbUnidade_tbFinalidadePadraoLarguraProduto_tbUnidade`
-    FOREIGN KEY (`Id`)
-    REFERENCES `goliveacao`.`tbFinalidadePadraoLarguraProduto_tbUnidade` (`tbUnidade_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
 

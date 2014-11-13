@@ -6,10 +6,11 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
 	xmlns:filter="http://java.sun.com/jsf/composite/components/filter"
+	xmlns:generics="http://java.sun.com/jsf/composite/components/cadastros"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:param name="bean" value="#{corProdutoBean}" />
-	<ui:param name="title"  value="#{managerBean.get(bean.nomePagina())}" />
+	<ui:param name="title" value="#{managerBean.get(bean.nomePagina())}" />
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_cores.css" />
@@ -17,22 +18,43 @@
 	</ui:define>
 
 	<ui:define name="edicao">
-		
-		
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisCorProduto.xhtml">
+
+
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisCorProduto.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
 
-		<ui:include	src="/resources/includes/cadastros/componentsGenericos/classificacaoEspecificidades.xhtml">
-			<ui:param name="pojo" value="#{bean.registro}" />
-		</ui:include>
-		
-		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+
+		<generics:cadastroProdutoClassificacao
+			id="cadastroProdutoClassificacao" departamento="true" grupo="true"
+			subGrupo="true" pojo="#{bean.registro}"
+			component="#{corProdutoBean.componentCadastroProdutoClassificacao}"
+			departamentoUpdate="mensagens,
+								cadastroProdutoClassificacao:grupoProdutosDatatableId, cadastroProdutoClassificacao:departamentoGroup, cadastroProdutoClassificacao:grupoProdutoGroup, cadastroProdutoClassificacao:subGrupoGroup,
+								cadastroProdutoEspecificidade:colecoesTable, cadastroProdutoEspecificidade:colecoesGroup"
+			grupoProdutoUpdate="mensagens,
+								cadastroProdutoClassificacao:subGrupoProdutosDatatableId, cadastroProdutoClassificacao:grupoProdutoGroup, cadastroProdutoClassificacao:subGrupoGroup, 
+								cadastroProdutoEspecificidade:colecoesTable, cadastroProdutoEspecificidade:colecoesGroup"
+			subGrupoProdUpdate="mensagens,
+								cadastroProdutoClassificacao:subGrupoGroup, cadastroProdutoEspecificidade:colecoesTable, cadastroProdutoEspecificidade:colecoesGroup" 
+					actionLink="#{corProdutoBean.componentCadastroProdutoEspecificidade.obterColecoes(corProdutoBean.registro.subGrupoProdutoSelected)}"
+					      link="true"/>
+
+		<generics:cadastroProdutoEspecificidade
+			id="cadastroProdutoEspecificidade" pojo="#{bean.registro}"
+			component="#{corProdutoBean.componentCadastroProdutoEspecificidade}"
+			link="false"
+			colecao="true" colecaoUpdate="cadastroProdutoEspecificidade:colecoesGroup"/>
+
+
+		<ui:include
+			src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
 			<ui:param name="pojo" value="#{bean.registro.auditoriaLogs}" />
 		</ui:include>
-		
-		
-		
+
+
+
 	</ui:define>
 
 </ui:composition>

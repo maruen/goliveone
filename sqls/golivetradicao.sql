@@ -439,7 +439,7 @@ CREATE UNIQUE INDEX `tbFinalidadeCodigoBarrasProduto_Id_UNIQUE` ON `golivetradic
 DROP TABLE IF EXISTS `golivetradicao`.`tbUnidade` ;
 
 
-CREATE TABLE IF NOT EXISTS `golivetradicao`.`tbUnidade` (
+CREATE TABLE IF NOT EXISTS `goliveacao`.`tbUnidade` (
   `Id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `Abreviacao` VARCHAR(3) NOT NULL,
   `Unidade` VARCHAR(45) NOT NULL,
@@ -464,28 +464,9 @@ CREATE TABLE IF NOT EXISTS `golivetradicao`.`tbUnidade` (
   `UtilizacaoFaturamentoNFSe` BIT NOT NULL,
   `SystemIncludeDateTime` DATETIME NOT NULL,
   `SystemChangeDateTime` DATETIME NOT NULL,
-  PRIMARY KEY (`Id`),
-  CONSTRAINT `FK_tbUnidade_tbFinalidadeCodigoBarrasProduto_tbUnidade`
-    FOREIGN KEY (`Id`)
-    REFERENCES `golivetradicao`.`tbFinalidadeCodigoBarrasProduto_tbUnidade` (`tbUnidade_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tbUnidade_tbAuditoria_tbUnidade`
-    FOREIGN KEY (`Id`)
-    REFERENCES `golivetradicao`.`tbAuditoria_tbUnidade` (`tbUnidade_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tbUnidade_tbFinalidadePadraoEspessuraProduto_tbUnidade`
-    FOREIGN KEY (`Id`)
-    REFERENCES `golivetradicao`.`tbFinalidadePadraoEspessuraProduto_tbUnidade` (`tbUnidade_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tbUnidade_tbFinalidadePadraoLarguraProduto_tbUnidade`
-    FOREIGN KEY (`Id`)
-    REFERENCES `golivetradicao`.`tbFinalidadePadraoLarguraProduto_tbUnidade` (`tbUnidade_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
+
 
 
 CREATE UNIQUE INDEX `Id_UNIQUE` ON `golivetradicao`.`tbUnidade` (`Id` ASC);

@@ -41,6 +41,8 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvar(final SubGrupoProdutoModel model) {
 		logger.info("Salvando subGrupoProdutoModel");
+		subGrupoProdutoJPA.refresh(model.getDepartamentoSelected());
+		subGrupoProdutoJPA.refresh(model.getGrupoProdutoSelected());
 		subGrupoProdutoJPA.save(model);
 	}
 
@@ -84,23 +86,21 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 	}
 
 	@Override
-	public List<SubGrupoProdutoModel> obterSubGrupoProdutoPorGrupo(	GrupoProdutosModel model) {
+	public List<SubGrupoProdutoModel> obterSubGrupoProdutoPorGrupo(final GrupoProdutosModel model) {
 		logger.info("obterSubGrupoProdutoPorGrupo");
 		return subGrupoProdutoJPA.obterListaPorGrupo(model);
 	}
-	
+
 	@Override
-	public List<SubGrupoProdutoModel> obterSubGrupoProdutoPorGrupoId(Long grupoId) {
+	public List<SubGrupoProdutoModel> obterSubGrupoProdutoPorGrupoId(final Long grupoId) {
 		logger.info("obterSubGrupoProdutoPorGrupoId");
 		return subGrupoProdutoJPA.obterListaPorGrupoId(grupoId);
 	}
-	
-	
 
 	@Override
-	public void refresh(SubGrupoProdutoModel model) {
+	public void refresh(final SubGrupoProdutoModel model) {
 		subGrupoProdutoJPA.refresh(model);
-		
+
 	}
-	
+
 }

@@ -49,6 +49,7 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvar(final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Salvando grupo produto = {}", grupoProdutosModel);
+		grupoProdutoJPA.refresh(grupoProdutosModel.getDepartamentoModel());
 		grupoProdutoJPA.save(grupoProdutosModel);
 	}
 
@@ -75,19 +76,17 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 		logger.info("Obtendo Grupo de produtos por departamento = {}");
 		return grupoProdutoJPA.obterListaPorDepartamento(departamentoModel);
 	}
-	
-	
+
 	@Override
-	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamentoId(Long departamentoId) {
+	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamentoId(final Long departamentoId) {
 		logger.info("Obtendo Grupo de produtos por departamentoId = {}");
 		return grupoProdutoJPA.obterListaPorDepartamentoId(departamentoId);
 	}
-	
 
 	@Override
-	public void refresh(GrupoProdutosModel model) {
+	public void refresh(final GrupoProdutosModel model) {
 		grupoProdutoJPA.refresh(model);
-		
+
 	}
 
 }

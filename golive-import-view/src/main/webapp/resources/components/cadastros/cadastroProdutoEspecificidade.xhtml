@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="pojo" required="true" />
+	<composite:attribute name="component" required="true"
+		type="br.com.golive.bean.generics.CadastroProdutoEspecificidade" />
+
+	<composite:attribute name="colecaoUpdate" required="true" default="" />
+	<composite:attribute name="colecao" required="true" default="false"
+		type="java.lang.Boolean" />
+
+	<composite:attribute name="corUpdate" required="true" default="@this" />
+	<composite:attribute name="cor" required="true" default="false"
+		type="java.lang.Boolean" />
+
+	<composite:attribute name="actionLink" required="false" method-signature="void action(br.com.golive.entity.Model)"/>
+	<composite:attribute name="link" required="true" default="false" type="java.lang.Boolean"/>
+
+</composite:interface>
+
+<composite:implementation>
+
+	<!-- DIALOG PESQUISA COLEÇÕES -->
+	<p:dialog
+		header="#{managerBean.get('label.cadastroCores.pesquisaColecoes')}"
+		widgetVar="colecoesdlg" modal="true" resizable="false" height="100%"
+		width="55%" 
+		rendered="#{cc.attrs.colecao}">
+
+		<p:dataTable id="colecoesTable" selectionMode="single"
+			selection="#{cc.attrs.pojo.colecaoSelected}" var="colecao"
+			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+			rowKey="#{colecao.id}" value="#{cc.attrs.component.colecoes}">
+
+			<p:ajax event="rowSelect" oncomplete="PF('colecoesdlg').hide();"
+				listener="#{cc.attrs.component.carregarCoresPorColecoes(cc.attrs.pojo.colecaoSelected, true)}"
+				update="#{cc.attrs.component.getUpdate(cc.attrs.colecaoUpdate)}" />
+
+			<p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
+				filterBy="#{colecao.id}" filterMatchMode="exact"
+				styleClass="percentual-5 singleLine">
+				<h:outputText value="#{colecao.id}" styleClass="floatRight" />
+			</p:column>
+
+			<p:column filterBy="#{colecao.colecao.toLowerCase()}"
+				filterMatchMode="contains"
+				headerText="#{managerBean.get('label.cadastroCores.colecoes')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="#{colecao.colecao}" styleClass="floatLeft" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+
+	<!-- DIALOG PESQUISA CORES -->
+	<p:dialog header="#{managerBean.get('label.cadastroCores.cor')}"
+		widgetVar="coresdlg" modal="true" resizable="false" height="100%"
+		width="55%" rendered="#{cc.attrs.cor}">
+
+		<p:dataTable id="coresTable" selectionMode="single"
+			selection="#{cc.attrs.pojo.corProdutoSelected}" var="cor"
+			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+			rowKey="#{cor.id}" value="#{cc.attrs.component.cores}">
+
+
+			 <c:choose>
+			 	<c:when test="#{cc.attrs.link}">
+			 		<p:ajax event="rowSelect"  listener="#{cc.attrs.actionLink}" oncomplete="PF('coresdlg').hide();"  update="#{cc.attrs.component.getUpdate(cc.attrs.corUpdate)}" />
+			 	</c:when>
+			 	<c:otherwise>
+			 		<p:ajax event="rowSelect"  oncomplete="PF('coresdlg').hide();" update="#{cc.attrs.component.getUpdate(cc.attrs.corUpdate)}" />
+			 	</c:otherwise>
+			 </c:choose>
+
+			<p:column headerText="#{managerBean.get('label.cadastroCores.id')}"
+				filterBy="#{cor.id}" filterMatchMode="exact"
+				styleClass="percentual-5 singleLine">
+				<h:outputText value="#{cor.id}" styleClass="floatRight" />
+			</p:column>
+
+			<p:column filterBy="#{cor.corDescricao.toLowerCase()}"
+				filterMatchMode="contains"
+				headerText="#{managerBean.get('label.cadastroProdutos.cor')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="#{cor.corDescricao}" styleClass="floatLeft" />
+			</p:column>
+
+			<p:column filterBy="#{cor.corCodigo.toLowerCase()}"
+				filterMatchMode="contains"
+				headerText="#{managerBean.get('label.cadastroEmpresa.codigo')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="#{cor.corCodigo}" styleClass="floatLeft" />
+			</p:column>
+
+		</p:dataTable>
+	</p:dialog>
+
+
+
+
+
+	<p:panel id="especificidades"
+		header="#{managerBean.get('label.cadastroCores.cor')}"
+		toggleable="true" closable="false" collapsed="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="especificidades" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGroup id="colecoesGroup" rendered="#{cc.attrs.colecao}">
+			<h:panelGrid columns="5" cellpadding="3" cellspacing="3"
+				columnClasses="percentual-5, percentual-10, percentual-15, percentual-68"
+				width="100%" border="0">
+				<h:outputText id="colecaoIdOutputText"
+					value="#{managerBean.get('label.cadastroCores.id')}"
+					styleClass="singleLine" />
+
+				<h:inputText id="colecaoIdInputText" style="width: 125px;"
+					disabled="true" value="#{cc.attrs.pojo.colecaoSelected.id}" />
+
+				<h:outputText id="colecaoOutputText"
+					value="#{managerBean.get('label.cadastroCores.colecoes')}" />
+
+				<h:inputText id="colecaoInputText" style="width: 98%;"
+					value="#{cc.attrs.pojo.colecaoSelected.colecao}" disabled="true" />
+
+				<p:commandLink id="linkColecao"
+					onsuccess="PF('colecoesdlg').show();">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:panelGrid>
+		</h:panelGroup>
+
+		<h:panelGroup id="coresGroup" rendered="#{cc.attrs.cor}">
+			<h:panelGrid columns="5" cellpadding="3" cellspacing="3"
+				columnClasses="percentual-5, percentual-10, percentual-15, percentual-68"
+				width="100%" border="0">
+				<h:outputText id="corIdOutputText"
+					value="#{managerBean.get('label.cadastroCores.id')}"
+					styleClass="singleLine" />
+
+				<h:inputText id="corIdInputText" style="width: 125px;"
+					disabled="true" value="#{cc.attrs.pojo.corProdutoSelected.id}" />
+
+				<h:outputText id="corOutputText"
+					value="#{managerBean.get('label.cadastroCores.cor')}" />
+
+				<h:inputText id="corInputText" style="width: 98%;"
+					value="#{cc.attrs.pojo.corProdutoSelected.corDescricao}"
+					disabled="true" />
+
+				<p:commandLink id="linkCores" onsuccess="PF('coresdlg').show();">
+					<h:graphicImage
+						value="/resources/images/stylistica-icons-set/24x24/search.png" />
+				</p:commandLink>
+			</h:panelGrid>
+		</h:panelGroup>
+	</p:panel>
+
+</composite:implementation>
+
+</html>

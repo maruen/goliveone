@@ -5,10 +5,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	xmlns:generics="http://java.sun.com/jsf/composite/components/cadastros"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:param name="bean" value="#{colecoesBean}" />
-	<ui:param name="title"  value="#{managerBean.get(bean.nomePagina())}" />
+	<ui:param name="title" value="#{managerBean.get(bean.nomePagina())}" />
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_colecoes.css" />
@@ -16,13 +17,26 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisColecoes.xhtml">
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisColecoes.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include	src="/resources/includes/cadastros/componentsGenericos/classificacaoEspecificidades.xhtml">
-			<ui:param name="pojo" value="#{bean.registro}" />
-		</ui:include>
-		<ui:include	src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
+
+		<generics:cadastroProdutoClassificacao id="cadastroProdutoClassificacao"
+			departamento="true"
+			grupo="true"
+			subGrupo="true"
+			pojo="#{bean.registro}"
+			link="false"
+			component="#{colecoesBean.componentCadastroProdutoClassificacao}"
+			subGrupoProdUpdate="cadastroProdutoClassificacao:subGrupoGroup"
+			departamentoUpdate="mensagens,
+								cadastroProdutoClassificacao:grupoProdutosDatatableId, cadastroProdutoClassificacao:departamentoGroup, cadastroProdutoClassificacao:grupoProdutoGroup, cadastroProdutoClassificacao:subGrupoGroup" 
+			grupoProdutoUpdate="mensagens,
+								cadastroProdutoClassificacao:subGrupoProdutosDatatableId, cadastroProdutoClassificacao:grupoProdutoGroup, cadastroProdutoClassificacao:subGrupoGroup"/>
+
+		<ui:include
+			src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
 			<ui:param name="pojo" value="#{bean.registro.auditoriaLogs}" />
 		</ui:include>
 
