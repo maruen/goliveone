@@ -25,62 +25,67 @@
 						   percentual-5"
 			width="100%" border="0">
 
-			<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroFinalidadeTipo.id')}" />
-			<h:inputText id="idInputText" style="width: 125px;" disabled="true" />
-			
+			<h:outputText id="idOutputText"
+				value="#{managerBean.get('label.cadastroFinalidadeTipo.id')}" />
+			<h:inputText id="idInputText" style="width: 125px;" disabled="true"
+				value="#{pojo.id}" />
+
 			<p:spacer />
 			<p:spacer />
 
 			<h:outputText id="dataInclusaoOutputText"
-						value="#{managerBean.get('label.cadastroFinalidadeTipo.inclusao')}" />
-			<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText"
-						disabled="true" />
-						
+				value="#{managerBean.get('label.cadastroFinalidadeTipo.inclusao')}" />
+			<h:inputText value="#{pojo.dataInclusao.time}"
+				id="dataInclusaoInputText" disabled="true">
+				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:inputText>
+
 			<h:outputText id="descricaoNomeOutputText"
-						value="#{managerBean.get('label.cadastroFinalidadeTipo.descricao')}" />
+				value="#{managerBean.get('label.cadastroFinalidadeTipo.descricao')}" />
 			<p:inputText id="descricaoNomeInputText" required="true"
-						disabled="false" styleClass="singleLine"
-						value="Nota Fiscal Produtos de Revenda"
-						style="width: 70%;" />
+				disabled="false" styleClass="singleLine" value="#{pojo.descricao}"
+				style="width: 70%;" />
 
 			<p:spacer />
 			<p:spacer />
 
 			<h:outputText id="ultimaAlteracaoOutputText"
-						value="#{managerBean.get('label.cadastroFinalidadeTipo.ultimaAlteracao')}"
-						styleClass="singleLine" />
-			<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText"
-						disabled="true" />
-						
+				value="#{managerBean.get('label.cadastroFinalidadeTipo.ultimaAlteracao')}"
+				styleClass="singleLine" />
+			<h:inputText value="#{pojo.dataAlteracao.time}"
+				id="ultimaAlteracaoInputText" disabled="true">
+				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:inputText>
+
 		</h:panelGrid>
-		
+
 		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
-					 columnClasses="percentual-5,
+			columnClasses="percentual-5,
 						   			percentual-50,
 						   			percentual-10,
 						   			percentual-10,
 						   			percentual-10,
 						   			percentual-5"
-					width="100%" border="0">
+			width="100%" border="0">
 
-			<h:outputText value="#{managerBean.get('label.cadastroFinalidadeTipo.nMinimoCaracteres')}"
-						styleClass="singleLine"
-						id="numMinCaracteresOutputText" />
+			<h:outputText
+				value="#{managerBean.get('label.cadastroFinalidadeTipo.nMinimoCaracteres')}"
+				styleClass="singleLine" id="numMinCaracteresOutputText" />
 			<p:inputText id="numMinCaracteresInputText" required="true"
-						disabled="false" value="00010"
-						style="width: 10%;" />
-			
-			<p:spacer/>
-			<p:spacer/>
-			<p:spacer/>
-			<p:spacer/>
-			
-			<h:outputText value="#{managerBean.get('label.cadastroFinalidadeTipo.nMaximoCaracteres')}"
-						styleClass="singleLine"
-						id="numMaxCaracteresOutputText" />
+				disabled="false" value="#{pojo.numeroMinimoDeCaracteres}"
+				style="width: 10%;" />
+
+			<p:spacer />
+			<p:spacer />
+			<p:spacer />
+			<p:spacer />
+
+			<h:outputText
+				value="#{managerBean.get('label.cadastroFinalidadeTipo.nMaximoCaracteres')}"
+				styleClass="singleLine" id="numMaxCaracteresOutputText" />
 			<p:inputText id="numMaxCaracteresInputText" required="true"
-						disabled="false" value="00050"
-						style="width: 10%;" />
+				disabled="false" value="#{pojo.numeroMaximoDeCaracteres}"
+				style="width: 10%;" />
 		</h:panelGrid>
 	</p:panel>
 </ui:composition>

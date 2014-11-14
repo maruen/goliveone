@@ -46,15 +46,6 @@
 			component="#{corProdutoBean.componentCadastroProdutoEspecificidade}"
 			link="false"
 			colecao="true" colecaoUpdate="cadastroProdutoEspecificidade:colecoesGroup"/>
-
-
-		<ui:include
-			src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
-			<ui:param name="pojo" value="#{bean.registro.auditoriaLogs}" />
-		</ui:include>
-
-
-
 	</ui:define>
 
 </ui:composition>

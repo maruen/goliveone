@@ -71,7 +71,6 @@
 			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			rowKey="#{cor.id}" value="#{cc.attrs.component.cores}">
 
-
 			 <c:choose>
 			 	<c:when test="#{cc.attrs.link}">
 			 		<p:ajax event="rowSelect"  listener="#{cc.attrs.actionLink}" oncomplete="PF('coresdlg').hide();"  update="#{cc.attrs.component.getUpdate(cc.attrs.corUpdate)}" />

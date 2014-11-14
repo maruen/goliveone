@@ -580,9 +580,11 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 				}
 			}
 		} catch (final Exception e) {
-			fatalError();
 			getLogger().error("Erro ao salvar ou atualizar registro");
 			e.printStackTrace();
+			fluxo = getFluxoListagem();
+			init();
+			fatalError();
 		}
 
 		if (success) {

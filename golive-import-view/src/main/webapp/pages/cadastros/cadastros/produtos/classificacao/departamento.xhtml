@@ -16,15 +16,8 @@
 	</ui:define>
 
 	<ui:define name="edicao">
-
 		<ui:include src="/resources/includes/cadastros/cadastros/produto/classificacao/dadosGeraisDepartamento.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-
-		<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
-			<ui:param name="pojo" value="#{bean.registro.auditoriaLogs}" />
-		</ui:include>
-
-
 	</ui:define>
 </ui:composition>

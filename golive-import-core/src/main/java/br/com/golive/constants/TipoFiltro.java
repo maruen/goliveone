@@ -2,12 +2,7 @@ package br.com.golive.constants;
 
 public enum TipoFiltro {
 
-	CONTEM("label.contem", "contem"),
-	INTERVALO("label.intervalo", "intervalo"),
-	MENOR("label.menor.que", "menor"),
-	MAIOR("label.maior.que", "maior"),
-	IGUAL("label.igual", "igual"),
-	PERIODO("label.periodo", "periodo");
+	CONTEM("label.contem", "contem"), INTERVALO("label.intervalo", "intervalo"), MENOR("label.menor.que", "menor"), MAIOR("label.maior.que", "maior"), IGUAL("label.igual", "igual"), PERIODO("label.periodo", "periodo");
 
 	private String label;
 
@@ -35,7 +30,7 @@ public enum TipoFiltro {
 	}
 
 	public static TipoFiltro obterPorDescricao(final String descricao) {
-		if ((descricao == null) && (descricao.isEmpty())) {
+		if ((descricao == null) || (descricao.isEmpty())) {
 			return TipoFiltro.IGUAL;
 		}
 		for (final TipoFiltro tipo : TipoFiltro.values()) {

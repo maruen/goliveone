@@ -4,108 +4,98 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:panel id="dadosGerais"
-		 header="#{managerBean.get('label.cadastroPadroesEspessura.dadosGerais')}"
-		 toggleable="true"
-		 collapsed="false"
-		 closable="false"
-		 toggleSpeed="500"
-		 closeSpeed="500"
-		 widgetVar="dadosGerais"
-		 styleClass="little-font" >
-		 
-	     	<f:facet name="actions">
-          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
-          			<h:outputText styleClass="ui-icon ui-icon-help" />
-          		</h:commandLink>
-      		</f:facet>
-   		       	
-          	<h:panelGrid columns="6"
-          				 cellpadding="3"  
-          				 cellspacing="3"
-          				 columnClasses="percentual-5,
+	<p:panel id="dadosGerais"
+		header="#{managerBean.get('label.cadastroPadroesEspessura.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-5,
           				 				percentual-10,
           				 				percentual-5,
           				 				percentual-50,
           				 				percentual-5,
-          				 				percentual-5" 
-          				 width="100%"
-          				 border="0">
-     
-			<h:outputText id="idOutputText" value="Id"   />
-           	<p:inputText id="idInputText"
-           				 style="width: 125px;"/>
-           				 
-           	<p:spacer />
-           	<p:spacer />
+          				 				percentual-5"
+			width="100%" border="0">
 
-      		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{managerBean.get('label.cadastroPadroesEspessura.inclusao')}" />
-	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      					  
-      		
-      		<h:outputText id="larguraNomeOutputText" 
-      					  value="#{managerBean.get('label.cadastroPadroesEspessura.largura')}"/>
-      		<p:inputText id="larguraNomeInputText"
-      					 required="true"
-      					 disabled="false"
-      					 style="width: 90%"
-      					 value="0,18" />	
-      		
-      		<h:inputText id="unidadeNomeInputText"
-      					 required="true"
-      					 disabled="true"
-      					 style="width: 80%"
-      					 value="MM" />	
-      					 
-      		<p:commandLink onclick="PF('dlgUnidade').show();" immediate="true">
-  				<h:graphicImage value="/resources/images/stylistica-icons-set/24x24/search.png" />
+			<h:outputText id="idOutputText" value="Id" />
+			<h:inputText id="idInputText" value="#{pojo.id}" disabled="true"
+				style="width: 125px;" />
+
+			<p:spacer />
+			<p:spacer />
+
+			<h:outputText id="dataInclusaoOutputText"
+				value="#{managerBean.get('label.cadastroPadroesEspessura.inclusao')}" />
+			<h:inputText value="#{pojo.dataInclusao.time}"
+				id="dataInclusaoInputText" disabled="true">
+				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:inputText>
+
+			<h:outputText id="larguraNomeOutputText"
+				value="#{managerBean.get('label.cadastroPadroesEspessura.largura')}" />
+			<p:inputText id="larguraNomeInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				disabled="false" style="width: 90%" value="#{pojo.espessura}" maxlength="7" />
+
+			<h:inputText id="unidadeNomeInputText" required="true" 
+				disabled="true" style="width: 80%" value="MM" />
+
+			<p:commandLink onclick="PF('dlgUnidade').show();" immediate="true">
+				<h:graphicImage
+					value="/resources/images/stylistica-icons-set/24x24/search.png" />
 			</p:commandLink>
-      			
-       		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{managerBean.get('label.cadastroPadroesEspessura.ultimaAlteracao')}"
-       					  styleClass="singleLine"/>
-	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      					  
+			<h:outputText id="ultimaAlteracaoOutputText"
+				value="#{managerBean.get('label.cadastroPadroesEspessura.ultimaAlteracao')}"
+				styleClass="singleLine" />
+			<h:inputText value="#{pojo.dataAlteracao.time}"
+				id="ultimaAlteracaoInputText" disabled="true">
+				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:inputText>
 
-			<h:outputText value="#{managerBean.get('label.cadastroPadroesEspessura.descricao')}" 
-						  id="descricaoOutputText" />
-			<p:inputText id="descricaoInputText"
-						 required="true"
-						 disabled="false"
-						 style="width: 500%"
-						 value="18 Microns de Espessura de Lâmina" />      			
-     		
-        </h:panelGrid>
+			<h:outputText
+				value="#{managerBean.get('label.cadastroPadroesEspessura.descricao')}"
+				id="descricaoOutputText" />
+			<p:inputText id="descricaoInputText" required="true" disabled="false" requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				style="width: 500%" value="#{pojo.espessuraDescricao}" />
+
+		</h:panelGrid>
 
 	</p:panel>
-	
-	<p:dialog header="#{managerBean.get('label.cadastroPadroesEspessura.pesquisaUnidades')}"
-			  widgetVar="dlgUnidade"
-			  modal="false"
-			  resizable="false"
-			  appendToBody="true"
-			  height="100%"
-			  width="35%">
-      			
-     			<p:dataTable id="unidadeDatatableId"
-        	  	 	     var="unidadeDatatableVar"
-        			 	 value="#{bean.conteudo}"
-        			 	 emptyMessage="#{managerBean.get('label.cadastroPadroesEspessura.msnNaoHaRegistros')}" >
-		    
-				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
-				    		  styleClass="percentual-5 singleLine">
-				     		<h:outputText value="0000000001" />
-				    </p:column>
-				    
-				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.codUnid')}"
-				    		  styleClass="percentual-5 singleLine">
-				     		<h:outputText value="ML" />
-				    </p:column>
-				    
-				    <p:column headerText="#{managerBean.get('label.cadastroPadroesEspessura.descricao')}"
-				    		  styleClass="percentual-10 singleLine">
-				     		<h:outputText value="Metro Linear" />
-				    </p:column>
-				    
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroPadroesEspessura.pesquisaUnidades')}"
+		widgetVar="dlgUnidade" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="35%">
+
+		<p:dataTable id="unidadeDatatableId" var="unidadeDatatableVar"
+			value="#{bean.conteudo}"
+			emptyMessage="#{managerBean.get('label.cadastroPadroesEspessura.msnNaoHaRegistros')}">
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
+				styleClass="percentual-5 singleLine">
+				<h:outputText value="0000000001" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroPadroesEspessura.codUnid')}"
+				styleClass="percentual-5 singleLine">
+				<h:outputText value="ML" />
+			</p:column>
+
+			<p:column
+				headerText="#{managerBean.get('label.cadastroPadroesEspessura.descricao')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="Metro Linear" />
+			</p:column>
+
 		</p:dataTable>
 	</p:dialog>
 </ui:composition>

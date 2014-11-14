@@ -63,15 +63,18 @@ public class CadastroProdutoClassificacao extends GenericComponentBean implement
 
 	private void obterDepartamentos() {
 		departamentos = departamentoService.listarTodos();
-		if (departamentos.isEmpty()) {
+		if (isEmptyOrNull(departamentos)) {
 			listaVaziaMessage("msg.lista.departamento.vazia");
+			grupos = null;
+			subGrupos = null;
 		}
 	}
 
 	private void obterGruposProduto(final DepartamentoModel departamento) {
 		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(departamento);
-		if (grupos.isEmpty()) {
+		if (isEmptyOrNull(grupos)) {
 			listaVaziaMessage("msg.lista.grupoproduto.vazia");
+			subGrupos = null;
 		}
 	}
 

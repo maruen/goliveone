@@ -1,6 +1,7 @@
 package br.com.golive.bean.generics;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -33,6 +34,10 @@ public abstract class GenericComponentBean implements Serializable {
 		if (delegate != null) {
 			delegate.validarComponent();
 		}
+	}
+
+	protected boolean isEmptyOrNull(final List<?> list) {
+		return ((list == null) || (list.isEmpty()));
 	}
 
 	public void listaVaziaMessage(final String label) {

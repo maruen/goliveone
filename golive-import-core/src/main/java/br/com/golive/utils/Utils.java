@@ -192,4 +192,13 @@ public class Utils {
 		return ((!field.isAnnotationPresent(Transient.class)) && (ret) && (!field.isAnnotationPresent(LogList.class)));
 	}
 
+	public static boolean validarCamposNulos(final Object... objects) {
+		for (final Object object : objects) {
+			if (object == null) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }

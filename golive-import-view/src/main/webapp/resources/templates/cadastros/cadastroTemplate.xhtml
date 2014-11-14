@@ -64,6 +64,9 @@
 				<h:panelGroup id="edicaoGroup"
 					rendered="#{((bean.fluxo == bean.fluxoInclusao) or (bean.fluxo == bean.fluxoEdicao))}">
 					<ui:insert name="edicao" />
+					<ui:include src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml" >
+						<ui:param name="pojo" value="#{bean.registro.auditoriaLogs}" />
+					</ui:include>
 				</h:panelGroup>
 
 			</div>

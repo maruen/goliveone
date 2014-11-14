@@ -50,17 +50,16 @@ public class CadastroProdutoEspecificidade extends GenericComponentBean implemen
 
 	public void obterColecoes(final SubGrupoProdutoModel subGrupoProduto) {
 		setColecoes(colecoesService.obterListaPorSubGrupo(subGrupoProduto));
-		if (getColecoes().isEmpty()) {
+		if (isEmptyOrNull(colecoes)) {
 			listaVaziaMessage("msg.lista.colecoes.vazia");
-
+			cores = null;
 		}
 	}
 
 	public void obterCores(final ColecoesModel colecoesModel) {
 		cores = corProdutoService.obterPorColecao(colecoesModel);
-		if (getColecoes().isEmpty()) {
+		if (isEmptyOrNull(cores)) {
 			listaVaziaMessage("msg.lista.colecoes.vazia");
-
 		}
 	}
 
