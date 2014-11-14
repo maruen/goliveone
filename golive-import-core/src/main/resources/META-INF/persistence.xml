@@ -44,7 +44,9 @@
 		<class>br.com.golive.entity.especialidades.model.CorProdutoModel</class>
 		<class>br.com.golive.entity.unidade.model.UnidadeModel</class>
 		<class>br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel</class>
+		<class>br.com.golive.entity.padraolargura.model.ProdutoPadraoLarguraModel</class>
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
+		<class>br.com.golive.entity.tipoproduto.model.TipoProdutoModel</class>
 		
 		<properties>
 			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
@@ -72,7 +74,9 @@
 		<class>br.com.golive.entity.especialidades.model.CorProdutoModel</class>
 		<class>br.com.golive.entity.unidade.model.UnidadeModel</class>
 		<class>br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel</class>
+		<class>br.com.golive.entity.padraolargura.model.ProdutoPadraoLarguraModel</class>
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
+		<class>br.com.golive.entity.tipoproduto.model.TipoProdutoModel</class>
 
 		<properties>
 			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />

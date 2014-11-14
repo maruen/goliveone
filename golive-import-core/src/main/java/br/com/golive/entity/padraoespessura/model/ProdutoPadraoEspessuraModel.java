@@ -24,16 +24,18 @@ import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 @Entity
 @Table(name = "tbPadroesEspessuraProduto")
 @Label(name = "label.cadastroPadroesEspessura")
-@Jasper(titulo = "PadroesEspessura", nomeDoArquivoGerado = "file.name.model", nomeArquivoJasper = "PadroesEspessura")
+@Jasper(titulo = "label.padroesDeExpessura", nomeDoArquivoGerado = "file.name.produtopadraoespessura", nomeArquivoJasper = "ProdutoPadraoEspessura")
 public class ProdutoPadraoEspessuraModel extends Model {
 
 	@Transient
 	private static final long serialVersionUID = -1251557171670683293L;
 
 	@Column(name = "Espessura")
+	@Label(name = "label.cadastroPadroesEspessura.espessura")
 	private Double espessura;
 
 	@Column(name = "EspessuraDescricao")
+	@Label(name = "label.cadastroPadroesEspessura.descricao")
 	private String espessuraDescricao;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
@@ -58,12 +60,10 @@ public class ProdutoPadraoEspessuraModel extends Model {
 
 	public ProdutoPadraoEspessuraModel() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ProdutoPadraoEspessuraModel(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao) {
 		super(id, dataInclusao, dataAlteracao);
-		// TODO Auto-generated constructor stub
 	}
 
 	public ProdutoPadraoEspessuraModel(final Double espessura, final String espessuraDescricao, final DepartamentoModel departamentoSelected, final GrupoProdutosModel grupoProdutoSelected, final SubGrupoProdutoModel subGrupoProdutoSelected, final ColecoesModel colecaoSelected, final CorProdutoModel corProdutoSelected) {
