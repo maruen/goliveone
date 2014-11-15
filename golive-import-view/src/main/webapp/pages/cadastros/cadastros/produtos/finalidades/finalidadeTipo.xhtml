@@ -5,6 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	xmlns:generics="http://java.sun.com/jsf/composite/components/cadastros"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
 	<ui:param name="bean" value="#{produtoFinalidadeTipoBean}" />
@@ -16,15 +17,13 @@
 
 	<ui:define name="edicao">
 
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/finalidades/dadosGeraisFinalidadeTipo.xhtml">
+		<ui:include
+			src="/resources/includes/cadastros/cadastros/produto/finalidades/dadosGeraisFinalidadeTipo.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/finalidades/apresentacaoFinalidadeTipo.xhtml" >
-			<ui:param name="pojo" value="#{bean.registro}" />
-		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/finalidades/aplicacaoFinalidadeTipo.xhtml" >
-			<ui:param name="pojo" value="#{bean.registro}" />
-		</ui:include>
+
+		<generics:cadastroProdutoFinalidadeApresentacao pojo="#{bean.registro}"/>
+		<generics:cadastroProdutoFinalidadeAplicacacao pojo="#{bean.registro}"/>
 
 	</ui:define>
 </ui:composition>

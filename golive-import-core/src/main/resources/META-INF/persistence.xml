@@ -19,7 +19,8 @@
 		<class>br.com.golive.entity.usuario.model.UsuarioDependencia</class>
 
 		<properties>
-			<property name="hibernate.transaction.jta.platform"	value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			<property name="hibernate.transaction.jta.platform"
+				value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />
@@ -28,7 +29,8 @@
 	</persistence-unit>
 
 	<!-- acao -->
-	<persistence-unit name="golive-one-acao-PU"	transaction-type="JTA">
+	<persistence-unit name="golive-one-acao-PU"
+		transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:jboss/goliveacaoDS</jta-data-source>
 
@@ -45,9 +47,12 @@
 		<class>br.com.golive.entity.unidade.model.UnidadeModel</class>
 		<class>br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel</class>
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
-		
+
 		<properties>
-			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			<property name="hibernate.transaction.jta.platform"
+				value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			<property name="hibernate.transaction.manager_lookup_class"
+				value="org.hibernate.transaction.JBossTransactionManagerLookup" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />
@@ -56,7 +61,8 @@
 	</persistence-unit>
 
 	<!-- tradicao -->
-	<persistence-unit name="golive-one-tradicao-PU"	transaction-type="JTA">
+	<persistence-unit name="golive-one-tradicao-PU"
+		transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:jboss/golivetradicaoDS</jta-data-source>
 
@@ -75,16 +81,18 @@
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
 
 		<properties>
-			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			<property name="hibernate.transaction.jta.platform"
+				value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />
 		</properties>
 
 	</persistence-unit>
-	
+
 	<!-- test -->
-	<persistence-unit name="golive-one-test-PU"	transaction-type="JTA">
+	<persistence-unit name="golive-one-test-PU"
+		transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:jboss/golivetestDS</jta-data-source>
 
@@ -96,13 +104,18 @@
 		<class>br.com.golive.entity.colecoes.model.ColecoesModel</class>
 		<class>br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel</class>
 		<class>br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel</class>
-		<class>br.com.golive.entity.grupoprodutodepartamento.model.GrupoProdutoDepartamento</class>
+		<class>br.com.golive.entity.grupoprodutodepartamento.GrupoProdutoDepartamento</class>
 		<class>br.com.golive.entity.especialidades.model.CorProdutoModel</class>
+		<class>br.com.golive.entity.unidade.model.UnidadeModel</class>
 		<class>br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel</class>
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
-
+		
+		
 		<properties>
-			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			<property name="hibernate.transaction.jta.platform"
+				value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			<property name="hibernate.transaction.manager_lookup_class"
+				value="org.hibernate.transaction.JBossTransactionManagerLookup" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />

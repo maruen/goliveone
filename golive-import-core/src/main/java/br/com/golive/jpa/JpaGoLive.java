@@ -227,7 +227,10 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 
 	public void save(final T entity) {
 		try {
-			entityManager.joinTransaction();
+			if (!entityManager.isJoinedToTransaction()) {
+				entityManager.joinTransaction();
+			}
+
 			entityManager.persist(entity);
 		} catch (final Exception e) {
 			e.printStackTrace();

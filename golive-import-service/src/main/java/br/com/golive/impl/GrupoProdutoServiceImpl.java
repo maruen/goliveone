@@ -32,7 +32,7 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	private GrupoProdutoJPA grupoProdutoJPA;
 
 	@Override
-	public List<GrupoProdutosModel> obterGrupoProdutos() {
+	public List<GrupoProdutosModel> obterLista() {
 		logger.info("Obtendo lista de grupos de produto");
 		return grupoProdutoJPA.obterLista();
 	}
@@ -57,7 +57,7 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	@CrudOperation(type = Operation.UPDATE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void update(final GrupoProdutosModel grupoProdutosModel) {
+	public void atualizar(final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Atualizando grupo produto = {}", grupoProdutosModel.getId());
 		grupoProdutoJPA.update(grupoProdutosModel);
 	}
@@ -66,7 +66,7 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	@CrudOperation(type = Operation.DELETE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void delete(final GrupoProdutosModel grupoProdutosModel) {
+	public void remover(final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Excluindo grupo produto = {}", grupoProdutosModel.getId());
 		grupoProdutoJPA.removeModel(grupoProdutosModel);
 	}

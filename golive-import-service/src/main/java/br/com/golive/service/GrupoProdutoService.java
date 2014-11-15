@@ -10,21 +10,12 @@ import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.impl.GrupoProdutoServiceImpl;
 
 @Local(value = GrupoProdutoServiceImpl.class)
-public interface GrupoProdutoService {
-
-	public List<GrupoProdutosModel> obterGrupoProdutos();
+public interface GrupoProdutoService extends Service<GrupoProdutosModel> {
 
 	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamento(final DepartamentoModel departamentoModel);
-	
+
 	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamentoId(Long departamentoId);
-
-	public void salvar(final GrupoProdutosModel grupoProdutosModel);
-
-	public void update(final GrupoProdutosModel grupoProdutosModel);
 
 	public GrupoProdutosModel obterGrupoProdutoAtual(final Model model);
 
-	public void delete(final GrupoProdutosModel grupoProdutosModel);
-	
-	public void refresh(GrupoProdutosModel model);
 }

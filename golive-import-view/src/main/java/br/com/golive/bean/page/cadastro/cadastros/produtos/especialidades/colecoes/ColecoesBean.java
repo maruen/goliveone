@@ -42,7 +42,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(colecoesService.obterLista("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"));
+		super.init(colecoesService.obterListaWithLazys("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"));
 		componentCadastroProdutoClassificacao.setDelegate(this);
 	}
 
@@ -113,7 +113,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 
 	@Override
 	public void serviceUpdate(final ColecoesModel registro) {
-		colecoesService.update(registro);
+		colecoesService.atualizar(registro);
 	}
 
 	@Override

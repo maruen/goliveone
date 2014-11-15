@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
-import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.departamento.repositorio.DepartamentoJPA;
@@ -47,17 +46,12 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	@CrudOperation(type = Operation.UPDATE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void alterar(final DepartamentoModel departamentoModel) {
+	public void atualizar(final DepartamentoModel departamentoModel) {
 		departamentoJPA.update(departamentoModel);
 	}
 
 	@Override
-	public List<DepartamentoModel> listarTodos() {
-		return departamentoJPA.findAll();
-	}
-
-	@Override
-	public List<DepartamentoModel> obterListaDepartamento() {
+	public List<DepartamentoModel> obterLista() {
 		return departamentoJPA.obterDepartamentos();
 	}
 
@@ -65,20 +59,9 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	@CrudOperation(type = Operation.DELETE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void excluir(final DepartamentoModel departamentoModel) {
+	public void remover(final DepartamentoModel departamentoModel) {
 		logger.info("Excluindo departamento model ={}", departamentoModel.getId());
 		departamentoJPA.delete(departamentoModel);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<AuditoriaModel> getAuditoriaLogs(final DepartamentoModel model) {
-		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
-	}
-
-	@Override
-	public String getUsuarioLog(final DepartamentoModel model) {
-		return auditoriaJPA.getUsuarioLog(model.getId(), model.getClass());
 	}
 
 	@Override

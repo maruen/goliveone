@@ -1,5 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades.padraoespessura;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -14,7 +16,9 @@ import br.com.golive.bean.generics.CadastroProdutoEspecificidade;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel;
+import br.com.golive.entity.unidade.model.UnidadeModel;
 import br.com.golive.service.ProdutoPadraoEspessuraService;
+import br.com.golive.service.UnidadeService;
 import br.com.golive.utils.JSFUtils;
 import br.com.golive.utils.Utils;
 
@@ -40,12 +44,22 @@ public class ProdutoPadraoEspessuraBean extends CadastroGenericBean<ProdutoPadra
 	@EJB
 	private ProdutoPadraoEspessuraService produtoPadraoEspessuraService;
 
+	@EJB
+	private UnidadeService unidadeService;
+
+	private List<UnidadeModel> unidades;
+
 	@Override
 	@PostConstruct
 	public void init() {
 		super.init(produtoPadraoEspessuraService.obterLista());
 		componentCadastroProdutoClassificacao.setDelegate(this);
 		componentCadastroProdutoEspecificidade.setDelegate(this);
+		obterUnidades();
+	}
+
+	private void obterUnidades() {
+		unidades = unidadeService.obterLista();
 	}
 
 	@Override
@@ -58,6 +72,7 @@ public class ProdutoPadraoEspessuraBean extends CadastroGenericBean<ProdutoPadra
 	public void editarRegistro() {
 		super.editarRegistro();
 		if (registro != null) {
+			obterUnidades();
 			componentCadastroProdutoEspecificidade.carregarCoresPorColecoes(registro.getColecaoSelected(), false);
 			componentCadastroProdutoEspecificidade.carregarColecoesPorSubGrupo(registro.getSubGrupoProdutoSelected(), false);
 			componentCadastroProdutoClassificacao.carregarGrupoProdutoPorDepartamento(registro.getDepartamentoSelected(), false);
@@ -153,6 +168,14 @@ public class ProdutoPadraoEspessuraBean extends CadastroGenericBean<ProdutoPadra
 
 	public void setComponentCadastroProdutoEspecificidade(final CadastroProdutoEspecificidade componentCadastroProdutoEspecificidade) {
 		this.componentCadastroProdutoEspecificidade = componentCadastroProdutoEspecificidade;
+	}
+
+	public List<UnidadeModel> getUnidades() {
+		return unidades;
+	}
+
+	public void setUnidades(final List<UnidadeModel> unidades) {
+		this.unidades = unidades;
 	}
 
 }

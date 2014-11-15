@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
-import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
@@ -50,13 +49,13 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 	@CrudOperation(type = Operation.UPDATE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void alterar(final SubGrupoProdutoModel model) {
+	public void atualizar(final SubGrupoProdutoModel model) {
 		logger.info("Atualizando SubgrupoProduto = {} ", model.getId());
 		subGrupoProdutoJPA.update(model);
 	}
 
 	@Override
-	public List<SubGrupoProdutoModel> listarTodos() {
+	public List<SubGrupoProdutoModel> obterLista() {
 		return subGrupoProdutoJPA.findAll();
 	}
 
@@ -69,20 +68,9 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 	@CrudOperation(type = Operation.DELETE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void excluir(final SubGrupoProdutoModel model) {
+	public void remover(final SubGrupoProdutoModel model) {
 		logger.info("Removendo SubGrupoProduto = {} ", model.getId());
 		subGrupoProdutoJPA.delete(model);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<AuditoriaModel> getAuditoriaLogs(final SubGrupoProdutoModel model) {
-		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
-	}
-
-	@Override
-	public String getUsuarioLog(final SubGrupoProdutoModel model) {
-		return auditoriaJPA.getUsuarioLog(model.getId(), model.getClass());
 	}
 
 	@Override

@@ -25,4 +25,24 @@ public class ProdutosEspecialidadesServiceImpl implements ProdutosEspecialidadeS
 		return null;
 	}
 
+	@Override
+	public void salvar(final ColecoesModel entity) {
+
+	}
+
+	@Override
+	public void atualizar(final ColecoesModel entity) {
+
+	}
+
+	@Override
+	public void remover(final ColecoesModel entity) {
+
+	}
+
+	@Override
+	public void refresh(final ColecoesModel entity) {
+
+	}
+
 }

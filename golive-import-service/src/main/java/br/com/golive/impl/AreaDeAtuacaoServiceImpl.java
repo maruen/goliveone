@@ -44,4 +44,22 @@ public class AreaDeAtuacaoServiceImpl implements AreaDeAtuacaoService {
 		areaDeAtuacaoJPA.save(areaDeAtuacaoModel);
 	}
 
+	@Override
+	public void atualizar(final AreaDeAtuacaoModel entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void remover(final AreaDeAtuacaoModel entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void refresh(final AreaDeAtuacaoModel entity) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

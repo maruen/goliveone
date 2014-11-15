@@ -19,7 +19,7 @@ public class AuditoriaModel extends Model {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "FormularioNome")
+	@Column(name = "LabelPropertyFormulario")
 	private String formularioNome;
 
 	@Column(name = "AcaoUsuario")

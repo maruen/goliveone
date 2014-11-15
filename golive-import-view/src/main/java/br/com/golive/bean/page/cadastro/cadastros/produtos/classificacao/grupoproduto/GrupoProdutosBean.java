@@ -42,7 +42,7 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(grupoProdutoService.obterGrupoProdutos());
+		super.init(grupoProdutoService.obterLista());
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	}
 
 	private void obterDependencias() {
-		departamentos = departamentoService.listarTodos();
+		departamentos = departamentoService.obterLista();
 		if (departamentos.isEmpty()) {
 			listaVaziaMessage("msg.lista.departamento.vazia");
 		}
@@ -93,12 +93,12 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 
 	@Override
 	public void serviceUpdate(final GrupoProdutosModel registro) {
-		grupoProdutoService.update(registro);
+		grupoProdutoService.atualizar(registro);
 	}
 
 	@Override
 	public void serviceRemove(final GrupoProdutosModel registro) {
-		grupoProdutoService.delete(registro);
+		grupoProdutoService.remover(registro);
 	}
 
 	public List<DepartamentoModel> getDepartamentos() {

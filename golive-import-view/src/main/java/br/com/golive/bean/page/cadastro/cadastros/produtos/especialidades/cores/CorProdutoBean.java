@@ -131,12 +131,12 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 
 	@Override
 	public void serviceUpdate(final CorProdutoModel registro) {
-		corProdutoService.alterar(registro);
+		corProdutoService.atualizar(registro);
 	}
 
 	@Override
 	public void serviceRemove(final CorProdutoModel registro) {
-		corProdutoService.excluir(registro);
+		corProdutoService.remover(registro);
 	}
 
 	@Override

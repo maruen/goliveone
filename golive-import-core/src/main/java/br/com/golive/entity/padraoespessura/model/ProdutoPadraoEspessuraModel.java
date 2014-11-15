@@ -20,6 +20,7 @@ import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
+import br.com.golive.entity.unidade.model.UnidadeModel;
 
 @Entity
 @Table(name = "tbPadroesEspessuraProduto")
@@ -28,7 +29,7 @@ import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 public class ProdutoPadraoEspessuraModel extends Model {
 
 	@Transient
-	private static final long serialVersionUID = -1251557171670683293L;
+	private static final long serialVersionUID = -2112619714388213343L;
 
 	@Column(name = "Espessura")
 	private Double espessura;
@@ -56,17 +57,19 @@ public class ProdutoPadraoEspessuraModel extends Model {
 	@JoinTable(name = "tbPadroesEspessuraProduto_tbCorProduto", joinColumns = @JoinColumn(name = "tbPadoresEspessuraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbCorProduto_Id", referencedColumnName = "Id"))
 	private CorProdutoModel corProdutoSelected;
 
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@JoinTable(name = "tbPadroesEspessuraProduto_tbUnidade", joinColumns = @JoinColumn(name = "tbPadroesEspessuraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbUnidade_Id", referencedColumnName = "Id"))
+	private UnidadeModel unidadeSelected;
+
 	public ProdutoPadraoEspessuraModel() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ProdutoPadraoEspessuraModel(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao) {
 		super(id, dataInclusao, dataAlteracao);
-		// TODO Auto-generated constructor stub
 	}
 
-	public ProdutoPadraoEspessuraModel(final Double espessura, final String espessuraDescricao, final DepartamentoModel departamentoSelected, final GrupoProdutosModel grupoProdutoSelected, final SubGrupoProdutoModel subGrupoProdutoSelected, final ColecoesModel colecaoSelected, final CorProdutoModel corProdutoSelected) {
+	public ProdutoPadraoEspessuraModel(final Double espessura, final String espessuraDescricao, final DepartamentoModel departamentoSelected, final GrupoProdutosModel grupoProdutoSelected, final SubGrupoProdutoModel subGrupoProdutoSelected, final ColecoesModel colecaoSelected, final CorProdutoModel corProdutoSelected, final UnidadeModel unidadeSelected) {
 		super();
 		this.espessura = espessura;
 		this.espessuraDescricao = espessuraDescricao;
@@ -75,6 +78,7 @@ public class ProdutoPadraoEspessuraModel extends Model {
 		this.subGrupoProdutoSelected = subGrupoProdutoSelected;
 		this.colecaoSelected = colecaoSelected;
 		this.corProdutoSelected = corProdutoSelected;
+		this.unidadeSelected = unidadeSelected;
 	}
 
 	public Double getEspessura() {
@@ -133,6 +137,14 @@ public class ProdutoPadraoEspessuraModel extends Model {
 		this.corProdutoSelected = corProdutoSelected;
 	}
 
+	public UnidadeModel getUnidadeSelected() {
+		return unidadeSelected;
+	}
+
+	public void setUnidadeSelected(final UnidadeModel unidadeSelected) {
+		this.unidadeSelected = unidadeSelected;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -144,6 +156,7 @@ public class ProdutoPadraoEspessuraModel extends Model {
 		result = (prime * result) + ((espessuraDescricao == null) ? 0 : espessuraDescricao.hashCode());
 		result = (prime * result) + ((grupoProdutoSelected == null) ? 0 : grupoProdutoSelected.hashCode());
 		result = (prime * result) + ((subGrupoProdutoSelected == null) ? 0 : subGrupoProdutoSelected.hashCode());
+		result = (prime * result) + ((unidadeSelected == null) ? 0 : unidadeSelected.hashCode());
 		return result;
 	}
 
@@ -206,6 +219,13 @@ public class ProdutoPadraoEspessuraModel extends Model {
 				return false;
 			}
 		} else if (!subGrupoProdutoSelected.equals(other.subGrupoProdutoSelected)) {
+			return false;
+		}
+		if (unidadeSelected == null) {
+			if (other.unidadeSelected != null) {
+				return false;
+			}
+		} else if (!unidadeSelected.equals(other.unidadeSelected)) {
 			return false;
 		}
 		return true;

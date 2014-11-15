@@ -33,7 +33,7 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(departamentoService.obterListaDepartamento());
+		super.init(departamentoService.obterLista());
 	}
 
 	@Override
@@ -66,12 +66,12 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 
 	@Override
 	public void serviceUpdate(final DepartamentoModel registro) {
-		departamentoService.alterar(registro);
+		departamentoService.atualizar(registro);
 	}
 
 	@Override
 	public void serviceRemove(final DepartamentoModel registro) {
-		departamentoService.excluir(registro);
+		departamentoService.remover(registro);
 	}
 
 	@Override

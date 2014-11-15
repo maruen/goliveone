@@ -75,25 +75,25 @@
 		appendToBody="true" height="100%" width="35%">
 
 		<p:dataTable id="unidadeDatatableId" var="unidadeDatatableVar"
-			value="#{bean.conteudo}"
+			value="#{bean.unidades}" selectionMode="single" selection="#{pojo.unidadeSelected}"
 			emptyMessage="#{managerBean.get('label.cadastroPadroesEspessura.msnNaoHaRegistros')}">
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
 				styleClass="percentual-5 singleLine">
-				<h:outputText value="0000000001" />
+				<h:outputText value="#{unidadeDatatableVar.id}" />
 			</p:column>
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroPadroesEspessura.codUnid')}"
 				styleClass="percentual-5 singleLine">
-				<h:outputText value="ML" />
+				<h:outputText value="#{unidadeDatatableVar.abreviacao}" />
 			</p:column>
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroPadroesEspessura.descricao')}"
 				styleClass="percentual-10 singleLine">
-				<h:outputText value="Metro Linear" />
+				<h:outputText value="#{unidadeDatatableVar.unidade}" />
 			</p:column>
 
 		</p:dataTable>

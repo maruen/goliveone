@@ -1636,7 +1636,6 @@ CREATE TABLE IF NOT EXISTS `goliveacao`.`tbPadroesEspessuraProduto_tbCorProduto`
 ENGINE = InnoDB;
 
 
-CREATE UNIQUE INDEX `tbCorProduto_Id_UNIQUE` ON `goliveacao`.`tbPadroesEspessuraProduto_tbCorProduto` (`tbCorProduto_Id` ASC);
 
 
 

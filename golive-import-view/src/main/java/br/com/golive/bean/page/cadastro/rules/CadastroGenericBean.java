@@ -509,7 +509,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	@SuppressWarnings("unchecked")
 	private void inicializarClasse() {
-		getLogger().info("Inicializando Classe Generica");
 		Type type = getClass().getGenericSuperclass();
 		if (!(type instanceof ParameterizedType)) {
 			type = this.getClass().getSuperclass().getGenericSuperclass();

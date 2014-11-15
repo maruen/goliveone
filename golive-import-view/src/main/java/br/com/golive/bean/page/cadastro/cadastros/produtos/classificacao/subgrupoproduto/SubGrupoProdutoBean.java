@@ -74,7 +74,7 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	}
 
 	private void carregarDepartamentos() {
-		departamentos = departamentoService.listarTodos();
+		departamentos = departamentoService.obterLista();
 		if (departamentos.isEmpty()) {
 			listaVaziaMessage("msg.lista.departamento.vazia");
 		}
@@ -132,12 +132,12 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 
 	@Override
 	public void serviceUpdate(final SubGrupoProdutoModel registro) {
-		subGrupoProdutoService.alterar(registro);
+		subGrupoProdutoService.atualizar(registro);
 	}
 
 	@Override
 	public void serviceRemove(final SubGrupoProdutoModel registro) {
-		subGrupoProdutoService.excluir(registro);
+		subGrupoProdutoService.remover(registro);
 	}
 
 	public void setLogger(final Logger logger) {

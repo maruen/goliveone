@@ -13,6 +13,7 @@ import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
+import br.com.golive.entity.unidade.model.UnidadeModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.NumberFilter;
 import br.com.golive.filter.StringFilter;
@@ -181,221 +182,39 @@ public class ProdutoPadraoEspessuraFilter extends CadastroGenericFilterBean<Prod
 	@EntityClass(classe = CorProdutoModel.class)
 	private StringFilter filtroCorCodigo;
 
+	@Inject
+	@FilterInjected
+	@Filter(label = "label.id", name = "id", path = "unidadeSelected")
+	@EntityClass(classe = UnidadeModel.class)
+	private NumberFilter filtroIdUnidade;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "unidadeSelected")
+	@EntityClass(classe = UnidadeModel.class)
+	private DateFilter filtroDataInclusaoUnidade;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "unidadeSelected")
+	@EntityClass(classe = UnidadeModel.class)
+	private DateFilter filtroDataAlteracaoUnidade;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "CorDescricao", label = "label.cadastroPadroesEspessura.descricao", path = "unidadeSelected")
+	@EntityClass(classe = UnidadeModel.class)
+	private StringFilter filtroDescricaoUnidade;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "CorDescricao", label = "label.cadastroPadroesEspessura.codUnid", path = "unidadeSelected")
+	@EntityClass(classe = UnidadeModel.class)
+	private StringFilter filtroAbreviacaoUnidade;
+
 	@Override
 	protected Logger getLogger() {
 		return logger;
-	}
-
-	public NumberFilter getFiltroId() {
-		return filtroId;
-	}
-
-	public void setFiltroId(final NumberFilter filtroId) {
-		this.filtroId = filtroId;
-	}
-
-	public DateFilter getFiltroDataInclusao() {
-		return filtroDataInclusao;
-	}
-
-	public void setFiltroDataInclusao(final DateFilter filtroDataInclusao) {
-		this.filtroDataInclusao = filtroDataInclusao;
-	}
-
-	public DateFilter getFiltroDataAlteracao() {
-		return filtroDataAlteracao;
-	}
-
-	public void setFiltroDataAlteracao(final DateFilter filtroDataAlteracao) {
-		this.filtroDataAlteracao = filtroDataAlteracao;
-	}
-
-	public NumberFilter getFiltroEspessura() {
-		return filtroEspessura;
-	}
-
-	public void setFiltroEspessura(final NumberFilter filtroEspessura) {
-		this.filtroEspessura = filtroEspessura;
-	}
-
-	public StringFilter getFiltroEspessuraDescricao() {
-		return filtroEspessuraDescricao;
-	}
-
-	public void setFiltroEspessuraDescricao(final StringFilter filtroEspessuraDescricao) {
-		this.filtroEspessuraDescricao = filtroEspessuraDescricao;
-	}
-
-	public NumberFilter getFiltroIdDepartamento() {
-		return filtroIdDepartamento;
-	}
-
-	public void setFiltroIdDepartamento(final NumberFilter filtroIdDepartamento) {
-		this.filtroIdDepartamento = filtroIdDepartamento;
-	}
-
-	public DateFilter getFiltroDataInclusaoDepartamento() {
-		return filtroDataInclusaoDepartamento;
-	}
-
-	public void setFiltroDataInclusaoDepartamento(final DateFilter filtroDataInclusaoDepartamento) {
-		this.filtroDataInclusaoDepartamento = filtroDataInclusaoDepartamento;
-	}
-
-	public DateFilter getFiltroDataAlteracaoDepartamento() {
-		return filtroDataAlteracaoDepartamento;
-	}
-
-	public void setFiltroDataAlteracaoDepartamento(final DateFilter filtroDataAlteracaoDepartamento) {
-		this.filtroDataAlteracaoDepartamento = filtroDataAlteracaoDepartamento;
-	}
-
-	public StringFilter getFiltroDescricaoDepartamento() {
-		return filtroDescricaoDepartamento;
-	}
-
-	public void setFiltroDescricaoDepartamento(final StringFilter filtroDescricaoDepartamento) {
-		this.filtroDescricaoDepartamento = filtroDescricaoDepartamento;
-	}
-
-	public NumberFilter getFiltroIdGrupoProduto() {
-		return filtroIdGrupoProduto;
-	}
-
-	public void setFiltroIdGrupoProduto(final NumberFilter filtroIdGrupoProduto) {
-		this.filtroIdGrupoProduto = filtroIdGrupoProduto;
-	}
-
-	public DateFilter getFiltroDataInclusaoGrupoProduto() {
-		return filtroDataInclusaoGrupoProduto;
-	}
-
-	public void setFiltroDataInclusaoGrupoProduto(final DateFilter filtroDataInclusaoGrupoProduto) {
-		this.filtroDataInclusaoGrupoProduto = filtroDataInclusaoGrupoProduto;
-	}
-
-	public DateFilter getFiltroDataAlteracaoGrupoProduto() {
-		return filtroDataAlteracaoGrupoProduto;
-	}
-
-	public void setFiltroDataAlteracaoGrupoProduto(final DateFilter filtroDataAlteracaoGrupoProduto) {
-		this.filtroDataAlteracaoGrupoProduto = filtroDataAlteracaoGrupoProduto;
-	}
-
-	public StringFilter getFiltroDescricaoGrupoProduto() {
-		return filtroDescricaoGrupoProduto;
-	}
-
-	public void setFiltroDescricaoGrupoProduto(final StringFilter filtroDescricaoGrupoProduto) {
-		this.filtroDescricaoGrupoProduto = filtroDescricaoGrupoProduto;
-	}
-
-	public NumberFilter getFiltroIdSubGrupoProduto() {
-		return filtroIdSubGrupoProduto;
-	}
-
-	public void setFiltroIdSubGrupoProduto(final NumberFilter filtroIdSubGrupoProduto) {
-		this.filtroIdSubGrupoProduto = filtroIdSubGrupoProduto;
-	}
-
-	public DateFilter getFiltroDataInclusaoSubGrupoProduto() {
-		return filtroDataInclusaoSubGrupoProduto;
-	}
-
-	public void setFiltroDataInclusaoSubGrupoProduto(final DateFilter filtroDataInclusaoSubGrupoProduto) {
-		this.filtroDataInclusaoSubGrupoProduto = filtroDataInclusaoSubGrupoProduto;
-	}
-
-	public DateFilter getFiltroDataAlteracaoSubGrupoProduto() {
-		return filtroDataAlteracaoSubGrupoProduto;
-	}
-
-	public void setFiltroDataAlteracaoSubGrupoProduto(final DateFilter filtroDataAlteracaoSubGrupoProduto) {
-		this.filtroDataAlteracaoSubGrupoProduto = filtroDataAlteracaoSubGrupoProduto;
-	}
-
-	public StringFilter getFiltroDescricaoSubGrupoProduto() {
-		return filtroDescricaoSubGrupoProduto;
-	}
-
-	public void setFiltroDescricaoSubGrupoProduto(final StringFilter filtroDescricaoSubGrupoProduto) {
-		this.filtroDescricaoSubGrupoProduto = filtroDescricaoSubGrupoProduto;
-	}
-
-	public NumberFilter getFiltroIdColecao() {
-		return filtroIdColecao;
-	}
-
-	public void setFiltroIdColecao(final NumberFilter filtroIdColecao) {
-		this.filtroIdColecao = filtroIdColecao;
-	}
-
-	public DateFilter getFiltroDataInclusaoColecao() {
-		return filtroDataInclusaoColecao;
-	}
-
-	public void setFiltroDataInclusaoColecao(final DateFilter filtroDataInclusaoColecao) {
-		this.filtroDataInclusaoColecao = filtroDataInclusaoColecao;
-	}
-
-	public DateFilter getFiltroDataAlteracaoColecao() {
-		return filtroDataAlteracaoColecao;
-	}
-
-	public void setFiltroDataAlteracaoColecao(final DateFilter filtroDataAlteracaoColecao) {
-		this.filtroDataAlteracaoColecao = filtroDataAlteracaoColecao;
-	}
-
-	public StringFilter getFiltroDescricaoColecao() {
-		return filtroDescricaoColecao;
-	}
-
-	public void setFiltroDescricaoColecao(final StringFilter filtroDescricaoColecao) {
-		this.filtroDescricaoColecao = filtroDescricaoColecao;
-	}
-
-	public NumberFilter getFiltroIdCor() {
-		return filtroIdCor;
-	}
-
-	public void setFiltroIdCor(final NumberFilter filtroIdCor) {
-		this.filtroIdCor = filtroIdCor;
-	}
-
-	public DateFilter getFiltroDataInclusaoCor() {
-		return filtroDataInclusaoCor;
-	}
-
-	public void setFiltroDataInclusaoCor(final DateFilter filtroDataInclusaoCor) {
-		this.filtroDataInclusaoCor = filtroDataInclusaoCor;
-	}
-
-	public DateFilter getFiltroDataAlteracaoCor() {
-		return filtroDataAlteracaoCor;
-	}
-
-	public void setFiltroDataAlteracaoCor(final DateFilter filtroDataAlteracaoCor) {
-		this.filtroDataAlteracaoCor = filtroDataAlteracaoCor;
-	}
-
-	public StringFilter getFiltroDescricaoCor() {
-		return filtroDescricaoCor;
-	}
-
-	public void setFiltroDescricaoCor(final StringFilter filtroDescricaoCor) {
-		this.filtroDescricaoCor = filtroDescricaoCor;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
-	}
-
-	public StringFilter getFiltroCorCodigo() {
-		return filtroCorCodigo;
-	}
-
-	public void setFiltroCorCodigo(final StringFilter filtroCorCodigo) {
-		this.filtroCorCodigo = filtroCorCodigo;
 	}
 
 }

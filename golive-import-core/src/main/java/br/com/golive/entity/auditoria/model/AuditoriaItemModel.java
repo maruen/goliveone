@@ -6,28 +6,25 @@ import javax.persistence.Table;
 
 import br.com.golive.entity.Model;
 
-
 /**
  * The persistent class for the tbAuditoria database table.
  * 
  */
 @Entity
-@Table(name="tbAuditoriaItem")
-
+@Table(name = "tbAuditoriaItem")
 public class AuditoriaItemModel extends Model {
-	
-	
+
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="campo")
+	@Column(name = "LabelPropertyCampo")
 	private String campo;
 
-	@Column(name="InformacaoAnterior")
+	@Column(name = "InformacaoAnterior")
 	private String informacaoAnterior;
-	
-	@Column(name="InformacaoAtual")
+
+	@Column(name = "InformacaoAtual")
 	private String informacaoAtual;
-	
+
 	public AuditoriaItemModel() {
 	}
 
@@ -35,7 +32,7 @@ public class AuditoriaItemModel extends Model {
 		return campo;
 	}
 
-	public void setCampo(String campo) {
+	public void setCampo(final String campo) {
 		this.campo = campo;
 	}
 
@@ -43,7 +40,7 @@ public class AuditoriaItemModel extends Model {
 		return informacaoAnterior;
 	}
 
-	public void setInformacaoAnterior(String informacaoAnterior) {
+	public void setInformacaoAnterior(final String informacaoAnterior) {
 		this.informacaoAnterior = informacaoAnterior;
 	}
 
@@ -51,9 +48,8 @@ public class AuditoriaItemModel extends Model {
 		return informacaoAtual;
 	}
 
-	public void setInformacaoAtual(String informacaoAtual) {
+	public void setInformacaoAtual(final String informacaoAtual) {
 		this.informacaoAtual = informacaoAtual;
 	}
-	
 
 }

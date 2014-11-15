@@ -36,9 +36,9 @@ public class ProdutoPadraoEspessuraServiceImpl implements ProdutoPadraoEspessura
 	}
 
 	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	@CrudOperation(type = Operation.INSERT)
 	@Interceptors(LogAuditoriaInterceptor.class)
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvar(final ProdutoPadraoEspessuraModel model) {
 		logger.info("Salvando ProdutoPadraoEspessura = {}", model);
 		produtoPadraoEspessuraJPA.refresh(model.getDepartamentoSelected());

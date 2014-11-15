@@ -8,6 +8,10 @@ html, body{
 	overflow-x: hidden;
 }
 
+.mainContentPage{
+	overflow-y: hidden;
+}
+
 .ui-column-title{
 	text-wrap:none;
     white-space:nowrap;
@@ -35,7 +39,6 @@ html, body{
 }
 
 .tituloColunaFiltroData{
-
 	position: relative;
 	top: 5px;
 }

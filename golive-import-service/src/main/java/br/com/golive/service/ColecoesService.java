@@ -9,19 +9,10 @@ import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.impl.ColecoesServiceImpl;
 
 @Local(value = ColecoesServiceImpl.class)
-public interface ColecoesService {
+public interface ColecoesService extends Service<ColecoesModel> {
 
-	public void salvar(final ColecoesModel colecoesModel);
-
-	public void update(final ColecoesModel colecoesModel);
-
-	public void remover(final ColecoesModel colecoesModel);
-
-	public List<ColecoesModel> obterLista(final String... lazyFields);
-
-	public List<ColecoesModel> listarTodos();
+	public List<ColecoesModel> obterListaWithLazys(final String... lazyFields);
 
 	public List<ColecoesModel> obterListaPorSubGrupo(SubGrupoProdutoModel model);
 
-	public void refresh(ColecoesModel model);
 }

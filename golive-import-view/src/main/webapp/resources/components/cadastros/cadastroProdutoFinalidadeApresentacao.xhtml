@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="pojo" required="true" />
+</composite:interface>
+
+<composite:implementation>
+
+	<p:panel id="aplicacao_aplicacao"
+		header="#{managerBean.get('label.cadastroFinalidadeTipo.aplicacao')}"
+		toggleable="true" closable="false" collapsed="true" toggleSpeed="500"
+		closeSpeed="500" widgetVar="aplicacao" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<p:panelGrid cellpadding="3" cellspacing="3"
+			style="vertical-align: top;" styleClass="percentual-100" border="0">
+
+			<p:row>
+				<p:column styleClass="percentual-30">
+					<p:fieldset
+						legend="#{managerBean.get('label.cadastroFinalidadeTipo.sistema')}"
+						toggleable="true"
+						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
+							border="0">
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoSistemaLookupPesquisas}"
+										id="aplicacao_lookupPesquisasCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_lookupPesquisasOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.lookUpPesquisas')}"
+										styleClass="singleLine" />
+								</p:column>
+
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoSistemaGraficosCadastrais}"
+										id="aplicacao_graficosCadastraisCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_graficosCadastraisOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.graficosCadastrais')}"
+										styleClass="singleLine" />
+								</p:column>
+
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoSistemaGridPesquisas}"
+										id="aplicacao_gridPesquisasCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_gridPesquisasOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.gridPesquisas')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoSistemaRelatoriosCadastrais}"
+										id="aplicacao_relatoriosCadastraisCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_relatoriosCadastraisOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.relatoriosCadastrais')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:column>
+
+				<p:column styleClass="percentual-30">
+					<p:fieldset
+						legend="#{managerBean.get('label.cadastroFinalidadeTipo.vendas')}"
+						toggleable="true"
+						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
+							border="0">
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoVendasGraficos}"
+										id="aplicacao_graficosCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_graficosOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.graficos')}" />
+								</p:column>
+
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoVendasOrcamentos}"
+										id="aplicacao_orcamentosCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_orcamentosOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.orcamentos')}" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoVendasPesquisas}"
+										id="aplicacao_pesquisasCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_pesquisasOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.pesquisas')}" />
+								</p:column>
+
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoVendasPedidosVenda}"
+										id="aplicacao_pedidosVendaCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_pedidosVendaOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.pedidosVenda')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoVendasRelatorios}"
+										id="aplicacao_relatoriosCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_relatoriosOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.relatorios')}" />
+								</p:column>
+
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoVendasDAV}"
+										id="aplicacao_davCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_davOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.dav')}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:column>
+
+				<p:column styleClass="percentual-30">
+					<p:fieldset
+						legend="#{managerBean.get('label.cadastroFinalidadeTipo.faturamentoVenda')}"
+						toggleable="true"
+						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
+							border="0">
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoVendaCupomFiscal}"
+										id="aplicacao_cupomFiscalSatCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_cupomFiscalSatOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.cupomFiscalSat')}"
+										styleClass="singleLine" />
+								</p:column>
+
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoFaturamentoVendaNFSe}"
+										id="aplicacao_nfeServicoCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_nfeServicoOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeServico')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoFaturamentoVendaNFCe}"
+										id="aplicacao_nfceCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_nfceOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfce')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.apresentacaoFaturamentoVendaNFe}"
+										id="aplicacao_nfeVendaSaidaCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_nfeVendaSaidaOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeVendaSaida')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:column>
+			</p:row>
+
+			<p:row>
+
+				<p:column />
+
+				<p:column styleClass="percentual-30">
+					<p:fieldset
+						legend="#{managerBean.get('label.cadastroFinalidadeTipo.compras')}"
+						toggleable="true"
+						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
+							border="0">
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.aplicacaoComprasGraficos}"
+										id="aplicacao_graficosCompraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_graficosCompraOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.graficos')}" />
+								</p:column>
+
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.aplicacaoComprasCotacoes}"
+										id="aplicacao_cotacoesCompraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_cotacoesCompraOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.cotacoes')}" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.aplicacaoComprasPesquisas}"
+										id="aplicacao_pesquisasCompraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_pesquisasCompraOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.pesquisas')}" />
+								</p:column>
+
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.aplicacaoComprasPedidosCompra}"
+										id="aplicacao_pedidosCompraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_pedidosCompraOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.pedidosCompra')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.aplicacaoComprasRelatorios}"
+										id="aplicacao_relatoriosCompraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_relatoriosCompraOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.relatorios')}" />
+								</p:column>
+
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.aplicacaoComprasEntradasNFeCompra}"
+										id="aplicacao_entradasNfeCompraCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_entradasNfeCompraOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.entradasNfeCompra')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:column>
+
+				<p:column styleClass="percentual-30">
+					<p:fieldset
+						legend="#{managerBean.get('label.cadastroFinalidadeTipo.faturamentoCompra')}"
+						toggleable="true"
+						style="margin-bottom:20px; border: 1px solid #a6c9e2 !important; ">
+
+						<p:panelGrid cellpadding="3" cellspacing="3" width="100%"
+							border="0">
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoCompraNFeCompra}"
+										id="aplicacao_nfeCompraEntradaCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_nfeCompraEntradaOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeCompraEntrada')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoCompraNFeDevolucao}"
+										id="aplicacao_nfeDevolucaoCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_nfeDevolucaoOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeDevolucao')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column styleClass="percentual-2">
+									<p:selectBooleanCheckbox
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoCompraNFeBeneficiamento}"
+										id="aplicacao_nfeBeneficiamentoCheckbox" />
+								</p:column>
+								<p:column styleClass="percentual-10">
+									<h:outputText id="aplicacao_nfeBeneficiamentoOutputText"
+										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeBeneficiamento')}"
+										styleClass="singleLine" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</p:panel>
+</composite:implementation>
+</html>

@@ -43,7 +43,7 @@ public class ColecoesServiceImpl implements ColecoesService {
 	}
 
 	@Override
-	public List<ColecoesModel> obterLista(final String... lazyFields) {
+	public List<ColecoesModel> obterListaWithLazys(final String... lazyFields) {
 		logger.info("Obtendo lista de ColecoesModel");
 		return colecoesJPA.findAllWithoutLazy(lazyFields);
 	}
@@ -52,9 +52,9 @@ public class ColecoesServiceImpl implements ColecoesService {
 	@CrudOperation(type = Operation.UPDATE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void update(final ColecoesModel colecoesModel) {
-		logger.info("Atualizando ColecoesModel ={}", colecoesModel.getId());
-		colecoesJPA.update(colecoesModel);
+	public void atualizar(final ColecoesModel entity) {
+		logger.info("Atualizando ColecoesModel ={}", entity.getId());
+		colecoesJPA.update(entity);
 	}
 
 	@Override
@@ -67,11 +67,6 @@ public class ColecoesServiceImpl implements ColecoesService {
 	}
 
 	@Override
-	public List<ColecoesModel> listarTodos() {
-		return colecoesJPA.listarTodos();
-	}
-
-	@Override
 	public void refresh(final ColecoesModel model) {
 		colecoesJPA.refresh(model);
 	}
@@ -80,6 +75,11 @@ public class ColecoesServiceImpl implements ColecoesService {
 	public List<ColecoesModel> obterListaPorSubGrupo(final SubGrupoProdutoModel model) {
 		logger.info("Obtendo lista de ColecoesModel por subgrupo = {} ");
 		return colecoesJPA.obterListaPorSubGrupo(model);
+	}
+
+	@Override
+	public List<ColecoesModel> obterLista() {
+		return colecoesJPA.listarTodos();
 	}
 
 }

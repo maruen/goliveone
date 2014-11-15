@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
-import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
@@ -52,12 +51,12 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 	@CrudOperation(type = Operation.UPDATE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void alterar(final CorProdutoModel model) {
+	public void atualizar(final CorProdutoModel model) {
 		corProdutoJPA.update(model);
 	}
 
 	@Override
-	public List<CorProdutoModel> listarTodos() {
+	public List<CorProdutoModel> obterLista() {
 		return corProdutoJPA.findAll();
 	}
 
@@ -70,19 +69,8 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 	@CrudOperation(type = Operation.DELETE)
 	@Interceptors(LogAuditoriaInterceptor.class)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void excluir(final CorProdutoModel departamentoModel) {
+	public void remover(final CorProdutoModel departamentoModel) {
 		corProdutoJPA.delete(departamentoModel);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<AuditoriaModel> getAuditoriaLogs(final CorProdutoModel model) {
-		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
-	}
-
-	@Override
-	public String getUsuarioLog(final CorProdutoModel model) {
-		return auditoriaJPA.getUsuarioLog(model.getId(), model.getClass());
 	}
 
 	@Override
