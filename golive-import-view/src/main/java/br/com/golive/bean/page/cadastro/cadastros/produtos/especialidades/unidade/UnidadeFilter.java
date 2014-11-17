@@ -11,7 +11,7 @@ import br.com.golive.annotation.Filter;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.unidade.model.UnidadeModel;
 import br.com.golive.filter.DateFilter;
-import br.com.golive.filter.NumberFilter;
+import br.com.golive.filter.LongFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 
@@ -28,7 +28,7 @@ public class UnidadeFilter extends CadastroGenericFilterBean<UnidadeModel> {
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
 	@EntityClass(classe = UnidadeModel.class)
-	private NumberFilter filtroId;
+	private LongFilter filtroId;
 
 	@Inject
 	@FilterInjected
@@ -59,11 +59,11 @@ public class UnidadeFilter extends CadastroGenericFilterBean<UnidadeModel> {
 		return logger;
 	}
 
-	public NumberFilter getFiltroId() {
+	public LongFilter getFiltroId() {
 		return filtroId;
 	}
 
-	public void setFiltroId(final NumberFilter filtroId) {
+	public void setFiltroId(final LongFilter filtroId) {
 		this.filtroId = filtroId;
 	}
 

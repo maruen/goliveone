@@ -10,6 +10,7 @@
 	<ui:param name="bean"  value="#{departamentoBean}" />
 	<ui:param name="title"  value="#{managerBean.get(bean.nomePagina())}" />
 	
+	<h:commandButton action="#{departamentoBean.validarCampos()}" value="BOTAO" />
 	
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_departamento.css" />

@@ -4,7 +4,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<!--  DADOS GERAIS PANEL -->
 	<p:panel id="dadosGerais"
 		header="#{managerBean.get('label.cadastroTipoProduto.dadosGerais')}"
 		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
@@ -26,7 +25,8 @@
 				</p:column>
 
 				<p:column styleClass="percentual-50">
-					<h:inputText id="idInputText" style="width: 125px" disabled="true" />
+					<h:inputText id="idInputText" style="width: 125px" disabled="true"
+						value="#{pojo.id}" />
 				</p:column>
 
 				<p:column styleClass="percentual-10">
@@ -35,8 +35,10 @@
 				</p:column>
 
 				<p:column styleClass="percentual-5">
-					<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText"
-						disabled="true" />
+					<h:inputText value="#{pojo.dataInclusao.time}"
+						id="dataInclusaoInputText" disabled="true">
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+					</h:inputText>
 				</p:column>
 			</p:row>
 
@@ -49,7 +51,7 @@
 
 				<p:column styleClass="percentual-50">
 					<p:inputText id="dadosGeraisCodigoProdutoInputText"
-						value="H25-LAM-CO25-EQ 18" style="width: 70%" disabled="false" />
+						value="#{pojo.tipoProduto}" style="width: 70%" disabled="false" />
 				</p:column>
 
 				<p:column styleClass="percentual-10">
@@ -59,8 +61,10 @@
 				</p:column>
 
 				<p:column styleClass="percentual-5">
-					<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText"
-						disabled="true" />
+					<h:inputText value="#{pojo.dataAlteracao.time}"
+						id="ultimaAlteracaoInputText" disabled="true">
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+					</h:inputText>
 				</p:column>
 			</p:row>
 		</p:panelGrid>

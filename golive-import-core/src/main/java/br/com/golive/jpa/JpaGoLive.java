@@ -245,7 +245,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		}
 	}
 
-	public void refresh(final Model entity) {
+	public void refreshModel(final Model entity) {
 		try {
 			entityManager.refresh(entity);
 		} catch (final Exception e) {

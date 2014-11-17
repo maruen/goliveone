@@ -40,8 +40,8 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvar(final SubGrupoProdutoModel model) {
 		logger.info("Salvando subGrupoProdutoModel");
-		subGrupoProdutoJPA.refresh(model.getDepartamentoSelected());
-		subGrupoProdutoJPA.refresh(model.getGrupoProdutoSelected());
+		subGrupoProdutoJPA.refreshModel(model.getDepartamentoSelected());
+		subGrupoProdutoJPA.refreshModel(model.getGrupoProdutoSelected());
 		subGrupoProdutoJPA.save(model);
 	}
 

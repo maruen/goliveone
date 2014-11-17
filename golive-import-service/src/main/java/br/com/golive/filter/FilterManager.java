@@ -46,12 +46,15 @@ public class FilterManager<T> {
 				if (filtro != null) {
 					anntotation = field.getAnnotation(Filter.class);
 					if (verificarFiltro(filtro)) {
-						if (filtro.getGenericType().getSimpleName().equals("Long")) {
-							retirarNumerosForaDoParametro(conteudo, temp, filtro, anntotation);
-						} else if (filtro.getGenericType().getSimpleName().equals("String")) {
+						switch (filtro.getGenericType().getSimpleName()) {
+						case "Long":
+							retirarLongForaDoParametro(conteudo, temp, filtro, anntotation);
+						case "String":
 							retirarStringForaDoParametro(conteudo, temp, filtro, anntotation);
-						} else if (filtro.getGenericType().getSimpleName().equals("Date")) {
+						case "Date":
 							retirarDatasForaDoParametro(conteudo, temp, filtro, anntotation);
+						case "Double":
+							retirarDoubleForaDoParametro(conteudo, temp, filtro, anntotation);
 						}
 					}
 				}
@@ -117,8 +120,8 @@ public class FilterManager<T> {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private void retirarNumerosForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final Filter annotation) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
-		final NumberFilter filtro = (NumberFilter) filter;
+	private void retirarLongForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final Filter annotation) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+		final LongFilter filtro = (LongFilter) filter;
 		Long entityLong;
 		for (final T index : lista) {
 			entityLong = (Long) getAtributoPorFieldEntity(index, annotation);
@@ -149,6 +152,49 @@ public class FilterManager<T> {
 
 			case CONTEM:
 				if (!getAtributoPorFieldEntity(index, annotation).toString().contains(filtro.getInicio().toString())) {
+					temp.remove(index);
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	private void retirarDoubleForaDoParametro(final List<T> lista, final List<T> temp, final GoliveFilter filter, final Filter annotation) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+		final DoubleFilter filtro = (DoubleFilter) filter;
+		Double entityLong;
+		for (final T index : lista) {
+			entityLong = (Double) getAtributoPorFieldEntity(index, annotation);
+			switch (filtro.getTipo()) {
+			case IGUAL:
+				if (!filtro.getInicio().equals(entityLong)) {
+					temp.remove(index);
+				}
+				break;
+
+			case MENOR:
+				if (filtro.getInicio() <= entityLong) {
+					temp.remove(index);
+				}
+				break;
+
+			case MAIOR:
+				if (filtro.getInicio() >= entityLong) {
+					temp.remove(index);
+				}
+				break;
+
+			case INTERVALO:
+				if (!(filtro.getInicio() <= entityLong) || !(entityLong <= filtro.getFim())) {
+					temp.remove(index);
+				}
+				break;
+
+			case CONTEM:
+				if (!getAtributoPorFieldEntity(index, annotation).toString().contains(Long.toString(filtro.getInicio().longValue()))) {
 					temp.remove(index);
 				}
 				break;

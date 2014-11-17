@@ -17,13 +17,7 @@
 		</f:facet>
 
 		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
-			columnClasses="percentual-5,
-          				 				percentual-10,
-          				 				percentual-5,
-          				 				percentual-50,
-          				 				percentual-5,
-          				 				percentual-5"
-			width="100%" border="0">
+			columnClasses="percentual-5, percentual-10, percentual-5, percentual-50, percentual-5, percentual-5" width="100%" border="0">
 
 			<h:outputText id="idOutputText" value="Id" />
 			<h:inputText id="idInputText" value="#{pojo.id}" disabled="true"
@@ -45,7 +39,7 @@
 				disabled="false" style="width: 90%" value="#{pojo.espessura}" maxlength="7" />
 
 			<h:inputText id="unidadeNomeInputText" required="true" 
-				disabled="true" style="width: 80%" value="MM" />
+				disabled="true" style="width: 80%" value="#{pojo.unidadeSelected.abreviacao}" />
 
 			<p:commandLink onclick="PF('dlgUnidade').show();" immediate="true">
 				<h:graphicImage
@@ -71,12 +65,14 @@
 
 	<p:dialog
 		header="#{managerBean.get('label.cadastroPadroesEspessura.pesquisaUnidades')}"
-		widgetVar="dlgUnidade" modal="false" resizable="false"
-		appendToBody="true" height="100%" width="35%">
+		widgetVar="dlgUnidade" modal="true" resizable="false" height="100%" width="35%">
 
 		<p:dataTable id="unidadeDatatableId" var="unidadeDatatableVar"
-			value="#{bean.unidades}" selectionMode="single" selection="#{pojo.unidadeSelected}"
+			value="#{bean.unidades}" selectionMode="single" selection="#{pojo.unidadeSelected}"  rowKey="#{unidadeDatatableVar.id}"
 			emptyMessage="#{managerBean.get('label.cadastroPadroesEspessura.msnNaoHaRegistros')}">
+
+			<p:ajax event="rowSelect"  oncomplete="PF('dlgUnidade').hide();" 
+					update=":conteudoForm:unidadeNomeInputText"  />
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"

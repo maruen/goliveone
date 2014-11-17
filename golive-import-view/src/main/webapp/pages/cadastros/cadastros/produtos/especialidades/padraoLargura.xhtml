@@ -5,108 +5,14 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	xmlns:generics="http://java.sun.com/jsf/composite/components/cadastros"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{padraoLarguraBean}" />
+	<ui:param name="bean" value="#{produtoPadraoLarguraBean}" />
+	<ui:param name="title"  value="#{managerBean.get(bean.nomePagina())}" />
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_padraoLargura.css" />
-	</ui:define>
-
-	<ui:define name="conteudo">
-		
-		<p:dataTable 
-			id="conteudoTable"
-			var="row" 
-			value="#{bean.conteudo}"
-			selectionMode="single"
-			rowKey="#{row.id}"
-			selection="#{bean.registro}" 
-			styleClass="tableCadastros"
-			rows="15"
-			paginator="true"
-			emptyMessage="#{managerBean.get('label.cadastroPadroesLargura.msnNaoHaRegistros')}"
-			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-
-			<p:ajax event="rowSelect"  update="conteudoTable" />
-			<p:ajax event="rowUnselect" update="conteudoTable" />
-
-			<p:column selectionMode="single"  style="width:16px;text-align:center" />
-
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.dataInclusao')}"
-				styleClass="percentual-10 singleLine">				
-				<h:outputText value="25/08/2014 20:24" />
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.dataAlteracao')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="25/08/2014 20:47">
-				</h:outputText>
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}"
-				styleClass="percentual-10">
-				<h:outputText value="000000001" />
-			</p:column>
-
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.largura')}"
-				styleClass="percentual-10">
-				<h:outputText value="2.58" />
-			</p:column>
-			
-			<p:column
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.un')}"
-				styleClass="percentual-10">
-				<h:outputText value="ML" />
-			</p:column>
-			
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.descricao')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="2.58ML de Largura da Peça" />
-			</p:column>
-			
-			<p:column
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}"
-				styleClass="percentual-10">
-				<h:outputText value="000000001" />
-			</p:column>
-			
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.codColecao')}"
-				styleClass="percentual-10">
-				<h:outputText value="0000000025" />
-			</p:column>
-			
-			<p:column
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.colecao')}"
-				styleClass="percentual-10 singleLine">
-				<h:outputText value="Mountain Viber Glass Colors" />
-			</p:column>
-			
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.id')}"
-				styleClass="percentual-10">
-				<h:outputText value="000000001" />
-			</p:column>
-			
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.codCor')}"
-				styleClass="percentual-10">
-				<h:outputText value="1234567Baec" />
-			</p:column>			
-
-			<p:column 
-				headerText="#{managerBean.get('label.cadastroPadroesLargura.cor')}"
-				styleClass="percentual-10">
-				<h:outputText value="Vermelho" />
-			</p:column>			
-
-		</p:dataTable>
 	</ui:define>
 
 	<ui:define name="edicao">
@@ -114,12 +20,32 @@
 		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/dadosGeraisPadroesLargura.xhtml">
 			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/classificacaoPadroesLargura.xhtml" >
-			<ui:param name="pojo" value="#{bean.registro}" />
-		</ui:include>
-		<ui:include src="/resources/includes/cadastros/cadastros/produto/especialidades/especificidadesPadroesLargura.xhtml" >
-			<ui:param name="pojo" value="#{bean.registro}" />
-		</ui:include>
+		
+		<generics:cadastroProdutoClassificacao
+			id="cadastroProdutoClassificacao" departamento="true" grupo="true"
+			subGrupo="true" pojo="#{bean.registro}"
+			component="#{produtoPadraoLarguraBean.componentCadastroProdutoClassificacao}"
+			departamentoUpdate="mensagens,
+								cadastroProdutoClassificacao:grupoProdutosDatatableId, cadastroProdutoClassificacao:departamentoGroup, cadastroProdutoClassificacao:grupoProdutoGroup, cadastroProdutoClassificacao:subGrupoGroup,
+								cadastroProdutoEspecificidade:colecoesTable, cadastroProdutoEspecificidade:colecoesGroup,cadastroProdutoEspecificidade:coresGroup, cadastroProdutoEspecificidade:coresTable"
+			grupoProdutoUpdate="mensagens,
+								cadastroProdutoClassificacao:subGrupoProdutosDatatableId, cadastroProdutoClassificacao:grupoProdutoGroup, cadastroProdutoClassificacao:subGrupoGroup, 
+								cadastroProdutoEspecificidade:colecoesTable, cadastroProdutoEspecificidade:colecoesGroup,cadastroProdutoEspecificidade:coresGroup, cadastroProdutoEspecificidade:coresTable"
+			subGrupoProdUpdate="mensagens,
+								cadastroProdutoClassificacao:subGrupoGroup, cadastroProdutoEspecificidade:colecoesTable, cadastroProdutoEspecificidade:colecoesGroup,cadastroProdutoEspecificidade:coresGroup,
+								cadastroProdutoEspecificidade:coresTable" 
+					actionLink="#{produtoPadraoLarguraBean.componentCadastroProdutoEspecificidade.obterColecoes(produtoPadraoLarguraBean.registro.subGrupoProdutoSelected)}"
+					      link="true"/>
 
+		<generics:cadastroProdutoEspecificidade
+			id="cadastroProdutoEspecificidade" pojo="#{bean.registro}"
+			component="#{produtoPadraoLarguraBean.componentCadastroProdutoEspecificidade}"
+			link="false"
+			colecao="true" colecaoUpdate="mensagens,
+										  cadastroProdutoEspecificidade:colecoesGroup,
+										  cadastroProdutoEspecificidade:coresGroup,
+										  cadastroProdutoEspecificidade:coresTable"
+			cor="true" corUpdate="mensagens,cadastroProdutoEspecificidade:coresGroup"/>
+			
 	</ui:define>
 </ui:composition>

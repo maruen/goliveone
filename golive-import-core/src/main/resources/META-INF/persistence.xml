@@ -46,8 +46,10 @@
 		<class>br.com.golive.entity.especialidades.model.CorProdutoModel</class>
 		<class>br.com.golive.entity.unidade.model.UnidadeModel</class>
 		<class>br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel</class>
+		<class>br.com.golive.entity.padraolargura.model.ProdutoPadraoLarguraModel</class>
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
-
+		<class>br.com.golive.entity.tipoproduto.model.TipoProdutoModel</class>
+		
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
 				value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
@@ -78,7 +80,9 @@
 		<class>br.com.golive.entity.especialidades.model.CorProdutoModel</class>
 		<class>br.com.golive.entity.unidade.model.UnidadeModel</class>
 		<class>br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel</class>
+		<class>br.com.golive.entity.padraolargura.model.ProdutoPadraoLarguraModel</class>
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
+		<class>br.com.golive.entity.tipoproduto.model.TipoProdutoModel</class>
 
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
@@ -95,7 +99,7 @@
 		transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:jboss/golivetestDS</jta-data-source>
-
+		
 		<class>br.com.golive.entity.usuario.model.Usuario</class>
 		<class>br.com.golive.entity.departamento.model.DepartamentoModel</class>
 		<class>br.com.golive.entity.auditoria.model.AuditoriaItemModel</class>
@@ -104,12 +108,13 @@
 		<class>br.com.golive.entity.colecoes.model.ColecoesModel</class>
 		<class>br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel</class>
 		<class>br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel</class>
-		<class>br.com.golive.entity.grupoprodutodepartamento.GrupoProdutoDepartamento</class>
+		<class>br.com.golive.entity.grupoprodutodepartamento.model.GrupoProdutoDepartamento</class>
 		<class>br.com.golive.entity.especialidades.model.CorProdutoModel</class>
 		<class>br.com.golive.entity.unidade.model.UnidadeModel</class>
 		<class>br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel</class>
+		<class>br.com.golive.entity.padraolargura.model.ProdutoPadraoLarguraModel</class>
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
-		
+		<class>br.com.golive.entity.tipoproduto.model.TipoProdutoModel</class>
 		
 		<properties>
 			<property name="hibernate.transaction.jta.platform"

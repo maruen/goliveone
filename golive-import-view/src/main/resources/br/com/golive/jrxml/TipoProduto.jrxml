@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subGrupoProduto" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="35" bottomMargin="0" uuid="fee31dc0-a156-4be9-bac4-1b14477884f6">
-	<property name="ireport.zoom" value="1.9487171000000183"/>
-	<property name="ireport.x" value="0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tipoProduto" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="35" bottomMargin="0" uuid="fee31dc0-a156-4be9-bac4-1b14477884f6">
+	<property name="ireport.zoom" value="1.7715610000000155"/>
+	<property name="ireport.x" value="9"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Zebra" mode="Transparent">
 		<conditionalStyle>
@@ -23,19 +23,13 @@
 	<parameter name="label.id" class="java.lang.String"/>
 	<parameter name="label.inclusao" class="java.lang.String"/>
 	<parameter name="label.alteracao" class="java.lang.String"/>
-	<parameter name="label.subgrupoDeProdutos" class="java.lang.String"/>
+	<parameter name="label.tipoDeProduto" class="java.lang.String"/>
 	<parameter name="label.pagina" class="java.lang.String"/>
 	<parameter name="label.de" class="java.lang.String"/>
-	<parameter name="label.departamento" class="java.lang.String"/>
-	<parameter name="label.gruposDeProdutos" class="java.lang.String"/>
 	<field name="id" class="java.lang.Long"/>
 	<field name="dataInclusao" class="java.util.Calendar"/>
 	<field name="dataAlteracao" class="java.util.Calendar"/>
-	<field name="subGrupoProduto" class="java.lang.String"/>
-	<field name="grupoProdutoSelected.id" class="java.lang.Long"/>
-	<field name="grupoProdutoSelected.grupoDeProduto" class="java.lang.String"/>
-	<field name="departamentoSelected.id" class="java.lang.Long"/>
-	<field name="departamentoSelected.departamento" class="java.lang.String"/>
+	<field name="tipoProduto" class="java.lang.String"/>
 	<title>
 		<band height="92" splitType="Stretch">
 			<elementGroup/>
@@ -79,7 +73,7 @@
 				<reportElement x="0" y="18" width="572" height="1" uuid="fd99b75b-487a-4a9a-9d0e-047ad150fe24"/>
 			</line>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="DepartamentoHeader" mode="Opaque" x="261" y="0" width="311" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="6abdb14c-8228-4db9-b50c-7a862eccef22"/>
+				<reportElement key="DepartamentoHeader" mode="Opaque" x="261" y="0" width="310" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="6abdb14c-8228-4db9-b50c-7a862eccef22"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="2.0" lineStyle="Solid" lineColor="#010101"/>
 					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#010101"/>
@@ -90,7 +84,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{label.subgrupoDeProdutos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{label.tipoDeProduto}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="InclusaoHeader" mode="Opaque" x="61" y="0" width="100" height="18" forecolor="#E5FEDE" backcolor="#595959" uuid="2e443099-0495-4bc4-a26c-27c31a938165"/>
@@ -123,11 +117,11 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="48" splitType="Stretch">
+		<band height="15" splitType="Stretch">
 			<textField>
 				<reportElement key="IdField" style="Zebra" mode="Opaque" x="1" y="0" width="60" height="15" uuid="2a360e04-4846-40b2-a4e0-dcf5b3be311d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="false"/>
+					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
@@ -146,58 +140,16 @@
 				<textFieldExpression><![CDATA[$F{dataAlteracao}.getTime()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement key="DepartamentoField" style="Zebra" mode="Opaque" x="261" y="0" width="311" height="15" uuid="97cc077b-a928-4b36-a594-46c960c33957"/>
+				<reportElement key="DepartamentoField" style="Zebra" mode="Opaque" x="261" y="0" width="310" height="15" uuid="97cc077b-a928-4b36-a594-46c960c33957"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{subGrupoProduto}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Zebra" mode="Opaque" x="1" y="15" width="161" height="15" uuid="ad3a33e7-c247-43dd-abe8-b314a2c3e5f7"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{label.departamento} + ":"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Zebra" mode="Opaque" x="162" y="15" width="100" height="15" uuid="e47ac818-0906-4dad-af93-bea78e9cf722"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isStrikeThrough="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{label.id} + ": " + $F{departamentoSelected.id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Zebra" mode="Opaque" x="262" y="15" width="310" height="15" uuid="c9949bc5-12dc-49e5-8113-249461200002"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="8" isStrikeThrough="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{label.departamento} + ": " + $F{departamentoSelected.departamento}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Zebra" mode="Opaque" x="262" y="30" width="310" height="15" uuid="0a931e9e-9118-4a64-8000-0c3cf2808a36"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="8" isStrikeThrough="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{label.gruposDeProdutos} + ": " + $F{grupoProdutoSelected.grupoDeProduto}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Zebra" mode="Opaque" x="162" y="30" width="100" height="15" uuid="bf88a56f-3b64-4846-8a25-392d81394a16"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isStrikeThrough="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{label.id} + ": " + $F{grupoProdutoSelected.id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Zebra" mode="Opaque" x="1" y="30" width="161" height="15" uuid="ab03d089-6cba-4dc8-9eba-5d15fb1536c2"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="8" isBold="true" isStrikeThrough="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{label.gruposDeProdutos} + ":"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tipoProduto}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="34" splitType="Stretch">
+		<band height="32" splitType="Stretch">
 			<line>
 				<reportElement x="0" y="1" width="572" height="1" uuid="9a6b891d-e7d7-400a-baf9-a4d7a344d042"/>
 			</line>

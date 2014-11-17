@@ -55,7 +55,6 @@ public class ProdutoPadraoEspessuraBean extends CadastroGenericBean<ProdutoPadra
 		super.init(produtoPadraoEspessuraService.obterLista());
 		componentCadastroProdutoClassificacao.setDelegate(this);
 		componentCadastroProdutoEspecificidade.setDelegate(this);
-		obterUnidades();
 	}
 
 	private void obterUnidades() {
@@ -66,6 +65,7 @@ public class ProdutoPadraoEspessuraBean extends CadastroGenericBean<ProdutoPadra
 	public void incluir() {
 		super.incluir();
 		registro = new ProdutoPadraoEspessuraModel();
+		obterUnidades();
 	}
 
 	@Override

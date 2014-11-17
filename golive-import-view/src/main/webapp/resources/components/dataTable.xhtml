@@ -125,7 +125,7 @@
 
 				<f:facet name="header">
 					<filter:number id="componentFilterNumberId"
-						rendered="#{(coluna.visivel) and (cc.attrs.bean.filtros.getFilter(coluna).genericType.simpleName.equals('Long'))}"
+						rendered="#{(coluna.visivel) and ((cc.attrs.bean.filtros.getFilter(coluna).genericType.simpleName.equals('Long')) or (cc.attrs.bean.filtros.getFilter(coluna).genericType.simpleName.equals('Double')))}"
 						bean="#{cc.attrs.bean}" coluna="#{coluna}"
 						widget="#{cc.attrs.bean.getWidget(coluna)}"
 						filterValue="#{cc.attrs.bean.filtros.getFilter(coluna)}" />

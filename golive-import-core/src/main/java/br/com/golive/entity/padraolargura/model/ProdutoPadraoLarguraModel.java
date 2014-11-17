@@ -1,4 +1,4 @@
-package br.com.golive.entity.padraoespessura.model;
+package br.com.golive.entity.padraolargura.model;
 
 import java.util.Calendar;
 
@@ -23,58 +23,58 @@ import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.entity.unidade.model.UnidadeModel;
 
 @Entity
-@Table(name = "tbPadroesEspessuraProduto")
-@Label(name = "label.cadastroPadroesEspessura")
-@Jasper(titulo = "label.padroesDeExpessura", nomeDoArquivoGerado = "file.name.produtopadraoespessura", nomeArquivoJasper = "ProdutoPadraoEspessura")
-public class ProdutoPadraoEspessuraModel extends Model {
+@Table(name = "tbPadroesLarguraProduto")
+@Label(name = "label.cadastroPadroesLargura")
+@Jasper(titulo = "label.padroesDeLargura", nomeDoArquivoGerado = "file.name.produtopadraolargura", nomeArquivoJasper = "ProdutoPadraoLargura")
+public class ProdutoPadraoLarguraModel extends Model {
 
 	@Transient
-	private static final long serialVersionUID = -2112619714388213343L;
+	private static final long serialVersionUID = 5826624737358328596L;
 
-	@Column(name = "Espessura")
-	@Label(name = "label.cadastroPadroesEspessura.espessura")
-	private Double espessura;
+	@Column(name = "Largura")
+	@Label(name = "label.cadastroPadroesLargura.largura")
+	private Double largura;
 
-	@Column(name = "EspessuraDescricao")
-	@Label(name = "label.cadastroPadroesEspessura.descricao")
-	private String espessuraDescricao;
+	@Column(name = "LarguraDescricao")
+	@Label(name = "label.cadastroPadroesLargura.descricao")
+	private String larguraDescricao;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinTable(name = "tbPadroesEspessuraProduto_tbDepartamento", joinColumns = @JoinColumn(name = "tbPadroesEspessurasProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
+	@JoinTable(name = "tbPadroesLarguraProduto_tbDepartamentoProduto", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
 	private DepartamentoModel departamentoSelected;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinTable(name = "tbPadroesEspessuraProduto_tbGrupoProduto", joinColumns = @JoinColumn(name = "tbPadroesEspessuraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbGrupoProduto_Id", referencedColumnName = "Id"))
+	@JoinTable(name = "tbPadroesLarguraProduto_tbGrupoProduto", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbGrupoProduto", referencedColumnName = "Id"))
 	private GrupoProdutosModel grupoProdutoSelected;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinTable(name = "tbPadroesEspessuraProduto_tbSubGrupoProduto", joinColumns = @JoinColumn(name = "tbPadroesEspessuraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbSubGrupoProduto_Id", referencedColumnName = "Id"))
+	@JoinTable(name = "tbPadroesLarguraProduto_tbSubGrupoProduto", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbSubGrupoProduto_Id", referencedColumnName = "Id"))
 	private SubGrupoProdutoModel subGrupoProdutoSelected;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinTable(name = "tbPadroesEspessuraProduto_tbColecoesProduto", joinColumns = @JoinColumn(name = "tbPadroesEspessuraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbColecoesProduto_Id", referencedColumnName = "Id"))
+	@JoinTable(name = "tbPadroesLarguraProduto_tbColecoesProduto", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbColecoesProduto_Id", referencedColumnName = "Id"))
 	private ColecoesModel colecaoSelected;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinTable(name = "tbPadroesEspessuraProduto_tbCorProduto", joinColumns = @JoinColumn(name = "tbPadoresEspessuraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbCorProduto_Id", referencedColumnName = "Id"))
+	@JoinTable(name = "tbPadroesLarguraProduto_tbCorProduto", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbCorProduto_Id", referencedColumnName = "Id"))
 	private CorProdutoModel corProdutoSelected;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinTable(name = "tbPadroesEspessuraProduto_tbUnidade", joinColumns = @JoinColumn(name = "tbPadroesEspessuraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbUnidade_Id", referencedColumnName = "Id"))
+	@JoinTable(name = "tbPadroesLarguraProduto_tbUnidade", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbUnidade_Id", referencedColumnName = "Id"))
 	private UnidadeModel unidadeSelected;
 
-	public ProdutoPadraoEspessuraModel() {
+	public ProdutoPadraoLarguraModel() {
 		super();
 	}
 
-	public ProdutoPadraoEspessuraModel(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao) {
+	public ProdutoPadraoLarguraModel(final Long id, final Calendar dataInclusao, final Calendar dataAlteracao) {
 		super(id, dataInclusao, dataAlteracao);
 	}
 
-	public ProdutoPadraoEspessuraModel(final Double espessura, final String espessuraDescricao, final DepartamentoModel departamentoSelected, final GrupoProdutosModel grupoProdutoSelected, final SubGrupoProdutoModel subGrupoProdutoSelected, final ColecoesModel colecaoSelected, final CorProdutoModel corProdutoSelected, final UnidadeModel unidadeSelected) {
+	public ProdutoPadraoLarguraModel(final Double largura, final String larguraDescricao, final DepartamentoModel departamentoSelected, final GrupoProdutosModel grupoProdutoSelected, final SubGrupoProdutoModel subGrupoProdutoSelected, final ColecoesModel colecaoSelected, final CorProdutoModel corProdutoSelected, final UnidadeModel unidadeSelected) {
 		super();
-		this.espessura = espessura;
-		this.espessuraDescricao = espessuraDescricao;
+		this.largura = largura;
+		this.larguraDescricao = larguraDescricao;
 		this.departamentoSelected = departamentoSelected;
 		this.grupoProdutoSelected = grupoProdutoSelected;
 		this.subGrupoProdutoSelected = subGrupoProdutoSelected;
@@ -83,20 +83,20 @@ public class ProdutoPadraoEspessuraModel extends Model {
 		this.unidadeSelected = unidadeSelected;
 	}
 
-	public Double getEspessura() {
-		return espessura;
+	public Double getLargura() {
+		return largura;
 	}
 
-	public void setEspessura(final Double espessura) {
-		this.espessura = espessura;
+	public void setLargura(final Double largura) {
+		this.largura = largura;
 	}
 
-	public String getEspessuraDescricao() {
-		return espessuraDescricao;
+	public String getLarguraDescricao() {
+		return larguraDescricao;
 	}
 
-	public void setEspessuraDescricao(final String espessuraDescricao) {
-		this.espessuraDescricao = espessuraDescricao;
+	public void setLarguraDescricao(final String larguraDescricao) {
+		this.larguraDescricao = larguraDescricao;
 	}
 
 	public DepartamentoModel getDepartamentoSelected() {
@@ -154,9 +154,9 @@ public class ProdutoPadraoEspessuraModel extends Model {
 		result = (prime * result) + ((colecaoSelected == null) ? 0 : colecaoSelected.hashCode());
 		result = (prime * result) + ((corProdutoSelected == null) ? 0 : corProdutoSelected.hashCode());
 		result = (prime * result) + ((departamentoSelected == null) ? 0 : departamentoSelected.hashCode());
-		result = (prime * result) + ((espessura == null) ? 0 : espessura.hashCode());
-		result = (prime * result) + ((espessuraDescricao == null) ? 0 : espessuraDescricao.hashCode());
 		result = (prime * result) + ((grupoProdutoSelected == null) ? 0 : grupoProdutoSelected.hashCode());
+		result = (prime * result) + ((largura == null) ? 0 : largura.hashCode());
+		result = (prime * result) + ((larguraDescricao == null) ? 0 : larguraDescricao.hashCode());
 		result = (prime * result) + ((subGrupoProdutoSelected == null) ? 0 : subGrupoProdutoSelected.hashCode());
 		result = (prime * result) + ((unidadeSelected == null) ? 0 : unidadeSelected.hashCode());
 		return result;
@@ -173,7 +173,7 @@ public class ProdutoPadraoEspessuraModel extends Model {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		final ProdutoPadraoEspessuraModel other = (ProdutoPadraoEspessuraModel) obj;
+		final ProdutoPadraoLarguraModel other = (ProdutoPadraoLarguraModel) obj;
 		if (colecaoSelected == null) {
 			if (other.colecaoSelected != null) {
 				return false;
@@ -195,25 +195,25 @@ public class ProdutoPadraoEspessuraModel extends Model {
 		} else if (!departamentoSelected.equals(other.departamentoSelected)) {
 			return false;
 		}
-		if (espessura == null) {
-			if (other.espessura != null) {
-				return false;
-			}
-		} else if (!espessura.equals(other.espessura)) {
-			return false;
-		}
-		if (espessuraDescricao == null) {
-			if (other.espessuraDescricao != null) {
-				return false;
-			}
-		} else if (!espessuraDescricao.equals(other.espessuraDescricao)) {
-			return false;
-		}
 		if (grupoProdutoSelected == null) {
 			if (other.grupoProdutoSelected != null) {
 				return false;
 			}
 		} else if (!grupoProdutoSelected.equals(other.grupoProdutoSelected)) {
+			return false;
+		}
+		if (largura == null) {
+			if (other.largura != null) {
+				return false;
+			}
+		} else if (!largura.equals(other.largura)) {
+			return false;
+		}
+		if (larguraDescricao == null) {
+			if (other.larguraDescricao != null) {
+				return false;
+			}
+		} else if (!larguraDescricao.equals(other.larguraDescricao)) {
 			return false;
 		}
 		if (subGrupoProdutoSelected == null) {

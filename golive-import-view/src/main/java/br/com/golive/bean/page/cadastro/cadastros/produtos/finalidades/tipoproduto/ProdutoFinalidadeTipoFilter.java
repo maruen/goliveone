@@ -11,7 +11,7 @@ import br.com.golive.annotation.Filter;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel;
 import br.com.golive.filter.DateFilter;
-import br.com.golive.filter.NumberFilter;
+import br.com.golive.filter.LongFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 
@@ -28,7 +28,7 @@ public class ProdutoFinalidadeTipoFilter extends CadastroGenericFilterBean<Produ
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
 	@EntityClass(classe = ProdutoFinalidadeTipoModel.class)
-	private NumberFilter filtroId;
+	private LongFilter filtroId;
 
 	@Inject
 	@FilterInjected
@@ -52,24 +52,24 @@ public class ProdutoFinalidadeTipoFilter extends CadastroGenericFilterBean<Produ
 	@FilterInjected
 	@Filter(name = "NumeroMaximoCaracteres", label = "label.cadastroFinalidadeTipo.nMaximoCaracteres")
 	@EntityClass(classe = ProdutoFinalidadeTipoModel.class)
-	private NumberFilter filtroQuantidadeMaxima;
+	private LongFilter filtroQuantidadeMaxima;
 
 	@Inject
 	@FilterInjected
 	@Filter(name = "NumeroMinimoCaracteres", label = "label.cadastroFinalidadeTipo.nMinimoCaracteres")
 	@EntityClass(classe = ProdutoFinalidadeTipoModel.class)
-	private NumberFilter filtroQuantidadeMinima;
+	private LongFilter filtroQuantidadeMinima;
 
 	@Override
 	protected Logger getLogger() {
 		return logger;
 	}
 
-	public NumberFilter getFiltroId() {
+	public LongFilter getFiltroId() {
 		return filtroId;
 	}
 
-	public void setFiltroId(final NumberFilter filtroId) {
+	public void setFiltroId(final LongFilter filtroId) {
 		this.filtroId = filtroId;
 	}
 
@@ -97,19 +97,19 @@ public class ProdutoFinalidadeTipoFilter extends CadastroGenericFilterBean<Produ
 		this.filtroDescricao = filtroDescricao;
 	}
 
-	public NumberFilter getFiltroQuantidadeMaxima() {
+	public LongFilter getFiltroQuantidadeMaxima() {
 		return filtroQuantidadeMaxima;
 	}
 
-	public void setFiltroQuantidadeMaxima(final NumberFilter filtroQuantidadeMaxima) {
+	public void setFiltroQuantidadeMaxima(final LongFilter filtroQuantidadeMaxima) {
 		this.filtroQuantidadeMaxima = filtroQuantidadeMaxima;
 	}
 
-	public NumberFilter getFiltroQuantidadeMinima() {
+	public LongFilter getFiltroQuantidadeMinima() {
 		return filtroQuantidadeMinima;
 	}
 
-	public void setFiltroQuantidadeMinima(final NumberFilter filtroQuantidadeMinima) {
+	public void setFiltroQuantidadeMinima(final LongFilter filtroQuantidadeMinima) {
 		this.filtroQuantidadeMinima = filtroQuantidadeMinima;
 	}
 

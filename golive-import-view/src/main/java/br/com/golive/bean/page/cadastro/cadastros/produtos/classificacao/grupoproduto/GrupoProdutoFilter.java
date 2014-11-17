@@ -12,7 +12,7 @@ import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.filter.DateFilter;
-import br.com.golive.filter.NumberFilter;
+import br.com.golive.filter.LongFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 
@@ -29,7 +29,7 @@ public class GrupoProdutoFilter extends CadastroGenericFilterBean<GrupoProdutosM
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
 	@EntityClass(classe = GrupoProdutosModel.class)
-	private NumberFilter filtroIdGrupoProduto;
+	private LongFilter filtroIdGrupoProduto;
 
 	@Inject
 	@FilterInjected
@@ -53,7 +53,7 @@ public class GrupoProdutoFilter extends CadastroGenericFilterBean<GrupoProdutosM
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "departamentoModel")
 	@EntityClass(classe = DepartamentoModel.class)
-	private NumberFilter filtroIdDepartamento;
+	private LongFilter filtroIdDepartamento;
 
 	@Inject
 	@FilterInjected
@@ -78,11 +78,11 @@ public class GrupoProdutoFilter extends CadastroGenericFilterBean<GrupoProdutosM
 		return logger;
 	}
 
-	public NumberFilter getFiltroIdGrupoProduto() {
+	public LongFilter getFiltroIdGrupoProduto() {
 		return filtroIdGrupoProduto;
 	}
 
-	public void setFiltroIdGrupoProduto(final NumberFilter filtroIdGrupoProduto) {
+	public void setFiltroIdGrupoProduto(final LongFilter filtroIdGrupoProduto) {
 		this.filtroIdGrupoProduto = filtroIdGrupoProduto;
 	}
 
@@ -110,11 +110,11 @@ public class GrupoProdutoFilter extends CadastroGenericFilterBean<GrupoProdutosM
 		this.filtroDataAletracaoGrupoProduto = filtroDataAletracaoGrupoProduto;
 	}
 
-	public NumberFilter getFiltroIdDepartamento() {
+	public LongFilter getFiltroIdDepartamento() {
 		return filtroIdDepartamento;
 	}
 
-	public void setFiltroIdDepartamento(final NumberFilter filtroIdDepartamento) {
+	public void setFiltroIdDepartamento(final LongFilter filtroIdDepartamento) {
 		this.filtroIdDepartamento = filtroIdDepartamento;
 	}
 

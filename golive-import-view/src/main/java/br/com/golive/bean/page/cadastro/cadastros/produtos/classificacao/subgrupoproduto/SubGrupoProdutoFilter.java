@@ -13,7 +13,7 @@ import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.filter.DateFilter;
-import br.com.golive.filter.NumberFilter;
+import br.com.golive.filter.LongFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 
@@ -30,7 +30,7 @@ public class SubGrupoProdutoFilter extends CadastroGenericFilterBean<SubGrupoPro
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "departamentoSelected")
 	@EntityClass(classe = DepartamentoModel.class)
-	private NumberFilter filtroIdDepartamento;
+	private LongFilter filtroIdDepartamento;
 
 	@Inject
 	@FilterInjected
@@ -54,7 +54,7 @@ public class SubGrupoProdutoFilter extends CadastroGenericFilterBean<SubGrupoPro
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "grupoProdutoSelected")
 	@EntityClass(classe = GrupoProdutosModel.class)
-	private NumberFilter filtroIdGrupoProduto;
+	private LongFilter filtroIdGrupoProduto;
 
 	@Inject
 	@FilterInjected
@@ -78,7 +78,7 @@ public class SubGrupoProdutoFilter extends CadastroGenericFilterBean<SubGrupoPro
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
 	@EntityClass(classe = SubGrupoProdutoModel.class)
-	private NumberFilter filtroIdSubGrupoProduto;
+	private LongFilter filtroIdSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
@@ -98,11 +98,11 @@ public class SubGrupoProdutoFilter extends CadastroGenericFilterBean<SubGrupoPro
 	@EntityClass(classe = SubGrupoProdutoModel.class)
 	private DateFilter filtroDataAletracaoSubGrupoProduto;
 
-	public NumberFilter getFiltroIdDepartamento() {
+	public LongFilter getFiltroIdDepartamento() {
 		return filtroIdDepartamento;
 	}
 
-	public void setFiltroIdDepartamento(final NumberFilter filtroIdDepartamento) {
+	public void setFiltroIdDepartamento(final LongFilter filtroIdDepartamento) {
 		this.filtroIdDepartamento = filtroIdDepartamento;
 	}
 
@@ -130,11 +130,11 @@ public class SubGrupoProdutoFilter extends CadastroGenericFilterBean<SubGrupoPro
 		this.filtroDataAletracaoDepartamento = filtroDataAletracaoDepartamento;
 	}
 
-	public NumberFilter getFiltroIdGrupoProduto() {
+	public LongFilter getFiltroIdGrupoProduto() {
 		return filtroIdGrupoProduto;
 	}
 
-	public void setFiltroIdGrupoProduto(final NumberFilter filtroIdGrupoProduto) {
+	public void setFiltroIdGrupoProduto(final LongFilter filtroIdGrupoProduto) {
 		this.filtroIdGrupoProduto = filtroIdGrupoProduto;
 	}
 
@@ -162,11 +162,11 @@ public class SubGrupoProdutoFilter extends CadastroGenericFilterBean<SubGrupoPro
 		this.filtroDataAletracaoGrupoProduto = filtroDataAletracaoGrupoProduto;
 	}
 
-	public NumberFilter getFiltroIdSubGrupoProduto() {
+	public LongFilter getFiltroIdSubGrupoProduto() {
 		return filtroIdSubGrupoProduto;
 	}
 
-	public void setFiltroIdSubGrupoProduto(final NumberFilter filtroIdSubGrupoProduto) {
+	public void setFiltroIdSubGrupoProduto(final LongFilter filtroIdSubGrupoProduto) {
 		this.filtroIdSubGrupoProduto = filtroIdSubGrupoProduto;
 	}
 

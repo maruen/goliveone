@@ -13,7 +13,7 @@ import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroBeanRules;
 import br.com.golive.entity.areaDeAtuacao.model.AreaDeAtuacaoModel;
 import br.com.golive.filter.DateFilter;
-import br.com.golive.filter.NumberFilter;
+import br.com.golive.filter.LongFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.service.AreaDeAtuacaoService;
@@ -39,7 +39,7 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoModel> {
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
-	protected NumberFilter filtroId;
+	protected LongFilter filtroId;
 
 	@Inject
 	@FilterInjected
@@ -92,11 +92,11 @@ public class AreasDeAtuacaoBean extends CadastroBeanRules<AreaDeAtuacaoModel> {
 		this.filtroAtuacao = filtroAtuacao;
 	}
 
-	public NumberFilter getFiltroId() {
+	public LongFilter getFiltroId() {
 		return filtroId;
 	}
 
-	public void setFiltroId(final NumberFilter filtroId) {
+	public void setFiltroId(final LongFilter filtroId) {
 		this.filtroId = filtroId;
 	}
 

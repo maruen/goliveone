@@ -49,7 +49,7 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvar(final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Salvando grupo produto = {}", grupoProdutosModel);
-		grupoProdutoJPA.refresh(grupoProdutosModel.getDepartamentoModel());
+		grupoProdutoJPA.refreshModel(grupoProdutosModel.getDepartamentoModel());
 		grupoProdutoJPA.save(grupoProdutosModel);
 	}
 

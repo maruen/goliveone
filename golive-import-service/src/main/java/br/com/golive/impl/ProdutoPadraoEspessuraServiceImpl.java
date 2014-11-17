@@ -41,11 +41,11 @@ public class ProdutoPadraoEspessuraServiceImpl implements ProdutoPadraoEspessura
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvar(final ProdutoPadraoEspessuraModel model) {
 		logger.info("Salvando ProdutoPadraoEspessura = {}", model);
-		produtoPadraoEspessuraJPA.refresh(model.getDepartamentoSelected());
-		produtoPadraoEspessuraJPA.refresh(model.getGrupoProdutoSelected());
-		produtoPadraoEspessuraJPA.refresh(model.getSubGrupoProdutoSelected());
-		produtoPadraoEspessuraJPA.refresh(model.getColecaoSelected());
-		produtoPadraoEspessuraJPA.refresh(model.getCorProdutoSelected());
+		produtoPadraoEspessuraJPA.refreshModel(model.getDepartamentoSelected());
+		produtoPadraoEspessuraJPA.refreshModel(model.getGrupoProdutoSelected());
+		produtoPadraoEspessuraJPA.refreshModel(model.getSubGrupoProdutoSelected());
+		produtoPadraoEspessuraJPA.refreshModel(model.getColecaoSelected());
+		produtoPadraoEspessuraJPA.refreshModel(model.getCorProdutoSelected());
 		produtoPadraoEspessuraJPA.save(model);
 	}
 

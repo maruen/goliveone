@@ -14,7 +14,7 @@ import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.filter.DateFilter;
-import br.com.golive.filter.NumberFilter;
+import br.com.golive.filter.LongFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 
@@ -31,7 +31,7 @@ public class ColecoesProdutoFilter extends CadastroGenericFilterBean<ColecoesMod
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
 	@EntityClass(classe = ColecoesModel.class)
-	private NumberFilter filtroIdColecoes;
+	private LongFilter filtroIdColecoes;
 
 	@Inject
 	@FilterInjected
@@ -55,7 +55,7 @@ public class ColecoesProdutoFilter extends CadastroGenericFilterBean<ColecoesMod
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "departamentoSelected")
 	@EntityClass(classe = DepartamentoModel.class)
-	private NumberFilter filtroIdDepartamento;
+	private LongFilter filtroIdDepartamento;
 
 	@Inject
 	@FilterInjected
@@ -79,7 +79,7 @@ public class ColecoesProdutoFilter extends CadastroGenericFilterBean<ColecoesMod
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "grupoProdutoSelected")
 	@EntityClass(classe = GrupoProdutosModel.class)
-	private NumberFilter filtroIdGrupoProduto;
+	private LongFilter filtroIdGrupoProduto;
 
 	@Inject
 	@FilterInjected
@@ -103,7 +103,7 @@ public class ColecoesProdutoFilter extends CadastroGenericFilterBean<ColecoesMod
 	@FilterInjected
 	@Filter(name = "id", label = "label.id", path = "subGrupoProdutoSelected")
 	@EntityClass(classe = SubGrupoProdutoModel.class)
-	private NumberFilter filtroIdSubGrupoProduto;
+	private LongFilter filtroIdSubGrupoProduto;
 
 	@Inject
 	@FilterInjected
@@ -132,11 +132,11 @@ public class ColecoesProdutoFilter extends CadastroGenericFilterBean<ColecoesMod
 		this.logger = logger;
 	}
 
-	public NumberFilter getFiltroIdColecoes() {
+	public LongFilter getFiltroIdColecoes() {
 		return filtroIdColecoes;
 	}
 
-	public void setFiltroIdColecoes(final NumberFilter filtroIdColecoes) {
+	public void setFiltroIdColecoes(final LongFilter filtroIdColecoes) {
 		this.filtroIdColecoes = filtroIdColecoes;
 	}
 
@@ -164,11 +164,11 @@ public class ColecoesProdutoFilter extends CadastroGenericFilterBean<ColecoesMod
 		this.filtroColecao = filtroColecao;
 	}
 
-	public NumberFilter getFiltroIdDepartamento() {
+	public LongFilter getFiltroIdDepartamento() {
 		return filtroIdDepartamento;
 	}
 
-	public void setFiltroIdDepartamento(final NumberFilter filtroIdDepartamento) {
+	public void setFiltroIdDepartamento(final LongFilter filtroIdDepartamento) {
 		this.filtroIdDepartamento = filtroIdDepartamento;
 	}
 
@@ -196,11 +196,11 @@ public class ColecoesProdutoFilter extends CadastroGenericFilterBean<ColecoesMod
 		this.filtroDataAletracaoDepartamento = filtroDataAletracaoDepartamento;
 	}
 
-	public NumberFilter getFiltroIdGrupoProduto() {
+	public LongFilter getFiltroIdGrupoProduto() {
 		return filtroIdGrupoProduto;
 	}
 
-	public void setFiltroIdGrupoProduto(final NumberFilter filtroIdGrupoProduto) {
+	public void setFiltroIdGrupoProduto(final LongFilter filtroIdGrupoProduto) {
 		this.filtroIdGrupoProduto = filtroIdGrupoProduto;
 	}
 
@@ -228,11 +228,11 @@ public class ColecoesProdutoFilter extends CadastroGenericFilterBean<ColecoesMod
 		this.filtroDataAletracaoGrupoProduto = filtroDataAletracaoGrupoProduto;
 	}
 
-	public NumberFilter getFiltroIdSubGrupoProduto() {
+	public LongFilter getFiltroIdSubGrupoProduto() {
 		return filtroIdSubGrupoProduto;
 	}
 
-	public void setFiltroIdSubGrupoProduto(final NumberFilter filtroIdSubGrupoProduto) {
+	public void setFiltroIdSubGrupoProduto(final LongFilter filtroIdSubGrupoProduto) {
 		this.filtroIdSubGrupoProduto = filtroIdSubGrupoProduto;
 	}
 

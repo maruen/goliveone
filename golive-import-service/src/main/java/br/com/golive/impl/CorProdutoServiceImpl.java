@@ -40,10 +40,10 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvar(final CorProdutoModel model) {
 		logger.info("Salvando corProdutoModel");
-		corProdutoJPA.refresh(model.getDepartamentoSelected());
-		corProdutoJPA.refresh(model.getGrupoProdutoSelected());
-		corProdutoJPA.refresh(model.getSubGrupoProdutoSelected());
-		corProdutoJPA.refresh(model.getColecaoSelected());
+		corProdutoJPA.refreshModel(model.getDepartamentoSelected());
+		corProdutoJPA.refreshModel(model.getGrupoProdutoSelected());
+		corProdutoJPA.refreshModel(model.getSubGrupoProdutoSelected());
+		corProdutoJPA.refreshModel(model.getColecaoSelected());
 		corProdutoJPA.save(model);
 	}
 
