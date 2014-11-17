@@ -118,7 +118,7 @@ public class ProdutoPadraoEspessuraBean extends CadastroGenericBean<ProdutoPadra
 
 	@Override
 	public boolean validarCampos() {
-		boolean ret = Utils.validarCamposNulos(registro, registro.getColecaoSelected(), registro.getEspessura(), registro.getDepartamentoSelected(), registro.getGrupoProdutoSelected(), registro.getSubGrupoProdutoSelected(), registro.getCorProdutoSelected(), registro.getEspessuraDescricao());
+		boolean ret = Utils.validarCamposNulos(registro, registro.getColecaoSelected(), registro.getEspessura(), registro.getDepartamentoSelected(), registro.getGrupoProdutoSelected(), registro.getSubGrupoProdutoSelected(), registro.getCorProdutoSelected(), registro.getEspessuraDescricao(), registro.getUnidadeSelected());
 		if (!ret) {
 			preencherTodosCamposMessage();
 		}

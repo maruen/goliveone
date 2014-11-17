@@ -68,7 +68,7 @@ public class ProdutoPadraoLarguraBean extends CadastroGenericBean<ProdutoPadraoL
 
 	@Override
 	public boolean validarCampos() {
-		boolean ret = Utils.validarCamposNulos(registro, registro.getColecaoSelected(), registro.getLargura(), registro.getDepartamentoSelected(), registro.getGrupoProdutoSelected(), registro.getSubGrupoProdutoSelected(), registro.getCorProdutoSelected(), registro.getLarguraDescricao());
+		boolean ret = Utils.validarCamposNulos(registro, registro.getColecaoSelected(), registro.getLargura(), registro.getDepartamentoSelected(), registro.getGrupoProdutoSelected(), registro.getSubGrupoProdutoSelected(), registro.getCorProdutoSelected(), registro.getLarguraDescricao(), registro.getUnidadeSelected());
 		if (!ret) {
 			preencherTodosCamposMessage();
 		}

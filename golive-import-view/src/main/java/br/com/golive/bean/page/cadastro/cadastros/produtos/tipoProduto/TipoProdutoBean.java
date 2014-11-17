@@ -24,13 +24,13 @@ public class TipoProdutoBean extends CadastroGenericBean<TipoProdutoModel> {
 
 	@Inject
 	private Logger logger;
-	
+
 	@Inject
 	private TipoProdutoFilter filtros;
-	
+
 	@EJB
 	private TipoProdutoService tipoProdutoService;
-	
+
 	@Override
 	@PostConstruct
 	public void init() {
@@ -44,32 +44,32 @@ public class TipoProdutoBean extends CadastroGenericBean<TipoProdutoModel> {
 
 	@Override
 	public boolean validarCampos() {
-		boolean ret = Utils.validarCamposNulos(registro, registro.getTipoProduto());
-		
+		final boolean ret = Utils.validarCamposNulos(registro, registro.getTipoProduto());
+
 		if (!ret) {
 			preencherTodosCamposMessage();
 		}
-		
+
 		return ret;
 	}
 
 	@Override
-	public void serviceSave(TipoProdutoModel registro) {
+	public void serviceSave(final TipoProdutoModel registro) {
 		tipoProdutoService.salvar(registro);
 	}
 
 	@Override
-	public void serviceUpdate(TipoProdutoModel registro) {
+	public void serviceUpdate(final TipoProdutoModel registro) {
 		tipoProdutoService.atualizar(registro);
 	}
 
 	@Override
-	public void serviceRemove(TipoProdutoModel registro) {
+	public void serviceRemove(final TipoProdutoModel registro) {
 		tipoProdutoService.remover(registro);
 	}
 
 	@Override
-	public void serviceRefresh(TipoProdutoModel registro) {
+	public void serviceRefresh(final TipoProdutoModel registro) {
 		tipoProdutoService.refresh(registro);
 	}
 
@@ -77,7 +77,7 @@ public class TipoProdutoBean extends CadastroGenericBean<TipoProdutoModel> {
 	public CadastroGenericFilterBean<TipoProdutoModel> getFiltros() {
 		return filtros;
 	}
-	
+
 	@Override
 	public void incluir() {
 		super.incluir();
