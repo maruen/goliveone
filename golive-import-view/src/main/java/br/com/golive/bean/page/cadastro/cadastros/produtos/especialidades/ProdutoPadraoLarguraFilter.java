@@ -13,6 +13,7 @@ import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.padraolargura.model.ProdutoPadraoLarguraModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
+import br.com.golive.entity.unidade.model.UnidadeModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.DoubleFilter;
 import br.com.golive.filter.LongFilter;
@@ -186,9 +187,39 @@ public class ProdutoPadraoLarguraFilter extends CadastroGenericFilterBean<Produt
 	@Filter(name = "CorCodigo", label = "label.cadastroColecoes.codColecao", path = "corProdutoSelected")
 	@EntityClass(classe = CorProdutoModel.class)
 	private StringFilter filtroCorCodigo;
+	
+	@Inject
+	@FilterInjected
+	@Filter(label = "label.id", name = "id", path = "unidadeSelected")
+	@EntityClass(classe = UnidadeModel.class)
+	private LongFilter filtroIdUnidade;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao", path = "unidadeSelected")
+	@EntityClass(classe = UnidadeModel.class)
+	private DateFilter filtroDataInclusaoUnidade;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao", path = "unidadeSelected")
+	@EntityClass(classe = UnidadeModel.class)
+	private DateFilter filtroDataAlteracaoUnidade;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "Unidade", label = "label.cadastroPadroesLargura.descricao", path = "unidadeSelected")
+	@EntityClass(classe = UnidadeModel.class)
+	private StringFilter filtroDescricaoUnidade;
+
+	@Inject
+	@FilterInjected
+	@Filter(name = "Abreviacao", label = "label.cadastroPadroesLargura.codUnid", path = "unidadeSelected")
+	@EntityClass(classe = UnidadeModel.class)
+	private StringFilter filtroAbreviacaoUnidade;
+
 
 	public LongFilter getFiltroId() {
 		return filtroId;
 	}
-
 }
