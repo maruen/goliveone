@@ -2,7 +2,6 @@
 <jboss-deployment-structure>
 	<deployment>
 		<dependencies>
-			<module name="br.com.golive.persistence" />
 			<module name="br.com.golive.labels" />
 			<module name="br.com.golive.logo" />
 		</dependencies>

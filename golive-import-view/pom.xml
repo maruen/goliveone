@@ -134,12 +134,6 @@
 							</fileset>
 						</delete>
 
-						<delete>
-							<fileset dir="${jboss.module.persistence.properties}">
-								<include name="*.properties" />
-							</fileset>
-						</delete>
-
 						<copy file="${basedir}/target/${context.root}.war" tofile="${jboss.deploy.path}/${context.root}.war" />
 
 
@@ -148,12 +142,7 @@
 								<include name="*.properties" />
 							</fileset>
 						</copy>
-						<copy todir="${jboss.module.persistence.properties}">
-							<fileset dir="${basedir}/${properties.persistence.folder}">
-								<include name="*.properties" />
-								<include name="*.xml" />
-							</fileset>
-						</copy>
+
 					</tasks>
 				</configuration>
 				<executions>

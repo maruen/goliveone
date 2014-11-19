@@ -199,15 +199,14 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		Object ret = indice;
 
 		try {
-			for (final Field field : genericClazzInstance.getDeclaredFields()) {
-				if (Utils.getRelationShip(field)) {
-					if (field.getType().getAnnotation(Table.class).name().equals(coluna.getId().getTabela())) {
-						ret = Utils.invoke(field, ret);
-					}
+			try {
+				ret = getField(coluna, ret);
+			} catch (final NullPointerException e) {
+				getLogger().error("Erro ao obter label coluna, revertendo objeto");
+				serviceRefresh(indice);
+				if (getField(coluna, ret) != null) {
+					obterLabelColuna(coluna, indice);
 				}
-			}
-			if (ret != null) {
-				ret = Utils.invoke(Utils.getFieldByNameColumn(coluna, ret.getClass()), ret);
 			}
 
 		} catch (SecurityException | IllegalAccessException | IllegalArgumentException e) {
@@ -216,6 +215,20 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 		return ret;
 
+	}
+
+	private Object getField(final ColunaPerfil coluna, Object ret) throws IllegalAccessException {
+		for (final Field field : genericClazzInstance.getDeclaredFields()) {
+			if (Utils.getRelationShip(field)) {
+				if (field.getType().getAnnotation(Table.class).name().equals(coluna.getId().getTabela())) {
+					ret = Utils.invoke(field, ret);
+				}
+			}
+		}
+		if (ret != null) {
+			ret = Utils.invoke(Utils.getFieldByNameColumn(coluna, ret.getClass()), ret);
+		}
+		return ret;
 	}
 
 	public String getLabelFilter(final ColunaPerfil coluna) {

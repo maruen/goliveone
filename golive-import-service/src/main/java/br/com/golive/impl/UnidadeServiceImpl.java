@@ -32,7 +32,7 @@ public class UnidadeServiceImpl implements UnidadeService {
 	@Override
 	public List<UnidadeModel> obterLista() {
 		logger.info("Obtendo Lista de Unidades");
-		return unidadeJPA.findAll();
+		return unidadeJPA.findAllWithoutLazy();
 	}
 
 	@Override

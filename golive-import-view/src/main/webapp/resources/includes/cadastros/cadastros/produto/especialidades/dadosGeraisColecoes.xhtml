@@ -27,7 +27,7 @@
 			<h:inputText id="idInputText" style="width: 125px;" value="#{pojo.id}" disabled="true" />
 
 			<h:outputText id="descricaoNomeOutputText" value="#{managerBean.get('label.cadastroGrupoProdutos.descricao')}" styleClass="floatLeft" />
-			<p:inputText id="descricaoInputText" required="true" disabled="false" style="width: 90%" value="#{pojo.colecao}" />
+			<p:inputText id="descricaoInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}" disabled="false" style="width: 90%" value="#{pojo.colecao}" />
 
 			<h:outputText id="dataInclusaoOutputText" value="#{managerBean.get('label.cadastroColecoes.inclusao')}" />
 			<h:inputText value="#{pojo.dataInclusao.time}" id="dataInclusaoInputText" disabled="true"> 
