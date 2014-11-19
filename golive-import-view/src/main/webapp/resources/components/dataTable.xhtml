@@ -78,7 +78,7 @@
 					value="#{managerBean.get('label.salvar')}"
 					actionListener="#{cc.attrs.bean.salvarPerfilPagina()}"
 					process="@parent" update=":conteudoForm:modelTable:conteudoTable"
-					onsuccess="PF('confTableConteudo').hide()" />
+					onsuccess="PF('confTableConteudo').hide();" />
 			</f:facet>
 
 		</p:dataTable>
@@ -107,7 +107,7 @@
 			<h:panelGrid columns="1" style="width:100%;">
 				<h:graphicImage id="configuracoes"
 					value="/resources/images/stylistica-icons-set/24x24/database.png"
-					onclick="PF('confTableConteudo').show()" style="float: right;" />
+					onclick="PF('confTableConteudo').show();" style="float: right;" />
 			</h:panelGrid>
 
 		</f:facet>

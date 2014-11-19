@@ -28,7 +28,7 @@ import br.com.golive.utils.ServiceUtils;
 @ManagedBean
 @ViewScoped
 public class LoginBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@EJB
@@ -56,22 +56,22 @@ public class LoginBean implements Serializable {
 	private boolean errouLogin;
 
 	private String url;
-	
 
 	@PostConstruct
 	public void init() {
-		
+
 		try {
+
 			if (usuario != null) {
 				JSFUtils.redirect("/");
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		login = EMPTY_STRING;
 		senha = EMPTY_STRING;
-		
+
 	}
 
 	public GoliveOneProperties getLabels() {
@@ -119,21 +119,21 @@ public class LoginBean implements Serializable {
 	}
 
 	public boolean obterUsuarioPorLoginSenha() {
-		
+
 		boolean loginOK = false;
 		try {
 			if (campoValido(getLogin())) {
 				carregadoOnBlur = usuarioService.logar(getLogin());
-				if (campoValido(getSenha()) && carregadoOnBlur != null ) {
-					if ( Encryption.decrypt(carregadoOnBlur.getPassword()).equals(getSenha()) ) {
+				if (campoValido(getSenha()) && (carregadoOnBlur != null)) {
+					if (Encryption.decrypt(carregadoOnBlur.getPassword()).equals(getSenha())) {
 						loginOK = true;
 					}
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return loginOK;
 	}
 

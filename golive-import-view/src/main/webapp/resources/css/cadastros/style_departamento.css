@@ -2,6 +2,11 @@
 	border-collapse: inherit !IMPORTANT;
 }
 
+.voltarButton{
+	position: relative;
+	top: 35%;
+}
+
 .confirmacao {
 	width: 100%;
 	text-align: right;
