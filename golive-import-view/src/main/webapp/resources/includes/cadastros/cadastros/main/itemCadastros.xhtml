@@ -6,308 +6,328 @@
 
 
 
-	<p:submenu style="font-size: 13px;" 
+	<p:submenu style="font-size: 13px;"
 		label="#{managerBean.get('label.classificacaoEmpresas')}">
-		<p:menuitem
-			value="#{managerBean.get('label.areasDeAtuacao')}"
+		<p:menuitem value="#{managerBean.get('label.areasDeAtuacao')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.classificacaoEmpresas.AreasDeAtuacao')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.classificacaoEmpresas.AreasDeAtuacao')}');" />
 		<p:menuitem value="#{managerBean.get('label.segmentos')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.classificacaoEmpresas.segmento')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.classificacaoEmpresas.segmento')}');" />
 	</p:submenu>
 
 	<p:menuitem value="#{managerBean.get('label.clientes')}"
 		styleClass="itemPanelMenu little-font" disabled="true"
-		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.cliente')}');" />
+		action="#{bean.novaAba()}"
+		onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.cliente')}');" />
 
 	<p:menuitem value="#{managerBean.get('label.departamentos')}"
 		styleClass="itemPanelMenu little-font" disabled="true"
-		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.departamentos')}');" />
+		action="#{bean.novaAba()}"
+		onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.departamentos')}');" />
 
 	<p:submenu label="#{managerBean.get('label.empresas')}">
 		<p:submenu styleClass="little-medium"
 			label="#{managerBean.get('label.cnae')}">
-			<p:menuitem
-				value="#{managerBean.get('label.secao')}"
+			<p:menuitem value="#{managerBean.get('label.secao')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.secao')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.divisao')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.secao')}');" />
+			<p:menuitem value="#{managerBean.get('label.divisao')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.divisao')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.grupo')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.divisao')}');" />
+			<p:menuitem value="#{managerBean.get('label.grupo')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.grupo')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.classe')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.grupo')}');" />
+			<p:menuitem value="#{managerBean.get('label.classe')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.classe')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.classe')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.cnaesImpeditivosSimplesNacional')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.cnaeimpeditivosimplesnacional')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.subclasse')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.cnaeimpeditivosimplesnacional')}');" />
+			<p:menuitem value="#{managerBean.get('label.subclasse')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.subclasse')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cnae.subclasse')}');" />
 		</p:submenu>
 
 		<p:menuitem value="#{managerBean.get('label.cargos')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cargo')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.departamentos')}"
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.cargo')}');" />
+		<p:menuitem value="#{managerBean.get('label.departamentos')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.departamento')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.empresas')}"
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.departamento')}');" />
+		<p:menuitem value="#{managerBean.get('label.empresas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.empresa')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.funcionarios')}"
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.empresa')}');" />
+		<p:menuitem value="#{managerBean.get('label.funcionarios')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.funcionario')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.funcionario')}');" />
 		<p:menuitem
 			value="#{managerBean.get('label.categoriasNaturezasJuridicas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.categorianaturezajuridica')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.naturezasJuridicas')}"
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.categorianaturezajuridica')}');" />
+		<p:menuitem value="#{managerBean.get('label.naturezasJuridicas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.naturezajuridica')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.naturezajuridica')}');" />
 
 		<p:submenu styleClass="little-medium"
 			label="#{managerBean.get('label.ncmTipi')}">
 			<p:menuitem value="#{managerBean.get('label.secao')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.ncm.secao')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.ncm.secao')}');" />
 			<p:menuitem value="#{managerBean.get('label.capitulo')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.ncm.capitulo')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.ncm')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.ncm.capitulo')}');" />
+			<p:menuitem value="#{managerBean.get('label.ncm')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.ncm.ncm')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.ncm.ncm')}');" />
 		</p:submenu>
 
 		<p:menuitem
 			value="#{managerBean.get('label.partilhaSimplesNacional')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.partilhasimplesnacional')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.regimeApuracao')}"
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.partilhasimplesnacional')}');" />
+		<p:menuitem value="#{managerBean.get('label.regimeApuracao')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.regimeApuracao')}');" />
-			
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.regimeApuracao')}');" />
+
 		<p:submenu styleClass="little-medium"
 			label="#{managerBean.get('label.usuarios')}">
 			<p:menuitem value="#{managerBean.get('label.grupoPermissao')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.usuarios.grupopermissao')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.usuarios.grupopermissao')}');" />
 			<p:menuitem value="#{managerBean.get('label.permissao')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.usuarios.permissao')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.usuarios')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.usuarios.permissao')}');" />
+			<p:menuitem value="#{managerBean.get('label.usuarios')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.usuarios.usuario')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.empresas.usuarios.usuario')}');" />
 		</p:submenu>
-			
+
 	</p:submenu>
 
-	<p:submenu style="font-size: 13px;" label="#{managerBean.get('label.estoque')}">
-		<p:menuitem
-			value="#{managerBean.get('label.pavimentos')}"
+	<p:submenu style="font-size: 13px;"
+		label="#{managerBean.get('label.estoque')}">
+		<p:menuitem value="#{managerBean.get('label.pavimentos')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.pavimento')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.pavimento')}');" />
 		<p:menuitem value="#{managerBean.get('label.ruas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.rua')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.prateleiras')}"
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.rua')}');" />
+		<p:menuitem value="#{managerBean.get('label.prateleiras')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.prateleira')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.reservaEndereco')}"
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.prateleira')}');" />
+		<p:menuitem value="#{managerBean.get('label.reservaEndereco')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.reservaEndereco')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.estoque.reservaEndereco')}');" />
 	</p:submenu>
 
-	<p:submenu style="font-size: 13px;" label="#{managerBean.get('label.financeiro')}">
-		<p:menuitem
-			value="#{managerBean.get('label.condicoesdepagamento')}"
+	<p:submenu style="font-size: 13px;"
+		label="#{managerBean.get('label.financeiro')}">
+		<p:menuitem value="#{managerBean.get('label.condicoesdepagamento')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.condicaoPagamento')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.condicaoPagamento')}');" />
 		<p:menuitem value="#{managerBean.get('label.formasdepagamento')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.formaPagamento')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.moedas')}"
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.formaPagamento')}');" />
+		<p:menuitem value="#{managerBean.get('label.moedas')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.moeda')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.financeiro.moeda')}');" />
 	</p:submenu>
 
-	<p:menuitem
-		value="#{managerBean.get('label.fornecedores')}"
+	<p:menuitem value="#{managerBean.get('label.fornecedores')}"
 		styleClass="itemPanelMenu little-font" disabled="true"
-		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.fornecedor')}');" />
-	<p:menuitem
-		value="#{managerBean.get('label.funcionarios')}"
+		action="#{bean.novaAba()}"
+		onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.fornecedor')}');" />
+	<p:menuitem value="#{managerBean.get('label.funcionarios')}"
 		styleClass="itemPanelMenu little-font" disabled="true"
-		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.funcionario')}');" />
+		action="#{bean.novaAba()}"
+		onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.funcionario')}');" />
 
 	<p:submenu label="#{managerBean.get('label.produtos')}">
 		<p:submenu styleClass="little-medium"
 			label="#{managerBean.get('label.classificacao')}">
-			<p:menuitem
-				value="#{managerBean.get('label.departamentos')}"
-				styleClass="itemPanelMenu little-font" 
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.departamento')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.gruposDeProdutos')}"
-				styleClass="itemPanelMenu little-font" 
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.grupodeprodutos')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.subgrupoDeProdutos')}"
-				styleClass="itemPanelMenu little-font" 
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.subgrupoproduto')}');" />
+			<p:menuitem value="#{managerBean.get('label.departamentos')}"
+				styleClass="itemPanelMenu little-font" action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.departamento')}');" />
+			<p:menuitem value="#{managerBean.get('label.gruposDeProdutos')}"
+				styleClass="itemPanelMenu little-font" action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.grupodeprodutos')}');" />
+			<p:menuitem value="#{managerBean.get('label.subgrupoDeProdutos')}"
+				styleClass="itemPanelMenu little-font" action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.classificacao.subgrupoproduto')}');" />
 		</p:submenu>
 
-		<p:submenu
-			label="#{managerBean.get('label.especialidades')}">
+		<p:submenu label="#{managerBean.get('label.especialidades')}">
 			<p:menuitem value="#{managerBean.get('label.colecoes')}"
-				styleClass="itemPanelMenu little-font" 
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.colecoes')}');" />
+				styleClass="itemPanelMenu little-font" action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.colecoes')}');" />
 			<p:menuitem value="#{managerBean.get('label.cores')}"
-				styleClass="itemPanelMenu little-font" 
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.cores')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.padroesDeLargura')}"
-				styleClass="itemPanelMenu little-font" 
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.padraolargura')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.padroesDeExpessura')}"
-				styleClass="itemPanelMenu little-font" 
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.padraoespessura')}');" />
+				styleClass="itemPanelMenu little-font" action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.cores')}');" />
+			<p:menuitem value="#{managerBean.get('label.padroesDeLargura')}"
+				styleClass="itemPanelMenu little-font" disabled="true"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.padraolargura')}');" />
+			<p:menuitem value="#{managerBean.get('label.padroesDeExpessura')}"
+				styleClass="itemPanelMenu little-font" disabled="true"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.padraoespessura')}');" />
 			<p:menuitem value="#{managerBean.get('label.unidades')}"
-				styleClass="itemPanelMenu little-font" 
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.unidade')}');" />
+				styleClass="itemPanelMenu little-font" disabled="true"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.especialidades.unidade')}');" />
 		</p:submenu>
 
-		<p:submenu
-			label="#{managerBean.get('label.finalidades')}">
-			<p:menuitem
-				value="#{managerBean.get('label.finalidadeCodigo')}"
+		<p:submenu label="#{managerBean.get('label.finalidades')}">
+			<p:menuitem value="#{managerBean.get('label.finalidadeCodigo')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadecodigo')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadecodigo')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.finalidadeCodigoDeBarras')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadecodigobarras')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.finalidadeColecao')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadecodigobarras')}');" />
+			<p:menuitem value="#{managerBean.get('label.finalidadeColecao')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadecolecao')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.finalidadeCor')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadecolecao')}');" />
+			<p:menuitem value="#{managerBean.get('label.finalidadeCor')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadecor')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.finalidadeDescricao')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadecor')}');" />
+			<p:menuitem value="#{managerBean.get('label.finalidadeDescricao')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadedescricao')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadedescricao')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.finalidadePadraoLargura')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadepadraolargura')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadepadraolargura')}');" />
 			<p:menuitem
 				value="#{managerBean.get('label.finalidadePadraoEspessura')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadepadraoespessura')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.finalidadeTipo')}"
-				styleClass="itemPanelMenu little-font" 
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadetipo')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.finalidadeUnidade')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadepadraoespessura')}');" />
+			<p:menuitem value="#{managerBean.get('label.finalidadeTipo')}"
+				styleClass="itemPanelMenu little-font" action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadetipo')}');" />
+			<p:menuitem value="#{managerBean.get('label.finalidadeUnidade')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadeunidade')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.finalidades.finalidadeunidade')}');" />
 		</p:submenu>
 		<p:menuitem value="#{managerBean.get('label.produto')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.produto')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.tipoDeProduto')}"
-			styleClass="itemPanelMenu little-font" 
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.tipoproduto')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.produto')}');" />
+		<p:menuitem value="#{managerBean.get('label.tipoDeProduto')}" disabled="true"
+			styleClass="itemPanelMenu little-font" action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.produtos.tipoproduto')}');" />
 	</p:submenu>
 
-	<p:submenu style="font-size: 13px;" 
-	label="#{managerBean.get('label.regioes')}">
+	<p:submenu style="font-size: 13px;"
+		label="#{managerBean.get('label.regioes')}">
 		<p:menuitem value="#{managerBean.get('label.estados')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.estado')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.municipios')}"
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.estado')}');" />
+		<p:menuitem value="#{managerBean.get('label.municipios')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.municipio')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.municipio')}');" />
 
 		<p:submenu styleClass="little-medium"
 			label="#{managerBean.get('label.paises')}">
-			<p:menuitem
-				value="#{managerBean.get('label.codigoInternet')}"
+			<p:menuitem value="#{managerBean.get('label.codigoInternet')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigointernet')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigointernet')}');" />
 			<p:submenu styleClass="little-medium"
 				label="#{managerBean.get('label.codigoPaises')}">
 				<p:menuitem value="#{managerBean.get('label.iso3161')}"
 					styleClass="itemPanelMenu little-font" disabled="true"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.paisiso')}');" />
+					action="#{bean.novaAba()}"
+					onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.paisiso')}');" />
 				<p:menuitem value="#{managerBean.get('label.fips')}"
 					styleClass="itemPanelMenu little-font" disabled="true"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.paisfips')}');" />
+					action="#{bean.novaAba()}"
+					onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigopaises.paisfips')}');" />
 			</p:submenu>
 			<p:submenu styleClass="little-medium"
 				label="#{managerBean.get('label.codigoTelefonico')}">
 				<p:menuitem value="#{managerBean.get('label.municipios')}"
 					styleClass="itemPanelMenu little-font" disabled="true"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.codigotelefonicomunicipio')}');" />
+					action="#{bean.novaAba()}"
+					onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.codigotelefonicomunicipio')}');" />
 				<p:menuitem value="#{managerBean.get('label.paises')}"
 					styleClass="itemPanelMenu little-font" disabled="true"
-					action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.codigotelefonicopais')}');" />
+					action="#{bean.novaAba()}"
+					onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.codigotelefonico.codigotelefonicopais')}');" />
 			</p:submenu>
-			<p:menuitem
-				value="#{managerBean.get('label.linguas')}"
+			<p:menuitem value="#{managerBean.get('label.linguas')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.lingua')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.moedas')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.lingua')}');" />
+			<p:menuitem value="#{managerBean.get('label.moedas')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.paisMoeda')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.paises')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.paisMoeda')}');" />
+			<p:menuitem value="#{managerBean.get('label.paises')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.pais')}');" />
-			<p:menuitem
-				value="#{managerBean.get('label.paisesBacen')}"
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.pais')}');" />
+			<p:menuitem value="#{managerBean.get('label.paisesBacen')}"
 				styleClass="itemPanelMenu little-font" disabled="true"
-				action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.paisbacen')}');" />
+				action="#{bean.novaAba()}"
+				onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.paises.paisbacen')}');" />
 		</p:submenu>
-		
+
 		<p:menuitem value="#{managerBean.get('label.regioes')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.regiao')}');" />
-		<p:menuitem
-			value="#{managerBean.get('label.tiposLogradouro')}"
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.regiao')}');" />
+		<p:menuitem value="#{managerBean.get('label.tiposLogradouro')}"
 			styleClass="itemPanelMenu little-font" disabled="true"
-			action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.tipologradouro')}');" />
+			action="#{bean.novaAba()}"
+			onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.regioes.tipologradouro')}');" />
 
 	</p:submenu>
 	<p:menuitem value="#{managerBean.get('label.transportadoras')}"
-		styleClass="itemPanelMenu little-font" disabled="true" 
-		action="#{bean.novaAba()}" onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.tipotransportadora')}');" />
+		styleClass="itemPanelMenu little-font" disabled="true"
+		action="#{bean.novaAba()}"
+		onclick="abrirNovaAba('#{managerBean.get('link.cadastros.cadastros.tipotransportadora')}');" />
 
 
 </ui:composition>

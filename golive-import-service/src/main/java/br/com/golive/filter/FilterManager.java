@@ -49,12 +49,16 @@ public class FilterManager<T> {
 						switch (filtro.getGenericType().getSimpleName()) {
 						case "Long":
 							retirarLongForaDoParametro(conteudo, temp, filtro, anntotation);
+							break;
 						case "String":
 							retirarStringForaDoParametro(conteudo, temp, filtro, anntotation);
+							break;
 						case "Date":
 							retirarDatasForaDoParametro(conteudo, temp, filtro, anntotation);
+							break;
 						case "Double":
 							retirarDoubleForaDoParametro(conteudo, temp, filtro, anntotation);
+							break;
 						}
 					}
 				}
