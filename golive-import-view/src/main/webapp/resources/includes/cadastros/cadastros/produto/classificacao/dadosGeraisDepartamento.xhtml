@@ -42,10 +42,9 @@
 			<h:outputText id="departamentoNomeOutputText"
 				value="#{managerBean.get('label.cadastroDepartamento.departamentoProduto')}"
 				styleClass="singleLine" />
-			<p:inputText id="departamentoNomeInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}"
-				disabled="false" style="width: 90%" value="#{pojo.departamento}" />
-
-
+			<p:inputText id="departamentoNomeInputText" 
+				disabled="false" style="width: 90%" value="#{pojo.departamento}"
+				required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}" />
 
 			<h:outputText id="ultimaAlteracaoOutputText"
 				value="#{managerBean.get('label.cadastroDepartamento.ultimaAlteracao')}"

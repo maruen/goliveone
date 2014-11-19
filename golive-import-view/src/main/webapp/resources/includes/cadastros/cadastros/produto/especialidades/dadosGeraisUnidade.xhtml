@@ -38,7 +38,7 @@
 
 			<h:outputText id="codigoNomeOutputText"
 				value="#{managerBean.get('label.cadastroUnidade.codigo')}" />
-			<p:inputText id="codigoNomeInputText" required="true"
+			<p:inputText id="codigoNomeInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}"
 				disabled="false" style="width: 90%" value="#{pojo.abreviacao}" maxlength="3" />
 			<p:spacer />
 			<p:spacer />
@@ -53,7 +53,7 @@
 			<h:outputText
 				value="#{managerBean.get('label.cadastroUnidade.descricao')}"
 				id="descricaoOutputText" />
-			<p:inputText id="descricaoInputText" required="true" disabled="false"
+			<p:inputText id="descricaoInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}" disabled="false"
 				style="width: 500%" value="#{pojo.unidade}" maxlength="45"/>
 		</h:panelGrid>
 

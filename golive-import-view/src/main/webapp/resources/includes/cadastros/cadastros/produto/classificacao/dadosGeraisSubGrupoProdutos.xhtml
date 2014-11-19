@@ -31,9 +31,9 @@
 
 			<h:outputText id="descricaoNomeOutputText"
 				value="#{managerBean.get('label.cadastroSubGrupoProduto.descricao')}" />
-			<p:inputText id="descricaoNomeInputText" style="width: 98%" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}"
-				value="#{pojo.subGrupoProduto}" />
-
+			<p:inputText id="descricaoNomeInputText" style="width: 98%"
+				value="#{pojo.subGrupoProduto}"
+				required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}" />
 			<p:spacer />
 
 			<h:outputText id="dadosGeraisSubGrupoProdutoDataInclusaoOutputText"
