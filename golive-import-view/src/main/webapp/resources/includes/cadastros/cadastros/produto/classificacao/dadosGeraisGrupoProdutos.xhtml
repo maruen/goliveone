@@ -29,7 +29,7 @@
 
 			<h:outputText id="descricaoNomeOutputText"
 				value="#{managerBean.get('label.cadastroGrupoProdutos.descricao')}" />
-			<p:inputText id="descricaoNomeInputText" required="true"
+			<p:inputText id="descricaoNomeInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}"
 				disabled="false" style="width: 98%" value="#{pojo.grupoDeProduto}" />
 
 			<p:spacer />

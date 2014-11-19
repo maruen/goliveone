@@ -73,7 +73,8 @@
 
 				<p:column styleClass="percentual-10">
 					<p:inputText id="codCorInputText" style="width: 125px;"
-						value="#{pojo.corCodigo}" maxlength="15"/>
+						value="#{pojo.corCodigo}" maxlength="15"
+						required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}"/>
 				</p:column>
 
 				<p:column styleClass="percentual-12">
@@ -83,7 +84,8 @@
 
 				<p:column styleClass="percentual-68">
 					<p:inputText id="colecaoDescricaoInputText"
-						value="#{pojo.corDescricao}" style="width: 87%" maxlength="45" />
+						value="#{pojo.corDescricao}" style="width: 87%" maxlength="45"
+						required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}" />
 				</p:column>
 
 
