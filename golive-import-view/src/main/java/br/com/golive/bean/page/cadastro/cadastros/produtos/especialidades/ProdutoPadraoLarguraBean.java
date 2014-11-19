@@ -58,7 +58,7 @@ public class ProdutoPadraoLarguraBean extends CadastroGenericBean<ProdutoPadraoL
 	}
 
 	private void obterUnidades() {
-		setUnidades(unidadeService.obterLista());
+		unidades = unidadeService.obterLista();
 	}
 
 	@Override
@@ -131,11 +131,11 @@ public class ProdutoPadraoLarguraBean extends CadastroGenericBean<ProdutoPadraoL
 	public void editarRegistro() {
 		super.editarRegistro();
 		if (registro != null) {
+			obterUnidades();
 			componentCadastroProdutoEspecificidade.carregarCoresPorColecoes(registro.getColecaoSelected(), false);
 			componentCadastroProdutoEspecificidade.carregarColecoesPorSubGrupo(registro.getSubGrupoProdutoSelected(), false);
 			componentCadastroProdutoClassificacao.carregarGrupoProdutoPorDepartamento(registro.getDepartamentoSelected(), false);
 			componentCadastroProdutoClassificacao.carregarSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected(), false);
-			obterUnidades();
 		}
 	}
 
