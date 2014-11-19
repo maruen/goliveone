@@ -187,7 +187,7 @@ public class ProdutoPadraoLarguraFilter extends CadastroGenericFilterBean<Produt
 	@Filter(name = "CorCodigo", label = "label.cadastroColecoes.codColecao", path = "corProdutoSelected")
 	@EntityClass(classe = CorProdutoModel.class)
 	private StringFilter filtroCorCodigo;
-	
+
 	@Inject
 	@FilterInjected
 	@Filter(label = "label.id", name = "id", path = "unidadeSelected")
@@ -217,7 +217,6 @@ public class ProdutoPadraoLarguraFilter extends CadastroGenericFilterBean<Produt
 	@Filter(name = "Abreviacao", label = "label.cadastroPadroesLargura.codUnid", path = "unidadeSelected")
 	@EntityClass(classe = UnidadeModel.class)
 	private StringFilter filtroAbreviacaoUnidade;
-
 
 	public LongFilter getFiltroId() {
 		return filtroId;

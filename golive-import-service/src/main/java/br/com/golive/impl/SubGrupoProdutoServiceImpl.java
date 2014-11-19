@@ -56,7 +56,7 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 
 	@Override
 	public List<SubGrupoProdutoModel> obterLista() {
-		return subGrupoProdutoJPA.findAll();
+		return subGrupoProdutoJPA.findAllWithoutLazy("grupoProdutoSelected", "departamentoSelected");
 	}
 
 	@Override

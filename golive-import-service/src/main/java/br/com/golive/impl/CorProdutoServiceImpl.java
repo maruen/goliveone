@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
-import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.entity.especialidades.repository.CorProdutoJPA;
@@ -30,9 +29,6 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 
 	@Inject
 	private Logger logger;
-
-	@Inject
-	private AuditoriaJPA auditoriaJPA;
 
 	@Override
 	@CrudOperation(type = Operation.INSERT)
@@ -57,12 +53,7 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 
 	@Override
 	public List<CorProdutoModel> obterLista() {
-		return corProdutoJPA.findAll();
-	}
-
-	@Override
-	public List<CorProdutoModel> listarPorFiltro(final String... args) {
-		return corProdutoJPA.obterLista();
+		return corProdutoJPA.findAllWithoutLazy("subGrupoProdutoSelected", "grupoProdutoSelected", "departamentoSelected", "colecaoSelected");
 	}
 
 	@Override

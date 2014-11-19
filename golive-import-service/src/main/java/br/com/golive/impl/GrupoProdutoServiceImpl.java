@@ -40,7 +40,7 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	@Override
 	public GrupoProdutosModel obterGrupoProdutoAtual(final Model model) {
 		logger.info("Obtendo objeto atual de grupos de produto");
-		return grupoProdutoJPA.findByIdWithLazys(model.getId(), "auditoriaLogs", "departamentoModel");
+		return grupoProdutoJPA.findByIdWithLazys(model.getId(), "departamentoModel");
 	}
 
 	@Override

@@ -11,8 +11,6 @@ import br.com.golive.impl.ColecoesServiceImpl;
 @Local(value = ColecoesServiceImpl.class)
 public interface ColecoesService extends Service<ColecoesModel> {
 
-	public List<ColecoesModel> obterListaWithLazys(final String... lazyFields);
-
 	public List<ColecoesModel> obterListaPorSubGrupo(SubGrupoProdutoModel model);
 
 }

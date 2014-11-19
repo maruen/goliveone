@@ -25,21 +25,21 @@ public class ProdutoPadraoLarguraServiceImpl implements ProdutoPadraoLarguraServ
 
 	@Inject
 	private Logger logger;
-	
+
 	@Inject
 	private ProdutoPadraoLarguraJPA produtoPadraoLarguraJPA;
-	
+
 	@Override
 	public List<ProdutoPadraoLarguraModel> obterLista() {
 		logger.info("Obtendo Lista de ProdutoPadraoLarguraModel");
-		return produtoPadraoLarguraJPA.findAllWithoutLazy("departamentoSelected", "grupoProdutoSelected", "subGrupoProdutoSelected", "colecaoSelected", "corProdutoSelected");
+		return produtoPadraoLarguraJPA.findAllWithoutLazy("departamentoSelected", "grupoProdutoSelected", "subGrupoProdutoSelected", "colecaoSelected", "corProdutoSelected", "unidadeSelected");
 	}
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	@CrudOperation(type = Operation.INSERT)
 	@Interceptors(LogAuditoriaInterceptor.class)
-	public void salvar(ProdutoPadraoLarguraModel model) {
+	public void salvar(final ProdutoPadraoLarguraModel model) {
 		logger.info("Salvando ProdutoPadraoLargura = {}", model);
 		produtoPadraoLarguraJPA.refreshModel(model.getDepartamentoSelected());
 		produtoPadraoLarguraJPA.refreshModel(model.getGrupoProdutoSelected());
@@ -53,7 +53,7 @@ public class ProdutoPadraoLarguraServiceImpl implements ProdutoPadraoLarguraServ
 	@CrudOperation(type = Operation.UPDATE)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	@Interceptors(LogAuditoriaInterceptor.class)
-	public void atualizar(ProdutoPadraoLarguraModel model) {
+	public void atualizar(final ProdutoPadraoLarguraModel model) {
 		logger.info("Atualizando ProdutoPadraoLargura = {}", model);
 		produtoPadraoLarguraJPA.update(model);
 	}
@@ -62,13 +62,13 @@ public class ProdutoPadraoLarguraServiceImpl implements ProdutoPadraoLarguraServ
 	@CrudOperation(type = Operation.DELETE)
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	@Interceptors(LogAuditoriaInterceptor.class)
-	public void remover(ProdutoPadraoLarguraModel model) {
+	public void remover(final ProdutoPadraoLarguraModel model) {
 		logger.info("Removendo ProdutoPadraoLargura = {}", model);
 		produtoPadraoLarguraJPA.delete(model);
 	}
-	
+
 	@Override
-	public void refresh(ProdutoPadraoLarguraModel model) {
+	public void refresh(final ProdutoPadraoLarguraModel model) {
 		logger.info("Refresh ProdutoPadraoLargura = {}", model);
 		produtoPadraoLarguraJPA.refresh(model);
 	}

@@ -32,7 +32,7 @@ public class ProdutoPadraoEspessuraServiceImpl implements ProdutoPadraoEspessura
 	@Override
 	public List<ProdutoPadraoEspessuraModel> obterLista() {
 		logger.info("Obtendo Lista de ProdutoPadraoEspessuraModel");
-		return produtoPadraoEspessuraJPA.findAllWithoutLazy("departamentoSelected", "grupoProdutoSelected", "subGrupoProdutoSelected", "colecaoSelected", "corProdutoSelected");
+		return produtoPadraoEspessuraJPA.findAllWithoutLazy("departamentoSelected", "grupoProdutoSelected", "subGrupoProdutoSelected", "colecaoSelected", "corProdutoSelected", "unidadeSelected");
 	}
 
 	@Override

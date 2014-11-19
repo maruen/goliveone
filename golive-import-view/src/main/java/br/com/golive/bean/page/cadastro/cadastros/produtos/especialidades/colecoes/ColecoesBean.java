@@ -42,7 +42,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(colecoesService.obterListaWithLazys("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected"));
+		super.init(colecoesService.obterLista());
 		componentCadastroProdutoClassificacao.setDelegate(this);
 	}
 

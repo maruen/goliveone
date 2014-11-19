@@ -50,7 +50,7 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(corProdutoService.listarPorFiltro());
+		super.init(corProdutoService.obterLista());
 		componentCadastroProdutoClassificacao.setDelegate(this);
 		componentCadastroProdutoEspecificidade.setDelegate(this);
 	}
