@@ -145,6 +145,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 			fluxo = getFluxoListagem();
 			definirPadraoFiltragem();
 			orderBy = null;
+			filtrar();
 		}
 	}
 
