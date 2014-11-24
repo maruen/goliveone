@@ -6,11 +6,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.service.DepartamentoService;
 
@@ -22,9 +24,13 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	@Getter
+	@Setter
 	private Logger logger;
 
 	@Inject
+	@Getter
+	@Setter
 	private DepartamentoFilter filtros;
 
 	@EJB
@@ -74,11 +80,6 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 		departamentoService.remover(registro);
 	}
 
-	@Override
-	public Logger getLogger() {
-		return logger;
-	}
-
 	public DepartamentoService getDepartamentoService() {
 		return departamentoService;
 	}
@@ -91,11 +92,6 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	public void serviceRefresh(final DepartamentoModel model) {
 		departamentoService.refresh(model);
 
-	}
-
-	@Override
-	public CadastroGenericFilterBean<DepartamentoModel> getFiltros() {
-		return filtros;
 	}
 
 }

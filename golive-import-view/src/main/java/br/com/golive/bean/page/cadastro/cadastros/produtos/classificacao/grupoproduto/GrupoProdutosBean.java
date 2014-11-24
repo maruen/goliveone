@@ -1,5 +1,6 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao.grupoproduto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,11 +9,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.service.DepartamentoService;
@@ -26,9 +29,13 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	private static final long serialVersionUID = 7638327964310698925L;
 
 	@Inject
+	@Getter
+	@Setter
 	private Logger logger;
 
 	@Inject
+	@Getter
+	@Setter
 	private GrupoProdutoFilter filtros;
 
 	@EJB
@@ -37,7 +44,13 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 	@EJB
 	private GrupoProdutoService grupoProdutoService;
 
+	@Getter
+	@Setter
 	private List<DepartamentoModel> departamentos;
+
+	@Getter
+	@Setter
+	private List<DepartamentoModel> departamentosFiltrados;
 
 	@Override
 	@PostConstruct
@@ -64,6 +77,9 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		departamentos = departamentoService.obterLista();
 		if (departamentos.isEmpty()) {
 			listaVaziaMessage("msg.lista.departamento.vazia");
+		} else {
+			departamentosFiltrados = new ArrayList<DepartamentoModel>();
+			departamentosFiltrados.addAll(departamentos);
 		}
 	}
 
@@ -101,26 +117,9 @@ public class GrupoProdutosBean extends CadastroGenericBean<GrupoProdutosModel> {
 		grupoProdutoService.remover(registro);
 	}
 
-	public List<DepartamentoModel> getDepartamentos() {
-		return departamentos;
-	}
-
-	public void setDepartamentos(final List<DepartamentoModel> departamentos) {
-		this.departamentos = departamentos;
-	}
-
 	@Override
 	public void serviceRefresh(final GrupoProdutosModel model) {
 		grupoProdutoService.refresh(model);
 	}
 
-	@Override
-	public CadastroGenericFilterBean<GrupoProdutosModel> getFiltros() {
-		return filtros;
-	}
-
-	@Override
-	public Logger getLogger() {
-		return logger;
-	}
 }

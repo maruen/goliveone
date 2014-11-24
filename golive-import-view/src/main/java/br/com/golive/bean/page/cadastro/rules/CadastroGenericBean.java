@@ -27,6 +27,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.Table;
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
@@ -81,18 +83,26 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	@Inject
 	@GeradorRelatorioInjected
+	@Getter
+	@Setter
 	protected GeradorRelatorio<T> relatorios;
 
 	@Inject
 	@FilterInjected
+	@Getter
+	@Setter
 	private FilterManager<T> filterManager;
 
 	@Inject
 	@ListGenericaInjected
+	@Getter
+	@Setter
 	protected List<T> filtrados;
 
 	@Inject
 	@ListGenericaInjected
+	@Getter
+	@Setter
 	protected List<T> temp;
 
 	@EJB
@@ -101,15 +111,40 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	@EJB
 	protected AuditoriaService auditoriaService;
 
+	@Getter
+	@Setter
 	private boolean selecionarTodos;
+
+	@Getter
+	@Setter
 	private List<ColunaPerfil> colunasPagina;
 
+	@Getter
+	@Setter
 	private OrderByDynamicColumn orderBy;
+
+	@Getter
+	@Setter
 	protected Long widthColunasDinamicas;
+
+	@Getter
+	@Setter
 	protected Fluxo fluxo = Fluxo.LISTAGEM;
+
+	@Getter
+	@Setter
 	protected List<T> conteudo;
+
+	@Getter
+	@Setter
 	protected T registro;
+
+	@Getter
+	@Setter
 	protected Class<T> genericClazzInstance;
+
+	@Getter
+	@Setter
 	protected List<ColunaPerfil> configuracaoPerfil;
 
 	public abstract Logger getLogger();
@@ -297,6 +332,10 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		JSFUtils.infoMessage(getLabels().getField("title.msg.inserido.sucesso"), getLabels().getField("msg.registro.excluido"));
 	}
 
+	private GoliveOneProperties getLabels() {
+		return usuario.getLabels();
+	}
+
 	protected void listaVaziaMessage(final String label) {
 		JSFUtils.warnMessage(getLabels().getField("label.cadastroSegmentos.msnNaoHaRegistros"), getLabels().getField(label));
 	}
@@ -364,7 +403,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	public void filtrar() {
-		getFilterManager().filtrarLista(conteudo, filtrados, getFiltros().getMapFilters());
+		filterManager.filtrarLista(conteudo, filtrados, getFiltros().getMapFilters());
 		orderBy = null;
 	}
 
@@ -532,8 +571,8 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 		genericClazzInstance = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
 		relatorios.setClazz(genericClazzInstance);
-		if (getFilterManager() != null) {
-			getFilterManager().setInstance(getFiltros());
+		if (filterManager != null) {
+			filterManager.setInstance(getFiltros());
 		}
 	}
 
@@ -698,118 +737,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 				colunasPagina.add(coluna);
 			}
 		}
-	}
-
-	public GeradorRelatorio<T> getRelatorios() {
-		return relatorios;
-	}
-
-	public void setRelatorios(final GeradorRelatorio<T> relatorios) {
-		this.relatorios = relatorios;
-	}
-
-	public Fluxo getFluxo() {
-		return fluxo;
-	}
-
-	public void setFluxo(final Fluxo fluxo) {
-		this.fluxo = fluxo;
-	}
-
-	public List<T> getConteudo() {
-		return conteudo;
-	}
-
-	public void setConteudo(final List<T> conteudo) {
-		this.conteudo = conteudo;
-	}
-
-	public List<T> getFiltrados() {
-		return filtrados;
-	}
-
-	public void setFiltrados(final List<T> filtrados) {
-		this.filtrados = filtrados;
-	}
-
-	public List<T> getTemp() {
-		return temp;
-	}
-
-	public void setTemp(final List<T> temp) {
-		this.temp = temp;
-	}
-
-	public T getRegistro() {
-		return registro;
-	}
-
-	public void setRegistro(final T registro) {
-		this.registro = registro;
-	}
-
-	public Class<T> getGenericClazzInstance() {
-		return genericClazzInstance;
-	}
-
-	public void setGenericClazzInstance(final Class<T> genericClazzInstance) {
-		this.genericClazzInstance = genericClazzInstance;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public GoliveOneProperties getLabels() {
-		return usuario.getLabels();
-	}
-
-	public List<ColunaPerfil> getConfiguracaoPerfil() {
-		return configuracaoPerfil;
-	}
-
-	public void setConfiguracaoPerfil(final List<ColunaPerfil> configuracaoPerfil) {
-		this.configuracaoPerfil = configuracaoPerfil;
-	}
-
-	public boolean isSelecionarTodos() {
-		return selecionarTodos;
-	}
-
-	public void setSelecionarTodos(final boolean selecionarTodos) {
-		this.selecionarTodos = selecionarTodos;
-	}
-
-	public List<ColunaPerfil> getColunasPagina() {
-		return colunasPagina;
-	}
-
-	public void setColunasPagina(final List<ColunaPerfil> colunasPagina) {
-		this.colunasPagina = colunasPagina;
-	}
-
-	public Long getWidthColunasDinamicas() {
-		return widthColunasDinamicas;
-	}
-
-	public void setWidthColunasDinamicas(final Long widthColunasDinamicas) {
-		this.widthColunasDinamicas = widthColunasDinamicas;
-	}
-
-	public FilterManager<T> getFilterManager() {
-		return filterManager;
-	}
-
-	public void setFilterManager(final FilterManager<T> filterManager) {
-		this.filterManager = filterManager;
-	}
-
-	public OrderByDynamicColumn getOrderBy() {
-		return orderBy;
-	}
-
-	public void setOrderBy(final OrderByDynamicColumn orderBy) {
-		this.orderBy = orderBy;
 	}
 
 }

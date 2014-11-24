@@ -7,13 +7,13 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.generics.CadastroProdutoClassificacao;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.service.ColecoesService;
 
@@ -25,19 +25,22 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	@Getter
+	@Setter
 	private CadastroProdutoClassificacao componentCadastroProdutoClassificacao;
 
 	@Inject
+	@Getter
+	@Setter
 	private ColecoesProdutoFilter filtros;
 
 	@Inject
+	@Getter
+	@Setter
 	private Logger logger;
 
 	@EJB
 	private ColecoesService colecoesService;
-
-	@Getter
-	private final boolean especificidades = false;
 
 	@Override
 	@PostConstruct
@@ -121,31 +124,9 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	}
 
 	@Override
-	public Logger getLogger() {
-		return logger;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
-	}
-
-	@Override
 	public void serviceRefresh(final ColecoesModel model) {
 		colecoesService.refresh(model);
 
-	}
-
-	@Override
-	public CadastroGenericFilterBean<ColecoesModel> getFiltros() {
-		return filtros;
-	}
-
-	public CadastroProdutoClassificacao getComponentCadastroProdutoClassificacao() {
-		return componentCadastroProdutoClassificacao;
-	}
-
-	public void setComponentCadastroProdutoClassificacao(final CadastroProdutoClassificacao componentCadastroProdutoClassificacao) {
-		this.componentCadastroProdutoClassificacao = componentCadastroProdutoClassificacao;
 	}
 
 }

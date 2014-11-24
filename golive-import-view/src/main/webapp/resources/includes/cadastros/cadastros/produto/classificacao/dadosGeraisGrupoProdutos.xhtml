@@ -74,7 +74,7 @@
 		appendToBody="true" height="100%" width="55%">
 
 		<p:dataTable id="departamentoDatatableId" selectionMode="single"
-			selection="#{pojo.departamentoModel}" var="departamento"
+			selection="#{pojo.departamentoModel}" var="departamento" filteredValue="#{bean.departamentosFiltrados}"
 			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 			rowKey="#{departamento.id}" value="#{bean.departamentos}">
 

@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 import org.slf4j.Logger;
 
@@ -16,7 +17,6 @@ import br.com.golive.annotation.Label;
 import br.com.golive.bean.generics.CadastroProdutoClassificacao;
 import br.com.golive.bean.generics.CadastroProdutoEspecificidade;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.service.CorProdutoService;
 
@@ -30,22 +30,27 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	@Getter
+	@Setter
 	private Logger logger;
 
 	@Inject
+	@Getter
+	@Setter
 	private CorProdutoFilter filtros;
 
 	@Inject
+	@Getter
+	@Setter
 	private CadastroProdutoClassificacao componentCadastroProdutoClassificacao;
 
 	@Inject
+	@Getter
+	@Setter
 	private CadastroProdutoEspecificidade componentCadastroProdutoEspecificidade;
 
 	@EJB
 	private CorProdutoService corProdutoService;
-
-	@Getter
-	private final boolean especificidades = true;
 
 	@Override
 	@PostConstruct
@@ -140,38 +145,9 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	}
 
 	@Override
-	public Logger getLogger() {
-		return logger;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
-	}
-
-	@Override
 	public void serviceRefresh(final CorProdutoModel model) {
 		corProdutoService.refresh(model);
 
 	}
 
-	@Override
-	public CadastroGenericFilterBean<CorProdutoModel> getFiltros() {
-		return filtros;
-	}
-
-	public CadastroProdutoClassificacao getComponentCadastroProdutoClassificacao() {
-		return componentCadastroProdutoClassificacao;
-	}
-
-	public void setComponentCadastroProdutoClassificacao(final CadastroProdutoClassificacao componentCadastroProdutoClassificacao) {
-		this.componentCadastroProdutoClassificacao = componentCadastroProdutoClassificacao;
-	}
-
-	public CadastroProdutoEspecificidade getComponentCadastroProdutoEspecificidade() {
-		return componentCadastroProdutoEspecificidade;
-	}
-
-	public void setComponentCadastroProdutoEspecificidade(final CadastroProdutoEspecificidade componentCadastroProdutoEspecificidade) {
-		this.componentCadastroProdutoEspecificidade = componentCadastroProdutoEspecificidade;
-	}
 }

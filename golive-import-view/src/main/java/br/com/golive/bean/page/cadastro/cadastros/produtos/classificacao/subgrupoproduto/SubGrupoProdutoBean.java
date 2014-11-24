@@ -8,6 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
@@ -27,9 +30,13 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	@Getter
+	@Setter
 	private Logger logger;
 
 	@Inject
+	@Getter
+	@Setter
 	private SubGrupoProdutoFilter filtros;
 
 	@EJB
@@ -39,8 +46,12 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	@EJB
 	private GrupoProdutoService grupoProdutoService;
 
+	@Getter
+	@Setter
 	private List<DepartamentoModel> departamentos;
 
+	@Getter
+	@Setter
 	private List<GrupoProdutosModel> grupoProdutoList;
 
 	@Override
@@ -138,40 +149,6 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	@Override
 	public void serviceRemove(final SubGrupoProdutoModel registro) {
 		subGrupoProdutoService.remover(registro);
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
-	}
-
-	public List<DepartamentoModel> getDepartamentos() {
-		return departamentos;
-	}
-
-	public void setDepartamentos(final List<DepartamentoModel> departamentos) {
-		this.departamentos = departamentos;
-	}
-
-	public List<GrupoProdutosModel> getGrupoProdutoList() {
-		return grupoProdutoList;
-	}
-
-	public void setGrupoProdutoList(final List<GrupoProdutosModel> grupoProdutoList) {
-		this.grupoProdutoList = grupoProdutoList;
-	}
-
-	@Override
-	public SubGrupoProdutoFilter getFiltros() {
-		return filtros;
-	}
-
-	public void setFiltros(final SubGrupoProdutoFilter filtros) {
-		this.filtros = filtros;
-	}
-
-	@Override
-	public Logger getLogger() {
-		return logger;
 	}
 
 }

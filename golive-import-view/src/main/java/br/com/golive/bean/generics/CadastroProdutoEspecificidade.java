@@ -71,6 +71,7 @@ public class CadastroProdutoEspecificidade extends GenericFragmentBean implement
 			if (colecoesFiltrados == null) {
 				colecoesFiltrados = new ArrayList<ColecoesModel>();
 			}
+			removeAll(colecoesFiltrados);
 			colecoesFiltrados.addAll(colecoes);
 		}
 	}
@@ -85,6 +86,7 @@ public class CadastroProdutoEspecificidade extends GenericFragmentBean implement
 			if (coresFiltrados == null) {
 				coresFiltrados = new ArrayList<CorProdutoModel>();
 			}
+			removeAll(coresFiltrados);
 			coresFiltrados.addAll(cores);
 		}
 	}

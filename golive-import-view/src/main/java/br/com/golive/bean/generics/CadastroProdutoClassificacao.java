@@ -89,6 +89,7 @@ public class CadastroProdutoClassificacao extends GenericFragmentBean implements
 			if (departamentosFiltrados == null) {
 				departamentosFiltrados = new ArrayList<DepartamentoModel>();
 			}
+			removeAll(departamentosFiltrados);
 			departamentosFiltrados.addAll(departamentos);
 		}
 	}
@@ -104,6 +105,7 @@ public class CadastroProdutoClassificacao extends GenericFragmentBean implements
 			if (gruposFiltrados == null) {
 				gruposFiltrados = new ArrayList<GrupoProdutosModel>();
 			}
+			removeAll(gruposFiltrados);
 			gruposFiltrados.addAll(grupos);
 		}
 	}
@@ -118,6 +120,7 @@ public class CadastroProdutoClassificacao extends GenericFragmentBean implements
 			if (subGruposFiltrados == null) {
 				subGruposFiltrados = new ArrayList<SubGrupoProdutoModel>();
 			}
+			removeAll(subGruposFiltrados);
 			subGruposFiltrados.addAll(subGrupos);
 		}
 		validar();
