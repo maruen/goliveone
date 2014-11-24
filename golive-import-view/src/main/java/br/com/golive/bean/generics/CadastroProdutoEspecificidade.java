@@ -80,7 +80,7 @@ public class CadastroProdutoEspecificidade extends GenericFragmentBean implement
 		infoList(CorProdutoModel.class.getSimpleName());
 		cores = corProdutoService.obterPorColecao(colecoesModel);
 		if (isEmptyOrNull(cores)) {
-			listaVaziaMessage("msg.lista.colecoes.vazia");
+			listaVaziaMessage("msg.lista.cores.vazia");
 			removeAll(coresFiltrados);
 		} else {
 			if (coresFiltrados == null) {

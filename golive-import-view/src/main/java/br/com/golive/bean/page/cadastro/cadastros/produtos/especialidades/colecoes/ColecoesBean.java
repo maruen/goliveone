@@ -70,6 +70,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		if (registro != null) {
 			componentCadastroProdutoClassificacao.carregarGrupoProdutoPorDepartamento(registro.getDepartamentoSelected(), false);
 			componentCadastroProdutoClassificacao.carregarSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected(), false);
+			serviceRefresh(registro);
 		}
 	}
 
