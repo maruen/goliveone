@@ -46,9 +46,8 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 	private AuditoriaItemJPA auditoriaItemJPA;
 
 	private static String EMPTY_STRING = "";
-	
+
 	private static String SERIAL_VERSION = "serialVersion";
-	
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -91,7 +90,7 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		auditoriaModel.setDataAlteracao(Calendar.getInstance());
 		try {
 			auditoriaModel.setFormularioNome(model.getClass().getAnnotation(Label.class).name());
-		} catch(Exception e) {
+		} catch (final Exception e) {
 			auditoriaModel.setFormularioNome("Formulário não especificado");
 		}
 		auditoriaModel.setAcaoUsuario(INSERT.getDescricao());
@@ -110,7 +109,6 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		AuditoriaModel auditoriaModel;
 
 		auditoriaItemList = new ArrayList<AuditoriaItemModel>();
-		
 
 		auditoriaJPA.getEntityManager().detach(model);
 		final Criteria crit = auditoriaJPA.createCriteria(model.getClass());
@@ -152,7 +150,7 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		auditoriaModel.setDataAlteracao(Calendar.getInstance());
 		try {
 			auditoriaModel.setFormularioNome(model.getClass().getAnnotation(Label.class).name());
-		} catch(Exception e) {
+		} catch (final Exception e) {
 			auditoriaModel.setFormularioNome("Formulário não especificado");
 		}
 		auditoriaModel.setAcaoUsuario(UPDATE.getDescricao());
@@ -173,7 +171,7 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		auditoriaModel.setDataAlteracao(Calendar.getInstance());
 		try {
 			auditoriaModel.setFormularioNome(model.getClass().getAnnotation(Label.class).name());
-		} catch(Exception e) {
+		} catch (final Exception e) {
 			auditoriaModel.setFormularioNome("Formulário não especificado");
 		}
 		auditoriaModel.setAcaoUsuario(DELETE.getDescricao());
@@ -187,23 +185,23 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		logger.info("Buscando logs de auditoria = {}", model);
 		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
 	}
-	
+
 	private boolean skipField(final Field field) {
-		
-		if ( field.getName().contains(SERIAL_VERSION)  ) {
+
+		if (field.getName().contains(SERIAL_VERSION)) {
 			return true;
 		}
-		
-		if ( field.isAnnotationPresent(Transient.class)) {
-			 return true;
-	    }
-		 
-		if ( (!field.isAnnotationPresent(Column.class) && !field.isAnnotationPresent(JoinTable.class)) ) { 
-			 return true;
-		
-		} 
+
+		if (field.isAnnotationPresent(Transient.class)) {
+			return true;
+		}
+
+		if ((!field.isAnnotationPresent(Column.class) && !field.isAnnotationPresent(JoinTable.class))) {
+			return true;
+
+		}
 		return false;
-	
+
 	}
-	
+
 }

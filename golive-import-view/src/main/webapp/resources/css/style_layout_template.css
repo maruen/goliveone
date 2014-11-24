@@ -116,7 +116,7 @@ html,body {
 }
 
 .gridHeaderData {
-	width: 25%;
+	width: 20%;
 	position: relative;
 	vertical-align: bottom;
 	text-align: center;
@@ -135,12 +135,8 @@ html,body {
 	margin-right: 10%;
 }
 
-.empresasHeaderGridNome {
-	
-}
-
-.empresasHeaderGridSelectOneMenu {
-	
+.botoesHeader{
+	width: 120px;
 }
 
 .panelLoading {

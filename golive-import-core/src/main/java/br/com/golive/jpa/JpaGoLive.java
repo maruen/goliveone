@@ -209,7 +209,7 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 			entityManager.merge(entity);
 			entityManager.remove(entity);
 		} catch (final Exception e) {
-			logger.error("Erro ao deletar");
+			logger.error("Erro ao deletar = {}", entity);
 			e.printStackTrace();
 		}
 	}
@@ -230,9 +230,9 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 			if (!entityManager.isJoinedToTransaction()) {
 				entityManager.joinTransaction();
 			}
-
 			entityManager.persist(entity);
 		} catch (final Exception e) {
+			logger.error("Erro ao salvar = {}", entity);
 			e.printStackTrace();
 		}
 	}

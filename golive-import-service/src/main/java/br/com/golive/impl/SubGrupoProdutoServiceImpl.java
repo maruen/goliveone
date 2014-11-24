@@ -80,12 +80,6 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 	}
 
 	@Override
-	public List<SubGrupoProdutoModel> obterSubGrupoProdutoPorGrupoId(final Long grupoId) {
-		logger.info("obterSubGrupoProdutoPorGrupoId");
-		return subGrupoProdutoJPA.obterListaPorGrupoId(grupoId);
-	}
-
-	@Override
 	public void refresh(final SubGrupoProdutoModel model) {
 		subGrupoProdutoJPA.refresh(model);
 

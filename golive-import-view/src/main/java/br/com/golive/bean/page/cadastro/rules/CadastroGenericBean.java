@@ -36,6 +36,7 @@ import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
+import br.com.golive.annotation.LogList;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.OrderColumnType;
@@ -311,8 +312,10 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		classesList.add(genericClazzInstance);
 
 		for (final Field field : genericClazzInstance.getDeclaredFields()) {
-			if (field.isAnnotationPresent(JoinTable.class)) {
-				classesList.add(field.getType());
+			if (!field.isAnnotationPresent(LogList.class)) {
+				if (field.isAnnotationPresent(JoinTable.class)) {
+					classesList.add(field.getType());
+				}
 			}
 		}
 
@@ -695,7 +698,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 				colunasPagina.add(coluna);
 			}
 		}
-		filtrar();
 	}
 
 	public GeradorRelatorio<T> getRelatorios() {

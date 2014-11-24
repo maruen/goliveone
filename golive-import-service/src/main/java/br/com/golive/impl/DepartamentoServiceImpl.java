@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
-import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.departamento.repositorio.DepartamentoJPA;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
@@ -29,9 +28,6 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 	@Inject
 	private Logger logger;
-
-	@Inject
-	private AuditoriaJPA auditoriaJPA;
 
 	@Override
 	@CrudOperation(type = Operation.INSERT)
@@ -52,6 +48,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 	@Override
 	public List<DepartamentoModel> obterLista() {
+		logger.info("Obtendo Lista de Departamento");
 		return departamentoJPA.obterDepartamentos();
 	}
 

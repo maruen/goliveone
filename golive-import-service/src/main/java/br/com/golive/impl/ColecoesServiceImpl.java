@@ -36,9 +36,6 @@ public class ColecoesServiceImpl implements ColecoesService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvar(final ColecoesModel colecoesModel) {
 		logger.info("Salvando ColecoesModel ={}", colecoesModel);
-		colecoesJPA.refreshModel(colecoesModel.getDepartamentoSelected());
-		colecoesJPA.refreshModel(colecoesModel.getGrupoProdutoSelected());
-		colecoesJPA.refreshModel(colecoesModel.getSubGrupoProdutoSelected());
 		colecoesJPA.save(colecoesModel);
 	}
 

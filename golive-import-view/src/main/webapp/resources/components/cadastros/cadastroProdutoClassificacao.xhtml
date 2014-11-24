@@ -33,7 +33,7 @@
 	<!-- DIALOG PESQUISA DEPARTAMENTO -->
 	<p:dialog id="dlgDepartamento" header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaDepartamento')}"  widgetVar="dlgDepartamento" modal="true" resizable="false" height="100%" width="55%">
 		<p:dataTable id="departamentoDatatableId" selectionMode="single" selection="#{cc.attrs.pojo.departamentoSelected}" rowKey="#{departamento.id}" var="departamento" value="#{cc.attrs.component.departamentos}"
-					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}" >
+					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}" filteredValue="#{cc.attrs.component.departamentosFiltrados}" >
 			
 			<p:ajax event="rowSelect"  oncomplete="PF('dlgDepartamento').hide();" 
 					update="#{cc.attrs.component.getUpdate(cc.attrs.departamentoUpdate)}"  
@@ -42,7 +42,7 @@
 			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.id')}"  styleClass="percentual-5 singleLine" filterBy="#{departamento.id}" filterMatchMode="exact">
 				<h:outputText value="#{departamento.id}" styleClass="floatRight" />
 			</p:column>
-			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.departamento')}" styleClass="percentual-20 singleLine" filterBy="#{departamento.departamento.toLowerCase()}" filterMatchMode="contains">
+			<p:column headerText="#{managerBean.get('label.cadastroSubGrupoProduto.departamento')}" styleClass="percentual-20 singleLine" filterBy="#{departamento.departamento}" filterMatchMode="contains">
 				<h:outputText value="#{departamento.departamento}" />
 			</p:column>
 		</p:dataTable>
@@ -51,7 +51,7 @@
 	<!-- DIALOG PESQUISA SUBGRUPO PRODUTOS -->
  	<p:dialog id="dlgGrupo" header="#{managerBean.get('label.cadastroSubGrupoProduto.pesquisaGrupoProdutos')}"  widgetVar="dlgGrupoProdutos" modal="true" resizable="false" height="100%" width="55%">
 		<p:dataTable id="grupoProdutosDatatableId" selectionMode="single" selection="#{cc.attrs.pojo.grupoProdutoSelected}" rowKey="#{grupoProduto.id}" var="grupoProduto" emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
-				     value="#{cc.attrs.component.grupos}"> 
+				     value="#{cc.attrs.component.grupos}" filteredValue="#{cc.attrs.component.gruposFiltrados}"> 
 			
 			<p:ajax event="rowSelect" listener="#{cc.attrs.component.carregarSubGrupoProdutoPorGrupo(cc.attrs.pojo.grupoProdutoSelected, true)}" 
 									update="#{cc.attrs.component.getUpdate(cc.attrs.grupoProdutoUpdate)}" oncomplete="PF('dlgGrupoProdutos').hide();"  />
@@ -69,7 +69,7 @@
 	<p:dialog id="dlgSubGrup" header="#{managerBean.get('label.cadastroColecoes.pesquisaSubGrupoProdutos')}"  widgetVar="dlgSubGrupProdutos" modal="true" resizable="false" height="100%" width="55%">
 
 		<p:dataTable id="subGrupoProdutosDatatableId" var="subGrupoProdutosDatatableVar" value="#{cc.attrs.component.subGrupos}" selectionMode="single" selection="#{cc.attrs.pojo.subGrupoProdutoSelected}" 
-					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"  rowKey="#{subGrupoProdutosDatatableVar.id}" >
+					 emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"  rowKey="#{subGrupoProdutosDatatableVar.id}" filteredValue="#{cc.attrs.component.subGruposFiltrados}">
 			 
 			 <c:choose>
 			 	<c:when test="#{cc.attrs.link}">
@@ -84,7 +84,7 @@
 			<p:column filterMatchMode="contains" filterBy="#{subGrupoProdutosDatatableVar.id}" headerText="#{managerBean.get('label.cadastroColecoes.id')}" styleClass="percentual-10 singleLine">
 				<h:outputText value="#{subGrupoProdutosDatatableVar.id}" styleClass="floatRight" />
 			</p:column>
-			<p:column filterBy="#{subGrupoProdutosDatatableVar.subGrupoProduto.toLowerCase()}" filterMatchMode="contains" headerText="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}" styleClass="percentual-20 singleLine">
+			<p:column filterBy="#{subGrupoProdutosDatatableVar.subGrupoProduto}" filterMatchMode="contains" headerText="#{managerBean.get('label.cadastroColecoes.subGrupoProdutos')}" styleClass="percentual-20 singleLine">
 				<h:outputText value="#{subGrupoProdutosDatatableVar.subGrupoProduto}" />
 			</p:column>
 		</p:dataTable>

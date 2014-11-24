@@ -15,6 +15,4 @@ public interface SubGrupoProdutoService extends Service<SubGrupoProdutoModel> {
 
 	public List<SubGrupoProdutoModel> obterSubGrupoProdutoPorGrupo(GrupoProdutosModel model);
 
-	public List<SubGrupoProdutoModel> obterSubGrupoProdutoPorGrupoId(Long grupoId);
-
 }

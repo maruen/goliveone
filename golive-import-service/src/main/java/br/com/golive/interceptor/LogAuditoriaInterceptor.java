@@ -18,6 +18,7 @@ import br.com.golive.entity.Model;
 import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.service.AuditoriaService;
+import br.com.golive.service.UsuarioBeanService;
 
 public class LogAuditoriaInterceptor {
 
@@ -27,36 +28,47 @@ public class LogAuditoriaInterceptor {
 	@EJB
 	private AuditoriaService auditoriaService;
 
+	@EJB
+	private UsuarioBeanService usuarioBeanService;
+
 	@Inject
 	@UsuarioLogadoInjected
 	private Usuario usuario;
 
 	@AroundInvoke
 	public Object interceptarCrud(final InvocationContext ctx) throws Exception {
-		logger.info("Verificando método interceptado, iniciando verificação da operação");
+		logger.info("Verificando metodo interceptado, iniciando verificação da operacao");
 		Object ret = null;
+
+		final Calendar logDate = Calendar.getInstance();
+
+		logger.info("Carregando Usuario para geracao de log");
+		final Usuario attached = usuarioBeanService.findById(usuario.getId());
 
 		final Object[] parameters = ctx.getParameters();
 		final Model model = (Model) parameters[0];
 
-		model.setDataAlteracao(Calendar.getInstance());
+		model.setDataAlteracao(logDate);
 		if (!model.hasId()) {
-			model.setDataInclusao(Calendar.getInstance());
+			model.setDataInclusao(logDate);
 		}
 
 		if (ctx.getMethod().isAnnotationPresent(CrudOperation.class)) {
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(DELETE)) {
-				auditoriaService.registrarDelete(model, usuario);
+				logger.info("Interceptando Operacao de exclusao = {} ", model);
+				auditoriaService.registrarDelete(model, attached);
 			}
 
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(UPDATE)) {
-				auditoriaService.registrarUpdate(model, usuario);
+				logger.info("Interceptando Operacao de atualizacao = {} ", model);
+				auditoriaService.registrarUpdate(model, attached);
 			}
 
 			ret = ctx.proceed();
 
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(INSERT)) {
-				auditoriaService.registrarInsert(model, usuario);
+				logger.info("Interceptando Operacao de insert = {} ", model);
+				auditoriaService.registrarInsert(model, attached);
 			}
 		}
 		return ret;

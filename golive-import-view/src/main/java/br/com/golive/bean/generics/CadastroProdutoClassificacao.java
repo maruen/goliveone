@@ -1,6 +1,7 @@
 package br.com.golive.bean.generics;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,6 +9,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import org.slf4j.Logger;
 
@@ -20,7 +24,7 @@ import br.com.golive.service.SubGrupoProdutoService;
 
 @ManagedBean
 @ViewScoped
-public class CadastroProdutoClassificacao extends GenericComponentBean implements Serializable {
+public class CadastroProdutoClassificacao extends GenericFragmentBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,6 +43,18 @@ public class CadastroProdutoClassificacao extends GenericComponentBean implement
 	private List<DepartamentoModel> departamentos;
 	private List<GrupoProdutosModel> grupos;
 	private List<SubGrupoProdutoModel> subGrupos;
+
+	@Getter
+	@Setter
+	private List<DepartamentoModel> departamentosFiltrados;
+
+	@Getter
+	@Setter
+	private List<GrupoProdutosModel> gruposFiltrados;
+
+	@Getter
+	@Setter
+	private List<SubGrupoProdutoModel> subGruposFiltrados;
 
 	@PostConstruct
 	public void postConstruct() {
@@ -62,26 +78,47 @@ public class CadastroProdutoClassificacao extends GenericComponentBean implement
 	}
 
 	private void obterDepartamentos() {
+		infoList(DepartamentoModel.class.getSimpleName());
 		departamentos = departamentoService.obterLista();
 		if (isEmptyOrNull(departamentos)) {
 			listaVaziaMessage("msg.lista.departamento.vazia");
+			removeAll(departamentosFiltrados, gruposFiltrados, subGruposFiltrados);
 			grupos = null;
 			subGrupos = null;
+		} else {
+			if (departamentosFiltrados == null) {
+				departamentosFiltrados = new ArrayList<DepartamentoModel>();
+			}
+			departamentosFiltrados.addAll(departamentos);
 		}
 	}
 
 	private void obterGruposProduto(final DepartamentoModel departamento) {
+		infoList(GrupoProdutosModel.class.getSimpleName());
 		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(departamento);
 		if (isEmptyOrNull(grupos)) {
 			listaVaziaMessage("msg.lista.grupoproduto.vazia");
+			removeAll(subGruposFiltrados, gruposFiltrados);
 			subGrupos = null;
+		} else {
+			if (gruposFiltrados == null) {
+				gruposFiltrados = new ArrayList<GrupoProdutosModel>();
+			}
+			gruposFiltrados.addAll(grupos);
 		}
 	}
 
 	private void obterSubGrupos(final GrupoProdutosModel grupoProduto) {
+		infoList(SubGrupoProdutoModel.class.getSimpleName());
 		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(grupoProduto);
 		if (subGrupos.isEmpty()) {
 			listaVaziaMessage("msg.lista.subgrupo.vazia");
+			removeAll(subGruposFiltrados);
+		} else {
+			if (subGruposFiltrados == null) {
+				subGruposFiltrados = new ArrayList<SubGrupoProdutoModel>();
+			}
+			subGruposFiltrados.addAll(subGrupos);
 		}
 		validar();
 	}
@@ -108,6 +145,15 @@ public class CadastroProdutoClassificacao extends GenericComponentBean implement
 
 	public void setSubGrupos(final List<SubGrupoProdutoModel> subGrupos) {
 		this.subGrupos = subGrupos;
+	}
+
+	@Override
+	public Logger getLogger() {
+		return logger;
+	}
+
+	public void setLogger(final Logger logger) {
+		this.logger = logger;
 	}
 
 }

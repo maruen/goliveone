@@ -56,8 +56,7 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		if (verificarLista(componentCadastroProdutoClassificacao.getGrupos(), registro.getGrupoProdutoSelected())) {
 			registro.setGrupoProdutoSelected(null);
 			registro.setSubGrupoProdutoSelected(null);
-		}
-		if (verificarLista(componentCadastroProdutoClassificacao.getSubGrupos(), registro.getSubGrupoProdutoSelected())) {
+		} else if (verificarLista(componentCadastroProdutoClassificacao.getSubGrupos(), registro.getSubGrupoProdutoSelected())) {
 			registro.setSubGrupoProdutoSelected(null);
 		}
 	}

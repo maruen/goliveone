@@ -1,12 +1,16 @@
 package br.com.golive.bean.generics;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import org.slf4j.Logger;
 
@@ -18,7 +22,7 @@ import br.com.golive.service.CorProdutoService;
 
 @ManagedBean
 @ViewScoped
-public class CadastroProdutoEspecificidade extends GenericComponentBean implements Serializable {
+public class CadastroProdutoEspecificidade extends GenericFragmentBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,6 +37,14 @@ public class CadastroProdutoEspecificidade extends GenericComponentBean implemen
 
 	private List<ColecoesModel> colecoes;
 	private List<CorProdutoModel> cores;
+
+	@Getter
+	@Setter
+	private List<ColecoesModel> colecoesFiltrados;
+
+	@Getter
+	@Setter
+	private List<CorProdutoModel> coresFiltrados;
 
 	public void carregarCoresPorColecoes(final ColecoesModel colecoesModel, final boolean validar) {
 		obterCores(colecoesModel);
@@ -49,17 +61,31 @@ public class CadastroProdutoEspecificidade extends GenericComponentBean implemen
 	}
 
 	public void obterColecoes(final SubGrupoProdutoModel subGrupoProduto) {
-		setColecoes(colecoesService.obterListaPorSubGrupo(subGrupoProduto));
+		infoList(ColecoesModel.class.getSimpleName());
+		colecoes = colecoesService.obterListaPorSubGrupo(subGrupoProduto);
 		if (isEmptyOrNull(colecoes)) {
 			listaVaziaMessage("msg.lista.colecoes.vazia");
+			removeAll(coresFiltrados, colecoesFiltrados);
 			cores = null;
+		} else {
+			if (colecoesFiltrados == null) {
+				colecoesFiltrados = new ArrayList<ColecoesModel>();
+			}
+			colecoesFiltrados.addAll(colecoes);
 		}
 	}
 
 	public void obterCores(final ColecoesModel colecoesModel) {
+		infoList(CorProdutoModel.class.getSimpleName());
 		cores = corProdutoService.obterPorColecao(colecoesModel);
 		if (isEmptyOrNull(cores)) {
 			listaVaziaMessage("msg.lista.colecoes.vazia");
+			removeAll(coresFiltrados);
+		} else {
+			if (coresFiltrados == null) {
+				coresFiltrados = new ArrayList<CorProdutoModel>();
+			}
+			coresFiltrados.addAll(cores);
 		}
 	}
 
@@ -77,6 +103,15 @@ public class CadastroProdutoEspecificidade extends GenericComponentBean implemen
 
 	public void setCores(final List<CorProdutoModel> cores) {
 		this.cores = cores;
+	}
+
+	@Override
+	public Logger getLogger() {
+		return logger;
+	}
+
+	public void setLogger(final Logger logger) {
+		this.logger = logger;
 	}
 
 }

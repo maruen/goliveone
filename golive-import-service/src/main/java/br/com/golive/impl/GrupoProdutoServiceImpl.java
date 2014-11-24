@@ -78,12 +78,6 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	}
 
 	@Override
-	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamentoId(final Long departamentoId) {
-		logger.info("Obtendo Grupo de produtos por departamentoId = {}");
-		return grupoProdutoJPA.obterListaPorDepartamentoId(departamentoId);
-	}
-
-	@Override
 	public void refresh(final GrupoProdutosModel model) {
 		grupoProdutoJPA.refresh(model);
 

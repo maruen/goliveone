@@ -8,6 +8,9 @@
 	template="/resources/templates/homeTemplate.xhtml">
 
 	<ui:param name="bean" value="#{managerBean}" />
+	<ui:param name="backPage"  value="welcome" />
+	<ui:param name="title"  value="#{managerBean.get('label.cadastro')}" />
+
 
 	<ui:define name="css">
 		<h:outputStylesheet name="css/cadastros/style_main.css" />

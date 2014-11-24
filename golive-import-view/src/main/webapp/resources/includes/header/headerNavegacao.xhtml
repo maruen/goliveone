@@ -6,11 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<h:form id="headerForm" styleClass="formHeader">
-	
 		<div id="headerDiv"
 			class="divHeaderNavegacao headerMainPageNavegacao little-font">
-		
-	
 			<h:panelGrid styleClass="gridHeaderGroup">
 				<h:panelGrid columns="3" styleClass="gridHeader text-white"
 					columnClasses="gridHeaderNomeUsuario, gridHeaderData, gridHeaderLogout">
@@ -20,12 +17,19 @@
 						<h:outputLabel value="#{managerBean.data}" />
 						<h:outputLabel value="#{managerBean.diaSemana}" />
 					</h:panelGrid>
-					<h:panelGrid>
+					<h:panelGrid columns="2" styleClass="botoesHeader">
+						<h:commandButton styleClass="botaoLogout"
+							rendered="#{backPage != null}"
+							image="/resources/images/stylistica-icons-set/24x24/left_arrow.png"
+							action="#{navigationBean.redirect(backPage)}" />
+						<p:spacer rendered="#{backPage == null}" />
 						<h:commandButton styleClass="botaoLogout"
 							image="/resources/images/stylistica-icons-set/24x24/delete.png"
 							action="#{managerBean.logout()}" />
+						<h:outputLabel value="#{managerBean.get('label.voltar')}"
+							rendered="#{backPage != null}" />
+						<p:spacer rendered="#{backPage == null}" />
 						<h:outputLabel value="#{managerBean.get('label.logout')}" />
-
 					</h:panelGrid>
 				</h:panelGrid>
 
@@ -39,9 +43,10 @@
 						effect="fold">
 
 						<c:forEach items="#{managerBean.usuario.empresas}" var="empresas">
-							<f:selectItem itemValue="#{empresas}" itemLabel="#{empresas.nome}"/>
+							<f:selectItem itemValue="#{empresas.nome}"
+								itemLabel="#{empresas.nome}" />
 						</c:forEach>
-						<p:ajax event="change" listener="#{bean.novaAba()}"/>
+						<p:ajax event="change" listener="#{bean.novaAba()}" />
 					</p:selectOneMenu>
 				</h:panelGrid>
 			</h:panelGrid>

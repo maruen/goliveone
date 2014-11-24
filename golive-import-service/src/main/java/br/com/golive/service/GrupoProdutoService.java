@@ -14,8 +14,6 @@ public interface GrupoProdutoService extends Service<GrupoProdutosModel> {
 
 	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamento(final DepartamentoModel departamentoModel);
 
-	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamentoId(Long departamentoId);
-
 	public GrupoProdutosModel obterGrupoProdutoAtual(final Model model);
 
 }

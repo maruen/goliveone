@@ -10,7 +10,6 @@ public interface UsuarioBeanService {
 
 	public Usuario logar(final String username);
 
-	@Deprecated
-	public Usuario obterPorUserName(final String username);
+	public Usuario findById(final Long id);
 
 }
