@@ -6,8 +6,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,8 +21,6 @@ import br.com.golive.service.CorProdutoService;
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroCores")
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
