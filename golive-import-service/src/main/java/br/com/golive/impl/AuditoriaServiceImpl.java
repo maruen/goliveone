@@ -111,10 +111,9 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		auditoriaItemList = new ArrayList<AuditoriaItemModel>();
 
 		auditoriaJPA.getEntityManager().detach(model);
-		final Criteria crit = auditoriaJPA.createCriteria(model.getClass());
-		crit.add(Restrictions.eq("id", model.getId()));
-		final Object objBeforeUpdate = crit.uniqueResult();
-
+		
+		final Object objBeforeUpdate = auditoriaJPA.findOldById(model);
+		
 		fields = model.getClass().getDeclaredFields();
 		for (int i = 0; i < fields.length; i++) {
 

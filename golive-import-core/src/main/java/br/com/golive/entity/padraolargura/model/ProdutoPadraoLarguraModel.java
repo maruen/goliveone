@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -39,27 +39,27 @@ public class ProdutoPadraoLarguraModel extends Model {
 	@Label(name = "label.cadastroPadroesLargura.descricao")
 	private String larguraDescricao;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbPadroesLarguraProduto_tbDepartamentoProduto", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbDepartamentoProduto_Id", referencedColumnName = "Id"))
 	private DepartamentoModel departamentoSelected;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbPadroesLarguraProduto_tbGrupoProduto", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbGrupoProduto", referencedColumnName = "Id"))
 	private GrupoProdutosModel grupoProdutoSelected;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbPadroesLarguraProduto_tbSubGrupoProduto", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbSubGrupoProduto_Id", referencedColumnName = "Id"))
 	private SubGrupoProdutoModel subGrupoProdutoSelected;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbPadroesLarguraProduto_tbColecoesProduto", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbColecoesProduto_Id", referencedColumnName = "Id"))
 	private ColecoesModel colecaoSelected;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbPadroesLarguraProduto_tbCorProduto", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbCorProduto_Id", referencedColumnName = "Id"))
 	private CorProdutoModel corProdutoSelected;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tbPadroesLarguraProduto_tbUnidade", joinColumns = @JoinColumn(name = "tbPadroesLarguraProduto_Id", referencedColumnName = "Id"), inverseJoinColumns = @JoinColumn(name = "tbUnidade_Id", referencedColumnName = "Id"))
 	private UnidadeModel unidadeSelected;
 

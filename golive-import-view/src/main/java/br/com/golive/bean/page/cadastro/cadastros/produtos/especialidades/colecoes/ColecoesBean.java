@@ -16,6 +16,7 @@ import br.com.golive.bean.generics.CadastroProdutoClassificacao;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.service.ColecoesService;
+import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
