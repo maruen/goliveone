@@ -32,6 +32,7 @@ import lombok.Setter;
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
+import org.primefaces.event.data.PageEvent;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.EntityClass;
@@ -49,6 +50,7 @@ import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
+import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
 import br.com.golive.qualifier.ListGenericaInjected;
@@ -58,7 +60,6 @@ import br.com.golive.service.PerfilService;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
-import br.com.golive.utils.OrderByDynamicColumn;
 import br.com.golive.utils.ServiceUtils;
 import br.com.golive.utils.Utils;
 import br.com.golive.utils.javascript.FuncaoJavaScript;
@@ -163,6 +164,11 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void validarComponent() {
 
+	}
+
+	public void mudarPaginacao(final PageEvent event) {
+		final int var = event.getPage();
+		System.out.println("Mudou a pagina para " + var);
 	}
 
 	protected void init(final List<T> listaConteudo) {

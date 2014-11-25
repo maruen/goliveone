@@ -73,4 +73,10 @@ public class ColecoesServiceImpl implements ColecoesService {
 		return colecoesJPA.findAllWithoutLazy("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected");
 	}
 
+	@Override
+	public List<ColecoesModel> obterListaLazy(final Long lastId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

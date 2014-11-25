@@ -15,6 +15,7 @@ import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.engine.transaction.jta.platform.spi.JtaPlatformException;
 import org.slf4j.Logger;
@@ -400,6 +401,18 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 
 	private boolean verifyAnnotation(final T classe) {
 		return classe.getClass().isAnnotationPresent(Entity.class);
+	}
+
+	public List<T> obterLazyList(final Long lastId, final Long maxResult) {
+
+		final Criteria criteria = createNativeCriteria();
+
+		if (lastId > 0L) {
+			criteria.add(Restrictions.lt("id", lastId));
+		}
+		criteria.addOrder(Order.desc("id"));
+		criteria.setMaxResults(maxResult.intValue());
+		return extractListByCriteria(criteria);
 	}
 
 }

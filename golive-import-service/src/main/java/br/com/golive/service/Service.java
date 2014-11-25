@@ -6,12 +6,14 @@ public interface Service<T> {
 
 	public List<T> obterLista();
 
-	public void salvar(T entity);
+	public List<T> obterListaLazy(final Long lastId);
 
-	public void atualizar(T entity);
+	public void salvar(final T entity);
 
-	public void remover(T entity);
+	public void atualizar(final T entity);
 
-	public void refresh(T entity);
+	public void remover(final T entity);
+
+	public void refresh(final T entity);
 
 }

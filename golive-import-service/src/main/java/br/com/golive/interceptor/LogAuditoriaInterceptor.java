@@ -9,6 +9,8 @@ import javax.interceptor.InvocationContext;
 
 import org.slf4j.Logger;
 
+import br.com.golive.annotation.CrudOperation;
+import br.com.golive.constants.Operation;
 import br.com.golive.entity.Model;
 import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
@@ -48,30 +50,24 @@ public class LogAuditoriaInterceptor {
 			model.setDataInclusao(logDate);
 		}
 
-		// if (ctx.getMethod().isAnnotationPresent(CrudOperation.class)) {
-		// if
-		// (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(DELETE))
-		// {
-		// logger.info("Interceptando Operacao de exclusao = {} ", model);
-		// auditoriaService.registrarDelete(model, attached);
-		// }
-		//
-		// if
-		// (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(UPDATE))
-		// {
-		// logger.info("Interceptando Operacao de atualizacao = {} ", model);
-		// auditoriaService.registrarUpdate(model, attached);
-		// }
+		if (ctx.getMethod().isAnnotationPresent(CrudOperation.class)) {
+			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(Operation.DELETE)) {
+				logger.info("Interceptando Operacao de exclusao = {} ", model);
+				auditoriaService.registrarDelete(model, attached);
+			}
 
-		ret = ctx.proceed();
+			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(Operation.UPDATE)) {
+				logger.info("Interceptando Operacao de atualizacao = {} ", model);
+				auditoriaService.registrarUpdate(model, attached);
+			}
 
-		// if
-		// (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(INSERT))
-		// {
-		// logger.info("Interceptando Operacao de insert = {} ", model);
-		// auditoriaService.registrarInsert(model, attached);
-		// }
-		// }
+			ret = ctx.proceed();
+
+			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(Operation.INSERT)) {
+				logger.info("Interceptando Operacao de insert = {} ", model);
+				auditoriaService.registrarInsert(model, attached);
+			}
+		}
 		return ret;
 	}
 

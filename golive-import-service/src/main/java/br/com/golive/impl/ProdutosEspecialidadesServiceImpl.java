@@ -45,4 +45,10 @@ public class ProdutosEspecialidadesServiceImpl implements ProdutosEspecialidadeS
 
 	}
 
+	@Override
+	public List<ColecoesModel> obterListaLazy(final Long lastId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

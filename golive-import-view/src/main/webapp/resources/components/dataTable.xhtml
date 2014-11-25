@@ -68,9 +68,11 @@
 			<p:column
 				headerText="#{managerBean.get('label.tamanho.minimo.coluna')}"
 				styleClass="widthColunas">
-				<p:slider for="widthHidden" display="label" style="width: 200px" minValue="250" maxValue="1000" displayTemplate="Tamanho: {value}" />
+				<p:slider for="widthHidden" display="label" style="width: 200px"
+					minValue="250" maxValue="1000" displayTemplate="Tamanho: {value}" />
 				<h:inputHidden id="widthHidden" value="#{coluna.width}" />
-				<h:outputLabel id="label" value="Tamanho: #{coluna.width}" style="float: right;"/>
+				<h:outputLabel id="label" value="Tamanho: #{coluna.width}"
+					style="float: right;" />
 			</p:column>
 
 			<f:facet name="footer">
@@ -98,10 +100,9 @@
 		rowKey="#{list.id}" styleClass="tableCadastros" rows="10"
 		paginator="true" widgetVar="table"
 		scrollWidth="#{cc.attrs.bean.widthColunasDinamicas}"
-		filteredValue="#{cc.attrs.bean.filtrados}"
-		emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
-		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
+		emptyMessage="#{managerBean.get('msg.nao.ha.registros')}" lazy="true"
+		paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
 		<f:facet name="header">
 
 			<h:panelGrid columns="1" style="width:100%;">
@@ -112,6 +113,8 @@
 
 		</f:facet>
 
+		<p:ajax event="page" update="conteudoTable"
+			listener="#{cc.attrs.bean.mudarPaginacao}" />
 		<p:ajax event="rowSelect" update="conteudoTable" />
 		<p:ajax event="rowUnselect" update="conteudoTable" />
 
@@ -138,8 +141,9 @@
 						rendered="#{(coluna.visivel) and (cc.attrs.bean.filtros.getFilter(coluna).genericType.simpleName.equals('Date'))}"
 						bean="#{cc.attrs.bean}" coluna="#{coluna}"
 						widget="#{cc.attrs.bean.getWidget(coluna)}"
-						filterValue="#{cc.attrs.bean.filtros.getFilter(coluna)}"  />
-					<p:commandLink action="#{cc.attrs.bean.sort(coluna)}" update=":conteudoForm:modelTable:conteudoTable" >
+						filterValue="#{cc.attrs.bean.filtros.getFilter(coluna)}" />
+					<p:commandLink action="#{cc.attrs.bean.sort(coluna)}"
+						update=":conteudoForm:modelTable:conteudoTable">
 						<h:graphicImage value="#{cc.attrs.bean.getImageSorter(coluna)}" />
 					</p:commandLink>
 				</f:facet>
@@ -149,8 +153,8 @@
 					value="#{cc.attrs.bean.obterLabelColuna(coluna,list)}" />
 				<h:outputText
 					rendered="#{(coluna.visivel) and (cc.attrs.bean.filtros.getFilter(coluna).genericType.simpleName.equals('Date'))}"
-					value="#{cc.attrs.bean.obterLabelColuna(coluna,list).time}" >
-					<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss"/>  
+					value="#{cc.attrs.bean.obterLabelColuna(coluna,list).time}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
 				</h:outputText>
 
 			</p:column>

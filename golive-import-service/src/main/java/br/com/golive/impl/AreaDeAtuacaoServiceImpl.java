@@ -62,4 +62,10 @@ public class AreaDeAtuacaoServiceImpl implements AreaDeAtuacaoService {
 
 	}
 
+	@Override
+	public List<AreaDeAtuacaoModel> obterListaLazy(final Long lastId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

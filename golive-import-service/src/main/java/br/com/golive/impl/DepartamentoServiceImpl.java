@@ -66,4 +66,15 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 		departamentoJPA.refresh(model);
 	}
 
+	@Override
+	public List<DepartamentoModel> obterListaLazy(final Long lastId) {
+		logger.info("Obtendo lista lazy, ultimo id = {}", lastId);
+		return null;
+	}
+
+	@Override
+	public List<DepartamentoModel> obterListaLazy(final Long lastId, final Long maxResult) {
+		return departamentoJPA.obterLazyList(lastId, maxResult);
+	}
+
 }

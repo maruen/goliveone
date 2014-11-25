@@ -85,4 +85,10 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 
 	}
 
+	@Override
+	public List<SubGrupoProdutoModel> obterListaLazy(final Long lastId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -75,4 +75,10 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 		return corProdutoJPA.obterListaPorColecao(colecoesModel);
 	}
 
+	@Override
+	public List<CorProdutoModel> obterListaLazy(final Long lastId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

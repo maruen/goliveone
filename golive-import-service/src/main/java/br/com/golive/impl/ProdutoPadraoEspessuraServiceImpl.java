@@ -72,4 +72,10 @@ public class ProdutoPadraoEspessuraServiceImpl implements ProdutoPadraoEspessura
 		logger.info("Refresh ProdutoPadraoEspessura = {}", model);
 		produtoPadraoEspessuraJPA.refresh(model);
 	}
+
+	@Override
+	public List<ProdutoPadraoEspessuraModel> obterListaLazy(final Long lastId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

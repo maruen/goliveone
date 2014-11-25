@@ -68,4 +68,10 @@ public class UnidadeServiceImpl implements UnidadeService {
 		unidadeJPA.refresh(unidadeModel);
 	}
 
+	@Override
+	public List<UnidadeModel> obterListaLazy(final Long lastId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
