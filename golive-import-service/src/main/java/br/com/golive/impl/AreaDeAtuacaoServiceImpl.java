@@ -1,6 +1,7 @@
 package br.com.golive.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -16,7 +17,10 @@ import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.areaDeAtuacao.model.AreaDeAtuacaoModel;
 import br.com.golive.entity.areaDeAtuacao.repositorio.AreaDeAtuacaoJPA;
+import br.com.golive.filter.GoliveFilter;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
+import br.com.golive.navigation.component.LazyModel;
+import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.service.AreaDeAtuacaoService;
 
 @Stateless
@@ -63,7 +67,7 @@ public class AreaDeAtuacaoServiceImpl implements AreaDeAtuacaoService {
 	}
 
 	@Override
-	public List<AreaDeAtuacaoModel> obterListaLazy(final Long lastId) {
+	public LazyModel<AreaDeAtuacaoModel> obterListaLazy(final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -104,12 +104,6 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 	@ListGenericaInjected
 	@Getter
 	@Setter
-	protected List<T> filtrados;
-
-	@Inject
-	@ListGenericaInjected
-	@Getter
-	@Setter
 	protected List<T> temp;
 
 	@EJB
@@ -166,11 +160,9 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 
 	public abstract void serviceRefresh(final T registro);
 
-	public abstract CadastroGenericFilterBean<T> getFiltros();
-
-	public abstract int countMax();
-
 	public abstract LazyModel<T> obterLazyList(final int first, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order);
+
+	public abstract CadastroGenericFilterBean<T> getFiltros();
 
 	public void validarComponent() {
 
@@ -293,7 +285,6 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 	public void sort(final ColunaPerfil coluna) {
 
 		if ((orderBy != null) && (orderBy.getColuna().getId().equals(coluna.getId()))) {
-			Collections.reverse(filtrados);
 			if (orderBy.getOrder().equals(OrderColumnType.ASC)) {
 				orderBy.setOrder(OrderColumnType.DESC);
 			} else {
@@ -301,22 +292,6 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 			}
 		} else {
 			orderBy = OrderByDynamicColumn.getInstance(coluna);
-			Collections.sort(filtrados, new Comparator<T>() {
-				@SuppressWarnings("rawtypes")
-				@Override
-				public int compare(final T o1, final T o2) {
-					final GoliveFilter filtro = getFiltros().getFilter(coluna);
-					switch (filtro.getGenericType().getSimpleName()) {
-					case "Long":
-						return new Long((long) obterLabelColuna(coluna, o1)).compareTo((Long) obterLabelColuna(coluna, o2));
-					case "String":
-						return obterLabelColuna(coluna, o1).toString().toLowerCase().compareTo(obterLabelColuna(coluna, o2).toString().toLowerCase());
-					case "Date":
-						return new Long(((Calendar) obterLabelColuna(coluna, o1)).getTime().getTime()).compareTo(((Calendar) obterLabelColuna(coluna, o2)).getTime().getTime());
-					}
-					return 0;
-				}
-			});
 		}
 	}
 
@@ -504,7 +479,6 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 	}
 
 	public void filtrar() {
-		System.out.println("Filtrou");
 		// filterManager.filtrarLista(conteudo, filtrados,
 		// getFiltros().getMapFilters());
 		// orderBy = null;
@@ -640,7 +614,7 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 
 			csv.append("\n");
 
-			for (final T indice : filtrados) {
+			for (final T indice : obterLazyList(0, -1, obterParametros(), orderBy).getLista()) {
 				for (final ColunaPerfil conf : configuracaoPerfil) {
 					if (conf.isVisivel()) {
 						final Object ret = obterLabelColuna(conf, indice);
@@ -796,7 +770,7 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final GoliveOneProperties labels) {
 		try {
 			getLogger().info("Gerando relatÃ³rio para classe = {}", genericClazzInstance.getName());
-			relatorios.gerarRelatorio(tipoRelatorio, filtrados, obterParametrosRelatorio(), labels);
+			relatorios.gerarRelatorio(tipoRelatorio, obterLazyList(0, -1, obterParametros(), orderBy).getLista(), obterParametrosRelatorio(), labels);
 		} catch (GoLiveException | JRException | IOException e) {
 			getLogger().error("Erro ao gerar relatorio = {}", genericClazzInstance.getName());
 			e.printStackTrace();

@@ -67,23 +67,14 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 	@Override
 	public void refresh(final DepartamentoModel model) {
+		logger.info("Refresh Departamtento = {}", model.getId());
 		departamentoJPA.refresh(model);
 	}
 
 	@Override
-	public List<DepartamentoModel> obterListaLazy(final Long lastId) {
-		logger.info("Obtendo lista lazy, ultimo id = {}", lastId);
-		return null;
-	}
-
-	@Override
+	@SuppressWarnings("rawtypes")
 	public LazyModel<DepartamentoModel> obterListaLazy(final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order) {
 		return departamentoJPA.obterDepartamentosLazy(startIndex, pageSize, parameters, order);
-	}
-
-	@Override
-	public int getCount() {
-		return departamentoJPA.getRowsCount().intValue();
 	}
 
 }

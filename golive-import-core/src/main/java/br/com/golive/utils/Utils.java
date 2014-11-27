@@ -6,6 +6,8 @@ import java.lang.reflect.Type;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -230,8 +232,10 @@ public class Utils {
 
 	public static String getFieldNameByColumn(final Class<?> clazz, final String fieldName) {
 		for (final Field field : clazz.getDeclaredFields()) {
-			if (field.getName().toLowerCase().equals(fieldName.toLowerCase())) {
-				return field.getName();
+			if (field.isAnnotationPresent(Column.class)) {
+				if (field.getAnnotation(Column.class).name().toLowerCase().equals(fieldName.toLowerCase())) {
+					return field.getName();
+				}
 			}
 		}
 
@@ -240,6 +244,24 @@ public class Utils {
 		}
 
 		return null;
+	}
+
+	public static Object obterFiltroValorInicial(final Date date) {
+		final Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		cal.set(Calendar.SECOND, 0);
+		return cal;
+	}
+
+	public static Calendar getFimDoDia(final Calendar cal) {
+		cal.set(Calendar.HOUR_OF_DAY, 23);
+		cal.set(Calendar.MINUTE, 59);
+		cal.set(Calendar.MILLISECOND, 59);
+		cal.set(Calendar.SECOND, 59);
+		return cal;
 	}
 
 }
