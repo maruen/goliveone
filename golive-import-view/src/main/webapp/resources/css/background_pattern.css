@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 .footerMainPage {
-	background-image: url('/golive-one/resources/images/layout/Bottom.jpg')
+	background-image: url(#{facesContext.externalContext.requestContextPath}/resources/images/layout/Bottom.jpg)
 		!important;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -9,7 +9,7 @@
 }
 
 .headerMainPageNavegacao {
-	background-image: url('/golive-one/resources/images/layout/Header.jpg') !important;
+	background-image: url(#{facesContext.externalContext.requestContextPath}/resources/images/layout/Header.jpg) !important;
 	background-repeat: no-repeat;
 	background-position:top center;
 	
@@ -17,7 +17,7 @@
 
 .loginBackground {
 	background-image:
-		url('/golive-one/resources/images/layout/SplashLogin.jpg') !important;
+		url(#{facesContext.externalContext.requestContextPath}/resources/images/layout/SplashLogin.jpg) !important;
 	background-repeat: no-repeat;
 	background-position: center;
 }

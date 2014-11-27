@@ -16,13 +16,17 @@ import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.engine.transaction.jta.platform.spi.JtaPlatformException;
 import org.slf4j.Logger;
 
 import br.com.golive.constants.Constantes;
+import br.com.golive.constants.OrderColumnType;
 import br.com.golive.entity.Model;
 import br.com.golive.exception.GoLiveException;
+import br.com.golive.navigation.component.OrderByDynamicColumn;
+import br.com.golive.utils.Utils;
 
 /**
  * @author guilherme.duarte
@@ -403,16 +407,34 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		return classe.getClass().isAnnotationPresent(Entity.class);
 	}
 
-	public List<T> obterLazyList(final Long lastId, final Long maxResult) {
+	public List<T> obterLazyList(final Long lastId, final Long maxResult, final OrderByDynamicColumn order, final List<Long> ids) {
 
 		final Criteria criteria = createNativeCriteria();
 
 		if (lastId > 0L) {
 			criteria.add(Restrictions.lt("id", lastId));
 		}
-		criteria.addOrder(Order.desc("id"));
+
+		if (ids != null) {
+			criteria.add(Restrictions.not(Restrictions.in("id", ids.toArray())));
+		}
+
+		if (order != null) {
+			final String field = Utils.getFieldByNameColumn(order.getColuna(), persistentClass).getName();
+			if (order.getOrder().equals(OrderColumnType.ASC)) {
+				criteria.addOrder(Order.asc(field));
+			} else {
+				criteria.addOrder(Order.desc(field));
+			}
+		} else {
+			criteria.addOrder(Order.desc("id"));
+		}
 		criteria.setMaxResults(maxResult.intValue());
 		return extractListByCriteria(criteria);
+	}
+
+	public Long getRowsCount() {
+		return (Long) createNativeCriteria().setProjection(Projections.rowCount()).uniqueResult();
 	}
 
 }

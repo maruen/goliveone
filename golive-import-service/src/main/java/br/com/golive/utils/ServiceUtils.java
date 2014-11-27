@@ -1,7 +1,6 @@
 package br.com.golive.utils;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,14 +11,11 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.apache.commons.lang.WordUtils;
-
 import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
-import br.com.golive.filter.GoliveFilter;
 
 public class ServiceUtils {
 
@@ -89,23 +85,6 @@ public class ServiceUtils {
 			}
 		}
 		throw new GoLiveException("Classe nao possui coluna ");
-	}
-
-	@SuppressWarnings("rawtypes")
-	public static GoliveFilter obterFilterByColumn(final ColunaPerfil colunaPerfil, final Object instance, final HashMap<String, Field> mapFilters) {
-		final Field field = getFieldByColumn(colunaPerfil, mapFilters);
-		field.setAccessible(true);
-		try {
-			final Method getter = instance.getClass().getDeclaredMethod("get" + WordUtils.capitalize(field.getName()));
-			return (GoliveFilter) field.get(instance);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (final NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (final SecurityException e) {
-			e.printStackTrace();
-		}
-		throw new GoLiveException("Não foi possivel obterFiltro");
 	}
 
 	public static Filter getFilterAnnotation(final ColunaPerfil colunaPerfil, final HashMap<String, Field> mapFilters) {

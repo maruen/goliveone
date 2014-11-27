@@ -1,6 +1,7 @@
 package br.com.golive.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -16,6 +17,7 @@ import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.departamento.repositorio.DepartamentoJPA;
+import br.com.golive.filter.GoliveFilter;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
 import br.com.golive.service.DepartamentoService;
 
@@ -73,8 +75,13 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	}
 
 	@Override
-	public List<DepartamentoModel> obterListaLazy(final Long lastId, final Long maxResult) {
-		return departamentoJPA.obterLazyList(lastId, maxResult);
+	public List<DepartamentoModel> obterListaLazy(final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters) {
+		return departamentoJPA.obterDepartamentosLazy(startIndex, pageSize, parameters);
+	}
+
+	@Override
+	public int getCount() {
+		return departamentoJPA.getRowsCount().intValue();
 	}
 
 }
