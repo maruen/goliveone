@@ -19,6 +19,8 @@ import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.departamento.repositorio.DepartamentoJPA;
 import br.com.golive.filter.GoliveFilter;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
+import br.com.golive.navigation.component.LazyModel;
+import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.service.DepartamentoService;
 
 @Stateless
@@ -75,8 +77,8 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	}
 
 	@Override
-	public List<DepartamentoModel> obterListaLazy(final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters) {
-		return departamentoJPA.obterDepartamentosLazy(startIndex, pageSize, parameters);
+	public LazyModel<DepartamentoModel> obterListaLazy(final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order) {
+		return departamentoJPA.obterDepartamentosLazy(startIndex, pageSize, parameters, order);
 	}
 
 	@Override

@@ -10,47 +10,57 @@
 	xmlns:composite="http://java.sun.com/jsf/composite">
 
 <composite:interface>
-	<composite:attribute name="bean" required="true" type="br.com.golive.bean.page.cadastro.rules.CadastroGenericBean" />	
-	<composite:attribute name="coluna" required="true" type="br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil" />	
-	<composite:attribute name="filterValue" required="true" />	
-	<composite:attribute name="widget" required="true" />	
+	<composite:attribute name="bean" required="true" />
+	<composite:attribute name="coluna" required="true"
+		type="br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil" />
+	<composite:attribute name="filterValue" required="true" />
+	<composite:attribute name="widget" required="true" />
 
 </composite:interface>
 
 <composite:implementation>
-	
-	<p:dialog id="dialog_#{cc.attrs.widget}_filter"
-		showHeader="true" showEffect="fold" modal="true" width="300px"
-		hideEffect="fold"
+
+	<p:dialog id="dialog_#{cc.attrs.widget}_filter" showHeader="true"
+		showEffect="fold" modal="true" width="300px" hideEffect="fold"
 		header="#{managerBean.get(cc.attrs.bean.getFieldFilter(cc.attrs.coluna).label())}"
-		widgetVar="#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}" resizable="false">
+		widgetVar="#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}"
+		resizable="false">
 
 		<p:fieldset id="filedSet_#{cc.attrs.widget}_filter"
 			legend="#{managerBean.get('label.parametros.filtro')}"
 			style="margin-bottom:20px">
-			<p:selectOneRadio id="radio_#{cc.attrs.widget}_filter" styleClass="selectOneRadioInclusao" value="#{cc.attrs.filterValue.tipo}"  layout="grid" columns="1">
-				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.igual}" itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.igual.label)}" />
-				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.contem}" itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.contem.label)}" />
+			<p:selectOneRadio id="radio_#{cc.attrs.widget}_filter"
+				styleClass="selectOneRadioInclusao"
+				value="#{cc.attrs.filterValue.tipo}" layout="grid" columns="1">
+				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.igual}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.igual.label)}" />
+				<f:selectItem itemValue="#{cc.attrs.bean.filterManager.contem}"
+					itemLabel="#{managerBean.get(cc.attrs.bean.filterManager.contem.label)}" />
 			</p:selectOneRadio>
 		</p:fieldset>
 		<f:facet name="footer">
-			<p:commandButton id="salveButton_#{cc.attrs.widget}_filter" value="#{managerBean.get('label.salvar')}" action="#{cc.attrs.bean.saveConfig(cc.attrs.coluna)}" style="width: 100%;"
-							 update=":conteudoForm:modelTable:conteudoTable" 
-							 onsuccess="PF('#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}').hide()"/>
+			<p:commandButton id="salveButton_#{cc.attrs.widget}_filter"
+				value="#{managerBean.get('label.salvar')}"
+				action="#{cc.attrs.bean.saveConfig(cc.attrs.coluna)}"
+				style="width: 100%;" update=":conteudoForm:modelTable:conteudoTable"
+				onsuccess="PF('#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}').hide()" />
 		</f:facet>
-		
+
 	</p:dialog>
 
-	<h:outputLabel styleClass="tituloColunaFiltro" value="#{managerBean.get(cc.attrs.bean.getFieldFilter(cc.attrs.coluna).label())}" />
+	<h:outputLabel styleClass="tituloColunaFiltro"
+		value="#{managerBean.get(cc.attrs.bean.getFieldFilter(cc.attrs.coluna).label())}" />
 	<br />
-	
-		<h:panelGrid columns="1" styleClass="grid">	
-			<p:inputText value="#{cc.attrs.filterValue.inicio}">
-				<p:ajax event="change" onstart="filtrar();"/>
-			</p:inputText>
-		</h:panelGrid>
-		<h:graphicImage onclick="PF('#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}').show()" value="/resources/images/stylistica-icons-set/24x24/settings.png" />
-	
+
+	<h:panelGrid columns="1" styleClass="grid">
+		<p:inputText value="#{cc.attrs.filterValue.inicio}">
+			<p:ajax event="change" onstart="filtrar();" />
+		</p:inputText>
+	</h:panelGrid>
+	<h:graphicImage
+		onclick="PF('#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}').show()"
+		value="/resources/images/stylistica-icons-set/24x24/settings.png" />
+
 </composite:implementation>
 
 </html>

@@ -51,6 +51,7 @@ import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
+import br.com.golive.navigation.component.LazyModel;
 import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.qualifier.FilterInjected;
 import br.com.golive.qualifier.GeradorRelatorioInjected;
@@ -169,7 +170,7 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 
 	public abstract int countMax();
 
-	public abstract List<T> obterLazyList(final int first, final int pageSize, final Map<String, GoliveFilter> parameters);
+	public abstract LazyModel<T> obterLazyList(final int first, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order);
 
 	public void validarComponent() {
 
@@ -206,7 +207,7 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 		lazyList = new LazyDataModel<T>() {
 
 			private int rowCount;
-
+			private LazyModel<T> lazyModel;
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -221,10 +222,11 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 
 			@Override
 			public List<T> load(final int first, final int pageSize, final String sortField, final SortOrder sortOrder, final Map<String, Object> filters) {
-				rowCount = countMax();
 				startIndex = first;
 				quantReturn = pageSize;
-				conteudo = obterLazyList(first, pageSize, obterParametros());
+				lazyModel = obterLazyList(first, pageSize, obterParametros(), orderBy);
+				rowCount = lazyModel.getCount().intValue();
+				conteudo = lazyModel.getLista();
 				return conteudo;
 			}
 		};

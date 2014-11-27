@@ -101,7 +101,9 @@ public class Utils {
 						if (field.isAnnotationPresent(Column.class)) {
 							colunasPagina.add(new ColunaPerfil(new ColunaPerfilId(usuario.getId(), nameTable, field.getAnnotation(Column.class).name(), managedBeanName), TipoFiltro.IGUAL.getDescricao(), count++, field.isAnnotationPresent(StandardColumn.class), 300L));
 						} else {
-							throw new GoLiveException("Campo nao possui anotaÃ§Ã£o de Label = " + clazz.getAnnotation(Table.class).name() + "." + field.getName());
+							throw new GoLiveException("Campo nao possui anotaÃ§Ã£o de Label = "
+									+ clazz.getAnnotation(Table.class).name()
+									+ "." + field.getName());
 						}
 					}
 				}
@@ -136,7 +138,8 @@ public class Utils {
 
 		while (atual != null) {
 			for (final Field field : atual.getDeclaredFields()) {
-				if ((field.isAnnotationPresent(Column.class)) && (field.getAnnotation(Column.class).name().equals(nameColumn))) {
+				if ((field.isAnnotationPresent(Column.class))
+						&& (field.getAnnotation(Column.class).name().equals(nameColumn))) {
 					return field;
 				}
 			}
@@ -149,8 +152,10 @@ public class Utils {
 		Class<?> atual = clazz;
 		while (atual != null) {
 			for (final Field field : atual.getDeclaredFields()) {
-				if ((atual.equals(Model.class)) || (atual.getAnnotation(Table.class).name().equals(coluna.getId().getTabela()))) {
-					if ((field.isAnnotationPresent(Column.class)) && (field.getAnnotation(Column.class).name().equals(coluna.getId().getColuna()))) {
+				if ((atual.equals(Model.class))
+						|| (atual.getAnnotation(Table.class).name().equals(coluna.getId().getTabela()))) {
+					if ((field.isAnnotationPresent(Column.class))
+							&& (field.getAnnotation(Column.class).name().equals(coluna.getId().getColuna()))) {
 						return field;
 					}
 				} else {
@@ -199,6 +204,42 @@ public class Utils {
 			}
 		}
 		return true;
+	}
+
+	public static String getPathEntityByColumnWithClass(final Class<?> clazz, final ColunaPerfil coluna) {
+		if (clazz.getAnnotation(Table.class).name().toLowerCase().equals(coluna.getId().getTabela().toLowerCase())) {
+			return getFieldNameByColumn(clazz, coluna.getId().getColuna());
+		} else {
+			return findJoinTableByName(clazz.getDeclaredFields(), coluna);
+		}
+	}
+
+	public static String findJoinTableByName(final Field[] fields, final ColunaPerfil coluna) {
+		final StringBuilder sb = new StringBuilder();
+		for (final Field field : fields) {
+			if (field.getType().isAnnotationPresent(Table.class)) {
+				if (field.getType().getAnnotation(Table.class).name().toLowerCase().equals(coluna.getId().getTabela().toLowerCase())) {
+					sb.append(field.getName().concat("."));
+					sb.append(getFieldNameByColumn(field.getType(), coluna.getId().getColuna()));
+					return sb.toString();
+				}
+			}
+		}
+		return null;
+	}
+
+	public static String getFieldNameByColumn(final Class<?> clazz, final String fieldName) {
+		for (final Field field : clazz.getDeclaredFields()) {
+			if (field.getName().toLowerCase().equals(fieldName.toLowerCase())) {
+				return field.getName();
+			}
+		}
+
+		if (clazz.getSuperclass() != null) {
+			return getFieldNameByColumn(clazz.getSuperclass(), fieldName);
+		}
+
+		return null;
 	}
 
 }

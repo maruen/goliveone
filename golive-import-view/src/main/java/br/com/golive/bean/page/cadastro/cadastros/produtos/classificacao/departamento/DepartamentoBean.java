@@ -103,9 +103,11 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	// }
 	//
 	// @Override
-	// public List<DepartamentoModel> obterLazyList(final int first, final int
-	// pageSize, final Map<String, GoliveFilter> parameters) {
-	// return departamentoService.obterListaLazy(first, pageSize, parameters);
+	// public LazyModel<DepartamentoModel> obterLazyList(final int first, final
+	// int pageSize, final Map<String, GoliveFilter> parameters, final
+	// OrderByDynamicColumn order) {
+	// return departamentoService.obterListaLazy(first, pageSize, parameters,
+	// order);
 	// }
 
 }

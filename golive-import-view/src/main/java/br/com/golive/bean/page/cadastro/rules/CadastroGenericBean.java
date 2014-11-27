@@ -166,7 +166,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	protected void init(final List<T> listaConteudo) {
-		System.out.println(Calendar.getInstance().getTime());
 
 		if (usuario != null) {
 

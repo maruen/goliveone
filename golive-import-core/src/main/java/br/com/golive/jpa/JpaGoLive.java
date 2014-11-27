@@ -407,32 +407,6 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		return classe.getClass().isAnnotationPresent(Entity.class);
 	}
 
-	public List<T> obterLazyList(final Long lastId, final Long maxResult, final OrderByDynamicColumn order, final List<Long> ids) {
-
-		final Criteria criteria = createNativeCriteria();
-
-		if (lastId > 0L) {
-			criteria.add(Restrictions.lt("id", lastId));
-		}
-
-		if (ids != null) {
-			criteria.add(Restrictions.not(Restrictions.in("id", ids.toArray())));
-		}
-
-		if (order != null) {
-			final String field = Utils.getFieldByNameColumn(order.getColuna(), persistentClass).getName();
-			if (order.getOrder().equals(OrderColumnType.ASC)) {
-				criteria.addOrder(Order.asc(field));
-			} else {
-				criteria.addOrder(Order.desc(field));
-			}
-		} else {
-			criteria.addOrder(Order.desc("id"));
-		}
-		criteria.setMaxResults(maxResult.intValue());
-		return extractListByCriteria(criteria);
-	}
-
 	public Long getRowsCount() {
 		return (Long) createNativeCriteria().setProjection(Projections.rowCount()).uniqueResult();
 	}
