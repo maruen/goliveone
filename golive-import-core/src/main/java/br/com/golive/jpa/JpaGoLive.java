@@ -3,6 +3,8 @@ package br.com.golive.jpa;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +27,8 @@ import br.com.golive.constants.Constantes;
 import br.com.golive.constants.OrderColumnType;
 import br.com.golive.entity.Model;
 import br.com.golive.exception.GoLiveException;
+import br.com.golive.filter.GoliveFilter;
+import br.com.golive.navigation.component.LazyModel;
 import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.utils.Utils;
 
@@ -376,7 +380,10 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + " [ persistentClass=" + (persistentClass != null ? persistentClass.getName() : "null") + "]";
+		return getClass().getSimpleName()
+				+ " [ persistentClass="
+				+ (persistentClass != null ? persistentClass.getName() : "null")
+				+ "]";
 	}
 
 	public void insert(final T classe) {
@@ -407,34 +414,139 @@ public abstract class JpaGoLive<T extends Serializable, I extends Object> {
 		return classe.getClass().isAnnotationPresent(Entity.class);
 	}
 
-	public List<T> obterLazyList(final Long lastId, final Long maxResult, final OrderByDynamicColumn order, final List<Long> ids) {
+	public Long getRowsCount() {
+		return (Long) createNativeCriteria().setProjection(Projections.rowCount()).uniqueResult();
+	}
+
+	public LazyModel<T> obterDepartamentosLazy(final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order) {
 
 		final Criteria criteria = createNativeCriteria();
 
-		if (lastId > 0L) {
-			criteria.add(Restrictions.lt("id", lastId));
+		final Criteria contCriteria = createNativeCriteria();
+
+		if (parameters != null) {
+			whereLazyList(parameters, criteria, contCriteria);
 		}
 
-		if (ids != null) {
-			criteria.add(Restrictions.not(Restrictions.in("id", ids.toArray())));
-		}
+		orderLazyList(order, criteria);
+		criteria.setFirstResult(startIndex);
 
+		if (pageSize > -1) {
+			criteria.setMaxResults(pageSize);
+		}
+		return new LazyModel<T>((Long) contCriteria.setProjection(Projections.rowCount()).uniqueResult(), extractListByCriteria(criteria));
+	}
+
+	private void orderLazyList(final OrderByDynamicColumn order, final Criteria criteria) {
 		if (order != null) {
-			final String field = Utils.getFieldByNameColumn(order.getColuna(), persistentClass).getName();
+
+			final String property = Utils.getPathEntityByColumnWithClass(persistentClass, order.getColuna());
+
 			if (order.getOrder().equals(OrderColumnType.ASC)) {
-				criteria.addOrder(Order.asc(field));
+				criteria.addOrder(Order.asc(property));
 			} else {
-				criteria.addOrder(Order.desc(field));
+				criteria.addOrder(Order.desc(property));
 			}
 		} else {
 			criteria.addOrder(Order.desc("id"));
 		}
-		criteria.setMaxResults(maxResult.intValue());
-		return extractListByCriteria(criteria);
 	}
 
-	public Long getRowsCount() {
-		return (Long) createNativeCriteria().setProjection(Projections.rowCount()).uniqueResult();
+	private void whereLazyList(final Map<String, GoliveFilter> parameters, final Criteria criteria, final Criteria contCriteria) {
+		GoliveFilter filter;
+		Object valueInicial;
+		Object valueFinal;
+
+		for (final String key : parameters.keySet()) {
+			filter = parameters.get(key);
+			valueInicial = obterValorFiltroInicial(filter);
+			valueFinal = obterValorFiltroFim(filter);
+			switch (filter.getTipo()) {
+			case CONTEM:
+				if (verificarFiltroInicio(filter)) {
+					criteria.add(Restrictions.like(key, valueInicial));
+					contCriteria.add(Restrictions.like(key, valueInicial));
+				}
+				break;
+			case IGUAL:
+				if (verificarFiltroInicio(filter)) {
+					if (filter.getGenericType().getSimpleName().equals("Date")) {
+						criteria.add(Restrictions.ge(key, valueInicial));
+						criteria.add(Restrictions.le(key, Utils.getFimDoDia((Calendar) valueInicial)));
+						contCriteria.add(Restrictions.ge(key, valueInicial));
+						contCriteria.add(Restrictions.le(key, Utils.getFimDoDia((Calendar) valueInicial)));
+					} else {
+						criteria.add(Restrictions.eq(key, valueInicial));
+						contCriteria.add(Restrictions.eq(key, valueInicial));
+					}
+				}
+				break;
+			case INTERVALO:
+				if (verificarFiltroInicio(filter) && verificarFiltroFim(filter)) {
+					criteria.add(Restrictions.ge(key, valueInicial));
+					contCriteria.add(Restrictions.ge(key, valueInicial));
+					criteria.add(Restrictions.le(key, valueFinal));
+					contCriteria.add(Restrictions.le(key, valueFinal));
+				}
+				break;
+			case MAIOR:
+				if (verificarFiltroInicio(filter)) {
+					criteria.add(Restrictions.gt(key, valueInicial));
+					contCriteria.add(Restrictions.gt(key, obterValorFiltroInicial(filter)));
+				}
+				break;
+			case MENOR:
+				if (verificarFiltroInicio(filter)) {
+					criteria.add(Restrictions.lt(key, valueInicial));
+					contCriteria.add(Restrictions.lt(key, obterValorFiltroInicial(filter)));
+				}
+				break;
+			case PERIODO:
+				if (verificarFiltroInicio(filter) && verificarFiltroFim(filter)) {
+					criteria.add(Restrictions.ge(key, valueInicial));
+					contCriteria.add(Restrictions.ge(key, valueInicial));
+					criteria.add(Restrictions.le(key, Utils.getFimDoDia((Calendar) valueFinal)));
+					contCriteria.add(Restrictions.le(key, Utils.getFimDoDia((Calendar) valueFinal)));
+				}
+				break;
+			}
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	private Object obterValorFiltroInicial(final GoliveFilter filter) {
+		if (filter.getGenericType().getSimpleName().equals("Date")) {
+			if (filter.getInicio() != null) {
+				return Utils.obterFiltroValorInicial((Date) filter.getInicio());
+			}
+		} else {
+			return filter.getInicio();
+		}
+		return null;
+	}
+
+	@SuppressWarnings("rawtypes")
+	private Object obterValorFiltroFim(final GoliveFilter filter) {
+		if (filter.getGenericType().getSimpleName().equals("Date")) {
+			if (filter.getFim() != null) {
+				return Utils.obterFiltroValorInicial((Date) filter.getFim());
+			}
+		} else {
+			return filter.getFim();
+		}
+		return null;
+	}
+
+	@SuppressWarnings("rawtypes")
+	private boolean verificarFiltroInicio(final GoliveFilter filter) {
+		return (filter.getInicio() != null)
+				&& (!filter.getInicio().toString().isEmpty());
+	}
+
+	@SuppressWarnings("rawtypes")
+	private boolean verificarFiltroFim(final GoliveFilter filter) {
+		return (filter.getFim() != null)
+				&& (!filter.getFim().toString().isEmpty());
 	}
 
 }

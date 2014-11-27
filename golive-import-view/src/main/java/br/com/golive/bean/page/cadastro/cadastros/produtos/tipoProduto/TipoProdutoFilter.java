@@ -2,6 +2,9 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.tipoProduto;
 
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.EntityClass;
@@ -10,6 +13,7 @@ import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.tipoproduto.model.TipoProdutoModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.LongFilter;
+import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 
 public class TipoProdutoFilter extends CadastroGenericFilterBean<TipoProdutoModel> {
@@ -17,8 +21,10 @@ public class TipoProdutoFilter extends CadastroGenericFilterBean<TipoProdutoMode
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	@Getter
+	@Setter
 	private Logger logger;
-	
+
 	@Inject
 	@FilterInjected
 	@Filter(name = "id", label = "label.id")
@@ -41,46 +47,6 @@ public class TipoProdutoFilter extends CadastroGenericFilterBean<TipoProdutoMode
 	@FilterInjected
 	@Filter(name = "TipoProduto", label = "label.tipoDeProduto")
 	@EntityClass(classe = TipoProdutoModel.class)
-	private LongFilter filtroTipoProduto;
+	private StringFilter filtroTipoProduto;
 
-	@Override
-	protected Logger getLogger() {
-		return logger;
-	}
-
-	public LongFilter getFiltroId() {
-		return filtroId;
-	}
-
-	public void setFiltroId(LongFilter filtroId) {
-		this.filtroId = filtroId;
-	}
-
-	public DateFilter getFiltroDataInclusao() {
-		return filtroDataInclusao;
-	}
-
-	public void setFiltroDataInclusao(DateFilter filtroDataInclusao) {
-		this.filtroDataInclusao = filtroDataInclusao;
-	}
-
-	public DateFilter getFiltroDataAlteracao() {
-		return filtroDataAlteracao;
-	}
-
-	public void setFiltroDataAlteracao(DateFilter filtroDataAlteracao) {
-		this.filtroDataAlteracao = filtroDataAlteracao;
-	}
-
-	public LongFilter getFiltroTipoProduto() {
-		return filtroTipoProduto;
-	}
-
-	public void setFiltroTipoProduto(LongFilter filtroTipoProduto) {
-		this.filtroTipoProduto = filtroTipoProduto;
-	}
-
-	public void setLogger(Logger logger) {
-		this.logger = logger;
-	}
 }

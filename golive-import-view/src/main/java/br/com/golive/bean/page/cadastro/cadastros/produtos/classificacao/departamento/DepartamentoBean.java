@@ -1,5 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao.departamento;
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -14,6 +16,9 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.Label;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
+import br.com.golive.filter.GoliveFilter;
+import br.com.golive.navigation.component.LazyModel;
+import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.service.DepartamentoService;
 
 @ManagedBean
@@ -97,15 +102,8 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 
 	}
 
-	// @Override
-	// public int countMax() {
-	// return departamentoService.getCount();
-	// }
-	//
-	// @Override
-	// public List<DepartamentoModel> obterLazyList(final int first, final int
-	// pageSize, final Map<String, GoliveFilter> parameters) {
-	// return departamentoService.obterListaLazy(first, pageSize, parameters);
-	// }
+	public LazyModel<DepartamentoModel> obterLazyList(final int first, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order) {
+		return departamentoService.obterListaLazy(first, pageSize, parameters, order);
+	}
 
 }

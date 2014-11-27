@@ -1,6 +1,7 @@
 package br.com.golive.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -10,11 +11,15 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import br.com.golive.entity.colecoes.model.ColecoesModel;
+import br.com.golive.filter.GoliveFilter;
+import br.com.golive.navigation.component.LazyModel;
+import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.service.ProdutosEspecialidadeService;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class ProdutosEspecialidadesServiceImpl implements ProdutosEspecialidadeService {
+public class ProdutosEspecialidadesServiceImpl implements
+		ProdutosEspecialidadeService {
 
 	@Inject
 	private Logger logger;
@@ -46,7 +51,7 @@ public class ProdutosEspecialidadesServiceImpl implements ProdutosEspecialidadeS
 	}
 
 	@Override
-	public List<ColecoesModel> obterListaLazy(final Long lastId) {
+	public LazyModel<ColecoesModel> obterListaLazy(final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order) {
 		// TODO Auto-generated method stub
 		return null;
 	}

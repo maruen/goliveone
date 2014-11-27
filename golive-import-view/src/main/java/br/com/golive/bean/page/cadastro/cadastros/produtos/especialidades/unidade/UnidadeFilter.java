@@ -4,6 +4,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.EntityClass;
@@ -22,6 +25,8 @@ public class UnidadeFilter extends CadastroGenericFilterBean<UnidadeModel> {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	@Getter
+	@Setter
 	private Logger logger;
 
 	@Inject
@@ -32,15 +37,15 @@ public class UnidadeFilter extends CadastroGenericFilterBean<UnidadeModel> {
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "Unidade", label = "label.cadastroEmpresa.codigo")
+	@Filter(name = "Unidade", label = "label.descricao")
 	@EntityClass(classe = UnidadeModel.class)
-	private StringFilter filtroCodigo;
+	private StringFilter filtroDescricao;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "Abreviacao", label = "label.descricao")
+	@Filter(name = "Abreviacao", label = "label.cadastroEmpresa.codigo")
 	@EntityClass(classe = UnidadeModel.class)
-	private StringFilter descricao;
+	private StringFilter filtroCodigo;
 
 	@Inject
 	@FilterInjected
@@ -53,54 +58,5 @@ public class UnidadeFilter extends CadastroGenericFilterBean<UnidadeModel> {
 	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
 	@EntityClass(classe = UnidadeModel.class)
 	private DateFilter filtroDataAlteracao;
-
-	@Override
-	protected Logger getLogger() {
-		return logger;
-	}
-
-	public LongFilter getFiltroId() {
-		return filtroId;
-	}
-
-	public void setFiltroId(final LongFilter filtroId) {
-		this.filtroId = filtroId;
-	}
-
-	public StringFilter getFiltroCodigo() {
-		return filtroCodigo;
-	}
-
-	public void setFiltroCodigo(final StringFilter filtroCodigo) {
-		this.filtroCodigo = filtroCodigo;
-	}
-
-	public StringFilter getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(final StringFilter descricao) {
-		this.descricao = descricao;
-	}
-
-	public DateFilter getFiltroDataInclusao() {
-		return filtroDataInclusao;
-	}
-
-	public void setFiltroDataInclusao(final DateFilter filtroDataInclusao) {
-		this.filtroDataInclusao = filtroDataInclusao;
-	}
-
-	public DateFilter getFiltroDataAlteracao() {
-		return filtroDataAlteracao;
-	}
-
-	public void setFiltroDataAlteracao(final DateFilter filtroDataAlteracao) {
-		this.filtroDataAlteracao = filtroDataAlteracao;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
-	}
 
 }

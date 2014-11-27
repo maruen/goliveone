@@ -11,8 +11,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <composite:interface>
-	<composite:attribute name="bean" required="true"
-		type="br.com.golive.bean.page.cadastro.rules.CadastroGenericBean" />
+	<composite:attribute name="bean" required="true" />
 </composite:interface>
 
 <composite:implementation>
@@ -69,7 +68,7 @@
 				headerText="#{managerBean.get('label.tamanho.minimo.coluna')}"
 				styleClass="widthColunas">
 				<p:slider for="widthHidden" display="label" style="width: 200px"
-					minValue="250" maxValue="1000" displayTemplate="Tamanho: {value}" />
+					minValue="170" maxValue="1000" displayTemplate="Tamanho: {value}" />
 				<h:inputHidden id="widthHidden" value="#{coluna.width}" />
 				<h:outputLabel id="label" value="Tamanho: #{coluna.width}"
 					style="float: right;" />
@@ -98,10 +97,9 @@
 		selection="#{cc.attrs.bean.registro}" scrollable="true"
 		value="#{cc.attrs.bean.conteudo}" selectionMode="single"
 		rowKey="#{list.id}" styleClass="tableCadastros" rows="10"
-		paginator="true" widgetVar="table"
+		paginator="true" widgetVar="table" filteredValue="#{cc.attrs.bean.filtrados}"
 		scrollWidth="#{cc.attrs.bean.widthColunasDinamicas}"
-
-		emptyMessage="#{managerBean.get('msg.nao.ha.registros')}" lazy="true"
+		emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
 		paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
 		<f:facet name="header">
 
@@ -113,8 +111,6 @@
 
 		</f:facet>
 
-		<p:ajax event="page" update="conteudoTable"
-			listener="#{cc.attrs.bean.mudarPaginacao}" />
 		<p:ajax event="rowSelect" update="conteudoTable" />
 		<p:ajax event="rowUnselect" update="conteudoTable" />
 

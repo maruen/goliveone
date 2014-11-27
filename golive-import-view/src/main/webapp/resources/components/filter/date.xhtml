@@ -10,8 +10,7 @@
 	xmlns:composite="http://java.sun.com/jsf/composite">
 
 <composite:interface>
-	<composite:attribute name="bean" required="true"
-		type="br.com.golive.bean.page.cadastro.rules.CadastroGenericBean" />
+	<composite:attribute name="bean" required="true" />
 	<composite:attribute name="coluna" required="true"
 		type="br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil" />
 	<composite:attribute name="filterValue" required="true" />
@@ -62,17 +61,14 @@
 		value="#{managerBean.get(cc.attrs.bean.getFieldFilter(cc.attrs.coluna).label())}" />
 	<br />
 
-	<h:panelGrid columns="1"
-		styleClass="grid">
-		<p:calendar
-			value="#{cc.attrs.filterValue.inicio}" mask="true" effect="fold"
-			pattern="dd/MM/yyyy">
+	<h:panelGrid columns="1" styleClass="grid">
+		<p:calendar value="#{cc.attrs.filterValue.inicio}" mask="true"
+			effect="fold" pattern="dd/MM/yyyy">
 			<p:ajax event="dateSelect" onstart="filtrar();" />
 		</p:calendar>
 		<p:calendar
 			id="input_#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}_finalInput"
-			mask="true" effect="fold"
-			pattern="dd/MM/yyyy"
+			mask="true" effect="fold" pattern="dd/MM/yyyy"
 			rendered="#{cc.attrs.filterValue.tipo == cc.attrs.bean.filterManager.periodo}"
 			value="#{cc.attrs.filterValue.fim}">
 			<p:ajax event="dateSelect" onstart="filtrar();" />
@@ -80,8 +76,7 @@
 	</h:panelGrid>
 	<h:graphicImage
 		onclick="PF('#{cc.attrs.widget}_#{cc.attrs.coluna.id.coluna}').show()"
-		value="/resources/images/stylistica-icons-set/24x24/settings.png"
-		/>
+		value="/resources/images/stylistica-icons-set/24x24/settings.png" />
 
 
 </composite:implementation>
