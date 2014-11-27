@@ -156,7 +156,7 @@ html,body {
 .ui-state-highlight,.ui-widget-content .ui-state-highlight,.ui-widget-header .ui-state-highlight
 	{
 	background: #79c9ec
-		url("/golive-one/javax.faces.resource/images/ui-bg_glass_75_79c9ec_1x400.png.jsf?ln=primefaces-start")
+		url(#{facesContext.externalContext.requestContextPath}/javax.faces.resource/images/ui-bg_glass_75_79c9ec_1x400.png.jsf?ln=primefaces-start)
 		50% 50% repeat-x !IMPORTANT;
 	border: 1px solid #448dae !IMPORTANT;
 	color: #000000 !IMPORTANT;
@@ -169,7 +169,7 @@ html,body {
 
 .ui-datatable-even:hover {
 	background: #79c9ec
-		url("/golive-one/javax.faces.resource/images/ui-bg_glass_75_79c9ec_1x400.png.jsf?ln=primefaces-start")
+		url(#{facesContext.externalContext.requestContextPath}/javax.faces.resource/images/ui-bg_glass_75_79c9ec_1x400.png.jsf?ln=primefaces-start)
 		50% 50% repeat-x !IMPORTANT;
 	color: #000000 !IMPORTANT;
 }

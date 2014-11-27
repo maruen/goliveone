@@ -39,7 +39,10 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(departamentoService.obterLista());
+		if (usuario != null) {
+			super.init(departamentoService.obterLista());
+		}
+
 	}
 
 	@Override
@@ -93,5 +96,16 @@ public class DepartamentoBean extends CadastroGenericBean<DepartamentoModel> {
 		departamentoService.refresh(model);
 
 	}
+
+	// @Override
+	// public int countMax() {
+	// return departamentoService.getCount();
+	// }
+	//
+	// @Override
+	// public List<DepartamentoModel> obterLazyList(final int first, final int
+	// pageSize, final Map<String, GoliveFilter> parameters) {
+	// return departamentoService.obterListaLazy(first, pageSize, parameters);
+	// }
 
 }

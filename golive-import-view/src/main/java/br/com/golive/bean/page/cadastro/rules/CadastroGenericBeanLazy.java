@@ -32,6 +32,8 @@ import lombok.Setter;
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.commons.codec.binary.Base64;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.EntityClass;
@@ -77,9 +79,13 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
  */
 @ManagedBean
 @ViewScoped
-public abstract class CadastroGenericBean<T extends Model> extends GenericBean implements Serializable {
+public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBean implements Serializable {
 
 	private static final long serialVersionUID = 2907332241303108246L;
+
+	@Getter
+	@Setter
+	protected LazyDataModel<T> lazyList;
 
 	@Inject
 	@GeradorRelatorioInjected
@@ -161,31 +167,111 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public abstract CadastroGenericFilterBean<T> getFiltros();
 
+	public abstract int countMax();
+
+	public abstract List<T> obterLazyList(final int first, final int pageSize, final Map<String, GoliveFilter> parameters);
+
 	public void validarComponent() {
 
 	}
 
-	protected void init(final List<T> listaConteudo) {
-		System.out.println(Calendar.getInstance().getTime());
+	protected int startIndex;
+	protected int quantReturn;
+
+	@Override
+	public void init() {
 
 		if (usuario != null) {
+
+			lazyManager();
 
 			if (getLogger() == null) {
 				throw new GoLiveException("ManagedBean nao possui log para acompanhamento dos processos, implemente o getLogger() para que a pagina possa ser renderizada");
 			}
 			getLogger().info("Inicializando = {}", this.getClass().getSimpleName());
-			esvaziarLista(conteudo);
-			esvaziarLista(filtrados);
-			this.conteudo = listaConteudo;
-			filtrados.addAll(conteudo);
+			// esvaziarLista(conteudo);
+			// esvaziarLista(filtrados);
+			// filtrados.addAll(conteudo);
 			inicializarClasse();
 			configuracaoPerfil = getConfiguracaoesByClasses();
 			adicionarColunasNaPagina();
 			fluxo = getFluxoListagem();
 			definirPadraoFiltragem();
 			orderBy = null;
-			filtrar();
+			// filtrar();
 		}
+	}
+
+	private void lazyManager() {
+		lazyList = new LazyDataModel<T>() {
+
+			private int rowCount;
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public T getRowKey(final T entity) {
+				return entity;
+			}
+
+			@Override
+			public int getRowCount() {
+				return rowCount;
+			}
+
+			@Override
+			public List<T> load(final int first, final int pageSize, final String sortField, final SortOrder sortOrder, final Map<String, Object> filters) {
+				rowCount = countMax();
+				startIndex = first;
+				quantReturn = pageSize;
+				conteudo = obterLazyList(first, pageSize, obterParametros());
+				return conteudo;
+			}
+		};
+	}
+
+	private Map<String, GoliveFilter> obterParametros() {
+
+		Field field;
+		Filter filter;
+		final Map<String, GoliveFilter> retorno = new HashMap<String, GoliveFilter>();
+
+		Class<?> clazz = null;
+
+		for (final ColunaPerfil conf : configuracaoPerfil) {
+			if (conf.isVisivel()) {
+				field = ServiceUtils.getFieldByColumn(conf, getFiltros().getMapFilters());
+				filter = field.getAnnotation(Filter.class);
+				try {
+
+					if (filter.path().isEmpty()) {
+						clazz = genericClazzInstance;
+					} else {
+						clazz = genericClazzInstance.getDeclaredField(filter.path()).getType();
+					}
+
+					retorno.put(filter.path().concat(findFieldName(clazz, filter.name())), getFiltros().getFilter(conf));
+				} catch (NoSuchFieldException | SecurityException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return retorno;
+	}
+
+	private String findFieldName(final Class<?> clazz, final String nameColumn) {
+		for (final Field entityField : clazz.getDeclaredFields()) {
+			if (entityField.isAnnotationPresent(Column.class)) {
+				if (entityField.getAnnotation(Column.class).name().equals(nameColumn)) {
+					return entityField.getName();
+				}
+			}
+		}
+		if (clazz.getSuperclass() != null) {
+			return findFieldName(clazz.getSuperclass(), nameColumn);
+		}
+		return null;
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -416,8 +502,10 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	public void filtrar() {
-		filterManager.filtrarLista(conteudo, filtrados, getFiltros().getMapFilters());
-		orderBy = null;
+		System.out.println("Filtrou");
+		// filterManager.filtrarLista(conteudo, filtrados,
+		// getFiltros().getMapFilters());
+		// orderBy = null;
 	}
 
 	public Map<String, Object> obterParametrosRelatorio() {
@@ -717,19 +805,6 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		for (final ColunaPerfil perfil : configuracaoPerfil) {
 			perfil.setVisivel(false);
 		}
-	}
-
-	public Field obterNomeFieldPorNomeDeColuna(final ColunaPerfil coluna, final Class<?>... classes) {
-		for (final Class<?> clazz : classes) {
-			for (final Field field : clazz.getDeclaredFields()) {
-				if (field.isAnnotationPresent(Column.class)) {
-					if (field.getAnnotation(Column.class).name().equals(coluna.getId().getColuna())) {
-						return field;
-					}
-				}
-			}
-		}
-		return null;
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
