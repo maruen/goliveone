@@ -35,7 +35,7 @@
 		function unLoad() {
 			$("#loadingPage").animate({height: "0px"}, 1000);
 		}
-	
+		
 		function showMenuBar(tempoAnimacaoTop, tempoAnimacaoHeight) {
 			$("#opcoesDiv").animate({height: "44px"}, parseInt(tempoAnimacaoHeight));
 			$("#opcoesDiv").animate({top: "0px"}, parseInt(tempoAnimacaoTop));
@@ -46,6 +46,23 @@
 			$("#opcoesDiv").css({ top: '0px' });
 		}
 
+		function tableLoading() {
+			var loadingTable = document.getElementById('conteudoForm:modelTable:conteudoTable:loadingImage');
+				if(loadingTable != null){
+					loadingTable.style.width = "24px"
+					loadingTable.style.height = "24px"
+				}
+		}
+	
+		function tableUnLoading() {
+			var loadingTable = document.getElementById('conteudoForm:modelTable:conteudoTable:loadingImage');
+			if(loadingTable != null){
+				loadingTable.style.width = "0px"
+				loadingTable.style.height = "0px"
+			}
+		}
+
+		
 	</script>
 
 </h:head>

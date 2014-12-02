@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.rules;
+package br.com.golive.bean.generics.parent;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -9,15 +9,15 @@ import javax.persistence.Table;
 
 import org.slf4j.Logger;
 
-import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
+import br.com.golive.constants.TipoFiltro;
 import br.com.golive.entity.Model;
 import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.filter.GoliveFilter;
 import br.com.golive.utils.ServiceUtils;
 import br.com.golive.utils.Utils;
 
-public abstract class CadastroGenericFilterBean<T extends Model> implements Serializable {
+public abstract class GenericFilterBean<T extends Model> implements Serializable {
 
 	private static final long serialVersionUID = -6492743944840059806L;
 
@@ -29,8 +29,8 @@ public abstract class CadastroGenericFilterBean<T extends Model> implements Seri
 	public void postConstruct() {
 		setMapFilters(new HashMap<String, Field>());
 		for (final Field field : this.getClass().getDeclaredFields()) {
-			if ((field.isAnnotationPresent(Filter.class)) && (field.isAnnotationPresent(EntityClass.class))) {
-				if (field.getAnnotation(EntityClass.class).classe().isAnnotationPresent(Table.class)) {
+			if (field.isAnnotationPresent(Filter.class)) {
+				if (field.getAnnotation(Filter.class).entityClazz().isAnnotationPresent(Table.class)) {
 					getMapFilters().put(ServiceUtils.getKeyByField(field), field);
 				}
 			}
@@ -50,6 +50,23 @@ public abstract class CadastroGenericFilterBean<T extends Model> implements Seri
 			}
 		}
 		return filtro;
+	}
+
+	public boolean verificarFiltroCompletoParaQuery(final GoliveFilter<?> goliveFilter) {
+		if (goliveFilter.getTipo() == null) {
+			goliveFilter.setTipo(TipoFiltro.IGUAL);
+		}
+
+		if ((goliveFilter.getTipo().equals(TipoFiltro.INTERVALO)) || (goliveFilter.getTipo().equals(TipoFiltro.PERIODO))) {
+			if ((goliveFilter.getInicio() != null) && (goliveFilter.getFim() != null) && (!goliveFilter.getInicio().toString().isEmpty()) && (!goliveFilter.getFim().toString().isEmpty())) {
+				return true;
+			}
+		} else {
+			if ((goliveFilter.getInicio() != null) && (!goliveFilter.getInicio().toString().isEmpty())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public HashMap<String, Field> getMapFilters() {

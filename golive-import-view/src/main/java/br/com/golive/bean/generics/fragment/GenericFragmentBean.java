@@ -1,4 +1,4 @@
-package br.com.golive.bean.generics;
+package br.com.golive.bean.generics.fragment;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,8 +7,10 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
+import br.com.golive.bean.page.cadastro.rules.CadastroGenericBeanLazy;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.usuario.model.Usuario;
+import br.com.golive.qualifier.EmpresaSelecionadaInjected;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.utils.JSFUtils;
 
@@ -21,7 +23,11 @@ public abstract class GenericFragmentBean implements Serializable {
 	@UsuarioLogadoInjected
 	protected Usuario usuario;
 
-	protected CadastroGenericBean delegate;
+	@Inject
+	@EmpresaSelecionadaInjected
+	protected Empresa empresaSelecionada;
+
+	protected CadastroGenericBeanLazy delegate;
 
 	public abstract Logger getLogger();
 
@@ -61,11 +67,11 @@ public abstract class GenericFragmentBean implements Serializable {
 		JSFUtils.warnMessage(usuario.getLabels().getField("label.cadastroSegmentos.msnNaoHaRegistros"), usuario.getLabels().getField(label));
 	}
 
-	public CadastroGenericBean getDelegate() {
+	public CadastroGenericBeanLazy getDelegate() {
 		return delegate;
 	}
 
-	public void setDelegate(final CadastroGenericBean delegate) {
+	public void setDelegate(final CadastroGenericBeanLazy delegate) {
 		this.delegate = delegate;
 	}
 

@@ -13,8 +13,8 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import br.com.golive.bean.util.Encryption;
 import br.com.golive.constants.ChaveSessao;
+import br.com.golive.encryptor.Encryption;
 import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.qualifier.LabelSystemInjected;

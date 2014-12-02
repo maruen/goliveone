@@ -1529,23 +1529,14 @@ CREATE UNIQUE INDEX `Id_UNIQUE` ON `golivetest`.`tbCorProduto` (`Id` ASC);
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `golivetest`.`tbPadroesEspessuraProduto_tbCorProduto` ;
 
-CREATE TABLE IF NOT EXISTS `golivetest`.`tbPadroesEspessuraProduto_tbCorProduto` (
-  `tbPadoresEspessuraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
-  `tbCorProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
-  PRIMARY KEY (`tbPadoresEspessuraProduto_Id`, `tbCorProduto_Id`),
-  CONSTRAINT `FK_tbPadroesEspessuraProduto0006`
-    FOREIGN KEY (`tbPadoresEspessuraProduto_Id`)
-    REFERENCES `golivetest`.`tbPadroesEspessuraProduto` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tbCorProduto0002`
-    FOREIGN KEY (`tbCorProduto_Id`)
-    REFERENCES `golivetest`.`tbCorProduto` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE UNIQUE INDEX `tbPadoresEspessuraProduto_Id_UNIQUE` ON `golivetest`.`tbPadroesEspessuraProduto_tbCorProduto` (`tbPadoresEspessuraProduto_Id` ASC);
+CREATE TABLE `tbPadroesEspessuraProduto_tbCorProduto` (
+  `tbPadoresEspessuraProduto_Id` int(10) unsigned zerofill NOT NULL,
+  `tbCorProduto_Id` int(10) unsigned zerofill NOT NULL,
+  PRIMARY KEY (`tbPadoresEspessuraProduto_Id`,`tbCorProduto_Id`),
+  UNIQUE KEY `tbPadoresEspessuraProduto_Id_UNIQUE` (`tbPadoresEspessuraProduto_Id`),
+  CONSTRAINT `FK_tbCorProduto0002` FOREIGN KEY (`tbCorProduto_Id`) REFERENCES `tbCorProduto` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_tbPadroesEspessuraProduto0006` FOREIGN KEY (`tbPadoresEspessuraProduto_Id`) REFERENCES `tbPadroesEspessuraProduto` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 
 -- -----------------------------------------------------
@@ -1702,21 +1693,14 @@ CREATE UNIQUE INDEX `tbPadroesLarguraProduto_Id_UNIQUE` ON `golivetest`.`tbPadro
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `golivetest`.`tbPadroesLarguraProduto_tbCorProduto` ;
 
-CREATE TABLE IF NOT EXISTS `golivetest`.`tbPadroesLarguraProduto_tbCorProduto` (
-  `tbPadroesLarguraProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
-  `tbCorProduto_Id` INT UNSIGNED ZEROFILL NOT NULL,
-  PRIMARY KEY (`tbPadroesLarguraProduto_Id`, `tbCorProduto_Id`),
-  CONSTRAINT `FK_tbPadroesLarguraProduto0006`
-    FOREIGN KEY (`tbPadroesLarguraProduto_Id`)
-    REFERENCES `golivetest`.`tbPadroesLarguraProduto` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tbCorProduto0003`
-    FOREIGN KEY (`tbCorProduto_Id`)
-    REFERENCES `golivetest`.`tbCorProduto` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+CREATE TABLE `golivetest`.`tbPadroesLarguraProduto_tbCorProduto` (
+  `tbPadroesLarguraProduto_Id` int(10) unsigned zerofill NOT NULL,
+  `tbCorProduto_Id` int(10) unsigned zerofill NOT NULL,
+  PRIMARY KEY (`tbPadroesLarguraProduto_Id`,`tbCorProduto_Id`),
+  UNIQUE KEY `tbPadroesLarguraProduto_Id_UNIQUE` (`tbPadroesLarguraProduto_Id`),
+  CONSTRAINT `FK_tbCorProduto0003` FOREIGN KEY (`tbCorProduto_Id`) REFERENCES `tbCorProduto` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_tbPadroesLarguraProduto0006` FOREIGN KEY (`tbPadroesLarguraProduto_Id`) REFERENCES `tbPadroesLarguraProduto` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 
 -- -----------------------------------------------------
@@ -4887,6 +4871,36 @@ CREATE TABLE IF NOT EXISTS `golivetest`.`tbConfiguracaoColunaPagina` (
   `WidthColumn` INT UNSIGNED,
   `Visible` BIT(1))
 ENGINE = InnoDB;
+
+ALTER TABLE `golivetest`.`tbPadroesEspessuraProduto_tbColecoesProduto` 
+ADD UNIQUE INDEX `tbPadroesEspessuraProduto_Id_UNIQUE` (`tbPadroesEspessuraProduto_Id` ASC);
+
+ALTER TABLE `golivetest`.`tbPadroesEspessuraProduto_tbDepartamento` 
+ADD UNIQUE INDEX `tbPadroesEspessurasProduto_Id_UNIQUE` (`tbPadroesEspessurasProduto_Id` ASC);
+
+
+ALTER TABLE `golivetest`.`tbPadroesEspessuraProduto_tbGrupoProduto` 
+ADD UNIQUE INDEX `tbPadroesEspessuraProduto_Id_UNIQUE` (`tbPadroesEspessuraProduto_Id` ASC);
+
+ALTER TABLE `golivetest`.`tbPadroesEspessuraProduto_tbSubGrupoProduto` 
+ADD UNIQUE INDEX `tbPadroesEspessuraProduto_Id_UNIQUE` (`tbPadroesEspessuraProduto_Id` ASC);
+
+ALTER TABLE `golivetest`.`tbPadroesLarguraProduto_tbColecoesProduto` 
+ADD UNIQUE INDEX `tbPadroesLarguraProduto_Id_UNIQUE` (`tbPadroesLarguraProduto_Id` ASC);
+
+ALTER TABLE `golivetest`.`tbPadroesLarguraProduto_tbDepartamentoProduto` 
+ADD UNIQUE INDEX `tbPadroesLarguraProduto_Id_UNIQUE` (`tbPadroesLarguraProduto_Id` ASC);
+
+ALTER TABLE `golivetest`.`tbPadroesLarguraProduto_tbGrupoProduto` 
+ADD UNIQUE INDEX `tbPadroesLarguraProduto_Id_UNIQUE` (`tbPadroesLarguraProduto_Id` ASC);
+
+ALTER TABLE `golivetest`.`tbPadroesLarguraProduto_tbSubGrupoProduto` 
+ADD UNIQUE INDEX `tbPadroesLarguraProduto_Id_UNIQUE` (`tbPadroesLarguraProduto_Id` ASC);
+
+
+
+
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

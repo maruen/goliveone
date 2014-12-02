@@ -1,4 +1,4 @@
-package br.com.golive.annotation;
+package br.com.golive.qualifier;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
@@ -16,6 +16,6 @@ import javax.inject.Qualifier;
 @Target({ TYPE, METHOD, PARAMETER, FIELD })
 @Retention(RUNTIME)
 @Documented
-public @interface EntityManagerInjected {
+public @interface EmpresaSelecionadaInjected {
 
 }

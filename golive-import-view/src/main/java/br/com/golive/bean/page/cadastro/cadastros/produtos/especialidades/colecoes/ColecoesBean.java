@@ -12,16 +12,15 @@ import lombok.Setter;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
-import br.com.golive.bean.generics.CadastroProdutoClassificacao;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
+import br.com.golive.bean.generics.fragment.CadastroProdutoClassificacao;
+import br.com.golive.bean.page.cadastro.rules.CadastroGenericBeanLazy;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.service.ColecoesService;
-import br.com.golive.utils.JSFUtils;
 
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroColecoes")
-public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
+public class ColecoesBean extends CadastroGenericBeanLazy<ColecoesModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -41,18 +40,19 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 	private Logger logger;
 
 	@EJB
-	private ColecoesService colecoesService;
-
-	@Override
-	@PostConstruct
-	public void init() {
-		super.init(colecoesService.obterLista());
-		componentCadastroProdutoClassificacao.setDelegate(this);
-	}
+	@Getter
+	private ColecoesService serviceBean;
 
 	@Override
 	public void validarComponent() {
 		validando();
+	}
+
+	@Override
+	@PostConstruct
+	public void init() {
+		super.init();
+		componentCadastroProdutoClassificacao.setDelegate(this);
 	}
 
 	private void validando() {
@@ -71,14 +71,8 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		if (registro != null) {
 			componentCadastroProdutoClassificacao.carregarGrupoProdutoPorDepartamento(registro.getDepartamentoSelected(), false);
 			componentCadastroProdutoClassificacao.carregarSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected(), false);
-			serviceRefresh(registro);
+			serviceBean.refresh(usuario, empresaSelecionada, registro);
 		}
-	}
-
-	@Override
-	public void incluir() {
-		super.incluir();
-		registro = new ColecoesModel();
 	}
 
 	@Override
@@ -108,27 +102,6 @@ public class ColecoesBean extends CadastroGenericBean<ColecoesModel> {
 		}
 
 		return ret;
-	}
-
-	@Override
-	public void serviceSave(final ColecoesModel registro) {
-		colecoesService.salvar(registro);
-	}
-
-	@Override
-	public void serviceUpdate(final ColecoesModel registro) {
-		colecoesService.atualizar(registro);
-	}
-
-	@Override
-	public void serviceRemove(final ColecoesModel registro) {
-		colecoesService.remover(registro);
-	}
-
-	@Override
-	public void serviceRefresh(final ColecoesModel model) {
-		colecoesService.refresh(model);
-
 	}
 
 }

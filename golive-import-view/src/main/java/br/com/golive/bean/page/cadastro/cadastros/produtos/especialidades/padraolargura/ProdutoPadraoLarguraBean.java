@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades.padraolargura;
 
 import java.util.List;
 
@@ -8,13 +8,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
-import br.com.golive.bean.generics.CadastroProdutoClassificacao;
-import br.com.golive.bean.generics.CadastroProdutoEspecificidade;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
+import br.com.golive.bean.generics.fragment.CadastroProdutoClassificacao;
+import br.com.golive.bean.generics.fragment.CadastroProdutoEspecificidade;
+import br.com.golive.bean.page.cadastro.rules.CadastroGenericBeanLazy;
 import br.com.golive.entity.padraolargura.model.ProdutoPadraoLarguraModel;
 import br.com.golive.entity.unidade.model.UnidadeModel;
 import br.com.golive.service.ProdutoPadraoLarguraService;
@@ -25,24 +27,32 @@ import br.com.golive.utils.Utils;
 @Label(name = "label.cadastroPadroesLargura")
 @ManagedBean
 @ViewScoped
-public class ProdutoPadraoLarguraBean extends CadastroGenericBean<ProdutoPadraoLarguraModel> {
+public class ProdutoPadraoLarguraBean extends CadastroGenericBeanLazy<ProdutoPadraoLarguraModel> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	@Getter
 	private Logger logger;
 
 	@Inject
+	@Getter
+	@Setter
 	private ProdutoPadraoLarguraFilter filtros;
 
 	@Inject
+	@Getter
+	@Setter
 	private CadastroProdutoClassificacao componentCadastroProdutoClassificacao;
 
 	@Inject
+	@Getter
+	@Setter
 	private CadastroProdutoEspecificidade componentCadastroProdutoEspecificidade;
 
 	@EJB
-	private ProdutoPadraoLarguraService produtoPadraoLarguraService;
+	@Getter
+	private ProdutoPadraoLarguraService serviceBean;
 
 	@EJB
 	private UnidadeService unidadeService;
@@ -52,18 +62,13 @@ public class ProdutoPadraoLarguraBean extends CadastroGenericBean<ProdutoPadraoL
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(produtoPadraoLarguraService.obterLista());
+		super.init();
 		componentCadastroProdutoClassificacao.setDelegate(this);
 		componentCadastroProdutoEspecificidade.setDelegate(this);
 	}
 
 	private void obterUnidades() {
-		unidades = unidadeService.obterLista();
-	}
-
-	@Override
-	public Logger getLogger() {
-		return logger;
+		unidades = unidadeService.obterLista(usuario, empresaSelecionada);
 	}
 
 	@Override
@@ -80,50 +85,8 @@ public class ProdutoPadraoLarguraBean extends CadastroGenericBean<ProdutoPadraoL
 	}
 
 	@Override
-	public void serviceSave(final ProdutoPadraoLarguraModel registro) {
-		produtoPadraoLarguraService.salvar(registro);
-	}
-
-	@Override
-	public void serviceUpdate(final ProdutoPadraoLarguraModel registro) {
-		produtoPadraoLarguraService.atualizar(registro);
-	}
-
-	@Override
-	public void serviceRemove(final ProdutoPadraoLarguraModel registro) {
-		produtoPadraoLarguraService.remover(registro);
-	}
-
-	@Override
-	public void serviceRefresh(final ProdutoPadraoLarguraModel registro) {
-		produtoPadraoLarguraService.refresh(registro);
-	}
-
-	@Override
-	public CadastroGenericFilterBean<ProdutoPadraoLarguraModel> getFiltros() {
-		return filtros;
-	}
-
-	public CadastroProdutoClassificacao getComponentCadastroProdutoClassificacao() {
-		return componentCadastroProdutoClassificacao;
-	}
-
-	public void setComponentCadastroProdutoClassificacao(final CadastroProdutoClassificacao componentCadastroProdutoClassificacao) {
-		this.componentCadastroProdutoClassificacao = componentCadastroProdutoClassificacao;
-	}
-
-	public CadastroProdutoEspecificidade getComponentCadastroProdutoEspecificidade() {
-		return componentCadastroProdutoEspecificidade;
-	}
-
-	public void setComponentCadastroProdutoEspecificidade(final CadastroProdutoEspecificidade componentCadastroProdutoEspecificidade) {
-		this.componentCadastroProdutoEspecificidade = componentCadastroProdutoEspecificidade;
-	}
-
-	@Override
 	public void incluir() {
 		super.incluir();
-		registro = new ProdutoPadraoLarguraModel();
 		obterUnidades();
 	}
 

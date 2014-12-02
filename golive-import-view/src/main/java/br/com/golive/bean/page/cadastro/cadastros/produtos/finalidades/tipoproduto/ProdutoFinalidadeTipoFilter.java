@@ -4,11 +4,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Getter;
+
 import org.slf4j.Logger;
 
-import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
+import br.com.golive.bean.generics.parent.GenericFilterBean;
 import br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.LongFilter;
@@ -17,104 +18,42 @@ import br.com.golive.qualifier.FilterInjected;
 
 @ManagedBean
 @ViewScoped
-public class ProdutoFinalidadeTipoFilter extends CadastroGenericFilterBean<ProdutoFinalidadeTipoModel> {
+public class ProdutoFinalidadeTipoFilter extends GenericFilterBean<ProdutoFinalidadeTipoModel> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	@Getter
 	private Logger logger;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "id", label = "label.id")
-	@EntityClass(classe = ProdutoFinalidadeTipoModel.class)
+	@Filter(columnName = "id", label = "label.id", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "id")
 	private LongFilter filtroId;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
-	@EntityClass(classe = ProdutoFinalidadeTipoModel.class)
+	@Filter(columnName = "SystemIncludeDateTime", label = "label.dataInclusao", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "dataInclusao")
 	private DateFilter filtroDataInclusao;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
-	@EntityClass(classe = ProdutoFinalidadeTipoModel.class)
+	@Filter(columnName = "SystemChangeDateTime", label = "label.dataAlteracao", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "dataAlteracao")
 	private DateFilter filtroDataAletracao;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "FinalidadeTipoProduto", label = "label.cadastroFinalidadeTipo.descricao")
-	@EntityClass(classe = ProdutoFinalidadeTipoModel.class)
+	@Filter(columnName = "FinalidadeTipoProduto", label = "label.cadastroFinalidadeTipo.descricao", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "descricao")
 	private StringFilter filtroDescricao;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "NumeroMaximoCaracteres", label = "label.cadastroFinalidadeTipo.nMaximoCaracteres")
-	@EntityClass(classe = ProdutoFinalidadeTipoModel.class)
+	@Filter(columnName = "NumeroMaximoCaracteres", label = "label.cadastroFinalidadeTipo.nMaximoCaracteres", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "numeroMaximoDeCaracteres")
 	private LongFilter filtroQuantidadeMaxima;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "NumeroMinimoCaracteres", label = "label.cadastroFinalidadeTipo.nMinimoCaracteres")
-	@EntityClass(classe = ProdutoFinalidadeTipoModel.class)
+	@Filter(columnName = "NumeroMinimoCaracteres", label = "label.cadastroFinalidadeTipo.nMinimoCaracteres", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "numeroMinimoDeCaracteres")
 	private LongFilter filtroQuantidadeMinima;
-
-	@Override
-	protected Logger getLogger() {
-		return logger;
-	}
-
-	public LongFilter getFiltroId() {
-		return filtroId;
-	}
-
-	public void setFiltroId(final LongFilter filtroId) {
-		this.filtroId = filtroId;
-	}
-
-	public DateFilter getFiltroDataInclusao() {
-		return filtroDataInclusao;
-	}
-
-	public void setFiltroDataInclusao(final DateFilter filtroDataInclusao) {
-		this.filtroDataInclusao = filtroDataInclusao;
-	}
-
-	public DateFilter getFiltroDataAletracao() {
-		return filtroDataAletracao;
-	}
-
-	public void setFiltroDataAletracao(final DateFilter filtroDataAletracao) {
-		this.filtroDataAletracao = filtroDataAletracao;
-	}
-
-	public StringFilter getFiltroDescricao() {
-		return filtroDescricao;
-	}
-
-	public void setFiltroDescricao(final StringFilter filtroDescricao) {
-		this.filtroDescricao = filtroDescricao;
-	}
-
-	public LongFilter getFiltroQuantidadeMaxima() {
-		return filtroQuantidadeMaxima;
-	}
-
-	public void setFiltroQuantidadeMaxima(final LongFilter filtroQuantidadeMaxima) {
-		this.filtroQuantidadeMaxima = filtroQuantidadeMaxima;
-	}
-
-	public LongFilter getFiltroQuantidadeMinima() {
-		return filtroQuantidadeMinima;
-	}
-
-	public void setFiltroQuantidadeMinima(final LongFilter filtroQuantidadeMinima) {
-		this.filtroQuantidadeMinima = filtroQuantidadeMinima;
-	}
-
-	public void setLogger(final Logger logger) {
-		this.logger = logger;
-	}
 
 }

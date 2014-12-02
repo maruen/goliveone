@@ -12,16 +12,16 @@ import lombok.Setter;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
-import br.com.golive.bean.generics.CadastroProdutoClassificacao;
-import br.com.golive.bean.generics.CadastroProdutoEspecificidade;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
+import br.com.golive.bean.generics.fragment.CadastroProdutoClassificacao;
+import br.com.golive.bean.generics.fragment.CadastroProdutoEspecificidade;
+import br.com.golive.bean.page.cadastro.rules.CadastroGenericBeanLazy;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.service.CorProdutoService;
 
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroCores")
-public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
+public class CorProdutoBean extends CadastroGenericBeanLazy<CorProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,12 +46,13 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	private CadastroProdutoEspecificidade componentCadastroProdutoEspecificidade;
 
 	@EJB
-	private CorProdutoService corProdutoService;
+	@Getter
+	private CorProdutoService serviceBean;
 
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(corProdutoService.obterLista());
+		super.init();
 		componentCadastroProdutoClassificacao.setDelegate(this);
 		componentCadastroProdutoEspecificidade.setDelegate(this);
 	}
@@ -63,7 +64,7 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 			componentCadastroProdutoClassificacao.carregarGrupoProdutoPorDepartamento(registro.getDepartamentoSelected(), false);
 			componentCadastroProdutoClassificacao.carregarSubGrupoProdutoPorGrupo(registro.getGrupoProdutoSelected(), false);
 			componentCadastroProdutoEspecificidade.carregarColecoesPorSubGrupo(registro.getSubGrupoProdutoSelected(), false);
-			serviceRefresh(registro);
+			serviceBean.refresh(usuario, empresaSelecionada, registro);
 		}
 	}
 
@@ -87,7 +88,6 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 	@Override
 	public void incluir() {
 		super.incluir();
-		registro = new CorProdutoModel();
 	}
 
 	@Override
@@ -123,27 +123,6 @@ public class CorProdutoBean extends CadastroGenericBean<CorProdutoModel> {
 		}
 
 		return ret;
-	}
-
-	@Override
-	public void serviceSave(final CorProdutoModel registro) {
-		corProdutoService.salvar(registro);
-	}
-
-	@Override
-	public void serviceUpdate(final CorProdutoModel registro) {
-		corProdutoService.atualizar(registro);
-	}
-
-	@Override
-	public void serviceRemove(final CorProdutoModel registro) {
-		corProdutoService.remover(registro);
-	}
-
-	@Override
-	public void serviceRefresh(final CorProdutoModel model) {
-		corProdutoService.refresh(model);
-
 	}
 
 }

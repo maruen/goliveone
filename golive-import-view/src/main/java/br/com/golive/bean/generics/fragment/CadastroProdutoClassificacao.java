@@ -1,4 +1,4 @@
-package br.com.golive.bean.generics;
+package br.com.golive.bean.generics.fragment;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -79,7 +79,7 @@ public class CadastroProdutoClassificacao extends GenericFragmentBean implements
 
 	private void obterDepartamentos() {
 		infoList(DepartamentoModel.class.getSimpleName());
-		departamentos = departamentoService.obterLista();
+		departamentos = departamentoService.obterLista(usuario, empresaSelecionada);
 		if (isEmptyOrNull(departamentos)) {
 			listaVaziaMessage("msg.lista.departamento.vazia");
 			removeAll(departamentosFiltrados, gruposFiltrados, subGruposFiltrados);
@@ -96,7 +96,7 @@ public class CadastroProdutoClassificacao extends GenericFragmentBean implements
 
 	private void obterGruposProduto(final DepartamentoModel departamento) {
 		infoList(GrupoProdutosModel.class.getSimpleName());
-		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(departamento);
+		grupos = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(usuario, empresaSelecionada, departamento);
 		if (isEmptyOrNull(grupos)) {
 			listaVaziaMessage("msg.lista.grupoproduto.vazia");
 			removeAll(subGruposFiltrados, gruposFiltrados);
@@ -112,7 +112,7 @@ public class CadastroProdutoClassificacao extends GenericFragmentBean implements
 
 	private void obterSubGrupos(final GrupoProdutosModel grupoProduto) {
 		infoList(SubGrupoProdutoModel.class.getSimpleName());
-		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(grupoProduto);
+		subGrupos = subGrupoProdutoService.obterSubGrupoProdutoPorGrupo(usuario, empresaSelecionada, grupoProduto);
 		if (subGrupos.isEmpty()) {
 			listaVaziaMessage("msg.lista.subgrupo.vazia");
 			removeAll(subGruposFiltrados);

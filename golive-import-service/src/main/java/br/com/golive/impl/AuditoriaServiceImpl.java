@@ -15,12 +15,11 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import javax.persistence.Column;
 import javax.persistence.JoinTable;
 import javax.persistence.Transient;
 
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
@@ -29,7 +28,9 @@ import br.com.golive.entity.auditoria.model.AuditoriaItemModel;
 import br.com.golive.entity.auditoria.model.AuditoriaModel;
 import br.com.golive.entity.auditoria.repositorio.AuditoriaItemJPA;
 import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.usuario.model.Usuario;
+import br.com.golive.interceptor.EntityManagerInjectionInterceptor;
 import br.com.golive.service.AuditoriaService;
 
 @Stateless
@@ -51,7 +52,8 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void registrarInsert(final Model model, final Usuario usuario) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public void registrarInsert(final Usuario usuario, final Empresa empresa, final Model model) {
 		logger.info("Registrando uma insercão na auditoria.");
 
 		List<AuditoriaItemModel> auditoriaItemList;
@@ -101,7 +103,8 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void registrarUpdate(final Model model, final Usuario usuario) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public void registrarUpdate(final Usuario usuario, final Empresa empresa, final Model model) {
 
 		List<AuditoriaItemModel> auditoriaItemList;
 		AuditoriaItemModel auditoriaItem;
@@ -111,9 +114,9 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 		auditoriaItemList = new ArrayList<AuditoriaItemModel>();
 
 		auditoriaJPA.getEntityManager().detach(model);
-		
+
 		final Object objBeforeUpdate = auditoriaJPA.findOldById(model);
-		
+
 		fields = model.getClass().getDeclaredFields();
 		for (int i = 0; i < fields.length; i++) {
 
@@ -160,7 +163,8 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void registrarDelete(final Model model, final Usuario usuario) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public void registrarDelete(final Usuario usuario, final Empresa empresa, final Model model) {
 
 		auditoriaJPA.deleteJoins(model);
 
@@ -180,7 +184,8 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AuditoriaModel> getAuditoriaLogs(final Model model) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public List<AuditoriaModel> getAuditoriaLogs(final Usuario usuario, final Empresa empresa, final Model model) {
 		logger.info("Buscando logs de auditoria = {}", model);
 		return auditoriaJPA.getAuditoriaLogs(model.getId(), model.getClass());
 	}

@@ -2,7 +2,6 @@ package br.com.golive.bean.page.cadastro.cadastros.produtos.classificacao.subgru
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -14,7 +13,7 @@ import lombok.Setter;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
+import br.com.golive.bean.page.cadastro.rules.CadastroGenericBeanLazy;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
@@ -25,7 +24,7 @@ import br.com.golive.service.SubGrupoProdutoService;
 @ManagedBean
 @ViewScoped
 @Label(name = "label.subgrupoDeProdutos")
-public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoModel> {
+public class SubGrupoProdutoBean extends CadastroGenericBeanLazy<SubGrupoProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,9 +39,12 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	private SubGrupoProdutoFilter filtros;
 
 	@EJB
-	private SubGrupoProdutoService subGrupoProdutoService;
+	@Getter
+	private SubGrupoProdutoService serviceBean;
+
 	@EJB
 	private DepartamentoService departamentoService;
+
 	@EJB
 	private GrupoProdutoService grupoProdutoService;
 
@@ -55,15 +57,8 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	private List<GrupoProdutosModel> grupoProdutoList;
 
 	@Override
-	@PostConstruct
-	public void init() {
-		super.init(subGrupoProdutoService.listarPorFiltro());
-	}
-
-	@Override
 	public void incluir() {
 		super.incluir();
-		registro = new SubGrupoProdutoModel();
 		carregarDepartamentos();
 	}
 
@@ -77,7 +72,7 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	}
 
 	private void carregarGruposProduto() {
-		grupoProdutoList = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(registro.getDepartamentoSelected());
+		grupoProdutoList = grupoProdutoService.obterGrupoProdutoDepartamentoPorDepartamento(usuario, empresaSelecionada, registro.getDepartamentoSelected());
 		if (grupoProdutoList.isEmpty()) {
 			listaVaziaMessage("msg.lista.grupoproduto.vazia");
 			registro.setGrupoProdutoSelected(null);
@@ -85,7 +80,7 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 	}
 
 	private void carregarDepartamentos() {
-		departamentos = departamentoService.obterLista();
+		departamentos = departamentoService.obterLista(usuario, empresaSelecionada);
 		if (departamentos.isEmpty()) {
 			listaVaziaMessage("msg.lista.departamento.vazia");
 		}
@@ -128,27 +123,6 @@ public class SubGrupoProdutoBean extends CadastroGenericBean<SubGrupoProdutoMode
 		if (!contem) {
 			registro.setGrupoProdutoSelected(null);
 		}
-	}
-
-	@Override
-	public void serviceRefresh(final SubGrupoProdutoModel model) {
-		subGrupoProdutoService.refresh(model);
-
-	}
-
-	@Override
-	public void serviceSave(final SubGrupoProdutoModel registro) {
-		subGrupoProdutoService.salvar(registro);
-	}
-
-	@Override
-	public void serviceUpdate(final SubGrupoProdutoModel registro) {
-		subGrupoProdutoService.atualizar(registro);
-	}
-
-	@Override
-	public void serviceRemove(final SubGrupoProdutoModel registro) {
-		subGrupoProdutoService.remover(registro);
 	}
 
 }

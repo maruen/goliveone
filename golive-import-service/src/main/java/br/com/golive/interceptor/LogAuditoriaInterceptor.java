@@ -12,8 +12,8 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.Model;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.usuario.model.Usuario;
-import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.service.AuditoriaService;
 import br.com.golive.service.UsuarioBeanService;
 
@@ -28,22 +28,18 @@ public class LogAuditoriaInterceptor {
 	@EJB
 	private UsuarioBeanService usuarioBeanService;
 
-	@Inject
-	@UsuarioLogadoInjected
-	private Usuario usuario;
-
 	@AroundInvoke
 	public Object interceptarCrud(final InvocationContext ctx) throws Exception {
 		logger.info("Verificando metodo interceptado, iniciando verificação da operacao");
 		Object ret = null;
 
+		final Object[] parameters = ctx.getParameters();
+		final Model model = (Model) parameters[2];
+
 		final Calendar logDate = Calendar.getInstance();
 
 		logger.info("Carregando Usuario para geracao de log");
-		final Usuario attached = usuarioBeanService.findById(usuario.getId());
-
-		final Object[] parameters = ctx.getParameters();
-		final Model model = (Model) parameters[0];
+		final Usuario attached = usuarioBeanService.findById(((Usuario) parameters[0]).getId());
 
 		model.setDataAlteracao(logDate);
 		if (!model.hasId()) {
@@ -53,19 +49,19 @@ public class LogAuditoriaInterceptor {
 		if (ctx.getMethod().isAnnotationPresent(CrudOperation.class)) {
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(Operation.DELETE)) {
 				logger.info("Interceptando Operacao de exclusao = {} ", model);
-				auditoriaService.registrarDelete(model, attached);
+				auditoriaService.registrarDelete(attached, new Empresa(), model);
 			}
 
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(Operation.UPDATE)) {
 				logger.info("Interceptando Operacao de atualizacao = {} ", model);
-				auditoriaService.registrarUpdate(model, attached);
+				auditoriaService.registrarUpdate(attached, new Empresa(), model);
 			}
 
 			ret = ctx.proceed();
 
 			if (ctx.getMethod().getAnnotation(CrudOperation.class).type().equals(Operation.INSERT)) {
 				logger.info("Interceptando Operacao de insert = {} ", model);
-				auditoriaService.registrarInsert(model, attached);
+				auditoriaService.registrarInsert(attached, new Empresa(), model);
 			}
 		}
 		return ret;

@@ -17,9 +17,13 @@ import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.entity.colecoes.repositorio.ColecoesJPA;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.filter.GoliveFilter;
+import br.com.golive.interceptor.EntityManagerInjectionInterceptor;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
+import br.com.golive.navigation.component.KeySubQueries;
 import br.com.golive.navigation.component.LazyModel;
 import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.service.ColecoesService;
@@ -36,51 +40,55 @@ public class ColecoesServiceImpl implements ColecoesService {
 
 	@Override
 	@CrudOperation(type = Operation.INSERT)
-	@Interceptors(LogAuditoriaInterceptor.class)
+	@Interceptors({ EntityManagerInjectionInterceptor.class, LogAuditoriaInterceptor.class })
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void salvar(final ColecoesModel colecoesModel) {
+	public void salvar(final Usuario usuario, final Empresa empresa, final ColecoesModel colecoesModel) {
 		logger.info("Salvando ColecoesModel ={}", colecoesModel);
 		colecoesJPA.save(colecoesModel);
 	}
 
 	@Override
 	@CrudOperation(type = Operation.UPDATE)
-	@Interceptors(LogAuditoriaInterceptor.class)
+	@Interceptors({ EntityManagerInjectionInterceptor.class, LogAuditoriaInterceptor.class })
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void atualizar(final ColecoesModel entity) {
+	public void atualizar(final Usuario usuario, final Empresa empresa, final ColecoesModel entity) {
 		logger.info("Atualizando ColecoesModel ={}", entity.getId());
 		colecoesJPA.update(entity);
 	}
 
 	@Override
 	@CrudOperation(type = Operation.DELETE)
-	@Interceptors(LogAuditoriaInterceptor.class)
+	@Interceptors({ EntityManagerInjectionInterceptor.class, LogAuditoriaInterceptor.class })
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void remover(final ColecoesModel colecoesModel) {
+	public void remover(final Usuario usuario, final Empresa empresa, final ColecoesModel colecoesModel) {
 		logger.info("Removendo colecoesModel ={}", colecoesModel.getId());
 		colecoesJPA.delete(colecoesModel);
 	}
 
 	@Override
-	public void refresh(final ColecoesModel model) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public void refresh(final Usuario usuario, final Empresa empresa, final ColecoesModel model) {
 		colecoesJPA.refresh(model);
 	}
 
 	@Override
-	public List<ColecoesModel> obterListaPorSubGrupo(final SubGrupoProdutoModel model) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public List<ColecoesModel> obterListaPorSubGrupo(final Usuario usuario, final Empresa empresa, final SubGrupoProdutoModel model) {
 		logger.info("Obtendo lista de ColecoesModel por subgrupo = {} ");
 		return colecoesJPA.obterListaPorSubGrupo(model);
 	}
 
 	@Override
-	public List<ColecoesModel> obterLista() {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public List<ColecoesModel> obterLista(final Usuario usuario, final Empresa empresa) {
 		return colecoesJPA.findAllWithoutLazy("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected");
 	}
 
 	@Override
-	public LazyModel<ColecoesModel> obterListaLazy(final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order) {
-		// TODO Auto-generated method stub
-		return null;
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public LazyModel<ColecoesModel> obterListaLazy(final Usuario usuario, final Empresa empresa, final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order, final Map<KeySubQueries, Map<String, GoliveFilter>> subQueries, final List<String> lazy) {
+		return colecoesJPA.obterListaLazy(startIndex, pageSize, parameters, order, subQueries, lazy);
+
 	}
 
 }

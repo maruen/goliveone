@@ -1,16 +1,16 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.tipoProduto;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Getter;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
+import br.com.golive.bean.page.cadastro.rules.CadastroGenericBeanLazy;
 import br.com.golive.entity.tipoproduto.model.TipoProdutoModel;
 import br.com.golive.service.TipoProdutoService;
 import br.com.golive.utils.Utils;
@@ -18,29 +18,21 @@ import br.com.golive.utils.Utils;
 @ManagedBean
 @ViewScoped
 @Label(name = "label.cadastroTipoProduto")
-public class TipoProdutoBean extends CadastroGenericBean<TipoProdutoModel> {
+public class TipoProdutoBean extends CadastroGenericBeanLazy<TipoProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
+	@Getter
 	private Logger logger;
 
 	@Inject
+	@Getter
 	private TipoProdutoFilter filtros;
 
 	@EJB
-	private TipoProdutoService tipoProdutoService;
-
-	@Override
-	@PostConstruct
-	public void init() {
-		super.init(tipoProdutoService.obterLista());
-	}
-
-	@Override
-	public Logger getLogger() {
-		return logger;
-	}
+	@Getter
+	private TipoProdutoService serviceBean;
 
 	@Override
 	public boolean validarCampos() {
@@ -53,39 +45,4 @@ public class TipoProdutoBean extends CadastroGenericBean<TipoProdutoModel> {
 		return ret;
 	}
 
-	@Override
-	public void serviceSave(final TipoProdutoModel registro) {
-		tipoProdutoService.salvar(registro);
-	}
-
-	@Override
-	public void serviceUpdate(final TipoProdutoModel registro) {
-		tipoProdutoService.atualizar(registro);
-	}
-
-	@Override
-	public void serviceRemove(final TipoProdutoModel registro) {
-		tipoProdutoService.remover(registro);
-	}
-
-	@Override
-	public void serviceRefresh(final TipoProdutoModel registro) {
-		tipoProdutoService.refresh(registro);
-	}
-
-	@Override
-	public CadastroGenericFilterBean<TipoProdutoModel> getFiltros() {
-		return filtros;
-	}
-
-	@Override
-	public void incluir() {
-		super.incluir();
-		registro = new TipoProdutoModel();
-	}
-
-	@Override
-	public void editarRegistro() {
-		super.editarRegistro();
-	}
 }

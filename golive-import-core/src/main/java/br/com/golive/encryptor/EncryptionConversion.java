@@ -1,4 +1,4 @@
-package br.com.golive.bean.util;
+package br.com.golive.encryptor;
 
 /**
  * @author James Rugno

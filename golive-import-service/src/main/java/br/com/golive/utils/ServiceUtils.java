@@ -11,7 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
@@ -103,9 +102,11 @@ public class ServiceUtils {
 
 	public static String getKeyByField(final Field field) {
 		final StringBuilder sb = new StringBuilder();
-		sb.append(field.getAnnotation(EntityClass.class).classe().getAnnotation(Table.class).name());
+		final Filter filter = field.getAnnotation(Filter.class);
+
+		sb.append(filter.entityClazz().getAnnotation(Table.class).name());
 		sb.append("_");
-		sb.append(field.getAnnotation(Filter.class).name());
+		sb.append(filter.columnName());
 		return toLowerString(sb);
 	}
 
@@ -114,12 +115,9 @@ public class ServiceUtils {
 	}
 
 	public static ColunaPerfil obterColunaPorField(final List<ColunaPerfil> colunasPerfil, final Field field) {
-
-		final Table table = field.getAnnotation(EntityClass.class).classe().getAnnotation(Table.class);
 		final Filter filter = field.getAnnotation(Filter.class);
-
 		for (final ColunaPerfil coluna : colunasPerfil) {
-			if ((coluna.getId().getColuna().equals(filter.name())) && (coluna.getId().getTabela().equals(table.name()))) {
+			if ((coluna.getId().getColuna().equals(filter.columnName())) && (coluna.getId().getTabela().equals(filter.entityClazz().getAnnotation(Table.class).name()))) {
 				return coluna;
 			}
 		}

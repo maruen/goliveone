@@ -103,9 +103,7 @@ public class Utils {
 						if (field.isAnnotationPresent(Column.class)) {
 							colunasPagina.add(new ColunaPerfil(new ColunaPerfilId(usuario.getId(), nameTable, field.getAnnotation(Column.class).name(), managedBeanName), TipoFiltro.IGUAL.getDescricao(), count++, field.isAnnotationPresent(StandardColumn.class), 300L));
 						} else {
-							throw new GoLiveException("Campo nao possui anotaÃ§Ã£o de Label = "
-									+ clazz.getAnnotation(Table.class).name()
-									+ "." + field.getName());
+							throw new GoLiveException("Campo nao possui anotacao de Label = " + clazz.getAnnotation(Table.class).name() + "." + field.getName());
 						}
 					}
 				}
@@ -135,13 +133,28 @@ public class Utils {
 
 	}
 
+	public static boolean isJoinTable(final Field field) {
+		if (field.isAnnotationPresent(OneToOne.class)) {
+			return true;
+		}
+		if (field.isAnnotationPresent(ManyToOne.class)) {
+			return true;
+		}
+		if (field.isAnnotationPresent(OneToMany.class)) {
+			return true;
+		}
+		if (field.isAnnotationPresent(ManyToMany.class)) {
+			return true;
+		}
+		return false;
+	}
+
 	public static Field getFieldByNameColumn(final String nameColumn, final Class<?> clazz) {
 		Class<?> atual = clazz;
 
 		while (atual != null) {
 			for (final Field field : atual.getDeclaredFields()) {
-				if ((field.isAnnotationPresent(Column.class))
-						&& (field.getAnnotation(Column.class).name().equals(nameColumn))) {
+				if ((field.isAnnotationPresent(Column.class)) && (field.getAnnotation(Column.class).name().equals(nameColumn))) {
 					return field;
 				}
 			}
@@ -154,10 +167,8 @@ public class Utils {
 		Class<?> atual = clazz;
 		while (atual != null) {
 			for (final Field field : atual.getDeclaredFields()) {
-				if ((atual.equals(Model.class))
-						|| (atual.getAnnotation(Table.class).name().equals(coluna.getId().getTabela()))) {
-					if ((field.isAnnotationPresent(Column.class))
-							&& (field.getAnnotation(Column.class).name().equals(coluna.getId().getColuna()))) {
+				if ((atual.equals(Model.class)) || (atual.getAnnotation(Table.class).name().equals(coluna.getId().getTabela()))) {
+					if ((field.isAnnotationPresent(Column.class)) && (field.getAnnotation(Column.class).name().equals(coluna.getId().getColuna()))) {
 						return field;
 					}
 				} else {
@@ -212,23 +223,27 @@ public class Utils {
 		if (clazz.getAnnotation(Table.class).name().toLowerCase().equals(coluna.getId().getTabela().toLowerCase())) {
 			return getFieldNameByColumn(clazz, coluna.getId().getColuna());
 		} else {
-			return findJoinTableByName(clazz.getDeclaredFields(), coluna);
+			return null;
 		}
 	}
 
-	public static String findJoinTableByName(final Field[] fields, final ColunaPerfil coluna) {
-		final StringBuilder sb = new StringBuilder();
-		for (final Field field : fields) {
-			if (field.getType().isAnnotationPresent(Table.class)) {
-				if (field.getType().getAnnotation(Table.class).name().toLowerCase().equals(coluna.getId().getTabela().toLowerCase())) {
-					sb.append(field.getName().concat("."));
-					sb.append(getFieldNameByColumn(field.getType(), coluna.getId().getColuna()));
-					return sb.toString();
-				}
-			}
-		}
-		return null;
-	}
+	// public String findJoinTableByName(final Field[] fields, final
+	// ColunaPerfil coluna) {
+	// final StringBuilder sb = new StringBuilder();
+	// for (final Field field : fields) {
+	// if (field.getType().isAnnotationPresent(Table.class)) {
+	// if
+	// (field.getType().getAnnotation(Table.class).name().toLowerCase().equals(coluna.getId().getTabela().toLowerCase()))
+	// {
+	// sb.append(field.getName().concat("."));
+	// sb.append(getFieldNameByColumn(field.getType(),
+	// coluna.getId().getColuna()));
+	// return sb.toString();
+	// }
+	// }
+	// }
+	// return null;
+	// }
 
 	public static String getFieldNameByColumn(final Class<?> clazz, final String fieldName) {
 		for (final Field field : clazz.getDeclaredFields()) {
@@ -246,7 +261,7 @@ public class Utils {
 		return null;
 	}
 
-	public static Object obterFiltroValorInicial(final Date date) {
+	public static Calendar obterFiltroValorInicial(final Date date) {
 		final Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.set(Calendar.HOUR_OF_DAY, 0);
@@ -257,11 +272,29 @@ public class Utils {
 	}
 
 	public static Calendar getFimDoDia(final Calendar cal) {
-		cal.set(Calendar.HOUR_OF_DAY, 23);
-		cal.set(Calendar.MINUTE, 59);
-		cal.set(Calendar.MILLISECOND, 59);
-		cal.set(Calendar.SECOND, 59);
-		return cal;
+		final Calendar calNew = Calendar.getInstance();
+		calNew.setTime(cal.getTime());
+		calNew.set(Calendar.HOUR_OF_DAY, 23);
+		calNew.set(Calendar.MINUTE, 59);
+		calNew.set(Calendar.MILLISECOND, 59);
+		calNew.set(Calendar.SECOND, 59);
+		return calNew;
+	}
+
+	public static Calendar getDiaAnterior(final Calendar cal) {
+		return changeDayCalendar(cal, -1);
+	}
+
+	private static Calendar changeDayCalendar(final Calendar cal, final int dia) {
+		final Calendar calNew = Calendar.getInstance();
+		calNew.setTime(cal.getTime());
+		calNew.set(Calendar.DAY_OF_YEAR, cal.get(Calendar.DAY_OF_YEAR) + dia);
+		return calNew;
+	}
+
+	public static Calendar getDiaPosterior(final Calendar cal) {
+		return changeDayCalendar(cal, 1);
+
 	}
 
 }

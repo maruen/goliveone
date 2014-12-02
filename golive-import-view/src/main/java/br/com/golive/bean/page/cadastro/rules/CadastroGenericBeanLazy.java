@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -36,11 +37,11 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
 
-import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 import br.com.golive.annotation.LogList;
+import br.com.golive.bean.generics.parent.GenericFilterBean;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.OrderColumnType;
@@ -51,6 +52,7 @@ import br.com.golive.entity.perfilconfiguracao.model.ColunaPerfil;
 import br.com.golive.exception.GoLiveException;
 import br.com.golive.filter.FilterManager;
 import br.com.golive.filter.GoliveFilter;
+import br.com.golive.navigation.component.KeySubQueries;
 import br.com.golive.navigation.component.LazyModel;
 import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.qualifier.FilterInjected;
@@ -59,6 +61,7 @@ import br.com.golive.qualifier.ListGenericaInjected;
 import br.com.golive.relatorio.GeradorRelatorio;
 import br.com.golive.service.AuditoriaService;
 import br.com.golive.service.PerfilService;
+import br.com.golive.service.Service;
 import br.com.golive.utils.Fluxo;
 import br.com.golive.utils.GoliveOneProperties;
 import br.com.golive.utils.JSFUtils;
@@ -80,6 +83,7 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
  */
 @ManagedBean
 @ViewScoped
+@SuppressWarnings("rawtypes")
 public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBean implements Serializable {
 
 	private static final long serialVersionUID = 2907332241303108246L;
@@ -148,30 +152,34 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 	@Setter
 	protected List<ColunaPerfil> configuracaoPerfil;
 
+	@Getter
+	@Setter
+	private Map<String, GoliveFilter> parametrosQuery;
+
+	@Getter
+	@Setter
+	private Map<KeySubQueries, Map<String, GoliveFilter>> subQueries;
+
+	@Getter
+	@Setter
+	private List<String> lazy;
+
 	public abstract Logger getLogger();
 
-	public abstract boolean validarCampos();
+	public abstract GenericFilterBean<T> getFiltros();
 
-	public abstract void serviceSave(final T registro);
-
-	public abstract void serviceUpdate(final T registro);
-
-	public abstract void serviceRemove(final T registro);
-
-	public abstract void serviceRefresh(final T registro);
-
-	public abstract LazyModel<T> obterLazyList(final int first, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order);
-
-	public abstract CadastroGenericFilterBean<T> getFiltros();
+	public abstract Service<T> getServiceBean();
 
 	public void validarComponent() {
 
 	}
 
-	protected int startIndex;
-	protected int quantReturn;
+	public boolean validarCampos() {
+		return true;
+	}
 
 	@Override
+	@PostConstruct
 	public void init() {
 
 		if (usuario != null) {
@@ -182,16 +190,12 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 				throw new GoLiveException("ManagedBean nao possui log para acompanhamento dos processos, implemente o getLogger() para que a pagina possa ser renderizada");
 			}
 			getLogger().info("Inicializando = {}", this.getClass().getSimpleName());
-			// esvaziarLista(conteudo);
-			// esvaziarLista(filtrados);
-			// filtrados.addAll(conteudo);
 			inicializarClasse();
 			configuracaoPerfil = getConfiguracaoesByClasses();
 			adicionarColunasNaPagina();
 			fluxo = getFluxoListagem();
 			definirPadraoFiltragem();
 			orderBy = null;
-			// filtrar();
 		}
 	}
 
@@ -214,72 +218,18 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 
 			@Override
 			public List<T> load(final int first, final int pageSize, final String sortField, final SortOrder sortOrder, final Map<String, Object> filters) {
-				startIndex = first;
-				quantReturn = pageSize;
-				lazyModel = obterLazyList(first, pageSize, obterParametros(), orderBy);
+				obterParametros();
+				lazyModel = getServiceBean().obterListaLazy(usuario, empresaSelecionada, first, pageSize, parametrosQuery, orderBy, subQueries, lazy);
 				rowCount = lazyModel.getCount().intValue();
 				conteudo = lazyModel.getLista();
+				if (orderBy != null) {
+					if (!genericClazzInstance.getAnnotation(Table.class).name().equals(orderBy.getColuna().getId().getTabela())) {
+						postSort(conteudo, orderBy);
+					}
+				}
 				return conteudo;
 			}
 		};
-	}
-
-	private Map<String, GoliveFilter> obterParametros() {
-
-		Field field;
-		Filter filter;
-		final Map<String, GoliveFilter> retorno = new HashMap<String, GoliveFilter>();
-
-		Class<?> clazz = null;
-
-		for (final ColunaPerfil conf : configuracaoPerfil) {
-			if (conf.isVisivel()) {
-				field = ServiceUtils.getFieldByColumn(conf, getFiltros().getMapFilters());
-				filter = field.getAnnotation(Filter.class);
-				try {
-
-					if (filter.path().isEmpty()) {
-						clazz = genericClazzInstance;
-					} else {
-						clazz = genericClazzInstance.getDeclaredField(filter.path()).getType();
-					}
-
-					retorno.put(filter.path().concat(findFieldName(clazz, filter.name())), getFiltros().getFilter(conf));
-				} catch (NoSuchFieldException | SecurityException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-		return retorno;
-	}
-
-	private String findFieldName(final Class<?> clazz, final String nameColumn) {
-		for (final Field entityField : clazz.getDeclaredFields()) {
-			if (entityField.isAnnotationPresent(Column.class)) {
-				if (entityField.getAnnotation(Column.class).name().equals(nameColumn)) {
-					return entityField.getName();
-				}
-			}
-		}
-		if (clazz.getSuperclass() != null) {
-			return findFieldName(clazz.getSuperclass(), nameColumn);
-		}
-		return null;
-	}
-
-	@SuppressWarnings("rawtypes")
-	private void definirPadraoFiltragem() {
-		Field field;
-
-		for (final String key : getFiltros().getMapFilters().keySet()) {
-			field = getFiltros().getMapFilters().get(key);
-			try {
-				((GoliveFilter) Utils.invoke(field, getFiltros())).setTipo(TipoFiltro.obterPorDescricao(ServiceUtils.obterColunaPorField(configuracaoPerfil, field).getPadraoFiltro()));
-			} catch (IllegalArgumentException | IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 	public void sort(final ColunaPerfil coluna) {
@@ -292,6 +242,123 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 			}
 		} else {
 			orderBy = OrderByDynamicColumn.getInstance(coluna);
+		}
+	}
+
+	public void postSort(final List<T> lista, final OrderByDynamicColumn order) {
+
+		Collections.sort(lista, new Comparator<T>() {
+			@Override
+			public int compare(final T o1, final T o2) {
+				final GoliveFilter filtro = getFiltros().getFilter(order.getColuna());
+				switch (filtro.getGenericType().getSimpleName()) {
+				case "Long":
+					return new Long((long) obterLabelColuna(order.getColuna(), o1)).compareTo((Long) obterLabelColuna(order.getColuna(), o2));
+				case "String":
+					return obterLabelColuna(order.getColuna(), o1).toString().toLowerCase().compareTo(obterLabelColuna(order.getColuna(), o2).toString().toLowerCase());
+				case "Date":
+					return new Long(((Calendar) obterLabelColuna(order.getColuna(), o1)).getTime().getTime()).compareTo(((Calendar) obterLabelColuna(order.getColuna(), o2)).getTime().getTime());
+				}
+				return 0;
+			}
+		});
+		if (order.getOrder().equals(OrderColumnType.DESC)) {
+			Collections.reverse(lista);
+		}
+
+	}
+
+	private void obterParametros() {
+
+		Field field;
+		Filter filter;
+
+		GoliveFilter<?> goliveFilter;
+
+		Map<String, GoliveFilter> subQueriesParameters = null;
+
+		Class<?> detached;
+		Field detachedField;
+		Filter detachedFilter;
+		GoliveFilter<?> detachedGoliveFilter;
+
+		inicializandoParametrosParaQuery();
+
+		if (subQueriesParameters == null) {
+			subQueriesParameters = new HashMap<String, GoliveFilter>();
+		}
+
+		for (final String key : getFiltros().getMapFilters().keySet()) {
+			field = getFiltros().getMapFilters().get(key);
+			filter = field.getAnnotation(Filter.class);
+			field.setAccessible(true);
+
+			try {
+				goliveFilter = (GoliveFilter<?>) field.get(getFiltros());
+				if (getFiltros().verificarFiltroCompletoParaQuery(goliveFilter)) {
+					if (filter.path().isEmpty()) {
+						parametrosQuery.put(filter.fieldName(), goliveFilter);
+					} else {
+						detached = filter.entityClazz();
+						if (!subQueries.containsKey(detached)) {
+							for (final String subKey : getFiltros().getMapFilters().keySet()) {
+								detachedField = getFiltros().getMapFilters().get(subKey);
+								detachedFilter = detachedField.getAnnotation(Filter.class);
+								if (detachedFilter.entityClazz().equals(detached)) {
+									field.setAccessible(true);
+									detachedGoliveFilter = (GoliveFilter<?>) detachedField.get(getFiltros());
+									if (getFiltros().verificarFiltroCompletoParaQuery(detachedGoliveFilter)) {
+										subQueriesParameters.put(detachedFilter.fieldName(), detachedGoliveFilter);
+									}
+								}
+							}
+							if (!subQueriesParameters.isEmpty()) {
+								subQueries.put(new KeySubQueries(filter.path(), detached), subQueriesParameters);
+							}
+						}
+
+					}
+				}
+				for (final ColunaPerfil indice : configuracaoPerfil) {
+					if (indice.isVisivel()) {
+						final Filter annotation = ServiceUtils.getFieldByColumn(indice, getFiltros().getMapFilters()).getAnnotation(Filter.class);
+						if ((!annotation.path().isEmpty()) && (!lazy.contains(annotation.path()))) {
+							lazy.add(annotation.path());
+						}
+					}
+				}
+
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	private void inicializandoParametrosParaQuery() {
+		if (parametrosQuery == null) {
+			parametrosQuery = new HashMap<String, GoliveFilter>();
+		}
+
+		if (subQueries == null) {
+			subQueries = new HashMap<KeySubQueries, Map<String, GoliveFilter>>();
+		}
+
+		if (lazy == null) {
+			lazy = new ArrayList<String>();
+		}
+	}
+
+	private void definirPadraoFiltragem() {
+		Field field;
+
+		for (final String key : getFiltros().getMapFilters().keySet()) {
+			field = getFiltros().getMapFilters().get(key);
+			try {
+				((GoliveFilter) Utils.invoke(field, getFiltros())).setTipo(TipoFiltro.obterPorDescricao(ServiceUtils.obterColunaPorField(configuracaoPerfil, field).getPadraoFiltro()));
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -316,10 +383,12 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 				ret = getField(coluna, ret);
 			} catch (final NullPointerException e) {
 				getLogger().error("Erro ao obter label coluna, revertendo objeto");
-				serviceRefresh(indice);
+				getServiceBean().refresh(usuario, empresaSelecionada, indice);
+
 				if (getField(coluna, ret) != null) {
 					obterLabelColuna(coluna, indice);
 				}
+
 			}
 
 		} catch (SecurityException | IllegalAccessException | IllegalArgumentException e) {
@@ -397,7 +466,7 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 	}
 
 	public Label getLabelEntity(final ColunaPerfil coluna) {
-		return getFieldByColuna(coluna).getAnnotation(EntityClass.class).classe().getAnnotation(Label.class);
+		return getFieldByColuna(coluna).getAnnotation(Filter.class).entityClazz().getAnnotation(Label.class);
 	}
 
 	public String getWidget(final ColunaPerfil coluna) {
@@ -435,7 +504,7 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 		}
 
 		if (usuario != null) {
-			return colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, this.getClass().getSimpleName(), classesList);
+			return colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, empresaSelecionada, this.getClass().getSimpleName(), classesList);
 		}
 		return null;
 	}
@@ -474,14 +543,7 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 
 	public void saveConfig(final ColunaPerfil coluna) {
 		coluna.setPadraoFiltro(getFiltros().getFilter(coluna).getTipo().getDescricao());
-		colunaPerfilService.atualizar(coluna);
-		filtrar();
-	}
-
-	public void filtrar() {
-		// filterManager.filtrarLista(conteudo, filtrados,
-		// getFiltros().getMapFilters());
-		// orderBy = null;
+		colunaPerfilService.atualizar(usuario, empresaSelecionada, coluna);
 	}
 
 	public Map<String, Object> obterParametrosRelatorio() {
@@ -613,8 +675,8 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 			}
 
 			csv.append("\n");
-
-			for (final T indice : obterLazyList(0, -1, obterParametros(), orderBy).getLista()) {
+			obterParametros();
+			for (final T indice : getServiceBean().obterListaLazy(usuario, empresaSelecionada, 0, -1, parametrosQuery, orderBy, subQueries, lazy).getLista()) {
 				for (final ColunaPerfil conf : configuracaoPerfil) {
 					if (conf.isVisivel()) {
 						final Object ret = obterLabelColuna(conf, indice);
@@ -678,13 +740,18 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 
 	public void incluir() {
 		fluxo = getFluxoInclusao();
+		try {
+			registro = genericClazzInstance.newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void editarRegistro() {
 		if (isSelecionado()) {
 			fluxo = getFluxoEdicao();
 			getLogger().info("Edicao de registro = {} ", registro);
-			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
+			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(usuario, empresaSelecionada, registro));
 		}
 	}
 
@@ -703,10 +770,10 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 			if (registro != null) {
 				if (validarCampos()) {
 					if (registro.getId() == null) {
-						serviceSave(registro);
+						getServiceBean().salvar(usuario, empresaSelecionada, registro);
 						success = salvoMessagem();
 					} else {
-						serviceUpdate(registro);
+						getServiceBean().atualizar(usuario, empresaSelecionada, registro);
 						success = updateMessagem();
 					}
 				}
@@ -733,7 +800,7 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 		} else {
 			getLogger().info("Cancelando edicao do registro e desconsiderando os dados editados  {} ", registro);
 			if (registro.getId() != null) {
-				serviceRefresh(registro);
+				getServiceBean().refresh(usuario, empresaSelecionada, registro);
 			}
 		}
 		init();
@@ -758,7 +825,7 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 
 	public void confirmarExclusao() {
 		try {
-			serviceRemove(registro);
+			getServiceBean().remover(usuario, empresaSelecionada, registro);
 			removidoComSucesso();
 		} catch (final Exception e) {
 			getLogger().error("Erro ao excluir registro ={} ", registro.getId());
@@ -769,8 +836,9 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 
 	public void gerarRelatorio(final TipoRelatorio tipoRelatorio, final GoliveOneProperties labels) {
 		try {
+			obterParametros();
 			getLogger().info("Gerando relatÃ³rio para classe = {}", genericClazzInstance.getName());
-			relatorios.gerarRelatorio(tipoRelatorio, obterLazyList(0, -1, obterParametros(), orderBy).getLista(), obterParametrosRelatorio(), labels);
+			relatorios.gerarRelatorio(tipoRelatorio, getServiceBean().obterListaLazy(usuario, empresaSelecionada, 0, -1, parametrosQuery, orderBy, subQueries, lazy).getLista(), obterParametrosRelatorio(), labels);
 		} catch (GoLiveException | JRException | IOException e) {
 			getLogger().error("Erro ao gerar relatorio = {}", genericClazzInstance.getName());
 			e.printStackTrace();
@@ -793,7 +861,7 @@ public abstract class CadastroGenericBeanLazy<T extends Model> extends GenericBe
 			filtro.setFim(null);
 		}
 
-		colunaPerfilService.atualizarLista(configuracaoPerfil);
+		colunaPerfilService.atualizarLista(usuario, empresaSelecionada, configuracaoPerfil);
 		colunasPagina.removeAll(colunasPagina);
 
 		for (final ColunaPerfil coluna : configuracaoPerfil) {

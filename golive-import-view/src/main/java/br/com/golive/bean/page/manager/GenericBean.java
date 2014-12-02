@@ -2,7 +2,6 @@ package br.com.golive.bean.page.manager;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -10,6 +9,7 @@ import javax.inject.Inject;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.usuario.model.Usuario;
+import br.com.golive.qualifier.EmpresaSelecionadaInjected;
 import br.com.golive.qualifier.UsuarioLogadoInjected;
 import br.com.golive.utils.ServiceUtils;
 
@@ -23,16 +23,11 @@ public abstract class GenericBean implements Serializable {
 	@UsuarioLogadoInjected
 	protected Usuario usuario;
 
+	@Inject
+	@EmpresaSelecionadaInjected
 	protected Empresa empresaSelecionada;
 
 	public abstract void init();
-
-	@PostConstruct
-	public void postConstruct() {
-		if (ServiceUtils.verificarNaSessaoPorChave(ChaveSessao.EMPRESA_SELECIONADA)) {
-			empresaSelecionada = ServiceUtils.obterValorPorChave(Empresa.class, ChaveSessao.EMPRESA_SELECIONADA);
-		}
-	}
 
 	public void formAction() {
 		init();

@@ -248,7 +248,7 @@ public class FilterManager<T> {
 		Class<?> clazz = object.getClass();
 		while (clazz != null) {
 			try {
-				returnValue = clazz.getDeclaredField(Utils.getFieldByNameColumn(filter.name(), object.getClass()).getName());
+				returnValue = clazz.getDeclaredField(Utils.getFieldByNameColumn(filter.columnName(), object.getClass()).getName());
 				returnValue.setAccessible(true);
 				clazz = null;
 			} catch (NoSuchFieldException | SecurityException e) {

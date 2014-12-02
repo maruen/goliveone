@@ -24,7 +24,6 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Label;
-import br.com.golive.annotation.PropriedadesTemplate;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.TipoRelatorio;
@@ -57,7 +56,6 @@ import br.com.golive.utils.javascript.FuncaoJavaScript;
 @Deprecated
 @ManagedBean
 @ViewScoped
-@PropriedadesTemplate(form = "conteudoForm", idTabela = "conteudoTable", component = "modelTable")
 public abstract class CadastroBeanRules<T extends Serializable> extends GenericBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -82,6 +80,7 @@ public abstract class CadastroBeanRules<T extends Serializable> extends GenericB
 
 	protected List<ColunaPerfil> colunas;
 
+	@Override
 	public abstract void init();
 
 	public Map<String, Object> obterParametrosRelatório() {
@@ -403,7 +402,7 @@ public abstract class CadastroBeanRules<T extends Serializable> extends GenericB
 	@SuppressWarnings("rawtypes")
 	public GoliveFilter getFilter(final String widgetName) {
 		for (final Field field : this.getClass().getDeclaredFields()) {
-			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).name().equals(widgetName))) {
+			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).columnName().equals(widgetName))) {
 				try {
 					return (GoliveFilter) this.getClass().getMethod("get" + WordUtils.capitalize(field.getName())).invoke(this);
 				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
@@ -416,19 +415,11 @@ public abstract class CadastroBeanRules<T extends Serializable> extends GenericB
 
 	public String getLabelFilter(final String widgetName) {
 		for (final Field field : this.getClass().getDeclaredFields()) {
-			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).name().equals(widgetName))) {
+			if ((field.isAnnotationPresent(Filter.class)) && (field.getAnnotation(Filter.class).columnName().equals(widgetName))) {
 				return field.getAnnotation(Filter.class).label();
 			}
 		}
 		return null;
-	}
-
-	public String getForm() {
-		return this.getClass().getSuperclass().getAnnotation(PropriedadesTemplate.class).form();
-	}
-
-	public String getIdTable() {
-		return this.getClass().getSuperclass().getAnnotation(PropriedadesTemplate.class).idTabela();
 	}
 
 	public GeradorRelatorio<T> getRelatorios() {

@@ -7,16 +7,15 @@ import lombok.Setter;
 
 import org.slf4j.Logger;
 
-import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
+import br.com.golive.bean.generics.parent.GenericFilterBean;
 import br.com.golive.entity.tipoproduto.model.TipoProdutoModel;
 import br.com.golive.filter.DateFilter;
 import br.com.golive.filter.LongFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 
-public class TipoProdutoFilter extends CadastroGenericFilterBean<TipoProdutoModel> {
+public class TipoProdutoFilter extends GenericFilterBean<TipoProdutoModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,26 +26,22 @@ public class TipoProdutoFilter extends CadastroGenericFilterBean<TipoProdutoMode
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "id", label = "label.id")
-	@EntityClass(classe = TipoProdutoModel.class)
+	@Filter(columnName = "id", label = "label.id", entityClazz = TipoProdutoModel.class, fieldName = "id")
 	private LongFilter filtroId;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "SystemIncludeDateTime", label = "label.dataInclusao")
-	@EntityClass(classe = TipoProdutoModel.class)
+	@Filter(columnName = "SystemIncludeDateTime", label = "label.dataInclusao", entityClazz = TipoProdutoModel.class, fieldName = "dataInclusao")
 	private DateFilter filtroDataInclusao;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "SystemChangeDateTime", label = "label.dataAlteracao")
-	@EntityClass(classe = TipoProdutoModel.class)
+	@Filter(columnName = "SystemChangeDateTime", label = "label.dataAlteracao", entityClazz = TipoProdutoModel.class, fieldName = "dataAlteracao")
 	private DateFilter filtroDataAlteracao;
 
 	@Inject
 	@FilterInjected
-	@Filter(name = "TipoProduto", label = "label.tipoDeProduto")
-	@EntityClass(classe = TipoProdutoModel.class)
+	@Filter(columnName = "TipoProduto", label = "label.tipoDeProduto", entityClazz = TipoProdutoModel.class, fieldName = "tipoProduto")
 	private StringFilter filtroTipoProduto;
 
 }

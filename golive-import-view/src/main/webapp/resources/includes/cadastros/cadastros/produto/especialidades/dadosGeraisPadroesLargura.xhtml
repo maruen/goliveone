@@ -36,6 +36,10 @@
 
 			<h:outputText id="larguraNomeOutputText"
 				value="#{managerBean.get('label.cadastroPadroesLargura.largura')}" />
+				
+			<p:inputMask mask="#9.999"  id="larguraNomeInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				disabled="false" style="width: 90%" value="#{pojo.largura}" />	
+				
 			<p:inputText id="larguraNomeInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}"
 				disabled="false" style="width: 90%" value="#{pojo.largura}" />
 

@@ -89,10 +89,8 @@
 		actionListener="#{cc.attrs.bean.mudarWidthColumns}"
 		update=":conteudoForm:modelTable:conteudoTable" />
 
-
-	<p:remoteCommand name="filtrar"
-		update=":conteudoForm:modelTable:conteudoTable"
-		onstart="tableLoading()" oncomplete="tableUnLoading()" />
+	<p:remoteCommand name="filtrar" action="#{cc.attrs.bean.filtrar()}"
+		update=":conteudoForm:modelTable:conteudoTable" />
 
 	<p:dataTable id="conteudoTable" var="list"
 		style="width: 100%; position: relative;"
@@ -105,9 +103,7 @@
 		paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
 		<f:facet name="header">
 
-			<h:panelGrid columns="2" style="width:100%;" id="gridHeaderTable">
-				<h:graphicImage id="loadingImage" style="position: relative; float: left; width: 0px; height: 0px;"
-						value="/resources/images/gif/loading.gif" />
+			<h:panelGrid columns="1" style="width:100%;">
 				<h:graphicImage id="configuracoes"
 					value="/resources/images/stylistica-icons-set/24x24/database.png"
 					onclick="PF('confTableConteudo').show();" style="float: right;" />
@@ -117,8 +113,6 @@
 
 		<p:ajax event="rowSelect" update="conteudoTable" />
 		<p:ajax event="rowUnselect" update="conteudoTable" />
-
-		<p:ajax event="page" onstart="filtrar();" />
 
 		<p:column id="seletor" selectionMode="single"
 			style="width:10px;text-align:center" />
@@ -155,7 +149,7 @@
 					value="#{cc.attrs.bean.obterLabelColuna(coluna,list)}" />
 				<h:outputText
 					rendered="#{(coluna.visivel) and (cc.attrs.bean.filtros.getFilter(coluna).genericType.simpleName.equals('Date'))}"
-					value="#{cc.attrs.bean.obterLabelColuna(coluna,list).time}" >
+					value="#{cc.attrs.bean.obterLabelColuna(coluna,list).time}">
 					<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
 				</h:outputText>
 

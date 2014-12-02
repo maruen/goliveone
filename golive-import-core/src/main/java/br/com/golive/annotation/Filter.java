@@ -13,10 +13,14 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 public @interface Filter {
 
-	public String name();
+	public String columnName();
 
 	public String label();
 
 	public String path() default "";
+
+	public Class<?> entityClazz();
+
+	public String fieldName();
 
 }

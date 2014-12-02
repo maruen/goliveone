@@ -10,8 +10,8 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
+import br.com.golive.bean.generics.parent.GenericFilterBean;
 import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
 import br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel;
 import br.com.golive.utils.Utils;
 
@@ -75,7 +75,7 @@ public class ProdutoFinalidadeTipoBean extends CadastroGenericBean<ProdutoFinali
 	}
 
 	@Override
-	public CadastroGenericFilterBean<ProdutoFinalidadeTipoModel> getFiltros() {
+	public GenericFilterBean<ProdutoFinalidadeTipoModel> getFiltros() {
 		return filtros;
 	}
 

@@ -1,4 +1,4 @@
-package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades.padraoespessura;
+package br.com.golive.bean.page.cadastro.cadastros.produtos.especialidades.padraolargura;
 
 import javax.inject.Inject;
 
@@ -12,7 +12,7 @@ import br.com.golive.entity.colecoes.model.ColecoesModel;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
-import br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel;
+import br.com.golive.entity.padraolargura.model.ProdutoPadraoLarguraModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
 import br.com.golive.entity.unidade.model.UnidadeModel;
 import br.com.golive.filter.DateFilter;
@@ -21,7 +21,7 @@ import br.com.golive.filter.LongFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 
-public class ProdutoPadraoEspessuraFilter extends GenericFilterBean<ProdutoPadraoEspessuraModel> {
+public class ProdutoPadraoLarguraFilter extends GenericFilterBean<ProdutoPadraoLarguraModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,28 +31,28 @@ public class ProdutoPadraoEspessuraFilter extends GenericFilterBean<ProdutoPadra
 
 	@Inject
 	@FilterInjected
-	@Filter(label = "label.id", columnName = "id", fieldName = "id", entityClazz = ProdutoPadraoEspessuraModel.class)
+	@Filter(label = "label.id", columnName = "id", fieldName = "id", entityClazz = ProdutoPadraoLarguraModel.class)
 	private LongFilter filtroId;
 
 	@Inject
 	@FilterInjected
-	@Filter(columnName = "SystemIncludeDateTime", fieldName = "dataInclusao", entityClazz = ProdutoPadraoEspessuraModel.class, label = "label.dataInclusao")
+	@Filter(columnName = "SystemIncludeDateTime", label = "label.dataInclusao", fieldName = "dataInclusao", entityClazz = ProdutoPadraoLarguraModel.class)
 	private DateFilter filtroDataInclusao;
 
 	@Inject
 	@FilterInjected
-	@Filter(columnName = "SystemChangeDateTime", fieldName = "dataAlteracao", entityClazz = ProdutoPadraoEspessuraModel.class, label = "label.dataAlteracao")
+	@Filter(columnName = "SystemChangeDateTime", label = "label.dataAlteracao", fieldName = "dataAlteracao", entityClazz = ProdutoPadraoLarguraModel.class)
 	private DateFilter filtroDataAlteracao;
 
 	@Inject
 	@FilterInjected
-	@Filter(columnName = "Espessura", label = "label.cadastroPadroesEspessura.espessura", fieldName = "espessura", entityClazz = ProdutoPadraoEspessuraModel.class)
-	private DoubleFilter filtroEspessura;
+	@Filter(columnName = "Largura", label = "label.cadastroPadroesLargura.largura", fieldName = "largura", entityClazz = ProdutoPadraoLarguraModel.class)
+	private DoubleFilter filtroLargura;
 
 	@Inject
 	@FilterInjected
-	@Filter(columnName = "EspessuraDescricao", label = "label.cadastroPadroesEspessura.descricao", fieldName = "espessuraDescricao", entityClazz = ProdutoPadraoEspessuraModel.class)
-	private StringFilter filtroEspessuraDescricao;
+	@Filter(columnName = "LarguraDescricao", label = "label.cadastroPadroesLargura.descricao", fieldName = "larguraDescricao", entityClazz = ProdutoPadraoLarguraModel.class)
+	private StringFilter filtroLarguraDescricao;
 
 	@Inject
 	@FilterInjected
@@ -183,5 +183,4 @@ public class ProdutoPadraoEspessuraFilter extends GenericFilterBean<ProdutoPadra
 	@FilterInjected
 	@Filter(columnName = "Abreviacao", label = "label.cadastroPadroesEspessura.codUnid", path = "unidadeSelected", fieldName = "abreviacao", entityClazz = UnidadeModel.class)
 	private StringFilter filtroAbreviacaoUnidade;
-
 }

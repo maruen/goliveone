@@ -34,11 +34,11 @@ import net.sf.jasperreports.engine.JRException;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 
-import br.com.golive.annotation.EntityClass;
 import br.com.golive.annotation.Filter;
 import br.com.golive.annotation.Jasper;
 import br.com.golive.annotation.Label;
 import br.com.golive.annotation.LogList;
+import br.com.golive.bean.generics.parent.GenericFilterBean;
 import br.com.golive.bean.page.manager.GenericBean;
 import br.com.golive.constants.ChaveSessao;
 import br.com.golive.constants.OrderColumnType;
@@ -159,7 +159,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public abstract void serviceRefresh(final T registro);
 
-	public abstract CadastroGenericFilterBean<T> getFiltros();
+	public abstract GenericFilterBean<T> getFiltros();
 
 	public void validarComponent() {
 
@@ -333,7 +333,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 	}
 
 	public Label getLabelEntity(final ColunaPerfil coluna) {
-		return getFieldByColuna(coluna).getAnnotation(EntityClass.class).classe().getAnnotation(Label.class);
+		return getFieldByColuna(coluna).getAnnotation(Filter.class).entityClazz().getAnnotation(Label.class);
 	}
 
 	public String getWidget(final ColunaPerfil coluna) {
@@ -371,7 +371,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		}
 
 		if (usuario != null) {
-			return colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, this.getClass().getSimpleName(), classesList);
+			return colunaPerfilService.obterListaDeConfiguracoesPagina(usuario, empresaSelecionada, this.getClass().getSimpleName(), classesList);
 		}
 		return null;
 	}
@@ -410,7 +410,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 
 	public void saveConfig(final ColunaPerfil coluna) {
 		coluna.setPadraoFiltro(getFiltros().getFilter(coluna).getTipo().getDescricao());
-		colunaPerfilService.atualizar(coluna);
+		colunaPerfilService.atualizar(usuario, empresaSelecionada, coluna);
 		filtrar();
 	}
 
@@ -619,7 +619,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 		if (isSelecionado()) {
 			fluxo = getFluxoEdicao();
 			getLogger().info("Edicao de registro = {} ", registro);
-			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(registro));
+			registro.setAuditoriaLogs(auditoriaService.getAuditoriaLogs(usuario, empresaSelecionada, registro));
 		}
 	}
 
@@ -741,7 +741,7 @@ public abstract class CadastroGenericBean<T extends Model> extends GenericBean i
 			filtro.setFim(null);
 		}
 
-		colunaPerfilService.atualizarLista(configuracaoPerfil);
+		colunaPerfilService.atualizarLista(usuario, empresaSelecionada, configuracaoPerfil);
 		colunasPagina.removeAll(colunasPagina);
 
 		for (final ColunaPerfil coluna : configuracaoPerfil) {

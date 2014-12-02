@@ -8,7 +8,10 @@ import java.lang.annotation.Target;
 
 @Target({ FIELD })
 @Retention(RUNTIME)
-public @interface EntityClass {
+public @interface DialogTable {
 
-	public Class<?> classe();
+	public String fieldName();
+
+	public String joinTableName();
+
 }

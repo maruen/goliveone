@@ -1,4 +1,4 @@
-package br.com.golive.bean.generics;
+package br.com.golive.bean.generics.fragment;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class CadastroProdutoEspecificidade extends GenericFragmentBean implement
 
 	public void obterColecoes(final SubGrupoProdutoModel subGrupoProduto) {
 		infoList(ColecoesModel.class.getSimpleName());
-		colecoes = colecoesService.obterListaPorSubGrupo(subGrupoProduto);
+		colecoes = colecoesService.obterListaPorSubGrupo(usuario, empresaSelecionada, subGrupoProduto);
 		if (isEmptyOrNull(colecoes)) {
 			listaVaziaMessage("msg.lista.colecoes.vazia");
 			removeAll(coresFiltrados, colecoesFiltrados);
@@ -78,7 +78,7 @@ public class CadastroProdutoEspecificidade extends GenericFragmentBean implement
 
 	public void obterCores(final ColecoesModel colecoesModel) {
 		infoList(CorProdutoModel.class.getSimpleName());
-		cores = corProdutoService.obterPorColecao(colecoesModel);
+		cores = corProdutoService.obterPorColecao(usuario, empresaSelecionada, colecoesModel);
 		if (isEmptyOrNull(cores)) {
 			listaVaziaMessage("msg.lista.cores.vazia");
 			removeAll(coresFiltrados);

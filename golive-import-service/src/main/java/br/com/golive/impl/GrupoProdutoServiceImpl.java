@@ -17,10 +17,14 @@ import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.Model;
 import br.com.golive.entity.departamento.model.DepartamentoModel;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.grupoprodutos.repositorio.GrupoProdutoJPA;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.filter.GoliveFilter;
+import br.com.golive.interceptor.EntityManagerInjectionInterceptor;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
+import br.com.golive.navigation.component.KeySubQueries;
 import br.com.golive.navigation.component.LazyModel;
 import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.service.GrupoProdutoService;
@@ -36,22 +40,24 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 	private GrupoProdutoJPA grupoProdutoJPA;
 
 	@Override
-	public List<GrupoProdutosModel> obterLista() {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public List<GrupoProdutosModel> obterLista(final Usuario usuario, final Empresa empresa) {
 		logger.info("Obtendo lista de grupos de produto");
 		return grupoProdutoJPA.obterLista();
 	}
 
 	@Override
-	public GrupoProdutosModel obterGrupoProdutoAtual(final Model model) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public GrupoProdutosModel obterGrupoProdutoAtual(final Usuario usuario, final Empresa empresa, final Model model) {
 		logger.info("Obtendo objeto atual de grupos de produto");
 		return grupoProdutoJPA.findByIdWithLazys(model.getId(), "departamentoModel");
 	}
 
 	@Override
 	@CrudOperation(type = Operation.INSERT)
-	@Interceptors(LogAuditoriaInterceptor.class)
+	@Interceptors({ EntityManagerInjectionInterceptor.class, LogAuditoriaInterceptor.class })
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void salvar(final GrupoProdutosModel grupoProdutosModel) {
+	public void salvar(final Usuario usuario, final Empresa empresa, final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Salvando grupo produto = {}", grupoProdutosModel);
 		grupoProdutoJPA.refreshModel(grupoProdutosModel.getDepartamentoModel());
 		grupoProdutoJPA.save(grupoProdutosModel);
@@ -59,38 +65,39 @@ public class GrupoProdutoServiceImpl implements GrupoProdutoService {
 
 	@Override
 	@CrudOperation(type = Operation.UPDATE)
-	@Interceptors(LogAuditoriaInterceptor.class)
+	@Interceptors({ EntityManagerInjectionInterceptor.class, LogAuditoriaInterceptor.class })
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void atualizar(final GrupoProdutosModel grupoProdutosModel) {
+	public void atualizar(final Usuario usuario, final Empresa empresa, final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Atualizando grupo produto = {}", grupoProdutosModel.getId());
 		grupoProdutoJPA.update(grupoProdutosModel);
 	}
 
 	@Override
 	@CrudOperation(type = Operation.DELETE)
-	@Interceptors(LogAuditoriaInterceptor.class)
+	@Interceptors({ EntityManagerInjectionInterceptor.class, LogAuditoriaInterceptor.class })
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void remover(final GrupoProdutosModel grupoProdutosModel) {
+	public void remover(final Usuario usuario, final Empresa empresa, final GrupoProdutosModel grupoProdutosModel) {
 		logger.info("Excluindo grupo produto = {}", grupoProdutosModel.getId());
 		grupoProdutoJPA.removeModel(grupoProdutosModel);
 	}
 
 	@Override
-	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamento(final DepartamentoModel departamentoModel) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public List<GrupoProdutosModel> obterGrupoProdutoDepartamentoPorDepartamento(final Usuario usuario, final Empresa empresa, final DepartamentoModel departamentoModel) {
 		logger.info("Obtendo Grupo de produtos por departamento = {}");
 		return grupoProdutoJPA.obterListaPorDepartamento(departamentoModel);
 	}
 
 	@Override
-	public void refresh(final GrupoProdutosModel model) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public void refresh(final Usuario usuario, final Empresa empresa, final GrupoProdutosModel model) {
 		grupoProdutoJPA.refresh(model);
 
 	}
 
 	@Override
-	public LazyModel<GrupoProdutosModel> obterListaLazy(final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order) {
-		// TODO Auto-generated method stub
-		return null;
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public LazyModel<GrupoProdutosModel> obterListaLazy(final Usuario usuario, final Empresa empresa, final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order, final Map<KeySubQueries, Map<String, GoliveFilter>> subQueries, final List<String> lazy) {
+		return grupoProdutoJPA.obterListaLazy(startIndex, pageSize, parameters, order, subQueries, lazy);
 	}
-
 }

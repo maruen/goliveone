@@ -16,10 +16,14 @@ import org.slf4j.Logger;
 import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
 import br.com.golive.entity.colecoes.model.ColecoesModel;
+import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.especialidades.model.CorProdutoModel;
 import br.com.golive.entity.especialidades.repository.CorProdutoJPA;
+import br.com.golive.entity.usuario.model.Usuario;
 import br.com.golive.filter.GoliveFilter;
+import br.com.golive.interceptor.EntityManagerInjectionInterceptor;
 import br.com.golive.interceptor.LogAuditoriaInterceptor;
+import br.com.golive.navigation.component.KeySubQueries;
 import br.com.golive.navigation.component.LazyModel;
 import br.com.golive.navigation.component.OrderByDynamicColumn;
 import br.com.golive.service.CorProdutoService;
@@ -36,9 +40,9 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 
 	@Override
 	@CrudOperation(type = Operation.INSERT)
-	@Interceptors(LogAuditoriaInterceptor.class)
+	@Interceptors({ EntityManagerInjectionInterceptor.class, LogAuditoriaInterceptor.class })
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void salvar(final CorProdutoModel model) {
+	public void salvar(final Usuario usuario, final Empresa empresa, final CorProdutoModel model) {
 		logger.info("Salvando corProdutoModel");
 		corProdutoJPA.refreshModel(model.getDepartamentoSelected());
 		corProdutoJPA.refreshModel(model.getGrupoProdutoSelected());
@@ -49,40 +53,42 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 
 	@Override
 	@CrudOperation(type = Operation.UPDATE)
-	@Interceptors(LogAuditoriaInterceptor.class)
+	@Interceptors({ EntityManagerInjectionInterceptor.class, LogAuditoriaInterceptor.class })
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void atualizar(final CorProdutoModel model) {
+	public void atualizar(final Usuario usuario, final Empresa empresa, final CorProdutoModel model) {
 		corProdutoJPA.update(model);
 	}
 
 	@Override
-	public List<CorProdutoModel> obterLista() {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public List<CorProdutoModel> obterLista(final Usuario usuario, final Empresa empresa) {
 		return corProdutoJPA.findAllWithoutLazy("subGrupoProdutoSelected", "grupoProdutoSelected", "departamentoSelected", "colecaoSelected");
 	}
 
 	@Override
 	@CrudOperation(type = Operation.DELETE)
-	@Interceptors(LogAuditoriaInterceptor.class)
+	@Interceptors({ EntityManagerInjectionInterceptor.class, LogAuditoriaInterceptor.class })
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void remover(final CorProdutoModel departamentoModel) {
+	public void remover(final Usuario usuario, final Empresa empresa, final CorProdutoModel departamentoModel) {
 		corProdutoJPA.delete(departamentoModel);
 	}
 
 	@Override
-	public void refresh(final CorProdutoModel model) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public void refresh(final Usuario usuario, final Empresa empresa, final CorProdutoModel model) {
 		corProdutoJPA.refresh(model);
 	}
 
 	@Override
-	public List<CorProdutoModel> obterPorColecao(final ColecoesModel colecoesModel) {
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public List<CorProdutoModel> obterPorColecao(final Usuario usuario, final Empresa empresa, final ColecoesModel colecoesModel) {
 		logger.info("Obtendo Lista de cores por colecao");
 		return corProdutoJPA.obterListaPorColecao(colecoesModel);
 	}
 
 	@Override
-	public LazyModel<CorProdutoModel> obterListaLazy(final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order) {
-		// TODO Auto-generated method stub
-		return null;
+	@Interceptors(EntityManagerInjectionInterceptor.class)
+	public LazyModel<CorProdutoModel> obterListaLazy(final Usuario usuario, final Empresa empresa, final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order, final Map<KeySubQueries, Map<String, GoliveFilter>> subQueries, final List<String> lazy) {
+		return corProdutoJPA.obterListaLazy(startIndex, pageSize, parameters, order, subQueries, lazy);
 	}
-
 }

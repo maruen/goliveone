@@ -8,13 +8,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.slf4j.Logger;
 
 import br.com.golive.annotation.Label;
-import br.com.golive.bean.generics.CadastroProdutoClassificacao;
-import br.com.golive.bean.generics.CadastroProdutoEspecificidade;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericBean;
-import br.com.golive.bean.page.cadastro.rules.CadastroGenericFilterBean;
+import br.com.golive.bean.generics.fragment.CadastroProdutoClassificacao;
+import br.com.golive.bean.generics.fragment.CadastroProdutoEspecificidade;
+import br.com.golive.bean.page.cadastro.rules.CadastroGenericBeanLazy;
 import br.com.golive.entity.padraoespessura.model.ProdutoPadraoEspessuraModel;
 import br.com.golive.entity.unidade.model.UnidadeModel;
 import br.com.golive.service.ProdutoPadraoEspessuraService;
@@ -25,7 +27,7 @@ import br.com.golive.utils.Utils;
 @Label(name = "label.cadastroPadroesEspessura")
 @ManagedBean
 @ViewScoped
-public class ProdutoPadraoEspessuraBean extends CadastroGenericBean<ProdutoPadraoEspessuraModel> {
+public class ProdutoPadraoEspessuraBean extends CadastroGenericBeanLazy<ProdutoPadraoEspessuraModel> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,38 +35,46 @@ public class ProdutoPadraoEspessuraBean extends CadastroGenericBean<ProdutoPadra
 	private Logger logger;
 
 	@Inject
+	@Getter
+	@Setter
 	private ProdutoPadraoEspessuraFilter filtros;
 
 	@Inject
+	@Getter
+	@Setter
 	private CadastroProdutoClassificacao componentCadastroProdutoClassificacao;
 
 	@Inject
+	@Getter
+	@Setter
 	private CadastroProdutoEspecificidade componentCadastroProdutoEspecificidade;
 
 	@EJB
-	private ProdutoPadraoEspessuraService produtoPadraoEspessuraService;
+	@Getter
+	private ProdutoPadraoEspessuraService serviceBean;
 
 	@EJB
 	private UnidadeService unidadeService;
 
+	@Getter
+	@Setter
 	private List<UnidadeModel> unidades;
 
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init(produtoPadraoEspessuraService.obterLista());
+		super.init();
 		componentCadastroProdutoClassificacao.setDelegate(this);
 		componentCadastroProdutoEspecificidade.setDelegate(this);
 	}
 
 	private void obterUnidades() {
-		unidades = unidadeService.obterLista();
+		unidades = unidadeService.obterLista(usuario, empresaSelecionada);
 	}
 
 	@Override
 	public void incluir() {
 		super.incluir();
-		registro = new ProdutoPadraoEspessuraModel();
 		obterUnidades();
 	}
 
@@ -127,55 +137,6 @@ public class ProdutoPadraoEspessuraBean extends CadastroGenericBean<ProdutoPadra
 			JSFUtils.warnMessage(usuario.getLabels().getField("title.msg.valor.invalido"), usuario.getLabels().getField("msg.unidade.tamanho"));
 		}
 		return ret;
-	}
-
-	@Override
-	public void serviceSave(final ProdutoPadraoEspessuraModel registro) {
-		produtoPadraoEspessuraService.salvar(registro);
-	}
-
-	@Override
-	public void serviceUpdate(final ProdutoPadraoEspessuraModel registro) {
-		produtoPadraoEspessuraService.atualizar(registro);
-	}
-
-	@Override
-	public void serviceRemove(final ProdutoPadraoEspessuraModel registro) {
-		produtoPadraoEspessuraService.remover(registro);
-	}
-
-	@Override
-	public void serviceRefresh(final ProdutoPadraoEspessuraModel registro) {
-		produtoPadraoEspessuraService.refresh(registro);
-	}
-
-	@Override
-	public CadastroGenericFilterBean<ProdutoPadraoEspessuraModel> getFiltros() {
-		return filtros;
-	}
-
-	public CadastroProdutoClassificacao getComponentCadastroProdutoClassificacao() {
-		return componentCadastroProdutoClassificacao;
-	}
-
-	public void setComponentCadastroProdutoClassificacao(final CadastroProdutoClassificacao componentCadastroProdutoClassificacao) {
-		this.componentCadastroProdutoClassificacao = componentCadastroProdutoClassificacao;
-	}
-
-	public CadastroProdutoEspecificidade getComponentCadastroProdutoEspecificidade() {
-		return componentCadastroProdutoEspecificidade;
-	}
-
-	public void setComponentCadastroProdutoEspecificidade(final CadastroProdutoEspecificidade componentCadastroProdutoEspecificidade) {
-		this.componentCadastroProdutoEspecificidade = componentCadastroProdutoEspecificidade;
-	}
-
-	public List<UnidadeModel> getUnidades() {
-		return unidades;
-	}
-
-	public void setUnidades(final List<UnidadeModel> unidades) {
-		this.unidades = unidades;
 	}
 
 }
