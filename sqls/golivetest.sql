@@ -4872,32 +4872,6 @@ CREATE TABLE IF NOT EXISTS `golivetest`.`tbConfiguracaoColunaPagina` (
   `Visible` BIT(1))
 ENGINE = InnoDB;
 
-ALTER TABLE `golivetest`.`tbPadroesEspessuraProduto_tbColecoesProduto` 
-ADD UNIQUE INDEX `tbPadroesEspessuraProduto_Id_UNIQUE` (`tbPadroesEspessuraProduto_Id` ASC);
-
-ALTER TABLE `golivetest`.`tbPadroesEspessuraProduto_tbDepartamento` 
-ADD UNIQUE INDEX `tbPadroesEspessurasProduto_Id_UNIQUE` (`tbPadroesEspessurasProduto_Id` ASC);
-
-
-ALTER TABLE `golivetest`.`tbPadroesEspessuraProduto_tbGrupoProduto` 
-ADD UNIQUE INDEX `tbPadroesEspessuraProduto_Id_UNIQUE` (`tbPadroesEspessuraProduto_Id` ASC);
-
-ALTER TABLE `golivetest`.`tbPadroesEspessuraProduto_tbSubGrupoProduto` 
-ADD UNIQUE INDEX `tbPadroesEspessuraProduto_Id_UNIQUE` (`tbPadroesEspessuraProduto_Id` ASC);
-
-ALTER TABLE `golivetest`.`tbPadroesLarguraProduto_tbColecoesProduto` 
-ADD UNIQUE INDEX `tbPadroesLarguraProduto_Id_UNIQUE` (`tbPadroesLarguraProduto_Id` ASC);
-
-ALTER TABLE `golivetest`.`tbPadroesLarguraProduto_tbDepartamentoProduto` 
-ADD UNIQUE INDEX `tbPadroesLarguraProduto_Id_UNIQUE` (`tbPadroesLarguraProduto_Id` ASC);
-
-ALTER TABLE `golivetest`.`tbPadroesLarguraProduto_tbGrupoProduto` 
-ADD UNIQUE INDEX `tbPadroesLarguraProduto_Id_UNIQUE` (`tbPadroesLarguraProduto_Id` ASC);
-
-ALTER TABLE `golivetest`.`tbPadroesLarguraProduto_tbSubGrupoProduto` 
-ADD UNIQUE INDEX `tbPadroesLarguraProduto_Id_UNIQUE` (`tbPadroesLarguraProduto_Id` ASC);
-
-
 
 
 

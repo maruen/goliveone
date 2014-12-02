@@ -22,29 +22,33 @@
 
 			<h:outputText id="idOutputText"
 				value="#{managerBean.get('label.cadastroPadroesLargura.id')}" />
-			<h:inputText id="idInputText" style="width: 125px;" value="#{pojo.id}" disabled="true" />
+			<h:inputText id="idInputText" style="width: 125px;"
+				value="#{pojo.id}" disabled="true" />
 
 			<p:spacer />
 			<p:spacer />
 
 			<h:outputText id="dataInclusaoOutputText"
 				value="#{managerBean.get('label.cadastroPadroesLargura.inclusao')}" />
-			<h:inputText value="#{pojo.dataInclusao.time}" id="dataInclusaoInputText"
-				disabled="true" >
+			<h:inputText value="#{pojo.dataInclusao.time}"
+				id="dataInclusaoInputText" disabled="true">
 				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
 			</h:inputText>
 
 			<h:outputText id="larguraNomeOutputText"
 				value="#{managerBean.get('label.cadastroPadroesLargura.largura')}" />
-				
-			<p:inputMask mask="#9.999"  id="larguraNomeInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}"
-				disabled="false" style="width: 90%" value="#{pojo.largura}" />	
-				
-			<p:inputText id="larguraNomeInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}"
-				disabled="false" style="width: 90%" value="#{pojo.largura}" />
+
+			<p:inputText id="larguraNomeInputText" required="true"
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				style="width: 90%" value="#{pojo.largura}" maxlength="7">
+				<f:convertNumber pattern="#0.000" minFractionDigits="2"
+					maxFractionDigits="3" maxIntegerDigits="3" minIntegerDigits="1" />
+				<p:ajax event="change" update=":conteudoForm:larguraNomeInputText" />
+			</p:inputText>
 
 			<h:inputText id="unidadeNomeInputText" required="true"
-				disabled="true" style="width: 80%" value="#{pojo.unidadeSelected.abreviacao}" />
+				disabled="true" style="width: 80%"
+				value="#{pojo.unidadeSelected.abreviacao}" />
 
 			<p:commandLink onclick="PF('dlgUnidade').show();" immediate="true">
 				<h:graphicImage
@@ -54,16 +58,18 @@
 			<h:outputText id="ultimaAlteracaoOutputText"
 				value="#{managerBean.get('label.cadastroPadroesLargura.ultimaAlteracao')}"
 				styleClass="singleLine" />
-			<h:inputText value="#{pojo.dataAlteracao.time}" id="ultimaAlteracaoInputText"
-				disabled="true" >
+			<h:inputText value="#{pojo.dataAlteracao.time}"
+				id="ultimaAlteracaoInputText" disabled="true">
 				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
 			</h:inputText>
 
 			<h:outputText
 				value="#{managerBean.get('label.cadastroPadroesLargura.descricao')}"
 				id="descricaoOutputText" />
-			<p:inputText id="descricaoInputText" required="true" requiredMessage="#{managerBean.get('msg.preencher.registro')}" disabled="false"
-				style="width: 500%" value="#{pojo.larguraDescricao}" />
+			<p:inputText id="descricaoInputText" required="true"
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				disabled="false" style="width: 500%"
+				value="#{pojo.larguraDescricao}" />
 
 		</h:panelGrid>
 
@@ -71,15 +77,17 @@
 
 	<p:dialog
 		header="#{managerBean.get('label.cadastroPadroesLargura.pesquisaUnidades')}"
-		widgetVar="dlgUnidade" modal="true" resizable="false"
-		 height="100%" width="35%">
+		widgetVar="dlgUnidade" modal="true" resizable="false" height="100%"
+		width="35%">
 
 		<p:dataTable id="unidadeDatatableId" var="unidadeDatatableVar"
-			value="#{bean.unidades}"  selectionMode="single" selection="#{pojo.unidadeSelected}"  rowKey="#{unidadeDatatableVar.id}"
+			value="#{bean.unidades}" selectionMode="single"
+			selection="#{pojo.unidadeSelected}"
+			rowKey="#{unidadeDatatableVar.id}"
 			emptyMessage="#{managerBean.get('label.cadastroPadroesLargura.msnNaoHaRegistros')}">
 
-			<p:ajax event="rowSelect"  oncomplete="PF('dlgUnidade').hide();" 
-					update=":conteudoForm:unidadeNomeInputText"  />
+			<p:ajax event="rowSelect" oncomplete="PF('dlgUnidade').hide();"
+				update=":conteudoForm:unidadeNomeInputText" />
 
 			<p:column
 				headerText="#{managerBean.get('label.cadastroPadroesEspessura.id')}"
