@@ -1,4 +1,4 @@
-package br.com.golive.entity.finalidadetipo.model;
+package br.com.golive.entity.finalidadecor.model;
 
 import java.util.Calendar;
 
@@ -13,22 +13,22 @@ import br.com.golive.annotation.TransientColumn;
 import br.com.golive.entity.Model;
 
 @Entity
-@Table(name = "tbFinalidadeTipoProduto")
-@Label(name = "label.cadastroFinalidadeTipo")
-@Jasper(titulo = "label.cadastroFinalidadeTipo.finalidadeTipoProduto", nomeDoArquivoGerado = "file.name.finalidadetipo", nomeArquivoJasper = "FinalidadeTipo")
-public class ProdutoFinalidadeTipoModel extends Model {
+@Table(name = "tbFinalidadeCorProduto")
+@Label(name = "label.cadastroFinalidadeCor")
+@Jasper(titulo = "label.cadastroFinalidadeCodigo.finalidadeCodigoProduto", nomeDoArquivoGerado = "file.name.finalidadecor", nomeArquivoJasper = "FinalidadeCor")
+public class ProdutoFinalidadeCorModel extends Model {
 
 	@Transient
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "NumeroMinimoCaracteres")
-	private Long numeroMinimoDeCaracteres;
+	private Long numeroMinimoCaracteres;
 
 	@Column(name = "NumeroMaximoCaracteres")
-	private Long numeroMaximoDeCaracteres;
+	private Long numeroMaximoCaracteres;
 
-	@Column(name = "FinalidadeTipoProduto")
-	private String finalidadeTipoProduto;
+	@Column(name = "FinalidadeCorProduto")
+	private String finalidadeCorProduto;
 
 	@Column(name = "ApresentacaoSistemaLookupPesquisas")
 	@TransientColumn
@@ -214,28 +214,28 @@ public class ProdutoFinalidadeTipoModel extends Model {
 	@TransientColumn
 	private boolean aplicacaoFaturamentoCompraNFeBeneficiamento;
 
-	public Long getNumeroMinimoDeCaracteres() {
-		return numeroMinimoDeCaracteres;
+	public Long getNumeroMinimoCaracteres() {
+		return numeroMinimoCaracteres;
 	}
 
-	public void setNumeroMinimoDeCaracteres(Long numeroMinimoDeCaracteres) {
-		this.numeroMinimoDeCaracteres = numeroMinimoDeCaracteres;
+	public void setNumeroMinimoCaracteres(Long numeroMinimoCaracteres) {
+		this.numeroMinimoCaracteres = numeroMinimoCaracteres;
 	}
 
-	public Long getNumeroMaximoDeCaracteres() {
-		return numeroMaximoDeCaracteres;
+	public Long getNumeroMaximoCaracteres() {
+		return numeroMaximoCaracteres;
 	}
 
-	public void setNumeroMaximoDeCaracteres(Long numeroMaximoDeCaracteres) {
-		this.numeroMaximoDeCaracteres = numeroMaximoDeCaracteres;
+	public void setNumeroMaximoCaracteres(Long numeroMaximoCaracteres) {
+		this.numeroMaximoCaracteres = numeroMaximoCaracteres;
 	}
 
-	public String getFinalidadeTipoProduto() {
-		return finalidadeTipoProduto;
+	public String getFinalidadeCorProduto() {
+		return finalidadeCorProduto;
 	}
 
-	public void setFinalidadeTipoProduto(String finalidadeTipoProduto) {
-		this.finalidadeTipoProduto = finalidadeTipoProduto;
+	public void setFinalidadeCorProduto(String finalidadeCorProduto) {
+		this.finalidadeCorProduto = finalidadeCorProduto;
 	}
 
 	public boolean isApresentacaoSistemaLookupPesquisas() {
@@ -634,8 +634,8 @@ public class ProdutoFinalidadeTipoModel extends Model {
 		this.aplicacaoFaturamentoCompraNFeBeneficiamento = aplicacaoFaturamentoCompraNFeBeneficiamento;
 	}
 
-	public ProdutoFinalidadeTipoModel(Long numeroMinimoDeCaracteres,
-			Long numeroMaximoDeCaracteres, String finalidadeTipoProduto,
+	public ProdutoFinalidadeCorModel(Long numeroMinimoCaracteres,
+			Long numeroMaximoCaracteres, String finalidadeCorProduto,
 			boolean apresentacaoSistemaLookupPesquisas,
 			boolean apresentacaoSistemaGridPesquisas,
 			boolean apresentacaoSistemaRelatoriosCadastrais,
@@ -680,9 +680,9 @@ public class ProdutoFinalidadeTipoModel extends Model {
 			boolean aplicacaoFaturamentoCompraNFeDevolucao,
 			boolean aplicacaoFaturamentoCompraNFeBeneficiamento) {
 		super();
-		this.numeroMinimoDeCaracteres = numeroMinimoDeCaracteres;
-		this.numeroMaximoDeCaracteres = numeroMaximoDeCaracteres;
-		this.finalidadeTipoProduto = finalidadeTipoProduto;
+		this.numeroMinimoCaracteres = numeroMinimoCaracteres;
+		this.numeroMaximoCaracteres = numeroMaximoCaracteres;
+		this.finalidadeCorProduto = finalidadeCorProduto;
 		this.apresentacaoSistemaLookupPesquisas = apresentacaoSistemaLookupPesquisas;
 		this.apresentacaoSistemaGridPesquisas = apresentacaoSistemaGridPesquisas;
 		this.apresentacaoSistemaRelatoriosCadastrais = apresentacaoSistemaRelatoriosCadastrais;
@@ -731,11 +731,11 @@ public class ProdutoFinalidadeTipoModel extends Model {
 		this.aplicacaoFaturamentoCompraNFeBeneficiamento = aplicacaoFaturamentoCompraNFeBeneficiamento;
 	}
 
-	public ProdutoFinalidadeTipoModel() {
+	public ProdutoFinalidadeCorModel() {
 		super();
 	}
 
-	public ProdutoFinalidadeTipoModel(Long id, Calendar dataInclusao,
+	public ProdutoFinalidadeCorModel(Long id, Calendar dataInclusao,
 			Calendar dataAlteracao) {
 		super(id, dataInclusao, dataAlteracao);
 	}

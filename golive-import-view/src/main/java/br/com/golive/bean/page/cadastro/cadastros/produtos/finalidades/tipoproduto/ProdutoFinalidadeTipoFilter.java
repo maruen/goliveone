@@ -39,21 +39,20 @@ public class ProdutoFinalidadeTipoFilter extends GenericFilterBean<ProdutoFinali
 	@Inject
 	@FilterInjected
 	@Filter(columnName = "SystemChangeDateTime", label = "label.dataAlteracao", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "dataAlteracao")
-	private DateFilter filtroDataAletracao;
+	private DateFilter filtroDataAlteracao;
 
 	@Inject
 	@FilterInjected
-	@Filter(columnName = "FinalidadeTipoProduto", label = "label.cadastroFinalidadeTipo.descricao", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "descricao")
-	private StringFilter filtroDescricao;
+	@Filter(columnName = "FinalidadeTipoProduto", label = "label.cadastroFinalidadeTipo.finalidadeTipoProduto", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "finalidadeTipoProduto")
+	private StringFilter filtroFinalidadeTipoProduto;
 
 	@Inject
 	@FilterInjected
-	@Filter(columnName = "NumeroMaximoCaracteres", label = "label.cadastroFinalidadeTipo.nMaximoCaracteres", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "numeroMaximoDeCaracteres")
+	@Filter(columnName = "NumeroMaximoCaracteres", label = "label.cadastroFinalidadeTipo.nMaximoCaracteres", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "numeroMaximoCaracteres")
 	private LongFilter filtroQuantidadeMaxima;
 
 	@Inject
 	@FilterInjected
-	@Filter(columnName = "NumeroMinimoCaracteres", label = "label.cadastroFinalidadeTipo.nMinimoCaracteres", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "numeroMinimoDeCaracteres")
+	@Filter(columnName = "NumeroMinimoCaracteres", label = "label.cadastroFinalidadeTipo.nMinimoCaracteres", entityClazz = ProdutoFinalidadeTipoModel.class, fieldName = "numeroMinimoCaracteres")
 	private LongFilter filtroQuantidadeMinima;
-
 }
