@@ -3,9 +3,10 @@ package br.com.golive.service;
 import javax.ejb.Local;
 
 import br.com.golive.entity.padraolargura.model.ProdutoPadraoLarguraModel;
-import br.com.golive.impl.ProdutoPadraoLarguraServiceImpl;
+import br.com.golive.impl.ProdutoFinalidadeCodigoBarrasServiceImpl;
 
-@Local(value = ProdutoPadraoLarguraServiceImpl.class)
+@Local(value = ProdutoFinalidadeCodigoBarrasServiceImpl.class)
 public interface ProdutoPadraoLarguraService extends Service<ProdutoPadraoLarguraModel> {
+
 
 }

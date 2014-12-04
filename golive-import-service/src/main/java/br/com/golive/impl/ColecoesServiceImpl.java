@@ -84,6 +84,7 @@ public class ColecoesServiceImpl implements ColecoesService {
 		return colecoesJPA.findAllWithoutLazy("grupoProdutoSelected", "departamentoSelected", "subGrupoProdutoSelected");
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	@Interceptors(EntityManagerInjectionInterceptor.class)
 	public LazyModel<ColecoesModel> obterListaLazy(final Usuario usuario, final Empresa empresa, final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order, final Map<KeySubQueries, Map<String, GoliveFilter>> subQueries, final List<String> lazy) {

@@ -86,6 +86,7 @@ public class CorProdutoServiceImpl implements CorProdutoService {
 		return corProdutoJPA.obterListaPorColecao(colecoesModel);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	@Interceptors(EntityManagerInjectionInterceptor.class)
 	public LazyModel<CorProdutoModel> obterListaLazy(final Usuario usuario, final Empresa empresa, final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order, final Map<KeySubQueries, Map<String, GoliveFilter>> subQueries, final List<String> lazy) {

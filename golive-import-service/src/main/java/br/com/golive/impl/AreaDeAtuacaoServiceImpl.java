@@ -67,6 +67,7 @@ public class AreaDeAtuacaoServiceImpl implements AreaDeAtuacaoService {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	@Interceptors(EntityManagerInjectionInterceptor.class)
 	public LazyModel<AreaDeAtuacaoModel> obterListaLazy(final Usuario usuario, final Empresa empresa, final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order, final Map<KeySubQueries, Map<String, GoliveFilter>> subQueries, final List<String> lazy) {

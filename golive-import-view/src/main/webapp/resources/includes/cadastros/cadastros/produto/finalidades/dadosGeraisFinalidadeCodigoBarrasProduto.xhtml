@@ -1,0 +1,141 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:panel id="dadosGerais"
+		header="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGeraisPanel" styleClass="little-font">
+
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
+
+		<p:panelGrid cellpadding="2" cellspacing="2" width="100%" border="0">
+
+			<p:row>
+				<p:column styleClass="percentual-15">
+					<h:outputText id="idOutputText"
+						value="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.id')}" />
+				</p:column>
+
+				<p:column styleClass="percentual-25">
+					<h:inputText id="idInputText" style="width: 20%" disabled="true"
+						value="#{pojo.id}" />
+				</p:column>
+
+				<p:column styleClass="percentual-10">
+					<h:outputText id="dataInclusaoOutputText"
+						value="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.inclusao')}" />
+				</p:column>
+
+				<p:column styleClass="percentual-5">
+					<h:inputText value="#{pojo.dataInclusao.time}"
+						id="dataInclusaoInputText" disabled="true">
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+					</h:inputText>
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column styleClass="percentual-15">
+					<h:outputText id="finalidadeCodigoProdutoOutputText"
+						value="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.finalidadeCodBarrasProduto')}"
+						styleClass="singleLine" />
+				</p:column>
+
+				<p:column styleClass="percentual-50">
+					<p:inputText id="finalidadeCodigoProdutoIntputText" required="true"
+						requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+						value="#{pojo.finalidadeCodigoBarrasProduto}" style="width: 60%" />
+				</p:column>
+
+				<p:column styleClass="percentual-10">
+					<h:outputText id="ultimaAlteracaoOutputText"
+						value="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.ultimaAlteracao')}"
+						styleClass="singleLine" />
+				</p:column>
+
+				<p:column styleClass="percentual-5">
+					<h:inputText value="#{pojo.dataAlteracao.time}"
+						id="ultimaAlteracaoInputText" disabled="true">
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+					</h:inputText>
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column styleClass="percentual-15">
+					<h:outputText id="unidadePermitidaOutputText"
+						value="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.unidadePermitida')}"
+						styleClass="singleLine" />
+				</p:column>
+
+				<p:column styleClass="percentual-60">
+					<h:inputText id="unidadePermitidaIdInputText" disabled="true" style="width: 10%"
+						value="#{pojo.unidadeSelected.id}" />
+						
+					<p:spacer height="1" width="3" />
+
+					<h:inputText id="unidadePermitidaAbrevicacaoInputText"
+						value="#{pojo.unidadeSelected.abreviacao}" disabled="true"
+						style="width: 10%" />
+						
+					<p:spacer height="1" width="3" />
+
+					<h:inputText id="unidadePermitidaUnidadeInputText"
+						value="#{pojo.unidadeSelected.unidade}" disabled="true"
+						style="width: 39%" />
+						
+					<p:spacer height="1" width="5" />
+
+					<p:commandLink onclick="PF('dlgUnidade').show();">
+						<h:graphicImage
+							value="/resources/images/stylistica-icons-set/24x24/search.png" />
+					</p:commandLink>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</p:panel>
+
+	<p:dialog
+		header="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.pesquisaUnidades')}"
+		widgetVar="dlgUnidade" modal="false" resizable="false"
+		appendToBody="true" height="100%" width="55%">
+
+		<p:dataTable id="unidadeDatatableId" selectionMode="single"
+			selection="#{pojo.unidadeSelected}" var="unidade" filteredValue="#{bean.unidadesFiltrados}"
+			emptyMessage="#{managerBean.get('msg.nao.ha.registros')}"
+			rowKey="#{unidade.id}" value="#{bean.unidades}">
+
+			<p:ajax event="rowSelect"
+				update=":conteudoForm:unidadePermitidaIdInputText, :conteudoForm:mensagens, :conteudoForm:unidadePermitidaAbrevicacaoInputText, :conteudoForm:unidadePermitidaUnidadeInputText"
+				oncomplete="PF('dlgUnidade').hide();" />
+
+			<p:column filterBy="#{unidade.id}" filterMatchMode="exact"
+				headerText="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.id')}"
+				styleClass="percentual-10 singleLine">
+				<h:outputText value="#{unidade.id}" styleClass="floatRight" />
+			</p:column>
+
+			<p:column filterBy="#{unidade.abreviacao.toLowerCase()}"
+				filterMatchMode="contains"
+				headerText="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.codUnid')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="#{unidade.abreviacao}" />
+			</p:column>
+			
+			<p:column filterBy="#{unidade.unidade.toLowerCase()}"
+				filterMatchMode="contains"
+				headerText="#{managerBean.get('label.cadastroFinalidadeCodigoBarras.descricao')}"
+				styleClass="percentual-20 singleLine">
+				<h:outputText value="#{unidade.unidade}" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+</ui:composition>

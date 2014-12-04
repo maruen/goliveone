@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 
 import br.com.golive.annotation.CrudOperation;
 import br.com.golive.constants.Operation;
-import br.com.golive.entity.auditoria.repositorio.AuditoriaJPA;
 import br.com.golive.entity.empresas.empresa.model.Empresa;
 import br.com.golive.entity.grupoprodutos.model.GrupoProdutosModel;
 import br.com.golive.entity.subgrupoprodutos.model.SubGrupoProdutoModel;
@@ -38,9 +37,6 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 
 	@Inject
 	private Logger logger;
-
-	@Inject
-	private AuditoriaJPA auditoriaJPA;
 
 	@Override
 	@CrudOperation(type = Operation.INSERT)
@@ -91,6 +87,7 @@ public class SubGrupoProdutoServiceImpl implements SubGrupoProdutoService {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	@Interceptors(EntityManagerInjectionInterceptor.class)
 	public LazyModel<SubGrupoProdutoModel> obterListaLazy(final Usuario usuario, final Empresa empresa, final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order, final Map<KeySubQueries, Map<String, GoliveFilter>> subQueries, final List<String> lazy) {

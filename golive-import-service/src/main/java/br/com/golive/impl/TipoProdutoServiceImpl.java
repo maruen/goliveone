@@ -78,6 +78,7 @@ public class TipoProdutoServiceImpl implements TipoProdutoService {
 		tipoProdutoJPA.refresh(model);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	@Interceptors(EntityManagerInjectionInterceptor.class)
 	public LazyModel<TipoProdutoModel> obterListaLazy(final Usuario usuario, final Empresa empresa, final int startIndex, final int pageSize, final Map<String, GoliveFilter> parameters, final OrderByDynamicColumn order, final Map<KeySubQueries, Map<String, GoliveFilter>> subQueries, final List<String> lazy) {

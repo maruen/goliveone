@@ -15,10 +15,10 @@
 
 <composite:implementation>
 
-	<p:panel id="apresentacao"
-		header="#{managerBean.get('label.cadastroFinalidadeTipo.apresentacao')}"
+	<p:panel id="aplicacao_aplicacao"
+		header="#{managerBean.get('label.cadastroFinalidadeTipo.aplicacao')}"
 		toggleable="true" closable="false" collapsed="true" toggleSpeed="500"
-		closeSpeed="500" widgetVar="apresentacao" styleClass="little-font">
+		closeSpeed="500" widgetVar="aplicacao" styleClass="little-font">
 
 		<f:facet name="actions">
 			<h:commandLink
@@ -43,36 +43,35 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoSistemaLookupPesquisas}"
-										id="lookupPesquisasCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoSistemaLookupPesquisas}"
+										id="aplicacao_lookupPesquisasCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="lookupPesquisasOutputText"
+									<h:outputText id="aplicacao_lookupPesquisasOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.lookUpPesquisas')}"
 										styleClass="singleLine" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoSistemaGraficosCadastrais}"
-										id="graficosCadastraisCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoSistemaGraficosCadastrais}"
+										id="aplicacao_graficosCadastraisCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="graficosCadastraisOutputText"
+									<h:outputText id="aplicacao_graficosCadastraisOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.graficosCadastrais')}"
 										styleClass="singleLine" />
 								</p:column>
-
 							</p:row>
 
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoSistemaGridPesquisas}"
-										id="gridPesquisasCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoSistemaGirdPesquisas}"
+										id="aplicacao_gridPesquisasCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="gridPesquisasOutputText"
+									<h:outputText id="aplicacao_gridPesquisasOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.gridPesquisas')}"
 										styleClass="singleLine" />
 								</p:column>
@@ -81,11 +80,11 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoSistemaRelatoriosCadastrais}"
-										id="relatoriosCadastraisCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoSistemaRelatoriosCadastrais}"
+										id="aplicacao_relatoriosCadastraisCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="relatoriosCadastraisOutputText"
+									<h:outputText id="aplicacao_relatoriosCadastraisOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.relatoriosCadastrais')}"
 										styleClass="singleLine" />
 								</p:column>
@@ -106,21 +105,21 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoVendasGraficos}"
-										id="graficosCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoVendasGraficos}"
+										id="aplicacao_graficosCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="graficosOutputText"
+									<h:outputText id="aplicacao_graficosOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.graficos')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoVendasOrcamentos}"
-										id="orcamentosCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoVendasOrcamentos}"
+										id="aplicacao_orcamentosCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="orcamentosOutputText"
+									<h:outputText id="aplicacao_orcamentosOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.orcamentos')}" />
 								</p:column>
 							</p:row>
@@ -128,21 +127,21 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoVendasPesquisas}"
-										id="pesquisasCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoVendasPesquisas}"
+										id="aplicacao_pesquisasCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="pesquisasOutputText"
+									<h:outputText id="aplicacao_pesquisasOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.pesquisas')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoVendasPedidosVenda}"
-										id="pedidosVendaCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoVendasPedidosDeVenda}"
+										id="aplicacao_pedidosVendaCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="pedidosVendaOutputText"
+									<h:outputText id="aplicacao_pedidosVendaOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.pedidosVenda')}"
 										styleClass="singleLine" />
 								</p:column>
@@ -151,21 +150,21 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoVendasRelatorios}"
-										id="relatoriosCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoVendasRelatorios}"
+										id="aplicacao_relatoriosCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="relatoriosOutputText"
+									<h:outputText id="aplicacao_relatoriosOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.relatorios')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoVendasDAV}"
-										id="davCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoVendasDAV}"
+										id="aplicacao_davCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="davOutputText"
+									<h:outputText id="aplicacao_davOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.dav')}" />
 								</p:column>
 							</p:row>
@@ -185,22 +184,22 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoFaturamentoVendaCumpomFiscal}"
-										id="cupomFiscalSatCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoVendaCupomFiscal}"
+										id="aplicacao_cupomFiscalSatCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="cupomFiscalSatOutputText"
+									<h:outputText id="aplicacao_cupomFiscalSatOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.cupomFiscalSat')}"
 										styleClass="singleLine" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoFaturamentoVendaNFSe}"
-										id="nfeServicoCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoVendaNFSe}"
+										id="aplicacao_nfeServicoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="nfeServicoOutputText"
+									<h:outputText id="aplicacao_nfeServicoOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeServico')}"
 										styleClass="singleLine" />
 								</p:column>
@@ -209,11 +208,11 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoFaturamentoVendaNFCe}"
-										id="nfceCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoVendaNFCe}"
+										id="aplicacao_nfceCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="nfceOutputText"
+									<h:outputText id="aplicacao_nfceOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfce')}"
 										styleClass="singleLine" />
 								</p:column>
@@ -222,11 +221,11 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoFaturamentoVendaNFe}"
-										id="nfeVendaSaidaCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoVendaNFe}"
+										id="aplicacao_nfeVendaSaidaCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="nfeVendaSaidaOutputText"
+									<h:outputText id="aplicacao_nfeVendaSaidaOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeVendaSaida')}"
 										styleClass="singleLine" />
 								</p:column>
@@ -252,21 +251,21 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoComprasGraficos}"
-										id="graficosCompraCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoComprasGraficos}"
+										id="aplicacao_graficosCompraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="graficosCompraOutputText"
+									<h:outputText id="aplicacao_graficosCompraOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.graficos')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoComprasCotacoes}"
-										id="cotacoesCompraCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoComprasCotacoes}"
+										id="aplicacao_cotacoesCompraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="cotacoesCompraOutputText"
+									<h:outputText id="aplicacao_cotacoesCompraOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.cotacoes')}" />
 								</p:column>
 							</p:row>
@@ -274,21 +273,21 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoComprasPesquisas}"
-										id="pesquisasCompraCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoComprasPesquisas}"
+										id="aplicacao_pesquisasCompraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="pesquisasCompraOutputText"
+									<h:outputText id="aplicacao_pesquisasCompraOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.pesquisas')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoComprasPedidosCompra}"
-										id="pedidosCompraCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoComprasPedidosCompra}"
+										id="aplicacao_pedidosCompraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="pedidosCompraOutputText"
+									<h:outputText id="aplicacao_pedidosCompraOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.pedidosCompra')}"
 										styleClass="singleLine" />
 								</p:column>
@@ -297,21 +296,21 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoComprasRelatorios}"
-										id="relatoriosCompraCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoComprasRelatorios}"
+										id="aplicacao_relatoriosCompraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="relatoriosCompraOutputText"
+									<h:outputText id="aplicacao_relatoriosCompraOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.relatorios')}" />
 								</p:column>
 
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoComprasEntradasNFeCompra}"
-										id="entradasNfeCompraCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoComprasEntradasNFeCompra}"
+										id="aplicacao_entradasNfeCompraCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="entradasNfeCompraOutputText"
+									<h:outputText id="aplicacao_entradasNfeCompraOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.entradasNfeCompra')}"
 										styleClass="singleLine" />
 								</p:column>
@@ -332,11 +331,11 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoFaturamentoCompraNFeCompra}"
-										id="nfeCompraEntradaCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoCompraNFeCompra}"
+										id="aplicacao_nfeCompraEntradaCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="nfeCompraEntradaOutputText"
+									<h:outputText id="aplicacao_nfeCompraEntradaOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeCompraEntrada')}"
 										styleClass="singleLine" />
 								</p:column>
@@ -345,11 +344,11 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoFaturamentoCompraNFeDevolucao}"
-										id="nfeDevolucaoCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoCompraNFeDevolucao}"
+										id="aplicacao_nfeDevolucaoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="nfeDevolucaoOutputText"
+									<h:outputText id="aplicacao_nfeDevolucaoOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeDevolucao')}"
 										styleClass="singleLine" />
 								</p:column>
@@ -358,11 +357,11 @@
 							<p:row>
 								<p:column styleClass="percentual-2">
 									<p:selectBooleanCheckbox
-										value="#{cc.attrs.pojo.apresentacaoFaturamentoCompraNFeBeneficiamento}"
-										id="nfeBeneficiamentoCheckbox" />
+										value="#{cc.attrs.pojo.aplicacaoFaturamentoCompraNFeBeneficiamento}"
+										id="aplicacao_nfeBeneficiamentoCheckbox" />
 								</p:column>
 								<p:column styleClass="percentual-10">
-									<h:outputText id="nfeBeneficiamentoOutputText"
+									<h:outputText id="aplicacao_nfeBeneficiamentoOutputText"
 										value="#{managerBean.get('label.cadastroFinalidadeTipo.nfeBeneficiamento')}"
 										styleClass="singleLine" />
 								</p:column>

@@ -1,5 +1,7 @@
 package br.com.golive.bean.page.cadastro.cadastros.produtos.tipoProduto;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import lombok.Getter;
@@ -15,6 +17,8 @@ import br.com.golive.filter.LongFilter;
 import br.com.golive.filter.StringFilter;
 import br.com.golive.qualifier.FilterInjected;
 
+@ManagedBean
+@ViewScoped
 public class TipoProdutoFilter extends GenericFilterBean<TipoProdutoModel> {
 
 	private static final long serialVersionUID = 1L;

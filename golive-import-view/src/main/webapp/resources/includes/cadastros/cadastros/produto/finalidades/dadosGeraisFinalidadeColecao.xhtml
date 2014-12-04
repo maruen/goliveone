@@ -4,81 +4,75 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<p:panel id="dadosGerais"
-		 header="#{managerBean.get('label.cadastroFinalidadeColecao.dadosGerais')}"
-		 toggleable="true"
-		 collapsed="false"
-		 closable="false"
-		 toggleSpeed="500"
-		 closeSpeed="500"
-		 widgetVar="dadosGerais"
-		 styleClass="little-font" >
-		 
-	     	<f:facet name="actions">
-          		<h:commandLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
-          			<h:outputText styleClass="ui-icon ui-icon-help" />
-          		</h:commandLink>
-      		</f:facet>
-   		       	
-          	<h:panelGrid columns="6"
-          				 cellpadding="3"  
-          				 cellspacing="3"
-          				 columnClasses="percentual-5,
-          				 				percentual-10,
-          				 				percentual-11,
-          				 				percentual-50,
-          				 				percentual-10,
-          				 				percentual-5" 
-          				 width="100%"
-          				 border="0">
-     
-			<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroFinalidadeColecao.id')}"  />
-           	<h:inputText id="idInputText"
-           				 style="width: 125px;"
-           				 disabled="true"/>
-           				 
-           	<p:spacer/>
-           	<p:spacer/>
-           				 
-      		<h:outputText id="dataInclusaoOutputText" 
-      					  value="#{managerBean.get('label.cadastroFinalidadeColecao.inclusao')}" />
-	 		<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText" disabled="true" />      					  
-      		
-      		<h:outputText id="finalidadeColecaoProdutoNomeOutputText" value="Finalidade Coleção Produto" styleClass="singleLine"/>
-      		<p:inputText id="finalidadeColecaoProdutoNomeInputText"
-      					 required="true"
-      					 disabled="false"
-      					 style="width: 250%"
-      					 value="Compra" />	
-      					 
-      		<p:spacer/>
-      		<p:spacer/>
-     			
-       		<h:outputText id="ultimaAlteracaoOutputText"
-       					  value="#{managerBean.get('label.cadastroFinalidadeColecao.ultimaAlteracao')}"
-       					  styleClass="singleLine"/>
-	 		<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText" disabled="true" />      					  
+	<p:panel id="dadosGerais"
+		header="#{managerBean.get('label.cadastroFinalidadeColecao.dadosGerais')}"
+		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
+		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
 
-			<h:outputText value="#{managerBean.get('label.cadastroFinalidadeColecao.nMinimoCaracteres')}" id="numMinimoCaracteresOutputText" />
-			<p:inputText id="numMinimoCaracteresInputText"
-						 required="true"
-						 disabled="false"
-						 style="width: 50%"
-						 value="00010" />  
-						 
-			<p:spacer/>
-			<p:spacer/>
-			<p:spacer/>
-			<p:spacer/>
-			
-			<h:outputText value="#{managerBean.get('label.cadastroFinalidadeColecao.nMaximoCaracteres')}" id="numMaximoCaracteresOutputText" />
-			<p:inputText id="numMaximoCaracteresInputText"
-						 required="true"
-						 disabled="false"
-						 style="width: 50%"
-						 value="00060" />  
-			    			
-        </h:panelGrid>
+		<f:facet name="actions">
+			<h:commandLink
+				styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+				<h:outputText styleClass="ui-icon ui-icon-help" />
+			</h:commandLink>
+		</f:facet>
 
+		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-5,percentual-10,percentual-11,percentual-50,percentual-10,percentual-5"
+			width="100%" border="0">
+
+			<h:outputText id="idOutputText"
+				value="#{managerBean.get('label.cadastroFinalidadeColecao.id')}" />
+			<h:inputText id="idInputText" value="#{pojo.id}"
+				style="width: 125px;" disabled="true" />
+
+			<p:spacer />
+			<p:spacer />
+
+			<h:outputText id="dataInclusaoOutputText"
+				value="#{managerBean.get('label.cadastroFinalidadeColecao.inclusao')}" />
+			<h:inputText value="#{pojo.dataInclusao.time}"
+				id="dataInclusaoInputText" disabled="true">
+				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:inputText>
+
+			<h:outputText id="finalidadeColecaoProdutoNomeOutputText"
+				value="Finalidade Coleção Produto" styleClass="singleLine" />
+			<p:inputText id="finalidadeColecaoProdutoNomeInputText"
+				disabled="false" style="width: 250%" required="true"
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				value="#{pojo.finalidadeColecaoProduto}" />
+
+			<p:spacer />
+			<p:spacer />
+
+			<h:outputText id="ultimaAlteracaoOutputText"
+				value="#{managerBean.get('label.cadastroFinalidadeColecao.ultimaAlteracao')}"
+				styleClass="singleLine" />
+			<h:inputText value="#{pojo.dataAlteracao.time}"
+				id="ultimaAlteracaoInputText" disabled="true">
+				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:inputText>
+
+			<h:outputText
+				value="#{managerBean.get('label.cadastroFinalidadeColecao.nMinimoCaracteres')}"
+				id="numMinimoCaracteresOutputText" />
+			<p:inputText id="numMinimoCaracteresInputText" disabled="false"
+				style="width: 50%" value="#{pojo.numeroMinimoCaracteres}"
+				required="true"
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}" />
+
+			<p:spacer />
+			<p:spacer />
+			<p:spacer />
+			<p:spacer />
+
+			<h:outputText
+				value="#{managerBean.get('label.cadastroFinalidadeColecao.nMaximoCaracteres')}"
+				id="numMaximoCaracteresOutputText" />
+			<p:inputText id="numMaximoCaracteresInputText" required="true"
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				disabled="false" style="width: 50%"
+				value="#{pojo.numeroMaximoCaracteres}" />
+		</h:panelGrid>
 	</p:panel>
 </ui:composition>
