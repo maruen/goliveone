@@ -22,10 +22,10 @@ public class ProdutoFinalidadeTipoModel extends Model {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "NumeroMinimoCaracteres")
-	private Long numeroMinimoDeCaracteres;
+	private Long numeroMinimoCaracteres;
 
 	@Column(name = "NumeroMaximoCaracteres")
-	private Long numeroMaximoDeCaracteres;
+	private Long numeroMaximoCaracteres;
 
 	@Column(name = "FinalidadeTipoProduto")
 	private String finalidadeTipoProduto;
@@ -214,20 +214,20 @@ public class ProdutoFinalidadeTipoModel extends Model {
 	@TransientColumn
 	private boolean aplicacaoFaturamentoCompraNFeBeneficiamento;
 
-	public Long getNumeroMinimoDeCaracteres() {
-		return numeroMinimoDeCaracteres;
+	public Long getNumeroMinimoCaracteres() {
+		return numeroMinimoCaracteres;
 	}
 
-	public void setNumeroMinimoDeCaracteres(Long numeroMinimoDeCaracteres) {
-		this.numeroMinimoDeCaracteres = numeroMinimoDeCaracteres;
+	public void setNumeroMinimoCaracteres(Long numeroMinimoCaracteres) {
+		this.numeroMinimoCaracteres = numeroMinimoCaracteres;
 	}
 
-	public Long getNumeroMaximoDeCaracteres() {
-		return numeroMaximoDeCaracteres;
+	public Long getNumeroMaximoCaracteres() {
+		return numeroMaximoCaracteres;
 	}
 
-	public void setNumeroMaximoDeCaracteres(Long numeroMaximoDeCaracteres) {
-		this.numeroMaximoDeCaracteres = numeroMaximoDeCaracteres;
+	public void setNumeroMaximoCaracteres(Long numeroMaximoCaracteres) {
+		this.numeroMaximoCaracteres = numeroMaximoCaracteres;
 	}
 
 	public String getFinalidadeTipoProduto() {
@@ -634,8 +634,8 @@ public class ProdutoFinalidadeTipoModel extends Model {
 		this.aplicacaoFaturamentoCompraNFeBeneficiamento = aplicacaoFaturamentoCompraNFeBeneficiamento;
 	}
 
-	public ProdutoFinalidadeTipoModel(Long numeroMinimoDeCaracteres,
-			Long numeroMaximoDeCaracteres, String finalidadeTipoProduto,
+	public ProdutoFinalidadeTipoModel(Long numeroMinimoCaracteres,
+			Long numeroMaximoCaracteres, String finalidadeTipoProduto,
 			boolean apresentacaoSistemaLookupPesquisas,
 			boolean apresentacaoSistemaGridPesquisas,
 			boolean apresentacaoSistemaRelatoriosCadastrais,
@@ -680,8 +680,8 @@ public class ProdutoFinalidadeTipoModel extends Model {
 			boolean aplicacaoFaturamentoCompraNFeDevolucao,
 			boolean aplicacaoFaturamentoCompraNFeBeneficiamento) {
 		super();
-		this.numeroMinimoDeCaracteres = numeroMinimoDeCaracteres;
-		this.numeroMaximoDeCaracteres = numeroMaximoDeCaracteres;
+		this.numeroMinimoCaracteres = numeroMinimoCaracteres;
+		this.numeroMaximoCaracteres = numeroMaximoCaracteres;
 		this.finalidadeTipoProduto = finalidadeTipoProduto;
 		this.apresentacaoSistemaLookupPesquisas = apresentacaoSistemaLookupPesquisas;
 		this.apresentacaoSistemaGridPesquisas = apresentacaoSistemaGridPesquisas;

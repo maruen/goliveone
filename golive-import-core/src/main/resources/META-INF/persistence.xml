@@ -53,6 +53,7 @@
 		<class>br.com.golive.entity.finalidadecolecao.model.ProdutoFinalidadeColecaoModel</class>
 		<class>br.com.golive.entity.finalidadecodigo.model.ProdutoFinalidadeCodigoModel</class>
 		<class>br.com.golive.entity.finalidadecor.model.ProdutoFinalidadeCorModel</class>
+		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
 		
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
@@ -91,6 +92,7 @@
 		<class>br.com.golive.entity.finalidadecolecao.model.ProdutoFinalidadeColecaoModel</class>
 		<class>br.com.golive.entity.finalidadecodigo.model.ProdutoFinalidadeCodigoModel</class>
 		<class>br.com.golive.entity.finalidadecor.model.ProdutoFinalidadeCorModel</class>
+		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
 
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
@@ -127,6 +129,7 @@
 		<class>br.com.golive.entity.finalidadecolecao.model.ProdutoFinalidadeColecaoModel</class>
 		<class>br.com.golive.entity.finalidadecodigo.model.ProdutoFinalidadeCodigoModel</class>
 		<class>br.com.golive.entity.finalidadecor.model.ProdutoFinalidadeCorModel</class>
+		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
 		
 		<properties>
 			<property name="hibernate.transaction.jta.platform"

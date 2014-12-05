@@ -17,12 +17,7 @@
 		</f:facet>
 
 		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
-			columnClasses="percentual-5,
-						   percentual-50,
-						   percentual-10,
-						   percentual-10,
-						   percentual-10,
-						   percentual-5"
+			columnClasses="percentual-15,percentual-50,percentual-10,percentual-10,percentual-10,percentual-5"
 			width="100%" border="0">
 
 			<h:outputText id="idOutputText"
@@ -40,11 +35,12 @@
 				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
 			</h:inputText>
 
-			<h:outputText id="descricaoNomeOutputText"
-				value="#{managerBean.get('label.cadastroFinalidadeTipo.descricao')}" />
+			<h:outputText id="descricaoNomeOutputText" styleClass="singleLine"
+				value="#{managerBean.get('label.cadastroFinalidadeTipo.finalidadeTipoProduto')}" />
 			<p:inputText id="descricaoNomeInputText" required="true"
-				disabled="false" styleClass="singleLine" value="#{pojo.descricao}"
-				style="width: 70%;" />
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				disabled="false" styleClass="singleLine"
+				value="#{pojo.finalidadeTipoProduto}" style="width: 70%;" />
 
 			<p:spacer />
 			<p:spacer />
@@ -60,18 +56,14 @@
 		</h:panelGrid>
 
 		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
-			columnClasses="percentual-5,
-						   			percentual-50,
-						   			percentual-10,
-						   			percentual-10,
-						   			percentual-10,
-						   			percentual-5"
+			columnClasses="percentual-15,percentual-50,percentual-10,percentual-10,percentual-10,percentual-5"
 			width="100%" border="0">
 
 			<h:outputText
 				value="#{managerBean.get('label.cadastroFinalidadeTipo.nMinimoCaracteres')}"
 				styleClass="singleLine" id="numMinCaracteresOutputText" />
 			<p:inputText id="numMinCaracteresInputText" required="true"
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}"
 				disabled="false" value="#{pojo.numeroMinimoDeCaracteres}"
 				style="width: 10%;" />
 
@@ -84,6 +76,7 @@
 				value="#{managerBean.get('label.cadastroFinalidadeTipo.nMaximoCaracteres')}"
 				styleClass="singleLine" id="numMaxCaracteresOutputText" />
 			<p:inputText id="numMaxCaracteresInputText" required="true"
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}"
 				disabled="false" value="#{pojo.numeroMaximoDeCaracteres}"
 				style="width: 10%;" />
 		</h:panelGrid>
