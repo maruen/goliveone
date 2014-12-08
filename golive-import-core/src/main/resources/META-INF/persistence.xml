@@ -54,6 +54,10 @@
 		<class>br.com.golive.entity.finalidadecodigo.model.ProdutoFinalidadeCodigoModel</class>
 		<class>br.com.golive.entity.finalidadecor.model.ProdutoFinalidadeCorModel</class>
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
+		<class>br.com.golive.entity.finalidadedescricao.model.ProdutoFinalidadeDescricaoModel</class>
+		<class>br.com.golive.entity.finalidadeunidade.model.ProdutoFinalidadeUnidadeModel</class>
+		<class>br.com.golive.entity.finalidadepadraoespessura.model.ProdutoFinalidadePadraoEspessuraModel</class>
+		<class>br.com.golive.entity.finalidadepadraolargura.model.ProdutoFinalidadePadraoLarguraModel</class>
 		
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
@@ -93,6 +97,10 @@
 		<class>br.com.golive.entity.finalidadecodigo.model.ProdutoFinalidadeCodigoModel</class>
 		<class>br.com.golive.entity.finalidadecor.model.ProdutoFinalidadeCorModel</class>
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
+		<class>br.com.golive.entity.finalidadedescricao.model.ProdutoFinalidadeDescricaoModel</class>
+		<class>br.com.golive.entity.finalidadeunidade.model.ProdutoFinalidadeUnidadeModel</class>
+		<class>br.com.golive.entity.finalidadepadraoespessura.model.ProdutoFinalidadePadraoEspessuraModel</class>
+		<class>br.com.golive.entity.finalidadepadraolargura.model.ProdutoFinalidadePadraoLarguraModel</class>
 
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
@@ -130,6 +138,10 @@
 		<class>br.com.golive.entity.finalidadecodigo.model.ProdutoFinalidadeCodigoModel</class>
 		<class>br.com.golive.entity.finalidadecor.model.ProdutoFinalidadeCorModel</class>
 		<class>br.com.golive.entity.finalidadetipo.model.ProdutoFinalidadeTipoModel</class>
+		<class>br.com.golive.entity.finalidadedescricao.model.ProdutoFinalidadeDescricaoModel</class>
+		<class>br.com.golive.entity.finalidadeunidade.model.ProdutoFinalidadeUnidadeModel</class>
+		<class>br.com.golive.entity.finalidadepadraoespessura.model.ProdutoFinalidadePadraoEspessuraModel</class>
+		<class>br.com.golive.entity.finalidadepadraolargura.model.ProdutoFinalidadePadraoLarguraModel</class>
 		
 		<properties>
 			<property name="hibernate.transaction.jta.platform"

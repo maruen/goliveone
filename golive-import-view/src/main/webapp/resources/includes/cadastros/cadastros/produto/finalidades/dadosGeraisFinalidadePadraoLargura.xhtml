@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<p:panel id="dadosGerais"
-		header="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.dadosGerais')}"
+		header="#{managerBean.get('label.cadastroFinalidadePadraoLargura.dadosGerais')}"
 		toggleable="true" collapsed="false" closable="false" toggleSpeed="500"
 		closeSpeed="500" widgetVar="dadosGerais" styleClass="little-font">
 
@@ -21,7 +21,7 @@
 			<p:row>
 				<p:column styleClass="percentual-10">
 					<h:outputText id="idOutputText"
-						value="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.id')}" />
+						value="#{managerBean.get('label.cadastroFinalidadePadraoLargura.id')}" />
 				</p:column>
 
 				<p:column styleClass="percentual-25">
@@ -31,7 +31,7 @@
 
 				<p:column styleClass="percentual-10">
 					<h:outputText id="dataInclusaoOutputText"
-						value="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.inclusao')}" />
+						value="#{managerBean.get('label.cadastroFinalidadePadraoLargura.inclusao')}" />
 				</p:column>
 
 				<p:column styleClass="percentual-5">
@@ -45,7 +45,7 @@
 			<p:row>
 				<p:column styleClass="percentual-10">
 					<h:outputText id="finalidadeCorProdutoNomeOutputText"
-						value="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.finalidadePadraoEspessuraProduto')}"
+						value="#{managerBean.get('label.cadastroFinalidadePadraoLargura.finalidadePadraoLarguraProduto')}"
 						styleClass="singleLine" />
 				</p:column>
 
@@ -53,12 +53,12 @@
 					<p:inputText id="finalidadeCorProdutoNomeInputText" required="true"
 						requiredMessage="#{managerBean.get('msg.preencher.registro')}"
 						disabled="false" style="width: 56%"
-						value="#{pojo.finalidadePadraoEspessuraProduto}" />
+						value="#{pojo.finalidadePadraoLarguraProduto}" />
 				</p:column>
 
 				<p:column styleClass="percentual-10">
 					<h:outputText id="ultimaAlteracaoOutputText"
-						value="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.ultimaAlteracao')}"
+						value="#{managerBean.get('label.cadastroFinalidadePadraoLargura.ultimaAlteracao')}"
 						styleClass="singleLine" />
 				</p:column>
 
@@ -73,7 +73,7 @@
 			<p:row>
 				<p:column styleClass="percentual-10">
 					<h:outputText
-						value="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.unidadePermitida')}"
+						value="#{managerBean.get('label.cadastroFinalidadePadraoLargura.unidadePermitida')}"
 						id="unidadePermitidaOutputText" />
 				</p:column>
 
@@ -82,7 +82,7 @@
 						disabled="true" style="width: 10%"
 						value="#{pojo.unidadeSelected.id}" />
 						
-					<p:spacer height="1" width="3" />
+						<p:spacer height="1" width="3" />
 
 					<h:inputText id="unidadePermitidaAbrevicacaoInputText" required="true"
 						disabled="true" style="width: 10%"
@@ -106,7 +106,7 @@
 	</p:panel>
 
 	<p:dialog
-		header="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.pesquisaUnidade')}"
+		header="#{managerBean.get('label.cadastroFinalidadePadraoLargura.pesquisaUnidade')}"
 		widgetVar="dlgUnidade" modal="false" resizable="false"
 		appendToBody="true" height="100%" width="55%">
 
@@ -121,21 +121,21 @@
 				oncomplete="PF('dlgUnidade').hide();" />
 
 			<p:column filterBy="#{unidade.id}" filterMatchMode="exact"
-				headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.id')}"
+				headerText="#{managerBean.get('label.cadastroFinalidadePadraoLargura.id')}"
 				styleClass="percentual-10 singleLine">
 				<h:outputText value="#{unidade.id}" styleClass="floatRight" />
 			</p:column>
 
 			<p:column filterBy="#{unidade.abreviacao.toLowerCase()}"
 				filterMatchMode="contains"
-				headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.codUnid')}"
+				headerText="#{managerBean.get('label.cadastroFinalidadePadraoLargura.codUnid')}"
 				styleClass="percentual-20 singleLine">
 				<h:outputText value="#{unidade.abreviacao}" />
 			</p:column>
 
 			<p:column filterBy="#{unidade.unidade.toLowerCase()}"
 				filterMatchMode="contains"
-				headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.descricao')}"
+				headerText="#{managerBean.get('label.cadastroFinalidadePadraoLargura.descricao')}"
 				styleClass="percentual-20 singleLine">
 				<h:outputText value="#{unidade.unidade}" />
 			</p:column>

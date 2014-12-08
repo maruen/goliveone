@@ -17,70 +17,68 @@
 		</f:facet>
 
 		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
-			columnClasses="percentual-5,
-						   percentual-50,
-						   percentual-10,
-						   percentual-10,
-						   percentual-10,
-						   percentual-5"
+			columnClasses="percentual-5,percentual-50,percentual-10,percentual-10,percentual-10,percentual-5"
 			width="100%" border="0">
 
-			<h:outputText id="idOutputText" value="#{managerBean.get('label.cadastroFinalidadeUnidade.id')}" />
-			<h:inputText id="idInputText" style="width: 125px;" disabled="true" />
-			
+			<h:outputText id="idOutputText"
+				value="#{managerBean.get('label.cadastroFinalidadeUnidade.id')}" />
+			<h:inputText id="idInputText" style="width: 125px;" disabled="true"
+				value="#{pojo.id}" />
+
 			<p:spacer />
 			<p:spacer />
 
 			<h:outputText id="dataInclusaoOutputText"
-						value="#{managerBean.get('label.cadastroFinalidadeUnidade.inclusao')}" />
-			<h:inputText value="25/08/2014 20:24" id="dataInclusaoInputText"
-						disabled="true" />
-						
+				value="#{managerBean.get('label.cadastroFinalidadeUnidade.inclusao')}" />
+			<h:inputText value="#{pojo.dataInclusao.time}"
+				id="dataInclusaoInputText" disabled="true">
+				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:inputText>
+
 			<h:outputText id="descricaoNomeOutputText"
-						value="#{managerBean.get('label.cadastroFinalidadeUnidade.descricao')}" />
+				value="#{managerBean.get('label.cadastroFinalidadeUnidade.descricao')}" />
 			<p:inputText id="descricaoNomeInputText" required="true"
-						disabled="false" styleClass="singleLine"
-						value="Unidades Legais - Emissões da NFe"
-						style="width: 70%;" />
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				styleClass="singleLine" value="#{pojo.finalidadeUnidadeProduto}"
+				style="width: 70%;" />
 
 			<p:spacer />
 			<p:spacer />
 
 			<h:outputText id="ultimaAlteracaoOutputText"
-						value="#{managerBean.get('label.cadastroFinalidadeUnidade.ultimaAlteracao')}"
-						styleClass="singleLine" />
-			<h:inputText value="25/08/2014 20:47" id="ultimaAlteracaoInputText"
-						disabled="true" />
-						
-		</h:panelGrid>
-		
-		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
-					 columnClasses="percentual-5,
-						   			percentual-50,
-						   			percentual-10,
-						   			percentual-10,
-						   			percentual-10,
-						   			percentual-5"
-					width="100%" border="0">
+				value="#{managerBean.get('label.cadastroFinalidadeUnidade.ultimaAlteracao')}"
+				styleClass="singleLine" />
+			<h:inputText value="#{pojo.dataAlteracao.time}"
+				id="ultimaAlteracaoInputText" disabled="true">
+				<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:inputText>
 
-			<h:outputText value="#{managerBean.get('label.cadastroFinalidadeUnidade.nMinimoCaracteres')}"
-						styleClass="singleLine"
-						id="numMinCaracteresOutputText" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="6" cellpadding="3" cellspacing="3"
+			columnClasses="percentual-5,percentual-50,percentual-10,percentual-10,percentual-10,percentual-5"
+			width="100%" border="0">
+
+			<h:outputText
+				value="#{managerBean.get('label.cadastroFinalidadeUnidade.nMinimoCaracteres')}"
+				styleClass="singleLine" id="numMinCaracteresOutputText" />
 			<p:inputText id="numMinCaracteresInputText" required="true"
-						disabled="false" value="00010"
-						style="width: 10%;" />
-			
-			<p:spacer/>
-			<p:spacer/>
-			<p:spacer/>
-			<p:spacer/>
-			
-			<h:outputText value="#{managerBean.get('label.cadastroFinalidadeUnidade.nMaximoCaracteres')}"
-						styleClass="singleLine"
-						id="numMaxCaracteresOutputText" />
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				disabled="false" value="#{pojo.numeroMinimoCaracteres}"
+				style="width: 10%;" />
+
+			<p:spacer />
+			<p:spacer />
+			<p:spacer />
+			<p:spacer />
+
+			<h:outputText
+				value="#{managerBean.get('label.cadastroFinalidadeUnidade.nMaximoCaracteres')}"
+				styleClass="singleLine" id="numMaxCaracteresOutputText" />
 			<p:inputText id="numMaxCaracteresInputText" required="true"
-						disabled="false" value="00050"
-						style="width: 10%;" />
+				requiredMessage="#{managerBean.get('msg.preencher.registro')}"
+				disabled="false" value="#{pojo.numeroMaximoCaracteres}"
+				style="width: 10%;" />
 		</h:panelGrid>
 	</p:panel>
 </ui:composition>

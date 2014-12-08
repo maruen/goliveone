@@ -5,123 +5,24 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:golive="http://java.sun.com/jsf/composite/components"
+	xmlns:generics="http://java.sun.com/jsf/composite/components/cadastros"
 	template="/resources/templates/cadastros/cadastroTemplate.xhtml">
 
-	<ui:param name="bean" value="#{finalidadePadraoEspessuraBean}" />
+	<ui:param name="bean" value="#{produtoFinalidadePadraoEspessuraBean}" />
+	<ui:param name="title" value="#{managerBean.get(bean.nomePagina())}" />
 
 	<ui:define name="css">
-		<h:outputStylesheet
-			name="css/cadastros/style_finalidadePadraoEspessura.css" />
+		<h:outputStylesheet name="css/cadastros/style_finalidadePadraoEspessura.css" />
 	</ui:define>
-
-	<ui:define name="conteudo">
-
-		<p:dataTable id="conteudoTable" var="row" selection="#{bean.registro}"
-			value="#{bean.conteudo}" selectionMode="single" rows="15"
-			rowKey="#{row.id}" paginator="true" filteredValue="#{bean.filtrados}"
-			emptyMessage="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.msnNaoHaRegistros')}"
-			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-
-			<p:ajax event="rowSelect" update="conteudoTable" />
-			<p:ajax event="rowUnselect" update="conteudoTable" />
-
-			<p:column selectionMode="single" style="width:16px;text-align:center" />
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.dataInclusao')}"
-				filterBy="${row.id}" filterMatchMode="contains"
-				filterStyleClass="width-size-70;"
-				styleClass="percentual-10 singleLine">
-
-				<h:outputText value="25/08/2014 20:24" />
-
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.dataAlteracao')}"
-				filterBy="${row.id}" filterMatchMode="contains"
-				styleClass="percentual-10 singleLine">
-
-				<h:outputText value="25/08/2014 20:47" />
-
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.id')}"
-				filterBy="${row.id}" filterMatchMode="contains"
-				styleClass="percentual-10">
-
-				<h:outputText value="000000000001" styleClass="floatRight"
-					style="margin-right: 10px;" />
-
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.finalidadePadraoEspessuraProduto')}"
-				filterMatchMode="contains" filterBy="${row.id}"
-				styleClass="percentual-12 singleLine">
-
-				<h:outputText
-					value="Pedido de Compra - Lâmina Horizontal Alumínio 0.18mm"
-					styleClass="floatRight" style="margin-right: 10px;" />
-
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.id')}"
-				filterBy="${row.id}" filterMatchMode="contains"
-				styleClass="percentual-10 ">
-
-				<h:outputText value="0000000001" styleClass="floatRight"
-					style="margin-right: 10px;" />
-
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.abreviacaoUn')}"
-				filterMatchMode="contains" filterBy="${row.id}"
-				styleClass="percentual-10 singleLine ">
-
-				<h:outputText value="MM" styleClass="floatRight"
-					style="margin-right: 10px;" />
-
-			</p:column>
-
-			<p:column
-				headerText="#{managerBean.get('label.cadastroFinalidadePadraoEspessura.unidade')}"
-				filterMatchMode="contains" filterBy="${row.id}"
-				styleClass="percentual-10 singleLine ">
-
-				<h:outputText value="Milimetros" styleClass="floatRight"
-					style="margin-right: 10px;" />
-
-			</p:column>
-		</p:dataTable>
-
-	</ui:define>
-
+	
 	<ui:define name="edicao">
 
-		<ui:include
-			src="/resources/includes/cadastros/cadastros/produto/finalidades/dadosGeraisFinalidadePadraoEspessura.xhtml">
-			<ui:param name="pojo"
-				value="#{bean.registro}" />
+		<ui:include src="/resources/includes/cadastros/cadastros/produto/finalidades/dadosGeraisFinalidadePadraoEspessura.xhtml">
+			<ui:param name="pojo" value="#{bean.registro}" />
 		</ui:include>
-		<ui:include
-			src="/resources/includes/cadastros/cadastros/produto/finalidades/apresentacaoFinalidadePadraoEspessura.xhtml">
-			<ui:param name="pojo"
-				value="#{bean.registro}" />
-		</ui:include>
-		<ui:include
-			src="/resources/includes/cadastros/cadastros/produto/finalidades/aplicacaoFinalidadePadraoEspessura.xhtml">
-			<ui:param name="pojo"
-				value="#{bean.registro}" />
-		</ui:include>
-		<ui:include
-			src="/resources/includes/cadastros/componentsGenericos/auditoria.xhtml">
-			<ui:param name="pojo"
-				value="#{bean.registro}" />
-		</ui:include>
-
+		
+		<generics:cadastroProdutoFinalidadeApresentacao pojo="#{bean.registro}" />
+		<generics:cadastroProdutoFinalidadeAplicacao pojo="#{bean.registro}" />
 	</ui:define>
+	
 </ui:composition>
